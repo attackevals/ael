@@ -14,3 +14,4 @@ footer:
   copyright: "&copy; Copyright {{ year }}. All rights reserved."
 start:
   pro: true
+poweredByRetype: false
