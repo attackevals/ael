@@ -1,6 +1,7 @@
 # DEPENDENCIES
 
 ## CALDERA C2 Server
+
 - Linux/Mac OS, 64-bit
 - git commandline installed
 - python3.7+ with pip3
@@ -9,6 +10,7 @@
     - required for dynamic agent compilation
 
 ## Attacker Machine Dependencies
+
 - Linux OS, 64-bit
     - Kali recommended
     - Can be the same machine as the CALDERA C2 server if needed.
@@ -20,11 +22,13 @@
     - xdotool
 
 ## Target Machine Dependencies
+
 - For the Linux target machine, the user account used for initial access must be able to run sudo commands without entering a password.
 
 # SETUP
 
 ## Download and Install CALDERA
+
 Run the following on a Linux/Mac machine of your choice. This machine will act as your C2 server.
 ```
 git clone --depth 1 https://github.com/mitre/caldera.git --recursive
@@ -62,6 +66,7 @@ python3 server.py --log DEBUG
 # RUNNING THE OPERATION
 
 ## Launch Agent on Attacker-controlled Kali Machine
+
 We recommend using a different Kali linux machine to run the Kali agent since RDP windows will need to be in the forefront when performing certain automated keystrokes. Thus, in order to avoid disrupting automated RDP keystrokes, it's best to run the Kali agent on a machine different from the C2 server. If you plan on using the same Kali machine to run the C2 server and the kali agent, make sure not to type or click around when performing RDP-related abilities.
 
 Launch the agent by running the following command on the (preferably remote) Kali machine:
@@ -79,6 +84,7 @@ Make sure you can see your kali agent after clicking the `agents` option on the 
 For best results, make sure you don't have other agents currently beaconing in.
 
 ## Fact Setup
+
 Before running the operation, you will need to make sure that the Sandworm fact source is properly configured for your environment. While default fact values are provided, they will need to be replaced by the appropriate values specific to your testing environment. On the left menu, under `Configuration`, select `fact sources`. Under the "Select a source" drop-down menu, select `Sandworm Team (G0034) (Emu)`, which is the fact source for the Sandworm adversary. From there, update the following facts as needed:
 - `initial.target.host`: the IPv4 address or hostname of the initial target for the operation. This will have to be a Windows machine connected to your Active Directory environment.
 - `initial.user.name`: the username (without the domain portion) that will be used to log into the initial target.
@@ -91,6 +97,7 @@ Before running the operation, you will need to make sure that the Sandworm fact 
 - `dc.target.host`: the IPv4 address or hostname of the Domain Controller for your AD environment.
 
 ## Operation Setup
+
 After adjusting the fact source as needed, select `operations` from the left menu, under "Campaigns".
 
 Select "+ Create Operation" to the right of the drop-down menu.
@@ -124,11 +131,13 @@ Keep visibility at 51.
 When ready, hit the Start button and wait for your operation to complete.
 
 # TERMINATING THE OPERATION
+
 Press the stop button in the operation GUI to finish the operation and enter the cleanup stage.
 
 After the cleanup phase finishes, terminate agents from the GUI, or RDP/SSH into the target machines to stop the agent processes.
 
 ## Cleanup
+
 Note that when the operation terminates, the agents running on the various targets will perform various cleanup tasks in order to revert
 certain changes, such as file downloads and persistence. These are not part of the actual evaluation. The following cleanup actions are taken:
     - The agent running on the attacker-controlled Kali machine will SSH into the Linux target and run the following:
@@ -154,6 +163,7 @@ While the operation cleanup phase will cleanup the actions taken against the Lin
 - RDP into the domain controller and delete the agent executable at `C:\Windows\system32\perfc.exe`
 
 ## Uploaded Files
+
 If all goes well during the operation, the agent running on the second target host (the first Windows target after the Linux target) will have uploaded two files: `dir.out` (output from the `dir /s /b C:\` command) and `mslog.txt` (logged keystrokes from the keylogger).
 
 The directory on the CALDERA server machine that contains the uploaded files depends on the `exfil_dir` setting within the CALDERA configuration file (`/tmp/caldera` by default). Within this exfil directory, you'll find a subdirectory of the format `hostname-agentidentifier`, where `hostname` is the hostname where the agent was running, and the agent identifier is the unique identifier for the agent. The encrypted uploaded files will be in that subdirectory.
@@ -165,12 +175,14 @@ python3 ~/caldera/app/utility/file_decryptor.py -c ~/caldera/conf/local.yml /tmp
 ```
 
 # MODIFICATIONS/DEVIATIONS FROM THE ORIGINAL EMULATION PLAN
+
 - Note that CALDERA will be used as the control server instead of the `control_server` program used in evals. As such, the agent executables used will be specific to CALDERA and are not compatible with the original control server program, and vice versa.
 - Note that agent-server communication will be in unencrypted by default unless CALDERA is run using the `ssl` plugin and is listening on an HTTPS socket.
 - Note that the agents will connect to the C2 server using the pre-configured HTTP port from the CALDERA configuration file (default 8888), and so the port numbers may differ from what was used in evals.
 - When performing RDP connections with shared drives, some of the local file paths on the attacker machine are adjusted for more flexibility, since agents may be started from various directories on the local file system. The overall functionality remains the same.
 
 ## Step 11
+
 - `sshpass` is used to pass in the initial user's SSH credentials to `scp` and `ssh` in a programmatic way, without having to do so manually.
 - Because the payload file is downloaded to the attacker machine agent's current working directory, the file path used in the scp command for the webshell is `./obfuscated_webShell.php` instead of `sandworm/Resources/phpWebShell/obfuscated_webShell.php`.
 - Cleanup for step 11 is included and is modified to run via `sshpass` and `ssh`:
@@ -182,10 +194,12 @@ python3 ~/caldera/app/utility/file_decryptor.py -c ~/caldera/conf/local.yml /tmp
 - If the automated cleanup for step 11 fails, please follow manual cleanup instructions from [cleanup](/Enterprise/sandworm/Resources/cleanup/README.md)
 
 ## Step 12
+
 - `curl` commands will have their `stderr` output suppressed to prevent CALDERA from prioritizing `stderr` output over `stdout`
 - Note that the `ls` webshell command output may take a very long time to render/load from the browser due to the output size.
 
 ## Step 13
+
 - The CALDERA agent executable will be downloaded as `centreon_module_linux_app64` and will be used instead of the actual `centreon_module_linux_app64` file used in evals.
     - The agent will act as the remote access implant and will replace the Exaramel-Linux-based malware from evals.
     - The `curl` request used to download the agent executable has been modified in order to perform an HTTP POST request and pass in required headers for compiling the agent executable. It will look something like the following:
@@ -195,6 +209,7 @@ python3 ~/caldera/app/utility/file_decryptor.py -c ~/caldera/conf/local.yml /tmp
 - An extra ability is included to wait for 40 seconds for the new elevated agent to start beaconing in to the C2 server.
 
 ## Step 14
+
 - The following command is run via `sh` to emulate the original GoLang implementation for cron persistence:
     ```
     dir=$(dirname /var/www/html/centreon_module_linux_app64);
@@ -211,6 +226,7 @@ python3 ~/caldera/app/utility/file_decryptor.py -c ~/caldera/conf/local.yml /tmp
 - Instead of transferring the SSH key files directly to the CALDERA server, the agent will execute the following `cat` commands via `sh` and send the output to the CALDERA server: `cat /home/fherbert/.ssh/id_rsa;cat /home/fherbert/.ssh/id_rsa.pub;`
 
 ## Step 15
+
 - The CALDERA agent executable for the lateral movement target will be compiled and downloaded as `wsmprovav.exe` and will be used instead of the actual `wsmprovav.exe` executable used in evals.
     - The agent will act as the remote access implant and will replace the Exaramel-based malware from evals.
     - Note that the agent executable will directly connect to the C2 server and does not act as a stager or dropper. No DLL will be downloaded or executed as part of this process.
@@ -224,6 +240,7 @@ python3 ~/caldera/app/utility/file_decryptor.py -c ~/caldera/conf/local.yml /tmp
 - An extra ability is included to wait for 40 seconds for the new agent to start beaconing in to the C2 server.
 
 ## Step 16
+
 - Instead of using GoLang to discover the current username, the CALDERA agent will run the `whoami.exe` executable.
 - Instead of using GoLang to query registry keys, the agent will run the following via `cmd`:
 ```
@@ -237,6 +254,7 @@ reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v CurrentBuild
 - `netstat` is executed via `cmd /c` rather than `cmd /k`
 
 ## Step 17
+
 - The web credential dumper is initially saved to disk at the agent's current working directory as `dumpWebBrowserCreds.exe`, and is renamed and moved to `C:\Windows\System32\oradump.exe` via `cmd.`
 - The web credential dumper is executed via `cmd /c` rather than `cmd /k` and has its stderr redirected to stdout due to how CALDERA handles stderr.
 - The keylogger is initially saved to disk at the agent's current working directory as `keylogger.exe`, and is renamed and moved to `C:\Windows\System32\mslog.exe` via `cmd.`
@@ -246,6 +264,7 @@ reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v CurrentBuild
 - `taskkill`, `dsquery`, and `del` are executed via `cmd /c` rather than `cmd /k`
 
 ## Step 18
+
 - Prior to setting up the RDP connection, the agent on the attacker machine will set up a `sw_tools` directory from the current working directory. This directory will contain the `SharpNP.dll` DLL as well as another compiled agent binary named as `perfc.exe`
 - When performing the RDP connection, the RDP shared drive will reference the `./sw_tools` local directory on the attacker's machine
 - Instead of typing out the remaining commands over the RDP connection, a new agent will be spawned by copying `perfc.exe` over the RDP shared drive and executing it in an administrator PowerShell session.
@@ -257,6 +276,7 @@ C:\Windows\perfc.dat;dir C:\Windows\perfc.dat;
 ```
 
 ## Step 19
+
 - The CALDERA agent running on the domain controller will spawn a separate PowerShell process to run the following:
 ```
 rundll32.exe C:\Windows\perfc.dat,"#1"

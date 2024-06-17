@@ -1,19 +1,19 @@
 # FIN7 Intelligence Summary
---- 
+---
 ## ATT&CK Group ID: [GOO46](https://attack.mitre.org/groups/G0046/)
 
-**Objectives**: 
+**Objectives**:
 FIN7 is a financially-motivated threat group that has been associated with malicious operations dating back to late 2015.<sup>[25](https://www.fireeye.com/blog/threat-research/2017/04/fin7-phishing-lnk.html)</sup> The group is characterized by their persistent targeting and large-scale theft of payment card data from victim systems, often using social engineering and spearphishing [(T1566)](https://attack.mitre.org/techniques/T1566/) with well-disguised lures to distribute their malware.<sup>[9](https://www.fireeye.com/content/dam/fireeye-www/summit/cds-2018/presentations/cds18-technical-s05-att&cking-fin7.pdf),[11](https://www.fireeye.com/blog/threat-research/2018/08/fin7-pursuing-an-enigmatic-and-evasive-global-criminal-operation.html),[12](https://www.justice.gov/opa/press-release/file/1084361/download),[26](https://www.fireeye.com/blog/threat-research/2017/03/fin7_spear_phishing.html)</sup> Beyond the monetization of victim payment card data, FIN7 has used other diverse monetization tactics, including targeting finance departments within victim organizations and targeting individuals with access to material non-public information that the actors could use to gain a competitve advantage in stock trading.<sup>[11](https://www.fireeye.com/blog/threat-research/2018/08/fin7-pursuing-an-enigmatic-and-evasive-global-criminal-operation.html),[26](https://www.fireeye.com/blog/threat-research/2017/03/fin7_spear_phishing.html)</sup>
 
-**Target Industries**: 
+**Target Industries**:
 FIN7 operations have been directed against victims within the following sectors in the United States and Europe:  restaurants, hospitality, casinos and gaming, energy, finance, high-tech, software, travel, education, construction, retail, telecommunications, government, and business services.<sup>[11](https://www.fireeye.com/blog/threat-research/2018/08/fin7-pursuing-an-enigmatic-and-evasive-global-criminal-operation.html)</sup>
 
-**Operations**: 
+**Operations**:
 Regarding their operational tradecraft, FIN7 is distinguished by their techincal innovation, using novel techniques and displaying characteristics of a well-rounded operation. FIN7 has been reported to employ limited use of exploits while blending publicly available and unique or altered tools.<sup>[9](https://www.fireeye.com/content/dam/fireeye-www/summit/cds-2018/presentations/cds18-technical-s05-att&cking-fin7.pdf)</sup> The group has leveraged hidden shortcut files (LNK files) [(T1204.002)](https://attack.mitre.org/techniques/T1204/002/) to initiate infection and VBScript functionality launched by mshta.exe [(T1218.005)](https://attack.mitre.org/techniques/T1218/005/) to infect the victim.<sup>[25](https://www.fireeye.com/blog/threat-research/2017/04/fin7-phishing-lnk.html)</sup> This is a departure from previously established usage of weaponized Office macros [(T1059.005)](https://attack.mitre.org/techniques/T1059/005/) and highlights the group's ability to adapt to evade detction.<sup>[11](https://www.fireeye.com/blog/threat-research/2018/08/fin7-pursuing-an-enigmatic-and-evasive-global-criminal-operation.html)</sup>
 
 FIN7 has been reported to use the Carbanak backdoor as a post-exploitation tool since as early as 2015.<sup>[11](https://www.fireeye.com/blog/threat-research/2018/08/fin7-pursuing-an-enigmatic-and-evasive-global-criminal-operation.html)</sup> The group has also used creative persistence mechanisms, such as application shimming [(T1546.011)](https://attack.mitre.org/techniques/T1546/011/), to spawn a Carbanak backdoor and seprately to install a payment card harvesting utility.<sup>[11](https://www.fireeye.com/blog/threat-research/2018/08/fin7-pursuing-an-enigmatic-and-evasive-global-criminal-operation.html),[24](https://www.fireeye.com/blog/threat-research/2017/05/fin7-shim-databases-persistence.html)</sup> It has also been reported that the group has developed defense evasion techniques rapidly, such as we creating novel obfuscation methods that in some cases were modified on a daily basis while launching attacks targeting multiple victims.<sup>[11](https://www.fireeye.com/blog/threat-research/2018/08/fin7-pursuing-an-enigmatic-and-evasive-global-criminal-operation.html)</sup> FireEye dubbed their development of a payload obfuscation style using the Windows command interpreter's native string substitution as "FINcoding."<sup>[11](https://www.fireeye.com/blog/threat-research/2018/08/fin7-pursuing-an-enigmatic-and-evasive-global-criminal-operation.html)</sup>
 
-FIN7 has also used point-of-sale malware, such as Pillowmint, to scrape track 1 and track 2 payment card data from memory.<sup>[8](https://www.fireeye.com/content/dam/fireeye-www/summit/cds-2018/presentations/cds18-technical-s05-att&cking-fin7.pdf)</sup> 
+FIN7 has also used point-of-sale malware, such as Pillowmint, to scrape track 1 and track 2 payment card data from memory.<sup>[8](https://www.fireeye.com/content/dam/fireeye-www/summit/cds-2018/presentations/cds18-technical-s05-att&cking-fin7.pdf)</sup>
 
 ---
 
@@ -128,15 +128,15 @@ ID | Source | Publisher | Date |
 
 ## Additional Plan Resources
 
-- [Intelligence Summary](/fin7/Intelligence_Summary.md)
-- [Operations Flow](/fin7/Operations_Flow.md)
-- [Emulation Plan](/fin7/Emulation_Plan)
-  - [Scenario 1 - Infrastructure](/fin7/Emulation_Plan/Scenario_1/Infrastructure.md)
-  - [Scenario 1 - Detections](/fin7/Emulation_Plan/Scenario_1)
-  - [Scenario 2 - Infrastructure](/fin7/Emulation_Plan/Scenario_2/Infrastructure.md)
-  - [Scenario 2 - Protections](/fin7/Emulation_Plan/Scenario_2)
-  - [YAML](/fin7/Emulation_Plan/yaml)
-- [File Hashes](/fin7/hashes)
-- [YARA Rules](/fin7/yara-rules)
+- [Intelligence Summary](../Intelligence_Summary.md)
+- [Operations Flow](../Operations_Flow.md)
+- [Emulation Plan](../Emulation_Plan)
+  - [Scenario 1 - Infrastructure](../Emulation_Plan/Scenario_1/Infrastructure.md)
+  - [Scenario 1 - Detections](../Emulation_Plan/Scenario_1)
+  - [Scenario 2 - Infrastructure](../Emulation_Plan/Scenario_2/Infrastructure.md)
+  - [Scenario 2 - Protections](../Emulation_Plan/Scenario_2)
+  - [YAML](../Emulation_Plan/yaml)
+- [File Hashes](../hashes)
+- [YARA Rules](../yara-rules)
 - [Issues](https://github.com/attackevals/ael/issues)
-- [Change Log](/fin7/CHANGE_LOG.md)
+- [Change Log](../CHANGE_LOG.md)

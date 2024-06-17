@@ -1,6 +1,6 @@
 # Carbanak Adversary Emulation
 
-This adversary emulation plan is derived from the original [Carbanak](https://attack.mitre.org/groups/G0008/) content developed and used in the [2020 ATT&CK Evaluations](https://attackevals.mitre-engenuity.org/carbanak-fin7/).  
+This adversary emulation plan is derived from the original [Carbanak](https://attack.mitre.org/groups/G0008/) content developed and used in the [2020 ATT&CK Evaluations](https://attackevals.mitre-engenuity.org/carbanak-fin7/).
 
 **Carbanak** is a threat group that has been found to target banks. It also refers to malware of the same name (Carbanak). It is sometimes referred to as FIN7, but these appear to be two groups using the same Carbanak malware and are therefore tracked separately.<sup>[1](https://www.fireeye.com/blog/threat-research/2017/03/fin7_spear_phishing.html) [2](https://www.fireeye.com/blog/threat-research/2017/04/fin7-phishing-lnk.html) [3](https://www.fireeye.com/blog/threat-research/2017/06/behind-the-carbanak-backdoor.html) [4](https://www.fireeye.com/blog/threat-research/2018/08/fin7-pursuing-an-enigmatic-and-evasive-global-criminal-operation.html) </sup>
 
@@ -46,30 +46,17 @@ Special thanks to the following projects for providing tools and source code tha
 - [killswitch-GUI](https://github.com/killswitch-GUI/SetWindowsHookEx-Keylogger)
 - [Mimikatz](https://github.com/gentilkiwi/mimikatz)
 
-## Table of Contents
-
-- [Intelligence Summary](/carbanak/Intelligence_Summary.md)
-- [Operations Flow](/carbanak/Operations_Flow.md)
-- [Emulation Plan](/carbanak/Emulation_Plan)
-  - [Scenario 1 - Infrastructure](/carbanak/Emulation_Plan/Scenario_1/Infrastructure.md)
-  - [Scenario 1 - Detections](/carbanak/Emulation_Plan/Scenario_1)
-  - [Scenario 2 - Infrastructure](/carbanak/Emulation_Plan/Scenario_2/Infrastructure.md)
-  - [Scenario 2 - Protections](/carbanak/Emulation_Plan/Scenario_2)
-  - [YAML](/carbanak/Emulation_Plan/yaml)
-- [File Hashes](/carbanak/hashes)
-- [YARA Rules](/carbanak/yara-rules)
-- [Issues](https://github.com/attackevals/ael/issues)
-- [Change Log](/carbanak/CHANGE_LOG.md)
-
 ## Liability / Responsible Usage
+
 This content is only to be used with appropriate prior, explicit authorization for the purposes of assessing security posture and/or research.
 
 ## Notice
+
 © 2021 MITRE Engenuity. Approved for Public Release. Document number AT0016
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at:
 
-* [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
+- [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 

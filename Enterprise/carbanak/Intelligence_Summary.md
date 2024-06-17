@@ -6,9 +6,9 @@
 
 **Objectives:** Carbanak is a threat group who has been found to manipulate financial assets, such as by transferring funds from bank accounts or by taking over ATM infrastructures and instructing them to dispense cash at predetermined time intervals.<sup>[1](https://www.bitdefender.com/files/News/CaseStudies/study/262/Bitdefender-WhitePaper-An-APT-Blueprint-Gaining-New-Visibility-into-Financial-Threats-interactive.pdf)</sup> The group is reported to have been operating as early as 2013 and is still currently active (2021).<sup>[2](https://threatpost.com/alleged-mastermind-behind-carbanak-crime-gang-arrested/130831/)</sup>
 
-**Target Industries:** Carbanak has targeted financial institutions and associated infrastructure. Geographically, Carbanak has compromised targets in over 30 countries, to include Russia, Germany, Ukraine, China, USA, Poland, Bulgaria, Brazil, Iceland, Spain, and more.<sup>[6](https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2018/03/08064518/Carbanak_APT_eng.pdf)</sup> 
+**Target Industries:** Carbanak has targeted financial institutions and associated infrastructure. Geographically, Carbanak has compromised targets in over 30 countries, to include Russia, Germany, Ukraine, China, USA, Poland, Bulgaria, Brazil, Iceland, Spain, and more.<sup>[6](https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2018/03/08064518/Carbanak_APT_eng.pdf)</sup>
 
-**Operations:** Carbanak is known for persistence and operational patience, waiting before executing illicit funds transfers during their campaigns. Carbanak has taken advantage of system users by launching spearphishing attacks in order to get their malware on target. Carbanak has abused the trust of digital signatures by creating a fake identity in order to obtain valid certificates from a certification authority (CA)<sup>[4](https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/operation-grand-mars-a-comprehensive-profile-of-carbanak-activity-in-201617/)</sup> for their variant of the Anunak malware, which is also called Carbanak.<sup>[7](https://www.fireeye.com/blog/threat-research/2017/06/behind-the-carbanak-backdoor.html)</sup>  In addition to custom malware, Carbanak has been known to use administrative tools native to the Windows environment, including PowerShell, WMI, and RDP. 
+**Operations:** Carbanak is known for persistence and operational patience, waiting before executing illicit funds transfers during their campaigns. Carbanak has taken advantage of system users by launching spearphishing attacks in order to get their malware on target. Carbanak has abused the trust of digital signatures by creating a fake identity in order to obtain valid certificates from a certification authority (CA)<sup>[4](https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/operation-grand-mars-a-comprehensive-profile-of-carbanak-activity-in-201617/)</sup> for their variant of the Anunak malware, which is also called Carbanak.<sup>[7](https://www.fireeye.com/blog/threat-research/2017/06/behind-the-carbanak-backdoor.html)</sup>  In addition to custom malware, Carbanak has been known to use administrative tools native to the Windows environment, including PowerShell, WMI, and RDP.
 
 Carbanak is reported to begin most breaches with spearphishing ([T1566.001](https://attack.mitre.org/techniques/T1566/001/)) and social engineering in order to get a legitimate user to download a Microsoft Word document with malicious files embedded in the document. These embedded files allow Carbanak to establish command and control. They are also known to host malicious files on Google Docs and PasteBin ([T1101.002](https://attack.mitre.org/techniques/T1102/002/))<sup>[4](https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/operation-grand-mars-a-comprehensive-profile-of-carbanak-activity-in-201617/)</sup> to further expand their command and control. Once on target, Carbanak has been found to rely on using valid accounts ([T1078](https://attack.mitre.org/techniques/T1078/)) to perform most of their actions.<sup>[6](https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2018/03/08064518/Carbanak_APT_eng.pdf)</sup> The group is known to move laterally and escalate their privileges across networks to find critical systems that manage financial transactions.<sup>[1](https://www.bitdefender.com/files/News/CaseStudies/study/262/Bitdefender-WhitePaper-An-APT-Blueprint-Gaining-New-Visibility-into-Financial-Threats-interactive.pdf)</sup> Carbanak has been found to target hosts that have specific banking software that would facilitate the illicit funds transfers.<sup>[6](https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2018/03/08064518/Carbanak_APT_eng.pdf) </sup>The group is reported to then establish persistence using Windows native tools, such as scheduled tasks ([T1053.005](https://attack.mitre.org/techniques/T1053/005/)) and auto-run services ([T1543.003](https://attack.mitre.org/techniques/T1543/003/)), or other non-malicious tools, such as VNC ([T1021.005](https://attack.mitre.org/techniques/T1021/005/)).<sup>[4](https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/operation-grand-mars-a-comprehensive-profile-of-carbanak-activity-in-201617/),[8](https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/new-carbanak-anunak-attack-methodology/)</sup> From there, Carbanak is known to wait up to four months from initial access before stealing money,<sup>[5](https://securelist.com/the-great-bank-robbery-the-carbanak-apt/68732/)</sup> using this time to expand access and gather instructions for how to initiate the transfers.
 
@@ -80,7 +80,7 @@ ID | Source | Publisher | Date |
 5 | [The Great Bank Robbery: the Carbanak APT](https://securelist.com/the-great-bank-robbery-the-carbanak-apt/68732/) | [Kaspersky](https://securelist.com/) | February 2015
 6 | [Carbanak APT: The Great Bank Robbery](https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2018/03/08064518/Carbanak_APT_eng.pdf) | [Kaspersky](https://securelist.com/) | February 2015
 7 | [Behind the Carbanak Backdoor](https://www.fireeye.com/blog/threat-research/2017/06/behind-the-carbanak-backdoor.html) | [FireEye](https://www.fireeye.com/) | June 2017
-8 | [New Carbanak/Anunak Attack Methodology](https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/new-carbanak-anunak-attack-methodology/) | [Trustwave](https://trustwave.com) | November 2016 
+8 | [New Carbanak/Anunak Attack Methodology](https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/new-carbanak-anunak-attack-methodology/) | [Trustwave](https://trustwave.com) | November 2016
 9 | [FIN7 Evolution and the Phishing LNK](https://www.fireeye.com/blog/threat-research/2017/04/fin7-phishing-lnk.html) | [FireEye](https://www.fireeye.com/) | April 2017
 10 | [The Shadows of Ghosts Carbanak](https://go.rsa.com/l/797543/2019-10-11/35g2/797543/11231/The_Shadows_Of_Ghosts_Carbanak_Report.pdf) | [RSA](https://www.rsa.com) | November 2017
 11 | [ The Carbanak/FIN7 Syndicate: A Historical Overview of an Evolving Threat](https://www.rsa.com/en-us/blog/2017-11/the-carbanak-fin7-syndicate) | [RSA](https://www.rsa.com) | November 2017
@@ -97,15 +97,15 @@ ID | Source | Publisher | Date |
 
 ## Additional Plan Resources
 
-- [Intelligence Summary](/carbanak/Intelligence_Summary.md)
-- [Operations Flow](/carbanak/Operations_Flow.md)
-- [Emulation Plan](/carbanak/Emulation_Plan)
-  - [Scenario 1 - Infrastructure](/carbanak/Emulation_Plan/Scenario_1/Infrastructure.md)
-  - [Scenario 1 - Detections](/carbanak/Emulation_Plan/Scenario_1)
-  - [Scenario 2 - Infrastructure](/carbanak/Emulation_Plan/Scenario_2/Infrastructure.md)
-  - [Scenario 2 - Protections](/carbanak/Emulation_Plan/Scenario_2)
-  - [YAML](/carbanak/Emulation_Plan/yaml)
-- [File Hashes](/carbanak/hashes)
-- [YARA Rules](/carbanak/yara-rules)
+- [Intelligence Summary](../Intelligence_Summary.md)
+- [Operations Flow](../Operations_Flow.md)
+- [Emulation Plan](../Emulation_Plan)
+  - [Scenario 1 - Infrastructure](../Emulation_Plan/Scenario_1/Infrastructure.md)
+  - [Scenario 1 - Detections](../Emulation_Plan/Scenario_1)
+  - [Scenario 2 - Infrastructure](../Emulation_Plan/Scenario_2/Infrastructure.md)
+  - [Scenario 2 - Protections](../Emulation_Plan/Scenario_2)
+  - [YAML](../Emulation_Plan/yaml)
+- [File Hashes](../hashes)
+- [YARA Rules](../yara-rules)
 - [Issues](https://github.com/attackevals/ael/issues)
-- [Change Log](/carbanak/CHANGE_LOG.md)
+- [Change Log](../CHANGE_LOG.md)

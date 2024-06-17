@@ -189,15 +189,3 @@ These scripts use the default hostnames, but require usernames and host IP addre
     **Note**: The script assumes that this repo is downloaded to the <attacker> user's home directory.
 
 2. Run `setup-winhosts.ps1` on the Domain Controller.
-
-## Additional Plan Resources
-
-- [Intelligence Summary](/carbanak/Intelligence_Summary.md)
-- [Operations Flow](/carbanak/Operations_Flow.md)
-- [Emulation Plan](/carbanak/Emulation_Plan)
-  - [Scenario 1 - Infrastructure](/carbanak/Emulation_Plan/Scenario_1/Infrastructure.md)
-  - [Scenario 1 - Detections](/carbanak/Emulation_Plan/Scenario_1)
-  - [Scenario 2 - Infrastructure](/carbanak/Emulation_Plan/Scenario_2/Infrastructure.md)
-  - [Scenario 2 - Protections](/carbanak/Emulation_Plan/Scenario_2)
-- [Issues](https://github.com/attackevals/ael/issues)
-- [Change Log](/carbanak/CHANGE_LOG.md)

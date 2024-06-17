@@ -175,17 +175,6 @@ Set-Executionpolicy bypass -force
 Restart-Computer -Force
 ```
 
-## Additional Plan Resources
-
-- [Intelligence Summary](../../Intelligence_Summary/Intelligence_Summary.md)
-- [Operations Flow](../../Operations_Flow/Operations_Flow.md)
-- [Emulation Plan](../../Emulation_Plan)
-- [Scenario 1 - Infrastructure](../../Emulation_Plan/Scenario_1/Infrastructure.md)
-- [Scenario 1 - Detections](../../Emulation_Plan/Scenario_1)
-- [Scenario 2 - Infrastructure](../../Emulation_Plan/Scenario_2/Infrastructure.md)
-- [Scenario 2 - Protections](../../Emulation_Plan/Scenario_2)
-- [Issues](https://github.com/attackevals/ael/issues)
-
 ## Network Diagram
 
 A network diagram is [available here](../../Resources/images/InfrastructureDiagram.png) that displays the domains and infrastructure that was used to support the setup and execution of the [Emulation plan](../../Emulation_plan/Scenario_1).

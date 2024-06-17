@@ -56,7 +56,7 @@ This methodology assumes the following static IP address configurations:
 
 - Some pre-compiled payloads are available in the [resources](/Enterprise/fin7/Resources) directory; however, they are configured to connect back to static IP address 192.168.0.4.
 
-- Binaries that are not pre-compiled have compilation instructions included, e.g. for [`AccountingIQ.exe`](/Enterprise/fin7/Resources/Step10/README.md) 
+- Binaries that are not pre-compiled have compilation instructions included, e.g. for [`AccountingIQ.exe`](/Enterprise/fin7/Resources/Step10/README.md)
 
 - If you would like to build the payloads yourself, please make the necessary adjustments to the payload source to match your environment.
 
@@ -67,6 +67,7 @@ This methodology assumes the following static IP address configurations:
 ### Windows Attack Platform Setup
 
 1. Disable firewall in CMD
+
     ```
     netsh advfirewall set allprofiles state off
     ```
@@ -87,7 +88,7 @@ This methodology assumes the following static IP address configurations:
 
 4. *IT Admin*: tested and executed on Windows 10 - Build 18363.
 
---- 
+---
 
 ## Target Infrastructure Configuration
 
@@ -109,19 +110,21 @@ This methodology assumes the following static IP address configurations:
 1. If only testing detection capabilities, disable Windows Defender
 
     The `set-defender.ps1` PowerShell script in the [setup](/Enterprise/fin7/Resources/setup) folder can be used to perform this.
-   
+
 2. Disable OLE Security to enable execution of initial access payload
-    
+
     The `set-OLEsecurity.ps1` PowerShell script in the [setup](/Enterprise/fin7/Resources/setup) folder can be used to perform this.
-   
+
 3. Add a static ARP entry for `itadmin`:
-    
+
     1. In a CMP prompt, grab the name of the interface that connects `hotelmanager` to the domain
+
         ```
         cmd > netsh int ipv4 show interfaces
         ```
-    
+
     2. Use this interface name to set a static ARP entry
+
         ```
         cmd > netsh interface ipv4 set neighbors Interface="[Interface Name]" address=<itadmin_ip> neighbor=12-34-56-78-9a-bc
         ```
@@ -133,7 +136,7 @@ This methodology assumes the following static IP address configurations:
     The `set-defender.ps1` PowerShell script in the [setup](/Enterprise/fin7/Resources/setup) folder can be used to perform this.
 
 2. Set ACLs to allow full control for everyone on the `C:\Windows\SysWOW64` directory
-    
+
     The `set-acl-syswow64.ps1` PowerShell script in the [setup](/Enterprise/fin7/Resources/setup) folder can be used to perform this.
 
 ### Accounting Workstation Setup
@@ -147,20 +150,9 @@ This methodology assumes the following static IP address configurations:
 3. Place `AccountingIQ.exe` in `C:\Users\Public`
 
 4. Add `AccountingIQ.exe` to the Registry Run key
+
     ```
     REG ADD "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /V "Dummy Accounting Program" /t REG_SZ /F /D "C:\Users\Public\AccountingIQ.exe"
     ```
 
---- 
-
-## Additional Plan Resources
-
-- [Intelligence Summary](/fin7/Intelligence_Summary.md)
-- [Operations Flow](/fin7/Operations_Flow.md)
-- [Emulation Plan](/fin7/Emulation_Plan)
-  - [Scenario 1 - Infrastructure](/fin7/Emulation_Plan/Scenario_1/Infrastructure.md)
-  - [Scenario 1 - Detections](/fin7/Emulation_Plan/Scenario_1)
-  - [Scenario 2 - Infrastructure](/fin7/Emulation_Plan/Scenario_2/Infrastructure.md)
-  - [Scenario 2 - Protections](/fin7/Emulation_Plan/Scenario_2)
-- [Issues](https://github.com/attackevals/ael/issues)
-- [Change Log](/fin7/CHANGE_LOG.md)
+---
