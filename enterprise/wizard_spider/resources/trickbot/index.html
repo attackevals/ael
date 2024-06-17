@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-root" content="/ael">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.771964962339">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.5.0">
+
+    <!-- Primary Meta Tags -->
+    <title>TrickBot</title>
+    <meta name="title" content="TrickBot">
+    <meta name="description" content="The Trickbot client is broken up into the following components - TrickBotClientExe, ReflectiveDLLInjection, ModuleDiscoverPSE, and Module64.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://attackevals.github.io/ael/enterprise/wizard_spider/resources/trickbot/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://attackevals.github.io/ael/enterprise/wizard_spider/resources/trickbot/">
+    <meta property="og:title" content="TrickBot">
+    <meta property="og:description" content="The Trickbot client is broken up into the following components - TrickBotClientExe, ReflectiveDLLInjection, ModuleDiscoverPSE, and Module64.">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://attackevals.github.io/ael/enterprise/wizard_spider/resources/trickbot/">
+    <meta property="twitter:title" content="TrickBot">
+    <meta property="twitter:description" content="The Trickbot client is broken up into the following components - TrickBotClientExe, ReflectiveDLLInjection, ModuleDiscoverPSE, and Module64.">
+
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="../../../../resources/css/retype.css?v=3.5.0.771964962339" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.5.0.771964962339" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.5.0.771964962339" data-turbo-eval="false" defer></script>
+</head>
+<body>
+    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    
+        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="docs-sidebar-toggle"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="docs-site-logo" href="../../../../" class="flex items-center leading-snug text-xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../../../images/attackevals-logo.png">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../../../images/attackevals-logo.png">
+                            </span>
+                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">ATTACK Evaluation Library</span>
+                        </a>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-gray-400 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 dark:placeholder-dark-400" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="docs-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <div class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            
+                <!-- Render this div, if config.showSidebarFilter is `true` -->
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                </div>
+            
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 dark:bg-dark-850">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="docs-markdown" id="docs-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="docs-sidebar-right-toggle"></div>
+                                <nav class="breadcrumb" aria-label="Breadcrumb">
+                                    <ol role="list">
+                                        <li class="pr-4">
+                                            <a href="../../../../" class="pr-4">
+                                                ATT&​CK Evaluations Library Overview
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Enterprise
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/wizard_spider/" class="pr-4">
+                                                Wizard Spider
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Resources
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/wizard_spider/resources/trickbot/" class="pr-4">
+                                                Trick​Bot
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                
+                                <!-- Page content  -->
+<doc-anchor-target id="trickbot" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#trickbot">#</doc-anchor-trigger>
+        <span>TrickBot</span>
+    </h1>
+</doc-anchor-target>
+<doc-anchor-target id="overview">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#overview">#</doc-anchor-trigger>
+        <span>Overview</span>
+    </h2>
+</doc-anchor-target>
+<p>The Trickbot client is broken up into the following components - TrickBotClientExe, ReflectiveDLLInjection, ModuleDiscoverPSE, and Module64. These four components are responsible for C2 communications, reflective DLL injection, and information gathering/persistence mechanisms via DLL&#x27;s.</p>
+<doc-anchor-target id="trickbotclientexe">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#trickbotclientexe">#</doc-anchor-trigger>
+        <span>TrickbotClientExe</span>
+    </h3>
+</doc-anchor-target>
+<p>The main executable that is responsible for C2 registration and communication. This executable is designed to be kicked off by Emotet[1]. When building this code, the executable will be output as TrickbotClientExe.exe in the folder TrickBotClientExe\x64\Release. The code is currently printing command output, this should be removed for production. The Trickbot C2 commands are broken up into the following structure:</p>
+<p>To run TrickbotClientExe via command line for testing</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">C:\Users\vfleming\AppData\Roaming\WNetval&gt; TrickbotClientExe.exe</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="registration-command">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#registration-command">#</doc-anchor-trigger>
+        <span><a href="trickbotclientexe/trickbotclientexe/tbcomms.cpp#L243">Registration Command</a></span>
+    </h4>
+</doc-anchor-target>
+<p>The function getBotKey() generates a Trickbot encryption key that is used to encrypt DLL&#x27;s and config files that are sent down to a victim machine. Encryption is not currently implemeneted.</p>
+<doc-anchor-target id="get-tasks">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#get-tasks">#</doc-anchor-trigger>
+        <span><a href="trickbotclientexe/trickbotclientexe/tbcomms.cpp#L250">Get Tasks</a></span>
+    </h4>
+</doc-anchor-target>
+<p>This request is sent to the server every N number of seconds to check if the C2 server has a job for the client to perform. This request is called within the main function of TrickBotClientExe and continiously loops until the Trickbot Handler kills the clent connection.</p>
+<doc-anchor-target id="post-command-output">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#post-command-output">#</doc-anchor-trigger>
+        <span><a href="trickbotclientexe/trickbotclientexe/tbcomms.cpp#L254">Post Command Output</a></span>
+    </h4>
+</doc-anchor-target>
+<p>This request will send command line output to the Trickbot handler. The request itself is sent using WinHTTP.</p>
+<doc-anchor-target id="download-file">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#download-file">#</doc-anchor-trigger>
+        <span><a href="trickbotclientexe/trickbotclientexe/tbcomms.cpp#L258">Download File</a></span>
+    </h4>
+</doc-anchor-target>
+<p>This request will download a file that the server tells the client to download. The requests is sent using WinHTTP.</p>
+<doc-anchor-target id="upload-file">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#upload-file">#</doc-anchor-trigger>
+        <span><a href="trickbotclientexe/trickbotclientexe/tbcomms.cpp#L262">Upload File</a></span>
+    </h4>
+</doc-anchor-target>
+<p>This request will upload a file from the client to the c2 server. The reuest is sent using WinHTTTP. Because this function wont be used a ton by the Trickbot C2, the current implementation reads the file to upload into a String and then sends the string in a post request. This implmentation should not be used to upload binary files are large files. Small text files with &quot;discovery&quot; information should work fine.</p>
+<doc-anchor-target id="command-ids">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#command-ids">#</doc-anchor-trigger>
+        <span><a href="trickbotclientexe/trickbotclientexe/commands.h">Command ID&#x27;s</a></span>
+    </h4>
+</doc-anchor-target>
+<p>Command ID&#x27;s are stored in an ENUM and used to define which commands are being sent to the TrickBotHandler. Routes are setup within the Trickbot handler to check the Command ID and then route the request to the correct endpoint.</p>
+<doc-anchor-target id="reflectivedllinjection">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reflectivedllinjection">#</doc-anchor-trigger>
+        <span>ReflectiveDLLInjection</span>
+    </h3>
+</doc-anchor-target>
+<p>An executable responsible for reflectively injecting DLL&#x27;s into processes. This file is compiled into an executable instead of a DLL. This is a slight derivation from the CTI [1]. When building this code, the executable will be output as inject.64.exe in the folder ReflectiveDLLInjection\x64\Release. The functionality of this code mimics that of Loader.dll described in the CTI. This program can be executed by TrickbotClientExe - see Emulation plan for more information. inject.64.exe only injects into svchost.exe.</p>
+<p>To inject into svchost run the following command</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">inject.64.exe {path_to_dll}.dll</code></pre>
+</doc-codeblock></div>
+<p>If you need to change the process to inject to you can edit this line in <a href="reflectivedllinjection/inject/src/inject.c#L71">Inject.c</a>. Please note that you must be running as an Administrator or a high integrity process to be able to inject into svchost.exe.</p>
+<p>Testing:</p>
+<p>If you are testing a new Reflective DLL and are using MessageBox&#x27;s to debug your code, you should change the process to inject into to be a user level process like &quot;notepad.exe&quot;. This will allow you to see the MessageBox output. If you try this with svchost.exe it your DLL will hang and you will see no output from your DLL.</p>
+<doc-anchor-target id="modulediscoverpse">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#modulediscoverpse">#</doc-anchor-trigger>
+        <span>ModuleDiscoverPSE</span>
+    </h3>
+</doc-anchor-target>
+<p>Update: I had issues getting command output to be written to a file using this DLL. Please follow steps in the emulation plan to manually run these commands with the Trickbot client.</p>
+<p>A DLL that can be reflectively loaded by inject.x64.exe. This module is equivalent to DLL.dll referenced in the CTI [1]. This DLL runs multiple system commands including nltest, ipconfig, and net commands. The command output is written to a file on disk called out.txt. Discovery.txt must be back hauled by the C2 manually - see Emulation plan for more information. When building this code, the DLL will be output as ModuleDiscoveryPSE.x64.dll in the folder ModuleDiscoveryPSE\x64\Release.</p>
+<doc-anchor-target id="module64">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#module64">#</doc-anchor-trigger>
+        <span>Module64</span>
+    </h3>
+</doc-anchor-target>
+<p>A DLL that can be reflectively loaded by inject.x64.exe. This module is equivalent to MODULE64.DLL referenced in the CTI [1]. This DLL will transform a file named radiance.png into a file called tsickbot.exe and copy it to other locations on the filesystem and network fileshares. When building this code, the DLL will be output as Module64.x64.dll in the folder Module64\x64\Release</p>
+<p>To build radiance.png - I used a PNG file called <a href="wnetval/diamond.png">diamond.png</a>,</p>
+<p>Run the command below to append the contents of the main trickbot executable to a png called radiance.png</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">cat TrickbotClientExe.exe &gt;&gt; diamond.png &amp;&amp; mv diamond.png radiance.png&quot;</code></pre>
+</doc-codeblock></div>
+<p>Please note that diamond.png must be used to create radiance.png. The filesize of diamong.png is hard coded in Module64 and used as a filepointer location to carve the trickbot executable out of the PNG. This module is hardcoded to look for radiance.png in C:\Users{username}\AppData\Roaming\WNetval\radiance.png</p>
+<p>To run this DLL:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">inject.64.exe {path_to_dll}.dll</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="note-on-reflective-dlls">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#note-on-reflective-dlls">#</doc-anchor-trigger>
+        <span>Note on Reflective DLL&#x27;s</span>
+    </h2>
+</doc-anchor-target>
+<p>If new DLL&#x27;s need to be created for any reason please ensure that the configurations exactly match the other reflective DLL&#x27;s within this repo - the following files are required - ReflectiveDLLInjection.h, ReflectiveDLLInjection.c, and ReflectiveLoader.h. I had issues using C++ when writing these DLL&#x27;s - Windows API&#x27;s and C worked without issue.</p>
+<doc-anchor-target id="folder-structuring">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#folder-structuring">#</doc-anchor-trigger>
+        <span>Folder Structuring</span>
+    </h2>
+</doc-anchor-target>
+<p>The Trickbot folder that is copied onto a victim system should look like the following</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">|
+|-TrickBotClientExe.exe
+|
+|-Data/
+|
+|---- ReflectiveDLLInjection/
+|	  |
+|	  |- inject.x64.exe
+|
+|---- ModuleDiscoverPSE/
+|	  |
+|	  |- ModuleDiscoveryPSE.x64.dll
+|
+|---- Module64/
+|	  |
+|	  |- Module64.x64.dll</code></pre>
+</doc-codeblock></div>
+<p>This folder or its individual contents should be copied to &quot;C:\Users{username}\AppData\Roaming\WNetval&quot;</p>
+<doc-anchor-target id="issues">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#issues">#</doc-anchor-trigger>
+        <span>Issues</span>
+    </h2>
+</doc-anchor-target>
+<p>Any forseeable issues were created as Issues. Please reference the Issue titles that start with &quot;Trickbot&quot;</p>
+<doc-anchor-target id="references">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#references">#</doc-anchor-trigger>
+        <span>References</span>
+    </h2>
+</doc-anchor-target>
+<p>[1] <a href="https://www.cybereason.com/blog/triple-threat-emotet-deploys-trickbot-to-steal-data-spread-ryuk-ransomware" class="outbound" target="_blank"><span>https://www.cybereason.com/blog/triple-threat-emotet-deploys-trickbot-to-steal-data-spread-ryuk-ransomware</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer class="clear-both">
+                            
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../../enterprise/wizard_spider/resources/rubeus/readme_original/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">Rubeus</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../../enterprise/wizard_spider/resources/trickbot/reflectivedllinjection/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                                                <span class="block mt-1">About</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between">
+                                <div>
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                    </ul>
+                                </div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2024. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="docs-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "TrickBot", level: 4, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

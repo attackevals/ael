@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-root" content="/ael">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.771964962339">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.5.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Changelog</title>
+    <meta name="title" content="Changelog">
+    <meta name="description" content="All notable changes to this project will be documented in this file.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://attackevals.github.io/ael/enterprise/wizard_spider/resources/rubeus/changelog/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://attackevals.github.io/ael/enterprise/wizard_spider/resources/rubeus/changelog/">
+    <meta property="og:title" content="Changelog">
+    <meta property="og:description" content="All notable changes to this project will be documented in this file.">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://attackevals.github.io/ael/enterprise/wizard_spider/resources/rubeus/changelog/">
+    <meta property="twitter:title" content="Changelog">
+    <meta property="twitter:description" content="All notable changes to this project will be documented in this file.">
+
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="../../../../../resources/css/retype.css?v=3.5.0.771964962339" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../../../../resources/js/config.js?v=3.5.0.771964962339" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../../resources/js/lunr.js?v=3.5.0.771964962339" data-turbo-eval="false" defer></script>
+</head>
+<body>
+    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    
+        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="docs-sidebar-toggle"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="docs-site-logo" href="../../../../../" class="flex items-center leading-snug text-xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../../../../images/attackevals-logo.png">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../../../../images/attackevals-logo.png">
+                            </span>
+                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">ATTACK Evaluation Library</span>
+                        </a>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-gray-400 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 dark:placeholder-dark-400" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="docs-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <div class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            
+                <!-- Render this div, if config.showSidebarFilter is `true` -->
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                </div>
+            
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 dark:bg-dark-850">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="docs-markdown" id="docs-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="docs-sidebar-right-toggle"></div>
+                                <nav class="breadcrumb" aria-label="Breadcrumb">
+                                    <ol role="list">
+                                        <li class="pr-4">
+                                            <a href="../../../../../" class="pr-4">
+                                                ATT&​CK Evaluations Library Overview
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Enterprise
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../../enterprise/wizard_spider/" class="pr-4">
+                                                Wizard Spider
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Resources
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../../enterprise/wizard_spider/resources/rubeus/" class="pr-4">
+                                                Rubeus
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../../enterprise/wizard_spider/resources/rubeus/changelog/" class="pr-4">
+                                                Changelog
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                
+                                <!-- Page content  -->
+<doc-anchor-target id="changelog" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changelog">#</doc-anchor-trigger>
+        <span>Changelog</span>
+    </h1>
+</doc-anchor-target>
+<p>All notable changes to this project will be documented in this file.</p>
+<p>The format is based on <a href="https://keepachangelog.com/en/1.0.0/" class="outbound" target="_blank"><span>Keep a Changelog</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,
+and this project adheres to <a href="https://semver.org/spec/v2.0.0.html" class="outbound" target="_blank"><span>Semantic Versioning</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>.</p>
+<doc-anchor-target id="163---2021-03-26">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#163---2021-03-26">#</doc-anchor-trigger>
+        <span>[1.6.3] - 2021-03-26</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="change">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#change">#</doc-anchor-trigger>
+        <span>Change</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Only final cert in chain used to verify when signing PKINIT requests, /verifycerts flag added for full verification</li>
+</ul>
+<doc-anchor-target id="fixed">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#fixed">#</doc-anchor-trigger>
+        <span>Fixed</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Replaced /certificate info for help and README</li>
+</ul>
+<doc-anchor-target id="162---2021-03-12">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#162---2021-03-12">#</doc-anchor-trigger>
+        <span>[1.6.2] - 2021-03-12</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="added">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#added">#</doc-anchor-trigger>
+        <span>Added</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Adapted/integrated the PR from @RiccardoAncarani for <code v-pre>/delay:MILLISECONDS</code> and <code v-pre>/jitter:%</code> (1-100) flags for <code v-pre>kerberoast</code></li>
+<li>Rubeus.yar yara rule from FireEye&#x27;s red team tool countermeasure repo</li>
+</ul>
+<doc-anchor-target id="changed">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changed">#</doc-anchor-trigger>
+        <span>Changed</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>arguments can now use <code v-pre>/arg=value</code> form in addition to <code v-pre>/arg:value</code></li>
+</ul>
+<doc-anchor-target id="fixed-1">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#fixed-1">#</doc-anchor-trigger>
+        <span>Fixed</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>few kerberoasting fixes</li>
+</ul>
+<doc-anchor-target id="161---2020-12-09">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#161---2020-12-09">#</doc-anchor-trigger>
+        <span>[1.6.1] - 2020-12-09</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="added-1">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#added-1">#</doc-anchor-trigger>
+        <span>Added</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>/autoenterprise flag to automate retrying failed kerberoasting attempts (@0xe7)</li>
+<li>support for CVE-2020-17049 using the /bronzebit switch (@0xe7)</li>
+<li>initial support for basic silver tickets, without a PAC (@0xe7)</li>
+</ul>
+<doc-anchor-target id="fixed-2">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#fixed-2">#</doc-anchor-trigger>
+        <span>Fixed</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Cross domain enterprise principal kerberoasting (@0xe7)</li>
+<li>Kerberoasting using DC IP and supplying a TGT (@0xe7)</li>
+</ul>
+<doc-anchor-target id="160---2020-11-06">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#160---2020-11-06">#</doc-anchor-trigger>
+        <span>[1.6.0] - 2020-11-06</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="added-2">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#added-2">#</doc-anchor-trigger>
+        <span>Added</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>OPSEC
+<ul>
+<li><code v-pre>/opsec</code> switch to make <code v-pre>asktgt</code> / <code v-pre>asktgs</code> / <code v-pre>s4u</code> build requests more realistic (@0xe7)</li>
+<li>Randomized sequence numbers (@0xe7)</li>
+<li>Added proper checksums (@0xe7)</li>
+<li>Added enc-authorization-data to TGS-REQs (@0xe7)</li>
+<li>Don&#x27;t send AS-REQ when preauth is disabled (@0xe7)</li>
+<li>Automation of requesting forwarded TGT when requesting a service ticket for unconstrained systems (@0xe7)</li>
+<li>Added PA-DATA PA-PAC-OPTIONS to normal TGS-REQ when using <code v-pre>/opsec</code> (@0xe7)</li>
+</ul>
+</li>
+<li>Start of smartcard/PKINIT support (@CCob)
+<ul>
+<li><code v-pre>/password</code> support</li>
+</ul>
+</li>
+<li>Support for <code v-pre>/spns</code> option when kerberoasting (@0xe7)</li>
+<li>Support for NT-Enterprise principals for service ticket requests on both the <code v-pre>asktgs</code> and <code v-pre>kerberoast</code> commands (@0xe7)</li>
+<li>Support for modifying S4U2Self tickets to be able to impersonate any user on the requesting machine (@0xe7)</li>
+<li>Cross-domain <code v-pre>s4u</code> / <code v-pre>asktgs</code> support (@0xe7)</li>
+<li><code v-pre>/runfor:X</code> flag for the <code v-pre>monitor</code> command (@G0ldenGunSec)</li>
+<li>IPv6support (@royreinders)</li>
+</ul>
+<doc-anchor-target id="changed-1">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changed-1">#</doc-anchor-trigger>
+        <span>Changed</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><code v-pre>kerberoast /user:X</code> now takes multiple comma separated values</li>
+</ul>
+<doc-anchor-target id="fixed-3">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#fixed-3">#</doc-anchor-trigger>
+        <span>Fixed</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Casing fix for AES key salts</li>
+<li>Kerberoasting when using TGT to authenticate but not supplying SPNs (@0xe7)</li>
+<li>GetDCName() issue on non-domain-joined systems</li>
+<li>Nonced randomized</li>
+<li>Fixes for issues from non domain machines (@VbScrub)</li>
+<li>Replaced checks for &quot;NT Authority\System&quot; string with SID comparison</li>
+<li>/rc4opsec service name fix</li>
+<li>LDAP paged searching (@cnotin)</li>
+<li>TGS-REQ AES formatting (@Ion Todd)</li>
+</ul>
+<doc-anchor-target id="150---2020-01-31">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#150---2020-01-31">#</doc-anchor-trigger>
+        <span>[1.5.0] - 2020-01-31</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="added-3">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#added-3">#</doc-anchor-trigger>
+        <span>Added</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p>to any command that outputs base64 ticket blobs</p>
+<ul>
+<li>the universal <code v-pre>/nowrap</code> argument prevents base64 ticket blobs from being display-wrapped</li>
+</ul>
+</li>
+<li><p>the <strong>/consoleoutfile</strong> argument to redirect console output to a file, and the public <code v-pre>MainString(&quot;command&quot;)</code> function to work over PSRemoting (see end of README.md)</p>
+</li>
+<li><p><strong>brute</strong> action (from @Zer1t0)</p>
+<ul>
+<li>Performs password bruteforcing attacks using raw AS-REQs</li>
+</ul>
+</li>
+<li><p>to <strong>triage</strong>/<strong>klist</strong>/<strong>dump</strong> actions</p>
+<ul>
+<li>More flexible targeting with <strong>/user</strong>/<strong>/LUID</strong>/<strong>/service</strong>/<strong>/server</strong>/</li>
+</ul>
+</li>
+<li><p>to the <strong>kerberoast</strong> action</p>
+<ul>
+<li><strong>/pwdsetafter</strong>, <strong>/pwdsetbefore</strong>, and <strong>/resultlimit</strong> arguments for better targeting (from @pkb1s)</li>
+<li><strong>/stats</strong> flag to list statistics of user accounts without actually roasting them</li>
+<li><strong>/ldapfilter</strong> argument for adding custom LDAP filters to the user search query</li>
+<li><strong>/simple</strong> argument for output file formatting but to the console</li>
+</ul>
+</li>
+<li><p>to the <strong>asreproast</strong> action</p>
+<ul>
+<li><strong>/ldapfilter</strong> argument for adding custom LDAP filters to the user search query</li>
+</ul>
+</li>
+<li><p>to the <strong>asktgt</strong>/<strong>asktgs</strong>/<strong>s4u</strong> actions</p>
+<ul>
+<li>option to save .kirbi file to disk (from @audrummer15)</li>
+</ul>
+</li>
+<li><p>to the <strong>s4u</strong> action</p>
+<ul>
+<li>the cross-domain s4u support (from @0xe7)</li>
+</ul>
+</li>
+<li><p><strong>currentluid</strong> command to display the current logon sesion ID</p>
+</li>
+</ul>
+<doc-anchor-target id="changed-2">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changed-2">#</doc-anchor-trigger>
+        <span>Changed</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>LSA.cs got a complete overhaul for reusability and flexibility (thanks for the help @leechristensen !)</li>
+<li><strong>kerberoast</strong> action updated to exclude disabled accounts by default</li>
+<li><strong>harvest</strong> mode&#x27;s <strong>/interval</strong> argument is now in seconds, to match <strong>/monitor</strong></li>
+<li><strong>harvest</strong> / <strong>/monitor</strong> modes revamped
+<ul>
+<li>now no longer depend on searching the event logs for 4624 events</li>
+<li>full set of current TGTs are extracted each monitor round</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="fixed-4">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#fixed-4">#</doc-anchor-trigger>
+        <span>Fixed</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Some timestamp converting code in the ticket extraction section</li>
+<li>KERB_RETRIEVE_TKT_REQUEST fix for x32 systems (from @0xRCA)</li>
+<li>Fixed AES salt generation (from @monoxgas)</li>
+<li>Fixed accidental ticket request behavior when dumping from LsaCallAuthenticationPackage</li>
+<li>Fixed <code v-pre>renew</code> command invocation</li>
+<li>Fixed <code v-pre>asreproast</code> LDAP querying (broke at some point)</li>
+</ul>
+<doc-anchor-target id="142---2019-03-01">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#142---2019-03-01">#</doc-anchor-trigger>
+        <span>[1.4.2] - 2019-03-01</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="added-4">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#added-4">#</doc-anchor-trigger>
+        <span>Added</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><strong>tgssub</strong> action
+<ul>
+<li>Substitutes in alternate sname (cifs) or SPN (ldap/computer.domain.com) into an existing service ticket</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="141---2019-02-25">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#141---2019-02-25">#</doc-anchor-trigger>
+        <span>[1.4.1] - 2019-02-25</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="added-5">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#added-5">#</doc-anchor-trigger>
+        <span>Added</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>to <strong>asktgs</strong> action
+<ul>
+<li>/enctype:[RC4/AES128/AES256/DES] now forces that particular encryption type in the TGS-REQ</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="changed-3">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changed-3">#</doc-anchor-trigger>
+        <span>Changed</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><strong>asktgt</strong> action
+<ul>
+<li>Returned tickets now run through the <strong>describe</strong> command</li>
+</ul>
+</li>
+<li><strong>describe</strong> action
+<ul>
+<li>Kerberoast hash now only extracted from RC4_HMAC tickets</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="140---2019-02-16">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#140---2019-02-16">#</doc-anchor-trigger>
+        <span>[1.4.0] - 2019-02-16</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="added-6">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#added-6">#</doc-anchor-trigger>
+        <span>Added</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><strong>hash</strong> action
+<ul>
+<li>hashes a given password to rc4_hmac form, and if /user and /domain supplied, calculates aes128_cts_hmac_sha1, aes256_cts_hmac_sha1, and des_cbc_md5 forms</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="changed-4">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changed-4">#</doc-anchor-trigger>
+        <span>Changed</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><strong>kerberoast</strong> action
+<ul>
+<li>Fixed query that checks that rc4_hmac is flipped in msds-supportedencryption types, because &quot;lol Microsoft&quot;</li>
+</ul>
+</li>
+<li><strong>asktgt</strong> action
+<ul>
+<li>/aes128 and /aes now supported for <strong>/enctype</strong> when used with <strong>/password</strong></li>
+</ul>
+</li>
+<li><strong>crypto</strong>
+<ul>
+<li>Replaced @qlemaire&#x27;s PR of Kevin-Robertson&#x27; Get-KerberosAESKey hash code with @gentilkiwi&#x27;s KERB_ECRYPT HashPassword approach</li>
+</ul>
+</li>
+<li><strong>README</strong>
+<ul>
+<li>added @elad_shamir into the references</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="136---2019-02-14">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#136---2019-02-14">#</doc-anchor-trigger>
+        <span>[1.3.6] - 2019-02-14</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="added-7">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#added-7">#</doc-anchor-trigger>
+        <span>Added</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><strong>kerberoast</strong> action
+<ul>
+<li>/rc4opsec option to use <strong>tgtdeleg</strong> and filter out AES-enabled accounts</li>
+<li>/aes option to AES roast only AES-enabled accounts</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="changed-5">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changed-5">#</doc-anchor-trigger>
+        <span>Changed</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><strong>kerberoast</strong> action
+<ul>
+<li>Default user query searches for accounts with RC4 enabled</li>
+<li>Default behavior when using the /tgtdeleg flag requests RC4 for ALL accounts (including AES)</li>
+<li>Display &quot;Supported ETypes&quot; in enumerated output</li>
+</ul>
+</li>
+<li><strong>tgtdeleg</strong> action
+<ul>
+<li>Changed the default requested SPN from HOST/dc.domain.com to cifs/dc.domain.com</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="fixed-5">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#fixed-5">#</doc-anchor-trigger>
+        <span>Fixed</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Kerberoast hash display for some option combinations</li>
+</ul>
+<doc-anchor-target id="135---2019-02-13">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#135---2019-02-13">#</doc-anchor-trigger>
+        <span>[1.3.5] - 2019-02-13</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="changed-6">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changed-6">#</doc-anchor-trigger>
+        <span>Changed</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><strong>kerberoast</strong> action
+<ul>
+<li>now has /ticket option to use an existing TGT for Kerberoasting</li>
+<li>now has /usetgtdeleg option to use <strong>tgtdeleg</strong> option as the TGT for Kerberoasting</li>
+<li>LDAP user search path and number of found users now output</li>
+</ul>
+</li>
+<li><strong>describe</strong> action
+<ul>
+<li>Kerberoast hash output now generated for service tickets</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="fixed-6">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#fixed-6">#</doc-anchor-trigger>
+        <span>Fixed</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Kerberoast hash display but when /spn and /outfile were specified</li>
+<li>Kerberoast samaccountname now properly put into hash output</li>
+</ul>
+<doc-anchor-target id="134---2019-02-12">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#134---2019-02-12">#</doc-anchor-trigger>
+        <span>[1.3.4] - 2019-02-12</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="changed-7">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changed-7">#</doc-anchor-trigger>
+        <span>Changed</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><strong>kerberoast</strong> action now has /domain and /dc like <strong>asreproast</strong> action</li>
+<li><strong>kerberoast</strong> and <strong>asreproast</strong> now properly work over domain trusts</li>
+<li><strong>triage</strong> command now works for the current non-elevated user, outputting current LUID as well</li>
+<li>Current LUID output also added for non-elevated <strong>dump</strong> and <strong>klist</strong> commands</li>
+<li>Added Opsec section in README.md</li>
+</ul>
+<doc-anchor-target id="133---2019-02-11">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#133---2019-02-11">#</doc-anchor-trigger>
+        <span>[1.3.3] - 2019-02-11</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="changed-8">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changed-8">#</doc-anchor-trigger>
+        <span>Changed</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Landed @leechristensen&#x27;s cleanup of the Monitor4624 code</li>
+<li>Restructed the README.md to match the help output, updated all examples, added table of contents</li>
+</ul>
+<doc-anchor-target id="133---2019-02-07">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#133---2019-02-07">#</doc-anchor-trigger>
+        <span>[1.3.3] - 2019-02-07</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="added-8">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#added-8">#</doc-anchor-trigger>
+        <span>Added</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><strong>triage</strong> action
+<ul>
+<li>Quickly triages the users and present tickets on a machine</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="changed-9">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changed-9">#</doc-anchor-trigger>
+        <span>Changed</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><strong>dump</strong> and <strong>klist</strong> changed default LUID output to hex format</li>
+</ul>
+<doc-anchor-target id="132---2019-02-06">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#132---2019-02-06">#</doc-anchor-trigger>
+        <span>[1.3.2] - 2019-02-06</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="added-9">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#added-9">#</doc-anchor-trigger>
+        <span>Added</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><strong>kerberoast</strong> and <strong>asreproast</strong> actions
+<ul>
+<li>Added /outfile:X to output hashes to a file, one hash per line</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="changed-10">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changed-10">#</doc-anchor-trigger>
+        <span>Changed</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><strong>asreproast</strong> changed asreproast&#x27;s default behavior to match <strong>kerberoast</strong></li>
+<li>Clustered the default output help menu around function (things were getting crowded)</li>
+</ul>
+<doc-anchor-target id="131---2019-02-06">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#131---2019-02-06">#</doc-anchor-trigger>
+        <span>[1.3.1] - 2019-02-06</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="fixed-7">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#fixed-7">#</doc-anchor-trigger>
+        <span>Fixed</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Changed underlying LUID logic to handle UInt64s</li>
+</ul>
+<doc-anchor-target id="130---2019-02-05">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#130---2019-02-05">#</doc-anchor-trigger>
+        <span>[1.3.0] - 2019-02-05</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="added-10">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#added-10">#</doc-anchor-trigger>
+        <span>Added</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><strong>klist</strong> action
+<ul>
+<li>lists current user&#x27;s (or if elevated, all users&#x27;) ticket information</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="changed-11">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changed-11">#</doc-anchor-trigger>
+        <span>Changed</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><strong>s4u</strong> landed @eladshamir&#x27;s pull requests
+<ul>
+<li>RBCD support</li>
+<li>support loading TGS from Kirbi to skip S4U2Self and perform S4U2Proxy only</li>
+<li>perform S4U2Self only</li>
+<li>print output for each stage</li>
+</ul>
+</li>
+<li><strong>asreproast</strong> landed @rvrsh3ll&#x27;s pull request
+<ul>
+<li>added hashcat output format</li>
+</ul>
+</li>
+<li><strong>asktgt</strong> landed @qlemaire&#x27;s pull request
+<ul>
+<li>now accepts a /password:X parameter</li>
+</ul>
+</li>
+<li><strong>monitor</strong> and <strong>harvest</strong> landed @djhohnstein&#x27;s pull request
+<ul>
+<li>ticket extraction can now be saved to the registry with the &quot;/registry:X&quot; flag</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="fixed-8">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#fixed-8">#</doc-anchor-trigger>
+        <span>Fixed</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><strong>dump</strong> display of service tickets with multiple slashes</li>
+<li>response buffer size in lib/Networking.cs increased for large ticket responses</li>
+<li>landed @BlueSkeye&#x27;s fixes for PTT bug fix, TicketFlags display, and dead code removal in PA_DATA.Encode</li>
+</ul>
+<doc-anchor-target id="121---2018-10-09">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#121---2018-10-09">#</doc-anchor-trigger>
+        <span>[1.2.1] - 2018-10-09</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="changed-12">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changed-12">#</doc-anchor-trigger>
+        <span>Changed</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Merged @mark-s&#x27; PR that broke out Program.cs&#x27; commands into &#x27;Command&#x27; classes for easier command addition.</li>
+<li>Commands that pass /dc:X are now passed through Networking.GetDCIP(), which resolves the DC name (if null) and returns the DC IP. Code refactored to use this centralized resolver.</li>
+<li>The /user:USER flag can now be /user:DOMAIN.COM\USER (auto-completes /domain:Y).</li>
+<li>The <strong>harvest</strong> command now returns the user ticket with the latest renew_till time on intial extraction.</li>
+</ul>
+<doc-anchor-target id="120---2018-10-03">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#120---2018-10-03">#</doc-anchor-trigger>
+        <span>[1.2.0] - 2018-10-03</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="added-11">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#added-11">#</doc-anchor-trigger>
+        <span>Added</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><strong>changepw</strong> action
+<ul>
+<li>implements the AoratoPw user password reset from a TGT .kirbi</li>
+<li>equivalent to Kekeo&#x27;s misc::changepw function</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="110---2018-09-31">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#110---2018-09-31">#</doc-anchor-trigger>
+        <span>[1.1.0] - 2018-09-31</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="added-12">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#added-12">#</doc-anchor-trigger>
+        <span>Added</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><strong>asktgs</strong> action - takes /ptt:X, /dc:X, /ticket:X flags like asktgt, /service:X takes one or more SPN specifications</li>
+<li><strong>tgtdeleg</strong> action - reimplements @gentilkiwi&#x27;s Kekeo tgt::deleg function
+<ul>
+<li>uses the GSS-API Kerberos specification (RFC 4121) to request a &quot;fake&quot; delegation context that stores a KRB-CRED in the Authenticator Checksum. Combined with extracting the service session key from the local cache, this allows us to recover usable TGTs for the current user without elevation.</li>
+</ul>
+</li>
+<li>Added CHANGELOG.md</li>
+</ul>
+<doc-anchor-target id="changed-13">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changed-13">#</doc-anchor-trigger>
+        <span>Changed</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><strong>s4u</strong> action now accepts multiple alternate snames (/altservice:X,Y,...)
+<ul>
+<li>This executes the S4U2self/S4U2proxy process only once, and substitutes the multiple alternate service names
+into the final resulting service ticket structure(s) for as many snames as specified</li>
+</ul>
+</li>
+<li><strong>asreproast</strong> action
+<ul>
+<li>added eventual hashcat output format, use &quot;/format:&lt;john/hashcat&gt;&quot; (default of &quot;john&quot;)</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="fixed-9">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#fixed-9">#</doc-anchor-trigger>
+        <span>Fixed</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><strong>dump</strong> action now correctly extracts ServiceName/TargetName strings</li>
+<li><strong>asreproast</strong> action - fixed salt demarcation line for &quot;asreproast&quot; hashes</li>
+<li><strong>kerberoast</strong> action
+<ul>
+<li>Added reference for @machsosec for the KerberosRequestorSecurityToken.GetRequest Kerberoasting Method()</li>
+<li>Corrected encType extraction for the hash output</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="100---2018-08-24">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#100---2018-08-24">#</doc-anchor-trigger>
+        <span>[1.0.0] - 2018-08-24</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Initial release</li>
+</ul>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer class="clear-both">
+                            
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../../../enterprise/wizard_spider/resources/rubeus/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">Rubeus</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../../../enterprise/wizard_spider/resources/rubeus/readme_original/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                                                <span class="block mt-1">Rubeus</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between">
+                                <div>
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                    </ul>
+                                </div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2024. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="docs-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Changelog", level: 5, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

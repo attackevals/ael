@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-root" content="/ael">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.771964962339">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.5.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Snake Installer</title>
+    <meta name="title" content="Snake Installer">
+    <meta name="description" content="This component combines several others into a convenient all-in-one executable to setup the Snake rootkit.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://attackevals.github.io/ael/enterprise/turla/resources/snake/snakeinstaller/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://attackevals.github.io/ael/enterprise/turla/resources/snake/snakeinstaller/">
+    <meta property="og:title" content="Snake Installer">
+    <meta property="og:description" content="This component combines several others into a convenient all-in-one executable to setup the Snake rootkit.">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://attackevals.github.io/ael/enterprise/turla/resources/snake/snakeinstaller/">
+    <meta property="twitter:title" content="Snake Installer">
+    <meta property="twitter:description" content="This component combines several others into a convenient all-in-one executable to setup the Snake rootkit.">
+
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="../../../../../resources/css/retype.css?v=3.5.0.771964962339" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../../../../resources/js/config.js?v=3.5.0.771964962339" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../../resources/js/lunr.js?v=3.5.0.771964962339" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../../resources/js/prism.js?v=3.5.0.771964962339" defer></script>
+</head>
+<body>
+    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    
+        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="docs-sidebar-toggle"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="docs-site-logo" href="../../../../../" class="flex items-center leading-snug text-xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../../../../images/attackevals-logo.png">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../../../../images/attackevals-logo.png">
+                            </span>
+                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">ATTACK Evaluation Library</span>
+                        </a>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-gray-400 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 dark:placeholder-dark-400" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="docs-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <div class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            
+                <!-- Render this div, if config.showSidebarFilter is `true` -->
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                </div>
+            
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 dark:bg-dark-850">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="docs-markdown" id="docs-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="docs-sidebar-right-toggle"></div>
+                                <nav class="breadcrumb" aria-label="Breadcrumb">
+                                    <ol role="list">
+                                        <li class="pr-4">
+                                            <a href="../../../../../" class="pr-4">
+                                                ATT&​CK Evaluations Library Overview
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Enterprise
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../../enterprise/turla/" class="pr-4">
+                                                Turla
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Resources
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../../enterprise/turla/resources/snake/" class="pr-4">
+                                                Snake Rootkit
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../../enterprise/turla/resources/snake/snakeinstaller/" class="pr-4">
+                                                Snake Installer
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                
+                                <!-- Page content  -->
+<doc-anchor-target id="snake-installer" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#snake-installer">#</doc-anchor-trigger>
+        <span>Snake Installer</span>
+    </h1>
+</doc-anchor-target>
+<p>This component combines several others into a convenient all-in-one executable to setup the Snake rootkit.</p>
+<p>These embedded components are:</p>
+<ol>
+<li>The privilege escalation exploit CVE-2021-1732</li>
+<li>The signed, vulnerable, Gigabyte driver</li>
+<li>The unsigned Snake driver (rootkit)</li>
+<li>Within the Snake driver, the Snake usermodule</li>
+</ol>
+<p>At a high level, the installer takes the following steps:</p>
+<ul>
+<li>Elevates privileges, if the <code v-pre>force</code> flag is specified.</li>
+<li>Creates a directory, specified by the <code v-pre>path</code> flag, to house files related to Snake&#x27;s execution. The default path requires elevated privileges to create.</li>
+<li>Drops a vulnerable <em>signed</em> driver and a malcious <em>unsigned</em> driver to path specified in the previous bullet.</li>
+<li>Abuses the vulnerable driver to disable Driver Signing Enforcement.</li>
+<li>Installs the unsigned driver</li>
+<li>The unsigned driver is then responsible for two usermodule injections. One responsible for network communication (user privileges), and one responsible for execution (SYSTEM privileges)</li>
+<li>Once the rootkit is running, it will attempt to cleanup by: renabling DSE, and removing the vulnerable Gigabyte driver service and .sys file.</li>
+</ul>
+<doc-anchor-target id="usage">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#usage">#</doc-anchor-trigger>
+        <span>Usage</span>
+    </h2>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-powershell"><code v-pre class="language-powershell">Install an unsigned driver
+
+Usage:
+  installer.exe [OPTION...]
+
+  -i, --info       Show Code Integrity configuration
+  -p, --path arg   Installation directory (default:
+                   C:\WINDOWS\$NtUninstallQ608317$)
+  -s, --sname arg  Signed driver/service name (default: gigabit)
+  -n, --name arg   Unsigned driver/service name (default: gusb)
+  -f, --force      Force the driver installation as SYSTEM
+  -h, --help       Print Usage</code></pre>
+</doc-codeblock></div>
+<p>The drivers are bundled within the installer executable. They will be written
+in the specified installation directory path. For example,
+<code v-pre>C:\WINDOWS\$NtUninstallQ608317$\gigabit.sys</code>.</p>
+<doc-anchor-target id="troubleshooting">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#troubleshooting">#</doc-anchor-trigger>
+        <span>Troubleshooting</span>
+    </h2>
+</doc-anchor-target>
+<p>The installer can occasionally fail under certain conditions. Read ahead for information required to diagnose an issue, or
+skip to the subheading matching your issue for remediation steps.</p>
+<ul>
+<li><doc-anchor-trigger to="#incomplete-output-via-c2">Incomplete output via C2</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#output-but-no-callback">Output but no callback</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#no-callback-but-log-files-are-present">No callback but log files are present</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#the-system-crashes">The system crashes</doc-anchor-trigger></li>
+</ul>
+<p>The following components can be used to identify how far execution got before failure:</p>
+<ol>
+<li>Files on disk</li>
+</ol>
+<ul>
+<li><code v-pre>C:\Windows\msnsvcx64.dll</code> is the usermodule. If present on disk, then the rootkit driver ran far enough to drop the file there.</li>
+<li><code v-pre>C:\Windows\$NtUninstallQ608317$</code> is the default snake directory and should contain several files. If the installer was run with the <code v-pre>-f</code> (force privilege escalation) flag as a non-admin user, then the presence of this directory indicates that privilege escalation was successful.
+<ul>
+<li><code v-pre>gusb.sys</code> is the default rootkit driver file.</li>
+<li><code v-pre>gigabit.sys</code> is the default vulnerable driver file. This file <em>should not</em> be present after the installer finishes.</li>
+<li><code v-pre>svcmon32.sdb</code> is the user-module DLL log file for C2-related logging (heartbeats, beacons, payload downloads, instruction parsing, data uploads)</li>
+<li><code v-pre>svcstat64.bin</code> is the user-module DLL log file for pipe server logging (when the user module is running in pipe server / c2-comms mode)</li>
+<li><code v-pre>udmon32.bin</code> is the user-module DLL log file for pipe client logging (when the user module is running in pipe client / execution mode)</li>
+<li><code v-pre>dbsvcng64.bin</code> is the user-module DLL log file for command execution (process creation, exit codes, command output)</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>Services</li>
+</ol>
+<ul>
+<li>The <code v-pre>gusb</code> service should be running</li>
+<li>The temporary <code v-pre>gigabit</code> service should no longer be present once the installer finishes</li>
+</ul>
+<ol start="3">
+<li>Injected DLL</li>
+</ol>
+<ul>
+<li>The <code v-pre>taskhostw</code> process running as SYSTEM should have the usermodule dll loaded at all times after a successful installer run</li>
+<li>There are several target processes (<code v-pre>msedge</code>) that will have the usermodule injected if they are detected communicating over HTTP/S</li>
+</ul>
+<doc-anchor-target id="general-cleanup-steps">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#general-cleanup-steps">#</doc-anchor-trigger>
+        <span>General cleanup steps</span>
+    </h3>
+</doc-anchor-target>
+<p>For a thorough cleanup, we recommend referencing the <a href="../#cleanup">cleanup section</a> in the Snake overall README file.</p>
+<p>However, if you want to manually run certain cleanup portions, you can reference the below instructions.</p>
+<p>From an adminstrative prompt the following commands can be used to setup a second attempt.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-powershell"><code v-pre class="language-powershell">sc.exe stop gusb
+sc.exe stop gigabit
+sc.exe delete gusb
+sc.exe delete gigabit
+rm -recurse 'C:\WINDOWS\$NtUninstallQ608317$'</code></pre>
+</doc-codeblock></div>
+<p>If the usermodule DLL is resident within <code v-pre>taskhostw</code> the computer will need to be rebooted so that handle to the DLL will be released.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-powershell"><code v-pre class="language-powershell">restart-computer</code></pre>
+</doc-codeblock></div>
+<p>If the usermodule DLL is resident within <code v-pre>msedge</code> all Edge processes will need to be closed.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-powershell"><code v-pre class="language-powershell">get-process msedge | stop-process</code></pre>
+</doc-codeblock></div>
+<p>Delete the usermodule from disk and cleanup will be complete.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-powershell"><code v-pre class="language-powershell">rm C:\Windows\msnsvcx64.dll</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="incomplete-output-via-c2">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#incomplete-output-via-c2">#</doc-anchor-trigger>
+        <span>Incomplete output via C2</span>
+    </h3>
+</doc-anchor-target>
+<p>If stdout does not log <code v-pre>Installation complete</code>, identify whether or not the usermodule DLL was written to <code v-pre>C:\Windows\msnsvcx64.dll</code>.</p>
+<ol>
+<li>If the file was not written to disk, the installer did not run the rootkit service</li>
+</ol>
+<ul>
+<li>Simply follow the <doc-anchor-trigger to="#general-cleanup-steps">cleanup</doc-anchor-trigger> steps from an admin command prompt and try again</li>
+</ul>
+<ol start="2">
+<li>If the file was written to disk, the rootkit is running</li>
+</ol>
+<ul>
+<li>Check the home directory for vulnerable <code v-pre>gigabit.sys</code> driver, if it isn&#x27;t there it should be safe to proceed.</li>
+<li>Ohterwise, follow the <doc-anchor-trigger to="#general-cleanup-steps">cleanup</doc-anchor-trigger> steps from an admin prompt</li>
+</ul>
+<doc-anchor-target id="output-but-no-callback">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#output-but-no-callback">#</doc-anchor-trigger>
+        <span>Output but no callback</span>
+    </h3>
+</doc-anchor-target>
+<p>If the installer completes the output should end with:</p>
+<blockquote>
+<p>Installation complete</p>
+</blockquote>
+<p>When the installer runs successfully, we need to see how far the driver made it through injection of the two usermode DLLs.
+Examine the installer home directory for the presence of the usermodule&#x27;s encrypted log files.</p>
+<ol>
+<li>If <code v-pre>svcmon32.sdb</code> or <code v-pre>svcstat64.bin</code> are missing, then the user-module DLL may not have successfully been injected into the target browser process (in our emulation, Microsoft Edge).</li>
+</ol>
+<ul>
+<li>Simply generate some traffic from the browser to ensure injection is triggered (e.g. open a new tab and browse to a site)</li>
+<li>Close all edge processes and try again (this doesn&#x27;t require administrator rights)</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-powershell"><code v-pre class="language-powershell">get-process msedge | stop-process</code></pre>
+</doc-codeblock></div>
+<ol start="2">
+<li>If <code v-pre>udmon32.bin</code> or <code v-pre>dbsvcng64.bin</code> are missing, then the execution instance of the usermodule DLL may not have successfully been injected into
+<code v-pre>taskhostw</code>.</li>
+</ol>
+<ul>
+<li>As an administrator, enumerate the DLLs loaded into the instance of <code v-pre>taskhostw</code> owned by the SYSTEM user</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-powershell"><code v-pre class="language-powershell">(Get-Process taskhostw).modules | ? -Property ModuleName -Like *msnsvc* </code></pre>
+</doc-codeblock></div>
+<ul>
+<li>If it&#x27;s not present, follow the <doc-anchor-trigger to="#general-cleanup-steps">cleanup instructions</doc-anchor-trigger> and try again</li>
+</ul>
+<doc-anchor-target id="no-callback-but-log-files-are-present">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#no-callback-but-log-files-are-present">#</doc-anchor-trigger>
+        <span>No callback but log files are present</span>
+    </h3>
+</doc-anchor-target>
+<p>There may be an issue with named pipe communication between usermodule instances. This requires pulling the encrypted logs off the host,
+decrypting and analyzing them for issues. For specific instructions, please see the <a href="../usermodule/#troubleshooting">user-module troubleshooting guide</a>.</p>
+<doc-anchor-target id="the-system-crashes">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#the-system-crashes">#</doc-anchor-trigger>
+        <span>The system crashes</span>
+    </h3>
+</doc-anchor-target>
+<p>Retrieve the dump files for further analysis</p>
+<ol>
+<li><code v-pre>C:\Windows\MEMORY.DMP</code></li>
+<li><code v-pre>C:\Windows\minidump\DUMP_CREATED_AT_TIME_OF_CRASH.dmp</code></li>
+</ol>
+<p>When possible, loading the associated PDB file while debugging is advised.</p>
+<doc-anchor-target id="build">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#build">#</doc-anchor-trigger>
+        <span>Build</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="requirements">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#requirements">#</doc-anchor-trigger>
+        <span>Requirements</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><code v-pre>vcpkg</code></li>
+<li><code v-pre>CMake 3.23</code></li>
+<li><code v-pre>C++23</code> (for <code v-pre>std::expected</code>)</li>
+</ul>
+<p><a href="https://vcpkg.io/en/getting-started.html" class="outbound" target="_blank"><span><code v-pre>vcpkg</code></span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> is used to manage third
+party libraries. Once installed, make sure to set the <code v-pre>VCPKG_ROOT</code> envrionment
+variable as it will be used during the build process.</p>
+<doc-anchor-target id="vulnerable-driver">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#vulnerable-driver">#</doc-anchor-trigger>
+        <span>Vulnerable Driver</span>
+    </h3>
+</doc-anchor-target>
+<p>The Snake Installer makes use of a <a href="https://www.gigabyte.com/uk/Support/Security/1801" class="outbound" target="_blank"><span>vulnerable Gigabyte driver</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>
+to disable Driver Signing Enforcement. To make use of this repository, said
+driver needs to be downloaded, XOR&#x27;d with the key <code v-pre>0xd3</code>, and placed at the
+path: <code v-pre>data/gdrv.sys.xor</code>. Once that dependency has been satisfied the
+subsequent build commands can be followed.</p>
+<doc-anchor-target id="compilation">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#compilation">#</doc-anchor-trigger>
+        <span>Compilation</span>
+    </h3>
+</doc-anchor-target>
+<doc-anchor-target id="visual-studio">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#visual-studio">#</doc-anchor-trigger>
+        <span>Visual Studio</span>
+    </h4>
+</doc-anchor-target>
+<hr>
+<ul>
+<li>Clone the turla repo within the IDE or open the existing local repository</li>
+<li>Project -&gt; CMake Workspace Settings</li>
+</ul>
+<p>Edit the CMake workspace settings to contain the following:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;enableCMake&quot;: true,
+  &quot;sourceDirectory&quot;: &quot;Resources/SnakeInstaller&quot;
+}</code></pre>
+</doc-codeblock></div>
+<p>The installer can now be built and debugged using Visual Studio&#x27;s native CMake
+integration.</p>
+<doc-anchor-target id="command-line">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#command-line">#</doc-anchor-trigger>
+        <span>Command Line</span>
+    </h4>
+</doc-anchor-target>
+<hr>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-powershell"><code v-pre class="language-powershell">/path/to/vs/vcvarsall.bat amd64
+git clone ssh://github:attackevals/turla.git
+cd turla/Resources/SnakeInstaller
+cmake --presets x64-debug
+cmake --build ./build/x64-debug</code></pre>
+</doc-codeblock></div>
+<p>The binary will be output into <code v-pre>build/x64-debug/src/installer.exe</code></p>
+<doc-anchor-target id="cleanup">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cleanup">#</doc-anchor-trigger>
+        <span>Cleanup</span>
+    </h2>
+</doc-anchor-target>
+<p>To undo changes to the system after running the installer use the included
+script <code v-pre>cleanup.ps1</code>. If the usermodule has been injected into <code v-pre>taskhostw</code>,
+the system may require a reboot prior to cleanup.</p>
+<doc-anchor-target id="disabling-dse">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#disabling-dse">#</doc-anchor-trigger>
+        <span>Disabling DSE</span>
+    </h2>
+</doc-anchor-target>
+<p>Driver Signature Enforcement (DSE) prevents unsigned drivers from interacting
+with the Windows kernel. However using a vulnerable driver, which is signed,
+we can disable DSE temporarily before loading our malicious driver.</p>
+<doc-anchor-target id="vulnerable-driver-1">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#vulnerable-driver-1">#</doc-anchor-trigger>
+        <span>Vulnerable Driver</span>
+    </h3>
+</doc-anchor-target>
+<p>We are currently using the Gigabyte <code v-pre>gdrv.sys</code> which has a known <a href="https://seclists.org/fulldisclosure/2018/Dec/39" class="outbound" target="_blank"><span>kernel read/write vulnerability</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>.
+This can be swapped out for any driver with the ability to write to kernel space.</p>
+<doc-anchor-target id="cig_cioptions">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cig_cioptions">#</doc-anchor-trigger>
+        <span>CI!g_ciOptions</span>
+    </h3>
+</doc-anchor-target>
+<p>Driver Signing Enforcement is managed by the <code v-pre>Code Integrity</code> kernel module of Windows.
+It manages the variable, <code v-pre>g_ciOptions</code>, which contains the current driver verifications mode.
+It can either be set to only allow any drivers, only signed drivers or test signed drivers.</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Mode</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Off</td>
+<td>0x0</td>
+</tr>
+<tr>
+<td>On</td>
+<td>0x6</td>
+</tr>
+<tr>
+<td>Test Signing</td>
+<td>0xe</td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="leak">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#leak">#</doc-anchor-trigger>
+        <span>Leak</span>
+    </h4>
+</doc-anchor-target>
+<p>In order to overwrite <code v-pre>CI!g_ciOptions</code> from user-mode we need to first leak it&#x27;s kernel address.
+This is possible by retrieving the base address of <code v-pre>CI.dll</code> in kernel space, and then calculating
+the offset to <code v-pre>g_ciOptions</code>.</p>
+<ol>
+<li>Use the undocumented feature of <code v-pre>NtQuerySystemInformation</code> to leak the base address of all currently running kernel modules</li>
+<li>Parse the preffered base address of <code v-pre>C:\Windows\System32\ci.dll</code> from its PE headers</li>
+<li>Map <code v-pre>C:\Windows\System32\ci.dll</code> into a memory section and calculate the offset to the export <code v-pre>CiInitialize</code></li>
+<li>Do a binary scan of the assembly within <code v-pre>CiInitialize</code> searching for a call to the function <code v-pre>CipInitialize</code></li>
+<li>Binary scan again from <code v-pre>CipInitialize</code> onwards to find a reference to <code v-pre>g_ciOptions</code></li>
+</ol>
+<p>This offset may change between Windows versions, but is easy to find using a disassembler and
+Microsoft&#x27;s provided symbol server.</p>
+<doc-anchor-target id="references">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#references">#</doc-anchor-trigger>
+        <span>References</span>
+    </h2>
+</doc-anchor-target>
+<ol>
+<li><a href="https://github.com/hfiref0x/KDU" class="outbound" target="_blank"><span>https://github.com/hfiref0x/KDU</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://v1k1ngfr.github.io/loading-windows-unsigned-driver/" class="outbound" target="_blank"><span>https://v1k1ngfr.github.io/loading-windows-unsigned-driver/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://seclists.org/fulldisclosure/2018/Dec/39" class="outbound" target="_blank"><span>https://seclists.org/fulldisclosure/2018/Dec/39</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://github.com/KaLendsi/CVE-2021-1732-Exploit" class="outbound" target="_blank"><span>https://github.com/KaLendsi/CVE-2021-1732-Exploit</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://googleprojectzero.github.io/0days-in-the-wild/0day-RCAs/2021/CVE-2021-1732.html" class="outbound" target="_blank"><span>https://googleprojectzero.github.io/0days-in-the-wild/0day-RCAs/2021/CVE-2021-1732.html</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+</ol>
+<doc-anchor-target id="cti">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cti">#</doc-anchor-trigger>
+        <span>CTI</span>
+    </h2>
+</doc-anchor-target>
+<ol>
+<li><a href="https://www.circl.lu/pub/tr-25/#analysis-payload" class="outbound" target="_blank"><span>https://www.circl.lu/pub/tr-25/#analysis-payload</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://www.virusbulletin.com/virusbulletin/2014/05/anatomy-turla-exploits/" class="outbound" target="_blank"><span>https://www.virusbulletin.com/virusbulletin/2014/05/anatomy-turla-exploits/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://artemonsecurity.com/snake_whitepaper.pdf" class="outbound" target="_blank"><span>https://artemonsecurity.com/snake_whitepaper.pdf</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+</ol>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer class="clear-both">
+                            
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../../../enterprise/turla/resources/snake/snakedriver/libinfinityhook/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">Infinity​Hook Library</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../../../enterprise/turla/resources/snake/usermodule/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                                                <span class="block mt-1">Snake User Module DLL</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between">
+                                <div>
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                    </ul>
+                                </div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2024. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="docs-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Snake Installer", level: 5, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

