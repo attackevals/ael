@@ -1,0 +1,2514 @@
+{
+  "version": "3.5.0",
+  "created": "2024-05-28T20:46:21Z",
+  "files": [
+    {
+      "path": ".nojekyll"
+    },
+    {
+      "path": "404.html"
+    },
+    {
+      "path": "categories/enterprise/index.html"
+    },
+    {
+      "path": "categories/index.html"
+    },
+    {
+      "path": "enterprise/apt29/archive/caldera_diy/evals/imgs/0-caldera.png"
+    },
+    {
+      "path": "enterprise/apt29/archive/caldera_diy/evals/imgs/1-caldera.png"
+    },
+    {
+      "path": "enterprise/apt29/archive/caldera_diy/evals/imgs/10-caldera.png"
+    },
+    {
+      "path": "enterprise/apt29/archive/caldera_diy/evals/imgs/11-caldera.png"
+    },
+    {
+      "path": "enterprise/apt29/archive/caldera_diy/evals/imgs/12-caldera.png"
+    },
+    {
+      "path": "enterprise/apt29/archive/caldera_diy/evals/imgs/2-caldera.png"
+    },
+    {
+      "path": "enterprise/apt29/archive/caldera_diy/evals/imgs/3-caldera.png"
+    },
+    {
+      "path": "enterprise/apt29/archive/caldera_diy/evals/imgs/4-caldera.png"
+    },
+    {
+      "path": "enterprise/apt29/archive/caldera_diy/evals/imgs/5-caldera.png"
+    },
+    {
+      "path": "enterprise/apt29/archive/caldera_diy/evals/imgs/6-caldera.png"
+    },
+    {
+      "path": "enterprise/apt29/archive/caldera_diy/evals/imgs/7-caldera.png"
+    },
+    {
+      "path": "enterprise/apt29/archive/caldera_diy/evals/imgs/8-caldera.png"
+    },
+    {
+      "path": "enterprise/apt29/archive/caldera_diy/evals/imgs/9-caldera.png"
+    },
+    {
+      "path": "enterprise/apt29/archive/caldera_diy/evals/index.html"
+    },
+    {
+      "path": "enterprise/apt29/archive/caldera_diy/evals/issues/index.html"
+    },
+    {
+      "path": "enterprise/apt29/archive/caldera_diy/evals/payloads/2016_united_states_presidential_election_-_wikipedia.html"
+    },
+    {
+      "path": "enterprise/apt29/archive/caldera_diy/evals/payloads/index.html"
+    },
+    {
+      "path": "enterprise/apt29/archive/caldera_diy/evals/payloads/mitre-attack-evals.html"
+    },
+    {
+      "path": "enterprise/apt29/archive/caldera_diy/evals/payloads/monkey.png"
+    },
+    {
+      "path": "enterprise/apt29/archive/caldera_diy/evals/templates/evals.html"
+    },
+    {
+      "path": "enterprise/apt29/archive/emulation_plan/apt29_emuplan.pdf"
+    },
+    {
+      "path": "enterprise/apt29/archive/emulation_plan/apt29_opflow.png"
+    },
+    {
+      "path": "enterprise/apt29/archive/emulation_plan/day-1/index.html"
+    },
+    {
+      "path": "enterprise/apt29/archive/emulation_plan/day-1/payload_configs/index.html"
+    },
+    {
+      "path": "enterprise/apt29/archive/emulation_plan/day-1/payloads/monkey.png"
+    },
+    {
+      "path": "enterprise/apt29/archive/emulation_plan/day-1/payloads/sysinternalssuite/hostui.txt"
+    },
+    {
+      "path": "enterprise/apt29/archive/emulation_plan/day-1/payloads/sysinternalssuite/psversion.txt"
+    },
+    {
+      "path": "enterprise/apt29/archive/emulation_plan/day-1/payloads/sysinternalssuite/readme.txt"
+    },
+    {
+      "path": "enterprise/apt29/archive/emulation_plan/day-1/rtlo.png"
+    },
+    {
+      "path": "enterprise/apt29/archive/emulation_plan/day-2/index.html"
+    },
+    {
+      "path": "enterprise/apt29/archive/emulation_plan/day-2/payloads/2016_united_states_presidential_election_-_wikipedia.html"
+    },
+    {
+      "path": "enterprise/apt29/archive/emulation_plan/day-2/payloads/mitre-attack-evals.html"
+    },
+    {
+      "path": "enterprise/apt29/archive/emulation_plan/index.html"
+    },
+    {
+      "path": "enterprise/apt29/archive/index.html"
+    },
+    {
+      "path": "enterprise/apt29/archive/notice.txt"
+    },
+    {
+      "path": "enterprise/apt29/attack_layers/apt29_g0016.png"
+    },
+    {
+      "path": "enterprise/apt29/attack_layers/apt29_scenario1.png"
+    },
+    {
+      "path": "enterprise/apt29/attack_layers/apt29_scenario2.png"
+    },
+    {
+      "path": "enterprise/apt29/attack_layers/cloudduke_s0054.png"
+    },
+    {
+      "path": "enterprise/apt29/attack_layers/cosmicduke_s0050.png"
+    },
+    {
+      "path": "enterprise/apt29/attack_layers/cozycar_s0046.png"
+    },
+    {
+      "path": "enterprise/apt29/attack_layers/hammertoss_s0037.png"
+    },
+    {
+      "path": "enterprise/apt29/attack_layers/miniduke_s0051.png"
+    },
+    {
+      "path": "enterprise/apt29/attack_layers/poshspy_s0150.png"
+    },
+    {
+      "path": "enterprise/apt29/attack_layers/powerduke_s0139.png"
+    },
+    {
+      "path": "enterprise/apt29/attack_layers/seaduke_s0053.png"
+    },
+    {
+      "path": "enterprise/apt29/change_log/index.html"
+    },
+    {
+      "path": "enterprise/apt29/emulation_plan/index.html"
+    },
+    {
+      "path": "enterprise/apt29/emulation_plan/opflow_diagram.png"
+    },
+    {
+      "path": "enterprise/apt29/emulation_plan/scenario_1/index.html"
+    },
+    {
+      "path": "enterprise/apt29/emulation_plan/scenario_1/infrastructure/index.html"
+    },
+    {
+      "path": "enterprise/apt29/emulation_plan/scenario_2/index.html"
+    },
+    {
+      "path": "enterprise/apt29/emulation_plan/scenario_2/infrastructure/index.html"
+    },
+    {
+      "path": "enterprise/apt29/emulation_plan/yaml/index.html"
+    },
+    {
+      "path": "enterprise/apt29/index.html"
+    },
+    {
+      "path": "enterprise/apt29/intelligence_summary/index.html"
+    },
+    {
+      "path": "enterprise/apt29/notice.txt"
+    },
+    {
+      "path": "enterprise/apt29/operations_flow/index.html"
+    },
+    {
+      "path": "enterprise/apt29/resources/.ds_store"
+    },
+    {
+      "path": "enterprise/apt29/resources/index.html"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_1/cod.3aka3.scr.zip"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_1/hostui.cpp"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_1/install_day1_tools.sh"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_1/monkey.png.zip"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_1/payload_configs/index.html"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_1/rtlo.png"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_1/seaduke/python.exe"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_1/seaduke/rar.exe"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_1/seaduke/sdelete64.exe"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_1/shockwave.local.pfx"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_1/sysinternalssuite/hostui.txt"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_1/sysinternalssuite/javamtsup.exe"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_1/sysinternalssuite/psversion.txt"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_1/sysinternalssuite/readme.txt"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_1/sysinternalssuite/strings64.exe"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_2/2016_united_states_presidential_election_-_wikipedia.html"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_2/invoke-mimikatz.ps1"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_2/invoke-winrmsession.ps1"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_2/m.zip"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_2/make_lnk.ps1"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_2/mitre-attack-evals.html"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_2/powerview.ps1"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_2/schemas.ps1"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_2/stepfifteen_wmi.ps1"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_2/stepfourteen_bypassuac.ps1"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_2/stepfourteen_creddump.ps1"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_2/stepseventeen_email.ps1"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_2/stepseventeen_zip.ps1"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_2/stepsixteen_sid.ps1"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_2/stepthirteen.ps1"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_2/steptwelve.ps1"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_2/timestomp.ps1"
+    },
+    {
+      "path": "enterprise/apt29/resources/scenario_2/wipe.ps1"
+    },
+    {
+      "path": "enterprise/index.html"
+    },
+    {
+      "path": "enterprise/turla/emulation_plan/carbon_scenario/carbon_detections_scenario/index.html"
+    },
+    {
+      "path": "enterprise/turla/emulation_plan/carbon_scenario/carbon_protections_scenario/index.html"
+    },
+    {
+      "path": "enterprise/turla/emulation_plan/carbon_scenario/index.html"
+    },
+    {
+      "path": "enterprise/turla/emulation_plan/index.html"
+    },
+    {
+      "path": "enterprise/turla/emulation_plan/snake_scenario/index.html"
+    },
+    {
+      "path": "enterprise/turla/emulation_plan/snake_scenario/snake_detections_scenario/index.html"
+    },
+    {
+      "path": "enterprise/turla/emulation_plan/snake_scenario/snake_protections_scenario/index.html"
+    },
+    {
+      "path": "enterprise/turla/emulation_plan/yaml/carbon_scenario/index.html"
+    },
+    {
+      "path": "enterprise/turla/emulation_plan/yaml/index.html"
+    },
+    {
+      "path": "enterprise/turla/emulation_plan/yaml/snake_scenario/index.html"
+    },
+    {
+      "path": "enterprise/turla/hashes/hash_sha256.txt"
+    },
+    {
+      "path": "enterprise/turla/hashes/hash_sha512.txt"
+    },
+    {
+      "path": "enterprise/turla/index.html"
+    },
+    {
+      "path": "enterprise/turla/intelligence_summary/index.html"
+    },
+    {
+      "path": "enterprise/turla/operations_flow/carbon_operations_flow/index.html"
+    },
+    {
+      "path": "enterprise/turla/operations_flow/snake_operations_flow/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/.ds_store"
+    },
+    {
+      "path": "enterprise/turla/resources/binaries/binaries.zip"
+    },
+    {
+      "path": "enterprise/turla/resources/caldera_port/send-email-to-egle.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/caldera_port/send-email-to-zilvinas.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/.ds_store"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/carboninstaller/.ds_store"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/carboninstaller/.gitignore"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/carboninstaller/dropper/.gitignore"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/carboninstaller/dropper/add_resources.py"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/carboninstaller/dropper/bin/.gitkeep"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/carboninstaller/dropper/cmakelists.txt"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/carboninstaller/dropper/include/file_handler.h"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/carboninstaller/dropper/include/service_handler.h"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/carboninstaller/dropper/resources/carbon_dc_config"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/carboninstaller/dropper/resources/carbon_w1_config"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/carboninstaller/dropper/resources/carbon_w2_config"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/carboninstaller/dropper/resources/dummy_comms"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/carboninstaller/dropper/resources/dummy_orch"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/carboninstaller/dropper/resources/kali1_config"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/carboninstaller/dropper/src/cmakelists.txt"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/carboninstaller/dropper/src/file_handler.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/carboninstaller/dropper/src/main.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/carboninstaller/dropper/src/service_handler.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/carboninstaller/dropper/tests/dummy_components.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/carboninstaller/dropper/tests/file_handler_test.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/carboninstaller/dropper/tests/service_handler_test.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/carboninstaller/dummyorchestrator/bin/.gitkeep"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/carboninstaller/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/carboninstaller/loader/bin/.gitkeep"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/carboninstaller/loader/cmakelists.txt"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/carboninstaller/loader/include/service.h"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/carboninstaller/loader/src/cmakelists.txt"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/carboninstaller/loader/src/service.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/carboninstaller/loader/tests/service_test.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/.ds_store"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/.gitignore"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/bin/.gitkeep"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/cmakelists.txt"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/commlibversion.h.in"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/decrypt_logs.py"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/include/commlib.hpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/include/config.hpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/include/configfile.h"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/include/encutils.hpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/include/httpclient.hpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/include/locker.hpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/include/logging.hpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/include/namedpipep2p.hpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/include/tasks.hpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/include/util.hpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/include/windowswrappers.hpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/src/cmakelists.txt"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/src/commlib.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/src/configfileutils.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/src/dllmain.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/src/encutils.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/src/httpclient.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/src/locker.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/src/logging.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/src/namedpipep2p.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/src/tasks.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/src/util.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/src/windowswrappers.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/test/commlib_test.cc"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/test/dummyconfigfile.txt"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/test/enc_utils_test.cc"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/test/http_test.cc"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/test/logging_test.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/test/named_pipe_p2p_test.cc"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/test/tasks_test.cc"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/test/testing.h"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/test/testingutils.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/test/utils_test.cc"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/commlib/vcpkg.json"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/orchestrator/.ds_store"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/orchestrator/.gitignore"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/orchestrator/bin/configplaintext.xml"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/orchestrator/bin/setuplst.xml"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/orchestrator/build.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/orchestrator/cmakelists.txt"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/orchestrator/include/config_encrypt.h"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/orchestrator/include/enc_handler.h"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/orchestrator/include/injection.h"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/orchestrator/include/locker.h"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/orchestrator/include/mutex.h"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/orchestrator/include/orchestrator.h"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/orchestrator/include/tasking.h"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/orchestrator/include/util.h"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/orchestrator/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/orchestrator/orchestratorversion.h.in"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/orchestrator/output-itest.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/orchestrator/src/cmakelists.txt"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/orchestrator/src/enc_handler.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/orchestrator/src/injection.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/orchestrator/src/locker.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/orchestrator/src/main.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/orchestrator/src/mutex.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/orchestrator/src/orchestrator.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/orchestrator/src/tasking.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/orchestrator/src/util.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/orchestrator/test/castdecrypt.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/orchestrator/test/config_encrypt.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/orchestrator/test/dllspawnnp.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/carbon/orchestrator/test/testdllrunner.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/cleanup/.ds_store"
+    },
+    {
+      "path": "enterprise/turla/resources/cleanup/carbon/carbon_cleanup.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/cleanup/epic/epic_cleanup.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/cleanup/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/cleanup/lightneuron/lightneuron_cleanup.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/cleanup/penquin/cleanup_penquin.sh"
+    },
+    {
+      "path": "enterprise/turla/resources/cleanup/snake/.gitkeep"
+    },
+    {
+      "path": "enterprise/turla/resources/cleanup/snake/snake_cleanup.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/.ds_store"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/config/config_test.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/config/config.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/config/handler_config.yml"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/config/restapi_config.yml"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/config/test_config.yml"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/config/turla_day1.yml"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/config/turla_day2.yml"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/display/display_test.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/display/display.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/evalsc2client.py"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/exampleimplant.py"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/files/.gitkeep"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/go.mod"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/go.sum"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/handlers/.ds_store"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/handlers/carbon/carbon_crypto_test.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/handlers/carbon/carbon_crypto.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/handlers/carbon/carbon_http_test.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/handlers/carbon/carbon_http.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/handlers/carbon/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/handlers/epic/command_buffer_test.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/handlers/epic/command_buffer.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/handlers/epic/data_transform_test.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/handlers/epic/data_transform.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/handlers/epic/epic_test.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/handlers/epic/epic.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/handlers/epic/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/handlers/epic/templates/home.html"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/handlers/handlercreationguide/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/handlers/handlers_test.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/handlers/handlers.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/handlers/lightneuron/extract/.gitkeep"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/handlers/lightneuron/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/handlers/lightneuron/lightneuron_test.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/handlers/lightneuron/lightneuron.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/handlers/lightneuron/recipients.txt"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/handlers/lightneuron/snake_extract.jpg"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/handlers/lightneuron/snake_modified.jpg"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/handlers/lightneuron/snake.jpg"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/handlers/snake/decrypt_logs.py"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/handlers/snake/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/handlers/snake/snake_http_test.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/handlers/snake/snake_http.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/handlers/util/util_test.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/handlers/util/util.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/license"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/logger/logger_test.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/logger/logger.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/main.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/makefile"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/requirements.txt"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/restapi/restapi_test.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/restapi/restapi.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/restapi/util/restapi_util.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/sessions/sessions_test.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/sessions/sessions.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/sslcerts/sslcerts.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/tasks/tasks_test.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/tasks/tasks.go"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/test_payloads/.ds_store"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/test_payloads/carbon/examplepayload.txt"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/test_payloads/epic/hello_world.elf"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/test_payloads/hello_world.elf"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/test_payloads/snake/test_payload"
+    },
+    {
+      "path": "enterprise/turla/resources/control_server/test_utils/test_utils.go"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/.ds_store"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/buildall.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/defense-evasion/.ds_store"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/defense-evasion/dll_test/dll_test.sln"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/defense-evasion/dll_test/dll_test/dll_test.vcxproj"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/defense-evasion/dll_test/dll_test/dll_test.vcxproj.filters"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/defense-evasion/dll_test/dll_test/dll_test.vcxproj.user"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/defense-evasion/dll_test/dll_test/source.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/defense-evasion/reflective_injector/primary.sln"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/defense-evasion/reflective_injector/reflective_injector/bin/.gitkeep"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/defense-evasion/reflective_injector/reflective_injector/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/defense-evasion/reflective_injector/reflective_injector/reflective_injector.vcxproj"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/defense-evasion/reflective_injector/reflective_injector/reflective_injector.vcxproj.filters"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/defense-evasion/reflective_injector/reflective_injector/reflective_injector.vcxproj.user"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/defense-evasion/reflective_injector/reflective_injector/resource.h"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/defense-evasion/reflective_injector/reflective_injector/resource.rc"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/defense-evasion/reflective_injector/reflective_injector/source.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/defense-evasion/reflective-guard/dll_run/dll_run.vcxproj"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/defense-evasion/reflective-guard/dll_run/main.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/defense-evasion/reflective-guard/intermediary.sln"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/defense-evasion/reflective-guard/reflective-guard/bin/.gitkeep"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/defense-evasion/reflective-guard/reflective-guard/dllmain.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/defense-evasion/reflective-guard/reflective-guard/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/defense-evasion/reflective-guard/reflective-guard/reflective-guard.vcxproj"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/defense-evasion/reflective-guard/reflective-guard/resource.h"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/defense-evasion/reflective-guard/reflective-guard/resource.rc"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/payload/.ds_store"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/payload/.gitignore"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/payload/bin/.gitkeep"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/payload/cmakelists.txt"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/payload/cmakepresets.json"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/payload/include/base64_y.h"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/payload/include/comms.h"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/payload/include/epic.h"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/payload/include/file_ops.h"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/payload/include/instruction.h"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/payload/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/payload/src/base64_y.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/payload/src/cmakelists.txt"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/payload/src/comms.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/payload/src/epic.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/payload/src/file_ops.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/payload/tests/comms_test.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/payload/vcpkg.json"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/simpledropper/simpledropper.sln"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/simpledropper/simpledropper/bin/.gitkeep"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/simpledropper/simpledropper/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/simpledropper/simpledropper/resource.h"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/simpledropper/simpledropper/simpledropper.rc"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/simpledropper/simpledropper/simpledropper.vcxproj"
+    },
+    {
+      "path": "enterprise/turla/resources/epic/simpledropper/simpledropper/source.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/images/carboninfrastructure.png"
+    },
+    {
+      "path": "enterprise/turla/resources/images/carbonopsflow.png"
+    },
+    {
+      "path": "enterprise/turla/resources/images/carbonsoftwarediagram.png"
+    },
+    {
+      "path": "enterprise/turla/resources/images/snakeinfrastructure.png"
+    },
+    {
+      "path": "enterprise/turla/resources/images/snakeopsflow.png"
+    },
+    {
+      "path": "enterprise/turla/resources/images/snakesoftwarediagram.png"
+    },
+    {
+      "path": "enterprise/turla/resources/keylogger/.ds_store"
+    },
+    {
+      "path": "enterprise/turla/resources/keylogger/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/keylogger/keylogger/.ds_store"
+    },
+    {
+      "path": "enterprise/turla/resources/keylogger/keylogger/bin/.gitkeep"
+    },
+    {
+      "path": "enterprise/turla/resources/keylogger/keylogger/keylogger.sln"
+    },
+    {
+      "path": "enterprise/turla/resources/keylogger/keylogger/keylogger/keylogger.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/keylogger/keylogger/keylogger/keylogger.vcxproj"
+    },
+    {
+      "path": "enterprise/turla/resources/keylogger/keylogger/keylogger/keylogger.vcxproj.filters"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/.ds_store"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/companiondll/.ds_store"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/companiondll/.gitignore"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/companiondll/cmakelists.txt"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/companiondll/data/rules.xml"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/companiondll/data/winmail.dat"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/companiondll/include/base64.h"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/companiondll/include/exdbdata.h"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/companiondll/include/pugiconfig.hpp"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/companiondll/include/pugixml.hpp"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/companiondll/include/stego.h"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/companiondll/src/base64.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/companiondll/src/cmakelists.txt"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/companiondll/src/exdbdata.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/companiondll/src/pugixml.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/companiondll/src/rules.xml"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/companiondll/src/stego.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/companiondll/tests/snake_extract_64.txt"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/companiondll/tests/tests.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/companiondll/tests/winmail.dat"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/companiondll/util/analyze_image.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/companiondll/vcpkg.json"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/msiex.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/setup.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/transportagent/.ds_store"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/transportagent/.gitignore"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/transportagent/microsoft.exchange.transport.agent.connectionfiltering.tests/connectionfilteringagenttests.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/transportagent/microsoft.exchange.transport.agent.connectionfiltering.tests/microsoft.exchange.transport.agent.connectionfiltering.tests.csproj"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/transportagent/microsoft.exchange.transport.agent.connectionfiltering.tests/msiex_test.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/transportagent/microsoft.exchange.transport.agent.connectionfiltering.tests/snake2_hat.jpg"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/transportagent/microsoft.exchange.transport.agent.connectionfiltering.tests/testingeststruct/cmakelists.txt"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/transportagent/microsoft.exchange.transport.agent.connectionfiltering.tests/testingeststruct/cmakepresets.json"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/transportagent/microsoft.exchange.transport.agent.connectionfiltering.tests/testingeststruct/testingeststruct.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/transportagent/microsoft.exchange.transport.agent.connectionfiltering.tests/testingeststruct/testingeststruct.h"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/transportagent/microsoft.exchange.transport.agent.connectionfiltering.tests/uninstall-transport-agent.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/transportagent/microsoft.exchange.transport.agent.connectionfiltering/connectionfilteringagent.cs"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/transportagent/microsoft.exchange.transport.agent.connectionfiltering/microsoft.exchange.transport.agent.connectionfiltering.csproj"
+    },
+    {
+      "path": "enterprise/turla/resources/lightneuron/transportagent/transportagent.sln"
+    },
+    {
+      "path": "enterprise/turla/resources/mimikatz/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/payloads/.gitkeep"
+    },
+    {
+      "path": "enterprise/turla/resources/penquin/build_penquin.sh"
+    },
+    {
+      "path": "enterprise/turla/resources/penquin/crypt.h"
+    },
+    {
+      "path": "enterprise/turla/resources/penquin/execution_penquin_test.sh"
+    },
+    {
+      "path": "enterprise/turla/resources/penquin/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/penquin/main.c"
+    },
+    {
+      "path": "enterprise/turla/resources/penquin/requirements.txt"
+    },
+    {
+      "path": "enterprise/turla/resources/penquin/sendpacket.py"
+    },
+    {
+      "path": "enterprise/turla/resources/penquin/sniff.c"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/.ds_store"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/assets/mailredirect-diagram.png"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/assets/turla-infrastructure-diagram.png"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/certificateauthority/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/dns/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/emailflow/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/.ds_store"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/carbon/all-carbon-enable-remote-desktop-for-domain-users.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/carbon/all-join-carbon-domain.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/carbon/bannik-add-computer-descriptions.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/carbon/bannik-create-carbon-domain.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/carbon/bannik-create-carbon-users.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/carbon/bannik-set-adalwolfa-group-membership.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/carbon/bannik-set-dns-resolution.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/carbon/brieftragerin-create-carbon-exchange-admin.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/carbon/brieftragerin-install-exchange.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/carbon/kagarov-join-domain.sh"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/carbon/kagarov-setup.sh"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/carbon/khabibulin-set-local-admin.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/certificates/ca-key.pem"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/certificates/ca.json"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/certificates/ca.pem"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/certificates/cfssl.json"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/certificates/host-1-server-key.pem"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/certificates/host-1-server.pem"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/certificates/host1.json"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/certificates/intermediate_ca-key.pem"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/certificates/intermediate_ca.pem"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/certificates/intermediate-ca.json"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/common/choco-install-packages.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/common/chocolatey-install.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/common/configure-jumpbox.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/common/disable-edge-download-ask.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/common/disable-edge-first-run.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/common/disable-edge-update.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/common/disable-firewall.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/common/disable-smartscreen.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/common/enable-exchange-for-domain-users.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/common/enable-remote-scheduled-tasks.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/common/set-ad-dns-forwarding.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/range_validation.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/snake/all-join-snake-domain.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/snake/all-snake-enable-remote-desktop-for-domain-users.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/snake/azuolas-enable-fileserver-admin.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/snake/berlios-create-fileserver-admin.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/snake/berlios-create-snake-domain.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/snake/berlios-create-snake-users.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/snake/berlios-set-computer-descriptions.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/snake/berlios-set-dns-resolution.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/snake/berzas-enable-remotedesktop-for-snake-fileserver.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/snake/berzas-install-admodule.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/snake/berzas-set-local-admin.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/snake/drebule-create-snake-exchange-admin.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/snake/drebule-disable-wmic-integrity-check.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/snake/drebule-enable-remote-desktop-for-exchange-admin.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/snake/drebule-install-exchange.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/support/.ds_store"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/support/dns/install-unbound-dns.sh"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/support/dns/qname-minimization.conf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/support/dns/root-auto-trust-anchor-file.conf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/support/dns/unbound_access.conf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/support/dns/unbound_zone.conf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/support/kali/kali-home-cradwell-procmailrc"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/support/kali/kali-install-custom-certs.sh"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/support/kali/kali-postfix-conf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/support/kali/kali-prereqs.sh"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/support/kali/kali-send-email.sh"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/support/kali/kali-set-nato-int-redirect.sh"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/support/kali/kali-update-wp.sh"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/support/kali/kali-update.sh"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/support/mail/etc_mailname"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/support/mail/etc_postfix_main.cf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/support/mail/etc_postfix_virtual"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/support/mail/stamp-configure-dns.sh"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/support/redirectors/disable-traffic-forwarding-rules.sh"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/support/redirectors/enable-traffic-forwarding-rules-amalie.sh"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/support/redirectors/enable-traffic-forwarding-rules-bolt.sh"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/support/redirectors/enable-traffic-forwarding-rules-thunderbug.sh"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/support/redirectors/print-traffic-forwarding-rules.sh"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/watering_hole/beef_setup.py"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/watering_hole/counter.js"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/watering_hole/fingerprinting.py"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/watering_hole/flash_prep.py"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/watering_hole/flash_update.html"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/watering_hole/flash.txt"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/watering_hole/in-range.html"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/watering_hole/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/watering_hole/ip_range.py"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/watering_hole/out-of-range.html"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/watering_hole/redirection.py"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/watering_hole/session.js"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/watering_hole/wordpress_cleanup.sh"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/watering_hole/wordpress_setup.sh"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/watering_hole/wordpress.conf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/watering_hole/wp-config.php"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/windows-service/dist/.gitkeep"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/windows-service/vipervpn.py"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/files/windows-service/vipervpn.spec"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/gettingstarted/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/infrastructure-overview/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/setup-carbon/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/setup-redteam/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/setup-snake/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/setup-support/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/.ds_store"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/evals-ranges/.terraform-docs.yml"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/evals-ranges/backend.tf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/evals-ranges/carbon.tf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/evals-ranges/deploy.auto.tfvars.template"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/evals-ranges/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/evals-ranges/locals.tf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/evals-ranges/main.tf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/evals-ranges/outputs.tf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/evals-ranges/provider.tf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/evals-ranges/snake.tf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/evals-ranges/support.tf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/evals-ranges/variables.tf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/evals-ranges/versions.tf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/modules/.ds_store"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/modules/linuxsrv-latest-static/main.tf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/modules/linuxsrv-latest-static/outputs.tf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/modules/linuxsrv-latest-static/variables.tf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/modules/linuxsrv-latest-static/versions.tf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/modules/rgroup/main.tf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/modules/rgroup/outputs.tf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/modules/rgroup/variables.tf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/modules/rgroup/versions.tf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/modules/windesk-latest-static/files/firstlogoncommands.xml"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/modules/windesk-latest-static/files/winrm.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/modules/windesk-latest-static/main.tf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/modules/windesk-latest-static/outputs.tf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/modules/windesk-latest-static/variables.tf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/modules/windesk-latest-static/versions.tf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/modules/winsrv-latest-static/files/firstlogoncommands.xml"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/modules/winsrv-latest-static/files/winrm.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/modules/winsrv-latest-static/main.tf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/modules/winsrv-latest-static/outputs.tf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/modules/winsrv-latest-static/variables.tf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/terraform/modules/winsrv-latest-static/versions.tf"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/trafficredirection/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/setup/windowsservice/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/.ds_store"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/.gitignore"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/build_installer.bat"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/buildall.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/cleanup.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/gen_h_file.py"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/.ds_store"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/libinfinityhook/hde/hde64.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/libinfinityhook/hde/hde64.h"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/libinfinityhook/hde/pstdint.h"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/libinfinityhook/hde/table64.h"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/libinfinityhook/img.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/libinfinityhook/img.h"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/libinfinityhook/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/libinfinityhook/infinityhook.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/libinfinityhook/infinityhook.h"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/libinfinityhook/libinfinityhook.vcxproj"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/libinfinityhook/libinfinityhook.vcxproj.filters"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/libinfinityhook/mm.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/libinfinityhook/mm.h"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/libinfinityhook/ntint.h"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/libinfinityhook/stdafx.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/libinfinityhook/stdafx.h"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/run_driver.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/snakedriver.sln"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/snakedriver/apc.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/snakedriver/apc.hpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/snakedriver/attach.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/snakedriver/attach.hpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/snakedriver/common.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/snakedriver/common.hpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/snakedriver/driver.c"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/snakedriver/driver.h"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/snakedriver/filesystem.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/snakedriver/filesystem.hpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/snakedriver/hooks.c"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/snakedriver/hooks.h"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/snakedriver/inject.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/snakedriver/inject.hpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/snakedriver/payload.hpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/snakedriver/pe.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/snakedriver/pe.hpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/snakedriver/pidlookup.c"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/snakedriver/pidlookup.h"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/snakedriver/process.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/snakedriver/process.hpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/snakedriver/snakedriver.inf"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/snakedriver/snakedriver.vcxproj"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/snakedriver/snakedriver.vcxproj.filters"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/snakedriver/wfp.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/snakedriver/wfp.hpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/snaketester/snaketester.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/snaketester/snaketester.vcxproj"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/snaketester/snaketester.vcxproj.filters"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakedriver/test_driver.ps1"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakeinstaller/.ds_store"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakeinstaller/.gitignore"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakeinstaller/cmakelists.txt"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakeinstaller/cmakepresets.json"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakeinstaller/data/.gitkeep"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakeinstaller/external/hde64/hde64.c"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakeinstaller/external/hde64/hde64.h"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakeinstaller/external/hde64/table64.h"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakeinstaller/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakeinstaller/src/ci/ci.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakeinstaller/src/ci/ci.hpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakeinstaller/src/ci/nt.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakeinstaller/src/ci/nt.hpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakeinstaller/src/cmakelists.txt"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakeinstaller/src/common/error.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakeinstaller/src/common/error.hpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakeinstaller/src/common/handle.hpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakeinstaller/src/common/string.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakeinstaller/src/common/string.hpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakeinstaller/src/driver/driver.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakeinstaller/src/driver/driver.hpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakeinstaller/src/driver/gb.hpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakeinstaller/src/main.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakeinstaller/src/privesc/privesc.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakeinstaller/src/privesc/privesc.hpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakeinstaller/src/resource/resource.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakeinstaller/src/resource/resource.hpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakeinstaller/src/resource/resource.rc"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakeinstaller/src/resource/resources.hpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakeinstaller/tools/launch.vs.json"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/snakeinstaller/vcpkg.json"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/.ds_store"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/.gitignore"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/cmakelists.txt"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/include/api_wrappers.h"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/include/comms_http.h"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/include/comms_pipe.h"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/include/core.h"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/include/enc_handler.h"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/include/execute.h"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/include/file_handler.h"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/include/instruction.h"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/include/logging.h"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/include/usermodule_errors.h"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/include/util.h"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/index.html"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/src/api_wrappers.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/src/cmakelists.txt"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/src/comms_http.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/src/comms_pipe.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/src/core.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/src/dllmain.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/src/enc_handler.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/src/execute_token.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/src/execute.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/src/file_handler.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/src/instruction.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/src/logging.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/src/util.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/tests/comms_http_test.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/tests/comms_pipe_test.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/tests/core_test.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/tests/enc_handler_test.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/tests/execute_test.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/tests/instruction_test.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/tests/logging_test.cpp"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/tests/test_util.h"
+    },
+    {
+      "path": "enterprise/turla/resources/snake/usermodule/tests/util_test.cpp"
+    },
+    {
+      "path": "index.html"
+    },
+    {
+      "path": "managedservices/oilrig/attack_layers/oilrig_g0049.jpeg"
+    },
+    {
+      "path": "managedservices/oilrig/attack_layers/oilrig_scenario.jpeg"
+    },
+    {
+      "path": "managedservices/oilrig/attack_layers/rdat_s0495.jpeg"
+    },
+    {
+      "path": "managedservices/oilrig/attack_layers/sidetwist_s0610.jpeg"
+    },
+    {
+      "path": "managedservices/oilrig/attack_layers/twoface-seasharpee_s0185.jpeg"
+    },
+    {
+      "path": "managedservices/oilrig/attack_layers/valuevault.jpeg"
+    },
+    {
+      "path": "managedservices/oilrig/emulation_plan/index.html"
+    },
+    {
+      "path": "managedservices/oilrig/emulation_plan/infrastructure/index.html"
+    },
+    {
+      "path": "managedservices/oilrig/emulation_plan/yaml/index.html"
+    },
+    {
+      "path": "managedservices/oilrig/hashes/hash_sha256.txt"
+    },
+    {
+      "path": "managedservices/oilrig/hashes/hash_sha512.txt"
+    },
+    {
+      "path": "managedservices/oilrig/index.html"
+    },
+    {
+      "path": "managedservices/oilrig/intelligence_summary/index.html"
+    },
+    {
+      "path": "managedservices/oilrig/operations_flow/index.html"
+    },
+    {
+      "path": "managedservices/oilrig/resources/.ds_store"
+    },
+    {
+      "path": "managedservices/oilrig/resources/binaries/binaries.zip"
+    },
+    {
+      "path": "managedservices/oilrig/resources/caldera_port/computername.vbs"
+    },
+    {
+      "path": "managedservices/oilrig/resources/caldera_port/username.vbs"
+    },
+    {
+      "path": "managedservices/oilrig/resources/cleanup/cleanup-endofroad.ps1"
+    },
+    {
+      "path": "managedservices/oilrig/resources/cleanup/cleanup-theblock.ps1"
+    },
+    {
+      "path": "managedservices/oilrig/resources/cleanup/cleanup-waterfalls.ps1"
+    },
+    {
+      "path": "managedservices/oilrig/resources/cleanup/index.html"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/.gitignore"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/config/config_test.go"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/config/config.go"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/config/handler_config.yml"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/config/restapi_config.yml"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/controlserver"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/display/display_test.go"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/display/display.go"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/evalsc2client.py"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/exampleimplant.py"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/files/.gitkeep"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/go.mod"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/go.sum"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/handlers/emotet/emotet_test.go"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/handlers/emotet/emotet.go"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/handlers/emotet/index.html"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/handlers/exaramel/exaramel_test.go"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/handlers/exaramel/exaramel.go"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/handlers/exaramel/index.html"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/handlers/exaramel/response_structs.go"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/handlers/handlers_test.go"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/handlers/handlers.go"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/handlers/https/https_test.go"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/handlers/https/https.go"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/handlers/sidetwist/index.html"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/handlers/sidetwist/sidetwist_test.go"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/handlers/sidetwist/sidetwist.go"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/handlers/sidetwist/templates/home.html"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/handlers/sidetwist/templates/logo.png"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/handlers/simplehttp/simplehttp_test.go"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/handlers/simplehttp/simplehttp.go"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/handlers/trickbot/helper/helper.go"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/handlers/trickbot/index.html"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/handlers/trickbot/payloads/settings.ini"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/handlers/trickbot/payloads/test.dll.zip"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/handlers/trickbot/trickbot_test.go"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/handlers/trickbot/trickbot.go"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/handlers/util/util.go"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/index.html"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/license"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/logger/logger_test.go"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/logger/logger.go"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/main.go"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/makefile"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/requirements.txt"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/restapi/restapi_test.go"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/restapi/restapi.go"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/sessions/sessions_test.go"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/sessions/sessions.go"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/sslcerts/sslcerts.go"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/test_payloads/hello_world.elf"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/test_payloads/outlookscraper.dll.zip"
+    },
+    {
+      "path": "managedservices/oilrig/resources/control_server/test_payloads/sidetwist/hello_world.elf"
+    },
+    {
+      "path": "managedservices/oilrig/resources/images/infrastructurediagram.png"
+    },
+    {
+      "path": "managedservices/oilrig/resources/images/oilrig_v11.svg"
+    },
+    {
+      "path": "managedservices/oilrig/resources/images/operationflow.png"
+    },
+    {
+      "path": "managedservices/oilrig/resources/images/opsflow.png"
+    },
+    {
+      "path": "managedservices/oilrig/resources/images/softwareflow.png"
+    },
+    {
+      "path": "managedservices/oilrig/resources/mimikatz/index.html"
+    },
+    {
+      "path": "managedservices/oilrig/resources/payloads/sidetwist/.gitkeep"
+    },
+    {
+      "path": "managedservices/oilrig/resources/payloads/twoface/.gitkeep"
+    },
+    {
+      "path": "managedservices/oilrig/resources/rdat/.gitignore"
+    },
+    {
+      "path": "managedservices/oilrig/resources/rdat/index.html"
+    },
+    {
+      "path": "managedservices/oilrig/resources/rdat/program.cs"
+    },
+    {
+      "path": "managedservices/oilrig/resources/rdat/rdat.csproj"
+    },
+    {
+      "path": "managedservices/oilrig/resources/rdat/test.ps1"
+    },
+    {
+      "path": "managedservices/oilrig/resources/setup/build_implants/build_implants.sh"
+    },
+    {
+      "path": "managedservices/oilrig/resources/setup/build_implants/index.html"
+    },
+    {
+      "path": "managedservices/oilrig/resources/setup/choco-install.ps1"
+    },
+    {
+      "path": "managedservices/oilrig/resources/setup/disable-automatic-updates.ps1"
+    },
+    {
+      "path": "managedservices/oilrig/resources/setup/index.html"
+    },
+    {
+      "path": "managedservices/oilrig/resources/setup/install-configure-postfix.sh"
+    },
+    {
+      "path": "managedservices/oilrig/resources/setup/install-packages.ps1"
+    },
+    {
+      "path": "managedservices/oilrig/resources/setup/minfac.csv"
+    },
+    {
+      "path": "managedservices/oilrig/resources/setup/modify-defender.ps1"
+    },
+    {
+      "path": "managedservices/oilrig/resources/setup/setup-apache-fileserver.sh"
+    },
+    {
+      "path": "managedservices/oilrig/resources/setup/sql_connection.bat"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist_dropper/backup_email_generator.py"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist_dropper/encode-file.ps1"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist_dropper/ggms-overview.doc"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist_dropper/img/00_creating_a_macro.png"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist_dropper/img/01_userform_and_textbox_creation.png"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist_dropper/img/02_textbox_data_population.png"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist_dropper/index.html"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist_dropper/payload_no_comments.vbs"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist_dropper/payload.vbs"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist_dropper/tests/index.html"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist_dropper/tests/test_vba_macro.ps1"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist_dropper/tests/testdocument.docm"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist_dropper/tests/testprogram.c"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist/index.html"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist/sidetwist.sln"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist/sidetwist/bin/.gitkeep"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist/sidetwist/include/base64.h"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist/sidetwist/include/comms.h"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist/sidetwist/include/parser.h"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist/sidetwist/include/sidetwist.h"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist/sidetwist/loopable_version/main.cpp"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist/sidetwist/sidetwist.vcxproj"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist/sidetwist/sidetwist.vcxproj.filters"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist/sidetwist/src/base64.cpp"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist/sidetwist/src/comms.cpp"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist/sidetwist/src/main.cpp"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist/sidetwist/src/parser.cpp"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist/sidetwist/src/sidetwist.cpp"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist/sidetwisttests/packages.config"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist/sidetwisttests/pch.cpp"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist/sidetwisttests/pch.h"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist/sidetwisttests/sidetwisttests.vcxproj"
+    },
+    {
+      "path": "managedservices/oilrig/resources/sidetwist/sidetwisttests/test.cpp"
+    },
+    {
+      "path": "managedservices/oilrig/resources/twoface/contact.aspx"
+    },
+    {
+      "path": "managedservices/oilrig/resources/twoface/index.html"
+    },
+    {
+      "path": "managedservices/oilrig/resources/twoface/twoface_tests.sh"
+    },
+    {
+      "path": "managedservices/oilrig/resources/utilities/crypt_executables.py"
+    },
+    {
+      "path": "managedservices/oilrig/resources/valuevault/go.mod"
+    },
+    {
+      "path": "managedservices/oilrig/resources/valuevault/go.sum"
+    },
+    {
+      "path": "managedservices/oilrig/resources/valuevault/index.html"
+    },
+    {
+      "path": "managedservices/oilrig/resources/valuevault/main.go"
+    },
+    {
+      "path": "managedservices/oilrig/resources/valuevault/read-db/read-db.py"
+    },
+    {
+      "path": "managedservices/oilrig/resources/valuevault/read-db/requirements.txt"
+    },
+    {
+      "path": "managedservices/oilrig/yara_rules/managedservicesr1.yar"
+    },
+    {
+      "path": "resources/css/retype.css"
+    },
+    {
+      "path": "resources/fonts/Inter-italic-latin-var.woff2"
+    },
+    {
+      "path": "resources/fonts/Inter-roman-latin-var.woff2"
+    },
+    {
+      "path": "resources/js/config.js"
+    },
+    {
+      "path": "resources/js/lunr.js"
+    },
+    {
+      "path": "resources/js/prism.js"
+    },
+    {
+      "path": "resources/js/retype.js"
+    },
+    {
+      "path": "resources/js/search.json"
+    },
+    {
+      "path": "resources/lunr.js.LICENSE.txt"
+    },
+    {
+      "path": "resources/mermaid.js.LICENSE.txt"
+    },
+    {
+      "path": "resources/prism.js.LICENSE.txt"
+    },
+    {
+      "path": "resources/retype.js.LICENSE.txt"
+    },
+    {
+      "path": "resources/retype.LICENSE.txt"
+    },
+    {
+      "path": "robots.txt"
+    },
+    {
+      "path": "sitemap.xml.gz"
+    }
+  ]
+}

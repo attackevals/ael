@@ -1,0 +1,16 @@
+input: .
+output: .retype
+url: https://attackevals.github.io/ael/
+branding:
+  title: ATTACK Evaluation Library
+  logo: /images/attackevals-logo.png
+  colors:
+    label:                    # Label colors
+      text: "#6c4f9a"         # Custom color for the label text
+links:
+- text: Attack Evaluations
+  link: https://attackevals.mitre-engenuity.org
+footer:
+  copyright: "&copy; Copyright {{ year }}. All rights reserved."
+start:
+  pro: true
