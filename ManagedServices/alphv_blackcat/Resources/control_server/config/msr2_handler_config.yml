@@ -1,0 +1,7 @@
+simplefileserver:
+  host: 176.59.1.18
+  port: 8081
+  mappings:
+    - prefix: /digirevenge
+      dir: ../payloads
+  enabled: true

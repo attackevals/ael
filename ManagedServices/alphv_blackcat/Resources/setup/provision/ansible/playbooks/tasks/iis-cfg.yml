@@ -1,0 +1,26 @@
+---
+- name: Configure IIS Server
+  hosts: a_srv_iis
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: Ensure IIS feature installed
+      ansible.windows.win_feature:
+        name: Web-Server
+        state: present
+
+    - name: Add iis admin as local admin
+      ansible.windows.win_group_membership:
+        name: Administrators
+        members:
+          - "{{ sub_a_domain.shortname }}\\{{ sub_a_domain.iis_admin_group }}"
+          - "{{ sub_a_domain.shortname }}\\Domain Admins"
+
+    - name: Add admins to RDP group
+      ansible.windows.win_group_membership:
+        name: Remote Desktop Users
+        members:
+          - "{{ sub_a_domain.shortname }}\\{{ sub_a_domain.iis_admin_group }}"
+          - "{{ sub_a_domain.shortname }}\\Domain Admins"

@@ -1,0 +1,2 @@
+%Domain\ Admins ALL=(ALL:ALL) NOPASSWD:ALL
+%KVM\ Admins ALL=(ALL:ALL) NOPASSWD:ALL

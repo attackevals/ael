@@ -1,0 +1,192 @@
+---
+- name: Join KVM to Domain
+  hosts: b_srv_kvm
+  become: yes
+  gather_facts: no
+  vars:
+    tuned_profile: "virtual-host"
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: Install packages required for AD and some useful tools
+      ansible.builtin.apt:
+        pkg:
+          - adcli
+          - cockpit
+          - cockpit-machines
+          - curl
+          - etckeeper
+          - git
+          - libnss-sss
+          - libpam-sss
+          - libvirt-daemon-system
+          - oddjob
+          - oddjob-mkhomedir
+          - packagekit
+          - qemu-kvm
+          - realmd
+          - resolvconf
+          - samba-common-bin
+          - sscg
+          - sssd
+          - sssd-tools
+          - tuned
+          - tuned-utils
+          - vagrant
+          - vagrant-libvirt
+        state: present
+        update_cache: yes
+
+    - name: Create systemd-resolved config
+      template:
+        src: "../files/systemd-resolved.conf.j2"
+        dest: "/etc/systemd/resolved.conf"
+        owner: "root"
+        group: "root"
+        mode: "0644"
+      notify:
+        - "Restart systemd-resolved"
+
+    # handler does not reliably trigger, forcibly restart resolved
+    - name: Restart systemd-resolved
+      systemd:
+        name: "systemd-resolved"
+        daemon_reload: yes
+        state: restarted
+        enabled: yes
+
+    - name: restart sssd
+      systemd:
+        name: sssd
+        state: restarted
+        enabled: yes
+
+    - name: Set hostname
+      ansible.builtin.hostname:
+        name: "{{ sub_b_domain.kvm_hostname }}"
+        use: systemd
+
+    - name: Preserve hostname after reboot
+      lineinfile:
+        backup: yes
+        state: present
+        dest: /etc/cloud/cloud.cfg
+        regexp: '^{{ item.search }}'
+        line: '{{ item.replace }}'
+      with_items:
+        - { search: 'preserve_hostname', replace: 'preserve_hostname: true' }
+
+    - name: Disable Kerberos reverse dns during domain join
+      ansible.builtin.copy:
+        content: |
+          [libdefaults]
+          rdns = false
+        dest: "/etc/krb5.conf"
+        mode: 0644
+
+    - name: Join the AD domain
+      ansible.builtin.shell: |
+        echo "{{ sub_b_domain.admin_pass }}" | realm join -U "{{ sub_b_domain.admin_user }}@{{ sub_b_domain.dns_domain_name_capitalized }}" {{ sub_b_domain.dns_domain_name }}
+        realm list
+      register: join_result
+      ignore_errors: yes
+
+    - name: See the Results from Joining
+      debug:
+        msg: "{{ join_result }}"
+
+    - name: Check the AD join result
+      fail:
+        msg: "Unable to join the AD domain, {{ join_result.stderr }}"
+      when: join_result.rc != 0
+      notify: restart sssd
+
+    - name: Validate the AD join
+      ansible.builtin.command: getent passwd {{ sub_b_domain.admin_user }}
+      register: validate_result
+      ignore_errors: yes
+
+    - name: Check the validation result
+      fail:
+        msg: "AD join validation failed, {{ validate_result.stderr }}"
+      when: validate_result.rc != 0
+      ignore_errors: yes
+
+    - name: install sudo configuration
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/../files/91-sudo-domain-admin"
+        dest: /etc/sudoers.d/91-sudo-domain-admin
+        mode: '0440'
+        owner: root
+        group: root
+        validate: /usr/sbin/visudo -cs %s
+
+    - name: allow password auth for domain users over ssh
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/../files/30-allow-password-auth.conf"
+        dest: /etc/ssh/sshd_config.d/30-allow-password-auth.conf
+        mode: '0644'
+        owner: root
+        group: root
+
+    - name: Enable home dir creation on first login
+      ansible.builtin.shell: |
+        sudo pam-auth-update --enable mkhomedir
+      register: mkhomedir_result
+      ignore_errors: yes
+
+    - name: See the result from configuring mkhomedir
+      debug:
+        msg: "{{ mkhomedir_result }}"
+
+    - name: Allow user Login without FQDN
+      lineinfile:
+        backup: yes
+        state: present
+        dest: /etc/sssd/sssd.conf
+        regexp: '^{{ item.search }}'
+        line: '{{ item.replace }}'
+      with_items:
+        - { search: 'use_fully_qualified_names', replace: 'use_fully_qualified_names = False' }
+        - { search: 'fallback_homedir', replace: 'fallback_homedir = /home/%u'}
+        - { search: 'access_provider', replace: 'access_provider = simple'}
+      notify: restart sssd
+
+    - name: Permit domain logins
+      ansible.builtin.shell: |
+        realm permit --all
+      ignore_errors: yes
+
+    - name: Reset SSSD cache
+      ansible.builtin.shell: |
+        systemctl stop sssd &&
+        rm /var/lib/sss/{db,mc}/* &&
+        sss_cache -E &&
+        # optionally clear debug logs &&
+        truncate -s 0 /var/log/sssd/*.log &&
+        systemctl start sssd
+      ignore_errors: yes
+
+    - name: check tuned profile
+      ansible.builtin.shell: tuned-adm active
+      register: tuned_admin
+      changed_when: False
+
+    - name: set tuned profile
+      ansible.builtin.shell: tuned-adm profile {{ tuned_profile }}
+      when: "'Current active profile: virtual-host' not in tuned_admin.stdout"
+
+  handlers:
+    - name: Restart systemd-resolved
+      systemd:
+        name: "systemd-resolved"
+        daemon_reload: yes
+        state: restarted
+        enabled: yes
+
+    - name: restart sssd
+      systemd:
+        name: sssd
+        state: restarted
+        enabled: yes

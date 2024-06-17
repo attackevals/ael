@@ -1,0 +1,95 @@
+[package]
+name = "digirevenge"
+version = "0.2.0"
+edition = "2021"
+
+[profile.release]
+lto = true          # enable link time optimization
+opt-level = "z"     # optimize for size
+strip = true        # strip symbols
+panic = "abort"     # abort instead of unwinding stack on panic
+debug = 1           # PDB file without debug symbols
+
+# Common dependencies
+[dependencies]
+encryptliterals = { path = "encryptliterals" }    # custom macro for encrypting the config string and string literals
+base64 = "0.21.3"
+cfg-if = "1.0.0"
+chrono = "0.4.29"
+clap = { version = "4.4.2", features = ["derive"] }
+hex = "0.4.3"
+hex-literal = "0.4.1"
+log = { version = "0.4.20", features = ["std", "serde"] }
+log4rs = "1.2.0"
+rand = "0.8.5"
+rand_chacha = "0.3.1"
+rayon = "1.7.0"
+regex = "1.9.5"
+serde = { version = "1.0.188", features = ["derive"] }
+serde_json = "1.0.105"
+serial_test = "2.0.0"
+simplelog = "^0.12.1"
+
+[dependencies.uuid]
+version = "1.4.1"
+features = [
+    "v4",                # Lets you generate random UUIDs
+    "fast-rng",          # Use a faster (but still sufficiently random) RNG
+    "macro-diagnostics", # Enable better diagnostics for compile-time UUIDs
+]
+
+# Linux dependencies
+[target.'cfg(unix)'.dependencies]
+libc = "0.2.147"
+
+# Windows dependencies
+[target.'cfg(windows)'.dependencies]
+assert_matches = "1.5.0"
+cidr = "0.2.2"
+cidr-utils = "0.5.10"
+miniz_oxide = "0.7.1"
+serial_test = "2.0.0"
+sha2 = "0.10.7"
+
+[target.'cfg(windows)'.dependencies.windows-sys]
+version = "0.48.0"
+features = [
+    "Win32_Foundation",
+    "Win32_Security",
+    "Win32_Storage_FileSystem",
+    "Win32_System_Power",
+    "Win32_System_RemoteDesktop",
+    "Win32_System_Services",
+    "Win32_System_SystemServices",
+    "Win32_UI_WindowsAndMessaging",
+]
+
+# For Windows API
+[target.'cfg(windows)'.dependencies.windows]
+version = "0.51.1"
+features = [
+    "Win32_Foundation",
+    "Win32_NetworkManagement_NetManagement",
+    "Win32_NetworkManagement_IpHelper",
+    "Win32_Security",
+    "Win32_Storage_FileSystem",
+    "Win32_System_Diagnostics_ToolHelp",
+    "Win32_System_EventLog",
+    "Win32_System_Services",
+    "Win32_Security_Authentication_Identity",
+    "Win32_System_WindowsProgramming",
+    "Win32_System_Threading",
+]
+
+[target.'cfg(windows)'.dependencies.winapi]
+version = "0.3.9"
+features = [
+    "vsbackup",
+    "vss",
+    "vsserror",
+    "winnt",
+    "winerror",
+    "cguid",
+    "combaseapi",
+    "objidl"
+]

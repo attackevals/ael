@@ -1,0 +1,18 @@
+---
+- name: Update A AD Group with remote domain users
+  hosts: a_srv_ad
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    # NOTE/Sanity Checks:
+    # 1. Domain of host (line 3) and domain of "name" (line 12) MUST MATCH.
+    # 2. Domain of "name" (line 12) and domain of users to add (line 18) MUST NOT MATCH.
+    - name: Add revenge users to group
+      microsoft.ad.group:
+        name: "{{ sub_a_domain.trust_share_group }}"
+        scope: domainlocal
+        members:
+          add:
+            - "{{ sub_b_domain.shortname }}\\{{ sub_b_domain.trust_remote_group_name }}"

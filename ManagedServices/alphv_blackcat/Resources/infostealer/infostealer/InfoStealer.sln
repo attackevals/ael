@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfoStealer", "sqlsharp\InfoStealer.csproj", "{263A1858-5692-4A6E-81A9-07EB63C053EA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{263A1858-5692-4A6E-81A9-07EB63C053EA}.Debug|x64.ActiveCfg = Debug|x64
+		{263A1858-5692-4A6E-81A9-07EB63C053EA}.Debug|x64.Build.0 = Debug|x64
+		{263A1858-5692-4A6E-81A9-07EB63C053EA}.Release|x64.ActiveCfg = Release|x64
+		{263A1858-5692-4A6E-81A9-07EB63C053EA}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B0081C30-1D20-48EA-A963-6201352B279F}
+	EndGlobalSection
+EndGlobal

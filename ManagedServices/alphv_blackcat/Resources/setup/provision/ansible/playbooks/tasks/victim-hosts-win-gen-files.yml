@@ -1,0 +1,40 @@
+---
+- name: Generate files on victim win systems
+  hosts: win_servers,win_desktops
+  gather_facts: no
+  vars:
+    noise_gen_dst_dir: "C:\\tools\\filegen"
+    noise_gen_src_dir: "../files/filegen/"
+    noise_gen_zip: "file_generator//generate-files.exe.zip"
+    noise_gen_exe: "file_generator//"
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - filegen
+    - victim
+
+  tasks:
+    - name: Create directory for noise gen files
+      ansible.windows.win_file:
+        path: "{{ noise_gen_dst_dir }}"
+        state: directory
+
+    - name: Copy noise gen files up to host
+      ansible.windows.win_copy:
+        src: "{{ noise_gen_src_dir }}"
+        dest: "{{ noise_gen_dst_dir }}"
+
+    - name: Unzip noise gen zip
+      community.windows.win_unzip:
+        dest: "{{ noise_gen_dst_dir }}//{{ noise_gen_exe }}"
+        src: "{{ noise_gen_dst_dir }}//{{ noise_gen_zip }}"
+
+    - name: Make some noise
+      win_shell: "{{ noise_gen_dst_dir}}\\{{ noise_gen_exe }}\\generate-files.exe --seed \"EVALS\" --noprompt"
+      args:
+        chdir: "{{ noise_gen_dst_dir}}"
+
+    - name: Remove noise gen stuff
+      ansible.windows.win_file:
+        path: "{{ noise_gen_dst_dir }}"
+        state: absent

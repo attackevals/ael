@@ -1,0 +1,32 @@
+---
+- name: Configure MSR2 Windows Domain A
+  hosts: a_srv_ad
+  gather_facts: no
+  vars:
+    deploy_dir: "C:\\deploy"
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: Create Windows Domain
+      microsoft.ad.domain:
+        dns_domain_name: "{{ sub_a_domain.dns_domain_name }}"
+        safe_mode_password: "{{ sub_a_domain.safe_mode_pass }}"  # Replace as appropriate with properly secured token.
+        reboot: yes
+      register: domain_result
+
+    - name: Ensure WinRM starts when the system has settled and is ready to work reliably
+      ansible.windows.win_service:
+        name: WinRM
+        start_mode: delayed
+
+    - name: Reboot Windows Server if the domain was created
+      ansible.windows.win_reboot:
+      when: domain_result.reboot_required
+
+    - name: Configure A AD Server DNS to use Range DNS
+      ansible.windows.win_dns_client:
+        adapter_names: '*'
+        dns_servers:
+          - "{{ sub_a_domain.ad_ip_addr }}"
+          - "{{ support_vars.dns_server_ip }}"

@@ -1,0 +1,13 @@
+---
+- name: Install Office tool on all Desktops
+  hosts: win_desktops,win_servers
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: Install LibreOffice Still
+      win_chocolatey:
+        name:
+          - libreoffice-still
+        state: present

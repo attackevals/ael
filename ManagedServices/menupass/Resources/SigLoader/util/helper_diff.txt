@@ -1,0 +1,534 @@
+Comparing files Helper.cpp (modified) and Helper.cpp (original)
+***** Helper.cpp (modified)
+﻿#include "Helper.h"
+
+***** Helper.cpp (original)
+﻿#include "pch.h"
+#include "Helper.h"
+
+unsigned short ChkSum(unsigned int CheckSum, void *FileBase, int Length)
+{
+
+        int *Data;
+        int sum;
+
+        if (Length && FileBase != NULL)
+        {
+                Data = (int *)FileBase;
+                do
+                {
+                        sum = *(unsigned short *)Data + CheckSum;
+                        Data = (int *)((char *)Data + 2);
+                        CheckSum = (unsigned short)sum + (sum >> 16);
+                } while (--Length);
+        }
+
+        return CheckSum + (CheckSum >> 16);
+}
+
+*****
+
+***** Helper.cpp (modified)
+
+//Setting up encryption keys
+
+//RC4
+CHAR _rc4_key[] = "abcdabcdabcdabcd";
+DWORD _rc4_keyLength = 16;
+//AES
+std::string aes_string_key = "1234567890ABCDEF1234567890ABCDEF";
+CryptoPP::SecByteBlock aes_key(reinterpret_cast<const byte*>(&aes_string_key[0]), aes_string_key.size());
+CryptoPP::byte aes_iv[] = { 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x30, 0x41, 0x42, 0x43, 0x44, 0x45, 0x46 };
+//DES
+std::string des_string_key = "1234567890ABCDEF";
+std::string des_string_iv_key = "12345678";
+CryptoPP::SecByteBlock des_key(reinterpret_cast<const byte*>(&des_string_key[0]), des_string_key.size());
+CryptoPP::byte des_iv[] = { 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38 };
+//XOR
+unsigned char xor_key = 0xA9;
+
+//Encryption order
+std::vector<unsigned char>(*encryption_order[])(std::vector<unsigned char>) = { XOR, AES, DES };
+
+unsigned short ChkSum(unsigned int CheckSum, void *FileBase, int Length)
+{
+***** Helper.cpp (original)
+
+unsigned int PEChecksum(void *FileBase, unsigned int FileSize)
+{
+*****
+
+***** Helper.cpp (modified)
+
+        int *Data;
+        int sum;
+
+        if (Length && FileBase != NULL)
+        {
+                Data = (int *)FileBase;
+                do
+                {
+                        sum = *(unsigned short *)Data + CheckSum;
+                        Data = (int *)((char *)Data + 2);
+                        CheckSum = (unsigned short)sum + (sum >> 16);
+                } while (--Length);
+        }
+
+        return CheckSum + (CheckSum >> 16);
+}
+
+
+unsigned int PEChecksum(void *FileBase, unsigned int FileSize)
+{
+
+        void *RemainData;
+***** Helper.cpp (original)
+
+        void *RemainData;
+*****
+
+***** Helper.cpp (modified)
+
+int crypt(unsigned char* data, long dataLen, unsigned char* result) {
+        std::vector<unsigned char> data_1(data, data + dataLen);
+        for (int i = 0; i < sizeof(encryption_order) / sizeof(encryption_order[0]); i++) {
+                data_1 = encryption_order[i](data_1);
+        }
+        data = data_1.data();
+
+        for (int i = 0; i < data_1.size(); i++) {
+                result[i] = data[i];
+        }
+        //rc4(data, dataLen, result);
+
+        return data_1.size();
+}
+
+void rc4(unsigned char* data, long dataLen, unsigned char* result) {
+        unsigned char T[256];
+***** Helper.cpp (original)
+
+void crypt(unsigned char* data, long dataLen, char* key, long keyLen, unsigned char* result){
+        unsigned char T[256];
+*****
+
+***** Helper.cpp (modified)
+                S[i] = i;
+                T[i] = _rc4_key[i % _rc4_keyLength];
+        }
+***** Helper.cpp (original)
+                S[i] = i;
+                T[i] = key[i % keyLen];
+        }
+*****
+
+***** Helper.cpp (modified)
+
+/// <summary>
+/// AES:
+/// 
+/// About:
+///             Calls the AES encryption from cryptopp
+/// Result:
+///             Provided data is encrypted using AES-CBC
+/// </summary>
+std::vector<unsigned char> AES(std::vector<unsigned char> plaintext) {
+
+        // Verify provided key size
+        if (sizeof(aes_key) != CryptoPP::AES::MAX_KEYLENGTH) {
+                throw std::runtime_error("Invalid key size.");
+        }
+***** Helper.cpp (original)
+
+
+BOOL Sha1(BYTE* peblob, char* sha1Buf, DWORD dwBufferLen)
+{
+        HCRYPTPROV hProv = 0;
+        HCRYPTHASH hHash = 0;
+        BYTE rgbHash[SHA1LEN];
+        DWORD cbHash = 0;
+
+        // Get handle to the crypto provider
+        if (!CryptAcquireContext(&hProv, NULL, NULL, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT)){
+                return FALSE;
+        }
+*****
+
+***** Helper.cpp (modified)
+
+
+        // Buffer for plaintext
+        std::string cipher;
+        cipher.reserve((CryptoPP::AES::BLOCKSIZE * 2) + plaintext.size());
+
+        // Decrypt
+        CryptoPP::CBC_Mode<CryptoPP::AES>::Encryption AES_encryptor(aes_key, sizeof(aes_key), aes_iv);
+        CryptoPP::StringSource(std::string(plaintext.begin(), plaintext.end()), true,
+                new CryptoPP::StreamTransformationFilter(AES_encryptor,
+                        new CryptoPP::StringSink(cipher)
+                )
+        );
+        std::vector<char> _encryptedData = std::vector<char>(cipher.begin(), cipher.end());
+
+***** Helper.cpp (original)
+
+        if (!CryptCreateHash(hProv, CALG_SHA1, 0, 0, &hHash)) {
+                CryptReleaseContext(hProv, 0);
+                return FALSE;
+        }
+
+        if (!CryptHashData(hHash, peblob, dwBufferLen, 0)){     
+                CryptReleaseContext(hProv, 0);
+                CryptDestroyHash(hHash);
+                return FALSE;
+        }
+
+*****
+
+***** Helper.cpp (modified)
+
+
+        return reinterpret_cast<std::vector<unsigned char>&>(_encryptedData);
+}
+***** Helper.cpp (original)
+
+        cbHash = SHA1LEN;
+        if (CryptGetHashParam(hHash, HP_HASHVAL, rgbHash, &cbHash, 0)) {
+                for (DWORD i = 0; i < cbHash; i++) {
+                        sprintf( sha1Buf + (i * 2), "%02x", rgbHash[i]);
+                }
+        }
+        else {
+                return FALSE;
+        }
+
+        CryptDestroyHash(hHash);
+        CryptReleaseContext(hProv, 0);
+
+        return TRUE;
+}
+*****
+
+***** Helper.cpp (modified)
+
+/// <summary>
+/// DES:
+/// 
+/// About:
+///             Calls the DES encryption from cryptopp
+/// Result:
+///             Provided data is encrypted using DES
+/// Reference:
+///             https://cryptopp.com/wiki/TripleDES
+/// </summary>
+std::vector<unsigned char> DES(std::vector<unsigned char> plaintext) {
+
+        // Buffer for plaintext
+        std::string cipher;
+        cipher.reserve(plaintext.size());
+
+***** Helper.cpp (original)
+
+
+BOOL IsWow64(HANDLE pHandle)
+{
+        BOOL isWow64 = FALSE;
+
+        typedef BOOL(WINAPI *PFNIsWow64Process) (HANDLE, PBOOL);
+        PFNIsWow64Process _FNIsWow64Process;
+        _FNIsWow64Process = (PFNIsWow64Process)GetProcAddress(GetModuleHandle(TEXT("kernel32")), "IsWow64Process");
+
+        if (NULL != _FNIsWow64Process){
+                if (!_FNIsWow64Process(pHandle, &isWow64)) {}
+        }
+        return isWow64;
+}
+
+void toMultiByte(DWORD strLen, CHAR* _Str, LPWSTR _wStr) {
+        DWORD wlen = strLen * 2;
+        _wStr = (LPWSTR)malloc(wlen * sizeof(wchar_t));
+        mbstowcs(_wStr, _Str, strlen(_Str) + 1);
+}
+
+*****
+
+***** Helper.cpp (modified)
+
+        try {
+                CryptoPP::CBC_Mode< CryptoPP::DES_EDE2 >::Encryption DES_Encryptor;
+
+                DES_Encryptor.SetKeyWithIV(des_key, des_key.size(), des_iv);
+
+                CryptoPP::StringSource(std::string(plaintext.begin(), plaintext.end()), true,
+                        new CryptoPP::StreamTransformationFilter(DES_Encryptor,
+                                new CryptoPP::StringSink(cipher)
+                        )
+                );
+                std::vector<char> _encryptedData = std::vector<char>(cipher.begin(), cipher.end());
+
+                return reinterpret_cast<std::vector<unsigned char>&>(_encryptedData);
+
+        }
+        catch (const CryptoPP::Exception& e) {
+                std::cerr << e.what() << std::endl;
+                exit(1);
+        }
+}
+
+/// <summary>
+/// XOR:
+/// 
+/// About:
+///             XOR's the data using a hardcoded key
+/// Result:
+///             Provided data is decrypted using XOR
+/// CTI:
+///             https://securelist.com/apt10-sophisticated-multi-layered-loader-ecipekac-discovered-in-a41apt-campaign/101519/#
+:~:text=The%20attackers%20have%20also%20made%20slight%20modifications%20compared%20to%20the%20original%20implementation
+/// </summary>
+std::vector<unsigned char> XOR(std::vector<unsigned char> plaintext) {
+        std::vector<unsigned char> result(plaintext.size());
+
+        for (int i = 0; i < plaintext.size(); i++) {
+                result[i] = (plaintext[i] ^ xor_key);
+        }
+        return result;
+}
+
+
+BOOL Sha1(BYTE* peblob, char* sha1Buf, DWORD dwBufferLen)
+{
+        HCRYPTPROV hProv = 0;
+        HCRYPTHASH hHash = 0;
+        BYTE rgbHash[SHA1LEN];
+        DWORD cbHash = 0;
+
+        // Get handle to the crypto provider
+        if (!CryptAcquireContext(&hProv, NULL, NULL, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT)){
+                return FALSE;
+        }
+***** Helper.cpp (original)
+
+DWORD VerifyPESignature(PCWSTR FileName, HANDLE FileHandle)
+{
+        DWORD Error = ERROR_SUCCESS;
+        bool WintrustCalled = false;
+        GUID GenericActionId = WINTRUST_ACTION_GENERIC_VERIFY_V2;
+        WINTRUST_DATA WintrustData = {};
+        WINTRUST_FILE_INFO FileInfo = {};
+        WINTRUST_SIGNATURE_SETTINGS SignatureSettings = {};
+
+        // Setup data structures for calling WinVerifyTrust 
+        WintrustData.cbStruct = sizeof(WINTRUST_DATA);
+        WintrustData.dwStateAction = WTD_STATEACTION_VERIFY;
+        WintrustData.dwUIChoice = WTD_UI_NONE;
+        WintrustData.fdwRevocationChecks = WTD_REVOKE_NONE;
+        WintrustData.dwUnionChoice = WTD_CHOICE_FILE;
+
+        FileInfo.cbStruct = sizeof(WINTRUST_FILE_INFO_);
+        FileInfo.hFile = FileHandle;
+        FileInfo.pcwszFilePath = FileName;
+        WintrustData.pFile = &FileInfo;
+
+        SignatureSettings.cbStruct = sizeof(WINTRUST_SIGNATURE_SETTINGS);
+        SignatureSettings.dwFlags = WSS_GET_SECONDARY_SIG_COUNT | WSS_VERIFY_SPECIFIC;
+        SignatureSettings.dwIndex = 0;
+        WintrustData.pSignatureSettings = &SignatureSettings;
+
+        Error = WinVerifyTrust(NULL, &GenericActionId, &WintrustData);
+        WintrustCalled = true;
+        if (Error != ERROR_SUCCESS)
+        {
+                goto Cleanup;
+        }
+*****
+
+***** Helper.cpp (modified)
+
+        if (!CryptCreateHash(hProv, CALG_SHA1, 0, 0, &hHash)) {
+                CryptReleaseContext(hProv, 0);
+                return FALSE;
+        }
+
+        if (!CryptHashData(hHash, peblob, dwBufferLen, 0)){     
+                CryptReleaseContext(hProv, 0);
+                CryptDestroyHash(hHash);
+                return FALSE;
+        }
+
+
+        cbHash = SHA1LEN;
+        if (CryptGetHashParam(hHash, HP_HASHVAL, rgbHash, &cbHash, 0)) {
+                for (DWORD i = 0; i < cbHash; i++) {
+                        sprintf( sha1Buf + (i * 2), "%02x", rgbHash[i]);
+                }
+***** Helper.cpp (original)
+
+        // Now attempt to verify all secondary signatures that were found 
+        for (DWORD x = 1; x <= WintrustData.pSignatureSettings->cSecondarySigs; x++)
+        {
+
+                // Need to clear the previous state data from the last call to WinVerifyTrust 
+                WintrustData.dwStateAction = WTD_STATEACTION_CLOSE;
+                Error = WinVerifyTrust(NULL, &GenericActionId, &WintrustData);
+                if (Error != ERROR_SUCCESS)
+                {
+                        //No need to call WinVerifyTrust again 
+                        WintrustCalled = false;
+                        goto Cleanup;
+                }
+
+                WintrustData.hWVTStateData = NULL;
+
+                // Caller must reset dwStateAction as it may have been changed during the last call 
+                WintrustData.dwStateAction = WTD_STATEACTION_VERIFY;
+                WintrustData.pSignatureSettings->dwIndex = x;
+                Error = WinVerifyTrust(NULL, &GenericActionId, &WintrustData);
+                if (Error != ERROR_SUCCESS)
+                {
+                        goto Cleanup;
+                }
+*****
+
+***** Helper.cpp (modified)
+        }
+        else {
+                return FALSE;
+        }
+***** Helper.cpp (original)
+        }
+
+Cleanup:
+
+        // Caller must call WinVerifyTrust with WTD_STATEACTION_CLOSE to free memory 
+        // allocate by WinVerifyTrust 
+        if (WintrustCalled != false)
+        {
+                WintrustData.dwStateAction = WTD_STATEACTION_CLOSE;
+                WinVerifyTrust(NULL, &GenericActionId, &WintrustData);
+        }
+*****
+
+***** Helper.cpp (modified)
+
+        CryptDestroyHash(hHash);
+        CryptReleaseContext(hProv, 0);
+
+        return TRUE;
+}
+***** Helper.cpp (original)
+
+
+        return Error;
+}
+*****
+
+***** Helper.cpp (modified)
+
+BOOL IsWow64(HANDLE pHandle)
+{
+        BOOL isWow64 = FALSE;
+
+***** Helper.cpp (original)
+
+
+
+*****
+
+***** Helper.cpp (modified)
+        typedef BOOL(WINAPI *PFNIsWow64Process) (HANDLE, PBOOL);
+        PFNIsWow64Process _FNIsWow64Process;
+        _FNIsWow64Process = (PFNIsWow64Process)GetProcAddress(GetModuleHandle(TEXT("kernel32")), "IsWow64Process");
+
+        if (NULL != _FNIsWow64Process){
+                if (!_FNIsWow64Process(pHandle, &isWow64)) {}
+        }
+        return isWow64;
+}
+
+void toMultiByte(DWORD strLen, CHAR* _Str, LPWSTR _wStr) {
+        DWORD wlen = strLen * 2;
+        _wStr = (LPWSTR)malloc(wlen * sizeof(wchar_t));
+        mbstowcs(_wStr, _Str, strlen(_Str) + 1);
+}
+
+
+DWORD VerifyPESignature(PCWSTR FileName, HANDLE FileHandle)
+{
+        DWORD Error = ERROR_SUCCESS;
+        bool WintrustCalled = false;
+        GUID GenericActionId = WINTRUST_ACTION_GENERIC_VERIFY_V2;
+        WINTRUST_DATA WintrustData = {};
+        WINTRUST_FILE_INFO FileInfo = {};
+        WINTRUST_SIGNATURE_SETTINGS SignatureSettings = {};
+
+        // Setup data structures for calling WinVerifyTrust 
+        WintrustData.cbStruct = sizeof(WINTRUST_DATA);
+        WintrustData.dwStateAction = WTD_STATEACTION_VERIFY;
+        WintrustData.dwUIChoice = WTD_UI_NONE;
+        WintrustData.fdwRevocationChecks = WTD_REVOKE_NONE;
+        WintrustData.dwUnionChoice = WTD_CHOICE_FILE;
+
+        FileInfo.cbStruct = sizeof(WINTRUST_FILE_INFO_);
+        FileInfo.hFile = FileHandle;
+        FileInfo.pcwszFilePath = FileName;
+        WintrustData.pFile = &FileInfo;
+
+        SignatureSettings.cbStruct = sizeof(WINTRUST_SIGNATURE_SETTINGS);
+        SignatureSettings.dwFlags = WSS_GET_SECONDARY_SIG_COUNT | WSS_VERIFY_SPECIFIC;
+        SignatureSettings.dwIndex = 0;
+        WintrustData.pSignatureSettings = &SignatureSettings;
+
+        Error = WinVerifyTrust(NULL, &GenericActionId, &WintrustData);
+        WintrustCalled = true;
+        if (Error != ERROR_SUCCESS)
+        {
+                goto Cleanup;
+        }
+
+        // Now attempt to verify all secondary signatures that were found 
+        for (DWORD x = 1; x <= WintrustData.pSignatureSettings->cSecondarySigs; x++)
+        {
+
+                // Need to clear the previous state data from the last call to WinVerifyTrust 
+                WintrustData.dwStateAction = WTD_STATEACTION_CLOSE;
+                Error = WinVerifyTrust(NULL, &GenericActionId, &WintrustData);
+                if (Error != ERROR_SUCCESS)
+                {
+                        //No need to call WinVerifyTrust again 
+                        WintrustCalled = false;
+                        goto Cleanup;
+                }
+
+                WintrustData.hWVTStateData = NULL;
+
+                // Caller must reset dwStateAction as it may have been changed during the last call 
+                WintrustData.dwStateAction = WTD_STATEACTION_VERIFY;
+                WintrustData.pSignatureSettings->dwIndex = x;
+                Error = WinVerifyTrust(NULL, &GenericActionId, &WintrustData);
+                if (Error != ERROR_SUCCESS)
+                {
+                        goto Cleanup;
+                }
+        }
+
+Cleanup:
+
+        // Caller must call WinVerifyTrust with WTD_STATEACTION_CLOSE to free memory 
+        // allocate by WinVerifyTrust 
+        if (WintrustCalled != false)
+        {
+                WintrustData.dwStateAction = WTD_STATEACTION_CLOSE;
+                WinVerifyTrust(NULL, &GenericActionId, &WintrustData);
+        }
+
+
+        return Error;
+}
+
+
+
+
+***** Helper.cpp (original)
+*****
+

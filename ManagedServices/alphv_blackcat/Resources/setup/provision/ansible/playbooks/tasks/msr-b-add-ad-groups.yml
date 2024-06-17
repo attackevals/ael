@@ -1,0 +1,40 @@
+---
+- name: Create B AD Groups
+  hosts: b_srv_ad
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: Create File Server Group
+      microsoft.ad.group:
+        name: "{{ sub_b_domain.file_server_admin_group }}"
+        scope: global
+        category: security
+        members:
+          add:
+            - "{{ sub_b_domain.file_server_admin }}"
+
+    - name: Create KVM admin group
+      microsoft.ad.group:
+        name: "{{ sub_b_domain.kvm_admin_group }}"
+        scope: global
+        category: security
+        members:
+          add:
+            - "{{ sub_b_domain.kvm_admin }}"
+
+    - name: Create Backup admin group
+      microsoft.ad.group:
+        name: "{{ sub_b_domain.backup_admin_group }}"
+        scope: global
+        category: security
+        members:
+          add:
+            - "{{ sub_b_domain.backup_admin }}"
+
+    - name: Create trust group that will contain remote users from trusted domain
+      microsoft.ad.group:
+        name: "{{ sub_b_domain.trust_share_group }}"
+        scope: domainlocal
+        category: security

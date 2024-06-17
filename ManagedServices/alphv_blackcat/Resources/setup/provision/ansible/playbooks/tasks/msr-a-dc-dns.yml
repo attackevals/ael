@@ -1,0 +1,39 @@
+---
+- name: Configure MSR2 Windows Domain A
+  hosts: a_srv_ad
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: Configure A AD Server DNS to use Range DNS
+      ansible.windows.win_dns_client:
+        adapter_names: '*'
+        dns_servers:
+          - "{{ sub_a_domain.ad_ip_addr }}"
+          - "{{ support_vars.dns_server_ip }}"
+
+    - name: create conditional forwarder so trust works
+      ansible.windows.win_shell: |
+        Add-DnsServerConditionalForwarderZone -Name {{ sub_b_domain.dns_domain_name }} -MasterServers {{ sub_b_domain.ad_ip_addr }}
+      ignore_errors: yes
+
+    - name: set dns forwarder to use range dns
+      ansible.windows.win_shell: |
+        Set-DnsServerForwarder -IPAddress {{ support_vars.dns_server_ip }}
+        Add-DnsServerPrimaryZone -NetworkID "10.10.10.0/24" -ReplicationScope "Forest"
+        Add-DnsServerPrimaryZone -NetworkID "10.10.20.0/24" -ReplicationScope "Forest"
+        Clear-DNSServerCache -Force
+        Clear-DnsClientCache
+      ignore_errors: yes
+
+    - name: add reverse dns records
+      ansible.windows.win_shell: |
+        Remove-DnsServerResourceRecord -ZoneName "20.10.10.in-addr.arpa" -RRType "Ptr" -Name "33" -Force
+        Add-DnsServerResourceRecordPtr -Name "4" -ZoneName "10.10.10.in-addr.arpa" -AllowUpdateAny -TimeToLive 01:00:00 -AgeRecord -PtrDomainName "parrotmon.digirunaway.net"
+        Add-DnsServerResourceRecordPtr -Name "200" -ZoneName "10.10.10.in-addr.arpa" -AllowUpdateAny -TimeToLive 01:00:00 -AgeRecord -PtrDomainName "omnimon.digirunaway.net"
+        Add-DnsServerResourceRecordPtr -Name "9" -ZoneName "10.10.10.in-addr.arpa" -AllowUpdateAny -TimeToLive 01:00:00 -AgeRecord -PtrDomainName "gabumon.digirunaway.net"
+        Add-DnsServerResourceRecordPtr -Name "11" -ZoneName "20.10.10.in-addr.arpa" -AllowUpdateAny -TimeToLive 01:00:00 -AgeRecord -PtrDomainName "phantomon.digirunaway.net"
+        Add-DnsServerResourceRecordPtr -Name "22" -ZoneName "20.10.10.in-addr.arpa" -AllowUpdateAny -TimeToLive 01:00:00 -AgeRecord -PtrDomainName "ghostmon.digirunaway.net"
+        Add-DnsServerResourceRecordPtr -Name "23" -ZoneName "20.10.10.in-addr.arpa" -AllowUpdateAny -TimeToLive 01:00:00 -AgeRecord -PtrDomainName "cecilmon.digirunaway.net"
+      ignore_errors: yes

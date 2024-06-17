@@ -1,0 +1,61 @@
+---
+- name: configure file server
+  hosts: b_srv_file
+  vars:
+    noise_gen_dst_dir: "C:\\tools\\filegen"
+    noise_gen_src_dir: "../files/filegen/"
+    noise_gen_zip: "file_generator//generate-files.exe.zip"
+    noise_gen_exe: "file_generator//"
+    f_drive_seed_dir: "data"
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: Add file server admin as local admin
+      ansible.windows.win_group_membership:
+        name: Administrators
+        members:
+          - "{{ sub_b_domain.shortname }}\\{{ sub_b_domain.file_server_admin_group }}"
+          - "{{ sub_b_domain.shortname }}\\Domain Admins"
+
+    - name: Add admins to RDP group
+      ansible.windows.win_group_membership:
+        name: Remote Desktop Users
+        members:
+          - "{{ sub_b_domain.shortname }}\\{{ sub_b_domain.file_server_admin_group }}"
+          - "{{ sub_b_domain.shortname }}\\Domain Admins"
+
+    - name: Create directory for noise gen files
+      ansible.windows.win_file:
+        path: "{{ noise_gen_dst_dir }}"
+        state: directory
+
+    - name: Copy noise gen files up to host
+      ansible.windows.win_copy:
+        src: "{{ noise_gen_src_dir }}"
+        dest: "{{ noise_gen_dst_dir }}"
+
+    - name: Unzip noise gen zip
+      community.windows.win_unzip:
+        dest: "{{ noise_gen_dst_dir }}//{{ noise_gen_exe }}"
+        src: "{{ noise_gen_dst_dir }}//{{ noise_gen_zip }}"
+
+    # IMPORTANT: generate-files.exe fails if run against the root of a secondary drive. It requires a base folder to exist
+    # to work.
+    - name: Create destination directory for noise gen files
+      ansible.windows.win_file:
+        path: "F:\\{{ f_drive_seed_dir }}"
+        state: directory
+
+    - name: Make some noise
+      become: yes
+      win_shell: |
+        {{ noise_gen_dst_dir}}\\{{ noise_gen_exe }}\\generate-files.exe -d F:\{{ f_drive_seed_dir }} --seed "EVALS" --noprompt
+      args:
+        chdir: "{{ noise_gen_dst_dir}}"
+
+    - name: Remove noise gen stuff
+      ansible.windows.win_file:
+        path: "{{ noise_gen_dst_dir }}"
+        state: absent

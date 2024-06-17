@@ -1,0 +1,45 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 26,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "default",
+      "binaryDir": "${sourceDir}/build",
+      "installDir": "${sourceDir}/build/install/",
+      "generator": "Visual Studio 17 2022",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "CMAKE_CXX_STANDARD": "26",
+        "CMAKE_C_STANDARD": "23",
+        "CMAKE_CONFIGURATION_TYPES": "Debug;Release",
+        "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "ExMatter",
+      "configurePreset": "default",
+      "configuration": "Release",
+      "targets": [ "ExMatter", "aes-tool" ]
+    },
+    {
+      "name": "ExMatter-debug",
+      "configurePreset": "default",
+      "configuration": "Debug",
+      "targets": [ "ExMatter", "aes-tool" ]
+    }
+  ]
+}

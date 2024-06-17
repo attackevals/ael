@@ -1,0 +1,31 @@
+---
+- name: Create A AD Groups
+  hosts: a_srv_ad
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: Create IIS Admin Group
+      microsoft.ad.group:
+        name: "{{ sub_a_domain.iis_admin_group }}"
+        scope: global
+        category: security
+        members:
+          add:
+            - "{{ sub_a_domain.iis_admin }}"
+
+    - name: Create Exchange admin group
+      microsoft.ad.group:
+        name: "{{ sub_a_domain.exchange_admin_group }}"
+        scope: global
+        category: security
+        members:
+          add:
+            - "{{ sub_a_domain.exchange_admin }}"
+
+    - name: Create trust group that will contain remote users from trusted domain
+      microsoft.ad.group:
+        name: "{{ sub_a_domain.trust_share_group }}"
+        scope: domainlocal
+        category: security

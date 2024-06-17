@@ -1,0 +1,240 @@
+---
+- name: configure red systems
+  hosts: kali1
+  gather_facts: no
+  become: yes
+  vars:
+    tuned_profile: "virtual-guest"
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: Create msr2 directory if it does not exist
+      ansible.builtin.file:
+        path: "{{ red_dev.kali_dev_dir }}"
+        state: directory
+        mode: '0755'
+      tags:
+        - deployment
+
+    - name: Deploy Kali RDP fix
+      ansible.builtin.copy:
+        src: ../files/fix-kali-rdp.sh
+        dest: /usr/local/bin
+        owner: root
+        group: root
+        mode: '0755'
+      tags:
+        - deployment
+
+    - name: Deploy sftp configuration for sftp server
+      ansible.builtin.copy:
+        src: ../files/sftpserver/51-sftp-setup.conf
+        dest: /etc/ssh/sshd_config.d/
+        owner: root
+        group: root
+        mode: '0644'
+      tags:
+        - deployment
+        - sftp
+
+    - name: Allow password authentication to kali
+      ansible.builtin.copy:
+        src: ../files/52-sshd-allow-pass-auth.conf
+        dest: /etc/ssh/sshd_config.d/
+        owner: root
+        group: root
+        mode: '0644'
+      tags:
+        - deployment
+
+    - name: Create users for kali
+      ansible.builtin.user:
+        name: "{{ item.username }}"
+        expires: -1
+        generate_ssh_key: yes
+        password: "{{ item.password | password_hash('sha512')}}"
+        groups: sudo
+        state: present
+        shell: /bin/bash
+      loop: "{{ red_users }}"
+      tags:
+        - deployment
+
+    - name: Set hostname
+      ansible.builtin.hostname:
+        name: "{{ red_dev.kali_hostname }}"
+        use: systemd
+
+    - name: Preserve hostname after reboot
+      lineinfile:
+        backup: yes
+        state: present
+        dest: /etc/cloud/cloud.cfg
+        regexp: '^{{ item.search }}'
+        line: '{{ item.replace }}'
+      with_items:
+        - { search: 'preserve_hostname', replace: 'preserve_hostname: true' }
+
+    - name: Replace a localhost entry searching for a literal string to avoid escaping
+      ansible.builtin.lineinfile:
+        path: /etc/hosts
+        search_string: '127.0.1.1'
+        line: 127.0.1.1 ip-176-59-1-18.ec2.internal kali {{ red_dev.kali_hostname }}
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Install Kali Aptitude Packages
+      ansible.builtin.apt:
+        pkg:
+          - cmake
+          - curl
+          - freerdp2-x11
+          - golang
+          - impacket-scripts
+          - kali-desktop-xfce
+          - mingw-w64
+          - openssh-sftp-server
+          - python3-impacket
+          - python3-pip
+          - rclone
+          - smbclient
+          - tuned
+          - vim
+          - vsftpd
+          - xclip
+          - xorg
+          - xrdp
+        update_cache: yes
+      tags:
+        - deployment
+      ignore_errors: yes
+
+    - name: Install PIP Packages
+      ansible.builtin.pip:
+        name:
+          - pypykatz==0.6.9
+          - pycryptodome==3.19.0
+          - pycryptodomex==3.19.0
+      tags:
+        - deployment
+
+    - name: Configure XRDP
+      ansible.builtin.template:
+        src: ../files/xrdp.ini.j2
+        dest: /etc/xrdp/xrdp.ini
+        owner: root
+        group: root
+        mode: '0644'
+        backup: yes
+      tags:
+        - configuration
+
+    - name: Add XRDP User to ssl-cert group
+      ansible.builtin.user:
+        name: xrdp
+        groups: ssl-cert
+        append: yes
+      tags:
+        - configuration
+
+    - name: Start xrdp service
+      ansible.builtin.service:
+        name: xrdp
+        enabled: yes
+        state: started
+      tags:
+        - configuration
+
+    - name: Configure VSFTPD
+      ansible.builtin.copy:
+        src: ../files/sftpserver/vsftpd.conf
+        dest: /etc/
+        owner: root
+        group: root
+        mode: '0644'
+      tags:
+        - deployment
+
+    - name: Create root SFTP directories
+      ansible.builtin.file:
+        path: "{{ red_dev.sftp_srv_dir }}"
+        state: directory
+        mode: '0755'
+        owner: root
+      tags:
+        - deployment
+
+    - name: Create user specific SFTP directories
+      ansible.builtin.file:
+        path: "{{ red_dev.sftp_srv_dir }}/{{ red_dev.sftp_user }}"
+        state: directory
+        mode: '0755'
+        owner: root
+        group: "{{ red_dev.sftp_user }}"
+      tags:
+        - deployment
+
+    - name: Create user specific SFTP directories
+      ansible.builtin.file:
+        path: "{{ red_dev.sftp_srv_dir }}/{{ red_dev.sftp_user }}/uploads"
+        state: directory
+        mode: '0755'
+        owner: "{{ red_dev.sftp_user }}"
+        group: "{{ red_dev.sftp_user }}"
+      tags:
+        - deployment
+
+    - name: Create FTP directories owned by "{{ red_dev.sftp_user }}"
+      ansible.builtin.file:
+        path: "{{ red_dev.ftp_srv_dir }}"
+        state: directory
+        mode: '0755'
+        owner: "{{ red_dev.sftp_user }}"
+        group: ftp
+      tags:
+        - deployment
+
+    - name: Enable and Restart tuned service
+      ansible.builtin.systemd:
+        name: "tuned"
+        daemon_reload: yes
+        state: restarted
+        enabled: yes
+
+    - name: check tuned profile
+      ansible.builtin.shell: tuned-adm active
+      register: tuned_admin
+      changed_when: False
+
+    - name: set tuned profile
+      ansible.builtin.shell: tuned-adm profile {{ tuned_profile }}
+      when: "'Current active profile: virtual-guest' not in tuned_admin.stdout"
+
+    - name: Enable and Restart VSFTPD service
+      ansible.builtin.systemd:
+        name: "vsftpd"
+        daemon_reload: yes
+        state: restarted
+        enabled: yes
+
+    - name: Restart SFTP SSH service
+      ansible.builtin.systemd:
+        name: "sshd"
+        daemon_reload: yes
+        state: restarted
+        enabled: yes
+
+    - name: Copy sysctl conf
+      copy:
+        src: "../files/redirectors/98-msr2.conf"
+        dest: "/etc/sysctl.d/"
+        mode: '0644'
+        owner: root
+        group: root
+
+    - name: Apply sysctl conf
+      ansible.builtin.shell: |
+        sysctl --system
+      ignore_errors: yes

@@ -1,0 +1,52 @@
+﻿{
+  "version": 3,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 20,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "default",
+      "binaryDir": "${sourceDir}/build",
+      "installDir": "${sourceDir}/build/install/",
+      "generator": "Ninja",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": "x64-windows-static",
+        "VCPKG_DEFAULT_HOST_TRIPLET": "x64-windows-static",
+        "VCPKG_OVERLAY_TRIPLETS": "${sourceDir}/cmake/srdi-triplets",
+        "MSVC_RUNTIME": "static",
+        "CMAKE_CXX_STANDARD": "20",
+        "CMAKE_CXX_STANDARD_REQUIRED": "True",
+        "CMAKE_CXX_FLAGS_RELEASE": "/Os /MT /Zc:threadSafeInit-",
+        "VCPKG_CXX_FLAGS": "/Zc:threadSafeInit- /DCRYPTOPP_CXX11_STATIC_INIT=0",
+        "CMAKE_CONFIGURATION_TYPES": "Debug;Release",
+        "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded",
+        "CMAKE_EXE_LINKER_FLAGS": "-static -static-libgcc -static-libstdc++ /MANIFEST:NO"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "SodaMaster-RelwDeb",
+      "configurePreset": "default",
+      "configuration": "RelWithDebInfo",
+      "targets": [ "sodamaster", "sodamasterlib" ]
+    },
+    {
+      "name": "SodaMaster-debug",
+      "configurePreset": "default",
+      "configuration": "Debug",
+      "targets": [ "sodamaster", "sodamasterlib" ]
+    }
+  ]
+}
