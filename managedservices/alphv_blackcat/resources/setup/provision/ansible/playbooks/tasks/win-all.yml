@@ -1,0 +1,17 @@
+---
+- name: Common install and config across all windows systems
+  hosts: win_servers,win_desktops,jumpbox1
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: Install choco
+      win_chocolatey:
+        name:
+          - sysinternals
+          - git
+          - vscode
+          - notepadplusplus
+        state: present
+        ignore_checksums: yes

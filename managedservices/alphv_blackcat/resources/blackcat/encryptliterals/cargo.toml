@@ -1,0 +1,18 @@
+[package]
+name = "encryptliterals"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "encryptliterals"
+path = "src/lib.rs"
+proc-macro = true
+
+[dependencies]
+base64 = "0.21.3"
+lazy_static = "1.4.0"
+proc-macro2 = "1.0.67"
+quote = "1.0.33"
+rand = "0.8.5"
+rand_chacha = "0.3.1"
+syn = { version = "2.0.31", features = ["extra-traits"] }

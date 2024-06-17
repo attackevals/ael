@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="ILRepacker" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'Release'">
+
+  <ItemGroup>
+    <InputAssemblies Include="$(TargetPath)"/>
+    <InputAssemblies Include="$(TargetDir)Mono.Cecil.dll"/>
+    <InputAssemblies Include="$(TargetDir)Mono.Cecil.Mdb.dll"/>
+    <InputAssemblies Include="$(TargetDir)Mono.Cecil.Pdb.dll"/>
+    <InputAssemblies Include="$(TargetDir)Mono.Cecil.Rocks.dll"/>
+    <InputAssemblies Include="$(TargetDir)Mono.Options.dll"/>
+    <InputAssemblies Include="$(TargetDir)BouncyCastle.Crypto.dll"/>
+    <InputAssemblies Include="$(TargetDir)Gma.System.MouseKeyHook.dll"/>
+    <InputAssemblies Include="$(TargetDir)Microsoft.Bcl.AsyncInterfaces.dll"/>
+    <InputAssemblies Include="$(TargetDir)Open.Nat.dll"/>
+    <InputAssemblies Include="$(TargetDir)protobuf-net.dll"/>
+    <InputAssemblies Include="$(TargetDir)Quasar.Common.dll"/>
+    <InputAssemblies Include="$(TargetDir)System.Buffers.dll"/>
+    <InputAssemblies Include="$(TargetDir)System.Memory.dll"/>
+    <InputAssemblies Include="$(TargetDir)System.Numerics.Vectors.dll"/>
+    <InputAssemblies Include="$(TargetDir)System.Runtime.CompilerServices.Unsafe.dll"/>
+    <InputAssemblies Include="$(TargetDir)System.Text.Encodings.Web.dll"/>
+    <InputAssemblies Include="$(TargetDir)System.Text.Json.dll"/>
+    <InputAssemblies Include="$(TargetDir)System.Threading.Tasks.Extensions.dll"/>
+    <InputAssemblies Include="$(TargetDir)System.ValueTuple.dll"/>
+    <InputAssemblies Include="$(TargetDir)Vestris.ResourceLib.dll"/>
+  </ItemGroup>
+
+  <ILRepack
+    Parallel="true"
+    Internalize="true"
+    InputAssemblies="@(InputAssemblies)"
+    TargetKind="SameAsPrimaryAssembly"
+    OutputFile="$(TargetPath)"/>
+  </Target>
+</Project>

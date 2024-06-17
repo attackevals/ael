@@ -1,0 +1,64 @@
+---
+- name: Configure MSR2 Windows Domain B
+  hosts: b_srv_ad
+  become: yes
+  gather_facts: no
+  vars:
+    deploy_dir: "C:\\deploy"
+    gpo_src_dir: "../files/gpo/revenge"
+    gpo_dst_dir: "C:\\deploy\\revenge"
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - gpo
+
+  tasks:
+    - name: Remove leftover directory for gpo files
+      ansible.windows.win_file:
+        path: "{{ deploy_dir }}"
+        state: absent
+
+    - name: Create directory for gpo files
+      ansible.windows.win_file:
+        path: "{{ deploy_dir }}"
+        state: directory
+
+    - name: Copy gpo folder to DC
+      ansible.windows.win_copy:
+        src: "{{ gpo_src_dir }}"
+        dest: "{{ deploy_dir }}"
+        force: yes
+
+    # ignore errors in cases where we run offline
+    - name: install nuget provider
+      ansible.windows.win_shell: |
+        Install-PackageProvider -Name Nuget -Force
+      ignore_errors: yes
+
+    # ignore errors in cases where we run offline
+    - name: Install GPOTools module
+      win_psmodule:
+        name: GPOTools
+        state: present
+        accept_license: yes
+      ignore_errors: yes
+
+    - name: Restore GPO policies
+      win_shell: Restore-GptPolicy -Path .
+      args:
+        chdir: "{{ gpo_dst_dir}}"
+
+    # links directly to domain are not backed up/restored by gpotools, so manually link them
+    - name: Link GPO policies
+      win_shell: |
+        New-GPLink -Name "MSR-File Print Sharing" -Target "dc=digirevenge,dc=net"
+        New-GPLink -Name "MSR-GP1" -Target "dc=digirevenge,dc=net"
+        New-GPLink -Name "MSR-GP2" -Target "dc=digirevenge,dc=net"
+        New-GPLink -Name "MSR-GP3" -Target "dc=digirevenge,dc=net"
+        New-GPLink -Name "MSR-GP4" -Target "dc=digirevenge,dc=net"
+      ignore_errors: yes
+
+    - name: Cleanup
+      ansible.windows.win_file:
+        path: "{{ deploy_dir }}"
+        state: absent

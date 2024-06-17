@@ -1,0 +1,3 @@
+﻿"Path","State","GpoName","Domain","OUDN","OUName","OUCanonical","Index","TotalCount"
+"cn={23B755D9-EC17-45FE-A4EA-3B05781F25F4},cn=policies,cn=system,DC=digirevenge,DC=net","0","MSR-DC1","DIGIREVENGE.NET","OU=Domain Controllers,DC=digirevenge,DC=net","Domain Controllers","digirevenge.net/Domain Controllers","0","2"
+"CN={6AC1786C-016F-11D2-945F-00C04fB984F9},CN=Policies,CN=System,DC=digirevenge,DC=net","0","Default Domain Controllers Policy","DIGIREVENGE.NET","OU=Domain Controllers,DC=digirevenge,DC=net","Domain Controllers","digirevenge.net/Domain Controllers","1","2"

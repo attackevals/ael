@@ -1,0 +1,32 @@
+- name: "Check port {{ ansible_port }}"
+  wait_for:
+    port: "{{ ansible_port }}"
+    state: "started"
+    host: "{{ inventory_hostname }}"
+    connect_timeout: 5
+    timeout: 5
+  delegate_to: "localhost"
+  ignore_errors: yes
+  register: ssh_port
+  vars:
+    ansible_user: ubuntu
+    ansible_private_key_file: ../aws1
+
+- name: "Check port 22"
+  wait_for:
+    port: 22
+    state: "started"
+    host: "{{ inventory_hostname }}"
+    connect_timeout: 5
+    timeout: 5
+  delegate_to: "localhost"
+  ignore_errors: yes
+  register: ssh_port_default
+  when:
+    - ssh_port is defined
+    - ssh_port.state is undefined
+
+- name: Set SSH port to 22
+  set_fact:
+    ansible_port: 22
+  when: ssh_port_default.state is defined

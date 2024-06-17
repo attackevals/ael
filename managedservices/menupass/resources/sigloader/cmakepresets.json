@@ -1,0 +1,60 @@
+{
+    "version": 6,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 26,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "default",
+            "binaryDir": "${CMAKE_CURRENT_SOURCE_DIR}/build",
+            "installDir": "${CMAKE_CURRENT_SOURCE_DIR}/build/install",
+            "generator": "Visual Studio 17 2022",
+            "architecture": {
+                "value": "x64",
+                "strategy": "external"
+            },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "sigloader-release",
+            "description": "Build SigLoader targets with release configuration",
+            "configurePreset": "default",
+            "inheritConfigureEnvironment": true,
+            "configuration": "Release",
+            "targets": [ "src" ]
+        },
+        {
+            "name": "sigloader-debug",
+            "description": "Build SigLoader targets with debug configuration",
+            "configurePreset": "default",
+            "inheritConfigureEnvironment": true,
+            "configuration": "Debug",
+            "targets": [ "src" ]
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "all",
+            "configurePreset": "default",
+            "configuration": "Debug",
+            "inheritConfigureEnvironment": true
+        }
+    ],
+    "workflowPresets": [
+        {
+            "name": "cicd",
+            "description": "Build all SigLoader targets",
+            "steps": [
+                
+            ]
+        }
+    ]
+}

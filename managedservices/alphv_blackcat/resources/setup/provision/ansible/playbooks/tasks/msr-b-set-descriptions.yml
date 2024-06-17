@@ -1,0 +1,19 @@
+---
+- name: Configure MSR2 Windows Domain B host descriptions
+  hosts: b_srv_ad
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: set computer descriptions
+      ansible.windows.win_shell: |
+        Set-ADComputer -Identity "leomon" -Description "KVM"
+        Set-ADComputer -Identity "bakemon" -Description "Workstation"
+        Set-ADComputer -Identity "butchermon" -Description "Workstation"
+        Set-ADComputer -Identity "kimeramon" -Description "Workstation Contractor Bastion"
+        Set-ADComputer -Identity "datamon" -Description "MSSQL DB"
+        Set-ADComputer -Identity "alphamon" -Description "File server"
+        Set-ADComputer -Identity "blacknoirmon" -Description "AD DC"
+        Set-ADComputer -Identity "stormfrontmon" -Description "Exchange"
+      ignore_errors: yes

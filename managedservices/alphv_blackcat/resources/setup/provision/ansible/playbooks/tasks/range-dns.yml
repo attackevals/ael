@@ -1,0 +1,86 @@
+---
+- name: Install Unbound DNS
+  hosts: support_dns
+  become: true
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: Ansible apt install unbound
+      apt:
+        pkg:
+          - unbound
+          - iptables-persistent
+          - unbound
+          - git
+          - etckeeper
+        state: present
+
+    - name: Set hostname
+      ansible.builtin.hostname:
+        name: "{{ support_vars.dns_server_hostname }}"
+        use: systemd
+
+    - name: Preserve hostname after reboot
+      lineinfile:
+        backup: yes
+        state: present
+        dest: /etc/cloud/cloud.cfg
+        regexp: '^{{ item.search }}'
+        line: '{{ item.replace }}'
+      with_items:
+        - { search: 'preserve_hostname', replace: 'preserve_hostname: true' }
+
+    - name: Creating zone.conf
+      copy:
+        src: "../files/unbound-zone.conf"
+        dest: "/etc/unbound/unbound.conf.d/zone.conf"
+
+    - name: Creating forward.conf
+      copy:
+        src: "../files/unbound-forward.conf"
+        dest: "/etc/unbound/unbound.conf.d/forward.conf"
+
+    - name: Creating access.conf
+      copy:
+        src: "../files/unbound-access.conf"
+        dest: "/etc/unbound/unbound.conf.d/access.conf"
+
+    - name: Creating mail.conf
+      copy:
+        src: "../files/unbound-mail.conf"
+        dest: "/etc/unbound/unbound.conf.d/mail.conf"
+
+    - name: Creating redirect-a
+      copy:
+        src: "../files/redirect-a-unbound-zone.conf"
+        dest: "/etc/unbound/unbound.conf.d/redirect-a-zone.conf"
+
+    - name: Creating redirect-b
+      copy:
+        src: "../files/redirect-b-unbound-zone.conf"
+        dest: "/etc/unbound/unbound.conf.d/redirect-b-zone.conf"
+
+    - name: Remove qname default file
+      ansible.builtin.file:
+        path: /etc/unbound/unbound.conf.d/qname-minimization.conf
+        state: absent
+
+    - name: Remove dnssec config file
+      ansible.builtin.file:
+        path: /etc/unbound/unbound.conf.d/root-auto-trust-anchor-file.conf
+        state: absent
+
+    - name: Disable systemd resolved to avoid port conflict
+      systemd:
+        name: "systemd-resolved"
+        daemon_reload: yes
+        state: stopped
+        enabled: no
+
+    - name: Start and enable unbound
+      systemd:
+        name: "unbound"
+        daemon_reload: yes
+        state: restarted
+        enabled: yes

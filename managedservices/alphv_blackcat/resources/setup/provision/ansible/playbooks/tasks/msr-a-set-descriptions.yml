@@ -1,0 +1,17 @@
+---
+- name: Configure MSR2 Windows Domain A host descriptions
+  hosts: a_srv_ad
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: set computer descriptions
+      ansible.windows.win_shell: |
+        Set-ADComputer -Identity "ghostmon" -Description "Workstation"
+        Set-ADComputer -Identity "cecilmon" -Description "Workstation"
+        Set-ADComputer -Identity "phantomon" -Description "Workstation"
+        Set-ADComputer -Identity "gabumon" -Description "IIS server"
+        Set-ADComputer -Identity "parrotmon" -Description "AD DC"
+        Set-ADComputer -Identity "omnimon" -Description "Exchange"
+      ignore_errors: yes

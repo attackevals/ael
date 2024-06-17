@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-root" content="/ael">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.771968189966">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.5.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Getting Started</title>
+    <meta name="title" content="Getting Started">
+    <meta name="description" content="This document covers the infrastructure setup for emulating ATT&CK Evaluations- ALPHV BlackCat and menuPass (2024).">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://attackevals.github.io/ael/managedservices/alphv_blackcat/resources/setup/gettingstarted/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://attackevals.github.io/ael/managedservices/alphv_blackcat/resources/setup/gettingstarted/">
+    <meta property="og:title" content="Getting Started">
+    <meta property="og:description" content="This document covers the infrastructure setup for emulating ATT&CK Evaluations- ALPHV BlackCat and menuPass (2024).">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://attackevals.github.io/ael/managedservices/alphv_blackcat/resources/setup/gettingstarted/">
+    <meta property="twitter:title" content="Getting Started">
+    <meta property="twitter:description" content="This document covers the infrastructure setup for emulating ATT&CK Evaluations- ALPHV BlackCat and menuPass (2024).">
+
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="../../../../../resources/css/retype.css?v=3.5.0.771968189966" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../../../../resources/js/config.js?v=3.5.0.771968189966" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../../resources/js/lunr.js?v=3.5.0.771968189966" data-turbo-eval="false" defer></script>
+</head>
+<body>
+    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    
+        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="docs-sidebar-toggle"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="docs-site-logo" href="../../../../../" class="flex items-center leading-snug text-xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../../../../images/attackevals-logo.png">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../../../../images/attackevals-logo.png">
+                            </span>
+                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">ATTACK Evaluation Library</span>
+                        </a>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-gray-400 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 dark:placeholder-dark-400" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="docs-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <div class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            
+                <!-- Render this div, if config.showSidebarFilter is `true` -->
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                </div>
+            
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 dark:bg-dark-850">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="docs-markdown" id="docs-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="docs-sidebar-right-toggle"></div>
+                                <nav class="breadcrumb" aria-label="Breadcrumb">
+                                    <ol role="list">
+                                        <li class="pr-4">
+                                            <a href="../../../../../" class="pr-4">
+                                                ATT&​CK Evaluations Library Overview
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Managed Services
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../../managedservices/alphv_blackcat/" class="pr-4">
+                                                ALPHV Black​Cat
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Resources
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../../managedservices/alphv_blackcat/resources/setup/" class="pr-4">
+                                                ALPHV Black​Cat and menu​Pass Setup Information
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../../managedservices/alphv_blackcat/resources/setup/gettingstarted/" class="pr-4">
+                                                Getting Started
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                
+                                <!-- Page content  -->
+<doc-anchor-target id="getting-started" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#getting-started">#</doc-anchor-trigger>
+        <span>Getting Started</span>
+    </h1>
+</doc-anchor-target>
+<p>This document covers the infrastructure setup for emulating <a href="https://attackevals.mitre-engenuity.org/" class="outbound" target="_blank"><span>ATT&amp;CK Evaluations</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> - ALPHV BlackCat and menuPass (2024).</p>
+<ul>
+<li><doc-anchor-trigger to="#getting-started">Getting Started</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#overview">Overview</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#aws-cost-estimate">AWS Cost Estimate</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#warning---">WARNING - $$$</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#kvm-server-cost">KVM Server Cost</doc-anchor-trigger></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><doc-anchor-trigger to="#prerequisites">Prerequisites</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#deploy-infrastructure-with-terraform">Deploy Infrastructure with Terraform</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#amazon-marketplace-subscriptions">Amazon Marketplace Subscriptions</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#windows-11">Windows 11</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#deploy-environment">Deploy environment</doc-anchor-trigger></li>
+</ul>
+</li>
+<li><doc-anchor-trigger to="#configure-infrastructure-with-ansible">Configure Infrastructure with Ansible</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#deploy-attack-platform-software">Deploy Attack Platform Software</doc-anchor-trigger></li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="overview">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#overview">#</doc-anchor-trigger>
+        <span>Overview</span>
+    </h2>
+</doc-anchor-target>
+<p>ATT&amp;CK Evaluations used the <a href="https://aws.amazon.com/" class="outbound" target="_blank"><span>Amazon Web Services (AWS)</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> cloud platform.</p>
+<doc-anchor-target id="aws-cost-estimate">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#aws-cost-estimate">#</doc-anchor-trigger>
+        <span>AWS Cost Estimate</span>
+    </h3>
+</doc-anchor-target>
+<p>Specific costs for the AWS resources used will depend on your specific AWS account agreements, region, savings plans, reservations, how frequently the systems are online, and other cost reduction techniques you use. A rough estimated cost for the environment is approximately $6000 - $10000 <em>per month</em>, assuming the hosts are run 24/7. Note that the <code v-pre>leomon</code> host, which uses the <code v-pre>m5.metal</code> instance type, accounts for 50%+ of the overall cost. Instances should be <a href="https://aws.amazon.com/ec2/faqs/" class="outbound" target="_blank"><span>shutdown and stopped</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> when not in use to further reduce cost.</p>
+<doc-anchor-target id="warning---">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#warning---">#</doc-anchor-trigger>
+        <span>WARNING - $$$</span>
+    </h3>
+</doc-anchor-target>
+<doc-anchor-target id="kvm-server-cost">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#kvm-server-cost">#</doc-anchor-trigger>
+        <span>KVM Server Cost</span>
+    </h4>
+</doc-anchor-target>
+<p>WARNING: As mentioned above, the most expensive component is the Kernel Virtual Machine (KVM) Linux server, <code v-pre>leomon</code>, used to run virtual machines. The KVM server uses the AWS instance type <code v-pre>m5.metal</code>, which alone costs $4.608 per hour (at the time of the evaluation), and accounts for ~50% of cost. To reduce cost, you can keep the KVM server off until used, or skip provisioning the KVM host.</p>
+<doc-anchor-target id="prerequisites">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#prerequisites">#</doc-anchor-trigger>
+        <span>Prerequisites</span>
+    </h2>
+</doc-anchor-target>
+<p>It is assumed you have a working knowledge of the following concepts and access to related tools:</p>
+<ul>
+<li><p>Existing AWS Account with permissions to perform required actions (create/manage resources including EC2 instances, VPCs, Internet Gateways, Security Groups, and related resources)</p>
+</li>
+<li><p>Tools</p>
+<ul>
+<li><code v-pre>ssh-keygen</code>,</li>
+<li><code v-pre>bash</code> shell,</li>
+<li><a href="https://developer.hashicorp.com/terraform/downloads" class="outbound" target="_blank"><span>Terraform</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,</li>
+<li><a href="https://docs.ansible.com/" class="outbound" target="_blank"><span>Ansible</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://aws.amazon.com/cli/" class="outbound" target="_blank"><span>AWS CLI</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> installed</li>
+</ul>
+</li>
+<li><p>Install</p>
+<ul>
+<li><p>On Mac with <a href="https://brew.sh/" class="outbound" target="_blank"><span>Homebrew</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> installed</p>
+<ul>
+<li><p>Example:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">brew tap hashicorp/tap
+brew install hashicorp/tap/terraform
+brew install ansible</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+<li><p>On Linux, see <a href="https://developer.hashicorp.com/terraform/downloads" class="outbound" target="_blank"><span>Terraform</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> and <a href="https://docs.ansible.com/ansible/latest/installation_guide/installation_distros.html" class="outbound" target="_blank"><span>Ansible</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> documentation</p>
+</li>
+</ul>
+</li>
+<li><p>and common system administration concepts for Windows and Linux</p>
+</li>
+</ul>
+<doc-anchor-target id="deploy-infrastructure-with-terraform">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#deploy-infrastructure-with-terraform">#</doc-anchor-trigger>
+        <span>Deploy Infrastructure with Terraform</span>
+    </h2>
+</doc-anchor-target>
+<p>Terraform is used to initialize the infrastructure.</p>
+<doc-anchor-target id="amazon-marketplace-subscriptions">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#amazon-marketplace-subscriptions">#</doc-anchor-trigger>
+        <span>Amazon Marketplace Subscriptions</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>NOTE</strong>: You may be prompted to accept the Terms and subscribe for images used in the AWS Marketplace. If prompted, follow the URL provided in the terminal and click the Subscribe button. Once the process completes, re-run the Terraform plan and apply commands below.</p>
+<doc-anchor-target id="windows-11">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#windows-11">#</doc-anchor-trigger>
+        <span>Windows 11</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>IMPORTANT</strong>: AWS does not currently provide a pre-built Windows 11 Amazon Machine Image (AMI), and the team is unable to share the image used for the evaluation. As a result, you will have to provide your own Windows 11 AMI for use in the environment. The following steps provide some general guidance on building your own Windows 11 AMI. Please review the Amazon and Microsoft terms of service to ensure you are compliant with all licensing guidelines.</p>
+<ol>
+<li><a href="https://www.packer.io/" class="outbound" target="_blank"><span>Packer</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> is used to automate the build of a Windows 11 VM from the installation image.</li>
+<li>Packer uploads the virtual machine file to an AWS S3 bucket.</li>
+<li><a href="https://docs.aws.amazon.com/vm-import/latest/userguide/what-is-vmimport.html" class="outbound" target="_blank"><span>AWS VM Import</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> to convert the VM to an AMI.</li>
+</ol>
+<p>AWS provides additional <a href="https://aws.amazon.com/blogs/modernizing-with-aws/bringing-your-windows-11-image-to-aws-with-vm-import-export/" class="outbound" target="_blank"><span>documentation on importing a Windows 11 VM</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>.</p>
+<p>By default, the included configuration uses Windows Server 2022 for all Windows 11 desktop systems to provide a functional system. This is for convenience, however it is not guaranteed that the emulation plan will operate as intended on Windows Server 2022 in instances where Windows 11 is expected.</p>
+<doc-anchor-target id="deploy-environment">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#deploy-environment">#</doc-anchor-trigger>
+        <span>Deploy environment</span>
+    </h3>
+</doc-anchor-target>
+<ol>
+<li><p>Create a Terraform settings file from the included template.</p>
+<ol>
+<li><code v-pre>cp -a deploy.auto.tfvars.template deploy.auto.tfvars</code></li>
+<li>Open the <code v-pre>deploy.auto.tfvars</code> in an editor, and configure with desired values.</li>
+</ol>
+</li>
+<li><p>Edit the <code v-pre>deploy.auto.tfvars</code> file:</p>
+<ol>
+<li>Uncomment the <code v-pre>aws-bucket-name</code> variable, and set to the name of the S3 bucket you would like to use for storing terraform state files. AWS S3 bucket names have to be unique and resolvable by DNS.</li>
+</ol>
+</li>
+<li><p>Edit the <code v-pre>backend.tf</code> file:</p>
+<ol>
+<li><p>Towards the bottom of the file, uncomment the <code v-pre>bucket</code> variable in the <code v-pre>terraform.backend.s3</code> section.</p>
+</li>
+<li><p>Set the value to the name of the S3 bucket in the previous step.</p>
+<ol>
+<li>
+<ul>
+<li><strong>IMPORTANT</strong>: The value must be a string. You cannot use a variable in this section, you must hardcode the bucket name.</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>Time to run Terraform.</p>
+<ol>
+<li>Initialize your Terraform environment.
+<ol>
+<li><code v-pre>terraform init</code></li>
+</ol>
+</li>
+<li>Validate your Terraform configuration.
+<ol>
+<li><code v-pre>terraform validate</code></li>
+</ol>
+</li>
+<li>Plan your deployment with Terraform.
+<ol>
+<li><code v-pre>terraform plan --out=tfplan</code></li>
+</ol>
+</li>
+<li>Execute the Terraform plan created in the previous step.
+<ol>
+<li><code v-pre>terraform apply tfplan</code></li>
+<li>NOTE: This step may take a 15-30 minutes to properly provision all resources. This is normal.</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>Generate VPN profiles.</p>
+<ol>
+<li>Run <code v-pre>make create-vpn-profiles</code> to create OpenVPN profiles to connect to the infrastructure you just deployed.</li>
+<li>The final profiles will be stored as <code v-pre>.zip</code> files in the <code v-pre>publish/</code> subdirectory.</li>
+</ol>
+</li>
+<li><p>All systems have been deployed! They still have to be configured, however time to celebrate! <span class="docs-emoji">&#x1F355;</span> <span class="docs-emoji">&#x1F38A;</span> <span class="docs-emoji">&#x1F386;</span></p>
+</li>
+</ol>
+<doc-anchor-target id="configure-infrastructure-with-ansible">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#configure-infrastructure-with-ansible">#</doc-anchor-trigger>
+        <span>Configure Infrastructure with Ansible</span>
+    </h2>
+</doc-anchor-target>
+<p>For this round, all post deployment configuration was performed via Ansible.</p>
+<ol>
+<li>Use one of the VPN profiles generated in the previous step. Any profile will work.</li>
+<li>Use the Terraform Makefile to configure the Ansible deployment. The following command copies the SSH key to the Ansible setup directory with the proper permissions.
+<ol>
+<li><code v-pre>make ansible-setup</code></li>
+</ol>
+</li>
+<li>Change to Ansible base directory.
+<ol>
+<li><code v-pre>cd ../../ansible</code></li>
+</ol>
+</li>
+<li>Run Ansible configuration.
+<ol>
+<li><code v-pre>make configure-range-from-scratch</code></li>
+</ol>
+</li>
+<li>Wait. Ensure your provisioning host will not sleep or disconnect from the VPN during the provisioning step. Depending on bandwidth, the deployment could take 1-3 hours to fully configure all infrastructure.</li>
+</ol>
+<doc-anchor-target id="deploy-attack-platform-software">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#deploy-attack-platform-software">#</doc-anchor-trigger>
+        <span>Deploy Attack Platform Software</span>
+    </h2>
+</doc-anchor-target>
+<ol>
+<li>Download the <a href="https://github.com/attackevals/ael" class="outbound" target="_blank"><span>ATTACK Evaluations Library</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> to the <code v-pre>kraken</code> and <code v-pre>homelander</code> (Kali Linux and Windows Jumpbox hosts). Follow the instructions to setup the red team tooling.</li>
+</ol>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer class="clear-both">
+                            
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../../../managedservices/alphv_blackcat/resources/setup/provision/terraform/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">MSR​2 Infrastructure Project</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../../../managedservices/alphv_blackcat/resources/setup/infrastructureoverview/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                                                <span class="block mt-1">Infrastructure for ATT&​CK Evaluations - ALPHV Black​Cat and menu​Pass (2024)</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between">
+                                <div>
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                    </ul>
+                                </div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2024. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="docs-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Getting Started", level: 5, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

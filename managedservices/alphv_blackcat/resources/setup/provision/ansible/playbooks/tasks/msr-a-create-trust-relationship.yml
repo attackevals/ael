@@ -1,0 +1,52 @@
+---
+- name: Create domain trust from A to B
+  hosts: a_srv_ad
+  become: yes
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+  vars:
+    trustType: "Bidirectional"
+
+  tasks:
+    - name: "Prepare to trust flush and renew dns"
+      win_shell: |
+        ipconfig /flushdns
+        ipconfig /renew
+
+    # remote trust script happier with params
+    - name: Add trusts between domain
+      ansible.windows.win_powershell:
+        script: |
+          [CmdletBinding()]
+          param (
+              [Parameter(HelpMessage = "Remote Forest Domain DNS Name")]
+              [String]$RemoteForest,
+              [Parameter(HelpMessage = "Remote Domain Admin User")]
+              [String]$RemoteAdmin,
+              [Parameter(HelpMessage = "Remote Domain Admin Pass")]
+              [String]$RemoteAdminPassword,
+              [Parameter(HelpMessage = "Trust type, defaults to Bidrectional")]
+              [String]$TrustType = "Bidirectional"
+          )
+          # get local forest
+          $localforest=[System.DirectoryServices.ActiveDirectory.Forest]::getCurrentForest()
+          try {
+            # check if trust already exists
+            $localForest.GetTrustRelationship($RemoteForest)
+            $Ansible.Changed = $false
+          } catch [System.DirectoryServices.ActiveDirectory.ActiveDirectoryObjectNotFoundException] {
+            # trust does not exist, create it
+            $Ansible.Changed = $true
+            $remoteContext = New-Object -TypeName "System.DirectoryServices.ActiveDirectory.DirectoryContext" -ArgumentList @( "Forest", $RemoteForest, $RemoteAdmin, $RemoteAdminPassword)
+            $remoteForestCtxt = [System.DirectoryServices.ActiveDirectory.Forest]::getForest($remoteContext)
+            $localForest.CreateTrustRelationship($remoteForestCtxt,$TrustType)
+          }
+        error_action: stop
+        parameters:
+          RemoteForest: "{{sub_b_domain.dns_domain_name}}"
+          RemoteAdmin: "{{sub_b_domain.admin_user}}"
+          RemoteAdminPassword: "{{sub_b_domain.admin_pass}}"
+          TrustType: "{{ trustType }}"
+      register:
+        trust_result

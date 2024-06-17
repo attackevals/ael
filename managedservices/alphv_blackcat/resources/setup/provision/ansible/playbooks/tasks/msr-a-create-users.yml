@@ -1,0 +1,25 @@
+---
+- name: Configure MSR2 Windows Domain A
+  hosts: a_srv_ad
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: Create Domain Users Sub A
+      microsoft.ad.user:
+        name: "{{ item.username }}"
+        firstname: "{{ item.firstname }}"
+        surname: "{{ item.surname }}"
+        password: "{{ item.password }}"
+        email: "{{ item.username }}@{{ sub_a_domain.dns_domain_name }}"
+        groups:
+          set: "{{ item.group_list }}"
+        password_never_expires: yes
+        state: present
+      loop: "{{ sub_a_domain_users }}"
+
+    - name: Debug user creation
+      ansible.builtin.debug:
+        msg: "{{ item }}"
+      loop: "{{ sub_a_domain_users }}"

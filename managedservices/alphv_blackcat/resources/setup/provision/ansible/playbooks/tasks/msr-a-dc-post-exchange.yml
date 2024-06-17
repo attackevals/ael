@@ -1,0 +1,35 @@
+---
+- name: Add users to Exchange Admin groups Sub A
+  hosts: a_srv_ad
+  become: yes
+  gather_facts: no
+  vars:
+    enterprise_admins_grp: "Enterprise Admins"
+    schema_admins_grp: "Schema Admins"
+    hygiene_mgmt_grp: "Hygiene Management"
+    org_mgmt_grp: "Organization Management"
+    pub_folder_mgmt_grp: "Public Folder Management"
+    rec_mgmt_grp: "Records Management"
+    srv_mgmt_grp: "Server Management"
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    # todo: use loops to simplify all this duplication
+    - name: Add exchange admins to {{ enterprise_admins_grp }}
+      microsoft.ad.group:
+        name: "{{ enterprise_admins_grp }}"
+        members:
+          add:
+            - "{{ sub_a_domain.exchange_admin_group }}"
+            - "{{ sub_a_domain.evals_domain_adm }}"
+            - "{{ sub_a_domain.vndr_domain_adm }}"
+
+    - name: Add exchange admins to {{ schema_admins_grp }}
+      microsoft.ad.group:
+        name: "{{ schema_admins_grp }}"
+        members:
+          add:
+            - "{{ sub_a_domain.exchange_admin_group }}"
+            - "{{ sub_a_domain.evals_domain_adm }}"
+            - "{{ sub_a_domain.vndr_domain_adm }}"

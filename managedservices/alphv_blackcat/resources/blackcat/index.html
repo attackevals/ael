@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-root" content="/ael">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.771968189966">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.5.0">
+
+    <!-- Primary Meta Tags -->
+    <title>BlackCat</title>
+    <meta name="title" content="BlackCat">
+    <meta name="description" content="This ransomware emulates the BlackCat ransomware family, which is written in Rust and targets Windows and Linux">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://attackevals.github.io/ael/managedservices/alphv_blackcat/resources/blackcat/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://attackevals.github.io/ael/managedservices/alphv_blackcat/resources/blackcat/">
+    <meta property="og:title" content="BlackCat">
+    <meta property="og:description" content="This ransomware emulates the BlackCat ransomware family, which is written in Rust and targets Windows and Linux">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://attackevals.github.io/ael/managedservices/alphv_blackcat/resources/blackcat/">
+    <meta property="twitter:title" content="BlackCat">
+    <meta property="twitter:description" content="This ransomware emulates the BlackCat ransomware family, which is written in Rust and targets Windows and Linux">
+
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="../../../../resources/css/retype.css?v=3.5.0.771968189966" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.5.0.771968189966" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.5.0.771968189966" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.5.0.771968189966" defer></script>
+</head>
+<body>
+    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    
+        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="docs-sidebar-toggle"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="docs-site-logo" href="../../../../" class="flex items-center leading-snug text-xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../../../images/attackevals-logo.png">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../../../images/attackevals-logo.png">
+                            </span>
+                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">ATTACK Evaluation Library</span>
+                        </a>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-gray-400 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 dark:placeholder-dark-400" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="docs-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <div class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            
+                <!-- Render this div, if config.showSidebarFilter is `true` -->
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                </div>
+            
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 dark:bg-dark-850">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="docs-markdown" id="docs-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="docs-sidebar-right-toggle"></div>
+                                <nav class="breadcrumb" aria-label="Breadcrumb">
+                                    <ol role="list">
+                                        <li class="pr-4">
+                                            <a href="../../../../" class="pr-4">
+                                                ATT&​CK Evaluations Library Overview
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Managed Services
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../managedservices/alphv_blackcat/" class="pr-4">
+                                                ALPHV Black​Cat
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Resources
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../managedservices/alphv_blackcat/resources/blackcat/" class="pr-4">
+                                                Black​Cat
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                
+                                <!-- Page content  -->
+<doc-anchor-target id="blackcat" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#blackcat">#</doc-anchor-trigger>
+        <span>BlackCat</span>
+    </h1>
+</doc-anchor-target>
+<doc-anchor-target id="introduction">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#introduction">#</doc-anchor-trigger>
+        <span>Introduction</span>
+    </h1>
+</doc-anchor-target>
+<p>This ransomware emulates the BlackCat ransomware family, which is written in Rust and targets Windows and Linux<sup><a href="https://www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=Ransom:Linux/BlackCat.A!MTB" class="outbound" target="_blank"><span>4</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://symantec-enterprise-blogs.security.com/blogs/threat-intelligence/noberus-blackcat-alphv-rust-ransomware" class="outbound" target="_blank"><span>5</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup>. Its behavior changes depending on whether it is compiled as a Windows binary or as a Linux binary.</p>
+<p>To make troubleshooting and testing easier, the debug-compiled version of the emulated BlackCat comes with cleanup options that will decrypt any encrypted files.</p>
+<p><span class="docs-emoji">&#x2757;</span> Note: the publicly released version of this code does not contain the actual encryption functionality, so any encryption/decryption simply rewrites the original plaintext. Users will need to incorporate the encryption themselves.</p>
+<doc-anchor-target id="features">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#features">#</doc-anchor-trigger>
+        <span>Features</span>
+    </h1>
+</doc-anchor-target>
+<ul>
+<li>As an anti-sandboxing measure, BlackCat requires a valid access token to be passed via the <code v-pre>--access-token</code> argument<sup><a href="https://www.hhs.gov/sites/default/files/blackcat-analyst-note.pdf" class="outbound" target="_blank"><span>3</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://news.sophos.com/en-us/2022/07/14/blackcat-ransomware-attacks-not-merely-a-byproduct-of-bad-luck/" class="outbound" target="_blank"><span>6</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup>. For this emulated version, the provided access token must start with <code v-pre>15742aa362a84ba3</code>.</li>
+<li>Determines if running as an elevated or unelevated user.<sup><a href="https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></li>
+<li>Sets up threadpools for encryption (Linux/Windows) and for network scanning (Windows-only).<sup><a href="https://www.varonis.com/blog/blackcat-ransomware" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></li>
+<li>Deletes shadow copies before and after encrypting files (Windows only).<sup><a href="https://www.varonis.com/blog/blackcat-ransomware" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://symantec-enterprise-blogs.security.com/blogs/threat-intelligence/noberus-blackcat-alphv-rust-ransomware" class="outbound" target="_blank"><span>5</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></li>
+<li>Disables bootloader recovery by executing <code v-pre>bcdedit /set {default} recoveryenabled no</code>.<sup><a href="https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></li>
+<li>Discovers machine UUID by executing <code v-pre>wmic csproduct get UUID</code> (Windows) or by reading from the <code v-pre>/sys/class/dmi/id/product_uuid</code> (Linux, elevated) or <code v-pre>/etc/machine-id</code> (Linux, unelevated) files.<sup><a href="https://www.varonis.com/blog/blackcat-ransomware" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></li>
+<li>Discovers current username and hostname<sup><a href="https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></li>
+<li>Enables remote-to-local and remote-to-remote symbolic link evaluation using <code v-pre>fsutil</code> (Windows only).<sup><a href="https://www.varonis.com/blog/blackcat-ransomware" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://symantec-enterprise-blogs.security.com/blogs/threat-intelligence/noberus-blackcat-alphv-rust-ransomware" class="outbound" target="_blank"><span>5</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></li>
+<li>Empties the recycle bin if not already empty (Windows only).<sup><a href="https://www.varonis.com/blog/blackcat-ransomware" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></li>
+<li>Performs automated propagation to remote hosts on the local network (Windows only)
+<ul>
+<li>Increases the max number of concurrent network requests by setting the<code v-pre>MaxMpxCt</code> registry value to <code v-pre>65535</code> for the registry key <code v-pre>HKLM\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters</code> to increase concurrent network requests<sup><a href="https://www.varonis.com/blog/blackcat-ransomware" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></li>
+<li>Performs NetBIOS lookups on the local netrange to find remote Windows targets. Will propagate to these targets by writing an embedded PsExec binary to disk as <code v-pre>pmanager.exe</code> in the user&#x27;s temp directory, and then using it to execute itself remotely using embedded credentials in the config<sup><a href="https://www.varonis.com/blog/blackcat-ransomware" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://symantec-enterprise-blogs.security.com/blogs/threat-intelligence/noberus-blackcat-alphv-rust-ransomware" class="outbound" target="_blank"><span>5</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></li>
+<li>The PsExec command executed is equivalent to the following:
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">PsExec64.exe -accepteula \\target1,target2,... -u &lt;username&gt; -p &lt;password&gt; -s -d -f -c &lt;path to self&gt; --access-token &lt;blackcat access token&gt; --no-prop</code></pre>
+</doc-codeblock></div>
+</li>
+<li>Note that for execution purposes, the BlackCat configuration includes a <code v-pre>strict_include_targets</code> setting, which is a list of IP addresses that the ransomware is allowed to propagate to. Change these according to your specific environment if you want to control the propagation. Providing a blank entry for this configuration value will allow all discovered target hosts.</li>
+<li>To avoid endless propagation, any spawned BlackCat processes via PsExec will be run with the <code v-pre>--no-prop</code> flag, disabling any further propagation.</li>
+</ul>
+</li>
+<li>Enumerate local partitions and mounts those that don&#x27;t have volume paths, as they may be hidden partitions (Windows only). This will allow the encryption process to target these partitions, potentially including the recovery partition.<sup><a href="https://www.varonis.com/blog/blackcat-ransomware" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://symantec-enterprise-blogs.security.com/blogs/threat-intelligence/noberus-blackcat-alphv-rust-ransomware" class="outbound" target="_blank"><span>5</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup>
+<ul>
+<li>Partitions are mounted to randomly generated subdirectories of <code v-pre>C:\</code> so that they are included in the encryption routine.</li>
+</ul>
+</li>
+<li>For Linux encryption, the ransomware will target VMs running on the target KVM server (KVM targeted instead of ESXi)<sup><a href="https://www.varonis.com/blog/blackcat-ransomware" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=Ransom:Linux/BlackCat.A!MTB" class="outbound" target="_blank"><span>4</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://news.sophos.com/en-us/2022/07/14/blackcat-ransomware-attacks-not-merely-a-byproduct-of-bad-luck/" class="outbound" target="_blank"><span>6</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup>:
+<ul>
+<li>Checks if KVM is installed on the target machine by running <code v-pre>virsh version</code></li>
+<li>Enumerates and shuts down all VMs on the KVM server</li>
+<li>Enumerates and deletes VM snapshots</li>
+<li>Enumerate VM volumes</li>
+<li>Stops <code v-pre>libvirtd</code>, <code v-pre>virsh</code>, <code v-pre>libvirt-dbus</code> processes to prevent potential interference with encryption</li>
+<li>Stops <code v-pre>libvirtd</code> service to prevent potential interference with encryption</li>
+<li>Encrypts VM volumes. Encrypted files will have the custom ransomware extension appended to the filename, and affected directories will have the ransom note dropped.</li>
+</ul>
+</li>
+<li>For Windows encryption, the ransomware will stop processes and services that may interfere with encryption and then iterate through the file system and encrypt valid target files.<sup><a href="https://www.varonis.com/blog/blackcat-ransomware" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.hhs.gov/sites/default/files/blackcat-analyst-note.pdf" class="outbound" target="_blank"><span>3</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=Ransom:Linux/BlackCat.A!MTB" class="outbound" target="_blank"><span>4</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://symantec-enterprise-blogs.security.com/blogs/threat-intelligence/noberus-blackcat-alphv-rust-ransomware" class="outbound" target="_blank"><span>5</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://news.sophos.com/en-us/2022/07/14/blackcat-ransomware-attacks-not-merely-a-byproduct-of-bad-luck/" class="outbound" target="_blank"><span>6</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a><a href="https://securityintelligence.com/posts/blackcat-ransomware-levels-up-stealth-speed-exfiltration/" class="outbound" target="_blank"><span>7</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup>
+<ul>
+<li>If the strict include directories configuration setting is set, BlackCat will only iterate through those directories. Otherwise, BlackCat will iterate through all valid directories, starting at the <code v-pre>C:\</code> root drive.</li>
+<li>Any excluded directories, filenames, or file extensions specified in the configuration will be skipped.</li>
+<li>If a directory name is excluded, no child directories will be affected. For strict include directories, child directories will not be affected, either.</li>
+<li>Encrypted files will have the custom ransomware extension appended to the filename, and affected directories will have the ransom note dropped.</li>
+</ul>
+</li>
+<li>Changes the wallpaper to a ransomware message image for all logged-in users (Windows only).<sup><a href="https://www.varonis.com/blog/blackcat-ransomware" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup>
+<ul>
+<li>The image is saved in each user&#x27;s desktop folder (<code v-pre>C:\\Users\\&lt;USERNAME&gt;\\Desktop\\RECOVER-SKYFL2E-FILES.txt.png</code>), and registry updates are made to change the wallpaper accordingly<sup><a href="https://www.varonis.com/blog/blackcat-ransomware" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup>. Since the <code v-pre>HKEY_USERS</code> registry hive is used to enumerate the target users, only users with active logon sessions will be affected. The default wallpaper is not changed.</li>
+</ul>
+</li>
+<li>Unmounts any partitions that were mounted earlier (Windows only)</li>
+<li>Clears Windows event logs (Windows only).<sup><a href="https://www.varonis.com/blog/blackcat-ransomware" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></li>
+<li>To hamper string-based detection in static analysis, string literals within the binary are encrypted at compile-time and are decrypted in memory at run-time.</li>
+</ul>
+<doc-anchor-target id="ransomware-encryption">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#ransomware-encryption">#</doc-anchor-trigger>
+        <span>Ransomware Encryption</span>
+    </h2>
+</doc-anchor-target>
+<p>When encrypting files, BlackCat uses AES-CTR-128, using the same randomly generated key for all files.</p>
+<p>For small files (less than 128MB), the files are simply encrypted entirely.</p>
+<p>For large files (over 128MB), a chunked encryption approach is used to avoid encrypting the entire file:</p>
+<ul>
+<li>The file is broken up into chunks that are 1MB in size</li>
+<li>For each 1MB chunk, the first 8KB are encrypted</li>
+</ul>
+<p>The actual BlackCat ransomware has also used a chunking approach when encrypting large files.<sup><a href="https://www.hhs.gov/sites/default/files/blackcat-analyst-note.pdf" class="outbound" target="_blank"><span>3</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></p>
+<p><span class="docs-emoji">&#x2757;</span> Note: the publicly released version of this code does not contain the actual encryption functionality, so any encryption/decryption simply rewrites the original plaintext. Users will need to incorporate the encryption themselves.</p>
+<doc-anchor-target id="configuration">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#configuration">#</doc-anchor-trigger>
+        <span>Configuration</span>
+    </h2>
+</doc-anchor-target>
+<p>BlackCat&#x27;s settings are configured using the <a href="config/config.json">config.json</a> JSON configuration file. The contents of this configuration file are AES-CTR-128 encrypted and then base64-encoded before being embedded in the executable during compilation. BlackCat uses the <code v-pre>--access-token</code> argument to decrypt the embedded configuration when executing<sup><a href="https://www.varonis.com/blog/blackcat-ransomware" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.hhs.gov/sites/default/files/blackcat-analyst-note.pdf" class="outbound" target="_blank"><span>3</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=Ransom:Linux/BlackCat.A!MTB" class="outbound" target="_blank"><span>4</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></p>
+<p><span class="docs-emoji">&#x2757;</span> Note: the publicly released version of this code only contains a base64-encoded configuration rather than an AES-encrypted configuration. Users will need to incorporate the encryption themselves.</p>
+<p>Because the configuration settings are hardcoded in the source code, any adjustments will require recompilation,
+such as when enabling/disabling features, adjusting propagation credentials, or restricting where encryption and propagation occurs.
+Note that if you&#x27;re only changing the JSON file, <code v-pre>cargo build</code> may only reference the previously cached build since actual source code hasn&#x27;t changed. In that case,
+you can run <code v-pre>cargo clean</code> prior to re-running <code v-pre>cargo build</code> to force a fresh compilation.</p>
+<p>The following settings are used:</p>
+<ul>
+<li><code v-pre>kill_processes</code> - (Windows only) processes to kill prior to encrypting files<sup><a href="https://www.varonis.com/blog/blackcat-ransomware" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup>.</li>
+<li><code v-pre>kill_services</code> - (Windows only) services to terminate prior to encrypting files<sup><a href="https://www.varonis.com/blog/blackcat-ransomware" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup>.</li>
+<li><code v-pre>kill_processes_linux</code> - (Linux only) processes to kill prior to encrypting VM volumes and disrupting VM operations.</li>
+<li><code v-pre>kill_services_linux</code> - (Linux only) services to terminate prior to encrypting VM volumes and disrupting VM operations.</li>
+<li><code v-pre>exclude_directory_names</code> - (Windows only) directories to skip during encryption<sup><a href="https://www.varonis.com/blog/blackcat-ransomware" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup>.</li>
+<li><code v-pre>exclude_file_names</code> - (Windows only) file names to skip during encryption<sup><a href="https://www.varonis.com/blog/blackcat-ransomware" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup>.</li>
+<li><code v-pre>exclude_file_extensions</code> - (Windows only) file extensions to skip during encryption<sup><a href="https://www.varonis.com/blog/blackcat-ransomware" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup>.</li>
+<li><code v-pre>strict_include_paths</code> -  (Windows only) only encrypt files in these directories<sup><a href="https://www.varonis.com/blog/blackcat-ransomware" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup>.</li>
+<li><code v-pre>enable_set_wallpaper</code> - (Windows only) toggle changing the wallpaper after encrypting files<sup><a href="https://www.varonis.com/blog/blackcat-ransomware" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup>.</li>
+<li><code v-pre>enable_network_discovery</code> - (Windows only) toggle remote target discovery via NetBIOS<sup><a href="https://www.varonis.com/blog/blackcat-ransomware" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup>.</li>
+<li><code v-pre>enable_self_propagation</code> - (Windows only) toggle propagation via PsExec to discovered hosts (also requires <code v-pre>enable_network_discovery</code> to be enabled).<sup><a href="https://www.varonis.com/blog/blackcat-ransomware" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></li>
+<li><code v-pre>enable_vm_kill</code> - (Linux only) toggles killing VMs on the target KVM server.<sup><a href="https://www.varonis.com/blog/blackcat-ransomware" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></li>
+<li><code v-pre>enable_vm_snapshot_kill</code> - (Linux only) toggles deleting VM snapshots on the KVM server.</li>
+<li><code v-pre>enable_enc</code> - toggles encryption of files (Windows) or VM disks (Linux).</li>
+<li><code v-pre>enable_recovery_hampering</code> - (Windows only) toggles deleting shadow copies and disabling bootloader recovery.
+&quot;enable_event_del&quot;: true,
+&quot;enable_event_del&quot;: true,</li>
+<li><code v-pre>enable_event_del</code> - (Windows only) toggles deleting Windows event logs.</li>
+<li><code v-pre>enable_hidden_partitions</code> - (Windows only) toggles finding and mounting hidden partitions for encryption.</li>
+<li><code v-pre>unmount_hidden_partitions</code> - (Windows only) toggles unmounting hidden partitions after encryption.</li>
+<li><code v-pre>extension</code> - specifies the custom file extension to append to encrypted files<sup><a href="https://www.varonis.com/blog/blackcat-ransomware" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup>.</li>
+<li><code v-pre>note_file_name</code> - specifies the ransom note file name<sup><a href="https://www.varonis.com/blog/blackcat-ransomware" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup>.</li>
+<li><code v-pre>note_full_text</code> - specifies the ransom note contents<sup><a href="https://www.varonis.com/blog/blackcat-ransomware" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup>.</li>
+<li><code v-pre>empty_recycle_bin</code> - (Windows only) toggles emptying the recycle bin</li>
+<li><code v-pre>psexec_username</code> - (Windows only) username to use for PsExec propagation.</li>
+<li><code v-pre>psexec_password</code> - (Windows only) password to use for PsExec propagation.</li>
+<li><code v-pre>strict_include_targets</code> - (Windows only) only propagate to these target hosts if discovered.</li>
+<li><code v-pre>strict_include_scan_ranges</code> - (Windows only) only scan the intersection of these ranges with the local ranges. Used to avoid scanning the entirety of large networks</li>
+</ul>
+<p>Below is an example JSON configuration file:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+    &quot;kill_processes&quot;: [&quot;firefox&quot;, &quot;notepad&quot;, &quot;msedge&quot;],
+    &quot;kill_services&quot;: [&quot;testsvc1&quot;, &quot;testsvc2&quot;, &quot;TestServ&quot;],
+    &quot;kill_processes_linux&quot;: [&quot;libvirtd&quot;, &quot;virsh&quot;, &quot;libvirt-dbus&quot;],
+    &quot;kill_services_linux&quot;: [&quot;libvirtd&quot;],
+    &quot;exclude_directory_names&quot;: [&quot;system volume information&quot;,&quot;intel&quot;,&quot;$windows.~ws&quot;,&quot;application data&quot;,&quot;$recycle.bin&quot;, &quot;mozilla&quot;,&quot;program files (x86)&quot;,&quot;program files&quot;,&quot;$windows.~bt&quot;,&quot;public&quot;,&quot;msocache&quot;,&quot;windows&quot;,&quot;default&quot;,&quot;all users&quot;, &quot;tor browser&quot;, &quot;programdata&quot;,&quot;boot&quot;,&quot;config.msi&quot;,&quot;google&quot;,&quot;perflogs&quot;,&quot;appdata&quot;,&quot;windows.old&quot;,&quot;WindowsAzure&quot;],
+    &quot;exclude_file_names&quot;: [&quot;desktop.ini&quot;,&quot;autorun.inf&quot;,&quot;ntldr&quot;,&quot;bootsect.bak&quot;,&quot;thumbs.db&quot;,&quot;boot.ini&quot;,&quot;ntuser.dat&quot;, &quot;iconcache.db&quot;,&quot;bootfont.bin&quot;,&quot;ntuser.ini&quot;,&quot;ntuser.dat.log&quot;],
+    &quot;exclude_file_extensions&quot;: [&quot;themepack&quot;,&quot;nls&quot;,&quot;diagpkg&quot;, &quot;msi&quot;,&quot;lnk&quot;,&quot;exe&quot;,&quot;cab&quot;,&quot;scr&quot;,&quot;bat&quot;,&quot;drv&quot;,&quot;rtp&quot;,&quot;msp&quot;,&quot;prf&quot;,&quot;msc&quot;, &quot;ico&quot;, &quot;key&quot;,&quot;ocx&quot;,&quot;diagcab&quot;,&quot;diagcfg&quot;, &quot;pdb&quot;,&quot;wpx&quot;,&quot;hlp&quot;,&quot;icns&quot;,&quot;rom&quot;,&quot;dll&quot;,&quot;msstyles&quot;,&quot;mod&quot;,&quot;ps1&quot;,&quot;ics&quot;,&quot;hta&quot;,&quot;bin&quot;,&quot;cmd&quot;,&quot;ani&quot;, &quot;386&quot;,&quot;lock&quot;,&quot;cur&quot;,&quot;idx&quot;,&quot;sys&quot;,&quot;com&quot;,&quot;deskthemepack&quot;,&quot;shs&quot;,&quot;ldf&quot;,&quot;theme&quot;,&quot;mpa&quot;,&quot;nomedia&quot;, &quot;spl&quot;,&quot;cpl&quot;,&quot;adv&quot;,&quot;icl&quot;,&quot;msu&quot;,&quot;xtlog&quot;],
+    &quot;strict_include_paths&quot;: [],
+    &quot;enable_set_wallpaper&quot;: false,
+    &quot;enable_network_discovery&quot;: false,
+    &quot;enable_self_propagation&quot;: false,
+    &quot;enable_vm_kill&quot;: false,
+    &quot;enable_vm_snapshot_kill&quot;: false,
+    &quot;enable_enc&quot;: false,
+    &quot;enable_recovery_hampering&quot;: false,
+    &quot;enable_event_del&quot;: false,
+    &quot;enable_hidden_partitions&quot;: false,
+    &quot;unmount_hidden_partitions&quot;: false,
+    &quot;extension&quot;: &quot;.skyfl2e&quot;,
+    &quot;note_file_name&quot;: &quot;RECOVER-SKYFL2E-FILES.txt&quot;,
+    &quot;note_full_text&quot;: &quot;&gt;&gt;Introduction\nImportant files on your machine were ENCRYPTED and now they have the \&quot;SKYFL2E\&quot; extension.\nIn order to recover your files, you need to follow the instructions below.\n\n&gt;&gt;CAUTION\nDO NOT MODIFY ENCRYPTED FILES YOURSELF.\nDO NOT USE THIRD PARTY SOFTWARE TO RESTORE YOUR DATA.\nYOU MAY DAMAGE YOUR FILES, RESULTING IN PERMANENT DATA LOSS.\nYOUR DATA IS STRONGLY ENCRYPTED, YOU CANNOT DECRYPT IT WITHOUT CIPHER KEY.\n\n&gt;&gt;What Should I do Next?\nFollow these simple steps to get everything back to normal:\n1) Download and install Tor browser from https://www.torproject.org/download/\n2) Navigate to: askfjejtqekjge0et1lkjasdq09gji13jgkdajv.testonion/?access-key=2646AEF615CD1126\n&quot;,
+    &quot;empty_recycle_bin&quot;: false,
+    &quot;psexec_username&quot;: &quot;domain\\test_user&quot;,
+    &quot;psexec_password&quot;: &quot;test_password&quot;,
+    &quot;strict_include_targets&quot;: [&quot;10.20.20.102&quot;, &quot;10.20.20.103&quot;],
+    &quot;strict_include_scan_ranges&quot;: [&quot;10.20.10.0/24&quot;, &quot;10.20.20.0/24&quot;]
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="troubleshooting-and-logging">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#troubleshooting-and-logging">#</doc-anchor-trigger>
+        <span>Troubleshooting and Logging</span>
+    </h2>
+</doc-anchor-target>
+<p>Logging is provided for troubleshooting purposes and operator usability. Logs are written to <code v-pre>clog.xtlog</code> in the current working directory on Windows systems, and to <code v-pre>bc.log</code> in the current working directory on Linux systems.</p>
+<p><span class="docs-emoji">&#x2757;</span> Note: the publicly released version of this code only logs in plaintext and will also output log lines to the console if run from there.</p>
+<p>BlackCat will log each action taken and will provide success or error messages. The verbosity may vary depending on whether or not it was compiled for debug or release, but operators can search for any <code v-pre>ERROR</code> messages to look for things that went wrong.</p>
+<p>Below are some potential issues and how to address them:</p>
+<ul>
+<li>BlackCat immediately terminates, no log file created
+<ul>
+<li>If the vendor didn&#x27;t block the process, chances are the incorrect access token was provided, or none was provided at all via command-line. Check your command and try again.</li>
+</ul>
+</li>
+<li>Several actions skipped due to lack of privileges
+<ul>
+<li>Ensure you are running BlackCat under an elevated context and try again.</li>
+</ul>
+</li>
+<li>Privileges are correct, but BlackCat still didn&#x27;t perform certain actions</li>
+<li>Ensure the JSON configuration file in <code v-pre>config/config.json</code> has everything enabled that you want performed</li>
+<li>BlackCat failed to propagate
+<ul>
+<li>Check the JSON configuration to make sure <code v-pre>enable_network_discovery</code> and <code v-pre>enable_self_propagation</code> are set to <code v-pre>true</code> and that the correct credentials are provided
+in <code v-pre>psexec_username</code> and <code v-pre>psexec_password</code></li>
+<li>If <code v-pre>strict_include_targets</code> is set in the JSON configuration, make sure the values are what you expect. If a non-empty list is provided, BlackCat will only propagate to these hosts.</li>
+<li>Check the logs to make sure the correct local network CIDR was used</li>
+<li>If the correct network was scanned, make sure the starting host can talk to other hosts on the network via NetBIOS, as this connection is required in order for the propagation target scan to succeed.</li>
+<li>Check the logs to make sure PsExec was dropped and executed properly</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="cleanup">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cleanup">#</doc-anchor-trigger>
+        <span>Cleanup</span>
+    </h2>
+</doc-anchor-target>
+<p>When compiled in debug mode, BlackCat comes with cleanup capabilities, which are enabled by using the <code v-pre>--clean-up</code> and <code v-pre>--key</code> arguments.
+Since BlackCat will generate a random AES key each time it is executed, you will have to go through the BlackCat logs on the affected hosts to
+determine the AES keys to use for cleanup. Pass the AES key in as a hex string for BlackCat to decrypt affected files.</p>
+<p>The following cleanup tasks are performed:</p>
+<ul>
+<li>Decrypt encrypted files</li>
+<li>Remove ransom notes from affected directories</li>
+</ul>
+<p>Note that registry changes, killed processes/services, wallpaper changes, deleted events, files deleted from the recycle bin, etc will not be restored.</p>
+<doc-anchor-target id="run">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#run">#</doc-anchor-trigger>
+        <span>Run</span>
+    </h1>
+</doc-anchor-target>
+<p>BlackCat can be run via <code v-pre>cargo</code> or as a precompiled executable (see the <doc-anchor-trigger to="#build">Build section</doc-anchor-trigger> for build information).</p>
+<p>Note that <code v-pre>--access-token</code> is required and must be at least 16 characters long. The first 16 characters are used to decrypt the configuration<sup><a href="https://www.hhs.gov/sites/default/files/blackcat-analyst-note.pdf" class="outbound" target="_blank"><span>3</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup>.</p>
+<p><span class="docs-emoji">&#x2757;</span> WARNING - do not run BlackCat on any system that you do not want to tamper with. BlackCat will perform various recovery hampering and impact TTPs, including encrypting files, deleting shadow copies, and clearing windows event logs. Use and test with caution.</p>
+<p>Via <code v-pre>cargo</code>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none"># Debug
+cargo run -- --access-token 15742aa362a84ba3
+
+# Release
+cargo run --release -- --access-token 15742aa362a84ba3</code></pre>
+</doc-codeblock></div>
+<p>As an executable:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">blackcat.exe --access-token 15742aa362a84ba3</code></pre>
+</doc-codeblock></div>
+<p>The following command-line flags can override config settings or enable other features:</p>
+<ul>
+<li><code v-pre>--prop</code> - force propagation via PsExec.</li>
+<li><code v-pre>--no-prop</code> - force disable propagation via PsExec.</li>
+<li><code v-pre>--clean-up</code> - toggle cleanup mode. Requires the <code v-pre>--key</code> argument</li>
+<li><code v-pre>--key</code> - hex string containing the AES key used to encrypt files. Used with the <code v-pre>--clean-up</code> flag to decrypt encrypted files.</li>
+</ul>
+<p>Examples:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none"># No propagation, even if specified in internal config
+blackcat.exe --access-token 15742aa362a84ba3 --no-prop
+
+# Cleanup mode (debug compilation only)
+blackcat.exe --access-token 15742aa362a84ba3 --clean-up --key [AES key hex string]</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="build">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#build">#</doc-anchor-trigger>
+        <span>Build</span>
+    </h1>
+</doc-anchor-target>
+<p>When compiled, binaries are automatically placed in <code v-pre>./target/[release|debug]/</code> for Windows and in <code v-pre>./target/x86_64-unknown-linux-musl/release</code> for Linux (when using the <code v-pre>x86_64-unknown-linux-musl</code> target). Pre-compiled binaries are already available in <code v-pre>./executables</code>.</p>
+<p>When building in Linux for the first time, you will have to install the appropriate target:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">rustup target add x86_64-unknown-linux-musl</code></pre>
+</doc-codeblock></div>
+<p>For Debug builds:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none"># Windows
+cargo build
+
+# Linux
+cargo build --target x86_64-unknown-linux-musl</code></pre>
+</doc-codeblock></div>
+<p>For Release builds:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none"># Windows
+cargo build --release
+
+# Linux
+cargo build --target x86_64-unknown-linux-musl --release</code></pre>
+</doc-codeblock></div>
+<p>For best results, run the <code v-pre>cargo build</code> commands on a Linux machine when compiling a Linux version of BlackCat, and on a Windows machine when compiling a Windows version. Cross-compilation has not been fully tested.</p>
+<doc-anchor-target id="required-software">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#required-software">#</doc-anchor-trigger>
+        <span>Required Software</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Rust v1.70.0 or greater - Installed via <code v-pre>rustup</code>. Available from <a href="https://www.rust-lang.org/tools/install" class="outbound" target="_blank"><span>the official Rust website</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>.
+<ul>
+<li>Windows installer Notes
+<ul>
+<li>Chocolatey (<code v-pre>choco install rustup.install</code>), or Winget (<code v-pre>winget install Rustlang.Rustup</code>) are also viable installers</li>
+<li>Rustup installer should prompt you to install Visual C++ Build Tools but if not, you will need to install that too</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="windows">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#windows">#</doc-anchor-trigger>
+        <span>Windows</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li><a href="https://visualstudio.microsoft.com/visual-cpp-build-tools/" class="outbound" target="_blank"><span>Visual C++ Build Tools</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> should be prompted to install when running <code v-pre>rustup</code>. If not, install independently.</li>
+<li>To avoid vcruntime issues, the <code v-pre>crt-static</code> flag is passed to the compiler. This is already set in <code v-pre>.cargo/config.toml</code></li>
+</ul>
+<doc-anchor-target id="testing">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#testing">#</doc-anchor-trigger>
+        <span>Testing</span>
+    </h1>
+</doc-anchor-target>
+<doc-anchor-target id="detonating-in-test-environment">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#detonating-in-test-environment">#</doc-anchor-trigger>
+        <span>Detonating In Test Environment</span>
+    </h2>
+</doc-anchor-target>
+<p>When detonating the BlackCat ransomware in a test environment, the following considerations need to be taken into account:</p>
+<ul>
+<li>Do I want encryption to happen?</li>
+<li>Which machines do I want to propagate to? Just one or two for testing? Or every machine possible in the environment?</li>
+</ul>
+<p>Perform the following checklist prior to detonating in a test environment:</p>
+<ul>
+<li>Ensure any anti-virus products (e.g. Defender) are OFF in every machine in the test environment, even the ones you aren&#x27;t planning to propagate to, just in case
+the propagation restriction feature has an unknown bug.</li>
+<li>If planning on terminating specific processes or services, ensure they are running on the target machines</li>
+<li>If clearing the recycling bin, ensure there are files in the recycling bin on the target machines</li>
+<li>If deleting shadow copies, ensure there are shadow copies on the target machines</li>
+<li>Ensure there are VMs on the Linux KVM server
+<ul>
+<li>If stopping VMs, ensure the VMs are running</li>
+<li>If deleting VM snapshots, ensure that the VMs have snapshots to delete</li>
+</ul>
+</li>
+<li>If enabling encryption, ensure there are valid files to encrypt
+<ul>
+<li>If using <code v-pre>strict_include_paths</code>, ensure those paths have valid files to encrypt</li>
+</ul>
+</li>
+<li>Ensure the BlackCat configuration is set correctly according to your environment and what you plan on testing
+<ul>
+<li>Correct credentials for PsExec propagation</li>
+<li>Correct IP addresses for <code v-pre>strict_include_targets</code>, if applicable</li>
+<li>Correct paths for <code v-pre>strict_include_paths</code>, if applicable</li>
+<li>Features enabled/disabled as desired</li>
+</ul>
+</li>
+<li>Ensure there are snapshots for the target machines that include all of the above, so you can revert after detonating BlackCat</li>
+</ul>
+<p>Once everything is set, you will have to rebuild BlackCat and transfer it to your target machines</p>
+<ul>
+<li>If building to target the KVM server, you will need to build on a Linux machine, such as your Kali attacker machine</li>
+<li>If building to target Windows, you will need to build on a Windows dev machine and then transfer to the target environment, e.g. via GitHub dev branch</li>
+</ul>
+<p>Detonate and inspect logs to see what succeeded or failed.</p>
+<doc-anchor-target id="unit-tests">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#unit-tests">#</doc-anchor-trigger>
+        <span>Unit Tests</span>
+    </h2>
+</doc-anchor-target>
+<p>Unit tests are currently written within the same <code v-pre>.rs</code> files as the code being tested.
+Note that the Windows and Linux variants have different unit tests.</p>
+<p>To run Debug tests:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none"># Windows
+cargo test
+
+# Linux
+cargo test --target x86_64-unknown-linux-musl</code></pre>
+</doc-codeblock></div>
+<p>To run Release tests:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none"># Windows
+cargo test --release
+
+# Linux
+cargo test --target x86_64-unknown-linux-musl --release</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="minimal-blackcat">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#minimal-blackcat">#</doc-anchor-trigger>
+        <span>Minimal Blackcat</span>
+    </h1>
+</doc-anchor-target>
+<p>To support alternative steps, a minimal version of BlackCat was created that only performs encryption for Linux/Windows.</p>
+<p>This source code was removed prior to public release.</p>
+<doc-anchor-target id="developer-notes">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#developer-notes">#</doc-anchor-trigger>
+        <span>Developer Notes</span>
+    </h1>
+</doc-anchor-target>
+<doc-anchor-target id="file-and-directory-structure">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#file-and-directory-structure">#</doc-anchor-trigger>
+        <span>File and Directory Structure</span>
+    </h2>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>File/Directory</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>config/</code></td>
+<td>provides JSON configuration files for BlackCat</td>
+</tr>
+<tr>
+<td><code v-pre>config/config.json</code></td>
+<td>Production configuration file for BlackCat. Edit this to change actual BlackCat behavior.</td>
+</tr>
+<tr>
+<td><code v-pre>config/unit_test_config.json</code></td>
+<td>Configuration file specifically for unit tests. Do not edit unless adjusting configuration logic in source code or fixing unit tests.</td>
+</tr>
+<tr>
+<td><code v-pre>encryptliterals/</code></td>
+<td>provides custom macros to read in and AES-encrypt the JSON configuration and to XOR-encrypt string literals within source code</td>
+</tr>
+<tr>
+<td><code v-pre>executables/</code></td>
+<td>provides pre-compiled debug and release binaries</td>
+</tr>
+<tr>
+<td><code v-pre>resources/</code></td>
+<td>contains resources and other helper files</td>
+</tr>
+<tr>
+<td><code v-pre>resources/zipper_util/</code></td>
+<td>contains logic to zlib-compress the PsExec64.exe binary</td>
+</tr>
+<tr>
+<td><code v-pre>resources/decrypt_log.py</code></td>
+<td>Python script that will decrypt the BlackCat log file</td>
+</tr>
+<tr>
+<td><code v-pre>resources/PsExec64.exe</code></td>
+<td>PsExec v2.43 binary downloaded from Microsoft</td>
+</tr>
+<tr>
+<td><code v-pre>resources/psexec64.zip</code></td>
+<td>zipped version of the PsExec v2.43 binary. Will be embedded in BlackCat binary on compilation</td>
+</tr>
+<tr>
+<td><code v-pre>resources/ransom_note.png</code></td>
+<td>image used to replace user wallpapers after encrypting files</td>
+</tr>
+<tr>
+<td><code v-pre>src/latmove/nbtscan/</code></td>
+<td>contains a modified version of the <a href="https://github.com/jonkgrimes/nbtscanner" class="outbound" target="_blank"><span>nbtscanner Rust crate</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td><code v-pre>src/latmove/local_ips.rs</code></td>
+<td>contains logic to find local IPs and netranges</td>
+</tr>
+<tr>
+<td><code v-pre>src/latmove/propagate.rs</code></td>
+<td>contains logic to discover remote targets and propagate to them via PsExec</td>
+</tr>
+<tr>
+<td><code v-pre>src/cleanup.rs</code></td>
+<td>contains main cleanup logic for BlackCat&#x27;s cleanup variant</td>
+</tr>
+<tr>
+<td><code v-pre>src/config.rs</code></td>
+<td>contains BlackCat configuration logic and configuration-related auxiliary methods</td>
+</tr>
+<tr>
+<td><code v-pre>src/discovery.rs</code></td>
+<td>contains basic discovery logic for current username and privilege level, current hostname, and machine UUID</td>
+</tr>
+<tr>
+<td><code v-pre>src/encrypt.rs</code></td>
+<td>provides AES encryption/decryption routines</td>
+</tr>
+<tr>
+<td><code v-pre>src/enumerate.rs</code></td>
+<td>provides logic to enumerate files and encrypt them on Windows targets</td>
+</tr>
+<tr>
+<td><code v-pre>src/eventdel.rs</code></td>
+<td>provides logic to clear Windows event logs</td>
+</tr>
+<tr>
+<td><code v-pre>src/kvm.rs</code></td>
+<td>provides logic to perform ransomware tasks against Linux KVM servers (stop VMs, delete snapshots, encrypt VM volumes)</td>
+</tr>
+<tr>
+<td><code v-pre>src/logger.rs</code></td>
+<td>provides logging functionality</td>
+</tr>
+<tr>
+<td><code v-pre>src/main.rs</code></td>
+<td>contains the main high-level logic and argument parsing for BlackCat</td>
+</tr>
+<tr>
+<td><code v-pre>src/proc.rs</code></td>
+<td>provides functionality to execute and terminate processes</td>
+</tr>
+<tr>
+<td><code v-pre>src/psexec.rs</code></td>
+<td>provides functionality to unzip the embedded PsExec binary, execute PsExec, and remove PsExec from disk</td>
+</tr>
+<tr>
+<td><code v-pre>src/recovery.rs</code></td>
+<td>provides functionality to disable bootloader recovery and delete shadow copies</td>
+</tr>
+<tr>
+<td><code v-pre>src/recycling.rs</code></td>
+<td>provides functionality to empty the recycling bin on Windows targets</td>
+</tr>
+<tr>
+<td><code v-pre>src/service.rs</code></td>
+<td>provides funcionality to terminate services</td>
+</tr>
+<tr>
+<td><code v-pre>src/wallpaper.rs</code></td>
+<td>provides functionality to change the wallpaper on Windows targets</td>
+</tr>
+<tr>
+<td><code v-pre>src/winapi_helper.rs</code></td>
+<td>provides helper methods for using the <code v-pre>winapi</code> crate</td>
+</tr>
+<tr>
+<td><code v-pre>src/windowscrate_helper.rs</code></td>
+<td>provides helper methods for using the <code v-pre>windows</code> crate</td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="documentation">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#documentation">#</doc-anchor-trigger>
+        <span>Documentation</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Generate and open build docs by running <code v-pre>cargo doc --open</code></li>
+<li>Follow code documentation instructions <a href="https://doc.rust-lang.org/rust-by-example/meta/doc.html" class="outbound" target="_blank"><span>here</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> in order to add your own comments to the docs</li>
+</ul>
+<doc-anchor-target id="rust-help">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#rust-help">#</doc-anchor-trigger>
+        <span>Rust Help</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Learning Rust? <a href="https://www.rust-lang.org/learn" class="outbound" target="_blank"><span>Start here</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>. The official Rust book is an excellent resource and should be your first step.</li>
+<li><a href="https://rust-analyzer.github.io/" class="outbound" target="_blank"><span>rust-analyzer</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> - A Language Server Protocol that provides useful features like auto-completion and type hints.
+<ul>
+<li>Packaged as a native <a href="https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer" class="outbound" target="_blank"><span>VSCode Plugin</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> (recommended)</li>
+<li>Refer to the website for other supported editors and IDE&#x27;s.</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="cti-references">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cti-references">#</doc-anchor-trigger>
+        <span>CTI References</span>
+    </h1>
+</doc-anchor-target>
+<ol>
+<li><a href="https://www.varonis.com/blog/blackcat-ransomware" class="outbound" target="_blank"><span>https://www.varonis.com/blog/blackcat-ransomware</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/" class="outbound" target="_blank"><span>https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://www.hhs.gov/sites/default/files/blackcat-analyst-note.pdf" class="outbound" target="_blank"><span>https://www.hhs.gov/sites/default/files/blackcat-analyst-note.pdf</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=Ransom:Linux/BlackCat.A!MTB" class="outbound" target="_blank"><span>https://www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=Ransom:Linux/BlackCat.A!MTB</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://symantec-enterprise-blogs.security.com/blogs/threat-intelligence/noberus-blackcat-alphv-rust-ransomware" class="outbound" target="_blank"><span>https://symantec-enterprise-blogs.security.com/blogs/threat-intelligence/noberus-blackcat-alphv-rust-ransomware</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://news.sophos.com/en-us/2022/07/14/blackcat-ransomware-attacks-not-merely-a-byproduct-of-bad-luck/" class="outbound" target="_blank"><span>https://news.sophos.com/en-us/2022/07/14/blackcat-ransomware-attacks-not-merely-a-byproduct-of-bad-luck/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://securityintelligence.com/posts/blackcat-ransomware-levels-up-stealth-speed-exfiltration/" class="outbound" target="_blank"><span>https://securityintelligence.com/posts/blackcat-ransomware-levels-up-stealth-speed-exfiltration/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+</ol>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer class="clear-both">
+                            
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../../managedservices/alphv_blackcat/resources/control_server/debuggingguide/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">Golang Debugging Guide</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../../managedservices/alphv_blackcat/resources/exmatter/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                                                <span class="block mt-1">Ex​Matter</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between">
+                                <div>
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                    </ul>
+                                </div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2024. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="docs-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "BlackCat", level: 4, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+sodamaster:
+  host: 176.59.1.18
+  port: 8082
+  encryption: true
+  enabled: true
+quasar:
+  host: 116.83.1.29
+  port: 8888
+  enabled: true
+simplefileserver:
+  host: 176.59.1.18
+  port: 8081
+  mappings:
+    - prefix: /files
+      dir: ../payloads
+  enabled: true

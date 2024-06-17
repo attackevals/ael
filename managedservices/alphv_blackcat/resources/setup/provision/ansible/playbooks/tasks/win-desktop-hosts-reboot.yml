@@ -1,0 +1,13 @@
+---
+- name: Reboot win desktop hosts
+  hosts: win_desktops
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - reboot
+    - victim
+
+  tasks:
+    - name: Reboot the machine with all defaults
+      ansible.windows.win_reboot:

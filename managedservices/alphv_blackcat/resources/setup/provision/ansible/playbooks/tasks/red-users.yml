@@ -1,0 +1,12 @@
+---
+- name: configure red systems
+  hosts: jumpbox1
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: Manage tools directory
+      win_file:
+        path: "{{ red_dev.jumpbox_dev_dir }}"
+        state: directory

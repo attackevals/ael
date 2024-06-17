@@ -1,0 +1,91 @@
+---
+- name: configure red systems
+  hosts: jumpbox1
+  gather_facts: no
+  vars:
+    red_deploy_dir: "C:\\terraform"
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: Manage tools directory
+      win_file:
+        path: "{{ red_dev.sandbox_dev_dir }}"
+        state: directory
+
+    - name: Create user accounts
+      ansible.windows.win_user:
+        name: "{{ item.username }}"
+        password: "{{ item.password }}"
+        fullname: "{{ item.firstname }}"
+        password_never_expires: yes
+        state: present
+        groups:
+          - Administrators
+      loop: "{{ evals_domain_users }}"
+
+    - name: Install choco
+      win_chocolatey:
+        name:
+          - advancedrun
+          - git
+          - python39
+          - sysinternals
+          - vscode
+          - dotnet-6.0-aspnetruntime
+        state: present
+        ignore_checksums: yes
+
+    - name: Ensure Python in system PATH
+      win_path:
+        elements:
+          - C:\Python39\Scripts
+          - C:\Python39\
+
+    - name: Create directory for deploy files
+      ansible.windows.win_file:
+        path: "{{ red_deploy_dir }}"
+        state: directory
+
+    - name: Disable firewall for Domain, Public and Private profiles
+      community.windows.win_firewall:
+        state: disabled
+        profiles:
+          - Domain
+          - Private
+          - Public
+      tags: disable_firewall
+
+    - name: Disable automatic firefox updates
+      ansible.windows.win_regedit:
+        path: HKLM:\SOFTWARE\Policies\Mozilla\Firefox
+        name: "DisableAppUpdate"
+        data: 1
+        type: dword
+
+    - name: Disable firefox default browser check
+      ansible.windows.win_regedit:
+        path: HKLM:\SOFTWARE\Policies\Mozilla\Firefox
+        name: "DontCheckDefaultBrowser"
+        data: 1
+        type: dword
+
+    - name: Disable firefox first run
+      ansible.windows.win_regedit:
+        path: HKLM:\SOFTWARE\Policies\Mozilla\Firefox
+        name: "OverrideFirstRunPage"
+        type: string
+
+    - name: Disable edge first run
+      ansible.windows.win_regedit:
+        path: HKLM:\Software\Policies\Microsoft\MicrosoftEdge\Main
+        name: "PreventFirstRunPage"
+        data: 1
+        type: dword
+
+    - name: Disable edge sync wizard
+      ansible.windows.win_regedit:
+        path: HKLM:\Software\Policies\Microsoft\MicrosoftEdge
+        name: "SyncDisabled"
+        data: 1
+        type: dword

@@ -1,0 +1,13 @@
+---
+- name: Check AD push result
+  hosts:
+    - a_win_desktops
+    - a_non_ad_win_servers
+    - b_win_desktops
+    - b_non_ad_win_servers
+  gather_facts: false
+
+  tasks:
+    - name: Force update group policy from member
+      win_shell: |
+        gpupdate /force

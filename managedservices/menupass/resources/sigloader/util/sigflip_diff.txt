@@ -1,0 +1,737 @@
+Comparing files SigFlip.cpp (modified) and SigFlip.cpp (original)
+***** SigFlip.cpp (modified)
+"
+S
+i
+g
+F
+l
+i
+p
+.
+***** SigFlip.cpp (original)
+"
+p
+c
+h
+.
+*****
+
+***** SigFlip.cpp (modified)
+"
+H
+e
+l
+p
+e
+r
+.
+***** SigFlip.cpp (original)
+"
+S
+i
+g
+F
+l
+i
+p
+.
+*****
+
+***** SigFlip.cpp (modified)
+
+
+
+
+#
+***** SigFlip.cpp (original)
+
+#
+*****
+
+***** SigFlip.cpp (modified)
+ 
+<
+t
+c
+h
+a
+r
+***** SigFlip.cpp (original)
+ 
+"
+H
+e
+l
+p
+e
+r
+*****
+
+***** SigFlip.cpp (modified)
+h
+>
+
+***** SigFlip.cpp (original)
+h
+"
+
+*****
+
+***** SigFlip.cpp (modified)
+
+#
+***** SigFlip.cpp (original)
+
+
+
+
+#
+*****
+
+***** SigFlip.cpp (modified)
+<
+s
+t
+d
+i
+o
+.
+***** SigFlip.cpp (original)
+<
+t
+c
+h
+a
+r
+.
+*****
+
+***** SigFlip.cpp (modified)
+d
+l
+i
+b
+.
+***** SigFlip.cpp (original)
+d
+i
+o
+.
+*****
+
+***** SigFlip.cpp (modified)
+<
+w
+i
+n
+d
+o
+w
+s
+.
+***** SigFlip.cpp (original)
+<
+s
+t
+d
+l
+i
+b
+.
+*****
+
+***** SigFlip.cpp (modified)
+<
+S
+o
+f
+t
+p
+u
+b
+.
+***** SigFlip.cpp (original)
+<
+w
+i
+n
+d
+o
+w
+s
+.
+*****
+
+***** SigFlip.cpp (modified)
+<
+w
+i
+n
+c
+r
+y
+p
+t
+.
+***** SigFlip.cpp (original)
+<
+S
+o
+f
+t
+p
+u
+b
+.
+*****
+
+***** SigFlip.cpp (modified)
+n
+t
+r
+u
+s
+t
+***** SigFlip.cpp (original)
+n
+c
+r
+y
+p
+t
+*****
+
+***** SigFlip.cpp (modified)
+
+
+
+
+#
+p
+r
+a
+g
+m
+a
+ 
+c
+o
+m
+m
+e
+n
+***** SigFlip.cpp (original)
+
+#
+i
+n
+c
+l
+u
+d
+e
+ 
+<
+w
+i
+n
+*****
+
+***** SigFlip.cpp (modified)
+t
+ 
+(
+l
+i
+b
+,
+ 
+"
+w
+i
+n
+t
+r
+***** SigFlip.cpp (original)
+t
+r
+*****
+
+***** SigFlip.cpp (modified)
+t
+"
+)
+
+***** SigFlip.cpp (original)
+t
+.
+h
+>
+
+*****
+
+***** SigFlip.cpp (modified)
+
+
+
+
+i
+n
+t
+ 
+m
+***** SigFlip.cpp (original)
+
+#
+p
+r
+a
+g
+m
+*****
+
+***** SigFlip.cpp (modified)
+a
+i
+n
+(
+I
+N
+T
+ 
+a
+r
+g
+c
+,
+***** SigFlip.cpp (original)
+a
+ 
+c
+o
+m
+m
+e
+n
+t
+ 
+(
+l
+i
+b
+,
+*****
+
+***** SigFlip.cpp (modified)
+ 
+C
+H
+A
+R
+*
+ 
+a
+r
+g
+v
+[
+]
+)
+ 
+{
+
+***** SigFlip.cpp (original)
+ 
+"
+w
+i
+n
+t
+r
+u
+s
+t
+"
+)
+
+*****
+
+***** SigFlip.cpp (modified)
+
+        
+/
+/
+P
+a
+r
+s
+i
+***** SigFlip.cpp (original)
+
+
+
+
+i
+*****
+
+***** SigFlip.cpp (modified)
+n
+g
+ 
+***** SigFlip.cpp (original)
+n
+t
+ 
+m
+a
+i
+n
+(
+I
+N
+T
+ 
+*****
+
+***** SigFlip.cpp (modified)
+g
+u
+m
+e
+n
+t
+s
+
+
+
+        
+i
+f
+ 
+(
+!
+(
+a
+***** SigFlip.cpp (original)
+g
+c
+,
+ 
+C
+H
+A
+R
+*
+ 
+a
+*****
+
+***** SigFlip.cpp (modified)
+g
+c
+ 
+=
+=
+ 
+4
+ 
+|
+|
+ 
+a
+***** SigFlip.cpp (original)
+g
+v
+[
+]
+)
+ 
+{
+
+
+
+
+
+
+        
+/
+/
+P
+a
+*****
+
+***** SigFlip.cpp (modified)
+r
+g
+c
+ 
+=
+=
+ 
+5
+ 
+|
+|
+ 
+***** SigFlip.cpp (original)
+r
+s
+i
+n
+g
+ 
+*****
+
+***** SigFlip.cpp (modified)
+g
+c
+ 
+=
+=
+ 
+6
+)
+)
+ 
+{
+
+***** SigFlip.cpp (original)
+g
+u
+m
+e
+n
+t
+s
+
+*****
+
+***** SigFlip.cpp (modified)
+        
+        
+u
+s
+a
+g
+e
+(
+***** SigFlip.cpp (original)
+        
+i
+f
+ 
+(
+!
+(
+*****
+
+***** SigFlip.cpp (modified)
+g
+v
+[
+0
+]
+)
+;
+
+***** SigFlip.cpp (original)
+g
+c
+ 
+=
+=
+ 
+4
+ 
+|
+|
+ 
+a
+r
+g
+c
+ 
+=
+=
+ 
+5
+ 
+|
+|
+ 
+a
+r
+g
+c
+ 
+=
+=
+ 
+6
+)
+)
+ 
+{
+
+*****
+
+***** SigFlip.cpp (modified)
+        
+}
+
+***** SigFlip.cpp (original)
+        
+        
+u
+s
+a
+g
+e
+(
+a
+r
+g
+v
+[
+0
+]
+)
+;
+
+*****
+
+***** SigFlip.cpp (modified)
+
+
+***** SigFlip.cpp (original)
+
+        
+}
+
+*****
+
+***** SigFlip.cpp (modified)
+
+        
+***** SigFlip.cpp (original)
+
+
+
+
+        
+*****
+
+***** SigFlip.cpp (modified)
+        
+_
+d
+a
+t
+a
+S
+i
+z
+e
+ 
+=
+ 
+c
+***** SigFlip.cpp (original)
+        
+c
+*****
+
+***** SigFlip.cpp (modified)
+ 
+(
+***** SigFlip.cpp (original)
+ 
+_
+k
+e
+y
+,
+ 
+_
+k
+e
+y
+S
+i
+z
+e
+,
+ 
+(
+*****
+
+***** SigFlip.cpp (modified)
+ 
+T
+E
+X
+T
+(
+"
+***** SigFlip.cpp (original)
+ 
+L
+"
+*****
+
+***** SigFlip.cpp (modified)
+"
+)
+,
+***** SigFlip.cpp (original)
+"
+,
+*****
+
+***** SigFlip.cpp (modified)
+        
+T
+E
+X
+T
+(
+"
+***** SigFlip.cpp (original)
+        
+L
+"
+*****
+
+***** SigFlip.cpp (modified)
+"
+)
+,
+***** SigFlip.cpp (original)
+"
+,
+*****
+
+***** SigFlip.cpp (modified)
+ 
+T
+E
+X
+T
+(
+"
+***** SigFlip.cpp (original)
+ 
+L
+"
+*****
+
+***** SigFlip.cpp (modified)
+"
+)
+,
+***** SigFlip.cpp (original)
+"
+,
+*****
+

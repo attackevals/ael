@@ -1,0 +1,21 @@
+---
+- name: A desktops configure rdp access on desktops
+  hosts: a_win_desktops
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: Add domain admins to local admin
+      ansible.windows.win_group_membership:
+        name: Administrators
+        members:
+          - "{{ sub_a_domain.shortname }}\\Domain Admins"
+
+    - name: Add admins and users to RDP group
+      ansible.windows.win_group_membership:
+        name: Remote Desktop Users
+        members:
+          - "{{ sub_a_domain.shortname }}\\Domain Users"
+          - "{{ sub_a_domain.shortname }}\\Domain Admins"
+          - "{{ sub_a_domain.shortname }}\\{{ sub_a_domain.trust_share_group }}"

