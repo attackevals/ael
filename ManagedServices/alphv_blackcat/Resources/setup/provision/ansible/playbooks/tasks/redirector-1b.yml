@@ -1,0 +1,71 @@
+---
+- name: Configure Redirector 1B
+  hosts: redirect1b
+  become: true
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+
+    - name: packages | ensure apt list dir exists
+      file:
+        path: /var/lib/apt/lists/
+        state: directory
+        mode: 0755
+
+    - name: update apt list
+      apt:
+        update_cache: yes
+
+    - name: Install Aptitude Packages
+      ansible.builtin.apt:
+        pkg:
+          - iptables-persistent
+        update_cache: yes
+
+    - name: Creating redirect-1b
+      copy:
+        src: "../files/enable-traffic-forwarding-rules-redirect-2.sh"
+        dest: "/usr/local/bin/"
+        mode: '0755'
+        owner: root
+        group: root
+
+    - name: Copy disable script
+      copy:
+        src: "../files/disable-traffic-forwarding-rules.sh"
+        dest: "/usr/local/bin/"
+        mode: '0755'
+        owner: root
+        group: root
+
+    - name: Copy print script
+      copy:
+        src: "../files/print-traffic-forwarding-rules.sh"
+        dest: "/usr/local/bin/"
+        mode: '0755'
+        owner: root
+        group: root
+
+    - name: Copy sysctl conf
+      copy:
+        src: "../files/redirectors/98-msr2.conf"
+        dest: "/etc/sysctl.d/"
+        mode: '0644'
+        owner: root
+        group: root
+
+    - name: Apply sysctl conf
+      ansible.builtin.shell: |
+        sysctl --system
+      ignore_errors: yes
+
+    - name: Process forwarding rules
+      ansible.builtin.shell: |
+        /usr/local/bin/enable-traffic-forwarding-rules-redirect-2.sh &
+      ignore_errors: yes
+
+    - name: Save and persist forwarding rules
+      ansible.builtin.shell: |
+        sudo netfilter-persistent save
+      ignore_errors: yes

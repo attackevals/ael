@@ -1,0 +1,3 @@
+﻿"Path","State","GpoName","Domain","OUDN","OUName","OUCanonical","Index","TotalCount"
+"cn={D91EA2C8-F746-4875-8F7F-0527CE6BFB65},cn=policies,cn=system,DC=digirunaway,DC=net","0","MSR-DC1","DIGIRUNAWAY.NET","OU=Domain Controllers,DC=digirunaway,DC=net","Domain Controllers","digirunaway.net/Domain Controllers","0","2"
+"CN={6AC1786C-016F-11D2-945F-00C04fB984F9},CN=Policies,CN=System,DC=digirunaway,DC=net","0","Default Domain Controllers Policy","DIGIRUNAWAY.NET","OU=Domain Controllers,DC=digirunaway,DC=net","Domain Controllers","digirunaway.net/Domain Controllers","1","2"

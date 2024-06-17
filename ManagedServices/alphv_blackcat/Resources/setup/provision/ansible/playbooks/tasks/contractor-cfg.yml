@@ -1,0 +1,49 @@
+---
+- name: configure contractor system
+  hosts: c_win_desktops
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: Create user accounts admins
+      ansible.windows.win_user:
+        name: "{{ item.username }}"
+        password: "{{ item.password }}"
+        fullname: "{{ item.firstname }}"
+        password_never_expires: yes
+        state: present
+        groups:
+          - Administrators
+          - Remote Desktop Users
+      loop: "{{ contractor_admins }}"
+
+    - name: Create user accounts users
+      ansible.windows.win_user:
+        name: "{{ item.username }}"
+        password: "{{ item.password }}"
+        fullname: "{{ item.firstname }}"
+        password_never_expires: yes
+        state: present
+        groups:
+          - Remote Desktop Users
+      loop: "{{ contractor_users }}"
+
+    - name: Create user accounts red admins
+      ansible.windows.win_user:
+        name: "{{ item.username }}"
+        password: "{{ item.password }}"
+        fullname: "{{ item.firstname }}"
+        password_never_expires: yes
+        state: present
+        groups:
+          - Administrators
+          - Remote Desktop Users
+      loop: "{{ red_users }}"
+
+
+    - name: Configure C to use Range DNS
+      ansible.windows.win_dns_client:
+        adapter_names: '*'
+        dns_servers:
+          - "{{ support_vars.dns_server_ip }}"

@@ -1,0 +1,15 @@
+---
+- name: Create profile directories on windows systems
+  hosts: a_win_hosts
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - victim
+
+  tasks:
+    - name: Create profile directories if they do not exist
+      community.windows.win_user_profile:
+        username: "{{ item.username }}"
+        state: present
+      loop: "{{ sub_a_domain_users }}"

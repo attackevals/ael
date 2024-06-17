@@ -1,0 +1,92 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 26,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "default",
+      "binaryDir": "${sourceDir}/build",
+      "installDir": "${sourceDir}/install",
+      "generator": "Visual Studio 17 2022",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "CMAKE_MODULE_PATH": "${sourceDir}/cmake",
+        "CMAKE_CXX_STANDARD": "26",
+        "CMAKE_C_STANDARD": "23",
+        "CMAKE_CONFIGURATION_TYPES": "Debug;Release;",
+        "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "fyanti-release",
+      "description": "Build FYAnti targets with release configuration",
+      "configurePreset": "default",
+      "inheritConfigureEnvironment": true,
+      "configuration": "Release",
+      "targets": [ "net-runner", "dll-runner", "shellcode-runner" ]
+    },
+    {
+      "name": "fyanti-debug",
+      "description": "Build FYAnti targets with debug configuration",
+      "configurePreset": "default",
+      "inheritConfigureEnvironment": true,
+      "configuration": "Debug",
+      "targets": [ "net-runner", "dll-runner", "shellcode-runner" ]
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "all",
+      "configurePreset": "default",
+      "configuration": "Debug",
+      "inheritConfigureEnvironment": true
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "cicd-debug",
+      "description": "Build all FYAnti debug targets",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "default"
+        },
+        {
+          "type": "build",
+          "name": "fyanti-debug"
+        },
+        {
+          "type": "test",
+          "name": "all"
+        }
+      ]
+    },
+    {
+      "name": "cicd-release",
+      "description": "Build all FYAnti release targets",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "default"
+        },
+        {
+          "type": "build",
+          "name": "fyanti-release"
+        }
+      ]
+    }
+  ]
+}

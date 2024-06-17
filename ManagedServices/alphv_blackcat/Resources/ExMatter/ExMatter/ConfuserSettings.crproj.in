@@ -1,0 +1,22 @@
+<project outputDir="../bin" baseDir="." xmlns="http://confuser.codeplex.com">
+	<rule pattern="true" preset="aggressive">
+		<protection id="anti debug" $<$<CONFIG:Debug>:action="remove"> />
+		<protection id="anti dump" />
+		<protection id="anti ildasm" />
+		<protection id="anti tamper" />
+		<protection id="ctrl flow" />
+		<protection id="harden" />
+		<protection id="invalid metadata" />
+		<protection id="resources" />
+		<protection id="watermark" action="remove" />
+		<protection id="constants" action="remove" />
+		<protection id="ref proxy" action="remove" />
+		<protection id="typescramble" action="remove" />
+		<protection id="rename" action="remove" />
+	</rule>
+	<packer id="compressor">
+	  <argument name="key" value="normal" />
+	  <argument name="compat" value="true" />
+	</packer>
+	<module path="$<CONFIG>/ExMatter.exe" />
+</project>

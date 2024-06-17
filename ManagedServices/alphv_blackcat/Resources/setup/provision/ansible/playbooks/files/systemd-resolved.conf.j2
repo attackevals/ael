@@ -1,0 +1,4 @@
+[Resolve]
+{% for key, value in sub_b_domain.systemd_resolved.items() %}
+{{ key }}={{ value }}
+{% endfor %}

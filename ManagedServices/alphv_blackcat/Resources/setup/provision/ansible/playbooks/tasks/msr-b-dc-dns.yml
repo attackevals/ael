@@ -1,0 +1,40 @@
+---
+- name: Configure MSR2 Windows Domain B
+  hosts: b_srv_ad
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: Configure B AD Server DNS to use Range DNS
+      ansible.windows.win_dns_client:
+        adapter_names: '*'
+        dns_servers:
+          - "{{ sub_b_domain.ad_ip_addr }}"
+          - "{{ support_vars.dns_server_ip }}"
+
+    - name: create conditional forwarder so trust works
+      ansible.windows.win_shell: |
+        Add-DnsServerConditionalForwarderZone -Name {{ sub_a_domain.dns_domain_name }} -MasterServers {{ sub_a_domain.ad_ip_addr }}
+      ignore_errors: yes
+
+    - name: set dns forwarder to use range dns
+      ansible.windows.win_shell: |
+        Set-DnsServerForwarder -IPAddress {{ support_vars.dns_server_ip }}
+        Add-DnsServerPrimaryZone -NetworkID "10.20.10.0/24" -ReplicationScope "Forest"
+        Add-DnsServerPrimaryZone -NetworkID "10.20.20.0/24" -ReplicationScope "Forest"
+        Clear-DNSServerCache -Force
+        Clear-DnsClientCache
+      ignore_errors: yes
+
+    - name: add reverse dns records
+      ansible.windows.win_shell: |
+        Add-DnsServerResourceRecordPtr -Name "4" -ZoneName "10.20.10.in-addr.arpa" -AllowUpdateAny -TimeToLive 01:00:00 -AgeRecord -PtrDomainName "blacknoirmon.digirevenge.net"
+        Add-DnsServerResourceRecordPtr -Name "200" -ZoneName "10.20.10.in-addr.arpa" -AllowUpdateAny -TimeToLive 01:00:00 -AgeRecord -PtrDomainName "stormfrontmon.digirevenge.net"
+        Add-DnsServerResourceRecordPtr -Name "23" -ZoneName "10.20.10.in-addr.arpa" -AllowUpdateAny -TimeToLive 01:00:00 -AgeRecord -PtrDomainName "alphamon.digirevenge.net"
+        Add-DnsServerResourceRecordPtr -Name "122" -ZoneName "10.20.10.in-addr.arpa" -AllowUpdateAny -TimeToLive 01:00:00 -AgeRecord -PtrDomainName "datamon.digirevenge.net"
+        Add-DnsServerResourceRecordPtr -Name "16" -ZoneName "10.20.10.in-addr.arpa" -AllowUpdateAny -TimeToLive 01:00:00 -AgeRecord -PtrDomainName "leomon.digirevenge.net"
+        Add-DnsServerResourceRecordPtr -Name "11" -ZoneName "20.20.10.in-addr.arpa" -AllowUpdateAny -TimeToLive 01:00:00 -AgeRecord -PtrDomainName "kimeramon.digirevenge.net"
+        Add-DnsServerResourceRecordPtr -Name "22" -ZoneName "20.20.10.in-addr.arpa" -AllowUpdateAny -TimeToLive 01:00:00 -AgeRecord -PtrDomainName "butchermon.digirevenge.net"
+        Add-DnsServerResourceRecordPtr -Name "33" -ZoneName "20.20.10.in-addr.arpa" -AllowUpdateAny -TimeToLive 01:00:00 -AgeRecord -PtrDomainName "bakemon.digirevenge.net"
+      ignore_errors: yes

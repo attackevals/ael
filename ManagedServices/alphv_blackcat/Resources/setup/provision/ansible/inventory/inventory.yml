@@ -1,0 +1,159 @@
+---
+win_servers:
+
+  children:
+    win_ad_servers:
+      hosts:
+        a_srv_ad:
+          ansible_host: 10.10.10.4
+        b_srv_ad:
+          ansible_host: 10.20.10.4
+    a_win_servers:
+      hosts:
+        a_srv_ad:
+        a_srv_ex:
+          ansible_host: 10.10.10.200
+        a_srv_iis:
+          ansible_host: 10.10.10.9
+    b_win_servers:
+      hosts:
+        b_srv_ad:
+        b_srv_ex:
+          ansible_host: 10.20.10.200
+        b_srv_sql:
+          ansible_host: 10.20.10.122
+        b_srv_file:
+          ansible_host: 10.20.10.23
+    a_non_ad_win_servers:
+      hosts:
+        a_srv_ex:
+        a_srv_iis:
+    b_non_ad_win_servers:
+      hosts:
+        b_srv_ex:
+        b_srv_sql:
+        b_srv_file:
+  vars:
+    ansible_user: devadmin
+    ansible_password: "DevPass123!"
+    ansible_port: 5986
+    ansible_connection: winrm
+    ansible_winrm_transport: ntlm
+    ansible_winrm_server_cert_validation: ignore
+    ansible_winrm_connection_timeout: 1800
+    ansible_winrm_operation_timeout_sec: 1800
+    ansible_winrm_read_timeout_sec: 1800
+
+win_desktops:
+  children:
+    a_win_desktops:
+      hosts:
+        a_desk_1:
+          ansible_host: 10.10.20.11
+        a_desk_2:
+          ansible_host: 10.10.20.22
+        a_desk_3:
+          ansible_host: 10.10.20.23
+    b_win_desktops:
+      hosts:
+        b_desk_1:
+          ansible_host: 10.20.20.11
+        b_desk_2:
+          ansible_host: 10.20.20.22
+        b_desk_3:
+          ansible_host: 10.20.20.33
+    c_win_desktops:
+      hosts:
+        c_desk_1:
+          ansible_host: 10.30.10.4
+  vars:
+    ansible_user: windesk
+    ansible_password: "windesk"
+    ansible_port: 5986
+    ansible_connection: winrm
+    ansible_winrm_transport: ntlm
+    ansible_winrm_server_cert_validation: ignore
+    ansible_winrm_connection_timeout: 1800
+    ansible_winrm_operation_timeout_sec: 1800
+    ansible_winrm_read_timeout_sec: 1800
+
+a_win_hosts:
+  children:
+    a_win_desktops:
+    a_win_servers:
+  vars:
+    ansible_become_user: "digirunaway\\evals_domain_admin"
+    ansible_become_pass: "axi9eengei9inaeR@"
+    ansible_become_method: runas
+
+b_win_hosts:
+  children:
+    b_win_desktops:
+    b_win_servers:
+  vars:
+    ansible_become_user: "digirevenge\\evals_domain_admin"
+    ansible_become_pass: "axi9eengei9inaeR@"
+    ansible_become_method: runas
+
+c_win_hosts:
+  children:
+    c_win_desktops:
+  vars:
+    ansible_become_user: "windesk"
+    ansible_become_pass: "windesk"
+    ansible_become_method: runas
+
+
+linux_servers:
+  children:
+    b_linux_servers:
+      hosts:
+        b_srv_kvm:
+  vars:
+    ansible_host: 10.20.10.16
+    ansible_user: ubuntu
+    ansible_private_key_file: ../aws1
+
+red_infra:
+  hosts:
+    kali1:
+      ansible_host: 176.59.1.18
+      ansible_user: kali
+      ansible_private_key_file: ../aws1
+    jumpbox1:
+      ansible_host: 116.83.1.29
+      ansible_user: devadmin
+      ansible_password: "DevPass123!"
+      ansible_port: 5986
+      ansible_connection: winrm
+      ansible_winrm_transport: ntlm
+      ansible_winrm_server_cert_validation: ignore
+    devbox:
+      ansible_host: 116.83.1.150
+      ansible_user: devadmin
+      ansible_password: "DevPass123!"
+      ansible_port: 5986
+      ansible_connection: winrm
+      ansible_winrm_transport: ntlm
+      ansible_winrm_server_cert_validation: ignore
+
+support_infra:
+  hosts:
+    support_dns:
+  vars:
+    ansible_host: 116.83.2.22
+    ansible_user: ubuntu
+    ansible_private_key_file: ../aws1
+
+redirector_servers:
+  hosts:
+    redirect1a:
+      ansible_host: 121.93.24.2
+    redirect1b:
+      ansible_host: 121.93.99.100
+    redirect2:
+      ansible_host: 116.83.2.91
+  vars:
+    ansible_user: ubuntu
+    ansible_private_key_file: ../aws1
+    ansible_port: 122

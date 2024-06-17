@@ -1,0 +1,16 @@
+---
+- name: Configure Exchange mailboxes
+  hosts: a_srv_ex
+  become: yes
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    # Exchange mailbox enable for users
+    - name: Enable Exchange mailboxes
+      win_shell: |
+        Import-module activedirectory
+        Add-PSSnapin Microsoft.Exchange.Management.PowerShell.SnapIn
+        get-aduser -Searchbase "CN=Users,DC={{ sub_a_domain.shortname }},DC={{ sub_a_domain.tld }}"-filter 'Enabled -eq $true' -prop emailAddress| ForEach-Object {Enable-Mailbox -Identity $_.samaccountname -Alias $_.samaccountname |Set-Mailbox -EmailAddressPolicyEnabled $false -PrimarySmtpAddress $_.EmailAddress}
+      ignore_errors: yes

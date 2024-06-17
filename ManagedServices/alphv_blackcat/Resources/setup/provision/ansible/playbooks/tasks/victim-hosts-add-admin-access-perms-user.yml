@@ -1,0 +1,30 @@
+---
+- name: Give domain admin access to user profile dirs
+  hosts: a_win_hosts,b_win_hosts
+  gather_facts: no
+  vars:
+    noise_gen_dst_dir: "C:\\tools\\filegen"
+    noise_gen_src_dir: "../files/filegen/"
+    noise_gen_zip: "file_generator//generate-files.exe.zip"
+    noise_gen_exe: "file_generator//"
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - filegen
+    - victim
+
+  tasks:
+
+    - name: modify acls
+      ansible.windows.win_powershell:
+        script: |
+          $Path = "c:\Users\a*"
+          $Grant = "/grant:r"
+          $Remove = "/remove"
+          $replaceInherit = "/inheritance:e"
+          $permission = ":(OI)(CI)F"
+          $useraccount1 = "Administrators"
+          $aclflags = "/T"
+          $aclflags2 = "/C"
+          $aclflags3 = "/q"
+          Get-ChildItem -Directory C:\Users | ForEach-Object {Invoke-Expression -Command ('icacls $($_.FullName) $replaceInherit $Grant "${useraccount1}${permission}" $aclflags $aclflags2 $aclflags3') *>$null }

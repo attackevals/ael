@@ -1,0 +1,4 @@
+---
+- import_playbook: range-dns.yml
+- import_playbook: msr-a-dc.yml
+- import_playbook: msr-b-dc.yml

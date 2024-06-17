@@ -1,0 +1,13 @@
+---
+- name: Common install and config across all windows systems
+  hosts: b_desk_1,c_win_desktops
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: Install SSMS
+      win_chocolatey:
+        name:
+          - sql-server-management-studio
+        state: present

@@ -1,0 +1,50 @@
+---
+- name: Deploy decoy files
+  hosts: b_srv_ad
+  become: yes
+  gather_facts: no
+  vars:
+    deploy_dir: "C:\\Users\\Public\\Management2024"
+    decoy_src_file: "../files/misc_data/Management2024.zip"
+    noise_gen_dst_dir: "C:\\tools\\filegen"
+    noise_gen_src_dir: "../files/recycleFileGen.ps1"
+    noise_gen_exe: "recycleFileGen.ps1"
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: Create directory for decoy files
+      ansible.windows.win_file:
+        path: "{{ deploy_dir }}"
+        state: directory
+
+    - name: Copy decoy file to DC
+      ansible.windows.win_copy:
+        src: "{{ decoy_src_file }}"
+        dest: "{{ deploy_dir }}"
+
+    - name: Create directory for noise gen files
+      ansible.windows.win_file:
+        path: "{{ noise_gen_dst_dir }}"
+        state: directory
+
+    - name: Copy noise gen files up to host
+      ansible.windows.win_copy:
+        src: "{{ noise_gen_src_dir }}"
+        dest: "{{ noise_gen_dst_dir }}"
+
+    - name: Make some trash noise
+      win_shell: "{{ noise_gen_dst_dir }}\\{{ noise_gen_exe }}"
+      args:
+        chdir: "{{ noise_gen_dst_dir}}"
+
+    - name: Remove noise gen stuff
+      ansible.windows.win_file:
+        path: "{{ noise_gen_dst_dir }}"
+        state: absent
+
+    - name: Install SQLServer module
+      win_psmodule:
+        name: SqlServer
+        state: present
+        accept_license: yes

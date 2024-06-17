@@ -1,0 +1,21 @@
+---
+- name: Common install and config across all victim windows systems
+  hosts: win_servers,win_desktops
+  gather_facts: no
+  vars:
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - registry
+    - firewall
+    - victim
+
+  tasks:
+    - name: Preset Lsa registry key
+      win_shell: |
+        reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa" /v "RunAsPPL" /t REG_DWORD /d 0 /f
+
+    - name: Enable network sharing
+      win_shell: |
+        netsh advfirewall firewall set rule group="Network Discovery" new enable=Yes
+      register: share_result

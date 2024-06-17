@@ -1,0 +1,21 @@
+---
+- name: Join hosts to Sub B domain
+  hosts: b_win_desktops,b_non_ad_win_servers
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: Configure B DNS to use AD Server
+      ansible.windows.win_dns_client:
+        adapter_names: '*'
+        dns_servers:
+          - "{{ sub_b_domain.ad_ip_addr }}"
+
+    - name: Join Sub B AD Domain
+      microsoft.ad.membership:
+        dns_domain_name: "{{ sub_b_domain.dns_domain_name }}"
+        domain_admin_user: "{{ sub_b_domain.shortname}}\\{{ sub_b_domain.admin_user }}"
+        domain_admin_password: "{{ sub_b_domain.admin_pass }}"
+        state: domain
+        reboot: yes

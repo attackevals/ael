@@ -1,0 +1,355 @@
+---
+# overall configs
+sub_a_domain:
+  dns_domain_name: "digirunaway.net"
+  shortname: "digirunaway"
+  tld: "net"
+  ad_ip_addr: "10.10.10.4"
+  safe_mode_pass: "FHcXPtspmaY3LUWf@!"
+  admin_user: evals_domain_admin
+  admin_pass: "axi9eengei9inaeR@"
+  iis_admin: "kizumi"
+  iis_admin_group: "IIS Admins"
+  bastion_admin: "mtaichi"
+  exchange_admin: "akido"
+  exchange_admin_group: "Exchange Admins"
+  guac_admin: "nteru"
+  guac_admin_group: "Guac Admins"
+  trust_share_group: "Revenge Users"
+  trust_remote_group_name: "Domain Users"
+  evals_domain_adm: "evals_domain_admin"
+  vndr_domain_adm: "vendor_domain_admin"
+sub_b_domain:
+  dns_domain_name: "digirevenge.net"
+  dns_domain_name_capitalized: "DIGIREVENGE.NET"
+  bastion_admin_group: "Bastion Admins"
+  shortname: "digirevenge"
+  tld: "net"
+  ad_ip_addr: "10.20.10.4"
+  safe_mode_pass: "TbUunwigdkrU9CMY@!"
+  admin_user: evals_domain_admin
+  admin_pass: "axi9eengei9inaeR@"
+  file_server_admin: "kmimi"
+  file_server_admin_group: "File Server Admins"
+  kvm_hostname: "leomon"
+  kvm_admin: "marakawa"
+  kvm_admin_group: "KVM Admins"
+  backup_admin: "zorimoto"
+  backup_admin_group: "Backup Admins"
+  trust_share_group: "Runaway Users"
+  trust_remote_group_name: "Domain Users"
+  evals_domain_adm: "evals_domain_admin"
+  vndr_domain_adm: "vendor_domain_admin"
+  systemd_resolved:
+    DNS: "10.20.10.4"
+    Domain: "digirevenge.net"
+    Cache: yes
+sub_c_domain:
+  dns_domain_name: "digidaredevil.org"
+  safe_mode_pass: "bTUuRwigrkr9CUXZ@!"
+  admin_user: evals_domain_admin
+  admin_pass: "axi9eengei9inaeR@"
+  c_admin: "mnami"
+  c_sql_user: "mnami"
+
+support_vars:
+  dns_server_hostname: "outofthewoods"
+  dns_server_ip: "116.83.2.22"
+
+red_dev:
+  jumpbox_dev_dir: "C:/dev/"
+  kali_dev_dir: "/opt/msr2/"
+  sftp_srv_dir: "/srv/sftp"
+  sftp_user: "sftpupload"
+  ftp_srv_dir: "/srv/ftp"
+  kali_hostname: "kraken"
+
+xrdp:
+  security_layer: "tls"
+  tls_ciphers: "FIPS:-eNULL:-aNULL"
+  crypt_level: "high"
+
+# users
+## list of users for A
+sub_a_domain_users:
+  - username: evals_domain_admin
+    firstname: Evals
+    surname: Admin
+    password: "axi9eengei9inaeR@"
+    group_list:
+      - Domain Users
+      - Domain Admins
+      - Enterprise Admins
+      - Schema Admins
+  - username: vendor_domain_admin
+    firstname: Vendor
+    surname: Admin
+    password: "zHKa4wKCpzqxpzCj!"
+    group_list:
+      - Domain Users
+      - Domain Admins
+      - Enterprise Admins
+      - Schema Admins
+  - username: evals_domain_user
+    firstname: Evals
+    surname: User
+    password: "mcnzuVJcnCNihJ43@"
+    group_list:
+      - Domain Users
+  - username: vendor_domain_user
+    firstname: Vendor
+    surname: User
+    password: "mcnzuVJcnCNihJ43!"
+    group_list:
+      - Domain Users
+  - username: kizumi
+    firstname: Koushiro
+    surname: Izumi
+    password: "ydJEeqNzN4Xqkd9h@"
+    group_list:
+      - Domain Users
+  - username: kizumi.da
+    firstname: Koushiro
+    surname: Izumi_Admin
+    password: "ydJEeqNzN4Xqkd9h@"
+    group_list:
+      - Domain Users
+      - Domain Admins
+  - username: yishida
+    firstname: Yamato
+    surname: Ishida
+    password: "7iLbPHUXnnJ9ypmR!"
+    group_list:
+      - Domain Users
+  - username: akido
+    firstname: Aiko
+    surname: Kido
+    password: "MyNXw4iMbatJYkxY@"
+    group_list:
+      - Domain Users
+  - username: mtaichi
+    firstname: Morine
+    surname: Taichi
+    password: "tkvxqWRgRrhcAps4!"
+    group_list:
+      - Domain Users
+  - username: nteru
+    firstname: Naegi
+    surname: Teru
+    password: "Xg3LwHUjUHWKpeec@"
+    group_list:
+      - Domain Users
+  - username: hjun
+    firstname: Hayato
+    surname: Jun
+    password: "vwFtpkJLRKEub7uv!"
+    group_list:
+      - Domain Users
+  - username: msato
+    firstname: Maki
+    surname: Sato
+    password: "NMpkRg4UPXzggmTd@"
+    group_list:
+      - Domain Users
+  - username: misa
+    firstname: Moriya
+    surname: Isa
+    password: "Et3tgKVtTLkjJweW!"
+    group_list:
+      - Domain Users
+
+## sub b users
+sub_b_domain_users:
+  - username: evals_domain_admin
+    firstname: Evals
+    surname: Admin
+    password: "axi9eengei9inaeR@"
+    group_list:
+      - Domain Users
+      - Domain Admins
+      - Enterprise Admins
+      - Schema Admins
+  - username: vendor_domain_admin
+    firstname: Vendor
+    surname: Admin
+    password: "zHKa4wKCpzqxpzCj!"
+    group_list:
+      - Domain Users
+      - Domain Admins
+      - Enterprise Admins
+      - Schema Admins
+  - username: evals_domain_user
+    firstname: Evals
+    surname: User
+    password: "mcnzuVJcnCNihJ43@"
+    group_list:
+      - Domain Users
+  - username: vendor_domain_user
+    firstname: Vendor
+    surname: User
+    password: "mcnzuVJcnCNihJ43!"
+    group_list:
+      - Domain Users
+  - username: kmimi
+    firstname: Koga
+    surname: Mimi
+    password: "cHjc3p3hJHJYPUzT@"
+    group_list:
+      - Domain Users
+  - username: zorimoto
+    firstname: Zoe
+    surname: Orimoto
+    password: "tzTVgs44isT4YxWU!"
+    group_list:
+      - Domain Users
+  - username: karaki
+    firstname: Kae
+    surname: Araki
+    password: "R99yiEfgfg7Myvdr@"
+    group_list:
+      - Domain Users
+  - username: masuka
+    firstname: Yuto
+    surname: Kazama
+    password: "vMMHEstLXhp7cwXc!"
+    group_list:
+      - Domain Users
+  - username: mbellucci
+    firstname: Menoa
+    surname: Bellucci
+    password: "V9UpFannvp4AF7Ka@"
+    group_list:
+      - Domain Users
+  - username: hamanokawa
+    firstname: Hiro
+    surname: Amanokawa
+    password: "YW9uPCCW9nw4C3mY!"
+    group_list:
+      - Domain Users
+  - username: marakawa
+    firstname: Miho
+    surname: Arakawa
+    password: "cuL9LmnrdnWqbqcA@"
+    group_list:
+      - Domain Users
+  - username: ykaida
+    firstname: Yuko
+    surname: Kaida
+    password: "FWy9aXyXbYrbxFcE!"
+    group_list:
+      - Domain Users
+  - username: ykaida.da
+    firstname: Yuko
+    surname: Kaida_Admin
+    password: "FWy9aXyXbYrbxFcE!"
+    group_list:
+      - Domain Users
+      - Domain Admins
+
+## contractor workstation users
+contractor_users:
+  - username: evals_domain_user
+    firstname: Evals
+    surname: User
+    password: "mcnzuVJcnCNihJ43@"
+    group_list:
+      - Domain Users
+  - username: vendor_domain_user
+    firstname: Vendor
+    surname: User
+    password: "mcnzuVJcnCNihJ43!"
+    group_list:
+      - Domain Users
+
+contractor_admins:
+  - username: mnami
+    firstname: Yukio
+    surname: Oikawa
+    password: "4LyVYcEjbtxYjqzq!"
+    group_list:
+      - Domain Users
+  - username: evals_domain_admin
+    firstname: Evals
+    surname: Admin
+    password: "axi9eengei9inaeR@"
+    group_list:
+      - Domain Users
+      - Domain Admins
+  - username: vendor_domain_admin
+    firstname: Vendor
+    surname: Admin
+    password: "zHKa4wKCpzqxpzCj!"
+    group_list:
+      - Domain Users
+      - Domain Admins
+
+## red users for red infra
+red_users:
+  - username: op1
+    firstname: Operator
+    surname: One
+    password: "Absentee-Mayflower-Thyself-Granola"
+    group_list:
+      - Administrators
+      - Remote Desktop Users
+  - username: op2
+    firstname: Operator
+    surname: Two
+    password: "Perjury-Pulmonary-Prism-Trance"
+    group_list:
+      - Administrators
+      - Remote Desktop Users
+  - username: op3
+    firstname: Operator
+    surname: Three
+    password: "Synopsis-Properly-Watch-Hunter"
+    group_list:
+      - Administrators
+      - Remote Desktop Users
+  - username: op4
+    firstname: Operator
+    surname: Four
+    password: "Evade-Chloride-Labrador-Moonstone"
+    group_list:
+      - Administrators
+      - Remote Desktop Users
+  - username: op5
+    firstname: Operator
+    surname: Five
+    password: "Salvage-Prior-Monitor-Aflame"
+    group_list:
+      - Administrators
+      - Remote Desktop Users
+  - username: op6
+    firstname: Operator
+    surname: Six
+    password: "Gently-Outsell-Leverage-Cornflake"
+    group_list:
+      - Administrators
+      - Remote Desktop Users
+  - username: sftpupload
+    firstname: SFTP
+    surname: Upload
+    password: "Cardstock-Empirical"
+    group_list:
+      - Remote Desktop Users
+
+ip_to_hostname:
+  - ip: "10.10.20.22"
+    hostname: "ghostmon"
+  - ip: "10.10.20.23"
+    hostname: "cecilmon"
+  - ip: "10.10.20.11"
+    hostname: "kimeramon"
+  - ip: "10.20.10.4"
+    hostname: "blacknoirmon"
+  - ip: "10.20.10.200"
+    hostname: "stormfrontmon"
+  - ip: "10.20.10.122"
+    hostname: "datamon"
+  - ip: "10.20.20.11"
+    hostname: "phantomon"
+  - ip: "10.20.20.22"
+    hostname: "butchermon"
+  - ip: "10.20.20.33"
+    hostname: "bakemon"

@@ -1,0 +1,52 @@
+---
+- name: configure sql server
+  hosts: b_srv_sql
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: Add backup admin as Sql server admin
+      ansible.windows.win_group_membership:
+        name: Administrators
+        members:
+          - "{{ sub_b_domain.shortname }}\\Domain Admins"
+
+    - name: Add admins to RDP group
+      ansible.windows.win_group_membership:
+        name: Remote Desktop Users
+        members:
+          - "{{ sub_b_domain.shortname }}\\{{ sub_b_domain.backup_admin_group }}"
+          - "{{ sub_b_domain.shortname }}\\Domain Admins"
+
+    - name: Manage tools directory
+      win_file:
+        path: "{{ red_dev.jumpbox_dev_dir }}"
+        state: directory
+
+    - name: Copy sql server files over
+      ansible.windows.win_copy:
+        src: ../files/sql_srv
+        dest: "{{ red_dev.jumpbox_dev_dir }}"
+
+    - name: Windows Firewall rule TCP 1433
+      community.windows.win_firewall_rule:
+        name: Permit SQL
+        localport: "1433"
+        action: allow
+        direction: in
+        protocol: tcp
+        profiles: domain
+        state: present
+        enabled: yes
+
+    - name: NetBNMB Creation (users)
+      ansible.windows.win_shell: "Invoke-Sqlcmd -ServerInstance localhost -InputFile {{ red_dev.jumpbox_dev_dir }}/sql_srv/netbnmb_creation_with_user.sql"
+      register: sql_install_result
+      ignore_errors: yes
+
+    - name: Insert data into MSSQL
+      ansible.windows.win_powershell:
+        script: |
+          '{{ red_dev.jumpbox_dev_dir }}/sql_srv/insert_data_into_mssql.ps1 -csvPath {{ red_dev.jumpbox_dev_dir }}/sql_srv/users.csv -Encrypt'
+      register: insert_data_result
