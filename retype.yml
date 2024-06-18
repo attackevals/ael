@@ -15,3 +15,6 @@ footer:
 start:
   pro: true
 poweredByRetype: false
+integrations:
+  googleAnalytics:
+    id: G-H74RC38PBM
