@@ -3,7 +3,7 @@ category: enterprise
 route: /enterprise/apt29
 ---
 
-# APT29 Adversary Emulation
+# APT29
 
 This adversary emulation plan is derived from the original [APT29](https://attack.mitre.org/groups/G0016/) content developed and used in the [2019 ATT&CK Evaluations](https://attackevals.mitre-engenuity.org/APT29/).
 

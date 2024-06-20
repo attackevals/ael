@@ -1,4 +1,4 @@
-# FIN7 Adversary Emulation
+# FIN7
 
 This adversary emulation plan is derived from the original [FIN7](https://attack.mitre.org/groups/G0046/) content developed and used in the [2020 ATT&CK Evaluations](https://attackevals.mitre-engenuity.org/carbanak-fin7/). This emulation plan has not been tested with CALDERA's Emu plugin and interoperability is not guaranteed.
 
