@@ -1,4 +1,4 @@
-# Carbanak Adversary Emulation
+# Carbanak
 
 This adversary emulation plan is derived from the original [Carbanak](https://attack.mitre.org/groups/G0008/) content developed and used in the [2020 ATT&CK Evaluations](https://attackevals.mitre-engenuity.org/carbanak-fin7/). This emulation plan has not been tested with CALDERA's Emu plugin and interoperability is not guaranteed.
 
