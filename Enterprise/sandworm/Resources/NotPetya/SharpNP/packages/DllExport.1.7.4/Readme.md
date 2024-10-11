@@ -19,9 +19,9 @@ Copyright (c) 2016-2021  Denis Kuzmin <x-3F@outlook.com> github/3F
 
 [![Build history](https://buildstats.info/appveyor/chart/3Fs/dllexport-ix27o?buildCount=20&includeBuildsFromPullRequest=true&showStats=true)](https://ci.appveyor.com/project/3Fs/dllexport-ix27o/history)
 
-[`DllExport`](https://3f.github.io/DllExport/releases/latest/manager/)` -action Configure` [[?](#how-to-get-dllexport)]
+[`DllExport`](https://3f.github.io/DllExport/releases/latest/manager/)`-action Configure` [[?](#how-to-get-dllexport)]
 
-> [ ***[Quick start](https://github.com/3F/DllExport/wiki/Quick-start)*** ] [ [Examples: C++, C#, Java](https://github.com/3F/DllExport/wiki/Examples) ] 
+> [ ***[Quick start](https://github.com/3F/DllExport/wiki/Quick-start)*** ] [ [Examples: C++, C#, Java](https://github.com/3F/DllExport/wiki/Examples) ]
 > -> { **[Wiki](https://github.com/3F/DllExport/wiki)** } { [🧪 Demo src](https://github.com/3F/Examples/tree/master/DllExport/BasicExport) }
 
 ```csharp
@@ -50,7 +50,6 @@ public static int entrypoint(IntPtr L)
 
 We're supporting the following PE modules: Library (**.dll**) and Executable (**.exe**) [[?](https://github.com/3F/DllExport/issues/18)]
 
-
 [![](./Resources/img/DllExport.png)](https://3f.github.io/DllExport/releases/latest/manager/)
 [![](https://raw.githubusercontent.com/3F/Conari/master/Conari/Resources/screencast_Complex_types.jpg)](https://www.youtube.com/watch?v=QXMj9-8XJnY)
 
@@ -58,7 +57,7 @@ We're supporting the following PE modules: Library (**.dll**) and Executable (**
 
 The [MIT License (MIT)](https://github.com/3F/DllExport/blob/master/LICENSE)
 
-.NET DllExport contributors: https://github.com/3F/DllExport/graphs/contributors
+.NET DllExport contributors: <https://github.com/3F/DllExport/graphs/contributors>
 
 ## &_
 
@@ -88,7 +87,7 @@ pEATE->dwStubRVA = EmitExportStub(pGlobalLabel->m_GlobalOffset+dwDelta);
 m_EATList.PUSH(pEATE);
 ...
 // logic of definition of records into EXPORT_DIRECTORY (see details from PE format)
-HRESULT Assembler::CreateExportDirectory()  
+HRESULT Assembler::CreateExportDirectory()
 {
 ...
     IMAGE_EXPORT_DIRECTORY  exportDirIDD;
@@ -122,13 +121,13 @@ Part of the build works through [vssbe](https://github.com/3F/vsSolutionBuildEve
 
 ### Modified ILAsm + ILDasm on coreclr
 
-We're using **our modified versions on coreclr** specially for our .NET DllExport project - https://github.com/3F/coreclr
+We're using **our modified versions on coreclr** specially for our .NET DllExport project - <https://github.com/3F/coreclr>
 
 This helps to avoid some problems ([like this](https://github.com/3F/DllExport/issues/125#issuecomment-561245575), or [this](https://github.com/3F/DllExport/issues/17)) and more...
 
 *To build minimal version (it will not include all components as for original coreclr repo):*
 
-Restore git submodule or use repo: https://github.com/3F/coreclr.git
+Restore git submodule or use repo: <https://github.com/3F/coreclr.git>
 
 ```bash
 git submodule update --init --recursive
@@ -148,8 +147,8 @@ Please note again, the [UnmanagedExports](https://www.nuget.org/packages/Unmanag
 
 But *.NET DllExport* [**is not related to him**](https://github.com/3F/DllExport/issues/87#issuecomment-438576100).
 
-✔ *.NET DllExport* is developed for you by [GitHub/3F](https://github.com/3F) ([ [GitHub](https://github.com/3F) ]; [ [twitter](https://twitter.com/GitHub3F) ]). 
+✔ *.NET DllExport* is developed for you by [GitHub/3F](https://github.com/3F) ([ [GitHub](https://github.com/3F) ]; [ [twitter](https://twitter.com/GitHub3F) ]).
 
 If something is helpful from *3F/DllExport,* donations are welcomed, and thanks !
 
-[ [ ☕ Donate ](https://3F.github.com/Donation/) ]
+[ [☕ Donate](https://3F.github.com/Donation/) ]

@@ -24,4 +24,4 @@ For example:
 
 ```
 python3 ./substitute_placeholders.py [-placeholder_values ./placeholder_values.yml] ../../../Scenario_1/README.md
-``` 
+```

@@ -36,7 +36,6 @@ Alternatively run direct from source:
 go run main.go
 ```
 
-
 ## Installation Dependencies
 
 Install Go version 1.15 or higher.

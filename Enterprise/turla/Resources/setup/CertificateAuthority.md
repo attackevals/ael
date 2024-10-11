@@ -33,9 +33,10 @@ cfssl sign -ca ca.pem -ca-key ca-key.pem -config cfssl.json -profile intermediat
 
 1. Run the following command:
 
-  1. ```shell
+1. ```shell
      cfssl gencert -ca intermediate_ca.pem -ca-key intermediate_ca-key.pem -config cfssl.json -profile=server host1.json|cfssljson -bare host-1-server
      ```
+
 2. Jobs done.
 
 ## Install on Snake Windows Domain

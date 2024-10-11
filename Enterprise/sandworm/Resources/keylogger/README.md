@@ -1,4 +1,5 @@
 # SetWindowsHookEx-Keylogger
+
 Windows C++ Native Keylogger using SetWindowsHookEx
 
 ## Usage
@@ -19,10 +20,12 @@ START /B "" SetWindowsHookEx-Keylogger.exe -o keylogger_output.txt
 ### Notes
 
 Modifications to this project include:
+
 - Write to file functionality (partially there with ofstream)
 - Change solution configuration, and project structure
 - Add BAT file to start the executable with `START /B "" SetWindowsHookEx-Keylogger.exe -o keylogger_output.txt`
 
 ### References
-- Project based on: https://github.com/killswitch-GUI/SetWindowsHookEx-Keylogger/
-- CTI Reference: https://www.welivesecurity.com/2016/12/13/rise-telebots-analyzing-disruptive-killdisk-attacks/
+
+- Project based on: <https://github.com/killswitch-GUI/SetWindowsHookEx-Keylogger/>
+- CTI Reference: <https://www.welivesecurity.com/2016/12/13/rise-telebots-analyzing-disruptive-killdisk-attacks/>

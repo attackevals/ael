@@ -11,9 +11,9 @@ Please note that binary executable files hosted in [Resources](/Enterprise/fin7/
 We provide a [script](/Enterprise/fin7/Resources/utilities/crypt_executables.py) to automatically decrypt these files:
 
 ```
-$ cd fin7
+cd fin7
 
-$ python3 Resources/utilities/crypt_executables.py -i ./ -p malware --decrypt
+python3 Resources/utilities/crypt_executables.py -i ./ -p malware --decrypt
 ```
 
 *Note, there is no change of infrastructure between Scenario 1 and Scenario 2.*
@@ -35,7 +35,7 @@ $ python3 Resources/utilities/crypt_executables.py -i ./ -p malware --decrypt
     - [ATT&CK RAT](/Enterprise/fin7/Resources/Scenario_1/Step11/FIN7_SQLRat_C2_Server)
 
 4. **Optional - Windows 10**: Windows 10 Client build 18363
-	* Note, this Windows 10 machine was used ONLY in the event debugging needed to occur during an evaluation.
+ - Note, this Windows 10 machine was used ONLY in the event debugging needed to occur during an evaluation.
 
 ---
 

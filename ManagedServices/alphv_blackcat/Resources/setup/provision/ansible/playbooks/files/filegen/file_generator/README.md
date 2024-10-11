@@ -1,7 +1,9 @@
 # File Generator
+
 File generator used to populate a target machine with representative files. Uses
 templates (supplied in the `templates` folder), currently covering the following
 file types:
+
 ```
 Text-based:
 .doc, .docx, .rtf, .pdf
@@ -20,6 +22,7 @@ If a seed value is provided, the folders will receive the same file names in eve
 distribution. This can be used to ensure exact scenario recreation on subsequent runs.
 
 ## User Options
+
 ```
 -d, --directory         Path to the base directory in which to recurse. Defaults: C:\Users and /home
 
@@ -33,6 +36,7 @@ distribution. This can be used to ensure exact scenario recreation on subsequent
 ```
 
 ## Usage Examples
+
 Example (executable co-located with templates, seed value of "EVALS", no prompts on folder creation):
 
 `.\generate-files.exe -d "c:\test" -c 50 --seed "EVALS" --noprompt`
@@ -42,6 +46,7 @@ Example (Python file located away from templates, prompt prior to folder creatio
 `python3 .\generate-files.py -d "c:\test" -t "c:\users\public\templates" -c 150`
 
 ## Creating a New Executable
+
 While an executable has been supplied alongside the Python file, if you choose to make changes
 to the Python file (such as changing the file names or additional user folders to populate) and
 wish to re-compile it, install PyInstaller with pip:
@@ -57,8 +62,10 @@ Finally, compile the program with the `--console` flag to ensure output from the
 `pyinstaller --onefile --console .\generate-files.py`
 
 ## User Tracking Information
+
 Generated files currently will have one of the following names, followed by an underscore
 and a random 6-character Alpha string.
+
 ```
 TEXT_FILE_NAMES = ['Report', 'Statistics', 'Analysis', 'Notes', 'Findings', 'Whitepaper']
 PRESENTATION_FILE_NAMES = ['Quarterly Update', 'Roadmap', 'Master Schedule', 'Program Overview']
@@ -68,6 +75,7 @@ EXCEL_FILE_NAMES = ['Statistics', 'Budget', 'Staff Allocations', 'Inventory']
 The program will provide console output regarding where, and how many, files were written.
 
 Example output:
+
 ```
 file_generator> python3 .\generate-files.py -d "c:\test" --noprompt --seed "EVALS"
 [*] Using seed value: EVALS

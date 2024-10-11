@@ -42,8 +42,10 @@ go test db -a -v
 ```
 
 ## Seed Credentials in Internet Explorer
+
 Open Internet Explorer
 OWA credentials:
+
 ```
 1. Enter https://10.1.0.6/owa/auth/logon.aspx in address bar
 2. Bypass certificate errors
@@ -57,19 +59,22 @@ OWA credentials:
 Will create SQLite database with output of Windows Credential Value for Internet Explorer
 
 Execute:
+
 ```
 ./b.exe
 ```
 
 Output:
+
 ```
 {homedir}\{username}\AppData\Roaming\fsociety.dat or %AppData%
 ```
 
 Database layout:
+
 ```
 logins(
-    	origin_url VARCHAR NOT NULL,
+     origin_url VARCHAR NOT NULL,
         username_value VARCHAR,
         password VARCHAR
       )
@@ -83,7 +88,9 @@ Remove b.exe
 ```
 
 ### Read DB contents
+
 Requires Python3
+
 ```
 cd .\read-db
 python3 -m venv env
@@ -94,11 +101,12 @@ python3 .\read-db.py
 
 ### CTI Evidence
 
-[1] https://www.mandiant.com/resources/hard-pass-declining-apt34-invite-to-join-their-professional-network
+[1] <https://www.mandiant.com/resources/hard-pass-declining-apt34-invite-to-join-their-professional-network>
 
 ### References
-- http://web.archive.org/web/20190316025511/http://oxid.it/downloads/vaultdump.txt
-- https://github.com/danieljoos/winvault
-- https://github.com/google/uuid
-- https://github.com/mattn/go-sqlite3
-- https://pkg.go.dev/golang.org/x/sys
+
+- <http://web.archive.org/web/20190316025511/http://oxid.it/downloads/vaultdump.txt>
+- <https://github.com/danieljoos/winvault>
+- <https://github.com/google/uuid>
+- <https://github.com/mattn/go-sqlite3>
+- <https://pkg.go.dev/golang.org/x/sys>

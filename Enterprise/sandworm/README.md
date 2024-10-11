@@ -1,7 +1,8 @@
 # Sandworm
+
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Based on open-source intelligence, the ATT&CK &reg; Evaluations team created the below scenario leveraging techniques seen from Sandworm in the wild. We have adapted the scenario based on tools and resources available at the time. 
+Based on open-source intelligence, the ATT&CK &reg; Evaluations team created the below scenario leveraging techniques seen from Sandworm in the wild. We have adapted the scenario based on tools and resources available at the time.
 
 ## Adversary Overview 🏜️ 🪱
 
@@ -22,9 +23,11 @@ Associated Names: ELECTRUM, Telebots, IRON VIKING, BlackEnergy (Group), Quedagh,
 [10]:https://www.mandiant.com/resources/ukraine-and-sandworm-team
 
 ## Emulation Overview
+
 ![Operations Flow Diagram](./Resources/images/SoftwareFlow.jpeg)
 
 # Quick Links
+
 ### For Engineers 🧑‍💻
 
 ### Resources
@@ -34,10 +37,11 @@ The [Resources Folder](./Resources/) contains the emulated software source code.
 We provide a [script](./Resources/utilities/crypt_executables.py) to automatically decrypt these files:
 
 ```
-$ cd sandworm
+cd sandworm
 
-$ python3 Resources/utilities/crypt_executables.py -i ./ -p malware --decrypt
+python3 Resources/utilities/crypt_executables.py -i ./ -p malware --decrypt
 ```
+
 ### YARA Rules
 
 [YARA rules](./yara-rules) are provided to assist the community in researching, preventing, and detecting malware specimens used in this emulation plan.
@@ -55,12 +59,14 @@ $ python3 Resources/utilities/crypt_executables.py -i ./ -p malware --decrypt
 - [Win64/Spy.KeyLogger.G](./Resources/keylogger/)
 
 ### Scenario Walkthrough
-- [Detection Scenario](./Emulation_Plan/Scenario_1/) - Step by Step walkthrough of Scenario's procedures (9 steps). 
+
+- [Detection Scenario](./Emulation_Plan/Scenario_1/) - Step by Step walkthrough of Scenario's procedures (9 steps).
 - [Protection Scenario](./Emulation_Plan/Scenario_2/) - Step by Step walkthrough of Scenario's procedures (3 tests)
 
 ## For Analysts 🔎
-- [Operation Flow](./Operations_Flow/Operations_Flow.md/) - High-level summary of the scenario & infrastructure with diagrams. 
-- [Intelligence Summary](./Intelligence_Summary/Intelligence_Summary.md) - General overview of the Adversary with links to reporting used throughout the scenario. 
+
+- [Operation Flow](./Operations_Flow/Operations_Flow.md/) - High-level summary of the scenario & infrastructure with diagrams.
+- [Intelligence Summary](./Intelligence_Summary/Intelligence_Summary.md) - General overview of the Adversary with links to reporting used throughout the scenario.
 
 ## Acknowledgements
 
@@ -70,11 +76,11 @@ We would like to formally thank the people that contributed to the content, revi
 
 ## Connect with Us 🗨️
 
-We 💖 feedback! Let us know how using ATT&CK Evaluation results has helped you and what we can do better. 
+We 💖 feedback! Let us know how using ATT&CK Evaluation results has helped you and what we can do better.
 
 Email: <evals@mitre-engenuity.org><br>
-Twitter: https://twitter.com/MITREengenuity<br>
-LinkedIn: https://www.linkedin.com/company/mitre-engenuity/<br>
+Twitter: <https://twitter.com/MITREengenuity><br>
+LinkedIn: <https://www.linkedin.com/company/mitre-engenuity/><br>
 
 ## Liability / Responsible Usage
 
@@ -93,4 +99,3 @@ Unless required by applicable law or agreed to in writing, software distributed 
 This project makes use of ATT&CK®
 
 [ATT&CK Terms of Use](https://attack.mitre.org/resources/terms-of-use/)
-

@@ -1,4 +1,4 @@
-#  ALPHV BlackCat :cat2:&zwj;:black_large_square:
+# ALPHV BlackCat :cat2:&zwj;:black_large_square:
 
 ## Adversary Overview
 
@@ -17,8 +17,3 @@ Source ID | Report Links
 |7|[Noberus: Technical Analysis Shows Sophistication of New Rust-based Ransomware](https://symantec-enterprise-blogs.security.com/blogs/threat-intelligence/noberus-blackcat-alphv-rust-ransomware)|
 |8|[BlackCat Ransomware (ALPHV)](https://www.varonis.com/blog/blackcat-ransomware)|
 |9|[From BlackMatter to BlackCat: Analyzing two attacks from one affiliate](https://blog.talosintelligence.com/from-blackmatter-to-blackcat-analyzing/)|
-
-
-
-
-

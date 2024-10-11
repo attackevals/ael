@@ -1,4 +1,5 @@
-﻿# FYAnti 
+﻿# FYAnt
+
 ![FYAnti Diagram](docs/fyanti.png)
 
 FYAnti is the last loader for MenuPass. It is responsible for executing the
@@ -13,6 +14,7 @@ Additionally, this project will bundle an encrypted and obfuscated version of
 the [QuasarRat client](../Quasar/bin/) along with its installation artifacts.
 
 ## Managed Loader
+
 The [managed loader](src/managed-loader) is a C# .NET loader with the following
 features:
 
@@ -33,12 +35,13 @@ logs a message to stdout.
 `Managed loader -> Search algorithm -> Encrypted file on disk -> Obfuscated Quasar client`
 
 ## Native Loader
+
 The [native loader](src/native-loader) is a C++ .NET loader with the following
 features:
 
 - Embedded managed loader
 - Native CLR host (.NET from C++)
-- sRDI compatible 
+- sRDI compatible
 
 The native loader contains an embedded obfuscated version of the managed
 loader. In order to interop with .NET from C++, it uses Microsoft provided API
@@ -50,16 +53,19 @@ that it too can be executed from memory.
 `sRDI -> Native loader -> Embedded obfuscated managed loader`
 
 ## Build 🏗️
+
 FYAnti can be built in Debug or Release mode using the included
 `CMakePreset.json` configurations.
 
 ### Dependencies
+
 - `CMake` version `3.26`
 - `CMakePresets.json` version `6` support (Visual Studio 17.7)
 
 ### Quickstart
 
 #### Command Line
+
 Build both Debug and Release configurations of FYAnti.
 
 ```PowerShell
@@ -76,7 +82,6 @@ cmake.exe --install ./build --config release
 cmake.exe --install ./build --config debug
 ```
 
-
 `./install/Release/native-loader.dll.srdi` is the production payload for
 FYAnti. `shellcode-runner.exe` will inject a copy of `native-loader.dll.srdi`
 into itself for independent testing.
@@ -89,24 +94,29 @@ The remaining artifacts are simply for debugging and archival purposes. For
 more information see the [Install section](#artifacts)
 
 ### Build Presets
+
 #### Command Line
+
 ```PowerShell
 cmake.exe --build --preset fyanti-release # Or fyanti-debug
 ```
 
 #### Visual Studio
+
 After selecting the fyanti-release configuration preset:
 `Build -> Build All`
 
 ![Build All screenshot](docs/build.png)
 
 ## Install 📦
+
 Installing FYAnti simply copies all of the artifacts from both Release
 and Debug builds into the top-level `install/` directory. This is simply for
 ease of use and distributability.
 
 The final product should be a top-level directory named `install/` with the
 following layout:
+
 ```PowerShell
 
 fyanti/
@@ -158,6 +168,7 @@ fyanti/
 ```
 
 ### Artifacts
+
 - `client.exe.enc` is the encrypted and obfuscated Quasar client
 - `managed-loader.dll` is the managed-loader 😁
 - `net-runner.exe` is a test runner which executes the managed-loader independently
@@ -176,22 +187,27 @@ fyanti/
 > [Troubleshoot section](#troubleshoot) for more information.
 
 #### Command Line
+
 ```PowerShell
 cmake.exe --install ./build
 ```
 
 #### Visual Studio
+
 `Build -> Install FYAnti`
 
 ![Build screenshot](docs/build.png)
 
 ## Test 🧪
+
 The `cicd-debug` [CMake workflow](#command-line) will build and test FYAnti with a
 single command. This section details how to run tests independently from a build
 process.
 
 ### Tools
+
 FYAnti includes runners to test each layer of the final payload independently:
+
 - `net-runner.exe` executes the managed loader by itself to rule out interop issues
 - `dll-runner.exe` executes the native loader before it's wrapped with sRDI
 - `shellcode-runner.exe` executes the production shellcode version of FYAnti
@@ -220,6 +236,7 @@ ctest.exe --preset all
 ```
 
 #### Visual Studio
+
 `Test -> Run test preset for FYAnti -> all`
 
 ![Test screenshot](docs/test.png)
@@ -230,7 +247,9 @@ without a fresh build.
 ![Test Explorer screenshot](docs/test-explorer.png)
 
 ## Troubleshoot 🤔
+
 ### Logs
+
 The managed loader creates an encrypted log file in `C:\Windows\Microsoft.NET`
 named `QLoaderLogs.txt`. To view the logs use the included `aes-tool.exe` to
 decrypt them to stdout.
@@ -245,6 +264,7 @@ decrypt them to stdout.
 > conveniently.
 
 ### Test Tools
+
 The included [test runners and test assembly](#tools) can be used to narrow
 down issues.
 
@@ -254,7 +274,8 @@ down issues.
 > working directory first so you don't need to stage a payload in
 > `C:\Windows\Microsoft.NET`.
 
-### Debugger 
+### Debugger
+
 Since FYAnti interops with .NET from C++, it may be useful to configure
 `WinDBG` to break on .NET CLR exceptions using the following command:
 
@@ -263,6 +284,7 @@ sxe clr
 ```
 
 If a CLR exception is caught you can then view its details:
+
 ```console
 !pe
 ```
@@ -277,8 +299,8 @@ If a CLR exception is caught you can then view its details:
 > a crash check if you can recreate it with the debug configuration of
 > `dll-runner.exe` first.
 
-
 ## CTI 📄
+
 | Reports
 | ----------------------------
 | [APT10: Tracking down the stealth activity of the A41APT campaign](https://media.kasperskydaily.com/wp-content/uploads/sites/86/2021/02/25140359/greatidea_A41_v1.0.pdf)
@@ -286,8 +308,8 @@ If a CLR exception is caught you can then view its details:
 | [Threat Spotlight: menu_pass/QuasarRAT Backdoor](https://blogs.blackberry.com/en/2019/06/threat-spotlight-menupass-quasarrat-backdoor)
 
 ## References 📝
+
 | Description                  | URL                                                             |
 | ---------------------------- | --------------------------------------------------------------- |
 | Load CLR from native process | [Arno0x/TestAssembly.cs](https://gist.github.com/Arno0x/386ebfebd78ee4f0cbbbb2a7c4405f74) |
 | ConfuserEx2 .NET obfuscation | [https://github.com/mkaring/ConfuserEx](https://github.com/mkaring/ConfuserEx) |
-

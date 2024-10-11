@@ -1,9 +1,11 @@
 # EPIC Payload
 
 ## C2 Communications
+
 The EPIC payload communicates with a hardcoded C2 server and port value via HTTP POST requests.<sup>[1](https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2018/03/08080105/KL_Epic_Turla_Technical_Appendix_20140806.pdf)</sup>
 
 ### C2 Registration
+
 The module will automatically perform initial discovery commands and output the results to a tmp
 file in %TEMP% with a random string in its filename: `%TEMP%\~D<random>.tmp`.<sup>[1](https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2018/03/08080105/KL_Epic_Turla_Technical_Appendix_20140806.pdf)</sup>
 For scenario purposes, this file name has been hardcoded to `%TEMP%\~D723574.tmp`. The discovery
@@ -12,6 +14,7 @@ output is returned in the POST request body.
 The POST request body is bzip2 compressed and then formatted in a Base64 encoded JSON string with
 fields `UUID`, `type`, and `data` and are not made to any particular subfolder and are sent to the
 URL path `/` of the C2 server site. The initial heartbeat is structured as follows:
+
 ```
 {"UUID":"", "type":"command", "data":"<system discovery information>"}
 ```
@@ -31,14 +34,17 @@ communications. The module will then continue to perform POST requests to the do
 C2 server site to receive instructions and return result output.
 
 ### Execute Commands
+
 Upon receiving instructions to execute commands, the module will execute the command, append
 command output to `%TEMP%\~D723574.tmp` , and return the command output in the next C2 communication
 cycle.<sup>[1](https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2018/03/08080105/KL_Epic_Turla_Technical_Appendix_20140806.pdf)</sup>
 
 ## Execution
+
 The Payload is intended to execute in the scenario as an embedded resource inside of EPIC's Reflective Guard, which is subsequently embedded in the Reflective Injector. Executing either the Guard DLL or Injector executable will result in the execution of the Payload DLL. To execute *just* the Payload, you can run it via `rundll32.exe` with the exported function `PayLoop`. See [here](../../#troubleshooting) if you encounter any issues.
 
 ### Tasks
+
 The EPIC payload receives tasking from the C2 server as part of a successful beacon response.
 
 To retrieve an instruction, the response should be base64 decoded and then bzip2 decompressed.
@@ -72,26 +78,30 @@ exe = whoami
 ```
 
 Example upload file configuration:
+
 ```
 result = C:\users\bob\passwords.txt
 ```
 
 Example download file configuration (instruction should have associating payload data):
+
 ```
 name = C:\System32\malicious.exe
 ```
 
 Example delete file configuration:
+
 ```
 del_task = \nname = C:\Windows\System32\malicious.exe
 ```
 
 ### Encryption
 
-#### RSA encryption:
- - sha1 hash function
- - OAEP padding
- - 2048 bit key
+#### RSA encryption
+
+- sha1 hash function
+- OAEP padding
+- 2048 bit key
 
 ```
 openssl genrsa -out private.pem 2048
@@ -100,10 +110,11 @@ openssl rsa -in private.pem -outform PEM -pubout -out public.pem
 openssl rsa -pubin -in public.pem -RSAPublicKey_out -out public_pkcs1.key -outform der
 openssl rsa -in private.pem -traditional -out private_pkcs1.key -outform der
 ```
- 
-#### AES encryption:
-  - 256 bit key
-  - CBC mode of operation
+
+#### AES encryption
+
+- 256 bit key
+- CBC mode of operation
 
 ## Build Instructions
 
@@ -130,8 +141,8 @@ cmake -S . -B build -DUSE_HTTPS="true" -DC2_PORT="1234" -DC2_ADDRESS:STRING="exa
 
 Run the remaining command as written above. To note: the payload binary name `res` corresponds to HTTP and `res2` to HTTPS.
 
-
 To remove symbols, you can use the `strip` command:
+
 ```
 strip -s bin\test_res.exe
 ```
@@ -147,15 +158,18 @@ ctest --test-dir bin
 ## Cleanup Instructions
 
 Remove the log file:
+
 ```
 Remove-Item -Path "%TEMP%\~D723574.tmp";
 ```
 
 Kill all Edge browsers potentially containing payload injected into it:
+
 ```
 Get-Process msedge -ErrorAction SilentlyContinue | Stop-Process -Force;
 ```
 
 ## CTI References
-1. https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2018/03/08080105/KL_Epic_Turla_Technical_Appendix_20140806.pdf
-2. https://securelist.com/the-epic-turla-operation/65545/
+
+1. <https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2018/03/08080105/KL_Epic_Turla_Technical_Appendix_20140806.pdf>
+2. <https://securelist.com/the-epic-turla-operation/65545/>

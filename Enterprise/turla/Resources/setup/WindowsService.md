@@ -1,7 +1,5 @@
 # Windows Service
 
-
-
 ## Overview
 
 A custom Windows service was created for the evaluation, `Viper VPN Service`. The Windows service was a dummy service, using `pywin32` and `pyinstaller`. The source code and build instructions for the Windows service are in the `windows-service` directory.
@@ -17,7 +15,7 @@ NOTE: The following steps assume you have installed [Python](https://www.python.
 1. Create a Python virtual environment, we will use the name `venv` for the virtual environment, `python -m venv venv`.
 2. Activate virtualenv.
    1. `venv/Scripts/activate`
-3. Use `pip` to install dependencies.  
+3. Use `pip` to install dependencies.
    1. `python -m pip install pywin32 pyinstaller`
 4. Run pywin32 post installer script.
    1. `python venv/Scripts/pywin32_postinstall.py -install`

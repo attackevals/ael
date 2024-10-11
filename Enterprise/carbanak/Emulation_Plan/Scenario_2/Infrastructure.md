@@ -9,9 +9,9 @@ Please note that binary executable files hosted in [Resources](/Enterprise/carba
 We provide a [script](/Enterprise/carbanak/Resources/utilities/crypt_executables.py) to automatically decrypt these files:
 
 ```
-$ cd carbanak
+cd carbanak
 
-$ python3 Resources/utilities/crypt_executables.py -i ./ -p malware --decrypt
+python3 Resources/utilities/crypt_executables.py -i ./ -p malware --decrypt
 ```
 
 ---
@@ -44,7 +44,6 @@ This methodology assumes the following static IP address configuration:
 - Some pre-compiled payloads are available in the [resources](/Enterprise/carbanak/Resources) directory; however, they are configured to connect back to static IP address 192.168.0.4.
 
 - If you would like to build the payloads yourself, please make the necessary adjustments to the payload source to match your environment.
-
 
 ### Attack Platform Setup
 
@@ -119,6 +118,7 @@ This methodology assumes the following hostname configurations:
     The `set-defender.ps1` PowerShell script in the [setup](/Enterprise/carbanak/Resources/setup) folder can be used to perform this.
 
 2. Copy newly generated SSH keypair from attacker platform to the following directory:
+
     ```
     C:\Users\<domain_user>.<domain>\
     ```
@@ -134,6 +134,7 @@ This methodology assumes the following hostname configurations:
     The `set-defender.ps1` PowerShell script in the [setup](/Enterprise/carbanak/Resources/setup) folder can be used to perform this.
 
 2. Give the CFO user RDP privileges on only this machine by adding them to the following local groups:
+
     ```
     Remote Desktop Users
     Remote Management Users
@@ -142,6 +143,7 @@ This methodology assumes the following hostname configurations:
 3. Copy Payment Transfer System executable onto Desktop of CFO user.
 
 4. Cache CFO User's credentials in Microsoft Edge:
+
     ```
     1. Open Edge
 
@@ -160,14 +162,14 @@ This methodology assumes the following hostname configurations:
     7. Close RDP session
     ```
 
-
 ### Bank File Server Setup
 
 1. Ensure the server is domain joined to the rest of the domain:
 
-    https://www.redhat.com/sysadmin/linux-active-directory
+    <https://www.redhat.com/sysadmin/linux-active-directory>
 
 2. Copy the following prop files to the `/var/tmp` directory:
+
     ```
     carbanak/Resources/step5/network-diagram-financial.xml
     carbanak/Resources/step5/help-desk-ticket.txt

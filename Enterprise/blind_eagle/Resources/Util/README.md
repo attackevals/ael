@@ -24,4 +24,3 @@ options:
   -b FIBER, --fiber FIBER
                         Path to fiber file to encode
 ```
-

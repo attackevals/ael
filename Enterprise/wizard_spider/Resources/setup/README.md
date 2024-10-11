@@ -42,7 +42,7 @@ Open FireFox; close all spurious prompts / decline everything.
 
 Go to this page:
 
-https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0
+<https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0>
 
 Download and install the 32-bit and 64-bit versions.
 
@@ -97,17 +97,15 @@ Open Edge; close all spurious prompts / decline everything.
 
 Go to this page:
 
-https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0
+<https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0>
 
 Download and install the 32-bit and 64-bit versions.
-
 
 6. Reboot the workstation
 
 ```
 Restart-Computer -Force
 ```
-
 
 7. Log back into Dorothy as user judy
 

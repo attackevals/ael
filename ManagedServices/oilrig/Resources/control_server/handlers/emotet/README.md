@@ -1,6 +1,6 @@
 # ATT&CK Evaluations Emotet Handler
 
-The ATT&CK Evaluations Emotet Handler is used to handle communications between the Emotet Client and control server via a REST API. 
+The ATT&CK Evaluations Emotet Handler is used to handle communications between the Emotet Client and control server via a REST API.
 
 The Emotet Handler provides features to communicate with the Emotet Client and forwarding control information to the Control Server.
 
@@ -36,10 +36,12 @@ sudo go test ./...
 ```
 
 ### Go Build
+
 ```
 cd wizard_spider/Resources/control_server/
 go build main.go
 ```
 
 ### Example usage
+
 View functions from emotet_test.go for an example on how to interact with the control server

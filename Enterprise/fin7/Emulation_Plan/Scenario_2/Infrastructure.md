@@ -11,9 +11,9 @@ Please note that binary executable files hosted in [Resources](/Enterprise/fin7/
 We provide a [script](/Enterprise/fin7/Resources/utilities/crypt_executables.py) to automatically decrypt these files:
 
 ```
-$ cd fin7
+cd fin7
 
-$ python3 Resources/utilities/crypt_executables.py -i ./ -p malware --decrypt
+python3 Resources/utilities/crypt_executables.py -i ./ -p malware --decrypt
 ```
 
 *Note, there is no change of infrastructure between Scenario 1 and Scenario 2.*
@@ -35,7 +35,7 @@ $ python3 Resources/utilities/crypt_executables.py -i ./ -p malware --decrypt
     - [ATT&CK RAT](/Enterprise/fin7/Resources/Scenario_1/Step11/FIN7_SQLRat_C2_Server)
 
 4. **Optional - Windows 10**: Windows 10 Client build 18363
-	* Note, this Windows 10 machine was used ONLY in the event debugging needed to occur during an evaluation.
+ - Note, this Windows 10 machine was used ONLY in the event debugging needed to occur during an evaluation.
 
 ---
 
@@ -67,6 +67,7 @@ This methodology assumes the following static IP address configurations:
 ### Windows Attack Platform Setup
 
 1. Disable firewall in CMD
+
     ```
     netsh advfirewall set allprofiles state off
     ```
@@ -117,11 +118,13 @@ This methodology assumes the following static IP address configurations:
 3. Add a static ARP entry for `itadmin`:
 
     1. In a CMP prompt, grab the name of the interface that connects `hotelmanager` to the domain
+
         ```
         cmd > netsh int ipv4 show interfaces
         ```
 
     2. Use this interface name to set a static ARP entry
+
         ```
         cmd > netsh interface ipv4 set neighbors Interface="[Interface Name]" address=<itadmin_ip> neighbor=12-34-56-78-9a-bc
         ```
@@ -147,6 +150,7 @@ This methodology assumes the following static IP address configurations:
 3. Place `AccountingIQ.exe` in `C:\Users\Public`
 
 4. Add `AccountingIQ.exe` to the Registry Run key
+
     ```
     REG ADD "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /V "Dummy Accounting Program" /t REG_SZ /F /D "C:\Users\Public\AccountingIQ.exe"
     ```

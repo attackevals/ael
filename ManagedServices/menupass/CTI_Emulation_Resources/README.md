@@ -1,19 +1,18 @@
-# menuPass 🐼 
+# menuPass 🐼
 
 ## Adversary Overview
 
-Active since at least 2006, [menuPass](https://attack.mitre.org/groups/G0045/) (aka APT10) is a threat group believed to be sponsored by the Chinese Ministry of State Security (MSS). 
-The group has focused on the exfiltration of sensitive data in support of Chinese national security objectives. 
-menuPass has targeted the aerospace, construction, engineering, government, and telecommunications sectors primarily in the US, Europe, Japan, and other parts of Southeast Asia. 
+Active since at least 2006, [menuPass](https://attack.mitre.org/groups/G0045/) (aka APT10) is a threat group believed to be sponsored by the Chinese Ministry of State Security (MSS).
+The group has focused on the exfiltration of sensitive data in support of Chinese national security objectives.
+menuPass has targeted the aerospace, construction, engineering, government, and telecommunications sectors primarily in the US, Europe, Japan, and other parts of Southeast Asia.
 The group is known for orchestrating [Operation Cloud Hopper](https://www.pwc.co.uk/cyber-security/pdf/pwc-uk-operation-cloud-hopper-report-april-2017.pdf), a global espionage campaign discovered in 2016 and 2017 that involved the sustained exploitation of MSPs.
 In December 2018, the US DOJ filed [criminal charges](https://www.justice.gov/opa/pr/two-chinese-hackers-associated-ministry-state-security-charged-global-computer-intrusion) against two menuPass members in connection to the group’s activities.
-
 
 ## Key Adversary Report References
 
 Source ID | Report Links
 |:---:|:---|
-|1|[APT10: sophisticated multi-layered loader Ecipekac discovered in A41APT campaign](https://securelist.com/apt10-sophisticated-multi-layered-loader-ecipekac-discovered-in-a41apt-campaign/101519/)| 
+|1|[APT10: sophisticated multi-layered loader Ecipekac discovered in A41APT campaign](https://securelist.com/apt10-sophisticated-multi-layered-loader-ecipekac-discovered-in-a41apt-campaign/101519/)|
 |2|[What We Can Do against the Chaotic A41APT Campaign](http://jsac.jpcert.or.jp/archive/2022/pdf/JSAC2022_9_yanagishita-tamada-nakatsuru-ishimaru_en.pdf)|
 |3|[A41APT case](https://jsac.jpcert.or.jp/archive/2021/pdf/JSAC2021_202_niwa-yanagishita_en.pdf)|
 |4|[APT10: Tracking down the stealth activity of the A41APT campaign](https://media.kasperskydaily.com/wp-content/uploads/sites/86/2021/02/25140359/greatidea_A41_v1.0.pdf)|

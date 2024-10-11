@@ -1,14 +1,18 @@
 # Carbon-DLL Orchestrator DLL
 
 ## Orchestrator
+
 ### Overview
+
 The Carbon DLL Orchestrator (orch) will be started from the Carbon installer service and inject the C2 communication DLL (comms lib) into a legitimate process.<sup>[1](https://www.welivesecurity.com/2017/03/30/carbon-paper-peering-turlas-second-stage-backdoor/)</sup>
 The orchestrator will create mutexes for the comms lib and itself to manage file access.<sup>[1](https://www.welivesecurity.com/2017/03/30/carbon-paper-peering-turlas-second-stage-backdoor/)</sup>
 The orchestrator will monitor a specific file to find tasks that the comms lib pulled from the C2.<sup>[1](https://www.welivesecurity.com/2017/03/30/carbon-paper-peering-turlas-second-stage-backdoor/)</sup>
 The orchestrator will publish its completed tasks and relevant information to another file that the comms lib monitors so that the information can be sent back to the C2.<sup>[1](https://www.welivesecurity.com/2017/03/30/carbon-paper-peering-turlas-second-stage-backdoor/)</sup>
 
 ### Files
+
 #### File Structure and Explanation
+
 The file structure for Carbon was based on a combination of Carbon 3.7X Carbon 3.8X file structures<sup>[1](https://www.welivesecurity.com/2017/03/30/carbon-paper-peering-turlas-second-stage-backdoor/)</sup>
 Our file structure differs from CTI in that we do not have a separate task file for both the orchestrator and the comms lib since only the orchestrator executes tasks. We also excluded the two `.png` files in the Carbon 3.8X file tree that do not have an explanation of their purpose.
 
@@ -31,10 +35,12 @@ The files and folders listed here will always be created, but task output file n
 | .\setuplst.xml    | main config file        |
 
 #### Configuration File
+
 The Carbon installer will drop an encrypted `setuplst.xml` config file to the working directory that the orchestrator and comms lib will read.
 Our config file was based off the Carbon 3.77 config file.<sup>[1](https://www.welivesecurity.com/2017/03/30/carbon-paper-peering-turlas-second-stage-backdoor/)</sup> A plain text version of the config file is available in [`bin/configPlainText.xml`](./bin/configPlainText.xml).
 
 These are the different sections, settings, and their descriptions in the config file:
+
 | Section  | Setting | Description |
 | ------------ | ----------- | ----------- |
 | [NAME] | object_id | The uuid of this implant |
@@ -68,7 +74,9 @@ These are the different sections, settings, and their descriptions in the config
 Upon startup, the first thing the orchestrator will do is read this config file. If there is an option missing from the config file that the orchestrator is expecting, it will fall back to a default value. These are listed in the [`src/orchestrator.cpp`](./src/orchestrator.cpp) file.
 
 ### Functionality
+
 #### Encryption
+
 [source](./src/enc_handler.cpp)
 
 Each file output from the orchestrator will be encrypted with CAST-128.<sup>[1](https://www.welivesecurity.com/2017/03/30/carbon-paper-peering-turlas-second-stage-backdoor/)</sup>
@@ -78,6 +86,7 @@ The orchestrator expects the config file to be encrypted, and will first decrypt
 The orchestrator also expects task-related files to be encrypted and will decrypt tasking information before proceeding to task execution. Task output is encrypted on disk for the comms lib to pick up and send to the C2 server.
 
 #### Mutexes
+
 [source](./src/mutex.cpp)
 
 The orchestrator will create five mutexes to coordinate file access between the comms lib and itself.
@@ -85,6 +94,7 @@ The mutexes created were based off Carbon 3.8X.<sup>[1](https://www.welivesecuri
 The number of mutexes used here was reduced by two when compared to the CTI because we do not use an equivalent of `xmlrts.png`, and only the orchestrator is completing tasks, so there is less simultaneous read/write access between the orchestrator and the comms lib.
 
 These are the mutexes created by the orchestrator and their descriptions:
+
 | Mutex  | Description |
 | ------------ | ----------- |
 | Global\Microsoft.Telemetry.Configuration      | Represent config file `setuplst.xml` ownership |
@@ -94,11 +104,13 @@ These are the mutexes created by the orchestrator and their descriptions:
 | Global\Stream.Halt.Restoration | Represent regular log `history.jpg` ownership |
 
 #### Injection
+
 [source](./src/injection.cpp)
 
 The orchestrator will inject the 3rd stage communications library into processes that typically generate HTTP traffic, such as a web browser.<sup>[1](https://www.welivesecurity.com/2017/03/30/carbon-paper-peering-turlas-second-stage-backdoor/),[2](https://www.gdatasoftware.com/blog/2015/01/23926-analysis-of-project-cobra),[3](https://www.ncsc.admin.ch/ncsc/en/home/dokumentation/berichte/fachberichte/technical-report_apt_case_ruag.html)</sup> For our evaluations, only Microsoft Edge was tested with the orchestrator. Injection into other web browsers should be possible, but this is not tested.
 
 Injection is performed in the following steps:
+
 - enable debug privileges for the current process [source](./src/injection.cpp#L102)
 - read the config file for a list of target processes [source](./src/injection.cpp#L166)
 - look for those processes on the current machine, and record the PIDs of the ones found [source](./src/injection.cpp#L215)
@@ -109,16 +121,19 @@ After successful injection, the comms lib DLL will start to communicate with the
 
 The orchestrator uses `OpenProcess` and `WaitForSingleObject` to monitor the process that the comms lib was injected into.
 If that process is terminated, the orchestrator will attempt to find a new host process to re-inject the comms lib.
-  
+
 #### Tasking
+
 [source](./src/tasking.cpp)
 
 The comms lib will post tasks for the orchestrator in `workdict.xml`.
 The orchestrator will check `workdict.xml` for updates every 5 seconds.
 The format for each task is as follows<sup>[1](https://www.welivesecurity.com/2017/03/30/carbon-paper-peering-turlas-second-stage-backdoor/)</sup>:
+
 ```
 task_id | task_filepath | task_config_filepath | task_result_filepath | task_log_filepath
 ```
+
 | Field  | Description |
 | ------------ | ----------- |
 | task_id | a number designating which task this is |
@@ -128,11 +143,13 @@ task_id | task_filepath | task_config_filepath | task_result_filepath | task_log
 | task_log_filepath | the location where the orchestrator will output its log for this task |
 
 The format for a task config file is as follows:
+
 ```
 [CONFIG]
 name = cmd.exe
 exe = whoami /all
 ```
+
 | Field  | Description |
 | ------------ | ----------- |
 | name | the name of the file to run (cmd.exe by default) |
@@ -146,9 +163,11 @@ Once the orchestrator has completed executing all of the tasks, it will remove t
 Then, the orchestrator will take any output and log information from the task it performed, and put those in the `task_result_filepath` and `task_log_filepath` respectivley.
 The orchestrator will then gain ownership of the mutex for and make an entry in the "files to send to the C2" file, `traverse.gif`.
 The format for these entries is as follows:
+
 ```
 task_id | num_files | filepath | uuid
 ```
+
 | Mutex  | Description |
 | ------------ | ----------- |
 | task_id | a number designating which task this is |
@@ -160,6 +179,7 @@ Since only sending 1 file per entry is supported, each task will create two entr
 The comms lib will then check `traverse.gif` for entries, and when found, will send those files to the C2 server.
 
 ### Testing Information
+
 **Currently, the orchestrator will output everything it logs to console for testing purposes.**
 <br>
 **Using any of the testing scripts will perform process injection**<br>
@@ -170,12 +190,14 @@ If the installer does not have the most recent versions of the orchestrator or c
 
 `output-itest.ps1` runs the orchestrator and comms lib separately so that the user has console output for both.
 Both testing scripts require that files are placed in `turla\Resources\Carbon\Orchestrator\resources`:
+
 - `MSSVCCFG.dll`: the orchestrator
 - `MSXHLP.dll`: the comms lib
 - `setuplst.xml`: the encrypted config
 - `dllrunner.exe`: dll runner used to start the comms lib (output-itest.ps1 only)
 
 These files can be found in these locations respectively:
+
 - [`turla/Resources/Carbon/Orchestrator/bin/MSSVCCFG.dll`](./bin/MSSVCCFG.dll)
 - `turla/Resources/Carbon/CommLib/bin/commlib.dll` (needs to be renamed)
 - [`turla/Resources/Carbon/Orchestrator/bin/setuplst.xml`](./bin/setuplst.xml)
@@ -202,6 +224,7 @@ Finally, the script will clean up any artifacts created from testing.
 If you encounter an error, [`./include/orchestrator.h`](./include/orchestrator.h) has a mapping of error code to a basic name of the error to help diagnose the issue.
 
 ### Build Instructions
+
 All PE files were build on Windows 10 with MinGW32.
 You can use the included `build.ps1` script to automatically remove and rebuild the PE files.
 `build.ps1` is designed to build a dll from `.\test\dllspawnnp.cpp` and place it in `.\bin\MSXHLP.dll` so that it can be injected by the orchestrator for testing.
@@ -209,16 +232,20 @@ However, having the `.\test\dllspawnnp.cpp` file is not required to be able to b
 `build.ps1` will also remove the symbols from the orchestrator dll and check that they have been removed.
 
 If you wish to build the PE files manually, these are the commands that are used to do so.
+
 ```
 x86_64-w64-mingw32-g++ -static -std=c++20 -lstdc++fs -Wall -Wextra -Werror -o bin/runner.exe test/testdllrunner.cpp
 x86_64-w64-mingw32-g++ -I include/ -I "$env:MINGW64_ROOT\include\cryptopp" -static -shared -std=c++20 -lstdc++fs -Wall -Wextra -Werror -o bin/MSSVCCFG.dll src/*.cpp -lWinInet -L "$env:MINGW64_ROOT\lib" -l cryptopp
 x86_64-w64-mingw32-g++ -I include/ -I "$env:MINGW64_ROOT\include\cryptopp" -static -std=c++20 -lstdc++fs -Wall -Wextra -Werror -o bin/configEncrypt.exe test/config_encrypt.cpp -lWinInet -L "$env:MINGW64_ROOT\lib" -l cryptopp
 x86_64-w64-mingw32-g++ -I include/ -I "$env:MINGW64_ROOT\include\cryptopp" -static -std=c++20 -lstdc++fs -Wall -Wextra -Werror -o bin/castDecrypt.exe test/castDecrypt.cpp -lWinInet -L "$env:MINGW64_ROOT\lib" -l cryptopp
 ```
+
 You can remove symbols from the orchestrator dll with the following command:
+
 ```
 strip -s .\bin\MSSVCCFG.dll
 ```
+
 To verify, you can run `objdump --syms .\bin\MSSVCCFG.dll` - you should see an empty symbols table.
 
 ### Cleanup Instructions
@@ -226,6 +253,7 @@ To verify, you can run `objdump --syms .\bin\MSSVCCFG.dll` - you should see an e
 When running the orchestrator with the Carbon Installer, refer to the Carbon Installer's `turla/Resources/cleanup/Carbon/carbon_cleanup.ps1` script for cleanup.
 
 ### CTI References
-1. https://www.welivesecurity.com/2017/03/30/carbon-paper-peering-turlas-second-stage-backdoor/
-2. https://www.gdatasoftware.com/blog/2015/01/23926-analysis-of-project-cobra
-3. https://www.ncsc.admin.ch/ncsc/en/home/dokumentation/berichte/fachberichte/technical-report_apt_case_ruag.html
+
+1. <https://www.welivesecurity.com/2017/03/30/carbon-paper-peering-turlas-second-stage-backdoor/>
+2. <https://www.gdatasoftware.com/blog/2015/01/23926-analysis-of-project-cobra>
+3. <https://www.ncsc.admin.ch/ncsc/en/home/dokumentation/berichte/fachberichte/technical-report_apt_case_ruag.html>

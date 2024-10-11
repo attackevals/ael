@@ -5,7 +5,7 @@ Please note that binary executable files hosted here have been added to password
 We provide a [script](/Resources/utilities/crypt_executables.py) to automatically decrypt these files:
 
 ```
-$ cd carbanak
+cd carbanak
 
-$ python3 Resources/utilities/crypt_executables.py -i ./ -p malware --decrypt
+python3 Resources/utilities/crypt_executables.py -i ./ -p malware --decrypt
 ```

@@ -89,7 +89,7 @@ A self-signed certificate authority was generated to emulate a legitimately assi
 
 | URL                                          | Usage           | Notes                                                 |
 | -------------------------------------------- | --------------- | ----------------------------------------------------- |
-| svobodaukrayin[.]ua, www.svobodaukrayin[.]ua | Web Certificate | Emulated registered domain with valid TLS certificate |
+| svobodaukrayin[.]ua, <www.svobodaukrayin[.]ua> | Web Certificate | Emulated registered domain with valid TLS certificate |
 
 ### Email Flow
 

@@ -24,8 +24,7 @@ See server and Client sections for specific usage instructions
 
 Two build options are presented. The CLI can be used with devenv.exe to build the `AsyncRAT-Sharp.sln` solution. Also instructions for the Visual Studio GUI are also included:
 
-
-### CLI:
+### CLI
 
 ```PowerShell
 PS C:\<path>\<to>\birdsofprey\Resources\AsyncRAT-C#> 'C:\Program Files | [x86]\Microsoft Visual Studio\<version>\<Professional|blank>\Common7\IDE\devenv.exe' AsyncRAT-Sharp.sln /Build "Release"
@@ -49,19 +48,19 @@ PS C:\<path>\<to>\birdsofprey\Resources\AsyncRAT-C#> 'C:\Program Files | [x86]\M
 
 ## References and CTI
 
-1) https://blogs.blackberry.com/en/2023/02/blind-eagle-apt-c-36-targets-colombia
+1) <https://blogs.blackberry.com/en/2023/02/blind-eagle-apt-c-36-targets-colombia>
 
-2) https://lab52.io/blog/apt-c-36-from-njrat-to-apt-c-36/
+2) <https://lab52.io/blog/apt-c-36-from-njrat-to-apt-c-36/>
 
-3) https://dciber.org/analisando-asyncrat-distribuido-na-colombia/
+3) <https://dciber.org/analisando-asyncrat-distribuido-na-colombia/>
 
-4) https://dciber.org/apt-c-36-ataques-continuos-direcionados-a-instituicoes-e-corporacoes-do-governo-colombiano/
+4) <https://dciber.org/apt-c-36-ataques-continuos-direcionados-a-instituicoes-e-corporacoes-do-governo-colombiano/>
 
-5) https://dciber.org/analisando-asyncrat-distribuido-na-colombia/
+5) <https://dciber.org/analisando-asyncrat-distribuido-na-colombia/>
 
-6) https://research.checkpoint.com/2023/blindeagle-targeting-ecuador-with-sharpened-tools/
+6) <https://research.checkpoint.com/2023/blindeagle-targeting-ecuador-with-sharpened-tools/>
 
-7) https://blog.scilabs.mx/en/campaign-attributed-to-apt-c-36-context-and-iocs/
+7) <https://blog.scilabs.mx/en/campaign-attributed-to-apt-c-36-context-and-iocs/>
 
 [8]: Plugin/LimeLogger/LimeLogger/Packet.cs
 

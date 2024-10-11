@@ -16,15 +16,15 @@ This document covers the infrastructure setup for emulating Turla in Round 5 of 
 
 It is assumed you have a working knowledge of the following concepts and access to related tools:
 
-* [Terraform](https://developer.hashicorp.com/terraform/downloads),
+- [Terraform](https://developer.hashicorp.com/terraform/downloads),
 
-*  [PowerShell](https://learn.microsoft.com/en-us/powershell/),
-*  Linux Shell Scripting (e.g. bash),
-*  Existing Microsoft Azure with permissions to perform required actions (create manage resources including VM instances, VNETs, Virtual Network Gateways, and related resources),
-*  [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli),
-*  Concepts such as DNS, Email,
-*  PKI,
-*  and common system administration concepts for Windows and Linux
+- [PowerShell](https://learn.microsoft.com/en-us/powershell/),
+- Linux Shell Scripting (e.g. bash),
+- Existing Microsoft Azure with permissions to perform required actions (create manage resources including VM instances, VNETs, Virtual Network Gateways, and related resources),
+- [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli),
+- Concepts such as DNS, Email,
+- PKI,
+- and common system administration concepts for Windows and Linux
 
 ## Terraform
 

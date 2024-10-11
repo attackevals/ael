@@ -1,7 +1,8 @@
 # Wizard Spider
+
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Based on open-source intelligence, the ATT&CK &reg; Evaluations team created the below scenario leveraging techniques seen from Wizard Spider in the wild. We have adapted the scenario based on tools and resources available at the time. 
+Based on open-source intelligence, the ATT&CK &reg; Evaluations team created the below scenario leveraging techniques seen from Wizard Spider in the wild. We have adapted the scenario based on tools and resources available at the time.
 
 ## Adversary Overview 🪄 🕸️
 
@@ -9,7 +10,7 @@ Wizard Spider is a Russia-based e-crime group originally known for the Trickbot 
 
 According to the FBI, in less than one year (2019-2020) Wizard Spider extorted $61 million USD from ransomware attacks.<sup> [7] [8]</sup> Throughout the operations, the group used a multi-staged approach to manage ransomware campaigns.<sup>[9]</sup> Prior to encrypting a victim's network, the group exfiltrates sensitive data and threatens to publicly disclose it if the victim refuses to pay the ransom.
 
-Associated Names: UNC1878, TEMP.MixMaster, Grim Spider, Team9 
+Associated Names: UNC1878, TEMP.MixMaster, Grim Spider, Team9
 
 [1]:https://attack.mitre.org/groups/G0102/
 [2]:https://www.trendmicro.com/en_us/research/19/b/trickbot-adds-remote-application-credential-grabbing-capabilities-to-its-repertoire.html
@@ -22,9 +23,11 @@ Associated Names: UNC1878, TEMP.MixMaster, Grim Spider, Team9 
 [9]:https://intel471.com/blog/ransomware-as-a-service-2020-ryuk-maze-revil-egregor-doppelpaymer/
 
 ## Emulation Overview
+
 ![Software Flow Diagram](./Resources/images/SoftwareFlow.jpeg)
 
 # Quick Links
+
 ### For Engineers 🧑‍💻
 
 ### Resources
@@ -36,9 +39,9 @@ The [Binaries.zip](./Resources/Binaries) contains all executables in one zip fil
 We provide a [script](./Resources/utilities/crypt_executables.py) to automatically decrypt these files:
 
 ```
-$ cd wizard_spider
+cd wizard_spider
 
-$ python3 Resources/utilities/crypt_executables.py -i ./ -p malware --decrypt
+python3 Resources/utilities/crypt_executables.py -i ./ -p malware --decrypt
 ```
 
 ### YARA Rules
@@ -54,29 +57,31 @@ $ python3 Resources/utilities/crypt_executables.py -i ./ -p malware --decrypt
 - [Ryuk](./Resources/Ryuk/)
 
 ### Scenario Walkthrough
-- [Detection Scenario](./Emulation_Plan/Scenario_1/) - Step by Step walkthrough of Scenario's procedures (10 steps). 
+
+- [Detection Scenario](./Emulation_Plan/Scenario_1/) - Step by Step walkthrough of Scenario's procedures (10 steps).
 - [Protection Scenario](./Emulation_Plan/Scenario_2/) - Step by Step walkthrough of Scenario's procedures (6 tests)
 
 ## For Analysts 🔎
-- [Operation Flow](./Operations_Flow/Operations_Flow.md/) - High-level summary of the scenario & infrastructure with diagrams. 
-- [Intelligence Summary](./Intelligence_Summary/Intelligence_Summary.md) - General overview of the Adversary with links to reporting used throughout the scenario. 
+
+- [Operation Flow](./Operations_Flow/Operations_Flow.md/) - High-level summary of the scenario & infrastructure with diagrams.
+- [Intelligence Summary](./Intelligence_Summary/Intelligence_Summary.md) - General overview of the Adversary with links to reporting used throughout the scenario.
 
 ## Acknowledgements
 
 We would like to formally thank the people that contributed to the content, review, and format of this document. This includes the MITRE ATT&CK and MITRE ATT&CK Evaluations teams, the organizations and people that provided public intelligence and resources, as well as the following organizations that participated in the community cyber threat intelligence contribution process:
 
 - Microsoft
--	SentinelOne
--	Trellix/McAfee
+- SentinelOne
+- Trellix/McAfee
 - Wojciech Lesicki, @WLesicki
 
 ## Connect with us 🗨️
 
-We 💖 feedback! Let us know how using ATT&CK Evaluation results has helped you and what we can do better. 
+We 💖 feedback! Let us know how using ATT&CK Evaluation results has helped you and what we can do better.
 
 Email: <evals@mitre-engenuity.org><br>
-Twitter: https://twitter.com/MITREengenuity<br>
-LinkedIn: https://www.linkedin.com/company/mitre-engenuity/<br>
+Twitter: <https://twitter.com/MITREengenuity><br>
+LinkedIn: <https://www.linkedin.com/company/mitre-engenuity/><br>
 
 ## Liability / Responsible Usage
 

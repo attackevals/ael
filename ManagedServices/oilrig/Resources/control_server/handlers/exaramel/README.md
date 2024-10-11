@@ -13,6 +13,7 @@ This handler is automatically loaded by the control server when the control serv
 ### Tasking Commands
 
 Task commands to the Exaramel for Linux client using [`evalsC2Client.py`](../../evalsC2Client.py):
+
 ```
 wizard_spider/Resources/control_server/evalsC2Client.py --set-task <exaramel-guid> <command>
 ```
@@ -23,7 +24,7 @@ Commands that can be provided to the implant:
 
     Set persistence:
         persist [cron|systemd]
-    
+
     Execute a shell command:
         exec <shell_command>
 

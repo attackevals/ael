@@ -29,13 +29,15 @@ curl http://127.0.0.1/new.php?cmd=cat+/etc/passwd
 ```
 
 ## Test Instructions
+
 Run this Python script:
 
 ```
 python3 test_webshell.py
 ```
 
-## Cleanup Instructions 
+## Cleanup Instructions
+
 Delete the webshell from the target file system:
 
 ```
@@ -45,19 +47,19 @@ rm /var/www/html/obfuscated_webShell.php
 ## Misc
 
 The PHP source code was taken from Kali Linux at:
+
 ```
 /usr/share/webshells/php/simple-backdoor.php
 ```
 
-Credit the original author: DK, http://michaeldaw.org, 2006 (note: dead hyperlink)
+Credit the original author: DK, <http://michaeldaw.org>, 2006 (note: dead hyperlink)
 
-The obfuscated_webShell.php was obfuscated using an online PHP obfuscator (https://www.gaijin.at/en/tools/php-obfuscator).
+The obfuscated_webShell.php was obfuscated using an online PHP obfuscator (<https://www.gaijin.at/en/tools/php-obfuscator>).
 
 ### CTI Evidence
-https://attack.mitre.org/groups/G0034/
-https://www.cert.ssi.gouv.fr/uploads/CERTFR-2021-CTI-005.pdf
-
+<https://attack.mitre.org/groups/G0034/>
+<https://www.cert.ssi.gouv.fr/uploads/CERTFR-2021-CTI-005.pdf>
 
 ### References
-https://tools.kali.org/maintaining-access/webshells
-https://www.gaijin.at/en/tools/php-obfuscator
+<https://tools.kali.org/maintaining-access/webshells>
+<https://www.gaijin.at/en/tools/php-obfuscator>

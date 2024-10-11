@@ -1,4 +1,5 @@
 # Snake Driver
+
 The Snake driver is the threat actor's rootkit. There are three projects included in this SnakeDriver Solution.
 
 - SnakeDriver - A WDM kernel driver project for the Snake rootkit
@@ -6,6 +7,7 @@ The Snake driver is the threat actor's rootkit. There are three projects include
 - SnakeTester - userspace tool used to test certain syscall hooks
 
 ## Overview
+
 Once the installer successfully implants the Snake driver, it is responsible
 for evading detection and injecting the usermodule. To accomplish these goals
 the driver comes equipped with several features:
@@ -23,13 +25,16 @@ With those tasks completed, the stage is now set for the usermodule to
 manage command and control communications and execute tasks.
 
 ## Installation
+
 ### Visual Studio Configuration
+
 Building the driver requires several SDKs from Microsoft. Follow the Microsoft setup instructions [here](https://docs.microsoft.com/en-us/windows-hardware/drivers/download-the-wdk) in order to guarantee a functional kernel development environement.
 
 1. `Windows SDK`
 1. `Windows Driver Kit`
 
 OR
+
 1. `Enterprise Windows Driver Kit` (Self-contained build env in a mountable ISO)
 
 ### Python (optional)
@@ -42,7 +47,7 @@ All compilation so far is done using Configuration:Release Platofrm:x64
 
 If you are not using the VS GUI, there is a script `turla\Resources\Snake\SnakeDriver\build_and_copy_driver.ps1` that will select the proper configuration for you, and takes an optional argument to copy the newly built driver to a new directory.
 
-SnakeDriver is version dependent, and has been tested and configured for two versions of Windows 10: 1809 and 1903. This is necessary to be comaptible with InfinityHook. It can be expanded to support more versions of Windows by extracting the appropriate syscall numbers and adding a new `#ifdef`. Syscall numbers can be found [here](https://j00ru.vexillium.org/syscalls/nt/64/) 
+SnakeDriver is version dependent, and has been tested and configured for two versions of Windows 10: 1809 and 1903. This is necessary to be comaptible with InfinityHook. It can be expanded to support more versions of Windows by extracting the appropriate syscall numbers and adding a new `#ifdef`. Syscall numbers can be found [here](https://j00ru.vexillium.org/syscalls/nt/64/)
 
 ### Visual Studio Configurations
 
@@ -56,7 +61,7 @@ SnakeDriver is version dependent, and has been tested and configured for two ver
 
 Compiling via the VS GUI and `msbuild` are supported. InfinityHook compilation warnings are to be expected.
 
-Sample msbuild command (Must be run from VS Developer Command Prompt): 
+Sample msbuild command (Must be run from VS Developer Command Prompt):
 
 `msbuild -target:Clean,Build -property:Configuration="Release_1903",Platform="x64`
 
@@ -73,18 +78,22 @@ Run the script `.\run_driver.ps1 start` in the same directory as your driver, an
 If you are running the driver via the installer, test signing mode is not necessary. Please refer to the installer documentation for more information.
 
 ## Debugging
+
 If you build the driver with the `DEBUG_PRINT` compiler flag it will output some helpful status messages. You can view this output using `DebugView` or `WinDbg` while installing and running the driver.
 
 ## Cleanup
+
 Use the [Snake Installer cleanup script](../../cleanup/Snake/snake_cleanup.ps1) to remove the driver and its artifacts.
 This will require a reboot.
 
 ## References
-- https://github.com/Rhydon1337/windows-kernel-dll-injector
-- https://github.com/JaredWright/WFPStarterKit
-- https://github.com/everdox/InfinityHook
-- https://github.com/DarthTon/Blackbone
+
+- <https://github.com/Rhydon1337/windows-kernel-dll-injector>
+- <https://github.com/JaredWright/WFPStarterKit>
+- <https://github.com/everdox/InfinityHook>
+- <https://github.com/DarthTon/Blackbone>
 
 ## CTI
-- https://www.circl.lu/pub/tr-25/#analysis-payload
-- https://www.mcafee.com/blogs/other-blogs/mcafee-labs/analyzing-uroburos-patchguard-bypass
+
+- <https://www.circl.lu/pub/tr-25/#analysis-payload>
+- <https://www.mcafee.com/blogs/other-blogs/mcafee-labs/analyzing-uroburos-patchguard-bypass>

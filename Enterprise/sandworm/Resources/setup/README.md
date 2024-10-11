@@ -23,7 +23,7 @@ Install terminator:
 
 ```bash
 sudo chmod 755 ./sandworm/Resources/setup/setup_attack_platform.sh
-sudo ./sandworm/Resources/setup/setup_attack_platform.sh 
+sudo ./sandworm/Resources/setup/setup_attack_platform.sh
 ```
 
 If you are prompted to automatically restart services, select yes.
@@ -85,7 +85,7 @@ Set-Executionpolicy bypass -force
 .\generate-files.exe -d "C:\Users\" -c 50 --seed "EVALS" --noprompt
 ```
 
-4. Open Chromium and navigate to: 
+4. Open Chromium and navigate to:
 
 `https://www.stealmylogin.com/demo.html`
 

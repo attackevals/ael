@@ -32,7 +32,6 @@ make
 
 ## Test Instructions
 
-
 ```
 cd sandworm\Resources\Exaramel-Windows\
 go test -v ./...

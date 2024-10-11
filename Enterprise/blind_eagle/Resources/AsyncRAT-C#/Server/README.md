@@ -32,4 +32,4 @@ Build is addressed at the top level of the project.
 
 ## References
 
-1) https://github.com/NYAN-x-CAT/AsyncRAT-C-Sharp
+1) <https://github.com/NYAN-x-CAT/AsyncRAT-C-Sharp>

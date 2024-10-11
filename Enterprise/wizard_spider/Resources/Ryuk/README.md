@@ -4,7 +4,7 @@ A ransomware designed to target enterprise environments.
 
 ## Overview
 
-The Ryuk ransomware in this scenario has the last step of causing impact on the enterprise network. Among its goals it will stop services, delete backups, mount any discoverable shares and ultimately encrypt the files of the infected machine. 
+The Ryuk ransomware in this scenario has the last step of causing impact on the enterprise network. Among its goals it will stop services, delete backups, mount any discoverable shares and ultimately encrypt the files of the infected machine.
 
 ## Pre Requirements
 
@@ -71,7 +71,7 @@ This image shows the project running, and the typical output you might expect
 
 ## Testing
 
-To build and run tests for this binary execute the same command used for compiling the main binary found on the [Usage Section](#Usage) of this page. If this step has already been executed, you should see two binaries in the Release folder. The one named "RyukTests.exe" corresponds to the test suite.
+To build and run tests for this binary execute the same command used for compiling the main binary found on the [Usage Section](#usage) of this page. If this step has already been executed, you should see two binaries in the Release folder. The one named "RyukTests.exe" corresponds to the test suite.
 
 ## Fixes
 
@@ -79,9 +79,9 @@ The version of the ryuk source code found on this project has a patch applied to
 
 ### References
 
-- https://attack.mitre.org/software/S0446/
-- https://www.crowdstrike.com/blog/big-game-hunting-with-ryuk-another-lucrative-targeted-ransomware/
-- https://www.cert.ssi.gouv.fr/uploads/CERTFR-2021-CTI-006.pdf
-- https://thedfirreport.com/2020/11/05/ryuk-speed-run-2-hours-to-ransom/
-- https://thedfirreport.com/2020/10/08/ryuks-return/
-- https://n1ght-w0lf.github.io/malware%20analysis/ryuk-ransomware/
+- <https://attack.mitre.org/software/S0446/>
+- <https://www.crowdstrike.com/blog/big-game-hunting-with-ryuk-another-lucrative-targeted-ransomware/>
+- <https://www.cert.ssi.gouv.fr/uploads/CERTFR-2021-CTI-006.pdf>
+- <https://thedfirreport.com/2020/11/05/ryuk-speed-run-2-hours-to-ransom/>
+- <https://thedfirreport.com/2020/10/08/ryuks-return/>
+- <https://n1ght-w0lf.github.io/malware%20analysis/ryuk-ransomware/>

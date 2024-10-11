@@ -31,11 +31,11 @@ The malicious DLL is based on Emotet.
 ```
 Compromised user info:
 
-User:	judy@oz.local
+User: judy@oz.local
 
 System: 10.0.0.7 / dorothy
 
-C2:	192.168.0.4:80 HTTP; traffic is AES-encrypted with symmetric key and base64 encoded
+C2: 192.168.0.4:80 HTTP; traffic is AES-encrypted with symmetric key and base64 encoded
 ```
 
 *Note: the document is pre-positioned in the environment.*
@@ -268,13 +268,13 @@ Once executed, Trickbot calls back to the C2 server over HTTP.
 ```
 Compromised user info:
 
-User:	bill@oz.local
+User: bill@oz.local
 
 System: 10.0.0.8 / toto
 
 File Write (Tribot EXE): %AppData%\uxtheme.exe
 
-C2:	192.168.0.4:447 HTTP - no encryption or obfuscation
+C2: 192.168.0.4:447 HTTP - no encryption or obfuscation
 ```
 
 ---
@@ -436,7 +436,7 @@ Lastly, Wizard Spider enumerates the domain using the `adfind` utility.
 ```
 Compromised user info:
 
-User:	vfleming@oz.local
+User: vfleming@oz.local
 
 System: 10.0.0.4 / wizard
 

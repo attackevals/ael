@@ -1,6 +1,7 @@
 # SideTwist Implant
 
 ## About
+
 The SideTwist implant consists of a single executable. In emulated execution, it only
 executes a single command at a time, waiting to again be called by a scheduled task. In
 the default execution, no arguments are required as the C2 address and port are hard-coded.
@@ -19,23 +20,25 @@ alerting the operator to a successful or unsuccessful write.
 ```
 
 An additional file, `update.xml`, is required for execution. The implant checks the user's
-%LOCALAPPDATA%\\SystemFailureReporter folder and terminates if not found. The file does not need 
-to contain anything. This is a small deviation from the CTI which used a relative path. Upon testing 
-with scheduled tasks from the command line, it appears that the binary was being run from a different 
-path and subsequently unable to follow the relative link. Without using an XP-compatible version of 
+%LOCALAPPDATA%\\SystemFailureReporter folder and terminates if not found. The file does not need
+to contain anything. This is a small deviation from the CTI which used a relative path. Upon testing
+with scheduled tasks from the command line, it appears that the binary was being run from a different
+path and subsequently unable to follow the relative link. Without using an XP-compatible version of
 schtasks from the command line, the "Start In" variable seemingly cannot be set in CMD to allow for the use
 of relative paths.
 
 ## Build
+
 The implant can be built in Visual Studio, with the Developer Command Prompt from VS, or
 with msbuild.exe which can be obtained separately from VS. Whichever option is chosen,
 ensure the file `update.xml` exists in %LOCALAPPDATA%\\SystemFailureReporter\\. For example,
-for user gosta, place the `update.xml` file in `C:\Users\gosta\AppData\Local\SystemFailureReporter`. 
+for user gosta, place the `update.xml` file in `C:\Users\gosta\AppData\Local\SystemFailureReporter`.
 The file does not need to contain any data.
 
 #### Developer Prompt
+
 Open a developer command prompt and navigate to the directory containing the solution file
-`SideTwist.sln` (it should be located in the same directory as the SideTwist and 
+`SideTwist.sln` (it should be located in the same directory as the SideTwist and
 SideTwistTests code folders). Once there, run the following:
 
 `devenv.exe SideTwist.sln /build Release`
@@ -43,6 +46,7 @@ SideTwistTests code folders). Once there, run the following:
 The executable will be found in the release folder, typically located in `.\x64\Release`.
 
 ## Run
+
 The program can be run without arguments to use the hard-coded values. These values are:
 
 ```
@@ -56,12 +60,13 @@ main.cpp for the one found in SideTwist\\loopable_version). NOTE: This loopable 
 simply checks the local relative path for update.xml and will not work with scheduled tasks.
 
 ```
---loop		Lets the agent continuously execute, looping every 10 seconds
--ip			Sets the IP address of the server rather than using the hard-coded address
--p			Sets the contact port of the server rather than using 443
+--loop  Lets the agent continuously execute, looping every 10 seconds
+-ip   Sets the IP address of the server rather than using the hard-coded address
+-p   Sets the contact port of the server rather than using 443
 ```
 
 ### Note on Command Strings
+
 When issuing a command execution instruction (101 or 104), the default executor is CMD.
 Do not supply "cmd /c" as part of commands. For example, simply supply "whoami". Piping
 commands is acceptable. Note: CMD does not handle single quotes for paths.
@@ -81,6 +86,7 @@ quotes inside:
 `... 'dir "c:\program files"'`
 
 ### Example commands of each type
+
 ```
 # Execute a command - can swap 101 for 104
 ./evalsC2client.py --set-task <ID> '101 whoami'
@@ -97,6 +103,7 @@ quotes inside:
 ```
 
 ## Tests
+
 Once the solution is built, there's a separate test executable in the release folder
 with the implant. Running that executable should produce the requisite test results.
 Some tests depend on local environment variables. They have been written to encompass
@@ -105,9 +112,9 @@ the development range (e.g., the test will fail if run on anything other than dr
 The server connection is not currently mocked. This means a live C2 server is required for some
 tests. Furthermore, the C2 server needs to be on the hard-coded C2 server (192.168.0.4).
 
-The test for run() can be run with a live server and no instruction supplied (e.g. 
-initial registration of the implant). 
+The test for run() can be run with a live server and no instruction supplied (e.g.
+initial registration of the implant).
 
-The FileDownload test needs the implant to have already been registered and a specific 
+The FileDownload test needs the implant to have already been registered and a specific
 task waiting: `... '102 c:\users\public\test.txt|sidetwist_test.txt'`. test.txt's contents
 do not matter, only that it's a non-empty, base64 encoded file.

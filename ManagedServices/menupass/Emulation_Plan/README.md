@@ -3,7 +3,7 @@
 This directory contains the emulation plans for menuPass.
 
 > :information_source: An **emulation plan** is the primary document used to
-> execute the red team scenario during a purple team operation. 
+> execute the red team scenario during a purple team operation.
 
 The scenario documents in the table below include the red team execution
 commands, links to source code, ATT&CK techniques leveraged, and CTI reporting
