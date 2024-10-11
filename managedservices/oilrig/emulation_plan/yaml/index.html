@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/ael">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.781992544188">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.781992821865">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -35,11 +35,11 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../../favicon.png" rel="icon">
-    <link href="../../../../resources/css/retype.css?v=3.6.0.781992544188" rel="stylesheet">
+    <link href="../../../../resources/css/retype.css?v=3.6.0.781992821865" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.781992544188" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.781992821865" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.781992544188" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.781992821865" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -287,7 +287,7 @@ pip3 install -r requirements.txt</code></pre>
 </doc-codeblock></div>
 <p>Download required payloads for <code v-pre>emu</code> plugin.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none"># from caldera/plugins/emu directory 
+<pre class="language-none"><code v-pre class="language-none"># from caldera/plugins/emu directory
 
 git checkout master &amp;&amp; git pull
 ./download_payloads.sh</code></pre>
@@ -457,14 +457,14 @@ del C:\Users\Public\SystemFailureReporter.exe;</code></pre>
     </h2>
 </doc-anchor-target>
 <ul>
-<li>The CALDERA agent will run all of the commands in Step 2 via <code v-pre>cmd.exe</code>. However, the commands will be executed separately instead of being chained together. From a defender&#x27;s viewpoint, the port&#x27;s execution will appear as:
+<li><p>The CALDERA agent will run all of the commands in Step 2 via <code v-pre>cmd.exe</code>. However, the commands will be executed separately instead of being chained together. From a defender&#x27;s viewpoint, the port&#x27;s execution will appear as:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">SystemFailureReporter.exe executed cmd.exe /C whoami
 SystemFailureReporter.exe executed cmd.exe /C hostname
 SystemFailureReporter.exe executed cmd.exe /C ipconfig /all
 ...</code></pre>
 </doc-codeblock></div>
-as opposed to the scenario&#x27;s execution, which would have appeared as:
+<p>as opposed to the scenario&#x27;s execution, which would have appeared as:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">SystemFailureReporter.exe executed cmd.exe whoami &amp; hostname &amp; ipconfig /all ... 2&gt;&amp;1</code></pre>
 </doc-codeblock></div>

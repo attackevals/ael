@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/ael">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.781992544188">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.781992821865">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -35,11 +35,11 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../../favicon.png" rel="icon">
-    <link href="../../../../resources/css/retype.css?v=3.6.0.781992544188" rel="stylesheet">
+    <link href="../../../../resources/css/retype.css?v=3.6.0.781992821865" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.781992544188" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.781992821865" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.781992544188" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.781992821865" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -472,7 +472,7 @@ The response dictionary format varies depending on the type of task, but they wi
 <p>Examples:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">## Process creation with args, not yet completed.
-# POST /api/tasks 
+# POST /api/tasks
 # POST data: '{&quot;client_id&quot;: &quot;0B4C114149C3E9A6CBEE590B72F08D4E&quot;, &quot;task_type&quot;: 1, &quot;proc_path&quot;: &quot;whoami.exe&quot;, &quot;proc_args&quot;: &quot;/all&quot; }'
 {
     &quot;task_id&quot;: &quot;caedfd24-2078-42b6-9a7e-e8724173073a&quot;,
@@ -572,7 +572,7 @@ The response dictionary format varies depending on the type of task, but they wi
 <p>Examples:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">## Task port scan
-# POST /api/tasks 
+# POST /api/tasks
 # POST data: '{&quot;client_id&quot;: &quot;5CEF61CF22ACA6F40918643E3AAA0772&quot;, &quot;task_type&quot;: 5, &quot;range&quot;: &quot;10.0.2.9/28&quot;, &quot;ports&quot;: [8888,3389]}'
 {
     &quot;task_id&quot;: &quot;c875ed5d-07a0-46ac-b031-a6865330197a&quot;,
@@ -721,7 +721,7 @@ dictionary is as follows:</p>
 }
 
 ## Server to client transfer
-# POST /api/transfers 
+# POST /api/transfers
 # POST data: '{&quot;client_id&quot;: &quot;0B4C114149C3E9A6CBEE590B72F08D4E&quot;, &quot;type&quot;: 0, &quot;source&quot;: &quot;C:\\Windows\\System32\\notepad.exe&quot;, &quot;dest&quot;: &quot;C:\\Users\\Public\\npcopy.exe&quot; }'
 {
     &quot;id&quot;: 310008463,

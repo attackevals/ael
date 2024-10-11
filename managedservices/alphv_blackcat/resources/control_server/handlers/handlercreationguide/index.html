@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/ael">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.781992544188">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.781992821865">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -35,12 +35,12 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../../../../favicon.png" rel="icon">
-    <link href="../../../../../../resources/css/retype.css?v=3.6.0.781992544188" rel="stylesheet">
+    <link href="../../../../../../resources/css/retype.css?v=3.6.0.781992821865" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../../../resources/js/config.js?v=3.6.0.781992544188" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../../../resources/js/config.js?v=3.6.0.781992821865" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../../../resources/js/lunr.js?v=3.6.0.781992544188" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../../../../resources/js/prism.js?v=3.6.0.781992544188" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../../../resources/js/lunr.js?v=3.6.0.781992821865" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../../../resources/js/prism.js?v=3.6.0.781992821865" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -255,20 +255,20 @@ a struct to represent your handler, as your handler will need to implement the u
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">// Represents our dummy HTTP handler. Will implement the util.Handler interface.
 type ExampleHttpHandler struct {
-	restAPIaddress string
-	server *http.Server
-	listenAddress string
+ restAPIaddress string
+ server *http.Server
+ listenAddress string
 }
 
 // Factory method for creating our handler
 func exampleHttpHandlerFactory() *ExampleHttpHandler {
-	// restAPIaddress, server, and listenAddress will be initialized when handler is started
-	return &amp;ExampleHttpHandler{}
+ // restAPIaddress, server, and listenAddress will be initialized when handler is started
+ return &amp;ExampleHttpHandler{}
 }
 
 // Creates and adds the ExampleHttpHandler to the map of available C2 handlers.
 func init() {
-	util.AvailableHandlers[&quot;examplehttphandler&quot;] = exampleHttpHandlerFactory()
+ util.AvailableHandlers[&quot;examplehttphandler&quot;] = exampleHttpHandlerFactory()
 }</code></pre>
 </doc-codeblock></div>
 <p>Note that we use a factory method to return our struct - this gives us more flexibility if we need to add more
@@ -278,11 +278,11 @@ must implement the util.Handler interface:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">// The Handler interface provides methods that all C2 handlers must implement.
 type Handler interface {
-	// Starts the handler given the rest API address string and configuration map.
-	StartHandler(string, config.HandlerConfigEntry) error
+ // Starts the handler given the rest API address string and configuration map.
+ StartHandler(string, config.HandlerConfigEntry) error
 
-	// Stops the given handler.
-	StopHandler() error
+ // Stops the given handler.
+ StopHandler() error
 }</code></pre>
 </doc-codeblock></div>
 <p>Since each handler may operate differently, we leave it up to the handler creaters to determine how to start and stop their handlers.

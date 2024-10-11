@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/ael">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.781992544188">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.781992821865">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -37,11 +37,11 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../../favicon.png" rel="icon">
-    <link href="../../../../resources/css/retype.css?v=3.6.0.781992544188" rel="stylesheet">
+    <link href="../../../../resources/css/retype.css?v=3.6.0.781992821865" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.781992544188" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.781992821865" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.781992544188" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.781992821865" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -234,34 +234,25 @@ It also provides the ability to create a formated cpp array of the shellcode for
 <p>When compiling payloads to be run via dll side-loading, ensure that you are using the &#x27;Release&#x27; flag in cmake. It will not work if compiled as &#x27;Debug&#x27;.</p>
 <p>Run from <code v-pre>SigLoader</code> folder:</p>
 <ol>
-<li>Building SigLoader for SodaMaster and FYAnti
+<li>Building SigLoader for SodaMaster and FYAnti</li>
+</ol>
 <ul>
 <li>The <code v-pre>build_sigloader.ps1</code> file will generate each section needed to run Sodamaster, this includes compiling the loaders and appending them to a DLL</li>
 <li>Check the variables at the top of the <code v-pre>build_sigloader.ps1</code> script and update them accordingly using your filenames and paths.</li>
 <li>If the Sodamaster DLL or FYAnti shellcode are missing from the <code v-pre>payload</code> directory, that build will be skipped</li>
 <li>Output files will be placed in their respective subdirectories</li>
-<li>Running the script
-<ul>
+<li>Running the script</li>
 <li><code v-pre>.\build_sigloader.ps1</code></li>
 </ul>
-</li>
-</ul>
-</li>
-<li>Generating just the shellcode
+<ol>
+<li>Generating just the shellcode</li>
+</ol>
 <ul>
-<li>Generating shellcode string
-<ul>
+<li>Generating shellcode string</li>
 <li><code v-pre>.\util\build_shellcode.ps1 -dllPath C:\Path\To\DLL.dll -funcName ExportedFunctionName -outFileName payload</code></li>
-</ul>
-</li>
-<li>Generating a cpp array for testing
-<ul>
+<li>Generating a cpp array for testing</li>
 <li><code v-pre>.\util\build_shellcode.ps1 -dllPath C:\Path\To\DLL.dll -funcName ExportedFunctionName -outFileName payload -cpp $True</code></li>
 </ul>
-</li>
-</ul>
-</li>
-</ol>
 <doc-anchor-target id="layer-1-loader">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#layer-1-loader">#</doc-anchor-trigger>
@@ -309,22 +300,13 @@ user who compiled the program, so they need to be removed.</p>
     </h3>
 </doc-anchor-target>
 <ol>
-<li>Compile the binary using CMake
-<ol>
+<li>Compile the binary using CMake</li>
 <li>In the CMake file update the variables to set the encryption order and keys</li>
-</ol>
-</li>
-<li>Create a text file with the data you want to embed
-<ol>
+<li>Create a text file with the data you want to embed</li>
 <li>For test purposes, named <code v-pre>test.txt</code></li>
-</ol>
-</li>
-<li>Run the binary with the <code v-pre>-i</code> flag
-<ol>
+<li>Run the binary with the <code v-pre>-i</code> flag</li>
 <li><code v-pre>sigflip.exe -i C:\\Path\\To\Signed\\Binary.dll .\\test.txt .\\modified_binary.dll</code></li>
 <li><code v-pre>sigflip.exe -i C:\\Windows\\System32\\kernel32.dll .\\test.txt .\\modified_kernel32.dll</code></li>
-</ol>
-</li>
 <li>Right click the new dll and confirm the signature is valid</li>
 <li>Take note of the payload size that is outputted from sigflip. This value needs to be added to the CMake file to compile the loader.</li>
 </ol>
@@ -345,37 +327,22 @@ user who compiled the program, so they need to be removed.</p>
 <p>A schedlued task is created to automatically run the executable that loads SigLoader. The task can be generated for either a domain admin or System.</p>
 <p>Open an administrative shell to run the following commands:</p>
 <ol>
-<li>Domain Admin
-<ol>
+<li>Domain Admin</li>
 <li><code v-pre>schtasks /create /sc minute /mo &lt;how often to run&gt; /tn &lt;Name of Task&gt; /tr &lt;Path to Executable&gt; /rl &lt;Privilege Level&gt;</code></li>
 <li><code v-pre>schtasks /create /sc minute /mo 15 /tn &quot;Notepad++ Script&quot; /tr &quot;C:\Program Files\Notepad++\notepad++.exe&quot; /rl HIGHEST</code></li>
-</ol>
-</li>
-<li>System
-<ol>
+<li>System</li>
 <li><code v-pre>schtasks /create /sc minute /mo &lt;how often to run&gt; /tn &lt;Name of Task&gt; /tr &lt;Path to Executable&gt; /rl &lt;Privilege Level&gt; /ru System</code></li>
 <li><code v-pre>schtasks /create /sc minute /mo 15 /tn &quot;Notepad++ Script&quot; /tr &quot;C:\Program Files\Notepad++\notepad++.exe&quot; /rl HIGHEST /ru System</code></li>
-</ol>
-</li>
-<li>Run From DC to Remote Server
-<ol>
+<li>Run From DC to Remote Server</li>
 <li><code v-pre>schtasks /create /sc minute /mo &lt;how often to run&gt; /tn &lt;Name of Task&gt; /tr &lt;Path to Executable&gt; /rl &lt;Privilege Level&gt; /s &lt;Remote Server Name&gt; /ru &lt;User&gt;</code></li>
-</ol>
-</li>
 </ol>
 <p>Deleting the Scheduled Task</p>
 <ol>
-<li>Locally:
-<ol>
+<li>Locally:</li>
 <li><code v-pre>schtasks /delete /tn &lt;Name of Task&gt; /f</code></li>
 <li><code v-pre>schtasks /delete /tn &quot;Notepad++ Script&quot; /f</code></li>
-</ol>
-</li>
-<li>Remotely
-<ol>
+<li>Remotely</li>
 <li><code v-pre>schtasks /delete /tn &lt;Name of Task&gt; /s &lt;Remote Server Name&gt; /f</code></li>
-</ol>
-</li>
 </ol>
 <doc-anchor-target id="cleanup">
     <h2>
@@ -402,10 +369,10 @@ or scheduled task created to run SigLoader.</p>
     </h2>
 </doc-anchor-target>
 <ol>
-<li><a href="https://securelist.com/apt10-sophisticated-multi-layered-loader-ecipekac-discovered-in-a41apt-campaign/101519/#:%7E:text=The%20Ecipekac%20Layer%20I,it%E2%80%99s%20divisible%20by%20eight" class="outbound" target="_blank"><span>https://securelist.com/apt10-sophisticated-multi-layered-loader-ecipekac-discovered-in-a41apt-campaign/101519/#:~:text=The%20Ecipekac%20Layer%20I,it%E2%80%99s%20divisible%20by%20eight</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
-<li><a href="https://github.com/med0x2e/SigFlip" class="outbound" target="_blank"><span>https://github.com/med0x2e/SigFlip</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
-<li><a href="https://github.com/monoxgas/sRDI" class="outbound" target="_blank"><span>https://github.com/monoxgas/sRDI</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
-<li><a href="https://github.com/magnusstubman/dll-exports/tree/main" class="outbound" target="_blank"><span>https://github.com/magnusstubman/dll-exports/tree/main</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://securelist.com/apt10-sophisticated-multi-layered-loader-ecipekac-discovered-in-a41apt-campaign/101519/#:%7E:text=The%20Ecipekac%20Layer%20I,it%E2%80%99s%20divisible%20by%20eight">https://securelist.com/apt10-sophisticated-multi-layered-loader-ecipekac-discovered-in-a41apt-campaign/101519/#:~:text=The%20Ecipekac%20Layer%20I,it%E2%80%99s%20divisible%20by%20eight</a></li>
+<li><a href="https://github.com/med0x2e/SigFlip">https://github.com/med0x2e/SigFlip</a></li>
+<li><a href="https://github.com/monoxgas/sRDI">https://github.com/monoxgas/sRDI</a></li>
+<li><a href="https://github.com/magnusstubman/dll-exports/tree/main">https://github.com/magnusstubman/dll-exports/tree/main</a></li>
 </ol>
 
                                 

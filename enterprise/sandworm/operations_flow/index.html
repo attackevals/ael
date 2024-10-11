@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/ael">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.781992544188">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.781992821865">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -37,11 +37,11 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../favicon.png" rel="icon">
-    <link href="../../../resources/css/retype.css?v=3.6.0.781992544188" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.6.0.781992821865" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.6.0.781992544188" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.6.0.781992821865" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.6.0.781992544188" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.6.0.781992821865" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -221,19 +221,81 @@ In our scenario, a group of developers from the Holtzman organization decided to
     </h1>
 </doc-anchor-target>
 <p><span class="docs-emoji">&#x1F463;</span>
-Steps start at 11 to follow emulation procedures
-| Steps | User Story | Software | Report Links |
-| :-----------: | ----------- | ----------- | ----------- |
-| Not in Play </br>Step 00 | Sandworm identifies a vulnerability in an open source tool, Weirdingway. When deployed with the default configurations, a webpage is exposed to the open internet.</br></br><strong>Analyst Comment:</strong> <em>Due to environment limitations for using exploits, operators use SSH to access the host and deploy the PAS webshell</em> | Exploit| <a href="https://www.cert.ssi.gouv.fr/uploads/CERTFR-2021-CTI-005.pdf" class="outbound" target="_blank"><span>https://www.cert.ssi.gouv.fr/uploads/CERTFR-2021-CTI-005.pdf</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> |
-| Step 11 | Sandworm logs into the Caladan host via SSH and deploys a PHP webshell as persistence.​ | P.A.S. webshell | <a href="https://www.us-cert.gov/ics/alerts/IR-ALERT-H-16-056-01" class="outbound" target="_blank"><span>https://www.us-cert.gov/ics/alerts/IR-ALERT-H-16-056-01</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> <br> <a href="https://www.cert.ssi.gouv.fr/uploads/CERTFR-2021-CTI-005.pdf" class="outbound" target="_blank"><span>https://www.cert.ssi.gouv.fr/uploads/CERTFR-2021-CTI-005.pdf</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> |
-|Step 12|Sandworm enumerates information about the compromised system by issuing shell commands through the PHP webshell.​ Executed commands include whoami, uname, ls, etc. | P.A.S. webshell | <a href="https://www.justice.gov/opa/press-release/file/1328521/download" class="outbound" target="_blank"><span>https://www.justice.gov/opa/press-release/file/1328521/download</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> </br>https://www.welivesecurity.com/2017/07/04/analysis-of-telebots-cunning-backdoor/ |
-| Step 13 | Sandworm downloads the Linux\Exaramel ELF executable via the webshell, modifies the file permissions, then executes Linux\Exaramel. Linux\Exaramel establishes connection to the C2. | P.A.S. webshell <br>Linux\Exaramel | <a href="https://www.justice.gov/opa/press-release/file/1328521/download" class="outbound" target="_blank"><span>https://www.justice.gov/opa/press-release/file/1328521/download</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> |
-| Step 14 | Exaramel installs two persistence mechanisms (cron &amp; systemd) then exfiltrates the /etc/shadow, bash history, and SSH keys. Performing offline password cracking, Sandworm obtains credentials for Frank Herbert on the Gammu host. | Linux\Exaramel | <a href="https://www.welivesecurity.com/2018/10/11/new-telebots-backdoor-linking-industroyer-notpetya/" class="outbound" target="_blank"><span>https://www.welivesecurity.com/2018/10/11/new-telebots-backdoor-linking-industroyer-notpetya/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> <br>https://www.cert.ssi.gouv.fr/uploads/CERTFR-2021-CTI-005.pdf |
-| Step 15 | Using Frank Herbert&#x27;s credentials, obtained from the previous step, Sandworm uploads Windows/Exaramel to the Gammu host using the smbclient. Persistence is established using registry keys and Windows/Exaramel is executed upon Frank’s login to the Gammu host. | Windows/Exaramel </br>PsExec | <a href="https://blog.talosintelligence.com/2017/06/worldwide-ransomware-variant.html" class="outbound" target="_blank"><span>https://blog.talosintelligence.com/2017/06/worldwide-ransomware-variant.html</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> <br> <a href="https://securelist.com/be2-custom-plugins-router-abuse-and-target-profiles/67353/" class="outbound" target="_blank"><span>https://securelist.com/be2-custom-plugins-router-abuse-and-target-profiles/67353/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a><br>https://blog.talosintelligence.com/2018/02/olympic-destroyer.html<br>https://www.welivesecurity.com/2017/07/04/analysis-of-telebots-cunning-backdoor/|
-|Step 16|Sandworm conducts local host and network discovery, specifically looking for open RDP sessions. |Windows/Exaramel|https://www.justice.gov/opa/press-release/file/1328521/download<br>https://www.welivesecurity.com/2016/12/13/rise-telebots-analyzing-disruptive-killdisk-attacks/<br>https://www.welivesecurity.com/2017/07/04/analysis-of-telebots-cunning-backdoor/|
-|Step 17|Sandworm downloads two files associated with credential harvesting tools to the Gammu host. Once executed, Sandworm obtains domain admin credentials from an active RDP session.<br>Sandworm then enumerates all domain hosts using dsquery.|oradump/LaZagne variant (CredRaptor &amp; Plainpwd)<br>Win64.Spy.KeyLogger.G| <a href="https://www.welivesecurity.com/2016/12/13/rise-telebots-analyzing-disruptive-killdisk-attacks/" class="outbound" target="_blank"><span>https://www.welivesecurity.com/2016/12/13/rise-telebots-analyzing-disruptive-killdisk-attacks/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> <br>https://www.welivesecurity.com/2017/06/30/telebots-back-supply-chain-attacks-against-ukraine/|
-|Step 18|Using credentials from the active RDP session on Gammu, Sandworm RDPs into the Arrakis host as Paul Atreides, patreides.<br>Sandworm uploads NotPetya to Arrakis over a network share tunneled through the RDP connection.|RDP<br>NotPetya|https://www.justice.gov/opa/press-release/file/1328521/download<br>https://www.welivesecurity.com/2016/12/13/rise-telebots-analyzing-disruptive-killdisk-attacks/<br>https://www.welivesecurity.com/2018/10/11/new-telebots-backdoor-linking-industroyer-notpetya/|
-|Step 19|After additional discovery, the Arrakis host is determined the ideal location to deploy NotPetya. When executed, NotPetya creates a scheduled task, searches for connected devices, dumps credentials, copies itself to discovered hosts, and executes itself on the new host. Simultaiously, NotPetya searches for files with specific file extensions, encrypts the files, drops a ransom note, clears Window&#x27;s event logs and executes the scheduled task to reboot. | NotPetya| <a href="https://blog.talosintelligence.com/2017/06/worldwide-ransomware-variant.html" class="outbound" target="_blank"><span>https://blog.talosintelligence.com/2017/06/worldwide-ransomware-variant.html</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a><br>https://www.us-cert.gov/ncas/alerts/TA17-181A<br>https://www.justice.gov/opa/press-release/file/1328521/download|</p>
+Steps start at 11 to follow emulation procedures</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th style="text-align: center;">Steps</th>
+<th>User Story</th>
+<th>Software</th>
+<th>Report Links</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Not in Play </br>Step 00</td>
+<td>Sandworm identifies a vulnerability in an open source tool, Weirdingway. When deployed with the default configurations, a webpage is exposed to the open internet.</br></br><strong>Analyst Comment:</strong> <em>Due to environment limitations for using exploits, operators use SSH to access the host and deploy the PAS webshell</em></td>
+<td>Exploit</td>
+<td><a href="https://www.cert.ssi.gouv.fr/uploads/CERTFR-2021-CTI-005.pdf">https://www.cert.ssi.gouv.fr/uploads/CERTFR-2021-CTI-005.pdf</a></td>
+</tr>
+<tr>
+<td style="text-align: center;">Step 11</td>
+<td>Sandworm logs into the Caladan host via SSH and deploys a PHP webshell as persistence.​</td>
+<td>P.A.S. webshell</td>
+<td><a href="https://www.us-cert.gov/ics/alerts/IR-ALERT-H-16-056-01">https://www.us-cert.gov/ics/alerts/IR-ALERT-H-16-056-01</a> <br> <a href="https://www.cert.ssi.gouv.fr/uploads/CERTFR-2021-CTI-005.pdf">https://www.cert.ssi.gouv.fr/uploads/CERTFR-2021-CTI-005.pdf</a></td>
+</tr>
+<tr>
+<td style="text-align: center;">Step 12</td>
+<td>Sandworm enumerates information about the compromised system by issuing shell commands through the PHP webshell.​ Executed commands include whoami, uname, ls, etc.</td>
+<td>P.A.S. webshell</td>
+<td><a href="https://www.justice.gov/opa/press-release/file/1328521/download">https://www.justice.gov/opa/press-release/file/1328521/download</a> </br><a href="https://www.welivesecurity.com/2017/07/04/analysis-of-telebots-cunning-backdoor/">https://www.welivesecurity.com/2017/07/04/analysis-of-telebots-cunning-backdoor/</a></td>
+</tr>
+<tr>
+<td style="text-align: center;">Step 13</td>
+<td>Sandworm downloads the Linux\Exaramel ELF executable via the webshell, modifies the file permissions, then executes Linux\Exaramel. Linux\Exaramel establishes connection to the C2.</td>
+<td>P.A.S. webshell <br>Linux\Exaramel</td>
+<td><a href="https://www.justice.gov/opa/press-release/file/1328521/download">https://www.justice.gov/opa/press-release/file/1328521/download</a></td>
+</tr>
+<tr>
+<td style="text-align: center;">Step 14</td>
+<td>Exaramel installs two persistence mechanisms (cron &amp; systemd) then exfiltrates the /etc/shadow, bash history, and SSH keys. Performing offline password cracking, Sandworm obtains credentials for Frank Herbert on the Gammu host.</td>
+<td>Linux\Exaramel</td>
+<td><a href="https://www.welivesecurity.com/2018/10/11/new-telebots-backdoor-linking-industroyer-notpetya/">https://www.welivesecurity.com/2018/10/11/new-telebots-backdoor-linking-industroyer-notpetya/</a> <br><a href="https://www.cert.ssi.gouv.fr/uploads/CERTFR-2021-CTI-005.pdf">https://www.cert.ssi.gouv.fr/uploads/CERTFR-2021-CTI-005.pdf</a></td>
+</tr>
+<tr>
+<td style="text-align: center;">Step 15</td>
+<td>Using Frank Herbert&#x27;s credentials, obtained from the previous step, Sandworm uploads Windows/Exaramel to the Gammu host using the smbclient. Persistence is established using registry keys and Windows/Exaramel is executed upon Frank’s login to the Gammu host.</td>
+<td>Windows/Exaramel </br>PsExec</td>
+<td><a href="https://blog.talosintelligence.com/2017/06/worldwide-ransomware-variant.html">https://blog.talosintelligence.com/2017/06/worldwide-ransomware-variant.html</a> <br> <a href="https://securelist.com/be2-custom-plugins-router-abuse-and-target-profiles/67353/">https://securelist.com/be2-custom-plugins-router-abuse-and-target-profiles/67353/</a><br><a href="https://blog.talosintelligence.com/2018/02/olympic-destroyer.html">https://blog.talosintelligence.com/2018/02/olympic-destroyer.html</a><br><a href="https://www.welivesecurity.com/2017/07/04/analysis-of-telebots-cunning-backdoor/">https://www.welivesecurity.com/2017/07/04/analysis-of-telebots-cunning-backdoor/</a></td>
+</tr>
+<tr>
+<td style="text-align: center;">Step 16</td>
+<td>Sandworm conducts local host and network discovery, specifically looking for open RDP sessions.</td>
+<td>Windows/Exaramel</td>
+<td><a href="https://www.justice.gov/opa/press-release/file/1328521/download">https://www.justice.gov/opa/press-release/file/1328521/download</a><br><a href="https://www.welivesecurity.com/2016/12/13/rise-telebots-analyzing-disruptive-killdisk-attacks/">https://www.welivesecurity.com/2016/12/13/rise-telebots-analyzing-disruptive-killdisk-attacks/</a><br><a href="https://www.welivesecurity.com/2017/07/04/analysis-of-telebots-cunning-backdoor/">https://www.welivesecurity.com/2017/07/04/analysis-of-telebots-cunning-backdoor/</a></td>
+</tr>
+<tr>
+<td style="text-align: center;">Step 17</td>
+<td>Sandworm downloads two files associated with credential harvesting tools to the Gammu host. Once executed, Sandworm obtains domain admin credentials from an active RDP session.<br>Sandworm then enumerates all domain hosts using dsquery.</td>
+<td>oradump/LaZagne variant (CredRaptor &amp; Plainpwd)<br>Win64.Spy.KeyLogger.G</td>
+<td><a href="https://www.welivesecurity.com/2016/12/13/rise-telebots-analyzing-disruptive-killdisk-attacks/">https://www.welivesecurity.com/2016/12/13/rise-telebots-analyzing-disruptive-killdisk-attacks/</a> <br><a href="https://www.welivesecurity.com/2017/06/30/telebots-back-supply-chain-attacks-against-ukraine/">https://www.welivesecurity.com/2017/06/30/telebots-back-supply-chain-attacks-against-ukraine/</a></td>
+</tr>
+<tr>
+<td style="text-align: center;">Step 18</td>
+<td>Using credentials from the active RDP session on Gammu, Sandworm RDPs into the Arrakis host as Paul Atreides, patreides.<br>Sandworm uploads NotPetya to Arrakis over a network share tunneled through the RDP connection.</td>
+<td>RDP<br>NotPetya</td>
+<td><a href="https://www.justice.gov/opa/press-release/file/1328521/download">https://www.justice.gov/opa/press-release/file/1328521/download</a><br><a href="https://www.welivesecurity.com/2016/12/13/rise-telebots-analyzing-disruptive-killdisk-attacks/">https://www.welivesecurity.com/2016/12/13/rise-telebots-analyzing-disruptive-killdisk-attacks/</a><br><a href="https://www.welivesecurity.com/2018/10/11/new-telebots-backdoor-linking-industroyer-notpetya/">https://www.welivesecurity.com/2018/10/11/new-telebots-backdoor-linking-industroyer-notpetya/</a></td>
+</tr>
+<tr>
+<td style="text-align: center;">Step 19</td>
+<td>After additional discovery, the Arrakis host is determined the ideal location to deploy NotPetya. When executed, NotPetya creates a scheduled task, searches for connected devices, dumps credentials, copies itself to discovered hosts, and executes itself on the new host. Simultaiously, NotPetya searches for files with specific file extensions, encrypts the files, drops a ransom note, clears Window&#x27;s event logs and executes the scheduled task to reboot.</td>
+<td>NotPetya</td>
+<td><a href="https://blog.talosintelligence.com/2017/06/worldwide-ransomware-variant.html">https://blog.talosintelligence.com/2017/06/worldwide-ransomware-variant.html</a><br><a href="https://www.us-cert.gov/ncas/alerts/TA17-181A">https://www.us-cert.gov/ncas/alerts/TA17-181A</a><br><a href="https://www.justice.gov/opa/press-release/file/1328521/download">https://www.justice.gov/opa/press-release/file/1328521/download</a></td>
+</tr>
+</tbody>
+</table>
+</div>
 <doc-anchor-target id="infrastructure-diagram">
     <h1>
         <doc-anchor-trigger class="header-anchor-trigger" to="#infrastructure-diagram">#</doc-anchor-trigger>

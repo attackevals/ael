@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/ael">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.781992544188">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.781992821865">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -37,12 +37,12 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../../favicon.png" rel="icon">
-    <link href="../../../../resources/css/retype.css?v=3.6.0.781992544188" rel="stylesheet">
+    <link href="../../../../resources/css/retype.css?v=3.6.0.781992821865" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.781992544188" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.781992821865" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.781992544188" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.6.0.781992544188" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.781992821865" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.6.0.781992821865" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -301,7 +301,7 @@
 <pre class="language-none"><code v-pre class="language-none">ssh ubuntu@192.168.0.5</code></pre>
 </doc-codeblock></div>
 <ol>
-<li>Download the Blind Eagle ATTACK Evaluations Library to the <code v-pre>/opt</code> folder on your Linux Web Machine
+<li><p>Download the Blind Eagle ATTACK Evaluations Library to the <code v-pre>/opt</code> folder on your Linux Web Machine</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-bash"><code v-pre class="language-bash">cd /opt/</code></pre>
 </doc-codeblock></div>
@@ -309,7 +309,7 @@
 <pre class="language-bash"><code v-pre class="language-bash">git clone https://github.com/center-for-threat-informed-defense/blackhat-2023-becoming-a-dark-knight-emulation</code></pre>
 </doc-codeblock></div>
 </li>
-<li><code v-pre>cd</code> to <code v-pre>/opt/blackhat-2023-becoming-a-dark-knight-emulation</code> and use <code v-pre>unzip -P malware Resources/Binaries/Binaries.zip</code> to extract payloads
+<li><p><code v-pre>cd</code> to <code v-pre>/opt/blackhat-2023-becoming-a-dark-knight-emulation</code> and use <code v-pre>unzip -P malware Resources/Binaries/Binaries.zip</code> to extract payloads</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-bash"><code v-pre class="language-bash">cd /opt/blackhat-2023-becoming-a-dark-knight-emulation</code></pre>
 </doc-codeblock></div>
@@ -317,12 +317,12 @@
 <pre class="language-bash"><code v-pre class="language-bash">unzip -P malware Resources/Binaries/Binaries.zip</code></pre>
 </doc-codeblock></div>
 </li>
-<li>Create a the following directories to host payloads from the attack users home directory:
+<li><p>Create a the following directories to host payloads from the attack users home directory:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-bash"><code v-pre class="language-bash">mkdir -p ~/web/{rump,dll,notificaciones/contribuyentes/factura-228447578537}</code></pre>
 </doc-codeblock></div>
 </li>
-<li>Use the Shell commands below to populate the binaries in the expected directories for the scenario:
+<li><p>Use the Shell commands below to populate the binaries in the expected directories for the scenario:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-bash"><code v-pre class="language-bash">cp Resources/Binaries/asy.txt ~/web</code></pre>
 </doc-codeblock></div>
@@ -339,7 +339,7 @@
 <pre class="language-none"><code v-pre class="language-none">cp Resources/Binaries/index.html ~/web/notificaciones/contribuyentes/factura-228447578537</code></pre>
 </doc-codeblock></div>
 </li>
-<li>SCP the bancomurcielago website built using Django CMS to the victim Web server <span class="docs-emoji">&#x2757;</span> this will be used in a later configuration step
+<li><p>SCP the bancomurcielago website built using Django CMS to the victim Web server <span class="docs-emoji">&#x2757;</span> this will be used in a later configuration step</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-bash"><code v-pre class="language-bash">scp /opt/blackhat-2023-becoming-a-dark-knight-emulation/Resources/Binaries/django-cms-quickstart.zip ubuntu@10.1.0.4:/opt</code></pre>
 </doc-codeblock></div>
@@ -477,18 +477,18 @@ some tradecraft is likely to be blocked by modern EDR solutions (we hope)</p>
     </h3>
 </doc-anchor-target>
 <ol>
-<li>Remove any prior Docker and Docker-Compose installations:
+<li><p>Remove any prior Docker and Docker-Compose installations:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-bash"><code v-pre class="language-bash">for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do sudo apt-get remove $pkg; done</code></pre>
 </doc-codeblock></div>
 </li>
-<li>Install prerequisite packages:
+<li><p>Install prerequisite packages:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-bash"><code v-pre class="language-bash">sudo apt-get update
 sudo apt-get install ca-certificates curl gnupg</code></pre>
 </doc-codeblock></div>
 </li>
-<li>Set up Docker APT repo:
+<li><p>Set up Docker APT repo:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-bash"><code v-pre class="language-bash"># add gpg key
 sudo install -m 0755 -d /etc/apt/keyrings
@@ -505,17 +505,17 @@ sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
 sudo apt update</code></pre>
 </doc-codeblock></div>
 </li>
-<li>Install Docker and Docker Compose:
+<li><p>Install Docker and Docker Compose:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-bash"><code v-pre class="language-bash">sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin unzip</code></pre>
 </doc-codeblock></div>
 </li>
-<li>unzip website built with Django CMS in <code v-pre>/opt/</code> on <code v-pre>bancomurcielago-linux-srv3</code>
+<li><p>unzip website built with Django CMS in <code v-pre>/opt/</code> on <code v-pre>bancomurcielago-linux-srv3</code></p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-bash"><code v-pre class="language-bash">unzip /opt/django-cms-quickstart.zip</code></pre>
 </doc-codeblock></div>
 </li>
-<li>Run the website with Docker:
+<li><p>Run the website with Docker:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-bash"><code v-pre class="language-bash">cd /opt/django-cms-quickstart
 sudo docker compose up -d</code></pre>

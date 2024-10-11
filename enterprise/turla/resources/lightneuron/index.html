@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/ael">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.781992544188">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.781992821865">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -15,7 +15,7 @@
     <!-- Primary Meta Tags -->
     <title>LightNeuron</title>
     <meta name="title" content="LightNeuron">
-    <meta name="description" content="LightNeuron is broken up into the following components:| Component | Description || --- | --- || Transport Agent | Microsoft transport agent |">
+    <meta name="description" content="LightNeuron is broken up into the following components:">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://attackevals.github.io/ael/enterprise/turla/resources/lightneuron/">
@@ -24,22 +24,22 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://attackevals.github.io/ael/enterprise/turla/resources/lightneuron/">
     <meta property="og:title" content="LightNeuron">
-    <meta property="og:description" content="LightNeuron is broken up into the following components:| Component | Description || --- | --- || Transport Agent | Microsoft transport agent |">
+    <meta property="og:description" content="LightNeuron is broken up into the following components:">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://attackevals.github.io/ael/enterprise/turla/resources/lightneuron/">
     <meta property="twitter:title" content="LightNeuron">
-    <meta property="twitter:description" content="LightNeuron is broken up into the following components:| Component | Description || --- | --- || Transport Agent | Microsoft transport agent |">
+    <meta property="twitter:description" content="LightNeuron is broken up into the following components:">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../../favicon.png" rel="icon">
-    <link href="../../../../resources/css/retype.css?v=3.6.0.781992544188" rel="stylesheet">
+    <link href="../../../../resources/css/retype.css?v=3.6.0.781992821865" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.781992544188" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.781992821865" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.781992544188" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.781992821865" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -209,14 +209,39 @@
         <span>LightNeuron</span>
     </h1>
 </doc-anchor-target>
-<p>LightNeuron is broken up into the following components:
-| Component | Description |
-| --- | --- |
-| Transport Agent | Microsoft transport agent |
-| Companion DLL | Malicious companion code |
-| PowerShell Install Script | Installs the transport agent |
-| Configuration File | Configuration of companion DLL C2 communications |
-| Rule File | Configuration of LightNeuron&#x27;s email processing behavior |</p>
+<p>LightNeuron is broken up into the following components:</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Transport Agent</td>
+<td>Microsoft transport agent</td>
+</tr>
+<tr>
+<td>Companion DLL</td>
+<td>Malicious companion code</td>
+</tr>
+<tr>
+<td>PowerShell Install Script</td>
+<td>Installs the transport agent</td>
+</tr>
+<tr>
+<td>Configuration File</td>
+<td>Configuration of companion DLL C2 communications</td>
+</tr>
+<tr>
+<td>Rule File</td>
+<td>Configuration of LightNeuron&#x27;s email processing behavior</td>
+</tr>
+</tbody>
+</table>
+</div>
 <doc-anchor-target id="build-instructions">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#build-instructions">#</doc-anchor-trigger>
@@ -352,17 +377,20 @@ ctest</code></pre>
     </h3>
 </doc-anchor-target>
 <ol>
-<li>Open an admin PowerShell in the LightNeuron directory</li>
-<li>Run the following to install all components of LightNeuron:
+<li><p>Open an admin PowerShell in the LightNeuron directory</p>
+</li>
+<li><p>Run the following to install all components of LightNeuron:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">powershell .\setup.ps1</code></pre>
 </doc-codeblock></div>
-This will copy over the rule file, configuration file, Companion DLL (from the CompanionDLL/data directory),
-and the transport agent <code v-pre>Microsoft.Exchange.Transport.Agent.ConnectionFiltering.dll</code> (from the TransportAgent/Microsoft.Exchange.Transport.Agent.ConnectionFiltering directory).</li>
-<li>Once the setup script has finished executing, you may begin sending emails that will be collected by LightNeuron
-as indicated by its rule file</li>
-<li>To tear down the full implant testing, run the following from the same admin PowerShell
-terminal from earlier (or open a new admin PowerShell) to delete all artifacts:
+<p>This will copy over the rule file, configuration file, Companion DLL (from the CompanionDLL/data directory),
+and the transport agent <code v-pre>Microsoft.Exchange.Transport.Agent.ConnectionFiltering.dll</code> (from the TransportAgent/Microsoft.Exchange.Transport.Agent.ConnectionFiltering directory).</p>
+</li>
+<li><p>Once the setup script has finished executing, you may begin sending emails that will be collected by LightNeuron
+as indicated by its rule file</p>
+</li>
+<li><p>To tear down the full implant testing, run the following from the same admin PowerShell
+terminal from earlier (or open a new admin PowerShell) to delete all artifacts:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">.\teardown.ps1</code></pre>
 </doc-codeblock></div>
@@ -513,18 +541,18 @@ been tweaked to msiex.ps1 instead.</p>
         <span>CTI Evidence</span>
     </h3>
 </doc-anchor-target>
-<p><a href="https://www.welivesecurity.com/wp-content/uploads/2019/05/ESET-LightNeuron.pdf" class="outbound" target="_blank"><span>https://www.welivesecurity.com/wp-content/uploads/2019/05/ESET-LightNeuron.pdf</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
+<p><a href="https://www.welivesecurity.com/wp-content/uploads/2019/05/ESET-LightNeuron.pdf">https://www.welivesecurity.com/wp-content/uploads/2019/05/ESET-LightNeuron.pdf</a></p>
 <doc-anchor-target id="references">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#references">#</doc-anchor-trigger>
         <span>References</span>
     </h3>
 </doc-anchor-target>
-<p><a href="https://docs.microsoft.com/en-us/exchange/client-developer/transport-agents/how-to-create-an-smtpreceiveagent-transport-agent-for-exchange-2013" class="outbound" target="_blank"><span>https://docs.microsoft.com/en-us/exchange/client-developer/transport-agents/how-to-create-an-smtpreceiveagent-transport-agent-for-exchange-2013</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
-<p><a href="https://docs.microsoft.com/en-us/exchange/client-developer/transport-agents/how-to-create-a-routingagent-transport-agent-for-exchange-2013" class="outbound" target="_blank"><span>https://docs.microsoft.com/en-us/exchange/client-developer/transport-agents/how-to-create-a-routingagent-transport-agent-for-exchange-2013</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
-<p><a href="https://stackoverflow.com/a/13935718" class="outbound" target="_blank"><span>https://stackoverflow.com/a/13935718</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
-<p><a href="https://github.com/ReneNyffenegger/cpp-base64" class="outbound" target="_blank"><span>https://github.com/ReneNyffenegger/cpp-base64</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
-<p><a href="https://github.com/zeux/pugixml" class="outbound" target="_blank"><span>https://github.com/zeux/pugixml</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
+<p><a href="https://docs.microsoft.com/en-us/exchange/client-developer/transport-agents/how-to-create-an-smtpreceiveagent-transport-agent-for-exchange-2013">https://docs.microsoft.com/en-us/exchange/client-developer/transport-agents/how-to-create-an-smtpreceiveagent-transport-agent-for-exchange-2013</a></p>
+<p><a href="https://docs.microsoft.com/en-us/exchange/client-developer/transport-agents/how-to-create-a-routingagent-transport-agent-for-exchange-2013">https://docs.microsoft.com/en-us/exchange/client-developer/transport-agents/how-to-create-a-routingagent-transport-agent-for-exchange-2013</a></p>
+<p><a href="https://stackoverflow.com/a/13935718">https://stackoverflow.com/a/13935718</a></p>
+<p><a href="https://github.com/ReneNyffenegger/cpp-base64">https://github.com/ReneNyffenegger/cpp-base64</a></p>
+<p><a href="https://github.com/zeux/pugixml">https://github.com/zeux/pugixml</a></p>
 
                                 
                                 <!-- Required only on API pages -->

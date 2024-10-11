@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/ael">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.781992544188">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.781992821865">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -15,7 +15,7 @@
     <!-- Primary Meta Tags -->
     <title>Emotet</title>
     <meta name="title" content="Emotet">
-    <meta name="description" content="The Emotet client is broken up into the following components:| Component | Description || --- | --- |">
+    <meta name="description" content="The Emotet client is broken up into the following components:">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://attackevals.github.io/ael/enterprise/wizard_spider/resources/emotet/">
@@ -24,22 +24,22 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://attackevals.github.io/ael/enterprise/wizard_spider/resources/emotet/">
     <meta property="og:title" content="Emotet">
-    <meta property="og:description" content="The Emotet client is broken up into the following components:| Component | Description || --- | --- |">
+    <meta property="og:description" content="The Emotet client is broken up into the following components:">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://attackevals.github.io/ael/enterprise/wizard_spider/resources/emotet/">
     <meta property="twitter:title" content="Emotet">
-    <meta property="twitter:description" content="The Emotet client is broken up into the following components:| Component | Description || --- | --- |">
+    <meta property="twitter:description" content="The Emotet client is broken up into the following components:">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../../favicon.png" rel="icon">
-    <link href="../../../../resources/css/retype.css?v=3.6.0.781992544188" rel="stylesheet">
+    <link href="../../../../resources/css/retype.css?v=3.6.0.781992821865" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.781992544188" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.781992821865" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.781992544188" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.781992821865" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -209,12 +209,31 @@
         <span>Emotet</span>
     </h1>
 </doc-anchor-target>
-<p>The Emotet client is broken up into the following components:
-| Component | Description |
-| --- | --- |
-| EmotetClientDLL | The main implant in DLL format |
-| OutlookScraper | Outlook scraper module |
-| LatMovementDLL | Lateral movement module |</p>
+<p>The Emotet client is broken up into the following components:</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EmotetClientDLL</td>
+<td>The main implant in DLL format</td>
+</tr>
+<tr>
+<td>OutlookScraper</td>
+<td>Outlook scraper module</td>
+</tr>
+<tr>
+<td>LatMovementDLL</td>
+<td>Lateral movement module</td>
+</tr>
+</tbody>
+</table>
+</div>
 <doc-anchor-target id="build-instructions">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#build-instructions">#</doc-anchor-trigger>
@@ -229,9 +248,9 @@
 </doc-anchor-target>
 <p>Open the developer command prompt, navigate to directory containing the Emotet Client DLL Visual Studio solution file (EmotetClientDLL.sln), and run the devenv.exe command:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">cd %userprofile%\wizard_spider\Resources\Emotet\EmotetClientDLL
-devenv.exe EmotetClientDLL.sln /build Release</code></pre>
+<pre class="language-none"><code v-pre class="language-none">cd %userprofile%\wizard_spider\Resources\Emotet\EmotetClientDLL</code></pre>
 </doc-codeblock></div>
+<p>devenv.exe EmotetClientDLL.sln /build Release</p>
 <p>Wait about 3 minutes for the build to finish.</p>
 <p>The executable will be found in the Release folder:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
@@ -246,9 +265,9 @@ devenv.exe EmotetClientDLL.sln /build Release</code></pre>
 </doc-anchor-target>
 <p>Open the command prompt (cmd.exe), navigate to directory containing the Outlook Scaper Visual Studio solution file (OutlookScraper.sln), and run the devenv.exe command:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">cd wizard_spider\Resources
-&quot;C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\devenv.exe&quot; OutlookScraper.sln /build Release</code></pre>
+<pre class="language-none"><code v-pre class="language-none">cd wizard_spider\Resources</code></pre>
 </doc-codeblock></div>
+<p>&quot;C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\devenv.exe&quot; OutlookScraper.sln /build Release</p>
 <p>The executable will be found in the Release folder.</p>
 <doc-anchor-target id="test-instructions">
     <h2>
@@ -258,9 +277,9 @@ devenv.exe EmotetClientDLL.sln /build Release</code></pre>
 </doc-anchor-target>
 <p>Open the command prompt (cmd.exe), navigate to directory containing the Emotet Client DLL Visual Studio solution file (EmotetClientDLL.sln), and run the devenv.exe command:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">cd wizard_spider\Resources
-&quot;C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\devenv.exe&quot; EmotetClientDLL.sln</code></pre>
+<pre class="language-none"><code v-pre class="language-none">cd wizard_spider\Resources</code></pre>
 </doc-codeblock></div>
+<p>&quot;C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\devenv.exe&quot; EmotetClientDLL.sln</p>
 <p>Previous command will open project in Visual Studio, run all tests by opening the Test Explorer and clicking in on &quot;Run All Test In View&quot;.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">Test &gt; Test Explorer &gt; &quot;Run All Test In View&quot; button</code></pre>
@@ -288,12 +307,10 @@ devenv.exe EmotetClientDLL.sln /build Release</code></pre>
     </h2>
 </doc-anchor-target>
 <p>Open a command prompt or PowerShell and navigate to the directory from where the DLL was ran.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">del EmotetClientDLL.dll (or renamed)
+<p>del EmotetClientDLL.dll (or renamed)
 del Outlook.dll (if installed)
 del LatMovementDLL.dll (if installed)
-del PAExec.exe (if installed)</code></pre>
-</doc-codeblock></div>
+del PAExec.exe (if installed)</p>
 <doc-anchor-target id="misc">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#misc">#</doc-anchor-trigger>
@@ -314,20 +331,20 @@ del PAExec.exe (if installed)</code></pre>
         <span>CTI Evidence</span>
     </h3>
 </doc-anchor-target>
-<p><a href="https://attack.mitre.org/software/S0367" class="outbound" target="_blank"><span>https://attack.mitre.org/software/S0367</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>
-<a href="https://www.cisecurity.org/white-papers/ms-isac-security-primer-emotet/" class="outbound" target="_blank"><span>https://www.cisecurity.org/white-papers/ms-isac-security-primer-emotet/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>
-<a href="https://blogs.vmware.com/security/2019/04/cb-tau-threat-intelligence-notification-emotet-utilizing-wmi-to-launch-powershell-encoded-code.html" class="outbound" target="_blank"><span>https://blogs.vmware.com/security/2019/04/cb-tau-threat-intelligence-notification-emotet-utilizing-wmi-to-launch-powershell-encoded-code.html</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>
-<a href="https://securityintelligence.com/new-banking-trojan-icedid-discovered-by-ibm-x-force-research/" class="outbound" target="_blank"><span>https://securityintelligence.com/new-banking-trojan-icedid-discovered-by-ibm-x-force-research/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>
-<a href="https://unit42.paloaltonetworks.com/attack-chain-overview-emotet-in-december-2020-and-january-2021/" class="outbound" target="_blank"><span>https://unit42.paloaltonetworks.com/attack-chain-overview-emotet-in-december-2020-and-january-2021/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>
-<a href="https://www.fortinet.com/blog/threat-research/deep-dive-into-emotet-malware" class="outbound" target="_blank"><span>https://www.fortinet.com/blog/threat-research/deep-dive-into-emotet-malware</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>
-<a href="https://support.malwarebytes.com/hc/en-us/articles/360038524714s" class="outbound" target="_blank"><span>https://support.malwarebytes.com/hc/en-us/articles/360038524714s</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
+<p><a href="https://attack.mitre.org/software/S0367">https://attack.mitre.org/software/S0367</a>
+<a href="https://www.cisecurity.org/white-papers/ms-isac-security-primer-emotet/">https://www.cisecurity.org/white-papers/ms-isac-security-primer-emotet/</a>
+<a href="https://blogs.vmware.com/security/2019/04/cb-tau-threat-intelligence-notification-emotet-utilizing-wmi-to-launch-powershell-encoded-code.html">https://blogs.vmware.com/security/2019/04/cb-tau-threat-intelligence-notification-emotet-utilizing-wmi-to-launch-powershell-encoded-code.html</a>
+<a href="https://securityintelligence.com/new-banking-trojan-icedid-discovered-by-ibm-x-force-research/">https://securityintelligence.com/new-banking-trojan-icedid-discovered-by-ibm-x-force-research/</a>
+<a href="https://unit42.paloaltonetworks.com/attack-chain-overview-emotet-in-december-2020-and-january-2021/">https://unit42.paloaltonetworks.com/attack-chain-overview-emotet-in-december-2020-and-january-2021/</a>
+<a href="https://www.fortinet.com/blog/threat-research/deep-dive-into-emotet-malware">https://www.fortinet.com/blog/threat-research/deep-dive-into-emotet-malware</a>
+<a href="https://support.malwarebytes.com/hc/en-us/articles/360038524714s">https://support.malwarebytes.com/hc/en-us/articles/360038524714s</a></p>
 <doc-anchor-target id="references">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#references">#</doc-anchor-trigger>
         <span>References</span>
     </h3>
 </doc-anchor-target>
-<p><a href="https://docs.microsoft.com/en-us/visualstudio/ide/reference/build-devenv-exe?view=vs-2019" class="outbound" target="_blank"><span>https://docs.microsoft.com/en-us/visualstudio/ide/reference/build-devenv-exe?view=vs-2019</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
+<p><a href="https://docs.microsoft.com/en-us/visualstudio/ide/reference/build-devenv-exe?view=vs-2019">https://docs.microsoft.com/en-us/visualstudio/ide/reference/build-devenv-exe?view=vs-2019</a></p>
 
                                 
                                 <!-- Required only on API pages -->

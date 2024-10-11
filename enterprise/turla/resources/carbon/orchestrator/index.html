@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/ael">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.781992544188">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.781992821865">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -35,11 +35,11 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../../../favicon.png" rel="icon">
-    <link href="../../../../../resources/css/retype.css?v=3.6.0.781992544188" rel="stylesheet">
+    <link href="../../../../../resources/css/retype.css?v=3.6.0.781992821865" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../../resources/js/config.js?v=3.6.0.781992544188" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../../resources/js/config.js?v=3.6.0.781992821865" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../../resources/js/lunr.js?v=3.6.0.781992544188" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../../resources/js/lunr.js?v=3.6.0.781992821865" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -313,36 +313,155 @@ Our file structure differs from CTI in that we do not have a separate task file 
 </doc-anchor-target>
 <p>The Carbon installer will drop an encrypted <code v-pre>setuplst.xml</code> config file to the working directory that the orchestrator and comms lib will read.
 Our config file was based off the Carbon 3.77 config file.<sup><a href="https://www.welivesecurity.com/2017/03/30/carbon-paper-peering-turlas-second-stage-backdoor/" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup> A plain text version of the config file is available in <a href="bin/configplaintext.xml"><code v-pre>bin/configPlainText.xml</code></a>.</p>
-<p>These are the different sections, settings, and their descriptions in the config file:
-| Section  | Setting | Description |
-| ------------ | ----------- | ----------- |
-| [NAME] | object_id | The uuid of this implant |
-| [PROC] | net_app | A list of the target applications for the orchestrator to inject into |
-| [CRYPTO] | rsa_priv | The private RSA key for the comms lib to decrypt communications from the C2 |
-| [TIME] |  | not used in our implementation |
-| [CW_LOCAL] | quantity | not used in our implementation |
-| [CW_INET] | address1 | The URL of the C2 endpoint |
-| [TRANSPORT] | system_pipe | The name of the pipe used for p2p |
-| ^ | spstatus | not used in our implementation |
-| ^ | adaptable | not used in our implementation |
-| ^ | p2p_client | If this implant will run in p2p client mode or not |
-| ^ | peer_pipe | The pipe to send C2 communications back to |
-| [DHCP] | server | not used in our implementation |
-| [LOG] | logperiod | not used in our implementation |
-| [WORKDATA] |  | not used in our implementation |
-| [LOCATION] | task_dir | The name of the directory that contains the task file |
-| ^ | log_dir | The name of the directory that contains task output related files |
-| ^ | t_cfg_dir | The name of the directory that contains task config files |
-| [FILE] | cfg | The name of the main config file |
-| ^ | tsk | The name of the task file |
-| ^ | send | The name of the file that lists files to send to the C2 |
-| ^ | elog | The name of the error log file |
-| ^ | log | The name of the regular log file |
-| [MTX] | cfg | The name of the mutex for the task file |
-| ^ | tsk | The name of the mutex for the task file |
-| ^ | send | The name of the mutex for the file that lists files to send to the C2 |
-| ^ | elog | The name of the mutex for the error log file |
-| ^ | log | The name of the mutex for the regular log file |</p>
+<p>These are the different sections, settings, and their descriptions in the config file:</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Section</th>
+<th>Setting</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[NAME]</td>
+<td>object_id</td>
+<td>The uuid of this implant</td>
+</tr>
+<tr>
+<td>[PROC]</td>
+<td>net_app</td>
+<td>A list of the target applications for the orchestrator to inject into</td>
+</tr>
+<tr>
+<td>[CRYPTO]</td>
+<td>rsa_priv</td>
+<td>The private RSA key for the comms lib to decrypt communications from the C2</td>
+</tr>
+<tr>
+<td>[TIME]</td>
+<td></td>
+<td>not used in our implementation</td>
+</tr>
+<tr>
+<td>[CW_LOCAL]</td>
+<td>quantity</td>
+<td>not used in our implementation</td>
+</tr>
+<tr>
+<td>[CW_INET]</td>
+<td>address1</td>
+<td>The URL of the C2 endpoint</td>
+</tr>
+<tr>
+<td>[TRANSPORT]</td>
+<td>system_pipe</td>
+<td>The name of the pipe used for p2p</td>
+</tr>
+<tr>
+<td>^</td>
+<td>spstatus</td>
+<td>not used in our implementation</td>
+</tr>
+<tr>
+<td>^</td>
+<td>adaptable</td>
+<td>not used in our implementation</td>
+</tr>
+<tr>
+<td>^</td>
+<td>p2p_client</td>
+<td>If this implant will run in p2p client mode or not</td>
+</tr>
+<tr>
+<td>^</td>
+<td>peer_pipe</td>
+<td>The pipe to send C2 communications back to</td>
+</tr>
+<tr>
+<td>[DHCP]</td>
+<td>server</td>
+<td>not used in our implementation</td>
+</tr>
+<tr>
+<td>[LOG]</td>
+<td>logperiod</td>
+<td>not used in our implementation</td>
+</tr>
+<tr>
+<td>[WORKDATA]</td>
+<td></td>
+<td>not used in our implementation</td>
+</tr>
+<tr>
+<td>[LOCATION]</td>
+<td>task_dir</td>
+<td>The name of the directory that contains the task file</td>
+</tr>
+<tr>
+<td>^</td>
+<td>log_dir</td>
+<td>The name of the directory that contains task output related files</td>
+</tr>
+<tr>
+<td>^</td>
+<td>t_cfg_dir</td>
+<td>The name of the directory that contains task config files</td>
+</tr>
+<tr>
+<td>[FILE]</td>
+<td>cfg</td>
+<td>The name of the main config file</td>
+</tr>
+<tr>
+<td>^</td>
+<td>tsk</td>
+<td>The name of the task file</td>
+</tr>
+<tr>
+<td>^</td>
+<td>send</td>
+<td>The name of the file that lists files to send to the C2</td>
+</tr>
+<tr>
+<td>^</td>
+<td>elog</td>
+<td>The name of the error log file</td>
+</tr>
+<tr>
+<td>^</td>
+<td>log</td>
+<td>The name of the regular log file</td>
+</tr>
+<tr>
+<td>[MTX]</td>
+<td>cfg</td>
+<td>The name of the mutex for the task file</td>
+</tr>
+<tr>
+<td>^</td>
+<td>tsk</td>
+<td>The name of the mutex for the task file</td>
+</tr>
+<tr>
+<td>^</td>
+<td>send</td>
+<td>The name of the mutex for the file that lists files to send to the C2</td>
+</tr>
+<tr>
+<td>^</td>
+<td>elog</td>
+<td>The name of the mutex for the error log file</td>
+</tr>
+<tr>
+<td>^</td>
+<td>log</td>
+<td>The name of the mutex for the regular log file</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>Upon startup, the first thing the orchestrator will do is read this config file. If there is an option missing from the config file that the orchestrator is expecting, it will fall back to a default value. These are listed in the <a href="src/orchestrator.cpp"><code v-pre>src/orchestrator.cpp</code></a> file.</p>
 <doc-anchor-target id="functionality">
     <h3>
@@ -371,14 +490,39 @@ The orchestrator expects the config file to be encrypted, and will first decrypt
 <p>The orchestrator will create five mutexes to coordinate file access between the comms lib and itself.
 The mutexes created were based off Carbon 3.8X.<sup><a href="https://www.welivesecurity.com/2017/03/30/carbon-paper-peering-turlas-second-stage-backdoor/" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup>
 The number of mutexes used here was reduced by two when compared to the CTI because we do not use an equivalent of <code v-pre>xmlrts.png</code>, and only the orchestrator is completing tasks, so there is less simultaneous read/write access between the orchestrator and the comms lib.</p>
-<p>These are the mutexes created by the orchestrator and their descriptions:
-| Mutex  | Description |
-| ------------ | ----------- |
-| Global\Microsoft.Telemetry.Configuration      | Represent config file <code v-pre>setuplst.xml</code> ownership |
-| Global\DriveEncryptionStd | Represent task file <code v-pre>workdict.xml</code> ownership |
-| Global\DriveHealthOverwatch | Represent send file <code v-pre>traverse.gif</code> ownership |
-| Global\Threading.Management.Info | Represent error log <code v-pre>bootinfo.dat</code> ownership |
-| Global\Stream.Halt.Restoration | Represent regular log <code v-pre>history.jpg</code> ownership |</p>
+<p>These are the mutexes created by the orchestrator and their descriptions:</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Mutex</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Global\Microsoft.Telemetry.Configuration</td>
+<td>Represent config file <code v-pre>setuplst.xml</code> ownership</td>
+</tr>
+<tr>
+<td>Global\DriveEncryptionStd</td>
+<td>Represent task file <code v-pre>workdict.xml</code> ownership</td>
+</tr>
+<tr>
+<td>Global\DriveHealthOverwatch</td>
+<td>Represent send file <code v-pre>traverse.gif</code> ownership</td>
+</tr>
+<tr>
+<td>Global\Threading.Management.Info</td>
+<td>Represent error log <code v-pre>bootinfo.dat</code> ownership</td>
+</tr>
+<tr>
+<td>Global\Stream.Halt.Restoration</td>
+<td>Represent regular log <code v-pre>history.jpg</code> ownership</td>
+</tr>
+</tbody>
+</table>
+</div>
 <doc-anchor-target id="injection">
     <h4>
         <doc-anchor-trigger class="header-anchor-trigger" to="#injection">#</doc-anchor-trigger>
@@ -589,9 +733,9 @@ x86_64-w64-mingw32-g++ -I include/ -I &quot;$env:MINGW64_ROOT\include\cryptopp&q
     </h3>
 </doc-anchor-target>
 <ol>
-<li><a href="https://www.welivesecurity.com/2017/03/30/carbon-paper-peering-turlas-second-stage-backdoor/" class="outbound" target="_blank"><span>https://www.welivesecurity.com/2017/03/30/carbon-paper-peering-turlas-second-stage-backdoor/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
-<li><a href="https://www.gdatasoftware.com/blog/2015/01/23926-analysis-of-project-cobra" class="outbound" target="_blank"><span>https://www.gdatasoftware.com/blog/2015/01/23926-analysis-of-project-cobra</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
-<li><a href="https://www.ncsc.admin.ch/ncsc/en/home/dokumentation/berichte/fachberichte/technical-report_apt_case_ruag.html" class="outbound" target="_blank"><span>https://www.ncsc.admin.ch/ncsc/en/home/dokumentation/berichte/fachberichte/technical-report_apt_case_ruag.html</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://www.welivesecurity.com/2017/03/30/carbon-paper-peering-turlas-second-stage-backdoor/">https://www.welivesecurity.com/2017/03/30/carbon-paper-peering-turlas-second-stage-backdoor/</a></li>
+<li><a href="https://www.gdatasoftware.com/blog/2015/01/23926-analysis-of-project-cobra">https://www.gdatasoftware.com/blog/2015/01/23926-analysis-of-project-cobra</a></li>
+<li><a href="https://www.ncsc.admin.ch/ncsc/en/home/dokumentation/berichte/fachberichte/technical-report_apt_case_ruag.html">https://www.ncsc.admin.ch/ncsc/en/home/dokumentation/berichte/fachberichte/technical-report_apt_case_ruag.html</a></li>
 </ol>
 
                                 

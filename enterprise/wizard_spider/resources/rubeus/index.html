@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/ael">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.781992544188">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.781992821865">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -35,11 +35,11 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../../favicon.png" rel="icon">
-    <link href="../../../../resources/css/retype.css?v=3.6.0.781992544188" rel="stylesheet">
+    <link href="../../../../resources/css/retype.css?v=3.6.0.781992821865" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.781992544188" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.781992821865" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.781992544188" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.781992821865" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -218,13 +218,15 @@
     </h3>
 </doc-anchor-target>
 <p>Open the command prompt (cmd.exe), navigate to directory containing the Rubeus Visual Studio solution file (Rubeus.sln), and run the devenv.exe command:</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">cd wizard_spider\Resources\Rubeus
-&quot;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\devenv.exe&quot; Rubeus.sln /build Release
-
-# alternate build command
-&quot;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\msbuild.exe&quot; Rubeus.sln -property:Configuration=Release</code></pre>
-</doc-codeblock></div>
+<p>cd wizard_spider\Resources\Rubeus
+&quot;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\devenv.exe&quot; Rubeus.sln /build Release</p>
+<doc-anchor-target id="alternate-build-command">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#alternate-build-command">#</doc-anchor-trigger>
+        <span>alternate build command</span>
+    </h1>
+</doc-anchor-target>
+<p>&quot;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\msbuild.exe&quot; Rubeus.sln -property:Configuration=Release</p>
 <p>The executable will be found in the bin\Release folder.</p>
 <doc-anchor-target id="test-instructions">
     <h3>
@@ -233,25 +235,40 @@
     </h3>
 </doc-anchor-target>
 <p>Open PowerShell</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">cd wizard_spider\Resources\Rubeus\
-rubeus_test.ps1</code></pre>
-</doc-codeblock></div>
+<p>cd wizard_spider\Resources\Rubeus<br />
+rubeus_test.ps1</p>
 <doc-anchor-target id="usage-examples">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#usage-examples">#</doc-anchor-trigger>
         <span>Usage Examples</span>
     </h3>
 </doc-anchor-target>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none"># execute AS-Rep Roast
-rubeus.exe asreproast /domain:oz.local
-
-# execute Kerberoast
-# must be executed as a domain user (oz\user) NOT a local user (dorothy\user)
-# may want to consider adding /format:hashcat as an argument (default format is John)
-rubeus.exe kerberoast /domain:oz.local</code></pre>
-</doc-codeblock></div>
+<doc-anchor-target id="execute-as-rep-roast">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#execute-as-rep-roast">#</doc-anchor-trigger>
+        <span>execute AS-Rep Roast</span>
+    </h1>
+</doc-anchor-target>
+<p>rubeus.exe asreproast /domain:oz.local</p>
+<doc-anchor-target id="execute-kerberoast">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#execute-kerberoast">#</doc-anchor-trigger>
+        <span>execute Kerberoast</span>
+    </h1>
+</doc-anchor-target>
+<doc-anchor-target id="must-be-executed-as-a-domain-user-ozuser-not-a-local-user-dorothyuser">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#must-be-executed-as-a-domain-user-ozuser-not-a-local-user-dorothyuser">#</doc-anchor-trigger>
+        <span>must be executed as a domain user (oz\user) NOT a local user (dorothy\user)</span>
+    </h1>
+</doc-anchor-target>
+<doc-anchor-target id="may-want-to-consider-adding-formathashcat-as-an-argument-default-format-is-john">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#may-want-to-consider-adding-formathashcat-as-an-argument-default-format-is-john">#</doc-anchor-trigger>
+        <span>may want to consider adding /format:hashcat as an argument (default format is John)</span>
+    </h1>
+</doc-anchor-target>
+<p>rubeus.exe kerberoast /domain:oz.local</p>
 <doc-anchor-target id="cleanup-instructions">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#cleanup-instructions">#</doc-anchor-trigger>
@@ -259,9 +276,7 @@ rubeus.exe kerberoast /domain:oz.local</code></pre>
     </h3>
 </doc-anchor-target>
 <p>Open a command prompt or PowerShell</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">del rubeus.exe</code></pre>
-</doc-codeblock></div>
+<p>del rubeus.exe</p>
 <doc-anchor-target id="misc">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#misc">#</doc-anchor-trigger>
@@ -273,19 +288,19 @@ rubeus.exe kerberoast /domain:oz.local</code></pre>
 <li><p>The Domain Admin must have a crackable password</p>
 </li>
 <li><p>The Domain Admin must have a Service Principal Name (SPN) associated with their account</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">  # Example command to set the SPN: 
-  setspn -s exchange/oz.local oz/kfleming </code></pre>
-</doc-codeblock></div>
 </li>
 </ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none"># Example command to set the SPN:
+setspn -s exchange/oz.local oz/kfleming</code></pre>
+</doc-codeblock></div>
 <p>Additionally, the CTI indicates the adversary also attempts AS-Rep Roasting. For this to work, Kerberos pre-authentication must be disabled (not done by default).</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">Log into Domain Controller 
-Run (Windows-R) dsa.msc 
-Select Domain Admin account 
-Go to the Account tab 
-In account options, check 'Do not require Kerberos preauthentication' </code></pre>
+<pre class="language-none"><code v-pre class="language-none">Log into Domain Controller
+Run (Windows-R) dsa.msc
+Select Domain Admin account
+Go to the Account tab
+In account options, check 'Do not require Kerberos preauthentication'</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="cti-evidence">
     <h3>
@@ -293,19 +308,19 @@ In account options, check 'Do not require Kerberos preauthentication' </code></p
         <span>CTI Evidence</span>
     </h3>
 </doc-anchor-target>
-<p><a href="https://attack.mitre.org/groups/G0102/" class="outbound" target="_blank"><span>https://attack.mitre.org/groups/G0102/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a><br />
-<a href="https://thedfirreport.com/2020/10/08/ryuks-return/" class="outbound" target="_blank"><span>https://thedfirreport.com/2020/10/08/ryuks-return/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a><br />
-<a href="https://thedfirreport.com/2020/11/05/ryuk-speed-run-2-hours-to-ransom/" class="outbound" target="_blank"><span>https://thedfirreport.com/2020/11/05/ryuk-speed-run-2-hours-to-ransom/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
+<p><a href="https://attack.mitre.org/groups/G0102/">https://attack.mitre.org/groups/G0102/</a>
+<a href="https://thedfirreport.com/2020/10/08/ryuks-return/">https://thedfirreport.com/2020/10/08/ryuks-return/</a>
+<a href="https://thedfirreport.com/2020/11/05/ryuk-speed-run-2-hours-to-ransom/">https://thedfirreport.com/2020/11/05/ryuk-speed-run-2-hours-to-ransom/</a></p>
 <doc-anchor-target id="references">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#references">#</doc-anchor-trigger>
         <span>References</span>
     </h3>
 </doc-anchor-target>
-<p><a href="https://github.com/GhostPack/Rubeus" class="outbound" target="_blank"><span>https://github.com/GhostPack/Rubeus</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a><br />
-<a href="https://social.technet.microsoft.com/wiki/contents/articles/717.service-principal-names-spn-setspn-syntax.aspx" class="outbound" target="_blank"><span>https://social.technet.microsoft.com/wiki/contents/articles/717.service-principal-names-spn-setspn-syntax.aspx</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a><br />
-<a href="https://blog.zsec.uk/path2da-pt2/" class="outbound" target="_blank"><span>https://blog.zsec.uk/path2da-pt2/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a><br />
-<a href="https://docs.microsoft.com/en-us/visualstudio/ide/reference/build-devenv-exe?view=vs-2019" class="outbound" target="_blank"><span>https://docs.microsoft.com/en-us/visualstudio/ide/reference/build-devenv-exe?view=vs-2019</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
+<p><a href="https://github.com/GhostPack/Rubeus">https://github.com/GhostPack/Rubeus</a>
+<a href="https://social.technet.microsoft.com/wiki/contents/articles/717.service-principal-names-spn-setspn-syntax.aspx">https://social.technet.microsoft.com/wiki/contents/articles/717.service-principal-names-spn-setspn-syntax.aspx</a>
+<a href="https://blog.zsec.uk/path2da-pt2/">https://blog.zsec.uk/path2da-pt2/</a>
+<a href="https://docs.microsoft.com/en-us/visualstudio/ide/reference/build-devenv-exe?view=vs-2019">https://docs.microsoft.com/en-us/visualstudio/ide/reference/build-devenv-exe?view=vs-2019</a></p>
 
                                 
                                 <!-- Required only on API pages -->

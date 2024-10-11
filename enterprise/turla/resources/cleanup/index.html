@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/ael">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.781992544188">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.781992821865">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -35,11 +35,11 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../../favicon.png" rel="icon">
-    <link href="../../../../resources/css/retype.css?v=3.6.0.781992544188" rel="stylesheet">
+    <link href="../../../../resources/css/retype.css?v=3.6.0.781992821865" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.781992544188" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.781992821865" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.781992544188" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.781992821865" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -223,15 +223,18 @@
 </doc-anchor-target>
 <p>To remove artifacts, run the <a href="">Cleanup Scripts</a> as from the Kali hosts. You can also run the cleanup scripts on each target as described in their respective directories.</p>
 <ol>
-<li>From the Kali Linux machine (<code v-pre>176.59.15.33</code>):
+<li><p>From the Kali Linux machine (<code v-pre>176.59.15.33</code>):</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">cd /opt/day1/turla
 xfreerdp +clipboard /u:skt\\\evals_domain_admin /p:&quot;DuapQj7k8Va8U1X27rw6&quot; /v:10.20.10.9 /drive:X,Resources/cleanup</code></pre>
 </doc-codeblock></div>
 </li>
-<li>From the RDP session, open powershell in administrative mode</li>
-<li>Run the cleanup commands for each implant listed below that you need to cleanup</li>
-<li>Sign out of the RDP session when finished.</li>
+<li><p>From the RDP session, open powershell in administrative mode</p>
+</li>
+<li><p>Run the cleanup commands for each implant listed below that you need to cleanup</p>
+</li>
+<li><p>Sign out of the RDP session when finished.</p>
+</li>
 </ol>
 <doc-anchor-target id="epic">
     <h3>
@@ -271,14 +274,15 @@ xfreerdp +clipboard /u:skt\\\evals_domain_admin /p:&quot;DuapQj7k8Va8U1X27rw6&qu
 </doc-anchor-target>
 <p>Additional documentation <a href="../penquin/#cleanup-instructions">here</a>.</p>
 <ul>
-<li>From the Kali Linux machine, SCP the Penquin cleanup script to KAGAROV:
+<li><p>From the Kali Linux machine, SCP the Penquin cleanup script to KAGAROV:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">cd /opt/day1/turla
 scp Resources/cleanup/Penquin/cleanup_penquin.sh adalwolfa@10.20.10.23:</code></pre>
 </doc-codeblock></div>
 </li>
-<li>Enter <code v-pre>Password2!</code> when prompted:</li>
-<li>Execute the cleanup script, entering <code v-pre>Password2!</code> when prompted:
+<li><p>Enter <code v-pre>Password2!</code> when prompted:</p>
+</li>
+<li><p>Execute the cleanup script, entering <code v-pre>Password2!</code> when prompted:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">ssh adalwolfa@10.20.10.23 &quot;sudo ./cleanup_penquin.sh &amp;&amp; rm cleanup_penquin.sh&quot;</code></pre>
 </doc-codeblock></div>
@@ -298,24 +302,26 @@ scp Resources/cleanup/Penquin/cleanup_penquin.sh adalwolfa@10.20.10.23:</code></
 </doc-anchor-target>
 <p>To remove artifacts, run the <a href="">Cleanup Scripts</a> as from the Kali hosts. You can also run the cleanup scripts on each target as described in their respective directories.</p>
 <ol>
-<li>From the Kali Linux machine (<code v-pre>176.59.15.33</code>):
+<li><p>From the Kali Linux machine (<code v-pre>176.59.15.33</code>):</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">cd /opt/day2/turla
 xfreerdp +clipboard /u:nk\\\evals_domain_admin /p:&quot;DuapQj7k8Va8U1X27rw6&quot; /v:10.100.30.202 /drive:X Resources/cleanup</code></pre>
 </doc-codeblock></div>
 </li>
-<li>From the RDP session, open powershell in administrative mode and set the execution policy
+<li><p>From the RDP session, open powershell in administrative mode and set the execution policy</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser</code></pre>
 </doc-codeblock></div>
 </li>
-<li>Run the cleanup commands for each implant listed below that you need to cleanup</li>
-<li>Reset the execution policy
+<li><p>Run the cleanup commands for each implant listed below that you need to cleanup</p>
+</li>
+<li><p>Reset the execution policy</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">Set-ExecutionPolicy -ExecutionPolicy Undefined -Scope CurrentUser</code></pre>
 </doc-codeblock></div>
 </li>
-<li>Sign out of the RDP session when finished.</li>
+<li><p>Sign out of the RDP session when finished.</p>
+</li>
 </ol>
 <doc-anchor-target id="epic-1">
     <h3>

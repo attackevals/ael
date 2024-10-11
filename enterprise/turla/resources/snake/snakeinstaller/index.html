@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/ael">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.781992544188">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.781992821865">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -35,12 +35,12 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../../../favicon.png" rel="icon">
-    <link href="../../../../../resources/css/retype.css?v=3.6.0.781992544188" rel="stylesheet">
+    <link href="../../../../../resources/css/retype.css?v=3.6.0.781992821865" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../../resources/js/config.js?v=3.6.0.781992544188" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../../resources/js/config.js?v=3.6.0.781992821865" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../../resources/js/lunr.js?v=3.6.0.781992544188" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../../../resources/js/prism.js?v=3.6.0.781992544188" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../../resources/js/lunr.js?v=3.6.0.781992821865" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../../resources/js/prism.js?v=3.6.0.781992821865" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -368,24 +368,26 @@ Examine the installer home directory for the presence of the usermodule&#x27;s e
 <li>If <code v-pre>svcmon32.sdb</code> or <code v-pre>svcstat64.bin</code> are missing, then the user-module DLL may not have successfully been injected into the target browser process (in our emulation, Microsoft Edge).</li>
 </ol>
 <ul>
-<li>Simply generate some traffic from the browser to ensure injection is triggered (e.g. open a new tab and browse to a site)</li>
-<li>Close all edge processes and try again (this doesn&#x27;t require administrator rights)</li>
-</ul>
+<li><p>Simply generate some traffic from the browser to ensure injection is triggered (e.g. open a new tab and browse to a site)</p>
+</li>
+<li><p>Close all edge processes and try again (this doesn&#x27;t require administrator rights)</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-powershell"><code v-pre class="language-powershell">get-process msedge | stop-process</code></pre>
 </doc-codeblock></div>
+</li>
+</ul>
 <ol start="2">
 <li>If <code v-pre>udmon32.bin</code> or <code v-pre>dbsvcng64.bin</code> are missing, then the execution instance of the usermodule DLL may not have successfully been injected into
 <code v-pre>taskhostw</code>.</li>
 </ol>
 <ul>
-<li>As an administrator, enumerate the DLLs loaded into the instance of <code v-pre>taskhostw</code> owned by the SYSTEM user</li>
-</ul>
+<li><p>As an administrator, enumerate the DLLs loaded into the instance of <code v-pre>taskhostw</code> owned by the SYSTEM user</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-powershell"><code v-pre class="language-powershell">(Get-Process taskhostw).modules | ? -Property ModuleName -Like *msnsvc* </code></pre>
+<pre class="language-powershell"><code v-pre class="language-powershell">(Get-Process taskhostw).modules | ? -Property ModuleName -Like *msnsvc*</code></pre>
 </doc-codeblock></div>
-<ul>
-<li>If it&#x27;s not present, follow the <doc-anchor-trigger to="#general-cleanup-steps">cleanup instructions</doc-anchor-trigger> and try again</li>
+</li>
+<li><p>If it&#x27;s not present, follow the <doc-anchor-trigger to="#general-cleanup-steps">cleanup instructions</doc-anchor-trigger> and try again</p>
+</li>
 </ul>
 <doc-anchor-target id="no-callback-but-log-files-are-present">
     <h3>
@@ -563,11 +565,11 @@ Microsoft&#x27;s provided symbol server.</p>
     </h2>
 </doc-anchor-target>
 <ol>
-<li><a href="https://github.com/hfiref0x/KDU" class="outbound" target="_blank"><span>https://github.com/hfiref0x/KDU</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
-<li><a href="https://v1k1ngfr.github.io/loading-windows-unsigned-driver/" class="outbound" target="_blank"><span>https://v1k1ngfr.github.io/loading-windows-unsigned-driver/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
-<li><a href="https://seclists.org/fulldisclosure/2018/Dec/39" class="outbound" target="_blank"><span>https://seclists.org/fulldisclosure/2018/Dec/39</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
-<li><a href="https://github.com/KaLendsi/CVE-2021-1732-Exploit" class="outbound" target="_blank"><span>https://github.com/KaLendsi/CVE-2021-1732-Exploit</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
-<li><a href="https://googleprojectzero.github.io/0days-in-the-wild/0day-RCAs/2021/CVE-2021-1732.html" class="outbound" target="_blank"><span>https://googleprojectzero.github.io/0days-in-the-wild/0day-RCAs/2021/CVE-2021-1732.html</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://github.com/hfiref0x/KDU">https://github.com/hfiref0x/KDU</a></li>
+<li><a href="https://v1k1ngfr.github.io/loading-windows-unsigned-driver/">https://v1k1ngfr.github.io/loading-windows-unsigned-driver/</a></li>
+<li><a href="https://seclists.org/fulldisclosure/2018/Dec/39">https://seclists.org/fulldisclosure/2018/Dec/39</a></li>
+<li><a href="https://github.com/KaLendsi/CVE-2021-1732-Exploit">https://github.com/KaLendsi/CVE-2021-1732-Exploit</a></li>
+<li><a href="https://googleprojectzero.github.io/0days-in-the-wild/0day-RCAs/2021/CVE-2021-1732.html">https://googleprojectzero.github.io/0days-in-the-wild/0day-RCAs/2021/CVE-2021-1732.html</a></li>
 </ol>
 <doc-anchor-target id="cti">
     <h2>
@@ -576,9 +578,9 @@ Microsoft&#x27;s provided symbol server.</p>
     </h2>
 </doc-anchor-target>
 <ol>
-<li><a href="https://www.circl.lu/pub/tr-25/#analysis-payload" class="outbound" target="_blank"><span>https://www.circl.lu/pub/tr-25/#analysis-payload</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
-<li><a href="https://www.virusbulletin.com/virusbulletin/2014/05/anatomy-turla-exploits/" class="outbound" target="_blank"><span>https://www.virusbulletin.com/virusbulletin/2014/05/anatomy-turla-exploits/</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
-<li><a href="https://artemonsecurity.com/snake_whitepaper.pdf" class="outbound" target="_blank"><span>https://artemonsecurity.com/snake_whitepaper.pdf</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://www.circl.lu/pub/tr-25/#analysis-payload">https://www.circl.lu/pub/tr-25/#analysis-payload</a></li>
+<li><a href="https://www.virusbulletin.com/virusbulletin/2014/05/anatomy-turla-exploits/">https://www.virusbulletin.com/virusbulletin/2014/05/anatomy-turla-exploits/</a></li>
+<li><a href="https://artemonsecurity.com/snake_whitepaper.pdf">https://artemonsecurity.com/snake_whitepaper.pdf</a></li>
 </ol>
 
                                 

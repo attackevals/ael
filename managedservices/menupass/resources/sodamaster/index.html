@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/ael">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.781992544188">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.781992821865">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -37,12 +37,12 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../../favicon.png" rel="icon">
-    <link href="../../../../resources/css/retype.css?v=3.6.0.781992544188" rel="stylesheet">
+    <link href="../../../../resources/css/retype.css?v=3.6.0.781992821865" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.781992544188" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.781992821865" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.781992544188" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.6.0.781992544188" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.781992821865" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.6.0.781992821865" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -268,7 +268,7 @@ sRDI repo (double check that you&#x27;re checked out to the correct commit).</li
 <li>Perform the conversion:</li>
 </ol>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">$sc = ConvertTo-Shellcode -File SodaMaster.dll -FunctionName &quot;init&quot; 
+<pre class="language-none"><code v-pre class="language-none">$sc = ConvertTo-Shellcode -File SodaMaster.dll -FunctionName &quot;init&quot;
 $sc2 = $sc | % { write-output ([System.String]::Format('{0:X2}', $_)) }
 $sc2 -join &quot;&quot; &gt; payload.txt</code></pre>
 </doc-codeblock></div>
@@ -295,8 +295,11 @@ being manipulated in an unitended way and exits the application.</p>
 </li>
 <li>Running Process Checks
 <ul>
-<li><code v-pre>vmtoolsd.exe</code></li>
+<li><code v-pre>vmtoolsd.exe</code>
+<ul>
 <li><code v-pre>vbox.exe</code></li>
+</ul>
+</li>
 </ul>
 </li>
 <li>Checks that the number of processors are greater than 1.</li>
@@ -325,21 +328,21 @@ the provided variables add up to a decimal value.</p>
 <doc-anchor-target id="note-the-script-adds-5-to-int-val1-so-a-custom-function-should-account-for-that">
     <h6>
         <doc-anchor-trigger class="header-anchor-trigger" to="#note-the-script-adds-5-to-int-val1-so-a-custom-function-should-account-for-that">#</doc-anchor-trigger>
-        <span>NOTE: The script adds 5 to int val1, so a custom function should account for that.</span>
+        <span>NOTE: The script adds 5 to int val1, so a custom function should account for that</span>
     </h6>
 </doc-anchor-target>
 <p>Math Function:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">int RetCharVar(int val1, int val2) {
-	int val3 = val1 * 100;
-	int val4 = val2 * 50;
-	int val5 = 0;
-	if (val3 &gt; val1) {
-		val3 = val3 / 25;
-		val5 = val3 / 4;
-		val5 = val5 - 5;
-	}
-	return val5 + (val4 / 50);
+ int val3 = val1 * 100;
+ int val4 = val2 * 50;
+ int val5 = 0;
+ if (val3 &gt; val1) {
+  val3 = val3 / 25;
+  val5 = val3 / 4;
+  val5 = val5 - 5;
+ }
+ return val5 + (val4 / 50);
 }</code></pre>
 </doc-codeblock></div>
 <p>The script takes the three following required arguments:</p>
@@ -397,16 +400,16 @@ server.</p>
     </h4>
 </doc-anchor-target>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">Session Identifier:	HEX STRING	- SODAMASTER		-&gt; 534f44414d4153544552
-ID (cmd id):		HEX - DECIMAL	- w			-&gt; 77 (Function uses the decimal form eg. 119)
-LENGTH OF LENGTH:	HEX - DECIMAL	- 02			-&gt; 3 (Tells the function the length is 3 string bytes long)
-LENGTH:			HEX STRING	- 0100			-&gt; 10 (The data is 10 characters long)
-DATA:			HEX STRING	- 534f44414d4153544552	-&gt; SODAMASTER</code></pre>
+<pre class="language-none"><code v-pre class="language-none">Session Identifier: HEX STRING - SODAMASTER  -&gt; 534f44414d4153544552
+ID (cmd id):  HEX - DECIMAL - w   -&gt; 77 (Function uses the decimal form eg. 119)
+LENGTH OF LENGTH: HEX - DECIMAL - 02   -&gt; 3 (Tells the function the length is 3 string bytes long)
+LENGTH:   HEX STRING - 0100   -&gt; 10 (The data is 10 characters long)
+DATA:   HEX STRING - 534f44414d4153544552 -&gt; SODAMASTER</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="unencrypted-example">
     <h5>
         <doc-anchor-trigger class="header-anchor-trigger" to="#unencrypted-example">#</doc-anchor-trigger>
-        <span>Unencrypted Example:</span>
+        <span>Unencrypted Example</span>
     </h5>
 </doc-anchor-target>
 <div class="codeblock-wrapper"><doc-codeblock>
@@ -422,7 +425,7 @@ Example 2:
 <doc-anchor-target id="encrypted-example">
     <h5>
         <doc-anchor-trigger class="header-anchor-trigger" to="#encrypted-example">#</doc-anchor-trigger>
-        <span>Encrypted Example:</span>
+        <span>Encrypted Example</span>
     </h5>
 </doc-anchor-target>
 <div class="codeblock-wrapper"><doc-codeblock>
@@ -617,7 +620,7 @@ or runtime Xor Encryption/Decrption.</p>
 </doc-anchor-target>
 <p>The XOR encryption is done using macros at compile time, and is decrypted at
 runtime. The code snippit was found on Stack overflow at:
-<a href="https://stackoverflow.com/questions/7270473/compile-time-string-encryption" class="outbound" target="_blank"><span>https://stackoverflow.com/questions/7270473/compile-time-string-encryption</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></p>
+<a href="https://stackoverflow.com/questions/7270473/compile-time-string-encryption">https://stackoverflow.com/questions/7270473/compile-time-string-encryption</a></p>
 <doc-anchor-target id="rsa-encryption">
     <h4>
         <doc-anchor-trigger class="header-anchor-trigger" to="#rsa-encryption">#</doc-anchor-trigger>
@@ -798,7 +801,7 @@ The second option is to select <code v-pre>Test &gt; Run CTests for SodaMaster</
 <doc-anchor-target id="start-a-listener-on-the-local-system-for-tcpcomms-testing">
     <h4>
         <doc-anchor-trigger class="header-anchor-trigger" to="#start-a-listener-on-the-local-system-for-tcpcomms-testing">#</doc-anchor-trigger>
-        <span>Start a listener on the local system for TCP/Comms testing.</span>
+        <span>Start a listener on the local system for TCP/Comms testing</span>
     </h4>
 </doc-anchor-target>
 <p>Open a powershell prompt and browse to the <code v-pre>scripts/</code> directory.</p>
