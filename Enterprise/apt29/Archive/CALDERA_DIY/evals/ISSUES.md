@@ -1,4 +1,5 @@
 ## How to Report an Issue
+
 Before reporting an issue with GitHub, be sure that:
 
 * you are using version 2.6.6 of CALDERA.
@@ -7,9 +8,9 @@ Before reporting an issue with GitHub, be sure that:
 
 ```
 ### Work environment
-* OS: 
+* OS:
 * Golang Version:
-* Python Version: 
+* Python Version:
 
 ### Expected behavior
 

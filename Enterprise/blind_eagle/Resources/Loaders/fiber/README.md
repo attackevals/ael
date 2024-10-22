@@ -17,11 +17,13 @@ The VAI method of `fiber.dll` takes one argument, a URL. The URL is typically pa
 `fiber.dll` first needs to be encoded in base64. `file-ops.py` has a function for this and can be used as follows:
 
 Windows:
+
 ```PowerShell
 py.exe ./file-ops.py -b path\to\repo\birdsofprey\Resources\fiber\fiber\bin\Release\fiber.dll
 ```
 
 Linux/Mac:
+
 ```bash
 python3 ./file-ops.py -b path/to/repobirdsofprey/Resources/fiber/fiber/bin/Release/fiber.dll
 ```
@@ -35,7 +37,6 @@ The URL on line 55 will also need to be updated prior to build with the IP addre
 ## Build
 
 Two build options are presented. The CLI can be used with devenv.exe to build the `fiber.sln` solution. Also instructions for the Visual Studio GUI are also included:
-
 
 ### CLI
 
@@ -67,6 +68,6 @@ PS C:\<path>\<to>\birdsofprey\Resources\fiber> 'C:\Program Files | [x86]\Microso
 
 ## References and CTI
 
-1) https://blogs.blackberry.com/en/2023/02/blind-eagle-apt-c-36-targets-colombia
+1) <https://blogs.blackberry.com/en/2023/02/blind-eagle-apt-c-36-targets-colombia>
 
-2) https://lab52.io/blog/apt-c-36-from-njrat-to-apt-c-36/
+2) <https://lab52.io/blog/apt-c-36-from-njrat-to-apt-c-36/>

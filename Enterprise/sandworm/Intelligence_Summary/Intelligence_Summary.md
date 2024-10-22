@@ -20,21 +20,21 @@ Associated Names: ELECTRUM, Telebots, IRON VIKING, BlackEnergy (Group), Quedagh,
 
 | ID | Report Links |
 | :-----------: | ----------- |
-| 1 | https://www.justice.gov/opa/press-release/file/1328521/download|
-| 2 | https://www.justice.gov/opa/pr/six-russian-gru-officers-charged-connection-worldwide-deployment-destructive-malware-and|
-| 3 |https://www.justice.gov/opa/press-release/file/1328521/download |
-| 4 |https://www.cisa.gov/uscert/ics/alerts/IR-ALERT-H-16-056-01|
-| 5 |https://www.digitalshadows.com/blog-and-research/mapping-mitre-attck-to-sandworm-apts-global-campaign/#:~:text=SandWorm%20is%20an%20APT%20group,aggressive%20and%20sometimes%20destructive%20cyberattacks.|
-| 6 |http://blog.talosintelligence.com/2018/02/olympic-destroyer.html |
-| 7 |https://www.dragos.com/wp-content/uploads/CrashOverride-01.pdf|
-| 8 |https://blogs.vmware.com/security/2017/06/carbon-black-threat-research-technical-analysis-petya-notpetya-ransomware.html |
-| 9 |https://securelist.com/expetrpetyanotpetya-is-a-wiper-not-ransomware/78902/|
-| 10 |https://www.mandiant.com/resources/ukraine-and-sandworm-team|
+| 1 | <https://www.justice.gov/opa/press-release/file/1328521/download>|
+| 2 | <https://www.justice.gov/opa/pr/six-russian-gru-officers-charged-connection-worldwide-deployment-destructive-malware-and>|
+| 3 |<https://www.justice.gov/opa/press-release/file/1328521/download> |
+| 4 |<https://www.cisa.gov/uscert/ics/alerts/IR-ALERT-H-16-056-01>|
+| 5 |<https://www.digitalshadows.com/blog-and-research/mapping-mitre-attck-to-sandworm-apts-global-campaign/#:~:text=SandWorm%20is%20an%20APT%20group,aggressive%20and%20sometimes%20destructive%20cyberattacks>.|
+| 6 |<http://blog.talosintelligence.com/2018/02/olympic-destroyer.html> |
+| 7 |<https://www.dragos.com/wp-content/uploads/CrashOverride-01.pdf>|
+| 8 |<https://blogs.vmware.com/security/2017/06/carbon-black-threat-research-technical-analysis-petya-notpetya-ransomware.html> |
+| 9 |<https://securelist.com/expetrpetyanotpetya-is-a-wiper-not-ransomware/78902/>|
+| 10 |<https://www.mandiant.com/resources/ukraine-and-sandworm-team>|
 
 # Connect with us 🗨️
 
-We 💖 feedback! Let us know how using ATT&CK Evaluation results has helped you and what we can do better. 
+We 💖 feedback! Let us know how using ATT&CK Evaluation results has helped you and what we can do better.
 
 Email: <evals@mitre-engenuity.org><br>
-Twitter: https://twitter.com/MITREengenuity<br>
-LinkedIn: https://www.linkedin.com/company/mitre-engenuity/<br>
+Twitter: <https://twitter.com/MITREengenuity><br>
+LinkedIn: <https://www.linkedin.com/company/mitre-engenuity/><br>

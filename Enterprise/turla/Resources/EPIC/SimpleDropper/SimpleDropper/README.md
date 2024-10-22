@@ -19,19 +19,20 @@ The Registry Key modification is notably of the H_KEY_CURRENT_USER, not H_KEY_LO
 This dropper program needs an existing executable file as a resource. This README assumes that Reflective Injector, or whichever other payload you choose, is already created as an executable file.
 
 ### Visual Studio Setup
-Ensure that the correct character set is selected: 
+
+Ensure that the correct character set is selected:
 
 `Project Properties > Advanced > Character Set > select No Set`.
 
-Check that the project has a Resource.rc file. If one does not exist create one: 
+Check that the project has a Resource.rc file. If one does not exist create one:
 
 `right-click project > Add > New Item > Resource > Resource File`.
 
-If one alreadys exists, check that the Resource.rc file has no resources loaded: 
+If one alreadys exists, check that the Resource.rc file has no resources loaded:
 
 `double-click Resource.rc > drop down menu > right-click IDR_EXAMPLE_BIN1 > delete`.
 
-Remove Compilation Warnings: 
+Remove Compilation Warnings:
 
 `Project Properties > C/C++ > Preprocessor > Preprocessor Definitions > Edit > new line > _CRT_SECURE_NO_WARNINGS`.
 
@@ -62,6 +63,7 @@ The compiled executable should appear in:
 `turla\Resources\EPIC\SimpleDropper\x64\Release\SimpleDropper.exe`
 
 ## Execution
+
 To execute the SimpleDropper, run the compiled executable `SimpleDropper.exe`. If the Reflective Injector and Reflective Guard are embedded, ensure you have the explorer.exe and msedge.exe processes running. See [here](../../#troubleshooting) if you encounter any issues.
 
 ### From Visual Studio
@@ -70,7 +72,7 @@ Build the executable from Visual Studio as instructed above.
 
 At the top of the VS window click "Local Windows Debugger" or "Start Without Debugging"
 
-### Test Instructions 
+### Test Instructions
 
 Much of the following is noted in the code in comments:
 
@@ -95,6 +97,6 @@ SimpleDropper should run (again) on startup, depositing an executable file in th
 
 ## CTI / References
 
-1. https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2018/03/08080105/KL_Epic_Turla_Technical_Appendix_20140806.pdf
-2. https://securelist.com/the-epic-turla-operation/65545/
-3. https://stackoverflow.com/questions/71073166/how-to-embed-an-exe-file-into-another-exe-file-as-a-resource-in-c
+1. <https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2018/03/08080105/KL_Epic_Turla_Technical_Appendix_20140806.pdf>
+2. <https://securelist.com/the-epic-turla-operation/65545/>
+3. <https://stackoverflow.com/questions/71073166/how-to-embed-an-exe-file-into-another-exe-file-as-a-resource-in-c>

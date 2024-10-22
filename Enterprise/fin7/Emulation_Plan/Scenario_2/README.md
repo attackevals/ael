@@ -123,7 +123,7 @@ On `hotelmanager`:
 
 On the Windows `Attack Platform`:
 
-1.  1. To verify that you have a new session on `hotelmanager` from your C2 server, run the following command to get the MAC of `hotelmanager`
+1. 1. To verify that you have a new session on `hotelmanager` from your C2 server, run the following command to get the MAC of `hotelmanager`
 
     ```
     (ATT&CK Evals) > get-mac-serial

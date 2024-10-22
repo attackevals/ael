@@ -9,7 +9,6 @@
   - [Web Server - Kagarov](#web-server---kagarov)
   - [Script order and dependencies](#script-order-and-dependencies)
 
-
 ## Domain Controller - Bannik
 
 | Script                                    | Summary                                                      |
@@ -39,8 +38,6 @@ The Hobgoblin host also runs the ViperVPN Windows service used in the scenario. 
    1. `ViperVPN.exe --startup delayed install`
 4. Install SetACL Studio on Hobgoblin (see [WindowsService](WindowsService.md) for download link)
 5. Modify the ACL on the registry key `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\ViperVPNSvc` to grant full control to `"Authenticated Users"`.
-
-
 
 ## Desktop - Domovoy
 

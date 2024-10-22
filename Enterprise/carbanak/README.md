@@ -23,9 +23,9 @@ Please note that binary executable files hosted in [Resources](/Enterprise/carba
 We provide a [script](/Enterprise/carbanak/Resources/utilities/crypt_executables.py) to automatically decrypt these files:
 
 ```
-$ cd carbanak
+cd carbanak
 
-$ python3 Resources/utilities/crypt_executables.py -i ./ -p malware --decrypt
+python3 Resources/utilities/crypt_executables.py -i ./ -p malware --decrypt
 ```
 
 ## YARA Rules
@@ -66,14 +66,16 @@ Special thanks to the following projects for providing tools and source code tha
 - [Change Log](../CHANGE_LOG.md)
 
 ## Liability / Responsible Usage
+
 This content is only to be used with appropriate prior, explicit authorization for the purposes of assessing security posture and/or research.
 
 ## Notice
+
 © 2021 MITRE Engenuity. Approved for Public Release. Document number AT0016
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at:
 
-* [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
+- [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 

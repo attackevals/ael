@@ -10,7 +10,6 @@ Below is the domains and infrastructure used to support the setup and execution 
 
 ![Infra](../Screenshots/infrastructurediagram.png)
 
-
 ## Emulation Team Infrastructure
 
 This emulation leveraged the following attacker infrastructure with configurations.
@@ -35,53 +34,71 @@ RDP to your Windows Attack Platform
 
     ![defender-off](../Screenshots/windows-av-off.png)
 1. Open a PowerShell Prompt and download the Blind Eagle ATTACK Evaluations Library to your chosen directory on your Windows attack machine
+
     ```PowerShell
     git clone https://github.com/center-for-threat-informed-defense/blackhat-2023-becoming-a-dark-knight-emulation
     ```
+
 1. Open File Explorer and navigate to the repo directory `Resources\Binaries\`. `Right click -> Extract Files` on `Binaries.zip` and provide the password `malware` when prompted
 
 ### Web Server Setup \ 192.168.0.5
 
 SSH to the web server from either your machine or a separate PowerShell prompt on your Windows Attack Platform:
+
 ```
 ssh ubuntu@192.168.0.5
 ```
 
 1. Download the Blind Eagle ATTACK Evaluations Library to the `/opt` folder on your Linux Web Machine
+
     ```bash
     cd /opt/
     ```
+
     ```bash
     git clone https://github.com/center-for-threat-informed-defense/blackhat-2023-becoming-a-dark-knight-emulation
     ```
+
 1. `cd` to `/opt/blackhat-2023-becoming-a-dark-knight-emulation` and use `unzip -P malware Resources/Binaries/Binaries.zip` to extract payloads
+
     ```bash
     cd /opt/blackhat-2023-becoming-a-dark-knight-emulation
     ```
+
     ```bash
     unzip -P malware Resources/Binaries/Binaries.zip
     ```
+
 1. Create a the following directories to host payloads from the attack users home directory:
+
     ```bash
     mkdir -p ~/web/{rump,dll,notificaciones/contribuyentes/factura-228447578537}
     ```
+
 1. Use the Shell commands below to populate the binaries in the expected directories for the scenario:
+
     ```bash
     cp Resources/Binaries/asy.txt ~/web
     ```
+
     ```
     cp Resources/Binaries/new_rump_vb.net.txt ~/web/dll
     ```
+
     ```
     cp Resources/Binaries/Rump.xls ~/web/rump
     ```
+
     ```
     cp Resources/Binaries/factura-228447578537.pdf.uue ~/web
     ```
+
     ```
     cp Resources/Binaries/index.html ~/web/notificaciones/contribuyentes/factura-228447578537
     ```
+
 1. SCP the bancomurcielago website built using Django CMS to the victim Web server :heavy_exclamation_mark: this will be used in a later configuration step
+
     ```bash
     scp /opt/blackhat-2023-becoming-a-dark-knight-emulation/Resources/Binaries/django-cms-quickstart.zip ubuntu@10.1.0.4:/opt
     ```
@@ -104,7 +121,7 @@ If you wish to create DNS records the following will be useful for a complete em
 
 | IP Address | DNS Name |
 | --- | --- |
-| 192.168.0.5 | dian-info.com | 
+| 192.168.0.5 | dian-info.com |
 | 10.1.0.4 | web.bancomurcielago.com |
 
 1. Create the user accounts as used in the scenario:
@@ -127,6 +144,7 @@ RDP to the workstation from either your computer or the Windows Attack Machine:
 ### Configure EWS Server `mail`\ 10.1.0.11
 
 SSH to mail from either your computer or the Windows Attack Machine:
+
 ```
 ssh ubuntu@10.1.0.11
 ```
@@ -137,15 +155,20 @@ ssh ubuntu@10.1.0.11
 ### Configure Web Server `bancomurcielago-linux-srv3`\ 10.1.0.4
 
 1. Remove any prior Docker and Docker-Compose installations:
+
     ```bash
     for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do sudo apt-get remove $pkg; done
     ```
+
 1. Install prerequisite packages:
+
     ```bash
     sudo apt-get update
     sudo apt-get install ca-certificates curl gnupg
     ```
+
 1. Set up Docker APT repo:
+
     ```bash
     # add gpg key
     sudo install -m 0755 -d /etc/apt/keyrings
@@ -161,15 +184,21 @@ ssh ubuntu@10.1.0.11
     # apt update
     sudo apt update
     ```
+
 1. Install Docker and Docker Compose:
+
     ```bash
     sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin unzip
     ```
+
 1. unzip website built with Django CMS in `/opt/` on `bancomurcielago-linux-srv3`
+
     ```bash
     unzip /opt/django-cms-quickstart.zip
     ```
+
 1. Run the website with Docker:
+
     ```bash
     cd /opt/django-cms-quickstart
     sudo docker compose up -d
@@ -187,4 +216,3 @@ The [Binaries.zip](../Binaries/Binaries.zip) contains all executables in one zip
 - [Operations Flow](../../Operations_Flow/Operations_Flow.md)
 - [Emulation Plan](../../Emulation_Plan/README.md)
 - [Issues](https://github.com/attackevals/ael/issues)
-

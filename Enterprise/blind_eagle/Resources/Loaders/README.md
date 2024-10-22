@@ -24,4 +24,4 @@ This emulation has a few dependencies that, without proper configuration, will c
 
 ## References
 
-1)  https://attack.mitre.org/techniques/T1055/012
+1) <https://attack.mitre.org/techniques/T1055/012>

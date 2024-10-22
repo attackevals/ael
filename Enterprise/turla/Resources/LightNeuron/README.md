@@ -1,6 +1,7 @@
 # LightNeuron
 
 LightNeuron is broken up into the following components:
+
 | Component | Description |
 | --- | --- |
 | Transport Agent | Microsoft transport agent |
@@ -19,7 +20,7 @@ Run the following to recompile the transport agent DLL from the `Microsoft.Excha
 dotnet build -c Release output .
 ```
 
-> **NOTE:** if compiling in a different directory than the original project directory, the 
+> **NOTE:** if compiling in a different directory than the original project directory, the
 > `Microsoft.Exchange.Data.Common.dll` and `Microsoft.Exchange.Data.Transport.dll` must be located in
 > the directory where the command is being executed. These binaries can be copied from an installed
 > version of Exchange.
@@ -52,6 +53,7 @@ File was originally compiled on Windows 10
 ```
 cmake -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_C_COMPILER:FILEPATH=gcc.exe -DCMAKE_CXX_COMPILER:FILEPATH=g++.exe -S . -B build -G "MinGW Makefiles"
  ```
+
  ```
  cmake --build build --config Release --target all -j 4 --
  ```
@@ -59,6 +61,7 @@ cmake -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Releas
 ## Test Instructions
 
 ### Test Instructions for Transport Agent
+
 Tests were run from a Windows machine using PowerShell and will interact with the Exchange server
 provided as an argument to the script. The Windows host should be able to resolve the Exchange
 server's hostname properly.
@@ -71,16 +74,19 @@ uninstall the transport agent and remove all files.
 > can be copied from an installed version of Exchange and should be placed in the same directory
 > where the test script is being executed from.
 
-1. Ensure the transport agent is built using the above command and the DLL is located in the 
+1. Ensure the transport agent is built using the above command and the DLL is located in the
 `TransportAgent\Microsoft.Exchange.Transport.Agent.ConnectionFiltering` directory
-1. Ensure the Microsoft.Exchange.WebServices.dll is located within the 
+1. Ensure the Microsoft.Exchange.WebServices.dll is located within the
 `Microsoft.Exchange.Transport.Agent.ConnectionFiltering.Tests` directory. If not, this DLL can be
 downloaded from the binaries available in an installed Exchange server.
 1. Change directory into the `Microsoft.Exchange.Transport.Agent.ConnectionFiltering.Tests` directory:
+
 ```
 cd Microsoft.Exchange.Transport.Agent.ConnectionFiltering.Tests
 ```
+
 1. Run the PowerShell script testing transport agent functionality:
+
 ```
 .\ConnectionFilteringAgentTests.ps1 -sender <sender username> -senderPassword <sender plaintext password> -receiver <receiver username> -receiverPassword <receiver plaintext password> -domain <domain name> -server <Exchange server hostname>
 ```
@@ -90,6 +96,7 @@ cd Microsoft.Exchange.Transport.Agent.ConnectionFiltering.Tests
 Unit tests were run on a Windows machine using CMake. Running this will also build the script in the `CompanionDLL\util` directory.
 
 1. Set up and run tests via Powershell from the Companion DLL Directory to check:
+
 ```
 cmake -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_C_COMPILER:FILEPATH=gcc.exe -DCMAKE_CXX_COMPILER:FILEPATH=g++.exe -S . -B build -G "MinGW Makefiles"
 cmake --build build --config Debug --target all -j 4 --
@@ -101,15 +108,18 @@ ctest
 
 1. Open an admin PowerShell in the LightNeuron directory
 1. Run the following to install all components of LightNeuron:
+
     ```
     powershell .\setup.ps1
     ```
+
     This will copy over the rule file, configuration file, Companion DLL (from the CompanionDLL/data directory),
     and the transport agent `Microsoft.Exchange.Transport.Agent.ConnectionFiltering.dll` (from the TransportAgent/Microsoft.Exchange.Transport.Agent.ConnectionFiltering directory).
 1. Once the setup script has finished executing, you may begin sending emails that will be collected by LightNeuron
 as indicated by its rule file
 1. To tear down the full implant testing, run the following from the same admin PowerShell
 terminal from earlier (or open a new admin PowerShell) to delete all artifacts:
+
     ```
     .\teardown.ps1
     ```
@@ -139,13 +149,14 @@ Note: The current implementation will encrypt the resulting command output befor
 
 1. Building the Executable
 
-    1. Follow the same steps as building the unit tests. 
+    1. Follow the same steps as building the unit tests.
 
     1. When running the build command, it will automatically rebuild the `analyze_image.exe` binary.
 
 1. Generate the image using the C2 server
 
     1. Run the C2 server like normal, then call the lightneuron handler with whatever command you want to test.
+
     ```
     ./evalsC2client --set-task <GUID/EMAIL> '<cmdID> | <command to execute>'
     ./evalsC2client --set-task temp@mail.local '5 | whoami'
@@ -164,10 +175,11 @@ Note: The current implementation will encrypt the resulting command output befor
     1. Run the executable with the path to the image and signature key.
 
         1. Using default filename and key from C2 server:
+
         ```
         .\analyze_image.exe snake_modified.jpg pwndsnek
         ```
-    
+
     1. If successful, the resulting image will be written to: `output.jpg`
 
     1. This image can now be dropped in the `pickup` folder of the C2 server to be analyzed and see the result.
@@ -203,26 +215,27 @@ Remove-Item C:\\Windows\\serviceprofiles\\networkservice\\appdata\\Roaming\\Micr
 
 Please see the [LightNeuron](../../cleanup/README.md) in the `Resources/cleanup` directory
 
-
 ## Misc
 
 ### msiex.ps1
+
 Install Microsoft Exchange Transport Agent
 
 CTI indicates PowerShell installer script file name was msinp.ps1. This has
 been tweaked to msiex.ps1 instead.
 
-
 ### CTI Evidence
-https://www.welivesecurity.com/wp-content/uploads/2019/05/ESET-LightNeuron.pdf
+
+<https://www.welivesecurity.com/wp-content/uploads/2019/05/ESET-LightNeuron.pdf>
 
 ### References
-https://docs.microsoft.com/en-us/exchange/client-developer/transport-agents/how-to-create-an-smtpreceiveagent-transport-agent-for-exchange-2013
 
-https://docs.microsoft.com/en-us/exchange/client-developer/transport-agents/how-to-create-a-routingagent-transport-agent-for-exchange-2013
+<https://docs.microsoft.com/en-us/exchange/client-developer/transport-agents/how-to-create-an-smtpreceiveagent-transport-agent-for-exchange-2013>
 
-https://stackoverflow.com/a/13935718
+<https://docs.microsoft.com/en-us/exchange/client-developer/transport-agents/how-to-create-a-routingagent-transport-agent-for-exchange-2013>
 
-https://github.com/ReneNyffenegger/cpp-base64
+<https://stackoverflow.com/a/13935718>
 
-https://github.com/zeux/pugixml
+<https://github.com/ReneNyffenegger/cpp-base64>
+
+<https://github.com/zeux/pugixml>

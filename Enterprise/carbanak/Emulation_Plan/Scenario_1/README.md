@@ -605,7 +605,7 @@ With knowledge of the DC IP address, the attacker uses **PsExec.py**, providing 
 
 The attacker begins targeting the CFO user from the domain controller. First, they execute **Get-AdComputer** from memory to get detailed information about the CFO user's computer ([T1018](https://attack.mitre.org/techniques/T1018/)), learning their username. The attacker then executes **Get-NetUser** from the **PowerView** library to gather information about the user ([T1087.002](https://attack.mitre.org/techniques/T1087/002/)).
 
-###Procedures
+### Procedures
 
 #### 6.A - Remote System Discovery ([T1018](https://attack.mitre.org/techniques/T1018/), [T1087.002](https://attack.mitre.org/techniques/T1087/002/))
 
@@ -812,7 +812,7 @@ After setting up the registry persistence, the attacker waits for the persistenc
         Pay attention to your terminal prompt:
 
         ```
-        $ exit
+        exit
         ```
 
         ```

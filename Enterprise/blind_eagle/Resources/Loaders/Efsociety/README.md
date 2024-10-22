@@ -9,11 +9,13 @@ fsociety DLL is an injector that Blind Eagle has used in operations<sup>[1](http
 fsociety is downloaded and ran by `fiber.dll` as part of the infection chain. prior to running, `fsociety.dll` is manipulated by the threat actor to be base64 encoded, have all `A`s replaced with a Unicode string, and then reversed. The utility `file-ops.py` has been created in the Util folder to assist in replicating the obfuscation of the binary for delivery.
 
 Windows:
+
 ```PowerShell
 py.exe ./file-ops.py -f path\to\repo\birdsofprey\Resources\Efsociety\Efsociety\bin\Release\Efsociety.dll
 ```
 
 Linux/Mac:
+
 ```bash
 python3 ./file-ops.py -f path/to/repobirdsofprey/Resources/Efsociety/Efsociety/bin/Release/Efsociety.dll
 ```
@@ -88,8 +90,8 @@ PS C:\<path>\<to>\birdsofprey\Resources\Efsociety> 'C:\Program Files | [x86]\Mic
 
 ## References and CTI
 
-1) https://blogs.blackberry.com/en/2023/02/blind-eagle-apt-c-36-targets-colombia
+1) <https://blogs.blackberry.com/en/2023/02/blind-eagle-apt-c-36-targets-colombia>
 
-2) https://lab52.io/blog/apt-c-36-from-njrat-to-apt-c-36/
+2) <https://lab52.io/blog/apt-c-36-from-njrat-to-apt-c-36/>
 
-3) https://otx.alienvault.com/indicator/file/03b7d19202f596fe4dc556b7da818f0f76195912e29d728b14863dda7b91d9b5
+3) <https://otx.alienvault.com/indicator/file/03b7d19202f596fe4dc556b7da818f0f76195912e29d728b14863dda7b91d9b5>

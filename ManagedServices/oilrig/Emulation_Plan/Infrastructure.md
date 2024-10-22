@@ -39,6 +39,7 @@ This methodology assumes the following static IP address configurations:
 
 1. Download the OilRig ATTACK Evaluations Library to the `/opt/` directory
 1. Use the Linux commands below to populate the binaries in the expected directories for the scenario:
+
     ```sh
     # from oilrig/
     unzip -P malware Resources/Binaries/binaries.zip
@@ -50,6 +51,7 @@ This methodology assumes the following static IP address configurations:
     # copy RDAT.exe to the payload staging directory for TwoFace
     cp Resources/Binaries/RDAT.exe Resources/payloads/TwoFace
     ```
+
 1. Download [Mimikatz](https://github.com/gentilkiwi/mimikatz/wiki) to the `Resources/payloads/TwoFace/` directory. Rename Mimikatz executable as `m64.exe`.
 1. Download [Plink](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) to the `Resources/payloads/SideTwist/` directory
 1. Download [PsExec.exe](https://learn.microsoft.com/en-us/sysinternals/downloads/psexec) to the `Resources/payloads/TwoFace/` directory
@@ -61,13 +63,17 @@ This methodology assumes the following static IP address configurations:
 1. Install Postfix
 1. Stage the SideTwist dropper `Marketing_Materials.zip` to /var/www/html
 1. Run the [`install-configure-postfix.sh`](../Resources/setup/install-configure-postfix.sh) bash script as sudo
+
     ```sh
     sudo ./install-configure-postfix.sh
     ```
+
 1. Run the [`setup-apache-fileserver.sh`](../Resources/setup/setup-apache-fileserver.sh) bash script as sudo
+
     ```sh
     sudo ./setup-apache-fileserver.sh
     ```
+
 Note: You may need to chmod the scripts to allow them to run.
 
 ## Target Infrastructure
@@ -94,9 +100,11 @@ Note: in the scenario, DNS records were manually created to emulate network acti
 
 1. Open Windows Defender, toggle all nobs to the off position.
 1. Open PowerShell being sure to select "Run as Administrator" and run the [`modify-defender.ps1`](../Resources/preflight/modify-defender.ps1) script:
+
     ```bat
     .\modify-defender.ps1
     ```
+
 1. Create the user accounts as used in the scenario:
 
     | username | groups |
@@ -108,14 +116,19 @@ Note: in the scenario, DNS records were manually created to emulate network acti
     | shiroyeh_admin | Domain Admins |
 
 1. In the Administrator Powershell Terminal run the [`disable-automatic-updates.ps1`](../Resources/setup/disable-automatic-updates.ps1) script:
+
     ```bat
     .\disable-automatic-updates.ps1
     ```
+
 1. In the Administrator Powershell Terminal run the [`choco-install.ps1`](../Resources/setup/choco-install.ps1) script:
+
     ```bat
     .\choco-install.ps1
     ```
+
 1. In the Administrator Powershell Terminal run the [`install-packages.ps1`](../Resources/setup/install-packages.ps1) script:
+
     ```bat
     .\install-packages.ps1
     ```
@@ -124,18 +137,25 @@ Note: in the scenario, DNS records were manually created to emulate network acti
 
 1. Ensure [Microsoft Office](https://www.microsoft.com/en-us/download/office.aspx) is installed and that you're able to edit a document. This will ensure the macros run correctly against the host.
 1. Open PowerShell being sure to select "Run as Administrator" and run the [`modify-defender.ps1`](../Resources/preflight/modify-defender.ps1) script:
+
     ```bat
     .\modify-defender.ps1
     ```
+
 1. In the Administrator Powershell Terminal run the [`disable-automatic-updates.ps1`](../Resources/setup/disable-automatic-updates.ps1) script:
+
     ```bat
     .\disable-automatic-updates.ps1
     ```
+
 1. In the Administrator Powershell Terminal run the [`choco-install.ps1`](../Resources/setup/choco-install.ps1) script:
+
     ```bat
     .\choco-install.ps1
     ```
+
 1. In the Administrator Powershell Terminal run the [`install-packages.ps1`](../Resources/setup/install-packages.ps1) script:
+
     ```bat
     .\install-packages.ps1
     ```
@@ -144,29 +164,40 @@ Note: in the scenario, DNS records were manually created to emulate network acti
 
 1. Setup [Exchange Server](https://www.microsoft.com/en-us/download/details.aspx?id=103477) to host OWA and EAC.
 1. Create the "EWS Admins" group, adding `tous`, `gosta`
-1. Install [MSSQL](https://www.microsoft.com/en-us/sql-server/sql-server-2019) 
+1. Install [MSSQL](https://www.microsoft.com/en-us/sql-server/sql-server-2019)
 1. Create a scheduled task to run the [`sql_connection.bat`](../Resources/Infrastructure) upon system startup:
+
     ```pwsh
     schtasks /create /tn "SQL Connection" /tr <Path to the batch file> /sc onstart /U BOOMBOX\tous
     ```
+
 1. Reboot the machine and verify connection in PowerShell:
+
     ```pwsh
     netstat -ano | select-string 1433
     ```
+
 1. Open Windows Defender, toggle all nobs to the off position.
 1. In the same PowerShell window,  run the [`modify-defender.ps1`](../Resources/preflight/modify-defender.ps1) script:
+
     ```bat
     .\modify-defender.ps1
     ```
+
 1. In the Administrator Powershell Terminal run the [`disable-automatic-updates.ps1`](../Resources/setup/disable-automatic-updates.ps1) script:
+
     ```bat
     .\disable-automatic-updates.ps1
     ```
+
 1. In the Administrator Powershell Terminal run the [`choco-install.ps1`](../Resources/setup/choco-install.ps1) script:
+
     ```bat
     .\choco-install.ps1
     ```
+
 1. In the Administrator Powershell Terminal run the [`install-packages.ps1`](../Resourcess/setup/install-packages.ps1) script:
+
     ```bat
     .\install-packages.ps1
     ```
@@ -178,24 +209,32 @@ Note: in the scenario, DNS records were manually created to emulate network acti
 1. Sign in as `tous` and create a new database called `sitedata`.
 1. Import the `minfac.csv` data file to populate the database.
 1. Create a backup of the database to the drive for later exfiltration by the adversary
-	* Note: For the purpose of execution, this directory was `C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\Backup\`
+ - Note: For the purpose of execution, this directory was `C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\Backup\`
 1. Open Windows Defender, toggle all nobs to the off position.
 1. Open PowerShell being sure to select "Run as Administrator" and run the [`modify-defender.ps1`](../Resources/preflight/modify-defender.ps1) script:
+
     ```bat
     .\modify-defender.ps1
     ```
+
 1. In the Administrator Powershell Terminal run the [`disable-automatic-updates.ps1`](../Resources/setup/disable-automatic-updates.ps1) script:
+
     ```bat
     .\disable-automatic-updates.ps1
     ```
+
 1. In the Administrator Powershell Terminal run the [`choco-install.ps1`](../Resources/setup/choco-install.ps1) script:
+
     ```bat
     .\choco-install.ps1
     ```
+
 1. In the Administrator Powershell Terminal run the [`install-packages.ps1`](../Resources/setup/install-packages.ps1) script:
+
     ```bat
     .\install-packages.ps1
     ```
+
 1. Open port 1433 in Windows Defender Firewall
 1. Add the "SQL Admins" group to Local Administrators
 

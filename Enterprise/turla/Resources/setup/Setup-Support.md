@@ -19,7 +19,6 @@
 - Bolt - Redirector
   - enable-traffic-forwarding-rules-bolt.sh - Set up the traffic forwarding rules for bolt redirector
 
-
 ### DNS
 
 `stlouis` DNS server supports DNS for the range.

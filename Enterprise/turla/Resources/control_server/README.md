@@ -8,7 +8,7 @@ The Control Server is backed with a REST API to support automation and integrati
 
 ## Handlers Contained
 
-The below handlers were developed specifically for this adversary's emulation plans. Each handler contains a readme describing configurations, cited research, and available commands. 
+The below handlers were developed specifically for this adversary's emulation plans. Each handler contains a readme describing configurations, cited research, and available commands.
 
 | Handler | Description |
 | ------- | ----------- |
@@ -18,9 +18,11 @@ The below handlers were developed specifically for this adversary's emulation pl
 | [Snake](./handlers/snake) | This C2 handler is used for the Snake implant in the Snake Scenario used in ATT&CK Evaluations Enterprise Round 5|
 
 ## Usage
+
 This repository is meant to act as a submodule within other adversary emulation or ATT&CK evaluation repositories. To use this control server repository, you may either run the binary as is or reference the entire repository as a submodule.
 
 The control server expects the following folder structure for payloads/uploads:
+
 - File uploads will be stored in the `files` subdirectory of the current working directory of the C2 server. The repository already has this directory available, but you will need to create the folder before running the binary from a different location.
 - Payload downloads will be fetched from the `payloads` folder of the parent directory of the C2 server's working location. The repository does not contain this payload directory, since the end user will be responsible for providing the payloads according to their specific use case. Ensure that this folder exists in the parent directory when running the C2 server. For example, if the control server is being run from the `Resources/control_server` directory, the payloads must be placed in `Resources/payloads/` in order for the handlers to successfully serve them. The SideTwist handler in particular expects its payloads to be in a separate `SideTwist` directory under the `payloads` directory (e.g. `Resources/payloads/SideTwist`)
 
@@ -40,11 +42,13 @@ go build -o controlServer main.go
 ```
 
 To run with default config paths:
+
 ```
 sudo ./controlServer
 ```
 
 To specify config paths:
+
 ```
 sudo ./controlServer -c ./config/myhandlerconfig.yml -r ./config/myrestapiconfig.yml
 sudo ./controlServer --config ./config/myhandlerconfig.yml --rest-config ./config/myrestapiconfig.yml
@@ -55,16 +59,20 @@ sudo ./controlServer --config ./config/myhandlerconfig.yml --rest-config ./confi
 ```
 sudo go test ./...
 ```
+
 Note: you may need to specify the full path to your golang binary if running under `sudo`.
 
-For example: 
+For example:
+
 ```
 sudo /usr/local/go/bin/go test ./...
 ```
 
 ## Usage Examples
-1. Enable C2 handlers and adjust configuration values to change IP address and ports to listen on by editing the default `config/handler_config.yml` file or by creating your own config YML file. 
+
+1. Enable C2 handlers and adjust configuration values to change IP address and ports to listen on by editing the default `config/handler_config.yml` file or by creating your own config YML file.
 To enable a handler, set `enabled` to `true`, like below:
+
 ```
 sidetwist:
   host: 192.168.0.8
@@ -73,6 +81,7 @@ sidetwist:
 ```
 
 To disable a handler, set `enabled` to `false`, like below:
+
 ```
 sidetwist:
   host: 192.168.0.8
@@ -83,11 +92,13 @@ sidetwist:
 1. Start the control server:
 
 Using default config file paths:
+
 ```
 sudo ./controlServer
 ```
 
 To specify config paths:
+
 ```
 sudo ./controlServer -c ./config/myhandlerconfig.yml -r ./config/myrestapiconfig.yml
 sudo ./controlServer --config ./config/myhandlerconfig.yml --rest-config ./config/myrestapiconfig.yml
@@ -101,11 +112,11 @@ go run main.go
 
 Note: you may need to specify the full path to your golang binary if running under `sudo`.
 
-For example: 
+For example:
+
 ```
 sudo /usr/local/go/bin/go run main.go
 ```
-
 
 ## Installation Dependencies
 
@@ -123,7 +134,8 @@ sudo go test ./...
 
 Note: you may need to specify the full path to your golang binary if running under `sudo`.
 
-For example: 
+For example:
+
 ```
 sudo /usr/local/go/bin/go test ./...
 ```
@@ -149,8 +161,10 @@ To Do - need to write unit tests
 ```
 
 ## Usage Examples
-1. Enable C2 handlers and adjust configuration values to change IP address and ports to listen on by editing the default `config/handler_config.yml` file or by creating your own config YML. 
+
+1. Enable C2 handlers and adjust configuration values to change IP address and ports to listen on by editing the default `config/handler_config.yml` file or by creating your own config YML.
 To enable a handler, set `enabled` to `true`, like below:
+
 ```
 sidetwist:
   host: 192.168.0.8
@@ -159,6 +173,7 @@ sidetwist:
 ```
 
 To disable a handler, set `enabled` to `false`, like below:
+
 ```
 sidetwist:
   host: 192.168.0.8
@@ -173,6 +188,7 @@ sudo ./controlServer
 ```
 
 To specify config paths:
+
 ```
 sudo ./controlServer -c ./config/myhandlerconfig.yml -r ./config/myrestapiconfig.yml
 sudo ./controlServer --config ./config/myhandlerconfig.yml --rest-config ./config/myrestapiconfig.yml
@@ -180,7 +196,7 @@ sudo ./controlServer --config ./config/myhandlerconfig.yml --rest-config ./confi
 
 1. Establish an implant session
 
-Run an implant program of your choice to connect to the C2 (make sure that the corresponding handler was enabled). 
+Run an implant program of your choice to connect to the C2 (make sure that the corresponding handler was enabled).
 
 1. Run the client python script to manage implant sessions.
 
@@ -230,4 +246,3 @@ Run an implant program of your choice to connect to the C2 (make sure that the c
 ```
 
 For specific instructions on tasking a particular implant, reference the appropriate README.
-

@@ -1,6 +1,6 @@
 # Troubleshooting
 
-## I can't RDP into domain hosts!
+## I can't RDP into domain hosts
 
 DNS is most likely screwed up - we need to fix it.
 
@@ -43,6 +43,6 @@ Give it a few minutes and then try to login as intended.
 2) Type the IP of the Kali Computer. For example, `192.168.0.4`
 3) Type the User name you were given with the domain you are joining. For example, `dungeon\myuser`
     - Note: At this point you can make other settings changes like reducing the display resolution, color depth to reduce bandwidth, or change local resources.
-4) Check the box `Allow me to save credentials` (important!) and click Save or Save As... 
+4) Check the box `Allow me to save credentials` (important!) and click Save or Save As...
 5) Click connect and a windows login prompt will appear, type your password and you should be in!
     - Note: Once you login succesfully you will also have the ability to check "Always ask for credentials".

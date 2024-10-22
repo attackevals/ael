@@ -27,9 +27,9 @@ Please note that binary executable files hosted in [Resources](/Enterprise/fin7/
 We provide a [script](/Enterprise/fin7/Resources/utilities/crypt_executables.py) to automatically decrypt these files:
 
 ```
-$ cd carbanak
+cd carbanak
 
-$ python3 Resources/utilities/crypt_executables.py -i ./ -p malware --decrypt
+python3 Resources/utilities/crypt_executables.py -i ./ -p malware --decrypt
 ```
 
 ## YARA Rules

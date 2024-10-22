@@ -30,37 +30,37 @@ PsExec ([S0029](https://attack.mitre.org/software/S0029/)) | | Remote Execution 
 
 ## Carbanak ATT&CK Navigator
 
-#### The following behaviors are in scope for an emulation of actions attributed to Carbanak as referenced by [MITRE ATT&CK](https://attack.mitre.org/groups/G0008/) and in the [referenced reporting](#references).
+#### The following behaviors are in scope for an emulation of actions attributed to Carbanak as referenced by [MITRE ATT&CK](https://attack.mitre.org/groups/G0008/) and in the [referenced reporting](#references)
 
 ![/Attack_Layers/Carbanak_G0008.png](/Enterprise/carbanak/Attack_Layers/Carbanak_G0008.png)
 
 ## [Scenario 1](/Enterprise/carbanak/Emulation_Plan/Scenario_1/README.md)
 
-#### The following behaviors are in scope for an emulation of actions attributed to Carbanak, as implemented in Scenario 1, in the [referenced reporting](#references).
+#### The following behaviors are in scope for an emulation of actions attributed to Carbanak, as implemented in Scenario 1, in the [referenced reporting](#references)
 
 ![/Attack_Layers/Carbanak_Scenario1.png](/Enterprise/carbanak/Attack_Layers/Carbanak_Scenario1.png)
 
 ## [Carbanak](https://mitre-attack.github.io/attack-navigator//#layerURL=https%3A%2F%2Fattack.mitre.org%2Fsoftware%2FS0030%2FS0030-enterprise-layer.json)
 
-#### The following behaviors are in scope for an emulation of actions performed by the Carbanak group using Carbanak malware, exclusively based on current intelligence within ATT&CK for the given software.
+#### The following behaviors are in scope for an emulation of actions performed by the Carbanak group using Carbanak malware, exclusively based on current intelligence within ATT&CK for the given software
 
 ![/Attack_Layers/Carbanak_S0030.png](/Enterprise/carbanak/Attack_Layers/Carbanak_S0030.png)
 
 ## [Mimikatz](https://mitre-attack.github.io/attack-navigator//#layerURL=https%3A%2F%2Fattack.mitre.org%2Fsoftware%2FS0002%2FS0002-enterprise-layer.json)
 
-#### The following behaviors are in scope for an emulation of actions performed by Carbanak using Mimikatz, exclusively based on current intelligence within ATT&CK for the given software.
+#### The following behaviors are in scope for an emulation of actions performed by Carbanak using Mimikatz, exclusively based on current intelligence within ATT&CK for the given software
 
 ![/Attack_Layers/Mimikatz_S0002.png](/Enterprise/carbanak/Attack_Layers/Mimikatz_S0002.png)
 
 ## [netsh](https://mitre-attack.github.io/attack-navigator//#layerURL=https%3A%2F%2Fattack.mitre.org%2Fsoftware%2FS0108%2FS0108-enterprise-layer.json)
 
-#### The following behaviors are in scope for an emulation of actions performed by Carbanak using netsh, exclusively based on current intelligence within ATT&CK for the given software.
+#### The following behaviors are in scope for an emulation of actions performed by Carbanak using netsh, exclusively based on current intelligence within ATT&CK for the given software
 
 ![/Attack_Layers/netsh_S0108.png](/Enterprise/carbanak/Attack_Layers/netsh_S0108.png)
 
 ## [PsExec](https://mitre-attack.github.io/attack-navigator//#layerURL=https%3A%2F%2Fattack.mitre.org%2Fsoftware%2FS0002%2FS0002-enterprise-layer.json)
 
-#### The following behaviors are in scope for an emulation of actions performed by Carbanak using Mimikatz, exclusively based on current intelligence within ATT&CK for the given software.
+#### The following behaviors are in scope for an emulation of actions performed by Carbanak using Mimikatz, exclusively based on current intelligence within ATT&CK for the given software
 
 ![/Attack_Layers/PsExec_S0029.png](/Enterprise/carbanak/Attack_Layers/PsExec_S0029.png)
 ---
@@ -83,7 +83,7 @@ ID | Source | Publisher | Date |
 8 | [New Carbanak/Anunak Attack Methodology](https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/new-carbanak-anunak-attack-methodology/) | [Trustwave](https://trustwave.com) | November 2016
 9 | [FIN7 Evolution and the Phishing LNK](https://www.fireeye.com/blog/threat-research/2017/04/fin7-phishing-lnk.html) | [FireEye](https://www.fireeye.com/) | April 2017
 10 | [The Shadows of Ghosts Carbanak](https://go.rsa.com/l/797543/2019-10-11/35g2/797543/11231/The_Shadows_Of_Ghosts_Carbanak_Report.pdf) | [RSA](https://www.rsa.com) | November 2017
-11 | [ The Carbanak/FIN7 Syndicate: A Historical Overview of an Evolving Threat](https://www.rsa.com/en-us/blog/2017-11/the-carbanak-fin7-syndicate) | [RSA](https://www.rsa.com) | November 2017
+11 | [The Carbanak/FIN7 Syndicate: A Historical Overview of an Evolving Threat](https://www.rsa.com/en-us/blog/2017-11/the-carbanak-fin7-syndicate) | [RSA](https://www.rsa.com) | November 2017
 12 | [Carbanak Continues To Evolve: Quietly Creeping into Remote Hosts](https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/carbanak-continues-to-evolve-quietly-creeping-into-remote-hosts/) | [Trustwave](https://trustwave.com) | April 2017
 13 | [Carbanak Group uses Google for malware command-and-control](https://www.forcepoint.com/blog/x-labs/carbanak-group-uses-google-malware-command-and-control) | [Forcepoint](https://www.forcepoint.com) | January 2017
 14 |  [Anunak: APT against financial institutions](https://www.group-ib.com/resources/threat-research/Anunak_APT_against_financial_institutions.pdf) | [Group-IB](https://www.group-ib.com/) & [Fox-IT](https://www.fox-it.com/en/) | April 2014

@@ -12,7 +12,6 @@ The downloaded DLL is then executed via the C standard library:
 system("rundll32.exe evil.dll,Start")
 ```
 
-
 ## Quick Start
 
 Execute this program on Windows:
@@ -29,7 +28,7 @@ Example:
 
 ## Build Instructions
 
-Download and install a C++ compiler: https://jmeubank.github.io/tdm-gcc/download/
+Download and install a C++ compiler: <https://jmeubank.github.io/tdm-gcc/download/>
 
 Run the make.bat script from a terminal (cmd.exe):
 
@@ -49,4 +48,4 @@ Reboot the system to flush any DLL's from process memory.
 
 Sandworm Team used a backdoor which could execute a supplied DLL using rundll32.exe.
 
-https://www.welivesecurity.com/2017/07/04/analysis-of-telebots-cunning-backdoor/
+<https://www.welivesecurity.com/2017/07/04/analysis-of-telebots-cunning-backdoor/>

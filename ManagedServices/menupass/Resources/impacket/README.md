@@ -1,12 +1,13 @@
 # Impacket for secretsdump.exe
 
 This is a slightly modified version of Fortra's [Impacket](https://github.com/fortra/impacket/tree/master) at [commit 2de29184dc93247829099fcbc52ff256817c6a94](https://github.com/fortra/impacket/tree/2de29184dc93247829099fcbc52ff256817c6a94).
+
 - The original license can be found [here](https://github.com/fortra/impacket/blob/master/LICENSE) and on the [original Github](https://github.com/fortra/impacket/tree/master).
 - The original README can be found [here](https://github.com/fortra/impacket/blob/master/README.md) and on the [original Github](https://github.com/fortra/impacket/tree/master).
 
 The following modifications have been made to the library for compatability in building secretsdump.exe via PyInstaller:
-* Renamed `impacket\http.py` to `impacket\impacket_http.py`
-* Edited `impacket\dcerpc\v5\rpch.py` import of `impacket.http` to `impacket.impacket_http`
+- Renamed `impacket\http.py` to `impacket\impacket_http.py`
+- Edited `impacket\dcerpc\v5\rpch.py` import of `impacket.http` to `impacket.impacket_http`
 
 ## Usage
 
@@ -75,7 +76,7 @@ connection:
                         IP Address of the target machine. If omitted it will use whatever was specified as target. This is useful when target is the NetBIOS name and you cannot resolve it
 ```
 
-In the menuPass scenario, secretsdump.exe is ingressed and executed by SodaMaster. The following is the executed command line arguments to dump local SAM hashes, cached domain login information, and LSA secrets: 
+In the menuPass scenario, secretsdump.exe is ingressed and executed by SodaMaster. The following is the executed command line arguments to dump local SAM hashes, cached domain login information, and LSA secrets:
 
 ```cmd
 secretsdump.exe [domain]/[admin username]@127.0.0.1 -hashes :[admin NTLM]
@@ -151,6 +152,7 @@ The following steps will walk through setup of the build environment.
 ### PyInstaller Build Command
 
 1. Build secretsdump.exe using pyinstaller. This will create a `build` and a `dist` directory in the current working directory.
+
     ```cmd
     pyinstaller examples\secretsdump.py --onefile --path impacket
     ```
@@ -163,4 +165,5 @@ The following steps will walk through setup of the build environment.
     ```
 
 ## CTI Reporting
+
 [PwC - Operation Cloud Hopper: Technical Annex](https://www.pwc.co.uk/cyber-security/pdf/pwc-uk-operation-cloud-hopper-technical-annex-april-2017.pdf#page=28)

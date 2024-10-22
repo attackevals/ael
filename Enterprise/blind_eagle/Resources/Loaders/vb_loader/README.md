@@ -2,7 +2,7 @@
 
 ## Overview
 
-Blind Eagle is known to use VBS loaders as a second stage or later loader of malware infection<sup>[1](https://lab52.io/blog/apt-c-36-from-njrat-to-apt-c-36/),[2](https://blogs.blackberry.com/en/2023/02/blind-eagle-apt-c-36-targets-colombia),[3](https://dciber.org/apt-c-36-ataques-continuos-direcionados-a-instituicoes-e-corporacoes-do-governo-colombiano/),[4](https://blog.scilabs.mx/en/campaign-attributed-to-apt-c-36-context-and-iocs/),[5](https://research.checkpoint.com/2023/blindeagle-targeting-ecuador-with-sharpened-tools/)</sup>. The loader for this scenario is based on a variant used in more recent campaigns. The VBS loader is hidden inside of a seemingly legitimate winRM vbs script. The purpose of this loader is to downlod and execute the second stage DLL, and is typically also targeted for persistence by the second stage DLL loader. 
+Blind Eagle is known to use VBS loaders as a second stage or later loader of malware infection<sup>[1](https://lab52.io/blog/apt-c-36-from-njrat-to-apt-c-36/),[2](https://blogs.blackberry.com/en/2023/02/blind-eagle-apt-c-36-targets-colombia),[3](https://dciber.org/apt-c-36-ataques-continuos-direcionados-a-instituicoes-e-corporacoes-do-governo-colombiano/),[4](https://blog.scilabs.mx/en/campaign-attributed-to-apt-c-36-context-and-iocs/),[5](https://research.checkpoint.com/2023/blindeagle-targeting-ecuador-with-sharpened-tools/)</sup>. The loader for this scenario is based on a variant used in more recent campaigns. The VBS loader is hidden inside of a seemingly legitimate winRM vbs script. The purpose of this loader is to downlod and execute the second stage DLL, and is typically also targeted for persistence by the second stage DLL loader.
 
 ## Usage
 
@@ -40,12 +40,12 @@ py.exe .\file-ops.py -u http://<url>/<to>/asy.txt
 
 ## References and CTI
 
-1) https://lab52.io/blog/apt-c-36-from-njrat-to-apt-c-36/
+1) <https://lab52.io/blog/apt-c-36-from-njrat-to-apt-c-36/>
 
-2) https://blogs.blackberry.com/en/2023/02/blind-eagle-apt-c-36-targets-colombia
+2) <https://blogs.blackberry.com/en/2023/02/blind-eagle-apt-c-36-targets-colombia>
 
-3) https://dciber.org/apt-c-36-ataques-continuos-direcionados-a-instituicoes-e-corporacoes-do-governo-colombiano/
+3) <https://dciber.org/apt-c-36-ataques-continuos-direcionados-a-instituicoes-e-corporacoes-do-governo-colombiano/>
 
-4) https://blog.scilabs.mx/en/campaign-attributed-to-apt-c-36-context-and-iocs/
+4) <https://blog.scilabs.mx/en/campaign-attributed-to-apt-c-36-context-and-iocs/>
 
-5) https://research.checkpoint.com/2023/blindeagle-targeting-ecuador-with-sharpened-tools/
+5) <https://research.checkpoint.com/2023/blindeagle-targeting-ecuador-with-sharpened-tools/>

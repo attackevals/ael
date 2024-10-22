@@ -24,8 +24,6 @@ This emulation plan is intended to be executed with protections-based capabiliti
 
 This scenario emulates the same Carbanak TTP's as scenario 1; however, changes were made to support environments with protective security controls enabled. This scenario is designed so that specific TTP's are decoupled from dependencies to enable all steps to be executed, even if previous steps are blocked.
 
-
-
 ---
 
 ## Additional Plan Resources
