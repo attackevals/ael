@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/ael">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.785344533089">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.785350405613">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -35,11 +35,12 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../../favicon.png" rel="icon">
-    <link href="../../../../resources/css/retype.css?v=3.6.0.785344533089" rel="stylesheet">
+    <link href="../../../../resources/css/retype.css?v=3.6.0.785350405613" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.785344533089" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.785350405613" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.785344533089" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.785350405613" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.6.0.785350405613" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -187,9 +188,9 @@
                                             </svg>
                                         </li>
                                         <li class="pr-4">
-                                            <span class="pr-4">
+                                            <a href="../../../../enterprise/turla/resources/" class="pr-4">
                                                 Resources
-                                            </span>
+                                            </a>
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
                                                 <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
                                             </svg>
@@ -254,9 +255,10 @@
         <span>Transport Agent</span>
     </h3>
 </doc-anchor-target>
-<p>Run the following to recompile the transport agent DLL from the <code v-pre>Microsoft.Exchange.Transport.Agent.ConnectionFiltering</code> directory:</p>
+<p>Run the following to recompile the transport agent DLL from the <code v-pre>Microsoft.Exchange.Transport.Agent.ConnectionFiltering</code>
+directory:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">dotnet build -c Release output .</code></pre>
+<pre class="language-powershell"><code v-pre class="language-powershell">dotnet build -c Release output .</code></pre>
 </doc-codeblock></div>
 <blockquote>
 <p><strong>NOTE:</strong> if compiling in a different directory than the original project directory, the
@@ -277,13 +279,16 @@ File was originally compiled on Windows 10</p>
 <ul>
 <li><code v-pre>choco install cmake --installargs '&quot;ADD_CMAKE_TO_PATH=System&quot;'</code></li>
 <li>You will need to restart the shell to use cmake.</li>
-<li>If cmake was already installed but is not in your path, add it to your path manually (e.g. <code v-pre>C:\Program Files\CMake\bin</code>)</li>
+<li>If cmake was already installed but is not in your path, add it to your path manually (e.g.
+<code v-pre>C:\Program Files\CMake\bin</code>)</li>
 </ul>
 </li>
-<li>Make sure mingw64 is installed on your machine. In this particular example, <code v-pre>msys2</code> was installed and used to install mingw64.
+<li>Make sure mingw64 is installed on your machine. In this particular example, <code v-pre>msys2</code> was installed and used to install
+mingw64.
 <ul>
 <li><code v-pre>choco install msys2</code></li>
-<li>Add <code v-pre>C:\tools\msys64</code> to your PATH enviromment variable to run <code v-pre>msys2</code>. Reopen console windows to register the new env variable.</li>
+<li>Add <code v-pre>C:\tools\msys64</code> to your PATH environment variable to run <code v-pre>msys2</code>. Reopen console windows to register the new
+env variable.</li>
 <li>Run <code v-pre>msys2</code> and within the new prompt, run the following:
 <ul>
 <li><code v-pre>pacman -Syu</code></li>
@@ -292,11 +297,12 @@ File was originally compiled on Windows 10</p>
 </li>
 </ul>
 </li>
-<li>Ensure the following paths are set in the SYSTEM environment PATH variable (note that these may differ in your environment depending on how you installed CMake and mingw64).
+<li>Ensure the following paths are set in the SYSTEM environment PATH variable (note that these may differ in your
+environment depending on how you installed CMake and mingw64).
 <ul>
 <li><code v-pre>C:\Program Files\CMake\bin</code> or equivalent CMake <code v-pre>bin</code> folder</li>
 <li><code v-pre>C:\tools\msys64\mingw64\bin</code> or equivalent Mingw-w64 <code v-pre>bin</code> folder</li>
-<li>Paths  to folders containing <code v-pre>gcc</code> and <code v-pre>g++</code> compilers if not already included in the above Mingw-w64 path folder.</li>
+<li>Paths to folders containing <code v-pre>gcc</code> and <code v-pre>g++</code> compilers if not already included in the above Mingw-w64 path folder.</li>
 <li>Reopen console windows to register the new env variables.</li>
 </ul>
 </li>
@@ -309,10 +315,10 @@ File was originally compiled on Windows 10</p>
 </li>
 </ol>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">cmake -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_C_COMPILER:FILEPATH=gcc.exe -DCMAKE_CXX_COMPILER:FILEPATH=g++.exe -S . -B build -G &quot;MinGW Makefiles&quot;</code></pre>
+<pre class="language-bash"><code v-pre class="language-bash">cmake -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_C_COMPILER:FILEPATH=gcc.exe -DCMAKE_CXX_COMPILER:FILEPATH=g++.exe -S . -B build -G &quot;MinGW Makefiles&quot;</code></pre>
 </doc-codeblock></div>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">cmake --build build --config Release --target all -j 4 --</code></pre>
+<pre class="language-bash"><code v-pre class="language-bash">cmake --build build --config Release --target all -j 4 --</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="test-instructions">
     <h2>
@@ -338,29 +344,32 @@ can be copied from an installed version of Exchange and should be placed in the 
 where the test script is being executed from.</p>
 </blockquote>
 <ol>
-<li>Ensure the transport agent is built using the above command and the DLL is located in the
-<code v-pre>TransportAgent\Microsoft.Exchange.Transport.Agent.ConnectionFiltering</code> directory</li>
-<li>Ensure the Microsoft.Exchange.WebServices.dll is located within the
+<li><p>Ensure the transport agent is built using the above command and the DLL is located in the
+<code v-pre>TransportAgent\Microsoft.Exchange.Transport.Agent.ConnectionFiltering</code> directory</p>
+</li>
+<li><p>Ensure the Microsoft.Exchange.WebServices.dll is located within the
 <code v-pre>Microsoft.Exchange.Transport.Agent.ConnectionFiltering.Tests</code> directory. If not, this DLL can be
-downloaded from the binaries available in an installed Exchange server.</li>
-<li>Change directory into the <code v-pre>Microsoft.Exchange.Transport.Agent.ConnectionFiltering.Tests</code> directory:</li>
-</ol>
+downloaded from the binaries available in an installed Exchange server.</p>
+</li>
+<li><p>Change directory into the <code v-pre>Microsoft.Exchange.Transport.Agent.ConnectionFiltering.Tests</code> directory:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">cd Microsoft.Exchange.Transport.Agent.ConnectionFiltering.Tests</code></pre>
+<pre class="language-powershell"><code v-pre class="language-powershell">cd Microsoft.Exchange.Transport.Agent.ConnectionFiltering.Tests</code></pre>
 </doc-codeblock></div>
-<ol>
-<li>Run the PowerShell script testing transport agent functionality:</li>
-</ol>
+</li>
+<li><p>Run the PowerShell script testing transport agent functionality:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">.\ConnectionFilteringAgentTests.ps1 -sender &lt;sender username&gt; -senderPassword &lt;sender plaintext password&gt; -receiver &lt;receiver username&gt; -receiverPassword &lt;receiver plaintext password&gt; -domain &lt;domain name&gt; -server &lt;Exchange server hostname&gt;</code></pre>
+<pre class="language-powershell"><code v-pre class="language-powershell">.\ConnectionFilteringAgentTests.ps1 -sender &lt;sender username&gt; -senderPassword &lt;sender plaintext password&gt; -receiver &lt;receiver username&gt; -receiverPassword &lt;receiver plaintext password&gt; -domain &lt;domain name&gt; -server &lt;Exchange server hostname&gt;</code></pre>
 </doc-codeblock></div>
+</li>
+</ol>
 <doc-anchor-target id="test-instructions-for-companion-dll">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#test-instructions-for-companion-dll">#</doc-anchor-trigger>
         <span>Test Instructions for Companion DLL</span>
     </h3>
 </doc-anchor-target>
-<p>Unit tests were run on a Windows machine using CMake. Running this will also build the script in the <code v-pre>CompanionDLL\util</code> directory.</p>
+<p>Unit tests were run on a Windows machine using CMake. Running this will also build the script in the <code v-pre>CompanionDLL\util</code>
+directory.</p>
 <ol>
 <li>Set up and run tests via Powershell from the Companion DLL Directory to check:</li>
 </ol>
@@ -384,7 +393,8 @@ ctest</code></pre>
 <pre class="language-none"><code v-pre class="language-none">powershell .\setup.ps1</code></pre>
 </doc-codeblock></div>
 <p>This will copy over the rule file, configuration file, Companion DLL (from the CompanionDLL/data directory),
-and the transport agent <code v-pre>Microsoft.Exchange.Transport.Agent.ConnectionFiltering.dll</code> (from the TransportAgent/Microsoft.Exchange.Transport.Agent.ConnectionFiltering directory).</p>
+and the transport agent <code v-pre>Microsoft.Exchange.Transport.Agent.ConnectionFiltering.dll</code> (from the
+TransportAgent/Microsoft.Exchange.Transport.Agent.ConnectionFiltering directory).</p>
 </li>
 <li><p>Once the setup script has finished executing, you may begin sending emails that will be collected by LightNeuron
 as indicated by its rule file</p>
@@ -409,7 +419,8 @@ terminal from earlier (or open a new admin PowerShell) to delete all artifacts:<
     </h3>
 </doc-anchor-target>
 <ol>
-<li><p>Copy the Transport Agent DLL to the Exchange server at: C:\Program Files\Microsoft\Exchange Server\v15\TransportRoles\agents\Hygiene\Microsoft.Exchange.Transport.Agent.ConnectionFiltering.dll.</p>
+<li><p>Copy the Transport Agent DLL to the Exchange server at: C:\Program Files\Microsoft\Exchange
+Server\v15\TransportRoles\agents\Hygiene\Microsoft.Exchange.Transport.Agent.ConnectionFiltering.dll.</p>
 </li>
 <li><p>For testing with the TestIngestStruct, copy the TestIngestStruct.dll to the same directory as the
 Transport Agent DLL.</p>
@@ -427,8 +438,11 @@ C:\Windows\serviceprofiles\networkservice\appdata\Roaming\Microsoft\Windows\Test
         <span>Analyzing a Test Image</span>
     </h2>
 </doc-anchor-target>
-<p>Under <code v-pre>CompanionDLL\util</code> an executable is included to use the steganography portion of the Companion DLL without needing to use the rest of the implant. This is useful for verifying that returned images being sent to the implant contain the expected result.</p>
-<p>Note: The current implementation will encrypt the resulting command output before embedding it in the output file, so if you open the image in a hex editor it will still look like random data.</p>
+<p>Under <code v-pre>CompanionDLL\util</code> an executable is included to use the steganography portion of the Companion DLL without
+needing to use the rest of the implant. This is useful for verifying that returned images being sent to the implant
+contain the expected result.</p>
+<p>Note: The current implementation will encrypt the resulting command output before embedding it in the output file, so if
+you open the image in a hex editor it will still look like random data.</p>
 <doc-anchor-target id="using-the-executable">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#using-the-executable">#</doc-anchor-trigger>
@@ -453,11 +467,14 @@ C:\Windows\serviceprofiles\networkservice\appdata\Roaming\Microsoft\Windows\Test
 ./evalsC2client --set-task temp@mail.local '5 | whoami'</code></pre>
 </doc-codeblock></div>
 <ol>
-<li><p>Even without being able to send the image, a <code v-pre>snake_modified.jpg</code> image will be generated, this is the image to use for testing.</p>
+<li><p>Even without being able to send the image, a <code v-pre>snake_modified.jpg</code> image will be generated, this is the image to
+use for testing.</p>
 </li>
-<li><p>Note: Encryption must be enabled for this image to work with the implant. To enable encryption on the C2 server, set the <code v-pre>encryption</code> flag to <code v-pre>true</code> in the implant config.</p>
+<li><p>Note: Encryption must be enabled for this image to work with the implant. To enable encryption on the C2 server,
+set the <code v-pre>encryption</code> flag to <code v-pre>true</code> in the implant config.</p>
 </li>
-<li><p>Note: Take note of the signature key that is used when generating the image, it will be needed to run this utility script. The key is hardcoded into the C2 server handler, it&#x27;s currently set to: <code v-pre>pwndsnek</code></p>
+<li><p>Note: Take note of the signature key that is used when generating the image, it will be needed to run this
+utility script. The key is hardcoded into the C2 server handler, it&#x27;s currently set to: <code v-pre>pwndsnek</code></p>
 </li>
 </ol>
 </li>
@@ -500,18 +517,18 @@ C:\Windows\serviceprofiles\networkservice\appdata\Roaming\Microsoft\Windows\Test
 </doc-anchor-target>
 <p>Open and run Exchange Management Shell as Administrator. Execute the following:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">Disable-TransportAgent -Identity &quot;Connection Filtering Agent&quot; -Confirm:$false
+<pre class="language-powershell"><code v-pre class="language-powershell">Disable-TransportAgent -Identity &quot;Connection Filtering Agent&quot; -Confirm:$false
 Uninstall-TransportAgent -Identity &quot;Connection Filtering Agent&quot; -Confirm:$false
 
 Restart-Service MSExchangeTransport</code></pre>
 </doc-codeblock></div>
 <p>Remove the LightNeuron log file:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">Remove-Item C:\\Windows\\serviceprofiles\\networkservice\\appdata\\Roaming\\Microsoft\\Windows\\5365f8a8-27e0-4727-914a-2ab6b734771a</code></pre>
+<pre class="language-powershell"><code v-pre class="language-powershell">Remove-Item C:\\Windows\\serviceprofiles\\networkservice\\appdata\\Roaming\\Microsoft\\Windows\\5365f8a8-27e0-4727-914a-2ab6b734771a</code></pre>
 </doc-codeblock></div>
 <p>If using the TestIngestStruct, remove the debug file:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">Remove-Item C:\\Windows\\serviceprofiles\\networkservice\\appdata\\Roaming\\Microsoft\\Windows\\TestIngestDebug</code></pre>
+<pre class="language-powershell"><code v-pre class="language-powershell">Remove-Item C:\\Windows\\serviceprofiles\\networkservice\\appdata\\Roaming\\Microsoft\\Windows\\TestIngestDebug</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="automated-cleanup">
     <h4>
@@ -519,7 +536,7 @@ Restart-Service MSExchangeTransport</code></pre>
         <span>Automated cleanup</span>
     </h4>
 </doc-anchor-target>
-<p>Please see the <a href="../../cleanup/readme.md">LightNeuron</a> in the <code v-pre>Resources/cleanup</code> directory</p>
+<p>Please see the <a href="../cleanup/">LightNeuron section</a> in the <code v-pre>Resources/cleanup</code> directory</p>
 <doc-anchor-target id="misc">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#misc">#</doc-anchor-trigger>
@@ -541,18 +558,22 @@ been tweaked to msiex.ps1 instead.</p>
         <span>CTI Evidence</span>
     </h3>
 </doc-anchor-target>
-<p><a href="https://www.welivesecurity.com/wp-content/uploads/2019/05/ESET-LightNeuron.pdf">https://www.welivesecurity.com/wp-content/uploads/2019/05/ESET-LightNeuron.pdf</a></p>
+<ul>
+<li><a href="https://www.welivesecurity.com/wp-content/uploads/2019/05/ESET-LightNeuron.pdf">https://www.welivesecurity.com/wp-content/uploads/2019/05/ESET-LightNeuron.pdf</a></li>
+</ul>
 <doc-anchor-target id="references">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#references">#</doc-anchor-trigger>
         <span>References</span>
     </h3>
 </doc-anchor-target>
-<p><a href="https://docs.microsoft.com/en-us/exchange/client-developer/transport-agents/how-to-create-an-smtpreceiveagent-transport-agent-for-exchange-2013">https://docs.microsoft.com/en-us/exchange/client-developer/transport-agents/how-to-create-an-smtpreceiveagent-transport-agent-for-exchange-2013</a></p>
-<p><a href="https://docs.microsoft.com/en-us/exchange/client-developer/transport-agents/how-to-create-a-routingagent-transport-agent-for-exchange-2013">https://docs.microsoft.com/en-us/exchange/client-developer/transport-agents/how-to-create-a-routingagent-transport-agent-for-exchange-2013</a></p>
-<p><a href="https://stackoverflow.com/a/13935718">https://stackoverflow.com/a/13935718</a></p>
-<p><a href="https://github.com/ReneNyffenegger/cpp-base64">https://github.com/ReneNyffenegger/cpp-base64</a></p>
-<p><a href="https://github.com/zeux/pugixml">https://github.com/zeux/pugixml</a></p>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/exchange/client-developer/transport-agents/how-to-create-an-smtpreceiveagent-transport-agent-for-exchange-2013">https://docs.microsoft.com/en-us/exchange/client-developer/transport-agents/how-to-create-an-smtpreceiveagent-transport-agent-for-exchange-2013</a></li>
+<li><a href="https://docs.microsoft.com/en-us/exchange/client-developer/transport-agents/how-to-create-a-routingagent-transport-agent-for-exchange-2013">https://docs.microsoft.com/en-us/exchange/client-developer/transport-agents/how-to-create-a-routingagent-transport-agent-for-exchange-2013</a></li>
+<li><a href="https://stackoverflow.com/a/13935718">https://stackoverflow.com/a/13935718</a></li>
+<li><a href="https://github.com/ReneNyffenegger/cpp-base64">https://github.com/ReneNyffenegger/cpp-base64</a></li>
+<li><a href="https://github.com/zeux/pugixml">https://github.com/zeux/pugixml</a></li>
+</ul>
 
                                 
                                 <!-- Required only on API pages -->
@@ -629,6 +650,6 @@ been tweaked to msiex.ps1 instead.</p>
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "LightNeuron", level: 4, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "LightNeuron", level: 4, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>
