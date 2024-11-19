@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/ael">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.785350405613">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.785352632664">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -35,11 +35,11 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../../../../../favicon.png" rel="icon">
-    <link href="../../../../../../../resources/css/retype.css?v=3.6.0.785350405613" rel="stylesheet">
+    <link href="../../../../../../../resources/css/retype.css?v=3.6.0.785352632664" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../../../../resources/js/config.js?v=3.6.0.785350405613" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../../../../resources/js/config.js?v=3.6.0.785352632664" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../../../../resources/js/lunr.js?v=3.6.0.785350405613" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../../../../resources/js/lunr.js?v=3.6.0.785352632664" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -233,6 +233,11 @@
         <span>C++ Shellcode Execution Template</span>
     </h1>
 </doc-anchor-target>
+<div class="-mt-3 mb-12 flex flex-wrap text-sm text-gray-400 dark:text-dark-350 items-center">
+    <div>In&nbsp;</div>
+    <div><a href="../../categories/managed-services/">Managed-Services</a></div>
+</div>
+
 <p>The C++ Shellcode Execution Template is used by the C2 server to recompile a payload that will be executed by the SodaMaster implant for each command execution task. The compiled binary will be converted to shellcode and executed by the SodaMaster implant, which will then pass the output of the execution back to the C2 server.</p>
 <p>The template will find, load, and lock the resource located in the <code v-pre>bin</code> folder (should be replaced with the payload you want to write to disk) and then write it to disk at the desired path (<code v-pre>PAYLOAD_PATH</code>) if the payload name is supplied. It will then create a <strong>cmd.exe</strong> process with the desired args (<code v-pre>ARGS</code>) and a named pipe to write the output of the process to if CLI arguments are supplied.</p>
 <doc-anchor-target id="build-instructions">
