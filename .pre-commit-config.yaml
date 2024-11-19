@@ -5,8 +5,5 @@ repos:
       - id: check-yaml
       - id: end-of-file-fixer
       - id: trailing-whitespace
-      - id: debug-statements
       - id: check-toml
       - id: check-merge-conflict
-      - id: detect-aws-credentials
-      - id: detect-private-key
