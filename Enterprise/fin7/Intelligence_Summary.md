@@ -127,18 +127,3 @@ ID | Source | Publisher | Date |
 26 | [Fin7 Spearphishing Campaign Targets Personnel Involved in SEC Filings](https://www.fireeye.com/blog/threat-research/2017/03/fin7_spear_phishing.html) | [FireEye](https://www.fireeye.com)| April 2017
 
 ---
-
-## Additional Plan Resources
-
-* [Intelligence Summary](../Intelligence_Summary.md)
-* [Operations Flow](../Operations_Flow.md)
-* [Emulation Plan](../Emulation_Plan)
-  * [Scenario 1 - Infrastructure](../Emulation_Plan/Scenario_1/Infrastructure.md)
-  * [Scenario 1 - Detections](../Emulation_Plan/Scenario_1)
-  * [Scenario 2 - Infrastructure](../Emulation_Plan/Scenario_2/Infrastructure.md)
-  * [Scenario 2 - Protections](../Emulation_Plan/Scenario_2)
-  * [YAML](../Emulation_Plan/yaml)
-* [File Hashes](../hashes)
-* [YARA Rules](../yara-rules)
-* [Issues](https://github.com/attackevals/ael/issues)
-* [Change Log](../CHANGE_LOG.md)

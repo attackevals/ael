@@ -88,17 +88,3 @@ Please note that binary files hosted in [Scenario_1](/Enterprise/apt29/Resources
 3. Open Outlook and sign in if necessary
 
 ---
-
-## Additional Plan Resources
-
-- [Intelligence Summary](/Enterprise/apt29/Intelligence_Summary.md)
-- [Operations Flow](/Enterprise/apt29/Operations_Flow.md)
-- [Emulation Plan](/Enterprise/apt29/Emulation_Plan/README.md)
-  - [Scenario 1 - Infrastructure](/Enterprise/apt29/Emulation_Plan/Scenario_1/Infrastructure.md)
-  - [Scenario 1](/Enterprise/apt29/Emulation_Plan/Scenario_1/README.md)
-  - [Scenario 2 - Infrastructure](/Enterprise/apt29/Emulation_Plan/Scenario_2/Infrastructure.md)
-  - [Scenario 2](/Enterprise/apt29/Emulation_Plan/Scenario_2/README.md)
-  - [YAML](/Enterprise/apt29/Emulation_Plan/yaml)
-- [Archive](/Enterprise/apt29/Archive)
-- [Issues](https://github.com/attackevals/ael/issues)
-- [Change Log](/Enterprise/apt29/CHANGE_LOG.md)

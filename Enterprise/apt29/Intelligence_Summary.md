@@ -138,17 +138,3 @@ ID | Source | Publisher | Date |
 16 |[Analysis of cyberattack on U.S. think tanks, non-profits, public sector by unidentified attackers](https://www.microsoft.com/security/blog/2018/12/03/analysis-of-cyberattack-on-u-s-think-tanks-non-profits-public-sector-by-unidentified-attackers/)|[Microsoft](https://www.microsoft.com/)| December 2018 |
 
 ---
-
-## Additional Plan Resources
-
-- [Intelligence Summary](/Enterprise/apt29/Intelligence_Summary.md)
-- [Operations Flow](/Enterprise/apt29/Operations_Flow.md)
-- [Emulation Plan](/Enterprise/apt29/Emulation_Plan/README.md)
-  - [Scenario 1 - Infrastructure](/Enterprise/apt29/Emulation_Plan/Scenario_1/Infrastructure.md)
-  - [Scenario 1](/Enterprise/apt29/Emulation_Plan/Scenario_1/README.md)
-  - [Scenario 2 - Infrastructure](/Enterprise/apt29/Emulation_Plan/Scenario_2/Infrastructure.md)
-  - [Scenario 2](/Enterprise/apt29/Emulation_Plan/Scenario_2/README.md)
-  - [YAML](/Enterprise/apt29/Emulation_Plan/yaml)
-- [Archive](/Enterprise/apt29/Archive)
-- [Issues](https://github.com/attackevals/ael/issues)
-- [Change Log](/Enterprise/apt29/CHANGE_LOG.md)

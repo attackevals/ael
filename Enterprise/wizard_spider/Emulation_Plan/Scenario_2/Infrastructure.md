@@ -3,11 +3,11 @@
 
 We hope to capture the general structure of what is reported to have been seen being used by [Wizard Spider](https://attack.mitre.org/groups/G0102/). Scenarios 1 and 2 share the same infrastructure; however, Scenario 1 was built to exercise detective-only security controls, and thus protective security controls are to be disabled to complete the evaluation. Scenario 2 was built to exercise protective security controls, which may be enabled while completing the evaluation.
 
-The requirements described herein should be considered a bare minimum to execute the scenario.  If you have the time and resources to remain true-to-form, you may elect to stand up multiple of each of these servers, non-contiguous IP space, etc.  If you are not concerned with emulating [Wizard Spider](https://attack.mitre.org/groups/G0102/) to this degree, this level of effort is not necessary.  You could for instance, phish, serve payload, and exfil from/to the same server.
+The requirements described herein should be considered a bare minimum to execute the scenario. If you have the time and resources to remain true-to-form, you may elect to stand up multiple of each of these servers, non-contiguous IP space, etc. If you are not concerned with emulating [Wizard Spider](https://attack.mitre.org/groups/G0102/) to this degree, this level of effort is not necessary. You could for instance, phish, serve payload, and exfil from/to the same server.
 
 ## Resources
 
-Please note that binary executable files hosted in [Resources](../../Resources/) have been added to password protected zip files.  The password for these files is "malware."
+Please note that binary executable files hosted in [Resources](../../Resources/) have been added to password protected zip files. The password for these files is "malware."
 We provide a [script](../../Resources/Utilities/crypt_executables.py) to automatically decrypt these files:
 
 ```
@@ -80,7 +80,7 @@ Open Windows Defender, toggle all nobs to the off position. Also go to App and B
 
 Open PowerShell being sure to select "Run as Administrator":
 
-```
+```shell
 cd \\TSCLIENT\X
 Set-Executionpolicy bypass -force
 .\install_adfind.ps1
@@ -110,9 +110,9 @@ Reboot the workstation
 
 1. RDP into Dorothy
 
-```
-xfreerdp +clipboard /u:oz\\vfleming /p:"q27VYN8xflPcYumbLMit" /v:10.0.0.7 /drive:X,wizard_spider/Resources/setup
-```
+    ```shell
+    xfreerdp +clipboard /u:oz\\vfleming /p:"q27VYN8xflPcYumbLMit" /v:10.0.0.7 /drive:X,wizard_spider/Resources/setup
+    ```
 
 2. Open Windows Defender, toggle all nobs to the off position.
 
@@ -120,61 +120,61 @@ xfreerdp +clipboard /u:oz\\vfleming /p:"q27VYN8xflPcYumbLMit" /v:10.0.0.7 /drive
 
 4. Open PowerShell being sure to select "Run as Administrator":
 
-```
-cd \\TSCLIENT\X
-Set-Executionpolicy bypass -force
-.\give_rdp_permissions.ps1
-.\enable-winrm.ps1
-.\disable-defender.ps1
-.\file_generator\generate-files.exe -d "C:\Users\Public\" -c 100 --seed "EVALS" --noprompt
-.\file_generator\generate-files.exe -d "C:\Users\" -c 50 --seed "EVALS" --noprompt
-.\file_generator\generate-files.exe -d "C:\Users\" -c 50 --seed "EVALS" --noprompt
-```
+    ```shell
+    cd \\TSCLIENT\X
+    Set-Executionpolicy bypass -force
+    .\give_rdp_permissions.ps1
+    .\enable-winrm.ps1
+    .\disable-defender.ps1
+    .\file_generator\generate-files.exe -d "C:\Users\Public\" -c 100 --seed "EVALS" --noprompt
+    .\file_generator\generate-files.exe -d "C:\Users\" -c 50 --seed "EVALS" --noprompt
+    .\file_generator\generate-files.exe -d "C:\Users\" -c 50 --seed "EVALS" --noprompt
+    ```
 
-For local testing:
+    For local testing:
 
-```
-.\install_msoffice.ps1
-```
+    ```shell
+    .\install_msoffice.ps1
+    ```
 
-Open Word and Outlook; surpress all spurious prompts.
+      Open Word and Outlook; suppress all spurious prompts.
 
-Close Word and outlook.
+      Close Word and outlook.
 
-```
-.\setup_outlook.ps1
-```
+    ```shell
+    .\setup_outlook.ps1
+    ```
 
 5. Next we need to download Microsoft Visual C++ Redistributable.
 
-Open Edge; close all spurious prompts / decline everything.
+    Open Edge; close all spurious prompts / decline everything.
 
-Go to this page:
+    Go to the following URL:
 
-[https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0](https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0)
+    [https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0](https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0)
 
-Download and install the 32-bit and 64-bit versions.
+    Download and install the 32-bit and 64-bit versions.
 
 6. Reboot the workstation
 
-```
-Restart-Computer -Force
-```
+    ```pwsh
+    Restart-Computer -Force
+    ```
 
 7. Log back into Dorothy as user judy
 
-```
-xfreerdp +clipboard /u:oz\\judy /p:"Passw0rd!" /v:10.0.0.7
-```
+    ```shell
+    xfreerdp +clipboard /u:oz\\judy /p:"Passw0rd!" /v:10.0.0.7
+    ```
 
-Open an Administrator CMD.exe
+    Open an Administrator CMD.exe
 
-Run this command to take ownership of a privileged directory:
+    Run this command to take ownership of a privileged directory:
 
-```
-takeown /f "C:\Windows\*" /r /d y
-icacls "C:\Windows\*" /grant judy:(OI)(CI)F /T
-```
+    ```shell
+    takeown /f "C:\Windows\*" /r /d y
+    icacls "C:\Windows\*" /grant judy:(OI)(CI)F /T
+    ```
 
 8. Sign out of the RDP session.
 
@@ -182,43 +182,32 @@ icacls "C:\Windows\*" /grant judy:(OI)(CI)F /T
 
 1. RDP into Toto
 
-```
-xfreerdp +clipboard /u:oz\\vfleming /p:"q27VYN8xflPcYumbLMit" /v:10.0.0.8 /drive:X,wizard_spider/Resources/setup
-```
+    ```shell
+    xfreerdp +clipboard /u:oz\\vfleming /p:"q27VYN8xflPcYumbLMit" /v:10.0.0.8 /drive:X,wizard_spider/Resources/setup
+    ```
 
 2. Open Windows Defender, toggle all nobs to the off position.
 
 3. Open PowerShell being sure to select "Run as Administrator":
 
-```
-cd \\TSCLIENT\X
-Set-Executionpolicy bypass -force
-.\give_rdp_permissions.ps1
-.\enable-winrm.ps1
-.\disable-defender.ps1
-.\file_generator\generate-files.exe -d "C:\Users\Public\" -c 100 --seed "EVALS" --noprompt
-.\file_generator\generate-files.exe -d "C:\Users\" -c 50 --seed "EVALS" --noprompt
-.\file_generator\generate-files.exe -d "C:\Users\" -c 50 --seed "EVALS" --noprompt
-```
+    ```pwsh
+    cd \\TSCLIENT\X
+    Set-Executionpolicy bypass -force
+    .\give_rdp_permissions.ps1
+    .\enable-winrm.ps1
+    .\disable-defender.ps1
+    .\file_generator\generate-files.exe -d "C:\Users\Public\" -c 100 --seed "EVALS" --noprompt
+    .\file_generator\generate-files.exe -d "C:\Users\" -c 50 --seed "EVALS" --noprompt
+    .\file_generator\generate-files.exe -d "C:\Users\" -c 50 --seed "EVALS" --noprompt
+    ```
 
 4. Reboot the workstation
 
-```
-Restart-Computer -Force
-```
-
-## Additional Plan Resources
-
-- [Intelligence Summary](../../Intelligence_Summary.md)
-- [Operations Flow](../../Operations_Flow.md)
-- [Emulation Plan](../../Emulation_Plan)
-  - [Scenario 1 - Infrastructure](../../Emulation_Plan/Scenario_1/Infrastructure.md)
-  - [Scenario 1 - Detections](../../Emulation_Plan/Scenario_1)
-  - [Scenario 2 - Infrastructure](../../Emulation_Plan/Scenario_2/Infrastructure.md)
-  - [Scenario 2 - Protections](../../Emulation_Plan/Scenario_2)
-- [Issues](https://github.com/attackevals/ael/issues)
+    ```pwsh
+    Restart-Computer -Force
+    ```
 
 ## Network Diagram
 
-A network diagram is [available here](../../Resources/images/InfrastructureDiagram.png) that displays the domains and infrastructure that was used to support the setup and execution of the [Emulation plan](../../Emulation_plan/Scenario_1).
+A network diagram is [available here](../../Resources/images/InfrastructureDiagram.png) that displays the domains and infrastructure that was used to support the setup and execution of the [Emulation plan](../../Emulation_plan/Scenario_1/).
 ![Infrastructure Image](../../Resources/images/InfrastructureDiagram.png)

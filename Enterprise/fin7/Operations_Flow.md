@@ -10,7 +10,7 @@ Please see the formal [FIN7 Intelligence Summary](/Enterprise/fin7/Intelligence_
 
 ---
 
-# Scenario 1
+## Scenario 1
 
 Based on [BOOSTWRITE](https://attack.mitre.org/software/S0415//), [Pillowmint](https://attack.mitre.org/software/S0517/), [SQLRat](https://attack.mitre.org/software/S0390/), and [BabyMetal](https://www.fireeye.com/blog/threat-research/2018/08/fin7-pursuing-an-enigmatic-and-evasive-global-criminal-operation.html)
 
@@ -20,23 +20,8 @@ This emulation plan is intended to be executed with protections-based capabiliti
 
 ---
 
-# Scenario 2
+## Scenario 2
 
 This scenario emulates the same FIN7 TTP's as scenario 1; however, changes were made to support environments with Protective security controls enabled. This scenario is designed so that specific TTP's are decoupled from dependencies to enable all steps to be executed, even if previous steps are blocked.
 
 ---
-
-## Additional Plan Resources
-
-- [Intelligence Summary](../Intelligence_Summary.md)
-- [Operations Flow](../Operations_Flow.md)
-- [Emulation Plan](../Emulation_Plan)
-  - [Scenario 1 - Infrastructure](../Emulation_Plan/Scenario_1/Infrastructure.md)
-  - [Scenario 1 - Detections](../Emulation_Plan/Scenario_1)
-  - [Scenario 2 - Infrastructure](../Emulation_Plan/Scenario_2/Infrastructure.md)
-  - [Scenario 2 - Protections](../Emulation_Plan/Scenario_2)
-  - [YAML](../Emulation_Plan/yaml)
-- [File Hashes](../hashes)
-- [YARA Rules](../yara-rules)
-- [Issues](https://github.com/attackevals/ael/issues)
-- [Change Log](../CHANGE_LOG.md)
