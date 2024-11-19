@@ -24,7 +24,7 @@ Each component has one or more additional documents specific to that resource.
   * [README](./log_decryptor/README.md)
 * payloads
   * [!badge target="blank" icon="mark-github" text="GitHub Link"](https://github.com/attackevals/ael/tree/49516eb0eb51c7b8f3c2851d612ea5c5467ff2bb/ManagedServices/alphv_blackcat/Resources/payloads/alternative_payloads)
-* setup
+* Infrastructure Setup
   * [GettingStarted](./setup/GettingStarted.md)
   * [InfrastructureOverview](./setup/InfrastructureOverview.md)
   * [README](./setup/README.md)

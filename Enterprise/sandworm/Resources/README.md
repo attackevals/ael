@@ -27,7 +27,7 @@ Each component has one or more additional documents specific to that resource.
   * [README](./README.md)
 * phpWebShell
   * [README](./README.md)
-* setup
+* Infrastructure Setup
   * [README](./README.md)
 * suid-binary
   * [README](./README.md)

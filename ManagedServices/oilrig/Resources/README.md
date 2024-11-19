@@ -9,6 +9,8 @@ The Resources directory contains the following:
 
 Each component has one or more additional documents specific to that resource.
 
+## Resources Index
+
 * Binaries
   * [!badge target="blank" icon="mark-github" text="GitHub Link"](https://github.com/attackevals/ael/tree/49516eb0eb51c7b8f3c2851d612ea5c5467ff2bb/ManagedServices/oilrig/Resources/Binaries)
 * caldera_port
@@ -23,7 +25,7 @@ Each component has one or more additional documents specific to that resource.
   * [!badge target="blank" icon="mark-github" text="GitHub Link"](https://github.com/attackevals/ael/tree/49516eb0eb51c7b8f3c2851d612ea5c5467ff2bb/ManagedServices/oilrig/Resources/payloads)
 * RDAT
   * [README](./README.md)
-* setup
+* Infrastructure Setup
   * [README](./README.md)
 * SideTwist
   * [README](./README.md)
