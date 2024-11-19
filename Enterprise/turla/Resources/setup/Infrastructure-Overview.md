@@ -12,6 +12,7 @@ Initial infrastructure was setup using Terraform, with configuration applied via
       - [Carbon](#carbon)
       - [Snake](#snake)
       - [Support Hosts](#support-hosts)
+      - [Red Team Hosts](#red-team-hosts)
     - [Network Services](#network-services)
     - [Network Diagram](#network-diagram)
     - [TLS Certificates](#tls-certificates)
@@ -79,7 +80,7 @@ In addition to the VMs in scope for vendor security software during the evaluati
 
 The diagram below shows the layout of both scenario networks, attack platform, and support hosts.
 
-<img src="assets/Turla-Infrastructure-Diagram.png" alt="Turla-Infrastructure-Diagram" style="zoom:25%;" />
+<img src="./assets/Turla-Infrastructure-Diagram.png" alt="Turla-Infrastructure-Diagram" style="zoom:25%;" />
 
 ### TLS Certificates
 

@@ -28,7 +28,7 @@ This methodology assumes the following static IP address configurations:
 | Linux Attack Platform | 192.168.0.4 |
 | Mail and Apache Server | 192.168.0.5 |
 
-#### A note about red team payloads
+### A note about red team payloads
 
 - This evaluation utilizes payloads that model malware previously used by OilRig.
 - These utilities include credential dumpers, implants, and file exfiltration.
@@ -209,7 +209,7 @@ Note: in the scenario, DNS records were manually created to emulate network acti
 1. Sign in as `tous` and create a new database called `sitedata`.
 1. Import the `minfac.csv` data file to populate the database.
 1. Create a backup of the database to the drive for later exfiltration by the adversary
- - Note: For the purpose of execution, this directory was `C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\Backup\`
+        Note: For the purpose of execution, this directory was `C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\Backup\`
 1. Open Windows Defender, toggle all nobs to the off position.
 1. Open PowerShell being sure to select "Run as Administrator" and run the [`modify-defender.ps1`](../Resources/preflight/modify-defender.ps1) script:
 
@@ -237,13 +237,6 @@ Note: in the scenario, DNS records were manually created to emulate network acti
 
 1. Open port 1433 in Windows Defender Firewall
 1. Add the "SQL Admins" group to Local Administrators
-
-## Additional Plan Resources
-
-- [Intelligence Summary](../Intelligence_Summary/Intelligence_Summary.md)
-- [Operations Flow](../Operations_Flow/Operations_Flow.md)
-- [Emulation Plan](../Emulation_Plan/README.md)
-- [Issues](https://github.com/attackevals/ael/issues)
 
 ## Network Diagram
 

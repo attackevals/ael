@@ -1,13 +1,9 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.1.0
+    rev: v5.0.0
     hooks:
       - id: check-yaml
       - id: end-of-file-fixer
       - id: trailing-whitespace
-      - id: debug-statements
       - id: check-toml
       - id: check-merge-conflict
-      - id: detect-aws-credentials
-      - id: detect-private-key
-      

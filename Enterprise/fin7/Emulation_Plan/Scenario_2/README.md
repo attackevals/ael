@@ -483,7 +483,7 @@ Close the RDP session to `itadmin`.
 
 ## Test 5 - Shim Persistence (Evaluations Test 15)
 
-Step 5 focuses on emulating persistence techniques. Adversary emulation begins with a valid logon to the accounting workstation as `<domain_admin>` ([T078](https://attack.mitre.org/techniques/T078/003)). After establishing an RDP session from `itadmin` to `accounting` over TCP port 3389 ([T1021](https://attack.mitre.org/T1021/001), [T1090](https://attack.mitre.org/1090)), FIN7 runs an encoded PowerShell command ([T1059](https://attack.mitre.org/T1059/001)). This PowerShell command downloads `dll329.dll` and `sdbE376.tmp` from the `Linux Attack Platform` ([T1105](https://attack.mitre.org/techniques/T1105/)), and then executes `sdbinst.exe` to install an application shim ([T1546.011](https://attack.mitre.org/techniques/T1546/011)) with the downloaded files.
+Step 5 focuses on emulating persistence techniques. Adversary emulation begins with a valid logon to the accounting workstation as `<domain_admin>` ([T1078](https://attack.mitre.org/techniques/T1078/003)). After establishing an RDP session from `itadmin` to `accounting` over TCP port 3389 ([T1021](https://attack.mitre.org/techniques/T1021/001), [T1090](https://attack.mitre.org/techniques/T1090)), FIN7 runs an encoded PowerShell command ([T1059](https://attack.mitre.org/techniques/T1059/001)). This PowerShell command downloads `dll329.dll` and `sdbE376.tmp` from the `Linux Attack Platform` ([T1105](https://attack.mitre.org/techniques/T1105/)), and then executes `sdbinst.exe` to install an application shim ([T1546.011](https://attack.mitre.org/techniques/T1546/011)) with the downloaded files.
 
 This step consists of behaviors found in Steps 9 and 10 of Scenario 1.
 

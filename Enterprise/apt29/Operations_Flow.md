@@ -27,17 +27,3 @@ This scenario begins with a legitimate user clicking on a malicious payload deli
 The content to execute this scenario was tested and developed using PoshC2 and other custom/modified scripts and payloads. PoshC2 was chosen based on its available functionality and similarities to the adversary's malware within the context of this scenario, but alternative red team tooling could be used to accurately execute these and other APT29 behaviors.
 
 ---
-
-## Additional Plan Resources
-
-- [Intelligence Summary](/Enterprise/apt29/Intelligence_Summary.md)
-- [Operations Flow](/Enterprise/apt29/Operations_Flow.md)
-- [Emulation Plan](/Enterprise/apt29/Emulation_Plan/README.md)
-  - [Scenario 1 - Infrastructure](/Enterprise/apt29/Emulation_Plan/Scenario_1/Infrastructure.md)
-  - [Scenario 1](/Enterprise/apt29/Emulation_Plan/Scenario_1/README.md)
-  - [Scenario 2 - Infrastructure](/Enterprise/apt29/Emulation_Plan/Scenario_2/Infrastructure.md)
-  - [Scenario 2](/Enterprise/apt29/Emulation_Plan/Scenario_2/README.md)
-  - [YAML](/Enterprise/apt29/Emulation_Plan/yaml)
-- [Archive](/Enterprise/apt29/Archive)
-- [Issues](https://github.com/attackevals/ael/issues)
-- [Change Log](/Enterprise/apt29/CHANGE_LOG.md)

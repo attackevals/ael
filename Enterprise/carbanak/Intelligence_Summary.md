@@ -30,37 +30,37 @@ PsExec ([S0029](https://attack.mitre.org/software/S0029/)) | | Remote Execution 
 
 ## Carbanak ATT&CK Navigator
 
-#### The following behaviors are in scope for an emulation of actions attributed to Carbanak as referenced by [MITRE ATT&CK](https://attack.mitre.org/groups/G0008/) and in the [referenced reporting](#references)
+### The following behaviors are in scope for an emulation of actions attributed to Carbanak as referenced by [MITRE ATT&CK](https://attack.mitre.org/groups/G0008/) and in the [referenced reporting](#references)
 
 ![/Attack_Layers/Carbanak_G0008.png](/Enterprise/carbanak/Attack_Layers/Carbanak_G0008.png)
 
 ## [Scenario 1](/Enterprise/carbanak/Emulation_Plan/Scenario_1/README.md)
 
-#### The following behaviors are in scope for an emulation of actions attributed to Carbanak, as implemented in Scenario 1, in the [referenced reporting](#references)
+### The following behaviors are in scope for an emulation of actions attributed to Carbanak, as implemented in Scenario 1, in the [referenced reporting](#references)
 
 ![/Attack_Layers/Carbanak_Scenario1.png](/Enterprise/carbanak/Attack_Layers/Carbanak_Scenario1.png)
 
 ## [Carbanak](https://mitre-attack.github.io/attack-navigator//#layerURL=https%3A%2F%2Fattack.mitre.org%2Fsoftware%2FS0030%2FS0030-enterprise-layer.json)
 
-#### The following behaviors are in scope for an emulation of actions performed by the Carbanak group using Carbanak malware, exclusively based on current intelligence within ATT&CK for the given software
+### The following behaviors are in scope for an emulation of actions performed by the Carbanak group using Carbanak malware, exclusively based on current intelligence within ATT&CK for the given software
 
 ![/Attack_Layers/Carbanak_S0030.png](/Enterprise/carbanak/Attack_Layers/Carbanak_S0030.png)
 
 ## [Mimikatz](https://mitre-attack.github.io/attack-navigator//#layerURL=https%3A%2F%2Fattack.mitre.org%2Fsoftware%2FS0002%2FS0002-enterprise-layer.json)
 
-#### The following behaviors are in scope for an emulation of actions performed by Carbanak using Mimikatz, exclusively based on current intelligence within ATT&CK for the given software
+### The following behaviors are in scope for an emulation of actions performed by Carbanak using Mimikatz, exclusively based on current intelligence within ATT&CK for the given software
 
 ![/Attack_Layers/Mimikatz_S0002.png](/Enterprise/carbanak/Attack_Layers/Mimikatz_S0002.png)
 
 ## [netsh](https://mitre-attack.github.io/attack-navigator//#layerURL=https%3A%2F%2Fattack.mitre.org%2Fsoftware%2FS0108%2FS0108-enterprise-layer.json)
 
-#### The following behaviors are in scope for an emulation of actions performed by Carbanak using netsh, exclusively based on current intelligence within ATT&CK for the given software
+### The following behaviors are in scope for an emulation of actions performed by Carbanak using netsh, exclusively based on current intelligence within ATT&CK for the given software
 
 ![/Attack_Layers/netsh_S0108.png](/Enterprise/carbanak/Attack_Layers/netsh_S0108.png)
 
 ## [PsExec](https://mitre-attack.github.io/attack-navigator//#layerURL=https%3A%2F%2Fattack.mitre.org%2Fsoftware%2FS0002%2FS0002-enterprise-layer.json)
 
-#### The following behaviors are in scope for an emulation of actions performed by Carbanak using Mimikatz, exclusively based on current intelligence within ATT&CK for the given software
+### The following behaviors are in scope for an emulation of actions performed by Carbanak using Mimikatz, exclusively based on current intelligence within ATT&CK for the given software
 
 ![/Attack_Layers/PsExec_S0029.png](/Enterprise/carbanak/Attack_Layers/PsExec_S0029.png)
 ---
@@ -94,18 +94,3 @@ ID | Source | Publisher | Date |
 19 | [Cyberthreats to financial institutions 2020: Overview and predictions](https://securelist.com/financial-predictions-2020/95388/) | [Kaspersky](https://securelist.com/) | December 2019
 
 ---
-
-## Additional Plan Resources
-
-- [Intelligence Summary](../Intelligence_Summary.md)
-- [Operations Flow](../Operations_Flow.md)
-- [Emulation Plan](../Emulation_Plan)
-  - [Scenario 1 - Infrastructure](../Emulation_Plan/Scenario_1/Infrastructure.md)
-  - [Scenario 1 - Detections](../Emulation_Plan/Scenario_1)
-  - [Scenario 2 - Infrastructure](../Emulation_Plan/Scenario_2/Infrastructure.md)
-  - [Scenario 2 - Protections](../Emulation_Plan/Scenario_2)
-  - [YAML](../Emulation_Plan/yaml)
-- [File Hashes](../hashes)
-- [YARA Rules](../yara-rules)
-- [Issues](https://github.com/attackevals/ael/issues)
-- [Change Log](../CHANGE_LOG.md)

@@ -1,3 +1,7 @@
+---
+category: enterprise
+---
+
 # FIN7
 
 This adversary emulation plan is derived from the original [FIN7](https://attack.mitre.org/groups/G0046/) content developed and used in the [2020 ATT&CK Evaluations](https://attackevals.mitre-engenuity.org/carbanak-fin7/). This emulation plan has not been tested with CALDERA's Emu plugin and interoperability is not guaranteed.
@@ -49,21 +53,6 @@ Special thanks to the following projects for providing tools and source code tha
 - [sRDI](https://github.com/monoxgas/sRDI)
 - [Mimikatz](https://github.com/gentilkiwi/mimikatz)
 - [PAExec](https://www.poweradmin.com/paexec/)
-
-## Table of Contents
-
-- [Intelligence Summary](../Intelligence_Summary.md)
-- [Operations Flow](../Operations_Flow.md)
-- [Emulation Plan](../Emulation_Plan)
-  - [Scenario 1 - Infrastructure](../Emulation_Plan/Scenario_1/Infrastructure.md)
-  - [Scenario 1 - Detections](../Emulation_Plan/Scenario_1)
-  - [Scenario 2 - Infrastructure](../Emulation_Plan/Scenario_2/Infrastructure.md)
-  - [Scenario 2 - Protections](../Emulation_Plan/Scenario_2)
-  - [YAML](../Emulation_Plan/yaml)
-- [File Hashes](../hashes)
-- [YARA Rules](../yara-rules)
-- [Issues](https://github.com/attackevals/ael/issues)
-- [Change Log](../CHANGE_LOG.md)
 
 ## Liability / Responsible Usage
 

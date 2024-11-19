@@ -1,13 +1,12 @@
 ---
 category: enterprise
-route: /enterprise/apt29
 ---
 
 # APT29
 
 This adversary emulation plan is derived from the original [APT29](https://attack.mitre.org/groups/G0016/) content developed and used in the [2019 ATT&CK Evaluations](https://attackevals.mitre-engenuity.org/APT29/).
 
-APT29 is thought to be an organized and well-resourced cyber threat actor whose collection objectives appear to align with the interests of the Russian Federation.<sup>[1](https://www.f-secure.com/documents/996508/1030745/dukes_whitepaper.pdf),[14](https://www.us-cert.gov/sites/default/files/publications/JAR_16-20296A_GRIZZLY%20STEPPE-2016-1229.pdf)</sup>  The group is reported to have been operating as early as 2008 and may have logged operational successes as recently as 2020.
+APT29 is thought to be an organized and well-resourced cyber threat actor whose collection objectives appear to align with the interests of the Russian Federation.<sup>[1](https://www.f-secure.com/documents/996508/1030745/dukes_whitepaper.pdf),[14](https://www.us-cert.gov/sites/default/files/publications/JAR_16-20296A_GRIZZLY%20STEPPE-2016-1229.pdf)</sup> The group is reported to have been operating as early as 2008 and may have logged operational successes as recently as 2020.
 
 The Intelligence Summary summarizes 16 publicly available sources as well as the results of an [open call for contributions](https://medium.com/mitre-attack/open-invitation-to-share-cyber-threat-intelligence-on-apt29-for-adversary-emulation-plan-831c8c929f31), to describe APT29, their motivations, objectives, and observed target industries. It further describes a representative APT29 Operational Flow along with their publicly attributed Tactics, Techniques, and Procedures (TTPs) mapped to ATT&CK.
 
@@ -21,7 +20,7 @@ The APT29 emulation plan is a human-readable, step-by-step / command-by-command 
 
 ## Resources
 
-Please note that binary files hosted in [Scenario_1](/Enterprise/apt29/Resources/Scenario_1) and [Scenario_2](/Enterprise/apt29/Resources/Scenario_2) have been added to password protected zip files.  The password for these files is "malware."
+Please note that binary files hosted in [Scenario_1](./Resources/Scenario_1/) and [Scenario_2](./Resources/Scenario_2) have been added to password protected zip files. The password for these files is "malware."
 
 ## Acknowledgements
 
@@ -30,20 +29,6 @@ We would like to formally thank the people that contributed to the content, revi
 - Kaspersky
 - Microsoft
 - SentinelOne
-
-## Table of Contents
-
-- [Intelligence Summary](/Enterprise/apt29/Intelligence_Summary.md)
-- [Operations Flow](/Enterprise/apt29/Operations_Flow.md)
-- [Emulation Plan](/Enterprise/apt29/Emulation_Plan/README.md)
-  - [Scenario 1 - Infrastructure](/Enterprise/apt29/Emulation_Plan/Scenario_1/Infrastructure.md)
-  - [Scenario 1](/Enterprise/apt29/Emulation_Plan/Scenario_1/README.md)
-  - [Scenario 2 - Infrastructure](/Enterprise/apt29/Emulation_Plan/Scenario_2/Infrastructure.md)
-  - [Scenario 2](/Enterprise/apt29/Emulation_Plan/Scenario_2/README.md)
-  - [YAML](/Enterprise/apt29/Emulation_Plan/yaml)
-- [Archive](/Enterprise/apt29/Archive)
-- [Issues](https://github.com/attackevals/ael/issues)
-- [Change Log](/Enterprise/apt29/CHANGE_LOG.md)
 
 ## Liability / Responsible Usage
 

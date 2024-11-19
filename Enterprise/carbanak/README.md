@@ -1,3 +1,7 @@
+---
+category: enterprise
+---
+
 # Carbanak
 
 This adversary emulation plan is derived from the original [Carbanak](https://attack.mitre.org/groups/G0008/) content developed and used in the [2020 ATT&CK Evaluations](https://attackevals.mitre-engenuity.org/carbanak-fin7/). This emulation plan has not been tested with CALDERA's Emu plugin and interoperability is not guaranteed.
@@ -22,7 +26,7 @@ Please note that binary executable files hosted in [Resources](/Enterprise/carba
 
 We provide a [script](/Enterprise/carbanak/Resources/utilities/crypt_executables.py) to automatically decrypt these files:
 
-```
+```shell
 cd carbanak
 
 python3 Resources/utilities/crypt_executables.py -i ./ -p malware --decrypt
@@ -49,21 +53,6 @@ Special thanks to the following projects for providing tools and source code tha
 - [SharpWeb](https://github.com/djhohnstein/SharpWeb)
 - [killswitch-GUI](https://github.com/killswitch-GUI/SetWindowsHookEx-Keylogger)
 - [Mimikatz](https://github.com/gentilkiwi/mimikatz)
-
-## Table of Contents
-
-- [Intelligence Summary](../Intelligence_Summary.md)
-- [Operations Flow](../Operations_Flow.md)
-- [Emulation Plan](../Emulation_Plan)
-  - [Scenario 1 - Infrastructure](../Emulation_Plan/Scenario_1/Infrastructure.md)
-  - [Scenario 1 - Detections](../Emulation_Plan/Scenario_1)
-  - [Scenario 2 - Infrastructure](../Emulation_Plan/Scenario_2/Infrastructure.md)
-  - [Scenario 2 - Protections](../Emulation_Plan/Scenario_2)
-  - [YAML](../Emulation_Plan/yaml)
-- [File Hashes](../hashes)
-- [YARA Rules](../yara-rules)
-- [Issues](https://github.com/attackevals/ael/issues)
-- [Change Log](../CHANGE_LOG.md)
 
 ## Liability / Responsible Usage
 

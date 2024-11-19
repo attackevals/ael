@@ -1,6 +1,6 @@
 input: .
 output: .retype
-url: https://attackevals.github.io/ael/
+url: https://attackevals.github.io/ael
 branding:
   title: ATTACK Evaluation Library
   logo: /images/attackevals-logo.png

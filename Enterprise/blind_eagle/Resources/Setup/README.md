@@ -6,7 +6,7 @@ The requirements described herein should be considered a bare minimum to execute
 
 ## Network Diagram
 
-Below is the domains and infrastructure used to support the setup and execution of the Blind Eagle [Emulation plan](../../Emulation_Plan/).
+Below are the domains and infrastructure used to support the setup and execution of the Blind Eagle [Emulation plan](../../Emulation_Plan/).
 
 ![Infra](../Screenshots/infrastructurediagram.png)
 
@@ -19,7 +19,7 @@ This emulation leveraged the following attacker infrastructure with configuratio
 | Windows Attack Platform | 192.168.0.4 | Windows 10 Pro - Build 19044 |
 | Web Server | 192.168.0.5 | Ubuntu 20.04 LTS |
 
-#### A note about payloads
+### A note about payloads
 
 - This evaluation utilizes payloads that model malware previously used by Blind Eagle.
 - These utilities include loaders, injectors, and implants.
@@ -35,7 +35,7 @@ RDP to your Windows Attack Platform
     ![defender-off](../Screenshots/windows-av-off.png)
 1. Open a PowerShell Prompt and download the Blind Eagle ATTACK Evaluations Library to your chosen directory on your Windows attack machine
 
-    ```PowerShell
+    ```shell
     git clone https://github.com/center-for-threat-informed-defense/blackhat-2023-becoming-a-dark-knight-emulation
     ```
 
@@ -45,7 +45,7 @@ RDP to your Windows Attack Platform
 
 SSH to the web server from either your machine or a separate PowerShell prompt on your Windows Attack Platform:
 
-```
+```shell
 ssh ubuntu@192.168.0.5
 ```
 
@@ -145,7 +145,7 @@ RDP to the workstation from either your computer or the Windows Attack Machine:
 
 SSH to mail from either your computer or the Windows Attack Machine:
 
-```
+```shell
 ssh ubuntu@10.1.0.11
 ```
 
@@ -209,10 +209,3 @@ The bancomurcielago website should now be hosted on HTTP port 8000
 ## Resources
 
 The [Binaries.zip](../Binaries/Binaries.zip) contains all executables in one zip file for easy download. The password is `malware`. :heavy_exclamation_mark: binaries in this folder will only work with the infrastructure configuration described in this document as some payloads need to be built with specific URLs hard coded.
-
-## Additional Plan Resources
-
-- [Intelligence Summary](../../Intelligence_Summary/Intelligence_Summary.md)
-- [Operations Flow](../../Operations_Flow/Operations_Flow.md)
-- [Emulation Plan](../../Emulation_Plan/README.md)
-- [Issues](https://github.com/attackevals/ael/issues)

@@ -1,5 +1,5 @@
 ---
-category: managed-services
+category: Managed-Services
 ---
 
 # OilRig
