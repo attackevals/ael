@@ -10,9 +10,9 @@ The Resources directory contains the following:
 Each component has one or more additional documents specific to that resource.
 
 * Binaries
-  * [!ref target="blank" icon="logo-github" text="GitHub Link"](https://github.com/attackevals/ael/tree/49516eb0eb51c7b8f3c2851d612ea5c5467ff2bb/ManagedServices/oilrig/Resources/Binaries)
+  * [!badge target="blank" icon="mark-github" text="GitHub Link"](https://github.com/attackevals/ael/tree/49516eb0eb51c7b8f3c2851d612ea5c5467ff2bb/ManagedServices/oilrig/Resources/Binaries)
 * caldera_port
-  * [!ref target="blank" icon="logo-github" text="GitHub Link"](https://github.com/attackevals/ael/tree/49516eb0eb51c7b8f3c2851d612ea5c5467ff2bb/ManagedServices/oilrig/Resources/caldera_port)
+  * [!badge target="blank" icon="mark-github" text="GitHub Link"](https://github.com/attackevals/ael/tree/49516eb0eb51c7b8f3c2851d612ea5c5467ff2bb/ManagedServices/oilrig/Resources/caldera_port)
 * cleanup
   * [README](./README.md)
 * control_server
@@ -20,7 +20,7 @@ Each component has one or more additional documents specific to that resource.
 * Mimikatz
   * [README](./README.md)
 * payloads
-  * [!ref target="blank" icon="logo-github" text="GitHub Link"](https://github.com/attackevals/ael/tree/49516eb0eb51c7b8f3c2851d612ea5c5467ff2bb/ManagedServices/oilrig/Resources/payloads)
+  * [!badge target="blank" icon="mark-github" text="GitHub Link"](https://github.com/attackevals/ael/tree/49516eb0eb51c7b8f3c2851d612ea5c5467ff2bb/ManagedServices/oilrig/Resources/payloads)
 * RDAT
   * [README](./README.md)
 * setup
@@ -32,6 +32,6 @@ Each component has one or more additional documents specific to that resource.
 * TwoFace
   * [README](./README.md)
 * utilities
-  * [!ref target="blank" icon="logo-github" text="GitHub Link"](https://github.com/attackevals/ael/tree/49516eb0eb51c7b8f3c2851d612ea5c5467ff2bb/ManagedServices/oilrig/Resources/utilities)
+  * [!badge target="blank" icon="mark-github" text="GitHub Link"](https://github.com/attackevals/ael/tree/49516eb0eb51c7b8f3c2851d612ea5c5467ff2bb/ManagedServices/oilrig/Resources/utilities)
 * VALUEVAULT
   * [README](./README.md)

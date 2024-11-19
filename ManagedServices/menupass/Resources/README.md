@@ -21,7 +21,7 @@ Each component has one or more additional documents specific to that resource.
 * impacket
   * [README](./impacket/README.md)
 * payloads
-  * [!ref target="blank" icon="logo-github" text="GitHub Link"](https://github.com/attackevals/ael/tree/49516eb0eb51c7b8f3c2851d612ea5c5467ff2bb/ManagedServices/menupass/Resources/payloads)
+  * [!badge target="blank" icon="mark-github" text="GitHub Link"](https://github.com/attackevals/ael/tree/49516eb0eb51c7b8f3c2851d612ea5c5467ff2bb/ManagedServices/menupass/Resources/payloads)
 * Quasar
   * [README](./Quasar/README.md)
 * setup
