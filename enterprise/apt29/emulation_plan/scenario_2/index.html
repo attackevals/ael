@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/ael">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.785352632664">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.785355468618">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -35,11 +35,11 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../../favicon.png" rel="icon">
-    <link href="../../../../resources/css/retype.css?v=3.6.0.785352632664" rel="stylesheet">
+    <link href="../../../../resources/css/retype.css?v=3.6.0.785355468618" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.785352632664" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.785355468618" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.785352632664" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.785355468618" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -241,18 +241,136 @@
     </h3>
 </doc-anchor-target>
 <ul>
-<li><doc-anchor-trigger to="#step-11---initial-breach">Step 11 - Initial Breach</doc-anchor-trigger></li>
-<li><doc-anchor-trigger to="#step-12---fortify-access">Step 12 - Fortify Access</doc-anchor-trigger></li>
-<li><doc-anchor-trigger to="#step-13---local-enumeration">Step 13 - Local Enumeration</doc-anchor-trigger></li>
-<li><doc-anchor-trigger to="#step-14---elevation">Step 14 - Elevation</doc-anchor-trigger></li>
-<li><doc-anchor-trigger to="#step-15---establish-persistence">Step 15 - Establish Persistence</doc-anchor-trigger></li>
-<li><doc-anchor-trigger to="#step-16---lateral-movement">Step 16 - Lateral Movement</doc-anchor-trigger></li>
-<li><doc-anchor-trigger to="#step-17---collection">Step 17 - Collection</doc-anchor-trigger></li>
-<li><doc-anchor-trigger to="#step-18---exfiltration">Step 18 - Exfiltration</doc-anchor-trigger></li>
-<li><doc-anchor-trigger to="#step-19---clean-up">Step 19 - Clean Up</doc-anchor-trigger></li>
-<li><doc-anchor-trigger to="#step-20---leverage-persistence">Step 20 - Leverage Persistence</doc-anchor-trigger></li>
-<li><doc-anchor-trigger to="#acknowledgements">Acknowledgements</doc-anchor-trigger></li>
-<li><doc-anchor-trigger to="#additional-plan-resources">Additional Plan Resources</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#scenario-2">Scenario 2</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#preface">Preface</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#overview">Overview</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#contents">Contents</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#pre-requisites">Pre-requisites</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#step-11---initial-breach">Step 11 - Initial Breach</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#procedures">Procedures</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#11a---user-execution-malicious-file-t1204--t1204002">11.A - User Execution: Malicious File (T1204 / T1204.002)</doc-anchor-trigger></li>
+</ul>
+</li>
+<li><doc-anchor-trigger to="#cited-intelligence">Cited Intelligence</doc-anchor-trigger></li>
+</ul>
+</li>
+<li><doc-anchor-trigger to="#step-12---fortify-access">Step 12 - Fortify Access</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#procedures-1">Procedures</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#12a---indicator-removal-on-host-timestomp-t1099--t1070006">12.A - Indicator Removal on Host: Timestomp (T1099 / T1070.006)</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#12b---software-discovery-security-software-discovery-t1063--t1518001">12.B - Software Discovery: Security Software Discovery (T1063 / T1518.001)</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#12c---software-discovery-t1518--t1518001">12.C - Software Discovery (T1518 / T1518.001)</doc-anchor-trigger></li>
+</ul>
+</li>
+<li><doc-anchor-trigger to="#cited-intelligence-1">Cited Intelligence</doc-anchor-trigger></li>
+</ul>
+</li>
+<li><doc-anchor-trigger to="#step-13---local-enumeration">Step 13 - Local Enumeration</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#procedures-2">Procedures</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#13a---system-information-discovery-t1082">13.A - System Information Discovery (T1082)</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#13b---system-network-configuration-discovery-t1016">13.B - System Network Configuration Discovery (T1016)</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#13c---system-owneruser-discovery-t1033">13.C - System Owner/User Discovery (T1033)</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#13d---process-discovery-t1057">13.D - Process Discovery (T1057)</doc-anchor-trigger></li>
+</ul>
+</li>
+<li><doc-anchor-trigger to="#cited-intelligence-2">Cited Intelligence</doc-anchor-trigger></li>
+</ul>
+</li>
+<li><doc-anchor-trigger to="#step-14---elevation">Step 14 - Elevation</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#procedures-3">Procedures</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#14a---abuse-elevation-control-mechanism-bypass-user-access-control-t1088--t1548002">14.A - Abuse Elevation Control Mechanism: Bypass User Access Control (T1088 / T1548.002)</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#14b---os-credential-dumping-lsass-memory-t1003--t1003001">14.B - OS Credential Dumping: LSASS Memory (T1003 / T1003.001)</doc-anchor-trigger></li>
+</ul>
+</li>
+<li><doc-anchor-trigger to="#cited-intelligence-3">Cited Intelligence</doc-anchor-trigger></li>
+</ul>
+</li>
+<li><doc-anchor-trigger to="#step-15---establish-persistence">Step 15 - Establish Persistence</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#procedures-4">Procedures</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#15a---event-triggered-execution-windows-management-instrumentation-event-subscription-t1084--t1546003">15.A - Event Triggered Execution: Windows Management Instrumentation Event Subscription (T1084 / T1546.003)</doc-anchor-trigger></li>
+</ul>
+</li>
+<li><doc-anchor-trigger to="#cited-intelligence-4">Cited Intelligence</doc-anchor-trigger></li>
+</ul>
+</li>
+<li><doc-anchor-trigger to="#step-16---lateral-movement">Step 16 - Lateral Movement</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#procedures-5">Procedures</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#16a---remote-system-discovery-t1018">16.A - Remote System Discovery (T1018)</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#16b---system-owneruser-discovery-t1033">16.B - System Owner/User Discovery (T1033)</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#16c---remote-services-windows-remote-management-t1028--t1021006">16.C - Remote Services: Windows Remote Management (T1028 / T1021.006)</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#16d---os-credential-dumping-t1003--t1003001">16.D - OS Credential Dumping (T1003 / T1003.001)</doc-anchor-trigger></li>
+</ul>
+</li>
+<li><doc-anchor-trigger to="#cited-intelligence-5">Cited Intelligence</doc-anchor-trigger></li>
+</ul>
+</li>
+<li><doc-anchor-trigger to="#step-17---collection">Step 17 - Collection</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#procedures-6">Procedures</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#17a---email-collection-local-email-collection-t1114--t1114001">17.A - Email Collection: Local Email Collection (T1114 / T1114.001)</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#17b---data-from-local-system-t1005">17.B - Data from Local System (T1005)</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#17c---obfuscated-files-or-information-t1027">17.C - Obfuscated Files or Information (T1027)</doc-anchor-trigger></li>
+</ul>
+</li>
+<li><doc-anchor-trigger to="#cited-intelligence-6">Cited Intelligence</doc-anchor-trigger></li>
+</ul>
+</li>
+<li><doc-anchor-trigger to="#step-18---exfiltration">Step 18 - Exfiltration</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#procedures-7">Procedures</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#18a---exfiltration-over-alternative-protocol-t1048--t1567002">18.A - Exfiltration Over Alternative Protocol (T1048 / T1567.002)</doc-anchor-trigger></li>
+</ul>
+</li>
+<li><doc-anchor-trigger to="#cited-intelligence-7">Cited Intelligence</doc-anchor-trigger></li>
+</ul>
+</li>
+<li><doc-anchor-trigger to="#step-19---clean-up">Step 19 - Clean Up</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#procedures-8">Procedures</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#19a---indicator-removal-on-host-file-deletion-t1107--t1070004">19.A - Indicator Removal on Host: File Deletion (T1107 / T1070.004)</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#19b---indicator-removal-on-host-file-deletion-t1107--t1070004">19.B - Indicator Removal on Host: File Deletion (T1107 / T1070.004)</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#19c---indicator-removal-on-host-file-deletion-t1107--t1070004">19.C - Indicator Removal on Host: File Deletion (T1107 / T1070.004)</doc-anchor-trigger></li>
+</ul>
+</li>
+<li><doc-anchor-trigger to="#cited-intelligence-8">Cited Intelligence</doc-anchor-trigger></li>
+</ul>
+</li>
+<li><doc-anchor-trigger to="#step-20---leverage-persistence">Step 20 - Leverage Persistence</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#procedures-9">Procedures</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#20a---persistence-execution-t1085--t1218011-t1084--t1546003">20.A - Persistence Execution (T1085 / T1218.011, T1084 / T1546.003)</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#20b---use-alternate-authentication-material-pass-the-ticket-t1097--t1550001-t1550003">20.B - Use Alternate Authentication Material: Pass the Ticket (T1097 / T1550.001, T1550.003)</doc-anchor-trigger></li>
+</ul>
+</li>
+<li><doc-anchor-trigger to="#cited-intelligence-9">Cited Intelligence</doc-anchor-trigger></li>
+</ul>
+</li>
+<li><doc-anchor-trigger to="#acknowledgements">Acknowledgements</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#special-thanks-to-the-following-public-resources">Special thanks to the following public resources</doc-anchor-trigger></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <doc-anchor-target id="pre-requisites">
     <h3>

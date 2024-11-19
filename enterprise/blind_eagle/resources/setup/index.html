@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/ael">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.785352632664">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.785355468618">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -37,12 +37,12 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../../favicon.png" rel="icon">
-    <link href="../../../../resources/css/retype.css?v=3.6.0.785352632664" rel="stylesheet">
+    <link href="../../../../resources/css/retype.css?v=3.6.0.785355468618" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.785352632664" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.785355468618" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.785352632664" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.6.0.785352632664" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.785355468618" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.6.0.785355468618" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -220,7 +220,7 @@
         <span>Network Diagram</span>
     </h2>
 </doc-anchor-target>
-<p>Below is the domains and infrastructure used to support the setup and execution of the Blind Eagle <a href="../../emulation_plan/">Emulation plan</a>.</p>
+<p>Below are the domains and infrastructure used to support the setup and execution of the Blind Eagle <a href="../../emulation_plan/">Emulation plan</a>.</p>
 <p><figure class="content-center">
     <img src="../screenshots/infrastructurediagram.png" alt="Infra">
     <figcaption class="caption">Infra</figcaption>
@@ -257,10 +257,10 @@
 </table>
 </div>
 <doc-anchor-target id="a-note-about-payloads">
-    <h4>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#a-note-about-payloads">#</doc-anchor-trigger>
         <span>A note about payloads</span>
-    </h4>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>This evaluation utilizes payloads that model malware previously used by Blind Eagle.</li>
@@ -284,7 +284,7 @@
 </li>
 <li><p>Open a PowerShell Prompt and download the Blind Eagle ATTACK Evaluations Library to your chosen directory on your Windows attack machine</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-powershell"><code v-pre class="language-powershell">git clone https://github.com/center-for-threat-informed-defense/blackhat-2023-becoming-a-dark-knight-emulation</code></pre>
+<pre class="language-bash"><code v-pre class="language-bash">git clone https://github.com/center-for-threat-informed-defense/blackhat-2023-becoming-a-dark-knight-emulation</code></pre>
 </doc-codeblock></div>
 </li>
 <li><p>Open File Explorer and navigate to the repo directory <code v-pre>Resources\Binaries\</code>. <code v-pre>Right click -&gt; Extract Files</code> on <code v-pre>Binaries.zip</code> and provide the password <code v-pre>malware</code> when prompted</p>
@@ -298,7 +298,7 @@
 </doc-anchor-target>
 <p>SSH to the web server from either your machine or a separate PowerShell prompt on your Windows Attack Platform:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">ssh ubuntu@192.168.0.5</code></pre>
+<pre class="language-bash"><code v-pre class="language-bash">ssh ubuntu@192.168.0.5</code></pre>
 </doc-codeblock></div>
 <ol>
 <li><p>Download the Blind Eagle ATTACK Evaluations Library to the <code v-pre>/opt</code> folder on your Linux Web Machine</p>
@@ -464,7 +464,7 @@ some tradecraft is likely to be blocked by modern EDR solutions (we hope)</p>
 </doc-anchor-target>
 <p>SSH to mail from either your computer or the Windows Attack Machine:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">ssh ubuntu@10.1.0.11</code></pre>
+<pre class="language-bash"><code v-pre class="language-bash">ssh ubuntu@10.1.0.11</code></pre>
 </doc-codeblock></div>
 <ol>
 <li>Setup <a href="https://www.microsoft.com/en-us/download/details.aspx?id=103477" class="outbound" target="_blank"><span>Exchange Server</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> to host OWA and EAC.</li>
@@ -530,18 +530,6 @@ sudo docker compose up -d</code></pre>
     </h2>
 </doc-anchor-target>
 <p>The <a href="../binaries/binaries.zip">Binaries.zip</a> contains all executables in one zip file for easy download. The password is <code v-pre>malware</code>. <span class="docs-emoji">&#x2757;</span> binaries in this folder will only work with the infrastructure configuration described in this document as some payloads need to be built with specific URLs hard coded.</p>
-<doc-anchor-target id="additional-plan-resources">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#additional-plan-resources">#</doc-anchor-trigger>
-        <span>Additional Plan Resources</span>
-    </h2>
-</doc-anchor-target>
-<ul>
-<li><a href="../../intelligence_summary/">Intelligence Summary</a></li>
-<li><a href="../../operations_flow/">Operations Flow</a></li>
-<li><a href="../../emulation_plan/">Emulation Plan</a></li>
-<li><a href="https://github.com/attackevals/ael/issues" class="outbound" target="_blank"><span>Issues</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
-</ul>
 
                                 
                                 <!-- Required only on API pages -->
