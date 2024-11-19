@@ -1,4 +1,6 @@
-# ATT&CK Evaluations Library Overview
+# ATT&CK Evaluations Library
+
+## Overview
 
 The ATT&CK Emulation Library includes a collection of adversary emulation plans used in published ATT&CK Evaluations.
 
