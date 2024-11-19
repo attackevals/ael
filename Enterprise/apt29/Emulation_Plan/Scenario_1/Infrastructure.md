@@ -108,20 +108,4 @@ Import-PfxCertificate -Exportable -FilePath "shockwave.local.pfx" -CertStoreLoca
 
 ##### Add RTLO character and place rcs.3aka3.doc on Windows Victim-1
 
-- See [payload_configs.md](/Enterprise/apt29/Resources/Scenario_1/payload_configs.md) for instructions on how to update [cod.3aka3.scr](/Enterprise/apt29/Resources/Scenario_1/cod.3aka3.scr)
-
----
-
-### Additional Plan Resources
-
-- [Intelligence Summary](/Enterprise/apt29/Intelligence_Summary.md)
-- [Operations Flow](/Enterprise/apt29/Operations_Flow.md)
-- [Emulation Plan](/Enterprise/apt29/Emulation_Plan/README.md)
-  - [Scenario 1 - Infrastructure](/Enterprise/apt29/Emulation_Plan/Scenario_1/Infrastructure.md)
-  - [Scenario 1](/Enterprise/apt29/Emulation_Plan/Scenario_1/README.md)
-  - [Scenario 2 - Infrastructure](/Enterprise/apt29/Emulation_Plan/Scenario_2/Infrastructure.md)
-  - [Scenario 2](/Enterprise/apt29/Emulation_Plan/Scenario_2/README.md)
-  - [YAML](/Enterprise/apt29/Emulation_Plan/yaml)
-- [Archive](/Enterprise/apt29/Archive)
-- [Issues](https://github.com/attackevals/ael/issues)
-- [Change Log](/Enterprise/apt29/CHANGE_LOG.md)
+- See [payload_configs.md](../../Resources/Scenario_1/payload_configs.md) for instructions on how to update [cod.3aka3.scr](../../Resources/Scenario_1/cod.3aka3.scr)

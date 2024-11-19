@@ -350,19 +350,3 @@ The original victim is rebooted and the legitimate user logs in, emulating ordin
 * State of the Hack S2E01: #NoEasyBreach REVISITED (<https://www.fireeye.com/blog/products-and-services/2019/02/state-of-the-hack-no-easy-breach-revisited.html>)
 * Use PowerShell to Interact with the Windows API (<https://devblogs.microsoft.com/scripting/use-powershell-to-interact-with-the-windows-api-part-1>)
 * Yet another sdclt UAC bypass (<http://blog.sevagas.com/?Yet-another-sdclt-UAC-bypass>)
-
----
-
-### Additional Plan Resources
-
-* [Intelligence Summary](/Enterprise/apt29/Intelligence_Summary.md)
-* [Operations Flow](/Enterprise/apt29/Operations_Flow.md)
-* [Emulation Plan](/Enterprise/apt29/Emulation_Plan/README.md)
-  * [Scenario 1 - Infrastructure](/Enterprise/apt29/Emulation_Plan/Scenario_1/Infrastructure.md)
-  * [Scenario 1](/Enterprise/apt29/Emulation_Plan/Scenario_1/README.md)
-  * [Scenario 2 - Infrastructure](/Enterprise/apt29/Emulation_Plan/Scenario_2/Infrastructure.md)
-  * [Scenario 2](/Enterprise/apt29/Emulation_Plan/Scenario_2/README.md)
-  * [YAML](/Enterprise/apt29/Emulation_Plan/yaml)
-* [Archive](/Enterprise/apt29/Archive)
-* [Issues](https://github.com/attackevals/ael/issues)
-* [Change Log](/Enterprise/apt29/CHANGE_LOG.md)

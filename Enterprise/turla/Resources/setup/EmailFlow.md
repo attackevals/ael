@@ -25,4 +25,4 @@ When sending email from Exchange, Exchange used DNS lookups to identify mail ser
 
 ### Mail Flow Diagram
 
-<img src="assets/mailredirect-diagram.png" alt="mailredirect-diagram" style="zoom:25%;" />
+<img src="./assets/mailredirect-diagram.png" alt="mailredirect-diagram" style="zoom:25%;" />

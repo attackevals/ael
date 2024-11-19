@@ -12,7 +12,7 @@ Blind Eagle (APT-C-36, Águila Ciega, ATT&CK Group [G0099](https://attack.mitre.
 The group is believed to be based in South America, given their use of regional Spanish dialects and intimate knowledge of government agencies and other local institutions in the region. Targets are focused on Colombia-based institutions, including entities in the financial, manufacturing, and petroleum sectors.<sup>[2]</sup> However, this threat actor has also executed operations against victims throughout South America, Europe, the US, and Australia.<sup>[3] [4]</sup> While Blind Eagle tends to be largely opportunistic in their motives, they have conducted espionage operations as well.<sup>[5]</sup>
 
 Blind Eagle generally relies on commodity RATs, including Imminent Monitor, BitRAT, QuasarRAT, AsyncRAT, LimeRAT, and RemcosRAT.<sup>[6] [7] [8]</sup> This threat actor's campaigns often leverage spearphishing for initial access and the deployment of encrypted payloads.<sup>[2]</sup>
-Additional common TTPs used by this threat actor include: use of malicious macros, process injection, and other LOTL techniques.<sup>[5] [9]</sup> The group also employs relatively strict targeting, and has been known to use link-shortening services that geoloate victims.<sup>[3]</sup>
+Additional common TTPs used by this threat actor include: use of malicious macros, process injection, and other LOTL techniques.<sup>[5] [9]</sup> The group also employs relatively strict targeting, and has been known to use link-shortening services that geolocate victims.<sup>[3]</sup>
 
 [1]:https://attack.mitre.org/groups/G0099/
 [2]:https://web.archive.org/web/20190625182633/https://ti.360.net/blog/articles/apt-c-36-continuous-attacks-targeting-colombian-government-institutions-and-corporations-en/
@@ -36,9 +36,9 @@ Additional common TTPs used by this threat actor include: use of malicious macro
 
 The [Resources Folder](./Resources/) contains the emulated software source code.
 
-We provide a [script](./Resources/Util/) to manage the various methods of obfuscating and encoding payloads. This script uses flags to identify the method of obuscation or encoding for each component of software. Each software contains a ReadMe.md with the specified flag need when executing this script. From the [Resources Folder](./Resources/), execute the below command with the correct flag `-flag` identified in the software's README.md.
+We provide a [script](./Resources/Util/) to manage the various methods of obfuscating and encoding payloads. This script uses flags to identify the method of obfuscation or encoding for each component of software. Each software contains a ReadMe.md with the specified flag need when executing this script. From the [Resources Folder](./Resources/), execute the below command with the correct flag `-flag` identified in the software's README.md.
 
-```
+```shell
 python3 utilities/file-ops.py -flag
 ```
 

@@ -22,7 +22,7 @@ Please note that binary executable files hosted in [Resources](/Enterprise/carba
 
 We provide a [script](/Enterprise/carbanak/Resources/utilities/crypt_executables.py) to automatically decrypt these files:
 
-```
+```shell
 cd carbanak
 
 python3 Resources/utilities/crypt_executables.py -i ./ -p malware --decrypt
