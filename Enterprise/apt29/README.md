@@ -30,20 +30,6 @@ We would like to formally thank the people that contributed to the content, revi
 - Microsoft
 - SentinelOne
 
-## Table of Contents
-
-- [Intelligence Summary](/Enterprise/apt29/Intelligence_Summary.md)
-- [Operations Flow](/Enterprise/apt29/Operations_Flow.md)
-- [Emulation Plan](/Enterprise/apt29/Emulation_Plan/README.md)
-  - [Scenario 1 - Infrastructure](/Enterprise/apt29/Emulation_Plan/Scenario_1/Infrastructure.md)
-  - [Scenario 1](/Enterprise/apt29/Emulation_Plan/Scenario_1/README.md)
-  - [Scenario 2 - Infrastructure](/Enterprise/apt29/Emulation_Plan/Scenario_2/Infrastructure.md)
-  - [Scenario 2](/Enterprise/apt29/Emulation_Plan/Scenario_2/README.md)
-  - [YAML](/Enterprise/apt29/Emulation_Plan/yaml)
-- [Archive](/Enterprise/apt29/Archive)
-- [Issues](https://github.com/attackevals/ael/issues)
-- [Change Log](/Enterprise/apt29/CHANGE_LOG.md)
-
 ## Liability / Responsible Usage
 
 This content is only to be used with appropriate prior, explicit authorization for the purposes of assessing security posture and/or research.

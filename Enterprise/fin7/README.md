@@ -54,21 +54,6 @@ Special thanks to the following projects for providing tools and source code tha
 - [Mimikatz](https://github.com/gentilkiwi/mimikatz)
 - [PAExec](https://www.poweradmin.com/paexec/)
 
-## Table of Contents
-
-- [Intelligence Summary](../Intelligence_Summary.md)
-- [Operations Flow](../Operations_Flow.md)
-- [Emulation Plan](../Emulation_Plan)
-  - [Scenario 1 - Infrastructure](../Emulation_Plan/Scenario_1/Infrastructure.md)
-  - [Scenario 1 - Detections](../Emulation_Plan/Scenario_1)
-  - [Scenario 2 - Infrastructure](../Emulation_Plan/Scenario_2/Infrastructure.md)
-  - [Scenario 2 - Protections](../Emulation_Plan/Scenario_2)
-  - [YAML](../Emulation_Plan/yaml)
-- [File Hashes](../hashes)
-- [YARA Rules](../yara-rules)
-- [Issues](https://github.com/attackevals/ael/issues)
-- [Change Log](../CHANGE_LOG.md)
-
 ## Liability / Responsible Usage
 
 This content is only to be used with appropriate prior, explicit authorization for the purposes of assessing security posture and/or research.
