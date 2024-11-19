@@ -1,6 +1,5 @@
 ---
 category: enterprise
-route: /enterprise/apt29
 ---
 
 # APT29
