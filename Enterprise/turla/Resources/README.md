@@ -16,35 +16,35 @@ Each component has one or more additional documents specific to that resource.
 * caldera_port
   * [!badge target="blank" icon="mark-github" text="GitHub Link"](https://github.com/attackevals/ael/tree/49516eb0eb51c7b8f3c2851d612ea5c5467ff2bb/Enterprise/turla/Resources/caldera_port)
 * Carbon
-  * [README](./README.md)
+  - [README.md](Carbon/README.md)
 * cleanup
-  * [README](./README.md)
+  - [README.md](cleanup/README.md)
 * control_server
-  * [README](./README.md)
+  - [README.md](control_server/README.md)
 * EPIC
-  * [README](./README.md)
+  - [README.md](EPIC/README.md)
 * Keylogger
-  * [README](./README.md)
+  - [README.md](Keylogger/README.md)
 * LightNeuron
-  * [README](./README.md)
+  - [README.md](LightNeuron/README.md)
 * Mimikatz
-  * [README](./README.md)
+  - [README.md](Mimikatz/README.md)
 * payloads
   * [!badge target="blank" icon="mark-github" text="GitHub Link"](https://github.com/attackevals/ael/tree/49516eb0eb51c7b8f3c2851d612ea5c5467ff2bb/Enterprise/turla/Resources/payloads)
 * Penquin
-  * [README](./README.md)
+  - [README.md](Penquin/README.md)
 * Infrastructure Setup
-  * [CertificateAuthority](./CertificateAuthority.md)
-  * [DNS](./DNS.md)
-  * [EmailFlow](./EmailFlow.md)
-  * [GettingStarted](./GettingStarted.md)
-  * [Infrastructure-Overview](./Infrastructure-Overview.md)
-  * [README](./README.md)
-  * [Setup-Carbon](./Setup-Carbon.md)
-  * [Setup-RedTeam](./Setup-RedTeam.md)
-  * [Setup-Snake](./Setup-Snake.md)
-  * [Setup-Support](./Setup-Support.md)
-  * [TrafficRedirection](./TrafficRedirection.md)
-  * [WindowsService](./WindowsService.md)
+  - [CertificateAuthority.md](setup/CertificateAuthority.md)
+  - [DNS.md](setup/DNS.md)
+  - [EmailFlow.md](setup/EmailFlow.md)
+  - [GettingStarted.md](setup/GettingStarted.md)
+  - [Infrastructure-Overview.md](setup/Infrastructure-Overview.md)
+  - [README.md](setup/README.md)
+  - [Setup-Carbon.md](setup/Setup-Carbon.md)
+  - [Setup-RedTeam.md](setup/Setup-RedTeam.md)
+  - [Setup-Snake.md](setup/Setup-Snake.md)
+  - [Setup-Support.md](setup/Setup-Support.md)
+  - [TrafficRedirection.md](setup/TrafficRedirection.md)
+  - [WindowsService.md](setup/WindowsService.md)
 * Snake
-  * [README](./README.md)
+  - [README.md](Snake/README.md)
