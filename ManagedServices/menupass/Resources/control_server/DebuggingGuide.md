@@ -1,6 +1,6 @@
 # Golang Debugging Guide
 
-This guide is a quick overview on how to install and get started with the Golang debugger on VS Code.
+This guide is a quick overview on how to install and get started with the Golang debugger on VS Code. See the [official documentation](https://code.visualstudio.com/docs/languages/go) for additional tips.
 
 ## Step 1
 
@@ -10,7 +10,7 @@ You will first need to install the Go extension if you have not already. Click o
 
 You will need to create a `launch.json` config file. Click on the Debug icon on the left pane of VS Code. You should see the following:
 
-![Screenshot 2023-06-27 at 2 42 18 PM](https://github.com/attackevals/evalsC2server/assets/78662790/25b67171-a9b3-4fc4-ac77-27765025d8e5)
+![Visual Studio Code Debugging Setup 1](../assets/launch-json-setup1.png)
 
 Click on the `create a launch.json file` link to generate the file. If your Debug panel does not give you this option, you can just create the file manually. Create a new directory entitled `.vscode` and new file `launch.json` within it.
 
@@ -18,7 +18,7 @@ Click on the `create a launch.json file` link to generate the file. If your Debu
 
 Configure your `launch.json` file to reflect the following:
 
-<img width="821" alt="Screenshot 2023-11-17 at 1 13 57 PM" src="https://github.com/attackevals/evalsC2server/assets/78662790/19a98ab8-1fe0-4f8a-9b98-2f1dc0e794b2">
+![Visual Studio Code Debugging Setup 2](../assets/launch-json-setup2.png)
 
 Make sure to update the `"program"` and `"args"` fields to correctly reflect your filepaths to `main.go` and your handler config file.
 

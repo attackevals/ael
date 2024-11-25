@@ -7,7 +7,7 @@ The SodaMaster TCP Handler functions as the server-side counterpart to the SodaM
 - process the data returned after the implant completes tasks
 - accept tasking from `evalsC2client.py` and send the tasks to the implant when requested
 
-![SodaMaster C2 Diagram drawio](https://github.com/attackevals/evalsC2server/assets/78662790/467b8479-c1ed-4ee8-94eb-64c7c62e20a8)
+![SodaMaster C2 Diagram](../../../assets/sodamaster-c2-diagram.png)
 
 ## Components
 
@@ -172,16 +172,16 @@ See [here](../../DebuggingGuide.md) for a guide on how to set up the Golang debu
 - The handler is configured to discard any invalid/malicious data to avoid crashing, in the case of bad data the handler will throw an error message. Locate the error message in the source code and set a breakpoint in that function to debug the error.
 - If the implant data is not formatted correctly (*length of length* or *length* incorrect, etc.), it will most likely error out [here](https://github.com/attackevals/evalsC2server/blob/dce97c97b2c8d41c3e2608e2e29a77179353c98e/handlers/sodamaster/sodamaster_utility.go#L64). If the handler throws an error in this function, follow the steps below to validate the data and ensure the implant is functioning correctly.
 - There are several layers of b64 encoding and encryption on comms sent between the handler and implant that can potentially cause the data to be malformed- here are some tips to start debugging if the data appears invalid:
-  - Set a breakpoint in `startListener` ([suggested line](https://github.com/attackevals/evalsC2server/blob/dce97c97b2c8d41c3e2608e2e29a77179353c98e/handlers/sodamaster/sodamaster.go#L193))
+  - Set a breakpoint in `startListener` ([suggested line](https://github.com/attackevals/ael/blob/main/ManagedServices/menupass/Resources/control_server/handlers/sodamaster/sodamaster.go#L193))
     - Compare the `response` and `encryptedResponse` variables with the plain text data and encrypted data received by the implant, ensure this data matches
-  - Set a breakpoint in `parseImplantData` ([suggested line](https://github.com/attackevals/evalsC2server/blob/dce97c97b2c8d41c3e2608e2e29a77179353c98e/handlers/sodamaster/sodamaster.go#L560))
+  - Set a breakpoint in `parseImplantData` ([suggested line](https://github.com/attackevals/ael/blob/main/ManagedServices/menupass/Resources/control_server/handlers/sodamaster/sodamaster.go#L560))
     - Compare the `data` and `encryptedData` variables with the plain text data and encrypted data sent by the implant, ensure this data matches
   - If the data sent/received by the handler does not match with the implant:
-    - Ensure that the task string is being formatted correctly [here](https://github.com/attackevals/evalsC2server/blob/dce97c97b2c8d41c3e2608e2e29a77179353c98e/handlers/sodamaster/sodamaster_utility.go#L102)
-    - Ensure that the data is being encrypted/decrypted correctly [here](https://github.com/attackevals/evalsC2server/blob/main/handlers/sodamaster/sodamaster_crypto.go)
+    - Ensure that the task string is being formatted correctly [here](https://github.com/attackevals/ael/blob/main/ManagedServices/menupass/Resources/control_server/handlers/sodamaster/sodamaster_utility.go#L102)
+    - Ensure that the data is being encrypted/decrypted correctly [here](https://github.com/attackevals/ael/blob/main/ManagedServices/menupass/Resources/control_server/handlers/sodamaster/sodamaster_crypto.go)
 
 #### Shellcode execution fails
-- Set a breakpoint in the `formatShellcodeTask` utility function ([suggested line](https://github.com/attackevals/evalsC2server/blob/dce97c97b2c8d41c3e2608e2e29a77179353c98e/handlers/sodamaster/sodamaster_utility.go#L122))
+- Set a breakpoint in the `formatShellcodeTask` utility function ([suggested line](https://github.com/attackevals/ael/blob/main/ManagedServices/menupass/Resources/control_server/handlers/sodamaster/sodamaster_utility.go#L122))
   - Check the `shellcode` variable for valid bytes, it is possible there was an error with generating the shellcode and the bytes are zeroed out
   - Check the beginning of the task string to make sure the `id`, `len of length`, and `length` variables all match what is received implant side
 
