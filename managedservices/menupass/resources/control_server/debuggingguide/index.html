@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/ael">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.785862498942">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.785863891338">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -15,7 +15,7 @@
     <!-- Primary Meta Tags -->
     <title>Golang Debugging Guide</title>
     <meta name="title" content="Golang Debugging Guide">
-    <meta name="description" content="This guide is a quick overview on how to install and get started with the Golang debugger on VS Code.">
+    <meta name="description" content="This guide is a quick overview on how to install and get started with the Golang debugger on VS Code. See the ">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://attackevals.github.io/ael/managedservices/menupass/resources/control_server/debuggingguide/">
@@ -24,24 +24,24 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://attackevals.github.io/ael/managedservices/menupass/resources/control_server/debuggingguide/">
     <meta property="og:title" content="Golang Debugging Guide">
-    <meta property="og:description" content="This guide is a quick overview on how to install and get started with the Golang debugger on VS Code.">
-    <meta property="og:image" content="https://github.com/attackevals/evalsC2server/assets/78662790/25b67171-a9b3-4fc4-ac77-27765025d8e5">
+    <meta property="og:description" content="This guide is a quick overview on how to install and get started with the Golang debugger on VS Code. See the ">
+    <meta property="og:image" content="https://attackevals.github.io/ael/managedservices/menupass/resources/assets/launch-json-setup1.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://attackevals.github.io/ael/managedservices/menupass/resources/control_server/debuggingguide/">
     <meta property="twitter:title" content="Golang Debugging Guide">
-    <meta property="twitter:description" content="This guide is a quick overview on how to install and get started with the Golang debugger on VS Code.">
-    <meta property="twitter:image" content="https://github.com/attackevals/evalsC2server/assets/78662790/25b67171-a9b3-4fc4-ac77-27765025d8e5">
+    <meta property="twitter:description" content="This guide is a quick overview on how to install and get started with the Golang debugger on VS Code. See the ">
+    <meta property="twitter:image" content="https://attackevals.github.io/ael/managedservices/menupass/resources/assets/launch-json-setup1.png">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../../../favicon.png" rel="icon">
-    <link href="../../../../../resources/css/retype.css?v=3.6.0.785862498942" rel="stylesheet">
+    <link href="../../../../../resources/css/retype.css?v=3.6.0.785863891338" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../../resources/js/config.js?v=3.6.0.785862498942" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../../resources/js/config.js?v=3.6.0.785863891338" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../../resources/js/lunr.js?v=3.6.0.785862498942" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../../resources/js/lunr.js?v=3.6.0.785863891338" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -224,7 +224,7 @@
     <div><a href="../../categories/managed-services/">Managed-Services</a></div>
 </div>
 
-<p>This guide is a quick overview on how to install and get started with the Golang debugger on VS Code.</p>
+<p>This guide is a quick overview on how to install and get started with the Golang debugger on VS Code. See the <a href="https://code.visualstudio.com/docs/languages/go" class="outbound" target="_blank"><span>official documentation</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> for additional tips.</p>
 <doc-anchor-target id="step-1">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#step-1">#</doc-anchor-trigger>
@@ -240,8 +240,8 @@
 </doc-anchor-target>
 <p>You will need to create a <code v-pre>launch.json</code> config file. Click on the Debug icon on the left pane of VS Code. You should see the following:</p>
 <p><figure class="content-center">
-    <img src="https://github.com/attackevals/evalsC2server/assets/78662790/25b67171-a9b3-4fc4-ac77-27765025d8e5" alt="Screenshot 2023-06-27 at 2 42 18 PM">
-    <figcaption class="caption">Screenshot 2023-06-27 at 2 42 18 PM</figcaption>
+    <img src="../../assets/launch-json-setup1.png" alt="Visual Studio Code Debugging Setup 1">
+    <figcaption class="caption">Visual Studio Code Debugging Setup 1</figcaption>
 </figure>
 </p>
 <p>Click on the <code v-pre>create a launch.json file</code> link to generate the file. If your Debug panel does not give you this option, you can just create the file manually. Create a new directory entitled <code v-pre>.vscode</code> and new file <code v-pre>launch.json</code> within it.</p>
@@ -252,7 +252,11 @@
     </h2>
 </doc-anchor-target>
 <p>Configure your <code v-pre>launch.json</code> file to reflect the following:</p>
-<img width="821" alt="Screenshot 2023-11-17 at 1 13 57 PM" src="https://github.com/attackevals/evalsC2server/assets/78662790/19a98ab8-1fe0-4f8a-9b98-2f1dc0e794b2">
+<p><figure class="content-center">
+    <img src="../../assets/launch-json-setup2.png" alt="Visual Studio Code Debugging Setup 2">
+    <figcaption class="caption">Visual Studio Code Debugging Setup 2</figcaption>
+</figure>
+</p>
 <p>Make sure to update the <code v-pre>&quot;program&quot;</code> and <code v-pre>&quot;args&quot;</code> fields to correctly reflect your filepaths to <code v-pre>main.go</code> and your handler config file.</p>
 <doc-anchor-target id="step-4">
     <h2>
