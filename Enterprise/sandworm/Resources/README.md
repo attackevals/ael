@@ -11,25 +11,25 @@ Each component has one or more additional documents specific to that resource.
 
 ## Resources Index
 
-* browser-creds
-  * [README](./README.md)
-* cleanup
-  * [README](./README.md)
-* Exaramel
-  * [README](./README.md)
-* Exaramel-Windows
-  * [README](./README.md)
 * Exaramel-Windows-Dropper
-  * [README](./README.md)
-* keylogger
-  * [README](./README.md)
+  - [README.md](Exaramel-Windows-Dropper/README.md)
+* Exaramel-Windows
+  - [README.md](Exaramel-Windows/README.md)
+* Exaramel
+  - [README.md](Exaramel/README.md)
 * NotPetya
-  * [README](./README.md)
+  - [README.md](NotPetya/README.md)
+* browser-creds
+  - [README.md](browser-creds/README.md)
+* cleanup
+  - [README.md](cleanup/README.md)
+* keylogger
+  - [README.md](keylogger/README.md)
 * phpWebShell
-  * [README](./README.md)
-* Infrastructure Setup
-  * [README](./README.md)
+  - [README.md](phpWebShell/README.md)
+* setup
+  - [README.md](setup/README.md)
 * suid-binary
-  * [README](./README.md)
+  - [README.md](suid-binary/README.md)
 * utilities
   * [!badge target="blank" icon="mark-github" text="GitHub Link"](https://github.com/attackevals/ael/tree/49516eb0eb51c7b8f3c2851d612ea5c5467ff2bb/Enterprise/sandworm/Resources/utilities)
