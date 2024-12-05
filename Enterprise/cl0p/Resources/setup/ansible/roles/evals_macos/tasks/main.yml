@@ -1,0 +1,172 @@
+---
+# tasks file for macos
+# Join Domain?
+# Add Users?
+# Certs?
+
+- name: Get list of network interfaces
+  command: networksetup -listallnetworkservices
+  register: network_interfaces
+
+- name: Parse network interfaces
+  set_fact:
+    thunderbolt_interfaces: "{{ network_interfaces.stdout_lines | select('match', '.*Thunderbolt.*') | list }}"
+
+- name: Set DNS configuration for Thunderbolt interfaces
+  shell: "networksetup -setdnsservers \"{{ item }}\" \"{{ ad_ip_addr }}\""
+  with_items: "{{ thunderbolt_interfaces }}"
+  when: thunderbolt_interfaces is defined and thunderbolt_interfaces | length > 0
+  register: dns_configuration_results
+
+- name: Display DNS configuration results
+  debug:
+    var: dns_configuration_results
+
+- name: Create admin ard group
+  shell: |
+    sudo dscl . -create /Groups/ard_admin PrimaryGroupID "530"
+    sudo dscl . -create /Groups/ard_admin Password "*"
+    sudo dscl . -create /Groups/ard_admin RealName "{{ ard_admin_group }}"
+    sudo dscl . -create /Groups/ard_admin GroupMembers ""
+    sudo dscl . -create /Groups/ard_admin GroupMembership ""
+  ignore_errors: yes
+
+- name: Enable VNC on Mac
+  ansible.builtin.command:
+    cmd: "/System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -activate -configure -access -on -restart -agent -privs -all -users {{ ard_admin_group}}  -clientopts -setvnclegacy -vnclegacy yes -setvncpw -vncpw \"{{ vnc_password }}\" -setdirlogins -dirlogins yes -configure -allowAccessFor -allUsers"
+  become: yes
+
+- name: switch to typeable username password login
+  ansible.builtin.command:
+    cmd: "defaults write /Library/Preferences/com.apple.loginwindow SHOWFULLNAME 1"
+  become: yes
+
+- name: set password for ec2-user
+  ansible.builtin.command:
+    cmd: "sudo /usr/bin/dscl . -passwd /Users/ec2-user {{ vnc_password }}"
+  become: yes
+  ignore_errors: yes
+
+- name: drop domain if needed
+  ansible.builtin.command:
+    cmd: |
+      dsconfigad -force -remove -u johndoe -p nopasswordhere
+  become: yes
+  ignore_errors: yes
+  when: join_domain | bool
+
+- name: Join domain
+  ansible.builtin.command:
+    cmd: |
+      dsconfigad -force -add '{{ dns_domain_name }}' -computer {{ ad_ip_addr }}
+      -username {{ admin_user }} -password '{{ admin_pass }}'
+      -localhome enable
+      -mobile enable
+      -mobileconfirm disable
+      -useuncpath disable
+      -groups "{{ mac_admin_group1 }},{{ mac_admin_group2 }}"
+      -alldomains enable
+      -shell /bin/zsh
+  become: yes
+  ignore_errors: true
+  when: join_domain | bool
+#- name: Ensure ssh directory exists
+#  ansible.builtin.file:
+#      path: "/Users/{{ user_to_create|quote }}/.ssh"
+#      state: directory
+#      mode: '0700'
+#      owner: "{{ user_to_create }}"
+#      group: "{{ ansible_real_group_id }}"
+#  become: yes
+
+#- name: Create known_hosts file for new user
+#  ansible.builtin.command:
+#      cmd: "ssh-keyscan -H {{ ubuntu_ip }} >> ~/.ssh/known_hosts"
+#  become: yes
+#  become_user: "{{ user_to_create|quote }}"
+  #- name: Force home directory creation
+  #  ansible.builtin.command:
+  #    cmd: "/usr/sbin/createhomedir -c -u {{ user_to_create|quote }}"
+  #  become: yes
+
+- name: add sleep
+  wait_for:
+    timeout: 30
+  when: join_domain | bool
+
+- name: "Check that {{ mac_admin_group1 }} group from Active Directory is resolvable"
+  ansible.builtin.command:
+    cmd: |
+      dseditgroup -o read -u {{ admin_user }} "{{ mac_admin_group1 }}"
+  register: check_group_output
+  changed_when: false
+  ignore_errors: yes
+
+- name: Debug the output (optional)
+  debug:
+    var: check_group_output.stdout
+  ignore_errors: yes
+
+- name: "add ad admin groups explicitly to local admin group {{ mac_admin_group1 }}"
+  ansible.builtin.shell:
+    cmd: |
+      dseditgroup -o edit -a "{{ domain_shortname | upper}}\{{ mac_admin_group1 }}" -t group admin
+  become: yes
+  when: "'Group not found' not in check_group_output.stdout"
+  ignore_errors: yes
+
+- name: "add ad admin groups explicitly to local admin group {{ mac_admin_group1 }}"
+  ansible.builtin.shell:
+    cmd: |
+      dseditgroup -o edit -a "{{ domain_shortname | upper}}\{{ mac_admin_group1 }}" -t group {{ ard_admin_group }}
+  become: yes
+  when: "'Group not found' not in check_group_output.stdout"
+  ignore_errors: yes
+
+- name: "add ad admin groups explicitly to local admin group {{ mac_admin_group2 }}"
+  ansible.builtin.shell:
+    cmd: |
+      dseditgroup -o edit -a "{{ domain_shortname | upper}}\{{ mac_admin_group2 }}" -t group admin
+  become: yes
+  when: "'Group not found' not in check_group_output.stdout"
+  ignore_errors: yes
+
+- name: "add ad admin groups explicitly to local admin group {{ mac_admin_group2 }}"
+  ansible.builtin.shell:
+    cmd: |
+      dseditgroup -o edit -a "{{ domain_shortname | upper}}\{{ mac_admin_group2 }}" -t group {{ ard_admin_group }}
+  become: yes
+  when: "'Group not found' not in check_group_output.stdout"
+  ignore_errors: yes
+
+- name: install rosetta
+  ansible.builtin.command:
+    cmd: sudo softwareupdate --install-rosetta --agree-to-license
+  when: install_rosetta | bool
+
+- name: required software installs
+  ansible.builtin.include_tasks:
+    file: software-install.yml
+  when: install_brew | bool
+
+- name: xcode install
+  ansible.builtin.include_tasks:
+    file: xcode-install.yml
+  when: install_xcode| bool
+
+- name: SSH configuration
+  ansible.builtin.template:
+    dest: "{{ ssh_config }}"
+    src: "99-macos.conf"
+  become: yes
+
+- name: zshrc
+  ansible.builtin.template:
+    dest: ~/.zshrc
+    src: "zshrc.j2"
+
+- name: AWS macOS init toml
+  ansible.builtin.template:
+    dest: "{{ aws_macos_toml }}"
+    src: "aws-macos-init.toml"
+  become: yes

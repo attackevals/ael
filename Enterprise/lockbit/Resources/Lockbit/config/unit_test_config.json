@@ -1,0 +1,48 @@
+{
+    "enable_enc": false,
+    "enable_enum": true,
+    "enable_prop": true,
+    "disable_boot_recovery": true,
+    "disable_av": false,
+    "check_ui_lang": true,
+    "terminate_processes": true,
+    "terminate_services": true,
+    "change_wallpaper": true,
+    "change_icon": true,
+    "clear_evt_log": false,
+    "delete_shadow": true,
+    "excluded_filenames": [
+        "file1",
+        "file2",
+        "file3"
+    ],
+    "excluded_dirs": [
+        "dir1",
+        "dir2"
+    ],
+    "excluded_ext": [],
+    "target_processes": [
+        "sql", "oracle", "ocssd", "dbsnmp",
+        "synctime", "agntsvc", "isqlplussvc",
+        "xfssvccon", "mydesktopservice", "ocautoupds",
+        "encsvc", "firefox", "tbirdconfig",
+        "mydesktopqos", "ocomm", "dbeng50",
+        "sqbcoreservice", "scalc", "infopath",
+        "sbase", "onenote", "outlook",
+        "simpres", "steam", "thebat", "thunderbird",
+        "sdraw", "swriter","wordpad", "notepad",
+        "calc", "wuauclt", "onedrive", "soffice"
+    ],
+    "target_services": [
+        "vss", "sql", "svc$",
+        "memtas", "mepocs", "msexchange",
+        "veeam", "backup",
+        "GxVss", "GxBlr", "GxFWD",
+        "GxCVD", "GxCIMgr"
+    ],
+    "psexec_user": "dummyusername",
+    "psexec_pass": "dummypassword",
+    "extension": "testlockbitext",
+    "note_contents": "dummy ransom note contents",
+    "rsa_pub": ""
+}

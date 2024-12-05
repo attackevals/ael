@@ -1,0 +1,16 @@
+---
+- name: Set fully qualified hostname
+  ansible.builtin.shell: |
+    sudo scutil --set HostName {{ full_hostname }}
+
+- name: Set bonjour hostname
+  ansible.builtin.shell: |
+    sudo scutil --set LocalHostName {{ short_hostname }}
+
+- name: Set user friendly name
+  ansible.builtin.shell: |
+    sudo scutil --set ComputerName {{ short_hostname }}
+
+- name: Flush dns cache
+  ansible.builtin.shell: |
+    dscacheutil -flushcache

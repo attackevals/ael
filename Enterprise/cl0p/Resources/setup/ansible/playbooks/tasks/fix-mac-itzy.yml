@@ -1,0 +1,20 @@
+- name: fix dns and sudo group membership issues on mac protections
+  hosts:
+    - macos_desk1_protections
+  become: yes
+  vars_files:
+    - ../vars/vars.yml
+  gather_facts: no
+
+  tasks:
+    - name: fix mac dns and sudo group membership issues
+      ansible.builtin.include_tasks: fix-mac-dns-and-groups.yml
+      vars:
+        ad_ip_addr: "{{ domain_info_sonicbeats.ad_ip_addr }}"
+        domain_shortname: "{{ domain_info_sonicbeats.shortname }}"
+        dns_domain_name: "{{ domain_info_sonicbeats.dns_domain_name }}"
+        admin_user: "{{ domain_info_sonicbeats.admin_user }}"
+        admin_pass: "{{ domain_info_sonicbeats.admin_pass }}"
+        mac_admin_group1: "Domain Admins"
+        mac_admin_group2: "Mac Users"
+        ard_admin_group: ard_admin

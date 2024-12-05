@@ -1,0 +1,3 @@
+#include "resource.hpp"
+
+WALLPAPER_RESOURCE_ID RCDATA WALLPAPER_PATH

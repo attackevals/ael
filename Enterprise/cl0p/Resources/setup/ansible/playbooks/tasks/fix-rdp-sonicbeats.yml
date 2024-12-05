@@ -1,0 +1,19 @@
+---
+- name: "Fix RDP Connections on {{ domain_info_sonicbeats.dns_domain_name }}"
+  hosts:
+    - victim_desktops_protections
+    - file_srv1_protections
+    - mail_srv1_protections
+  become: no
+  gather_facts: no
+  strategy: free
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: "Repairing Domain Trust {{ domain_info_sonicbeats.dns_domain_name }}"
+      ansible.builtin.include_tasks: fix-rdp.yml
+      vars:
+        ad_domain: "{{ domain_info_sonicbeats.shortname | upper }}"
+        ad_user: "{{ domain_info_sonicbeats.admin_user }}"
+        ad_pass: "{{ domain_info_sonicbeats.admin_pass }}"

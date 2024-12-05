@@ -1,0 +1,6 @@
+---
+- name: Add domain admins to local admin
+  ansible.windows.win_group_membership:
+    name: Administrators
+    members:
+      - "{{ domain_shortname }}\\{{ admin_group }}"

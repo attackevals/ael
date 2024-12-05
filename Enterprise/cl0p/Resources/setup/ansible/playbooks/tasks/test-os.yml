@@ -1,0 +1,91 @@
+---
+- name: Verify OS for instances
+  hosts: win_hosts
+  vars:
+    range_name: "default"
+    output_path: "./reports/"
+    filename: "{{range_name}}_range_report_windows_{{date}}.csv"
+    per_host_filename: "{{range_name}}_hotfix_{{date}}_{{ansible_hostname}}.txt"
+    per_host_disk_filename: "{{range_name}}_disk_{{date}}_disk_{{ansible_hostname}}.txt"
+    aws_s3_bucket: "evals-artifacts-storage"
+    aws_s3_report_prefix: "reports/er6"
+    evals_cycle: "er6"
+  ignore_unreachable: yes
+  ignore_errors: yes
+
+#  hosts: win_hosts, mac_all_desktops, linux_servers
+#  roles:
+#    - ../../roles/test-os
+  tasks:
+    - name: CSV - Generate output filename
+      set_fact: date="{{lookup('pipe','date +%Y%m%d_%H%M%S')}}"
+      run_once: true
+
+    - name: CSV - Generate just ymd for organizing range reports in s3
+      set_fact: date_day="{{lookup('pipe','date +%Y%m%d')}}"
+      run_once: true
+
+    - name: CSV - Create file and set the header
+      lineinfile:
+        dest: "{{ output_path }}/{{ filename }}"
+        line:
+          osversion,osbuildnumber,csname,CsDomain,osname
+        create: yes
+      delegate_to: localhost
+
+    - name: gather windows os version
+      ansible.windows.win_powershell:
+        script: get-computerinfo osversion,osbuildnumber,csname,CsDomain,osname,hotfix
+      register: info_output
+
+    - name: gather windows os hotfix list for version csv
+      ansible.windows.win_shell: |
+        @(get-hotfix | Sort-Object -Descending -Property HotFixID -ErrorAction SilentlyContinue |  %{$_.HotFixID} | Out-String | ForEach-Object{$_ -replace '\n', ','}).TrimEnd(',')
+      register: csv_hotfix_output
+
+    - debug: var=info_output.output[0]["CsName"]
+    - name: append on localhost controller
+      lineinfile:
+        path: "{{ output_path }}/{{ filename }}"
+        line: "{{ info_output.output[0]['OsVersion'] }},{{ info_output.output[0]['OsBuildNumber'] }},{{ info_output.output[0]['CsName'] }},{{ info_output.output[0]['CsDomain']}},{{ info_output.output[0]['OsName'] }},\"{{ csv_hotfix_output.stdout}}\""
+      delegate_to: localhost
+
+    - name: gather windows os hotfix list
+      ansible.windows.win_shell: get-hotfix | Sort-Object -Descending -Property HotFixID -ErrorAction SilentlyContinue
+      register: hotfix_output
+
+    - debug: var=hotfix_output
+
+    - name: append on localhost controller hotfix
+      ansible.builtin.copy:
+        dest: "{{ output_path }}/{{ per_host_filename }}"
+        content: "{{ hotfix_output.stdout }}"
+      delegate_to: localhost
+
+    - name: gather disk space usage info
+      ansible.windows.win_powershell:
+        script: Get-PSDrive | Select-Object Name,@{ E={$_.Used/1GB}; L='Used' }, @{ E={$_.Free/1GB}; L='Free' }
+      register: disk_output
+
+    - name: append on localhost controller disk info
+      ansible.builtin.copy:
+        dest: "{{ output_path }}/{{ per_host_disk_filename }}"
+        content: "{{ disk_output.output }}"
+      delegate_to: localhost
+
+    - name: Upload report of range
+      community.aws.s3_sync:
+        file_root: "{{ output_path }}"
+        bucket: "{{ aws_s3_bucket }}"
+        key_prefix: "reports/{{ evals_cycle| lower}}/{{ range_name }}/{{ date_day }}/"
+        include: "{{ range_name }}*{{ date_day }}*"
+        validate_certs: false
+      delegate_to: localhost
+
+#
+#    - name: append on localhost controller
+#      lineinfile:
+#        path: "{{ output_path }}/{{ filename }}"
+#        line: "{{ item.output.OsVersion }},{{ item.output.OsBuildNumber }},{{ item.output.CsName }},{{ item.output.LogonServer }}"
+#      loop: "{{ info_output }}"
+#      delegate_to: localhost

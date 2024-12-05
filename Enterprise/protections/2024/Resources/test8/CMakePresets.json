@@ -1,0 +1,103 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 26,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "default",
+      "binaryDir": "${sourceDir}/build",
+      "installDir": "${sourceDir}/install",
+      "generator": "Visual Studio 17 2022",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "CMAKE_MODULE_PATH": "${sourceDir}/cmake",
+        "CMAKE_CXX_STANDARD": "26",
+        "CMAKE_C_STANDARD": "23",
+        "CMAKE_CONFIGURATION_TYPES": "Debug;Release;",
+        "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>",
+        "CMAKE_BUILD_TYPE": "<$<CONFIG:Debug>:Debug><$<CONFIG:Release>:Release>"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "release",
+      "description": "Build Protections Test 8 targets with release configuration",
+      "configurePreset": "default",
+      "inheritConfigureEnvironment": true,
+      "configuration": "Release",
+      "targets": [
+        "main",
+        "main-test"
+      ]
+    },
+    {
+      "name": "debug",
+      "description": "Build Protections Test 8 targets with debug configuration",
+      "configurePreset": "default",
+      "inheritConfigureEnvironment": true,
+      "configuration": "Debug",
+      "targets": [
+        "main",
+        "main-test"
+      ]
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "all",
+      "configurePreset": "default",
+      "configuration": "Debug",
+      "inheritConfigureEnvironment": true
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "cicd-debug",
+      "description": "Build all Protections Test 8 debug targets",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "default"
+        },
+        {
+          "type": "build",
+          "name": "debug"
+        },
+        {
+          "type": "test",
+          "name": "all"
+        }
+      ]
+    },
+    {
+      "name": "cicd-release",
+      "description": "Build all Protections Test 8 release targets",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "default"
+        },
+        {
+          "type": "build",
+          "name": "release"
+        },
+        {
+          "type": "test",
+          "name": "all"
+        }
+      ]
+    }
+  ]
+}

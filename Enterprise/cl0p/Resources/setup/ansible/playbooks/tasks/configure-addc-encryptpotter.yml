@@ -1,0 +1,26 @@
+---
+- name: "Configure encryptpotter RANGE Windows Domain Controller"
+  hosts: addc_srv1_a
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - addc
+    - domain
+    - network
+    - share
+    - winrm
+    - users
+    - groups
+    - server
+    - windows
+    - firewall
+    - encryptpotter
+    - scenarioa
+  vars:
+    domain_info: "{{ domain_info_encryptpotter }}"
+    domain_users: "{{ domain_users_encryptpotter + domain_users_common }}"
+    domain_groups: "{{ domain_groups_encryptpotter }}"
+    range_dns_server_ip: "{{ support_vars.dns_server_ip }}"
+  roles:
+    - evals_ad_domain

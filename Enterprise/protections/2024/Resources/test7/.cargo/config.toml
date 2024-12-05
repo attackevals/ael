@@ -1,0 +1,11 @@
+[target.x86_64-pc-windows-msvc]
+rustflags = [
+    "-Ctarget-feature=+crt-static",
+    "--remap-path-prefix=src\\psexec.rs=src\\p.rs",
+    "--remap-path-prefix=src\\latmove=src\\lm",
+    "--remap-path-prefix=src\\latmove\\nbtscan=src\\lm\\ns",
+    "--remap-path-prefix=src\\latmove\\nbtscan\\ip_range.rs=src\\lm\\ns\\ir.rs",
+    "--remap-path-prefix=src\\latmove\\nbtscan\\nbt_packet.rs=src\\lm\\ns\\np.rs",
+    "--remap-path-prefix=src\\latmove\\local_ips.rs=src\\lm\\li.rs",
+    "--remap-path-prefix=src\\latmove\\propagate.rs=src\\lm\\p.rs",
+]

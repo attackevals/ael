@@ -1,0 +1,67 @@
+---
+
+- name: Disable scheduled defender scan
+  ansible.windows.win_regedit:
+    path: HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule
+    name: MaintenanceDisabled
+    data: 1
+    type: dword
+
+- name: Disable defender redux
+  ansible.windows.win_shell: |
+    cmd.exe /c reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule" /v "MaintenanceDisabled" /t cmd.exe /c reg_DWORD /d "1" /f
+    cmd.exe /c reg add "HKLM\Software\Microsoft\Windows Defender Security Center\Notifications" /v "DisableNotifications" /t cmd.exe /c reg_DWORD /d "1" /f
+    cmd.exe /c reg add "HKLM\Software\Policies\Microsoft\Windows Defender Security Center\Notifications" /v "DisableEnhancedNotifications " /t cmd.exe /c reg_DWORD /d "1" /f
+
+    #cmd.exe /c rem  0 - Security and Maitenance Notification
+    cmd.exe /c reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.SecurityAndMaintenance" /v "Enabled" /t cmd.exe /c reg_DWORD /d "0" /f
+
+    # cmd.exe /c rem  1 - Disable Real-time protection
+    cmd.exe /c reg delete "HKLM\Software\Policies\Microsoft\Windows Defender" /f
+    cmd.exe /c reg add "HKLM\Software\Policies\Microsoft\Windows Defender" /v "AllowFastServiceStartup" /t cmd.exe /c reg_DWORD /d "0" /f
+    cmd.exe /c reg add "HKLM\Software\Policies\Microsoft\Windows Defender" /v "DisableAntiSpyware" /t cmd.exe /c reg_DWORD /d "1" /f
+    cmd.exe /c reg add "HKLM\Software\Policies\Microsoft\Windows Defender" /v "DisableAntiVirus" /t cmd.exe /c reg_DWORD /d "1" /f
+    cmd.exe /c reg add "HKLM\Software\Policies\Microsoft\Windows Defender" /v "DisableSpecialRunningModes" /t cmd.exe /c reg_DWORD /d "1" /f
+    cmd.exe /c reg add "HKLM\Software\Policies\Microsoft\Windows Defender" /v "ServiceKeepAlive" /t cmd.exe /c reg_DWORD /d "0" /f
+    cmd.exe /c reg add "HKLM\Software\Policies\Microsoft\Windows Defender\MpEngine" /v "MpEnablePus" /t cmd.exe /c reg_DWORD /d "0" /f
+    cmd.exe /c reg add "HKLM\Software\Policies\Microsoft\Windows Defender\Real-Time Protection" /v "DisableBehaviorMonitoring" /t cmd.exe /c reg_DWORD /d "1" /f
+    cmd.exe /c reg add "HKLM\Software\Policies\Microsoft\Windows Defender\Real-Time Protection" /v "DisableIOAVProtection" /t cmd.exe /c reg_DWORD /d "1" /f
+    cmd.exe /c reg add "HKLM\Software\Policies\Microsoft\Windows Defender\Real-Time Protection" /v "DisableOnAccessProtection" /t cmd.exe /c reg_DWORD /d "1" /f
+    cmd.exe /c reg add "HKLM\Software\Policies\Microsoft\Windows Defender\Real-Time Protection" /v "DisableRealtimeMonitoring" /t cmd.exe /c reg_DWORD /d "1" /f
+    cmd.exe /c reg add "HKLM\Software\Policies\Microsoft\Windows Defender\Real-Time Protection" /v "DisableRoutinelyTakingAction" /t cmd.exe /c reg_DWORD /d "1" /f
+    cmd.exe /c reg add "HKLM\Software\Policies\Microsoft\Windows Defender\Real-Time Protection" /v "DisableScanOnRealtimeEnable" /t cmd.exe /c reg_DWORD /d "1" /f
+    cmd.exe /c reg add "HKLM\Software\Policies\Microsoft\Windows Defender\Reporting" /v "DisableEnhancedNotifications" /t cmd.exe /c reg_DWORD /d "1" /f
+    cmd.exe /c reg add "HKLM\Software\Policies\Microsoft\Windows Defender\SpyNet" /v "DisableBlockAtFirstSeen" /t cmd.exe /c reg_DWORD /d "1" /f
+    cmd.exe /c reg add "HKLM\Software\Policies\Microsoft\Windows Defender\SpyNet" /v "SpynetReporting" /t cmd.exe /c reg_DWORD /d "0" /f
+    cmd.exe /c reg add "HKLM\Software\Policies\Microsoft\Windows Defender\SpyNet" /v "SubmitSamplesConsent" /t cmd.exe /c reg_DWORD /d "2" /f
+
+    # cmd.exe /c rem  0 - Disable Logging
+    cmd.exe /c reg add "HKLM\System\CurrentControlSet\Control\WMI\Autologger\DefenderApiLogger" /v "Start" /t cmd.exe /c reg_DWORD /d "0" /f
+    cmd.exe /c reg add "HKLM\System\CurrentControlSet\Control\WMI\Autologger\DefenderAuditLogger" /v "Start" /t cmd.exe /c reg_DWORD /d "0" /f
+
+    # cmd.exe /c rem  Disable Tasks
+    cmd.exe /c schtasks /Change /TN "Microsoft\Windows\ExploitGuard\ExploitGuard MDM policy Refresh" /Disable
+    cmd.exe /c schtasks /Change /TN "Microsoft\Windows\Windows Defender\Windows Defender Cache Maintenance" /Disable
+    cmd.exe /c schtasks /Change /TN "Microsoft\Windows\Windows Defender\Windows Defender Cleanup" /Disable
+    cmd.exe /c schtasks /Change /TN "Microsoft\Windows\Windows Defender\Windows Defender Scheduled Scan" /Disable
+    cmd.exe /c schtasks /Change /TN "Microsoft\Windows\Windows Defender\Windows Defender Verification" /Disable
+
+    # cmd.exe /c rem  Disable systray icon
+    cmd.exe /c reg delete "HKLM\Software\Microsoft\Windows\CurrentVersion\Explorer\StartupApproved\Run" /v "SecurityHealth" /f
+    cmd.exe /c reg delete "HKLM\Software\Microsoft\Windows\CurrentVersion\Run" /v "SecurityHealth" /f
+
+    # cmd.exe /c rem  cmd.exe /c rem ove context menu
+    cmd.exe /c reg delete "HKCR\*\shellex\ContextMenuHandlers\EPP" /f
+    cmd.exe /c reg delete "HKCR\Directory\shellex\ContextMenuHandlers\EPP" /f
+    cmd.exe /c reg delete "HKCR\Drive\shellex\ContextMenuHandlers\EPP" /f
+
+    #    cmd.exe /c rem  Disable services (it will stop WdFilter.sys as well, better not to disable the driver by itself)
+    #    cmd.exe /c reg add "HKLM\System\CurrentControlSet\Services\WdBoot" /v "Start" /t cmd.exe /c reg_DWORD /d "4" /f
+    cmd.exe /c reg add "HKLM\System\CurrentControlSet\Services\WdFilter" /v "Start" /t cmd.exe /c reg_DWORD /d "4" /f
+    cmd.exe /c reg add "HKLM\System\CurrentControlSet\Services\WdNisDrv" /v "Start" /t cmd.exe /c reg_DWORD /d "4" /f
+    cmd.exe /c reg add "HKLM\System\CurrentControlSet\Services\WdNisSvc" /v "Start" /t cmd.exe /c reg_DWORD /d "4" /f
+    cmd.exe /c reg add "HKLM\System\CurrentControlSet\Services\WinDefend" /v "Start" /t cmd.exe /c reg_DWORD /d "4" /f
+
+    stop-service -DisplayName "Windows Update"
+    get-service -DisplayName "Windows Update" | Set-Service -StartupType "Disabled"
+  ignore_errors: yes

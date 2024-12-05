@@ -1,0 +1,7 @@
+simplefileserver:
+  host: 127.0.0.1
+  port: 8080
+  enabled: true
+  mappings:
+    - prefix: /files
+      dir: /path/to/test3.exe

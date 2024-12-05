@@ -1,0 +1,16 @@
+---
+- name: "Add quirrell admin"
+  hosts: win11_desk2_b
+#  become: yes
+  gather_facts: yes
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - localadmin
+    - scenariob
+
+  tasks:
+    - ansible.builtin.include_tasks: add-local-admin-groups.yml
+      vars:
+        domain_shortname: "{{ domain_info_decryptmalfoy.shortname }}"
+        admin_group: "{{ domain_groups_decryptmalfoy_quirrell }}"

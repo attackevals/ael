@@ -1,0 +1,47 @@
+---
+
+- name: Install S3 mountpoint package
+  become: yes
+  apt:
+    deb: "{{ mounts3_x86_deb }}"
+
+- name: forcibly unmount red mountpoint
+  mount:
+    path: "{{ s3_red_mount }}"
+    state: unmounted
+  failed_when: false
+
+- name: forcibly unmount blue mountpoint
+  mount:
+    path: "{{ s3_blue_mount }}"
+    state: unmounted
+  failed_when: false
+
+- name: Create mountpoint directory (red)
+  ansible.builtin.file:
+    path: "{{ s3_red_mount }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ mount_user }}"
+    group: "{{ mount_group }}"
+
+- name: Create mountpoint directory (blue)
+  ansible.builtin.file:
+    path: "{{ s3_blue_mount }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ mount_user }}"
+    group: "{{ mount_group }}"
+
+- name: Install mount script
+  copy:
+    dest: "{{ mount_s3_script_dest }}"
+    src: "{{ mount_s3_script_src }}"
+    mode: '0755'
+    owner: root
+    group: root
+
+- name: Mount S3 shares (red and blue)
+  ansible.builtin.shell: |
+    {{ mount_s3_script_dest }}
+  ignore_errors: yes

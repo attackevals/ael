@@ -1,0 +1,96 @@
+---
+- name: Deploy decoy files
+  hosts: win_hosts
+  strategy: free
+  become: yes
+  gather_facts: yes
+  vars:
+    noise_gen_dst_dir: "C:\\tools\\filegen"
+    noise_gen_src_dir: "../files/recycleFileGen.ps1"
+    decoy_src_files: "../files/filegen"
+    filegen_exe: "generate-files.exe"
+    recycle_gen_exe: "recycleFileGen.ps1"
+    decoy_base_dir: "C:/Users/"
+    file_srv_drive: "D:/"
+    file_srv_data_dir: "data"
+    decoy_seed: "KPOP"
+    decoy_file_count: "100"
+    filegen_zip: "file_generator//generate-files.exe.zip"
+    filegen_exe_dir: "file_generator"
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: Create directory for file generator files
+      ansible.windows.win_file:
+        path: "{{ noise_gen_dst_dir }}"
+        state: directory
+
+    - name: Copy filegen bundle to host
+      ansible.windows.win_copy:
+        src: "{{ decoy_src_files }}/"
+        dest: "{{ noise_gen_dst_dir }}"
+
+    - name: Copy noise gen files up to host
+      ansible.windows.win_copy:
+        src: "{{ noise_gen_src_dir }}"
+        dest: "{{ noise_gen_dst_dir }}"
+
+    - name: Check that "{{ file_srv_drive }}" exists on file servers
+      win_stat:
+        path: "{{ file_srv_drive }}"
+      register: stat_drive
+      ignore_errors: yes
+      when: inventory_hostname in groups['win_file_servers']
+
+    - debug:
+        var: stat_drive.stat
+      when: inventory_hostname in groups['win_file_servers']
+
+#    - debug: var=inventory_hostname
+#    - debug: var=ansible_hostname
+#    - debug: var=ansible_hostname_short
+
+    - name: Ensure data dir {{ file_srv_data_dir }} exists if drive is mounted
+      win_file:
+        path: "{{ file_srv_drive }}/{{ file_srv_data_dir }}"
+        state: directory
+      when: inventory_hostname in groups['win_file_servers'] and (stat_drive.stat.exists)
+
+    - name: Unzip noise gen zip
+      community.windows.win_unzip:
+        dest: "{{ noise_gen_dst_dir }}//{{ filegen_exe_dir }}/"
+        src: "{{ noise_gen_dst_dir }}//{{ filegen_zip }}"
+
+    - name: Generate files on all hosts on C drive
+      become: yes
+      win_shell: |
+        {{ noise_gen_dst_dir}}\\{{ filegen_exe_dir }}/{{filegen_exe}} -d "{{ decoy_base_dir }}" --seed "{{ decoy_seed }}" -c {{ decoy_file_count }} --noprompt
+      args:
+        chdir: "{{ noise_gen_dst_dir}}"
+
+    #  IMPORTANT: generate-files.exe fails if run against the root of a secondary drive. It requires a base folder to exist
+    # to work.
+    - name: Create destination directory for noise gen files
+      ansible.windows.win_file:
+        path: "{{ file_srv_drive }}/{{ file_srv_data_dir }}"
+        state: directory
+      when: inventory_hostname in groups['win_file_servers'] and (stat_drive.stat.exists)
+
+    - name: Generate more files on file server
+      become: yes
+      win_shell: |
+        {{ noise_gen_dst_dir}}/{{ filegen_exe_dir }}/{{filegen_exe}} -d "{{ file_srv_drive }}/{{ file_srv_data_dir }}" --seed "{{ decoy_seed }}" -c {{ decoy_file_count }} --noprompt
+      args:
+        chdir: "{{ noise_gen_dst_dir}}"
+      when: inventory_hostname in groups['win_file_servers'] and (stat_drive.stat.exists)
+
+    - name: Make some trash noise
+      win_shell: "{{ noise_gen_dst_dir }}\\{{ recycle_gen_exe }}"
+      args:
+        chdir: "{{ noise_gen_dst_dir}}"
+
+#    - name: Remove noise gen stuff
+#      ansible.windows.win_file:
+#        path: "{{ noise_gen_dst_dir }}"
+#        state: absent

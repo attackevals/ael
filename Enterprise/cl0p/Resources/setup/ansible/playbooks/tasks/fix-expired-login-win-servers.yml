@@ -1,0 +1,20 @@
+---
+- name: fix expired local logins for all windows servers hosts
+  hosts: win_all_servers
+  strategy: free
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+  vars:
+    ansible_user: "evals_domain_admin"
+    ansible_password: "Honest-Plating"
+
+  tasks:
+    - name: Ensure devadmin does not expire
+      ansible.windows.win_user:
+        name: "devadmin"
+        password_never_expires: yes
+        state: present
+        account_disabled: no
+        account_locked: no
+        password_expired: no

@@ -1,0 +1,9 @@
+---
+# vars file for macos
+xcode_download_link: https://evals-artifacts-storage.s3.us-east-1.amazonaws.com/devtools/xcode/Xcode_15.2.xip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3APHCJ25C33CFZUE%2F20240426%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240426T161712Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=5c3d3104bc9a4a287185619bd1a37069f9cc9e0c8df1a1ee5bbc33a9888d0f75
+xcode_xip_file: Xcode_15.2.xip
+
+ad_ip_addr: "10.100.0.45"
+dns_domain_name: "culverton.net"
+admin_user: evals_domain_admin
+admin_pass: "axi9eengei9inaeR@"

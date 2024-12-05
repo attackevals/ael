@@ -1,0 +1,16 @@
+---
+- name: "Add diagonalley admin"
+  hosts: win11_desk1_a
+#  become: yes
+  gather_facts: yes
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - localadmin
+    - scenarioa
+
+  tasks:
+    - ansible.builtin.include_tasks: add-local-admin-groups.yml
+      vars:
+        domain_shortname: "{{ domain_info_encryptpotter.shortname }}"
+        admin_group: "{{ domain_groups_encryptpotter_diagon }}"

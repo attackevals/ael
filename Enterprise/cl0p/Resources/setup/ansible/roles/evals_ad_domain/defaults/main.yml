@@ -1,0 +1,26 @@
+domain_info:
+  dns_domain_name: "decryptmalfoy.net"
+  shortname: "decryptmalfoy"
+  tld: "net"
+  ad_ip_addr: "10.111.8.30"
+  safe_mode_pass: "ChangeMePassword"
+  admin_user: evals_domain_admin
+  admin_pass: "Honest-Plating"
+  evals_domain_adm: "evals_domain_admin"
+  vndr_domain_adm: "vendor_domain_admin"
+  kvm_hostname: "kent"
+
+domain_users:
+  - username: evals_domain_admin
+    firstname: Evals
+    surname: Admin
+    password: "Honest-Plating"
+    group_list:
+      - Domain Users
+      - Domain Admins
+      - Enterprise Admins
+
+domain_groups:
+  - group_name: Knockturnalley Admins
+
+range_dns_server_ip: "223.246.0.60"

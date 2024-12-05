@@ -1,0 +1,26 @@
+---
+- name: "Configure decryptmalfoy RANGE Windows Domain Controller"
+  hosts: addc_srv1_b
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - addc
+    - domain
+    - network
+    - share
+    - winrm
+    - users
+    - groups
+    - server
+    - windows
+    - firewall
+    - decryptmalfoy
+    - scenariob
+  vars:
+    domain_info: "{{ domain_info_decryptmalfoy }}"
+    domain_users: "{{ domain_users_decryptmalfoy + domain_users_common }}"
+    domain_groups: "{{ domain_groups_decryptmalfoy }}"
+    range_dns_server_ip: "{{ support_vars.dns_server_ip }}"
+  roles:
+    - evals_ad_domain

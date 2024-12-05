@@ -1,0 +1,16 @@
+---
+- name: Common software installation and configuration across MacOS VMs
+  hosts: mac_all_desktops
+  vars:
+    ad_ip_addr: "10.100.0.45"
+    dns_domain_name: "culverton.net"
+    mac_brew_cask_packages:
+      - visual-studio-code
+      - processmonitor
+      - zoom
+
+  tasks:
+    - name: install gui software packages using homebrew --cask
+      community.general.homebrew_cask:
+        name: "{{ mac_brew_cask_packages }}"
+        state: present

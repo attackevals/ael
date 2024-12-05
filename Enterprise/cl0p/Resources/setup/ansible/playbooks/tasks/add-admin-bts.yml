@@ -1,0 +1,16 @@
+---
+- name: "Add bts admin"
+  hosts: win11_desk1_protections
+#  become: yes
+  gather_facts: yes
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - localadmin
+    - scenariop
+
+  tasks:
+    - ansible.builtin.include_tasks: add-local-admin-groups.yml
+      vars:
+        domain_shortname: "{{ domain_info_sonicbeats.shortname }}"
+        admin_group: "{{ domain_groups_sonicbeats_bts }}"
