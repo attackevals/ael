@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# set DNS server to ad ip for domain
+DNS_SERVER="{{ ad_ip_addr }}"
+
+# Iterate over all network services and set the DNS server
+networksetup -listallnetworkservices | grep -i thunder | while read service; do
+    if [ "$service" != "An asterisk (*) denotes that a network service is disabled." ]; then
+        echo "Setting DNS for $service to $DNS_SERVER"
+        sudo networksetup -setdnsservers "$service" $DNS_SERVER
+    fi
+done

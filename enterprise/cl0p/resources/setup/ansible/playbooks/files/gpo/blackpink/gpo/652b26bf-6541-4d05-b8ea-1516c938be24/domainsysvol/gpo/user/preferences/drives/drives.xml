@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Drives clsid="{8FDDCC1A-0C3C-43cd-A6B4-71A6DF20DA8C}"><Drive clsid="{935D1B74-9CB8-4e3c-9914-7DD559B7A417}" name="Z:" status="Z:" image="2" changed="2024-07-10 19:04:02" uid="{71143E57-0A0D-4202-9E66-2A367B8F4F62}" userContext="1" bypassErrors="1"><Properties action="U" thisDrive="NOCHANGE" allDrives="NOCHANGE" userName="" path="\\asix\D\data" label="asixshare" persistent="1" useLetter="1" letter="Z"/><Filters><FilterDomain bool="AND" not="0" name="SONICBEATS37" userContext="1"/></Filters></Drive>
+</Drives>

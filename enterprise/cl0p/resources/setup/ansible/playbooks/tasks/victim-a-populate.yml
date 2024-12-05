@@ -1,0 +1,27 @@
+---
+- name: Prepopulate profiles on victim hosts
+  hosts: victim_desktops_a
+  gather_facts: no
+  strategy: free
+  vars:
+    office_cfg_src_file: "../files/profiledir/registrymodifications.xcu"
+    office_cfg_dest_dir: "AppData\\Roaming\\LibreOffice\\4\\user"
+    office_dest_prefix: "C:\\Users"
+    office_cfg_filename: "registrymodifications.xcu"
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - office
+    - libreoffice
+    - profiledir
+    - victim
+
+  tasks:
+    - name: prepop profile dirs for victim a
+      ansible.builtin.include_tasks: prepop-profile-directories.yml
+      vars:
+        prepop_domain_users: "{{ domain_users_encryptpotter }}"
+        office_cfg_src_file: "../files/profiledir/registrymodifications.xcu"
+        office_cfg_dest_dir: "AppData\\Roaming\\LibreOffice\\4\\user"
+        office_dest_prefix: "C:\\Users"
+        office_cfg_filename: "registrymodifications.xcu"

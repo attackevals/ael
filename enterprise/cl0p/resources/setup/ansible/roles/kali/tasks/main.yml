@@ -1,0 +1,20 @@
+---
+- name: Upgrade packages
+  apt:
+    upgrade: full
+
+- name: Create cradwell user
+  ansible.builtin.user:
+    name: cradwell
+    uid: 1100
+    groups: sudo
+    create_home: true
+    append: true
+
+- name: Ensure sudo group has sudo privileges without password
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: "^%sudo"
+    line: "%sudo ALL=(ALL) NOPASSWD:ALL"
+    validate: "/usr/sbin/visudo -cf %s"

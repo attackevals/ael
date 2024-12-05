@@ -1,0 +1,33 @@
+---
+- name: "Configure sonicbeats RANGE Windows Domain Controller GPO"
+  hosts: addc_srv1_protections
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - addc
+    - domain
+    - network
+    - share
+    - winrm
+    - users
+    - groups
+    - server
+    - windows
+    - firewall
+    - sonicbeats
+    - scenarioprotections
+
+  tasks:
+    - ansible.builtin.include_tasks: configure-addc-gpo.yml
+      vars:
+        domain_shortname: "{{ domain_info_sonicbeats.shortname }}"
+        domain_dns_name: "{{ domain_info_sonicbeats.dns_domain_name }}"
+        domain_admin_user: "{{ domain_info_sonicbeats.admin_user }}"
+        domain_admin_pass: "{{ domain_info_sonicbeats.admin_pass }}"
+        domain_tld: "{{ domain_info_sonicbeats.tld }}"
+        ad_ip_addr: "{{ domain_info_sonicbeats.ad_ip_addr }}"
+        evals_range: "{{ evals_cycle }}"
+        gpo_src_dir: "../files/gpo/blackpink"
+        gpo_dst_dir: "C:/deploy/blackpink"
+        deploy_dir: "C:/deploy"

@@ -1,0 +1,4 @@
+Unattended-Upgrade::Package-Blacklist {
+    // The following matches all packages starting with linux-
+  "linux-";
+};

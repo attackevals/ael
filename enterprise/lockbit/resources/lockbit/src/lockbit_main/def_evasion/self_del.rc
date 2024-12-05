@@ -1,0 +1,3 @@
+#include "defense_evasion_resource.hpp"
+
+SELF_DEL_EXE_RESOURCE_ID RCDATA SELF_DEL_EXE_PATH

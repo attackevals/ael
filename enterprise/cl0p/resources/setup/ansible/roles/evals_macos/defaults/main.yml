@@ -1,0 +1,40 @@
+---
+# defaults file for macos
+brew_packages:
+  - git
+
+brew_cask_packages:
+  - visual-studio-code
+  - processmonitor
+  - filemonitor
+  - dnsmonitor
+  - kextviewr
+  - netiquette
+  - taskexplorer
+  - rectangle
+  - iterm2
+  - betterdisplay
+
+xcode_download_link: https://apple.com
+xcode_xip_file: Xcode_15.2.xip
+
+ad_ip_addr: "10.100.0.45"
+dns_domain_name: "culverton.net"
+admin_user: evals_domain_admin
+admin_pass: "axi9eengei9inaeR@"
+aws_macos_toml: "/usr/local/aws/ec2-macos-init/init.toml"
+ssh_config: "/etc/ssh/sshd_config.d/99-macos.conf"
+join_domain: true
+install_xcode: true
+install_brew: true
+install_rosetta: true
+aws_resources:
+  s3_bucket: "er6-evals-artifacts"
+xcode_object_prefix: "/devtools/xcode/Xcode_15.2.xip"
+xcode_installation_dir: "/Applications"
+xcode_app_file: Xcode.app
+xip_extract_timeout: 900
+vnc_password: "test1234"
+mac_admin_group1: "Domain Admins"
+mac_admin_group2: "Mac Users"
+ard_admin_group: ard_admin

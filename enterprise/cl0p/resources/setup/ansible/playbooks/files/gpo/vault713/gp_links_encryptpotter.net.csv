@@ -1,0 +1,3 @@
+﻿"Path","State","GpoName","Domain","OUDN","OUName","OUCanonical","Index","TotalCount"
+"CN={6AC1786C-016F-11D2-945F-00C04fB984F9},CN=Policies,CN=System,DC=encryptpotter,DC=net","0","Default Domain Controllers Policy","ENCRYPTPOTTER.NET","OU=Domain Controllers,DC=encryptpotter,DC=net","Domain Controllers","encryptpotter.net/Domain Controllers","0","2"
+"cn={1d26706f-4c2b-4514-8ac9-329959092970},cn=policies,cn=system,DC=encryptpotter,DC=net","0","ER6-DC1","ENCRYPTPOTTER.NET","OU=Domain Controllers,DC=encryptpotter,DC=net","Domain Controllers","encryptpotter.net/Domain Controllers","1","2"

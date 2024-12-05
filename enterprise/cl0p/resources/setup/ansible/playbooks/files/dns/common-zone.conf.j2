@@ -1,0 +1,13 @@
+server:
+    # add a and ptr records for base zones
+    local-data: "{{ domain_info_encryptpotter.ad_hostname }}.{{ domain_info_encryptpotter.dns_domain_name }}. A {{ domain_info_encryptpotter.ad_ip_addr }}"
+    local-data-ptr: "{{ domain_info_encryptpotter.ad_ip_addr }} {{ domain_info_encryptpotter.ad_hostname }}.{{ domain_info_encryptpotter.dns_domain_name }}."
+
+    local-data: "{{ domain_info_decryptmalfoy.ad_hostname }}.{{ domain_info_decryptmalfoy.dns_domain_name }}. A {{ domain_info_decryptmalfoy.ad_ip_addr }}"
+    local-data-ptr: "{{ domain_info_decryptmalfoy.ad_ip_addr }} {{ domain_info_decryptmalfoy.ad_hostname }}.{{ domain_info_decryptmalfoy.dns_domain_name }}."
+
+    local-data: "{{ domain_info_sonicbeats.ad_hostname }}.{{ domain_info_sonicbeats.dns_domain_name }}. A {{ domain_info_sonicbeats.ad_ip_addr }}"
+    local-data-ptr: "{{ domain_info_sonicbeats.ad_ip_addr }} {{ domain_info_sonicbeats.ad_hostname }}.{{ domain_info_sonicbeats.dns_domain_name }}."
+
+    local-data: "{{ red_dev.kali_hostname }}.{{ red_dev.kali_dns_name }}. A {{ red_dev.kali_ip }}"
+    local-data-ptr: "{{ red_dev.kali_ip }} {{ red_dev.kali_hostname }}.{{ red_dev.kali_dns_name }}."

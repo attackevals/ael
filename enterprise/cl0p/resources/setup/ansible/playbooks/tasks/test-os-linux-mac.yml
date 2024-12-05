@@ -1,0 +1,125 @@
+---
+- name: Verify OS for mac and linux instances
+  hosts: mac_all_desktops,linux_servers
+  vars:
+    range_name: "default"
+    output_path: "./reports/"
+    filename: "{{range_name}}_version_linux_mac_{{date}}.csv"
+    per_host_filename: "{{range_name}}_hotfix_{{date}}_{{ansible_hostname}}.txt"
+    per_host_disk_filename: "{{range_name}}_disk_{{date}}_{{ansible_hostname}}.txt"
+    aws_s3_bucket: "evals-artifacts-storage"
+    aws_s3_report_prefix: "reports/er6"
+    evals_cycle: "er6"
+#  hosts: win_hosts, mac_all_desktops, linux_servers
+#  roles:
+#    - ../../roles/test-os
+  tasks:
+    - name: CSV - Generate output filename
+      set_fact: date="{{lookup('pipe','date +%Y%m%d_%H%M%S')}}"
+      run_once: true
+
+    - name: CSV - Generate just ymd for organizing range reports in s3
+      set_fact: date_day="{{lookup('pipe','date +%Y%m%d')}}"
+      run_once: true
+
+    - name: CSV - Create file and set the header
+      lineinfile:
+        dest: "{{ output_path }}/{{ filename }}"
+        line:
+          host,osversion,distribution,buildversion,release,kernel
+        create: yes
+      delegate_to: localhost
+
+    - name: Get OS distribution information
+      block:
+        - name: Get Linux distribution information
+          setup:
+            filter: 'ansible_distribution*'
+          when: ansible_system == 'Linux'
+          register: linux_distribution
+
+        - name: Get Linux kernel version
+          command: uname -a
+          when: ansible_system == 'Linux'
+          register: linux_kernel_version
+
+        - name: Get macOS product version information
+          command: sw_vers --productVersion
+          when: ansible_system == 'Darwin'
+          register: macos_version
+
+        - name: Get macOS product name information
+          command: sw_vers --productName
+          when: ansible_system == 'Darwin'
+          register: macos_version_name
+
+        - name: Get macOS build version information
+          command: sw_vers --buildVersion
+          when: ansible_system == 'Darwin'
+          register: macos_version_build
+
+        - name: Get disk space info
+          command: df -h
+          register: disk_output
+
+      rescue:
+        - name: Unable to get distribution information
+          debug:
+            msg: "Unable to get distribution information for {{ ansible_system }}"
+
+    - name: append on localhost controller - mac
+      lineinfile:
+        path: "{{ output_path }}/{{ filename }}"
+        line: "{{ inventory_hostname }},{{ macos_version.stdout }},{{ macos_version_name.stdout }},{{ macos_version_build.stdout }},,"
+      delegate_to: localhost
+      when: ansible_system == 'Darwin' and macos_version is succeeded
+
+    - name: append on localhost controller - linux
+      lineinfile:
+        path: "{{ output_path }}/{{ filename }}"
+        line: "{{ inventory_hostname }},{{ ansible_system }}-{{ ansible_distribution }}-{{ ansible_distribution_version }},{{ ansible_distribution_release }},,,{{ linux_kernel_version.stdout }}"
+      delegate_to: localhost
+      when: ansible_system == 'Linux' and linux_distribution is succeeded and linux_kernel_version is succeeded
+
+    - name: append on localhost controller - disk
+      copy:
+        dest: "{{ output_path }}/{{ per_host_disk_filename }}"
+        content: "{{ disk_output.stdout }}"
+      delegate_to: localhost
+
+    - name: Display distribution information
+      debug:
+        msg:
+          - "Operating System: {{ ansible_system }}"
+          - "Distribution: {{ ansible_distribution }} {{ ansible_distribution_version }}"
+          - "Release: {{ ansible_distribution_release }}"
+          - "Kernel Version: {{ linux_kernel_version.stdout }}"
+      when: ansible_system == 'Linux' and linux_distribution is succeeded and linux_kernel_version is succeeded
+
+    - name: Display macOS version
+      debug:
+        msg: "macOS Version: {{ macos_version.stdout }}"
+      when: ansible_system == 'Darwin' and macos_version is succeeded
+
+    - name: Display failure message
+      debug:
+        msg: "Failed to capture version information"
+      when: (ansible_system == 'Linux' and (linux_distribution is failed or linux_kernel_version is failed)) or
+            (ansible_system == 'Darwin' and macos_version is failed)
+
+    - name: Upload report of range
+      community.aws.s3_sync:
+        file_root: "{{ output_path }}"
+        bucket: "{{ aws_s3_bucket }}"
+        key_prefix: "reports/{{ evals_cycle| lower}}/{{ range_name }}/{{ date_day }}/"
+        include: "{{ range_name }}*{{ date_day }}*"
+        validate_certs: false
+      delegate_to: localhost
+
+#
+#    - name: append on localhost controller
+#      lineinfile:
+#        path: "{{ output_path }}/{{ filename }}"
+#        line: "{{ item.output.OsVersion }},{{ item.output.OsBuildNumber }},{{ item.output.CsName }},{{ item.output.LogonServer }}"
+#      loop: "{{ info_output }}"
+#      delegate_to: localhost

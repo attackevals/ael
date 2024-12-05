@@ -1,0 +1,78 @@
+---
+- name: Install programs on Quirrell host
+  hosts: win11_desk2_b
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+  vars:
+    ansible_become: true
+    ansible_become_method: runas
+    ansible_become_user: "decryptmalfoy\\evals_domain_admin"
+    ansible_become_pass: "Honest-Plating"
+    firefox_profile_dir: "C:\\Users\\{{ domain_info_decryptmalfoy.firefox_user }}\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles"
+
+  tasks:
+    - name: Install common packages amongst Windows hosts
+      win_chocolatey:
+        name:
+          - tightvnc
+        state: present
+        install_args: "VIEWER_ASSOCIATE_VNC_EXTENSION=1 SERVER_REGISTER_AS_SERVICE=1 SERVER_ADD_FIREWALL_EXCEPTION=1 VIEWER_ADD_FIREWALL_EXCEPTION=1 SERVER_ALLOW_SAS=1 SET_USEVNCAUTHENTICATION=1 VALUE_OF_USEVNCAUTHENTICATION=1 SET_PASSWORD=1 VALUE_OF_PASSWORD=test1234 SET_USECONTROLAUTHENTICATION=1 VALUE_OF_USECONTROLAUTHENTICATION=1 SET_CONTROLPASSWORD=1 VALUE_OF_CONTROLPASSWORD=test1234"
+
+    - name: Create directory for firefox file upload
+      win_file:
+        path: "C:/deploy"
+        state: directory
+
+    - name: Copy firefox bundle to host
+      win_copy:
+        src: "../files/firefox/"
+        dest: "C:/deploy/"
+
+    - name: Check Firefox config folder
+      win_find:
+        paths: "{{ firefox_profile_dir }}"
+        patterns: '^.*\.default-release'
+        use_regex: true
+        file_type: directory
+      register: firefox_config_folder_search
+
+    - name: Starting Firefox
+      win_shell: firefox.exe
+      changed_when: false
+      when: firefox_config_folder_search.matched == 0
+
+    - name: Waiting for Firefox to start
+      win_wait_for:
+        timeout: 15
+      changed_when: false
+      when: firefox_config_folder_search.matched == 0
+
+    - name: Killing Firefox
+      win_shell: taskkill /f /im firefox.exe
+      changed_when: false
+      when: firefox_config_folder_search.matched == 0
+      ignore_errors: yes
+
+    - name: Check Firefox config folder again
+      win_find:
+        paths: "{{ firefox_profile_dir }}"
+        patterns: '^.*\.default-release'
+        use_regex: true
+        file_type: directory
+      register: firefox_config_folder_search
+
+    - name: Set firefox folder name as fact
+      set_fact:
+        firefox_config_folder_path: "{{ firefox_config_folder_search.files[0].path }}"
+
+    - name: Add in Firefox config
+      win_copy:
+        src: ../files/firefox/
+        dest: "{{ firefox_config_folder_path }}"
+      when: firefox_config_folder_path != 'false'
+
+    - name: remove setup dirs
+      win_file:
+        path: "C:/deploy/"
+        state: absent

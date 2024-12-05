@@ -1,0 +1,34 @@
+---
+- name: Install osquery
+  community.general.homebrew:
+    name: osquery
+    state: present
+  become: no
+
+- name: update osquery configuration
+  copy:
+    dest: "{{ osquery_conf_dst }}"
+    src: "{{ osquery_conf_src }}"
+
+- name: update osx attacks pack
+  copy:
+    dest: "{{ osquery_packs_dst }}"
+    src: "{{ osquery_packs_src }}"
+
+- name: update osquery launchctl
+  copy:
+    dest: "{{ osquery_agent_dst }}"
+    src: "{{ osquery_agent_src }}"
+
+- name: update osquery flags file
+  copy:
+    dest: "{{ osquery_packs_dst }}"
+    src: "{{ osquery_packs_src }}"
+
+- name: enable and start osquery
+  shell: |
+    sudo /usr/local/bin/osqueryctl start
+
+- name: check osquery status
+  shell: |
+    sudo /usr/local/bin/osqueryctl status

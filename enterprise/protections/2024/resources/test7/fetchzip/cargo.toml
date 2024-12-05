@@ -1,0 +1,15 @@
+[package]
+name = "fetchzip"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "fetchzip"
+path = "src/lib.rs"
+proc-macro = true
+
+[dependencies]
+proc-macro2 = "1.0.67"
+reqwest = { version = "0.12.2", features = ["blocking"] }
+syn = { version = "2.0.31", features = ["extra-traits"] }
+zip = "0.6.6"

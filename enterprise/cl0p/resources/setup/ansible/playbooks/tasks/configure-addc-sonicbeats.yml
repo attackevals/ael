@@ -1,0 +1,26 @@
+---
+- name: "Configure sonicbeats RANGE Windows Domain Controller"
+  hosts: addc_srv1_protections
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - addc
+    - domain
+    - network
+    - share
+    - winrm
+    - users
+    - groups
+    - server
+    - windows
+    - firewall
+    - sonicbeats
+    - scenarioprotections
+  vars:
+    domain_info: "{{ domain_info_sonicbeats }}"
+    domain_users: "{{ domain_users_sonicbeats + domain_users_common }}"
+    domain_groups: "{{ domain_groups_sonicbeats }}"
+    range_dns_server_ip: "{{ support_vars.dns_server_ip }}"
+  roles:
+    - evals_ad_domain

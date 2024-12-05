@@ -1,0 +1,20 @@
+---
+- name: fix expired logins for win 11 desktops
+  hosts: win_all_desktops
+  strategy: free
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+  vars:
+    ansible_user: "evals_domain_admin"
+    ansible_password: "Honest-Plating"
+
+  tasks:
+    - name: Ensure windesk does not expire
+      ansible.windows.win_user:
+        name: "windesk"
+        password_never_expires: yes
+        state: present
+        account_disabled: no
+        account_locked: no
+        password_expired: no

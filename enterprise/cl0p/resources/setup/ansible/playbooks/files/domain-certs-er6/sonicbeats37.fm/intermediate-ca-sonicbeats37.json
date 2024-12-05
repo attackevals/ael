@@ -1,0 +1,19 @@
+{
+  "CN": "Great Britain Digital Assurance Intermediate CA",
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+    {
+      "C":  "GB",
+      "L":  "Cardiff",
+      "O":  "Great Britain Digital Assurance",
+      "OU": "Great Britain Digital Assurance Intermediate CA",
+      "ST": "Wales"
+    }
+  ],
+  "ca": {
+    "expiry": "35040h"
+  }
+}

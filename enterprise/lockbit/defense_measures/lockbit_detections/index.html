@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H74RC38PBM"></script>
+    <script data-cfasync="false">window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-H74RC38PBM');</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-root" content="/ael">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.786727257842">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.6.0">
+
+    <!-- Primary Meta Tags -->
+    <title>LOCKBIT Detection Analysis</title>
+    <meta name="title" content="LOCKBIT Detection Analysis">
+    <meta name="description" content="This guide covers key detection criteria for LOCKBIT-related malware activity as emulated by the ( Enterprise Round 6 Emulation Plan">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://attackevals.github.io/ael/enterprise/lockbit/defense_measures/lockbit_detections/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://attackevals.github.io/ael/enterprise/lockbit/defense_measures/lockbit_detections/">
+    <meta property="og:title" content="LOCKBIT Detection Analysis">
+    <meta property="og:description" content="This guide covers key detection criteria for LOCKBIT-related malware activity as emulated by the ( Enterprise Round 6 Emulation Plan">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://attackevals.github.io/ael/enterprise/lockbit/defense_measures/lockbit_detections/">
+    <meta property="twitter:title" content="LOCKBIT Detection Analysis">
+    <meta property="twitter:description" content="This guide covers key detection criteria for LOCKBIT-related malware activity as emulated by the ( Enterprise Round 6 Emulation Plan">
+
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="../../../../favicon.png" rel="icon">
+    <link href="../../../../resources/css/retype.css?v=3.6.0.786727257842" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.786727257842" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.786727257842" data-turbo-eval="false" defer></script>
+</head>
+<body>
+    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    
+        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="docs-sidebar-toggle"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="docs-site-logo" href="../../../../" class="flex items-center leading-snug text-xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../../../images/attackevals-logo.png">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../../../images/attackevals-logo.png">
+                            </span>
+                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">ATTACK Evaluation Library</span>
+                        </a>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-gray-400 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 dark:placeholder-dark-400" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="docs-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <div class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            
+                <!-- Render this div, if config.showSidebarFilter is `true` -->
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                </div>
+            
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 dark:bg-dark-850">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="docs-markdown" id="docs-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="docs-sidebar-right-toggle"></div>
+                                <nav class="breadcrumb" aria-label="Breadcrumb">
+                                    <ol role="list">
+                                        <li class="pr-4">
+                                            <a href="../../../../" class="pr-4">
+                                                ATT&​CK Evaluations Library
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Enterprise
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/lockbit/" class="pr-4">
+                                                Lock​Bit
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/lockbit/defense_measures/" class="pr-4">
+                                                Lock​Bit Defense Measures
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/lockbit/defense_measures/lockbit_detections/" class="pr-4">
+                                                LOCKBIT Detection Analysis
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                
+                                <!-- Page content  -->
+<doc-anchor-target id="lockbit-detection-analysis" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#lockbit-detection-analysis">#</doc-anchor-trigger>
+        <span>LOCKBIT Detection Analysis</span>
+    </h1>
+</doc-anchor-target>
+<p>This guide covers key detection criteria for LOCKBIT-related malware activity as emulated by the (<a href="../lockbit/emulation_plan/er6_lockbit_scenario.md">Enterprise Round 6 Emulation Plan</a>), such as STEALBIT and THUNDERSHELL. The focus is on External Remote Services (T1133) via VNC, Valid Accounts (T1078) for credential theft, and Command and Scripting (T1059) through Windows Shell. Further stages involve Credential Access (T1555), Process Discovery (T1057), and Inhibit System Recovery (T1490) by disabling Windows recovery features. Notably, LOCKBIT uses Encryption (T1486) for impact, targeting files and shares.</p>
+<doc-anchor-target id="key-findings">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#key-findings">#</doc-anchor-trigger>
+        <span>Key Findings</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Common lateral movement using PsExec over SMB (T1021).</li>
+<li>Remote System Discovery (T1018) and Network Configuration Discovery (T1016) through API functions.</li>
+</ul>
+<doc-anchor-target id="detection-tools">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#detection-tools">#</doc-anchor-trigger>
+        <span>Detection Tools</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Sysmon + Splunk: Detects file creation, process execution, and system calls.</li>
+<li>Suricata/Zeek: Monitors network traffic for HTTP/HTTPS connections to suspicious domains.</li>
+<li>Wireshark: Network communication analysis.</li>
+<li>OSQuery: File and process discovery.</li>
+<li>Sigma: Use rule-based log analysis for identifying adversary activity.</li>
+</ul>
+<doc-anchor-target id="step-9">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-9">#</doc-anchor-trigger>
+        <span>Step 9</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="step-9a1-external-remote-services-t1133">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-9a1-external-remote-services-t1133">#</doc-anchor-trigger>
+        <span>Step 9.A.1 External Remote Services (<a href="https://attack.mitre.org/techniques/T1133/" class="outbound" target="_blank"><span>T1133</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>))</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p>The adversary connected to <code v-pre>QUIRRELL (10.111.9.202)</code> through VNC</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual Remote Access: VNC access from unexpected external IPs, especially to systems that typically don&#x27;t have VNC services running.</li>
+<li>Elevated Process Execution: Remote service processes like tvnserver.exe being launched under elevated privileges (SYSTEM) without prior logon activity.</li>
+<li>Chained Activity: Monitor for rapid successive logon attempts or lateral movement from compromised credentials.</li>
+<li>Unusual Access Patterns: Monitoring for unusual access patterns following login, such as VNC default ports 5900, 5800, or 5500 being targeted by a non-admin user.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=&lt;your_index&gt; sourcetype=&quot;WinEventLog:Microsoft-Windows-Sysmon/Operational&quot;  
+(EventCode=3 OR EventCode=1) Image=&quot;*tvnserver.exe&quot;  
+| stats count by SourceIp, SourcePort, DestinationIp, DestinationPort, Image, ProcessId 
+| where DestinationPort=&quot;5900, 5800, 5500&quot;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="step-9a2-valid-accounts-domain-account-t1078002">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-9a2-valid-accounts-domain-account-t1078002">#</doc-anchor-trigger>
+        <span>Step 9.A.2 Valid Accounts: Domain Account (<a href="https://attack.mitre.org/techniques/T1078/002/" class="outbound" target="_blank"><span>T1078.002</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>GORNUK</code> authenticated with domain credentials</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual Access Patterns: Monitor for deviations in the types of resources accessed.</li>
+<li>Volume of Activity: Monitor for unusual activity such as a sudden increase in data access or file transfers.</li>
+<li>Failed Login Attempts: A high number of failed login attempts can suggest an attempt to compromise an account.</li>
+<li>Concurrent Sessions: Monitor for multiple concurrent sessions from different locations or devices.</li>
+<li>Privileged Account Use: Unusual use of privileged accounts, such as accessing administrative tools or making unauthorized changes.</li>
+</ul>
+<doc-anchor-target id="step-10">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-10">#</doc-anchor-trigger>
+        <span>Step 10</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="step-10a1-command-and-scripting-interpreter-windows-command-shell-t1059003">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-10a1-command-and-scripting-interpreter-windows-command-shell-t1059003">#</doc-anchor-trigger>
+        <span>Step 10.A.1 Command and Scripting Interpreter: Windows Command Shell (<a href="https://attack.mitre.org/techniques/T1059/003/" class="outbound" target="_blank"><span>T1059.003</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>GORNUK</code> executed <code v-pre>cmd.exe /c</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Execution of cmd.exe by non-administrative accounts, especially with elevated privileges.</li>
+<li>Patterns of repeated or scripted commands, indicating automation.</li>
+<li>Parent-child relationship anomalies, such as cmd.exe invoked by unexpected processes like Office applications or non-administrative services.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=your_index sourcetype=WinEventLog EventCode=4688  
+Process_Name=cmd.exe  
+| eval ParentImage=lower(ParentImage) 
+| search (ParentImage!=&quot;explorer.exe&quot; AND ParentImage!=&quot;services.exe&quot;) 
+| rex field=CommandLine &quot;cmd\.exe\s*/c\s*(?&lt;cmd&gt;.*)&quot;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="step-10a2-remote-system-discovery-t1018">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-10a2-remote-system-discovery-t1018">#</doc-anchor-trigger>
+        <span>Step 10.A.2 Remote System Discovery (<a href="https://attack.mitre.org/techniques/T1018/" class="outbound" target="_blank"><span>T1018</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>cmd.exe</code> executed <code v-pre>nltest /dclist:decryptmalfoy.net</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual Activity from User Accounts: Monitor volume of ARP requests and increased or abnormal use of commannds to enumerate domain information such as <code v-pre>nltest /dclist</code>.</li>
+<li>Increased Network Mapping Activities: Monitoring for increased ICMP sweeps originating from internal hosts that do not usually perform such actions.</li>
+</ul>
+<doc-anchor-target id="step-10a3-credentials-from-password-stores-t1555">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-10a3-credentials-from-password-stores-t1555">#</doc-anchor-trigger>
+        <span>Step 10.A.3 Credentials from Password Stores (<a href="https://attack.mitre.org/techniques/T1555/" class="outbound" target="_blank"><span>T1555</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>cmd.exe</code> executed <code v-pre>cmdkey /list</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual Process in Non-Admin Context: Tools accessing credential stores should generally run in a limited, non-admin context; elevated context access without appropriate administrative tasks could indicate malicious intent.</li>
+<li>Abnormal Access to Browser Directories: Access to specific browser directories (e.g., Firefox profile paths) outside of typical browser usage patterns or by unknown processes can signal anomalous credential extraction attempts.</li>
+<li>Command-Line Pattern with Browser Profile Paths: Detection of command-line execution that targets browser profiles for credential extraction, especially with uncommon parameters, can indicate malicious intent.</li>
+</ul>
+<doc-anchor-target id="step-10a4-permission-groups-discovery-domain-groups-t1069002">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-10a4-permission-groups-discovery-domain-groups-t1069002">#</doc-anchor-trigger>
+        <span>Step 10.A.4 Permission Groups Discovery: Domain Groups (<a href="https://attack.mitre.org/techniques/T1069/002/" class="outbound" target="_blank"><span>T1069.002</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>cmd.exe</code> executed <code v-pre>net group 'Domain Admins' /domain</code> and <code v-pre>net group 'Enterprise Admins' /domain</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual queries for domain group information using commands like <code v-pre>net group /domain</code> or <code v-pre>Get-ADGroup</code>, particularly if executed by accounts that do not typically interact with Active Directory.</li>
+<li>High frequency of domain group enumeration activities in a short period, which may indicate automated scripts or tools being used.</li>
+</ul>
+<doc-anchor-target id="step-10a5-permission-groups-discovery-local-groups-t1069001">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-10a5-permission-groups-discovery-local-groups-t1069001">#</doc-anchor-trigger>
+        <span>Step 10.A.5 Permission Groups Discovery: Local Groups (<a href="https://attack.mitre.org/techniques/T1069/001/" class="outbound" target="_blank"><span>T1069.001</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>cmd.exe</code> executed <code v-pre>net localgroup Administrators /domin</code> and <code v-pre>net localgroup Administrators</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unexpected execution of commands to list local groups, such as <code v-pre>net localgroup</code> or <code v-pre>Get-LocalGroup</code>, especially by non-administrative users or processes that do not typically perform these actions.</li>
+<li>Sudden interest in local group membership from accounts that do not usually require this information.</li>
+</ul>
+<doc-anchor-target id="step-10a6-system-service-discovery-t1007">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-10a6-system-service-discovery-t1007">#</doc-anchor-trigger>
+        <span>Step 10.A.6 System Service Discovery (<a href="https://attack.mitre.org/techniques/T1007/" class="outbound" target="_blank"><span>T1007</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>cmd.exe</code> spawns powershell to execute <code v-pre>Get-WmiObject win32_service -ComputerName localhost | Where-Object {$_.PathName -notmatch 'c:win'} | select Name, DisplayName, State, PathName | findstr 'Running'</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Execution of discovery commands by accounts or systems without administrative privileges.</li>
+<li>Repeated or automated system discovery attempts.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=your_index sourcetype=Sysmon EventCode=1
+Parent_Process_Name=cmd.exe Process_Name=powershell.exe CommandLine=&quot;*Get-WmiObject*win32_service*&quot;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="step-11">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-11">#</doc-anchor-trigger>
+        <span>Step 11</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="step-11a1-unsecured-credentials-credentials-in-registry-t1552002">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-11a1-unsecured-credentials-credentials-in-registry-t1552002">#</doc-anchor-trigger>
+        <span>Step 11.A.1 Unsecured Credentials: Credentials in Registry (<a href="https://attack.mitre.org/techniques/T1552/002/" class="outbound" target="_blank"><span>T1552.002</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>GORNUK</code> modified <code v-pre>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon</code> subkey to enable automatic login through <code v-pre>AutoAdminLogin</code>, <code v-pre>DefaultUserName</code>, <code v-pre>DefaultPassword</code>, <code v-pre>DefaultDomainName</code> values</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual User Access: Registry modification by accounts that typically do not have administrative privileges or should not be modifying authentication settings.</li>
+<li>Non-Standard Modification Times: Changes to these registry keys during unusual hours may indicate unauthorized access.</li>
+<li>High Frequency of Modifications: A series of modifications to the registry keys related to automatic login within a short timeframe may suggest automated credential abuse.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=your_index sourcetype=WinEventLog EventCode=4657
+RegistryPath=&quot;HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon&quot;
+(RegistryKeyName=&quot;AutoAdminLogon&quot; OR RegistryKeyName=&quot;DefaultUserName&quot; OR RegistryKeyName=&quot;DefaultPassword&quot; OR RegistryKeyName=&quot;DefaultDomainName&quot;)</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="step-12">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-12">#</doc-anchor-trigger>
+        <span>Step 12</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="step-12a1-software-deployment-tools-t1072">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-12a1-software-deployment-tools-t1072">#</doc-anchor-trigger>
+        <span>Step 12.A.1 Software Deployment Tools (<a href="https://attack.mitre.org/techniques/T1072/" class="outbound" target="_blank"><span>T1072</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p>cmd.exe executed choco install FoxAdminPro</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual Deployment: Deployment actions initiated outside of maintenance windows or by non-administrative accounts.</li>
+<li>High Privilege Escalation: Installations done by accounts with newly elevated privileges, especially if the elevation lacks contextual justification.</li>
+<li>Lateral Execution: Software deployment triggered across multiple systems in a short timeframe, suggesting an attempt to establish persistence or increase control.</li>
+<li>Frequent Invocations: Multiple installations or deployments by the same account/system over a short period, indicating potential automation by adversaries.</li>
+<li>Outlier Applications: Deployment of non-standard or suspicious software packages (e.g., rare or unknown packages).</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=main source=WinEventLog:Microsoft-Windows-Sysmon/Operational EventCode=1 OR EventCode=11 
+| search (Image=&quot;*choco.exe&quot; OR CommandLine=&quot;*install*&quot;)
+| stats count by User, Computer, CommandLine, ParentProcessName, Image</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="step-12a2-ingress-tool-transfer-t1105">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-12a2-ingress-tool-transfer-t1105">#</doc-anchor-trigger>
+        <span>Step 12.A.2 Ingress Tool Transfer (<a href="https://attack.mitre.org/techniques/T1105/" class="outbound" target="_blank"><span>T1105</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>choco.exe</code> creates <code v-pre>FireFox Password Dumper (C:\ProgramData\chocolatey\lib\FoxAdminPro\tools\FoxAdminPro.exe)</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Process-File Relationship: Newly spawned processes associated with dropped files exhibiting anomalous behavior, such as elevated privileges or unexpected communication patterns.</li>
+<li>Unusual File Path: Storing binaries in directories like <code v-pre>\lib\FoxAdminPro</code> where legitimate helper tools are typically placed.</li>
+<li>Use of Transfer Tools: Execution of command-line tools commonly used for file transfers, such as wget, curl, scp, or powershell commands for downloading files, especially by users or processes that do not typically use these tools.</li>
+</ul>
+<doc-anchor-target id="step-12a3-credentials-from-password-stores-credentials-from-web-browsers-t1555003">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-12a3-credentials-from-password-stores-credentials-from-web-browsers-t1555003">#</doc-anchor-trigger>
+        <span>Step 12.A.3 Credentials from Password Stores: Credentials from Web Browsers (<a href="https://attack.mitre.org/techniques/T1555/003/" class="outbound" target="_blank"><span>T1555.003</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>cmd.exe</code> executed <code v-pre>FoxAdminPro -d C:\Users\gornuk\AppData\Roaming\Mozilla\Firefox\Profiles\ohbrdd1o.default-release\</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual Process in Non-Admin Context: Tools accessing credential stores should generally run in a limited, non-admin context; elevated context access without appropriate administrative tasks could indicate malicious intent.</li>
+<li>Abnormal Access to Browser Directories: Access to specific browser directories (e.g., Firefox profile paths) outside of typical browser usage patterns or by unknown processes can signal anomalous credential extraction attempts.</li>
+<li>Command-Line Pattern with Browser Profile Paths: Detection of command-line execution that targets browser profiles for credential extraction, especially with uncommon parameters, can indicate malicious intent.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=your_index sourcetype=&quot;WinEventLog:Microsoft-Windows-Sysmon/Operational&quot;
+(EventCode=1)
+(Image=&quot;*\\FoxAdminPro.exe&quot; OR Image=&quot;*\\browser_password_dumper.exe&quot; OR CommandLine=&quot;*-d*AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*&quot;)</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="step-13">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-13">#</doc-anchor-trigger>
+        <span>Step 13</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="step-13a1-remote-services-ssh-t1021004">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-13a1-remote-services-ssh-t1021004">#</doc-anchor-trigger>
+        <span>Step 13.A.1 Remote Services: SSH (<a href="https://attack.mitre.org/techniques/T1021/004/" class="outbound" target="_blank"><span>T1021.004</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>GORNUK.DA</code> connected to <code v-pre>HORCRUX (10.111.8.40)</code> from <code v-pre>QUIRRELL (10.111.9.202)</code> over <code v-pre>SSH (port 22)</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>High-Frequency Connections: Multiple, rapid SSH connection attempts to sensitive systems may indicate a brute-force or scanning attempt.</li>
+<li>Cross-Platform Connections: SSH sessions initiated from Windows to Linux systems can be unusual, especially if not commonly practiced in the environment.</li>
+<li>Privileged Account Use: The use of high-privilege accounts (such as GORNUK.DA) for SSH connections, especially outside normal business hours or from unexpected source IPs.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=your_index sourcetype=&quot;WinEventLog:Microsoft-Windows-Sysmon/Operational&quot; EventCode=3
+(Image=&quot;*\\ssh.exe&quot; OR DestinationPort=22) </code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="step-13a2-process-discovery-t1057">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-13a2-process-discovery-t1057">#</doc-anchor-trigger>
+        <span>Step 13.A.2 Process Discovery (<a href="https://attack.mitre.org/techniques/T1057/" class="outbound" target="_blank"><span>T1057</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>/bin/bash</code> executed admin commands to enumerate VMs (<code v-pre>sudo podman ps -a</code>)</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual execution of commands related to container enumeration (such as podman ps -a).</li>
+<li>Unusual Command Execution: Unusual use of process enumeration commands like <code v-pre>tasklist</code> or <code v-pre>ps</code>, especially if executed by non-administrative users or new processes or at unusual times.</li>
+<li>Chained Activity: Monitor for unusual sequence of commands that suggests reconnaissance or environment enumeration without associated normal administrative activity.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=&lt;your_linux_index&gt; sourcetype=syslog OR sourcetype=linux_secure 
+| search (COMMAND=&quot;*podman ps -a*&quot; OR COMMAND=&quot;*ps*&quot; OR COMMAND=&quot;*top*&quot; OR COMMAND=&quot;*pgrep*&quot;)</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="step-13a3-service-stop-t1489">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-13a3-service-stop-t1489">#</doc-anchor-trigger>
+        <span>Step 13.A.3 (Service Stop) (<a href="https://attack.mitre.org/techniques/T1489/" class="outbound" target="_blank"><span>T1489</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>/bin/sh</code> executed admin commands to stop VMs and disable VM autostart (<code v-pre>sudo podman stop -a</code> to stop VMs and <code v-pre>sudo systemctl disable --now podman sudo systemctl disable --now podman-restart</code>)</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Sudden service stop or disable actions, particularly involving security or monitoring services.</li>
+<li>Service management commands executed at unexpected times or by unusual accounts.</li>
+<li>Sequence of commands that suggests preparation for system shutdown or application/service disruptions.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=&lt;your_linux_index&gt; sourcetype=syslog OR sourcetype=linux_secure 
+| search (COMMAND=&quot;*systemctl disable*&quot; OR COMMAND=&quot;*podman stop*&quot; OR COMMAND=&quot;*systemctl stop*&quot;) </code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="step-14">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-14">#</doc-anchor-trigger>
+        <span>Step 14</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="step-14a1-ingress-tool-transfer-t1105">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-14a1-ingress-tool-transfer-t1105">#</doc-anchor-trigger>
+        <span>Step 14.A.1 Ingress Tool Transfer (<a href="https://attack.mitre.org/techniques/T1105/" class="outbound" target="_blank"><span>T1105</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>choco.exe</code> created <code v-pre>THUNDERSHELL (C:\ProgramData\chocolatey\lib\Termini\tools\termini.ps1)​</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Process-File Relationship: Newly spawned processes associated with dropped files exhibiting anomalous behavior, such as elevated privileges or unexpected communication patterns.</li>
+<li>Unusual File Path: Storing binaries in directories like <code v-pre>\lib\Termini</code> where legitimate helper tools are typically placed.</li>
+<li>Use of Transfer Tools: Execution of command-line tools commonly used for file transfers, such as wget, curl, scp, or powershell commands for downloading files, especially by users or processes that do not typically use these tools.</li>
+</ul>
+<doc-anchor-target id="step-14a2-command-and-scripting-interpreter-powershell-t1059001">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-14a2-command-and-scripting-interpreter-powershell-t1059001">#</doc-anchor-trigger>
+        <span>Step 14.A.2 Command and Scripting Interpreter: Powershell (<a href="https://attack.mitre.org/techniques/T1059/001/" class="outbound" target="_blank"><span>T1059.001</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>powershell.exe</code> executed <code v-pre>THUNDERSHELL (C:\ProgramData\chocolatey\lib\Termini\tools\termini.ps1)</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual PowerShell Parameters: Commands such as -ExecutionPolicy Bypass, -NoProfile, and -EncodedCommand can indicate potentially malicious PowerShell activity. The presence of these parameters should be monitored closely.</li>
+<li>Parent Process Analysis: When powershell.exe is spawned by unusual or unexpected parent processes, such as choco.exe in this case, it could be indicative of suspicious behavior, as PowerShell may be launched to facilitate installation or configuration tasks.</li>
+<li>Network Connections Initiated by PowerShell: Look for powershell.exe establishing outbound connections, especially over HTTP/S. This behavior could suggest command-and-control (C2) communication.</li>
+<li>Script Block Logging: High-entropy or obfuscated script blocks can indicate attempts to hide the script&#x27;s true intentions. Attackers may use encoding or obfuscation to bypass detection.</li>
+<li>File Creation and Execution: Scripts or executable files created by PowerShell in temporary or user data directories are suspicious, particularly if they are executed immediately after creation.</li>
+<li>Persistence Mechanisms: PowerShell can be used to create scheduled tasks or modify registry keys for persistence.</li>
+</ul>
+<doc-anchor-target id="step-14a3-application-layer-protocol-web-protocols-t1071001">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-14a3-application-layer-protocol-web-protocols-t1071001">#</doc-anchor-trigger>
+        <span>Step 14.A.3 Application Layer Protocol: Web Protocols (<a href="https://attack.mitre.org/techniques/T1071/001/" class="outbound" target="_blank"><span>T1071.001</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>powershell.exe</code> connected to <code v-pre>knuts-to-galleons[.]net (27.21.12.21)</code> over protocol HTTP <code v-pre>(port 80)​</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Creation of new files in temporary directories with specific PowerShell or tool-based scripts.</li>
+<li>Sudden introduction of tools or scripts that are not typically used in the environment.</li>
+<li>High-frequency file creation actions from unusual or administrative users.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">sourcetype=WinEventLog
+| search (TargetFilename=&quot;*Termini.ps1*&quot; OR Image=&quot;*choco.exe*&quot; OR CommandLine=&quot;*wget*&quot; OR CommandLine=&quot;*curl*&quot;)</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="step-15">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-15">#</doc-anchor-trigger>
+        <span>Step 15</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="step-15a1-command-and-scripting-interpreter-powershell-t1059001">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-15a1-command-and-scripting-interpreter-powershell-t1059001">#</doc-anchor-trigger>
+        <span>Step 15.A.1 Command and Scripting Interpreter: PowerShell (<a href="https://attack.mitre.org/techniques/T1059/001/" class="outbound" target="_blank"><span>T1059.001</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>THUNDERSHELL (C:\ProgramData\chocolatey\lib\Termini\tools\termini.ps1)</code> executed <code v-pre>chocolatey</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual PowerShell Parameters: Commands such as -ExecutionPolicy Bypass, -NoProfile, and -EncodedCommand can indicate potentially malicious PowerShell activity. The presence of these parameters should be monitored closely.</li>
+<li>Parent Process Analysis: When powershell.exe is spawned by unusual or unexpected parent processes, such as choco.exe in this case, it could be indicative of suspicious behavior, as PowerShell may be launched to facilitate installation or configuration tasks.</li>
+<li>Network Connections Initiated by PowerShell: Look for powershell.exe establishing outbound connections, especially over HTTP/S. This behavior could suggest command-and-control (C2) communication.</li>
+<li>Script Block Logging: High-entropy or obfuscated script blocks can indicate attempts to hide the script&#x27;s true intentions. Attackers may use encoding or obfuscation to bypass detection.</li>
+<li>File Creation and Execution: Scripts or executable files created by PowerShell in temporary or user data directories are suspicious, particularly if they are executed immediately after creation.</li>
+<li>Persistence Mechanisms: PowerShell can be used to create scheduled tasks or modify registry keys for persistence.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=main sourcetype=&quot;WinEventLog:Microsoft-Windows-PowerShell/Operational&quot; EventCode=4100, 4103, 4104, 1
+(Image=&quot;*\\ssh.exe&quot; OR DestinationPort=22) </code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="step-15a2-ingress-tool-transfer-t1105">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-15a2-ingress-tool-transfer-t1105">#</doc-anchor-trigger>
+        <span>Step 15.A.2 Ingress Tool Transfer (<a href="https://attack.mitre.org/techniques/T1105/" class="outbound" target="_blank"><span>T1105</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>choco.exe</code> created <code v-pre>STEALBIT (C:\ProgramData\chocolatey\lib\Connhost\tools\connhost.exe)​</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Process-File Relationship: Newly spawned processes associated with dropped files exhibiting anomalous behavior, such as elevated privileges or unexpected communication patterns.</li>
+<li>Unusual File Path: Storing binaries in directories like <code v-pre>\lib\Connhost</code> where legitimate helper tools are typically placed.</li>
+<li>Use of Transfer Tools: Execution of command-line tools commonly used for file transfers, such as wget, curl, scp, or powershell commands for downloading files, especially by users or processes that do not typically use these tools.</li>
+</ul>
+<doc-anchor-target id="step-15a3-command-and-scripting-interpreter-powershell-t1059001">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-15a3-command-and-scripting-interpreter-powershell-t1059001">#</doc-anchor-trigger>
+        <span>Step 15.A.3 Command and Scripting Interpreter: PowerShell (<a href="https://attack.mitre.org/techniques/T1059/001/" class="outbound" target="_blank"><span>T1059.001</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>THUNDERSHELL (C:\ProgramData\chocolatey\lib\Termini\tools\termini.ps1)</code> executed <code v-pre>STEALBIT (C:\ProgramData\chocolatey\lib\Connhost\tools\connhost.exe)​</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual PowerShell Parameters: Commands such as -ExecutionPolicy Bypass, -NoProfile, and -EncodedCommand can indicate potentially malicious PowerShell activity. The presence of these parameters should be monitored closely.</li>
+<li>Parent Process Analysis: When powershell.exe is spawned by unusual or unexpected parent processes, such as choco.exe in this case, it could be indicative of suspicious behavior, as PowerShell may be launched to facilitate installation or configuration tasks.</li>
+<li>Network Connections Initiated by PowerShell: Look for powershell.exe establishing outbound connections, especially over HTTP/S. This behavior could suggest command-and-control (C2) communication.</li>
+<li>Script Block Logging: High-entropy or obfuscated script blocks can indicate attempts to hide the script&#x27;s true intentions. Attackers may use encoding or obfuscation to bypass detection.</li>
+<li>File Creation and Execution: Scripts or executable files created by PowerShell in temporary or user data directories are suspicious, particularly if they are executed immediately after creation.</li>
+<li>Persistence Mechanisms: PowerShell can be used to create scheduled tasks or modify registry keys for persistence.</li>
+</ul>
+<doc-anchor-target id="step-15a4-system-information-discovery-t1082">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-15a4-system-information-discovery-t1082">#</doc-anchor-trigger>
+        <span>Step 15.A.4 System Information Discovery (<a href="https://attack.mitre.org/techniques/T1082/" class="outbound" target="_blank"><span>T1082</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>STEALBIT (C:\ProgramData\chocolatey\lib\connhost\tools\connhost.exe)</code> uses API function <code v-pre>GetComputerName</code> to get the computer name</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual Command Execution: Unexpected execution of system information commands like <code v-pre>systeminfo</code>, <code v-pre>hostname</code>, or <code v-pre>uname</code> by users or processes that do not typically require this information. Host information retrieval by unauthorized or non-system-critical processes.</li>
+<li>File Integrity Monitoring: Detecting unauthorized changes to critical files or configurations.</li>
+<li>Unexpected API calls to getcomputername from unusual processes.</li>
+</ul>
+<doc-anchor-target id="step-15a5-system-network-configuration-discovery-t1016">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-15a5-system-network-configuration-discovery-t1016">#</doc-anchor-trigger>
+        <span>Step 15.A.5 System Network Configuration Discovery (<a href="https://attack.mitre.org/techniques/T1016/" class="outbound" target="_blank"><span>T1016</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>STEALBIT (C:\ProgramData\chocolatey\lib\connhost\tools\connhost.exe)</code> uses API function <code v-pre>GetHostName</code> and <code v-pre>GetAddrInfo</code> to get domain names</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual File System Events: Monitoring frequent read/write operations (such as those initiated by main.exe).</li>
+<li>Unusual Network Scanning Activity: An increase in network scanning activities, such as port scans or IP sweeps, may indicate an attempt to discover network configurations.</li>
+<li>Unexpected Configuration Changes: Unauthorized or unexpected changes to network configurations, such as routing tables, firewall rules, or DNS settings, can indicate malicious activity.</li>
+<li>Unauthorized Use of Discovery Protocols: Unauthorized use of network discovery protocols, such as SNMP, LLDP, or CDP, can indicate attempts to gather network configuration information.</li>
+<li>Unusual Command Execution: Unexpected execution of network configuration commands such as <code v-pre>ipconfig</code>, <code v-pre>ifconfig</code>, or <code v-pre>route</code> by users or processes that do not typically require this information.</li>
+</ul>
+<doc-anchor-target id="step-15a6-file-and-directory-discovery-t1083">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-15a6-file-and-directory-discovery-t1083">#</doc-anchor-trigger>
+        <span>Step 15.A.6 File and Directory Discovery (<a href="https://attack.mitre.org/techniques/T1083/" class="outbound" target="_blank"><span>T1083</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>STEALBIT (C:\ProgramData\chocolatey\lib\connhost\tools\connhost.exe)</code> enumerated folders and files through <code v-pre>FindFirstFile and FindNextFile</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Access to Sensitive or Uncommon Directories: Look for attempts to access directories that contain sensitive information, such as configuration files, user data, or system logs, especially if accessed by unauthorized users.</li>
+<li>Frequent Access to System Directories: Repeated or systematic access to system directories (e.g., /etc, /var, C:\Windows\System32) can indicate an attempt to gather information about the system.</li>
+<li>Use of Discovery Commands: Monitor for unusual use of commands commonly used for file and directory discovery, such as ls, dir, find, tree, grep, or PowerShell equivalents.</li>
+<li>Execution of Scripts for Enumeration: Detection of scripts or automated tools that perform directory enumeration or file listing.</li>
+<li>Access from Unusual Accounts: Attempts to access files or directories from accounts that typically do not perform such actions, especially if the account has elevated privileges.</li>
+<li>Login Anomalies: Logins from unusual locations or at odd hours, followed by file and directory access, can indicate malicious activity.</li>
+</ul>
+<doc-anchor-target id="step-15a7-automated-collection-t1119">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-15a7-automated-collection-t1119">#</doc-anchor-trigger>
+        <span>Step 15.A.7 Automated Collection (<a href="https://attack.mitre.org/techniques/T1119/" class="outbound" target="_blank"><span>T1119</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>STEALBIT (C:\ProgramData\chocolatey\lib\connhost\tools\connhost.exe)</code> collected files from various folders</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual execution of commands to collect internal data.</li>
+<li>Execution of discovery commands by accounts or systems without administrative privileges.</li>
+<li>Repeated or automated system discovery attempts.</li>
+<li>Unusual File System Events: Unusual write operations in system directories.</li>
+<li>Processes creating hidden or rarely-used files.</li>
+<li>Frequent writing to non-logging directories that typically host static files (e.g., fonts).</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">sourcetype=WinEventLog image=&quot;file_access&quot; AND action=&quot;read&quot; OR &quot;file_transfer&quot; AND action=&quot;copy&quot;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="step-15a8-automated-exfiltration-traffic-duplication-t1020001">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-15a8-automated-exfiltration-traffic-duplication-t1020001">#</doc-anchor-trigger>
+        <span>Step 15.A.8 Automated Exfiltration: Traffic Duplication (<a href="https://attack.mitre.org/techniques/T1020/001/" class="outbound" target="_blank"><span>T1020.001</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>STEALBIT (C:\ProgramData\chocolatey\lib\connhost\tools\connhost.exe)</code> exfiltrated hashed files in 1024 chunks</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Monitor for Unusual Data Transfers: Look for large volumes of data being sent to external IP addresses; Identify data transfers occurring at unusual times or from unexpected sources.</li>
+<li>Identify Anomalous Protocol Usage: Monitor for uncommon protocols or ports being used for data transfer.</li>
+<li>Track Repeated Data Transfers: Look for repeated transfers of the same data or patterns that suggest duplication.</li>
+<li>Detect New or Unusual External Connections: Monitor for connections to new or rare external IP addresses; Monitor for connections to known malicious IPs or domains.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=network_traffic
+sourcetype=your_sourcetype_name
+| eval is_external=if(cidrmatch(&quot;0.0.0.0/0&quot;, dest_ip) AND NOT cidrmatch(&quot;your_internal_ip_range&quot;, dest_ip), &quot;external&quot;, &quot;internal&quot;)
+| where is_external=&quot;external&quot;
+| stats sum(bytes_out) as total_bytes_out, dc(dest_ip) as unique_dest_ips by src_ip, dest_ip, user</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="step-15a9-application-layer-protocol-web-protocols-t1071001">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-15a9-application-layer-protocol-web-protocols-t1071001">#</doc-anchor-trigger>
+        <span>Step 15.A.9 Application Layer Protocol: Web Protocols (<a href="https://attack.mitre.org/techniques/T1071/001/" class="outbound" target="_blank"><span>T1071.001</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>STEALBIT (C:\ProgramData\chocolatey\lib\connhost\tools\connhost.exe)</code> connects to <code v-pre>muggle-m0ney[.]com (27.21.12.54)</code> over HTTP <code v-pre>(port 80)</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Outbound HTTP/HTTPS traffic to rare or untrusted external domains, especially over default ports like 80 or 443.</li>
+<li>Connections initiated from non-browser processes, which is unusual for typical HTTP communications.</li>
+<li>Consistent outbound traffic from systems that rarely initiate external communications, especially outside of business hours.</li>
+<li>Unencrypted HTTP traffic over port 80, which may expose sensitive data or facilitate C2 operations.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=main sourcetype=network_traffic
+| search dest_port=80 OR dest_port=443
+| eval suspicious_conn=(case(
+  dest_ip IN (&quot;27.21.12.54&quot;), 1,
+  process_name NOT IN (&quot;Safari&quot;, &quot;Chrome&quot;, &quot;Firefox&quot;, &quot;curl&quot;, &quot;wget&quot;), 1,
+  TRUE, 0))</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="step-15a10-exfiltration-over-c2-channel-t1041">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-15a10-exfiltration-over-c2-channel-t1041">#</doc-anchor-trigger>
+        <span>Step 15.A.10 Exfiltration Over C2 Channel (<a href="https://attack.mitre.org/techniques/T1041/" class="outbound" target="_blank"><span>T1041</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>STEALBIT (C:\ProgramData\chocolatey\lib\connhost\tools\connhost.exe)</code> exfiltrated files over HTTP <code v-pre>(port 80)</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Outbound HTTP/HTTPS traffic to rare or untrusted external domains, especially over default ports like 80 or 443.</li>
+<li>Monitor for Unusual HTTP Traffic Patterns: Look for HTTP requests with large payloads or frequent requests that are atypical for the user or device.</li>
+<li>Analyze User-Agent Strings: Detect uncommon or suspicious User-Agent strings that might indicate non-standard HTTP clients or tools.</li>
+<li>Track Data Volume and Frequency: Monitor for unusually high volumes of data being sent over HTTP. Look for repeated or scheduled data transfers that could indicate automated exfiltration.</li>
+<li>Inspect HTTP Headers and Content: Analyze HTTP headers for anomalies or indicators of tunneling.</li>
+<li>Identify New or Unusual External Connections: Detect connections to new or known malicious IPs/domains over HTTP.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=network_traffic
+sourcetype=your_sourcetype_name
+dest_port=80
+| eval is_external=if(cidrmatch(&quot;0.0.0.0/0&quot;, dest_ip) AND NOT cidrmatch(&quot;your_internal_ip_range&quot;, dest_ip), &quot;external&quot;, &quot;internal&quot;)
+| where is_external=&quot;external&quot;
+| stats sum(bytes_out) as total_bytes_out, values(user_agent) as user_agents, dc(dest_ip) as unique_dest_ips by src_ip, dest_ip</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="step-15a11-indicator-removal-file-deletion-t1070004">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-15a11-indicator-removal-file-deletion-t1070004">#</doc-anchor-trigger>
+        <span>Step 15.A.11 Indicator Removal: File Deletion (<a href="https://attack.mitre.org/techniques/T1070/004/" class="outbound" target="_blank"><span>T1070.004</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>STEALBIT (C:\ProgramData\chocolatey\lib\connhost\tools\connhost.exe)</code> deletes itself</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Batch Scripts: Detection of batch scripts or PowerShell scripts that automate file deletion, particularly if they target log files or other forensic artifacts.</li>
+<li>New or Unusual Processes: Execution of processes associated with file deletion tools or utilities that are not commonly used on the system.</li>
+<li>Antivirus Alerts: Detection of alerts related to file deletion tools or potentially unwanted programs that facilitate file removal.</li>
+<li>Unusual Access Times: File deletions occurring outside normal business hours or from accounts that do not typically perform maintenance tasks.</li>
+</ul>
+<doc-anchor-target id="step-16">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16">#</doc-anchor-trigger>
+        <span>Step 16</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="step-16a1-obfuscated-files-or-information-dynamic-api-resolution-t1027007">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a1-obfuscated-files-or-information-dynamic-api-resolution-t1027007">#</doc-anchor-trigger>
+        <span>Step 16.A.1 Obfuscated Files or Information: Dynamic API Resolution (<a href="https://attack.mitre.org/techniques/T1027/007/" class="outbound" target="_blank"><span>T1027.007</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> uses <code v-pre>DJB2</code> hashing algorithm to obfuscate API calls</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Changes in Input Data Characteristics: Sudden changes in the characteristics of input data being hashed (e.g., size, format) could indicate an attempt to exploit the hashing process.</li>
+<li>Unauthorized Algorithm Changes: Unauthorized changes to the hashing algorithm or its configuration can compromise security.</li>
+</ul>
+<doc-anchor-target id="step-16a2-debugger-evasion-t1622">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a2-debugger-evasion-t1622">#</doc-anchor-trigger>
+        <span>Step 16.A.2 Debugger Evasion (<a href="https://attack.mitre.org/techniques/T1622/" class="outbound" target="_blank"><span>T1622</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> hid threads via <code v-pre>NtSetInformationThread</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Self-Debugging via Thread Hiding: Creating threads that are hidden from the debugger&#x27;s view, such as <code v-pre>NtSetInformationThread</code>.</li>
+<li>System Calls: Malware may use specific system calls to check for the presence of a debugger. For example, using IsDebuggerPresent() on Windows.</li>
+</ul>
+<doc-anchor-target id="step-16a3-system-owneruser-discovery-t1033">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a3-system-owneruser-discovery-t1033">#</doc-anchor-trigger>
+        <span>Step 16.A.3 System Owner/User Discovery (<a href="https://attack.mitre.org/techniques/T1033/" class="outbound" target="_blank"><span>T1033</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> uses API function <code v-pre>GetUserNameExW</code> to get usernames​</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unexpected Command Execution: Monitoring execution of discovery commands such as logname using root privileges.</li>
+<li>Unusual Shell Execution: If observed shell <code v-pre>(/bin/sh)</code> commands are uncommon for legitimate Zoom files, this could indicate malicious intent.</li>
+<li>Chained Activity: If combined with file creation or modification events, this strengthens the malicious context.</li>
+</ul>
+<doc-anchor-target id="step-16a4-system-network-configuration-discovery-t1016">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a4-system-network-configuration-discovery-t1016">#</doc-anchor-trigger>
+        <span>Step 16.A.4 System Network Configuration Discovery (<a href="https://attack.mitre.org/techniques/T1016/" class="outbound" target="_blank"><span>T1016</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> uses API function <code v-pre>GetComputerNameExW</code> to get domains​</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual File System Events: Monitoring frequent read/write operations (such as those initiated by main.exe).</li>
+<li>Unusual Network Scanning Activity: An increase in network scanning activities, such as port scans or IP sweeps, may indicate an attempt to discover network configurations.</li>
+<li>Unexpected Configuration Changes: Unauthorized or unexpected changes to network configurations, such as routing tables, firewall rules, or DNS settings, can indicate malicious activity.</li>
+<li>Unauthorized Use of Discovery Protocols: Unauthorized use of network discovery protocols, such as SNMP, LLDP, or CDP, can indicate attempts to gather network configuration information.</li>
+<li>Unusual Command Execution: Unexpected execution of network configuration commands such as <code v-pre>ipconfig</code>, <code v-pre>ifconfig</code>, or <code v-pre>route</code> by users or processes that do not typically require this information.</li>
+</ul>
+<doc-anchor-target id="step-16a5-system-information-discovery-t1082">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a5-system-information-discovery-t1082">#</doc-anchor-trigger>
+        <span>Step 16.A.5 System Information Discovery (<a href="https://attack.mitre.org/techniques/T1082/" class="outbound" target="_blank"><span>T1082</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> uses API function <code v-pre>GetComputerNameW</code> to get hostnames​</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unexpected API calls to getcomputername or gethostname from unusual processes.</li>
+<li>Unusual Command Execution: Unexpected execution of system information commands like <code v-pre>systeminfo</code>, <code v-pre>hostname</code>, or <code v-pre>uname</code> by users or processes that do not typically require this information. Host information retrieval by unauthorized or non-system-critical processes.</li>
+<li>File Integrity Monitoring: Detecting unauthorized changes to critical files or configurations.</li>
+</ul>
+<doc-anchor-target id="step-16a6-system-information-discovery-t1082">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a6-system-information-discovery-t1082">#</doc-anchor-trigger>
+        <span>Step 16.A.6 System Information Discovery (<a href="https://attack.mitre.org/techniques/T1082/" class="outbound" target="_blank"><span>T1082</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> uses API function <code v-pre>GetNativeSystemInfo</code> to get OS architecture​</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unexpected API calls to getsysteminfo from unusual processes.</li>
+<li>Unusual Command Execution: Unexpected execution of system information commands like <code v-pre>systeminfo</code>, <code v-pre>hostname</code>, or <code v-pre>uname</code> by users or processes that do not typically require this information. Host information retrieval by unauthorized or non-system-critical processes.</li>
+<li>File Integrity Monitoring: Detecting unauthorized changes to critical files or configurations.</li>
+</ul>
+<doc-anchor-target id="step-16a7-system-information-discovery-t1082">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a7-system-information-discovery-t1082">#</doc-anchor-trigger>
+        <span>Step 16.A.7 System Information Discovery (<a href="https://attack.mitre.org/techniques/T1082/" class="outbound" target="_blank"><span>T1082</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> uses API function <code v-pre>RtlGetVersion</code> to get OS version</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unexpected API calls to get OS version from unusual processes.</li>
+<li>Unusual Command Execution: Unexpected execution of system information commands like <code v-pre>systeminfo</code>, <code v-pre>hostname</code>, or <code v-pre>uname</code> by users or processes that do not typically require this information. Host information retrieval by unauthorized or non-system-critical processes.</li>
+<li>System Activity Monitoring: Observing unexpected changes in system performance or configuration, like sudden spikes in CPU usage or unauthorized software installations.</li>
+<li>File Integrity Monitoring: Detecting unauthorized changes to critical files or configurations.</li>
+</ul>
+<doc-anchor-target id="step-16a8-execution-guardrails-t1480">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a8-execution-guardrails-t1480">#</doc-anchor-trigger>
+        <span>Step 16.A.8 Execution Guardrails (<a href="https://attack.mitre.org/techniques/T1480/" class="outbound" target="_blank"><span>T1480</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> created a <code v-pre>mutex</code> <code v-pre>(Global\7be06735)</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Environment Checks: The presence of scripts or binaries that perform extensive checks on the environment before executing. This might include checking for specific files, registry keys, or system configurations.</li>
+<li>Geolocation Restrictions: Code that checks the geolocation of the system and only executes if it is in a specific region or country.</li>
+<li>User Interaction Requirements: Malicious code that requires specific user actions to execute, such as opening a particular application or document.</li>
+</ul>
+<doc-anchor-target id="step-16a9-system-location-discovery-system-language-discovery-t1614001">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a9-system-location-discovery-system-language-discovery-t1614001">#</doc-anchor-trigger>
+        <span>Step 16.A.9 System Location Discovery: System Language Discovery (<a href="https://attack.mitre.org/techniques/T1614/001/" class="outbound" target="_blank"><span>T1614.001</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> uses API functions <code v-pre>NtQueryInstallUILanguage</code> and <code v-pre>NtQueryDefaultUILanguage</code> to perform system language checks​</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Increased Load on Language Processing Components: Unexplained spikes in CPU or memory usage related to language processing components might suggest attempts to exploit or overload these systems.</li>
+<li>New or Unusual User Agents: Detection of new or uncommon user agents that might be used to mimic legitimate language processing requests.</li>
+<li>High Volume of Requests from a Single Source: A high volume of requests or queries from a single IP address or user account could indicate automated probing of language capabilities.</li>
+<li>Frequent Access to Language Files or Libraries: An adversary might attempt to access or analyze language-specific files, libraries, or configurations to understand how the system processes different languages.</li>
+<li>Repeated Requests for Language-Specific Resources: Look for repeated or unusual requests for resources that are specific to certain languages, such as language packs or localization files.</li>
+<li>Mixed or Obfuscated Language Inputs: Inputs that mix multiple languages or use obfuscation techniques might indicate attempts to probe the system&#x27;s language detection capabilities.</li>
+<li>Unexpected Code or Script Submissions: Submissions of code or scripts in unexpected languages or formats could be an attempt to test the system&#x27;s response to different language inputs.</li>
+</ul>
+<doc-anchor-target id="step-16a10-file-and-directory-discovery-t1083">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a10-file-and-directory-discovery-t1083">#</doc-anchor-trigger>
+        <span>Step 16.A.10 File and Directory Discovery (<a href="https://attack.mitre.org/techniques/T1083/" class="outbound" target="_blank"><span>T1083</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> uses API function <code v-pre>GetLogicalDriveStringW</code> to enumerate logical drives​</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Access to Sensitive or Uncommon Directories: Look for attempts to access directories that contain sensitive information, such as configuration files, user data, or system logs, especially if accessed by unauthorized users.</li>
+<li>Frequent Access to System Directories: Repeated or systematic access to system directories (e.g., /etc, /var, C:\Windows\System32) can indicate an attempt to gather information about the system.</li>
+<li>Use of Discovery Commands: Monitor for unusual use of commands commonly used for file and directory discovery, such as ls, dir, find, tree, grep, or PowerShell equivalents.</li>
+<li>Execution of Scripts for Enumeration: Detection of scripts or automated tools that perform directory enumeration or file listing.</li>
+<li>Access from Unusual Accounts: Attempts to access files or directories from accounts that typically do not perform such actions, especially if the account has elevated privileges.</li>
+<li>Login Anomalies: Logins from unusual locations or at odd hours, followed by file and directory access, can indicate malicious activity.</li>
+</ul>
+<doc-anchor-target id="step-16a11-impair-defenses-disable-or-modify-system-firewall-t1562004">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a11-impair-defenses-disable-or-modify-system-firewall-t1562004">#</doc-anchor-trigger>
+        <span>Step 16.A.11 Impair Defenses: Disable or Modify System Firewall (<a href="https://attack.mitre.org/techniques/T1562/004/" class="outbound" target="_blank"><span>T1562.004</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> disables the firewall (domain and standard profiles) via registry edits (<code v-pre>RegCreateKeyExW</code> and <code v-pre>RegSetValueExW</code>)</p>
+<p>Registry key edits are as follows:</p>
+<ul>
+<li><code v-pre>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile</code>
+<ul>
+<li><code v-pre>EnableFirewall set to 0</code></li>
+</ul>
+</li>
+<li><code v-pre>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile</code>
+<ul>
+<li><code v-pre>EnableFirewall set to 0</code></li>
+</ul>
+</li>
+</ul>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unexpected Firewall Configuration Changes: Sudden or unauthorized changes to firewall rules or settings, especially those that allow inbound or outbound traffic that was previously blocked.</li>
+<li>Disabling of Firewall Services: Attempts to stop or disable firewall services, such as the Windows Firewall service or equivalent services on other operating systems.</li>
+<li>Log Tampering: Deletion or modification of firewall logs, which may indicate an attempt to cover tracks after changing firewall settings.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">(sourcetype=WinEventLog:Sysmon OR sourcetype=WinEventLog:Security)
+(EventCode=13 OR EventCode=4657)
+RegistryKeyName IN (&quot;HKEY_LOCAL_MACHINE\\SOFTWARE\\Policies\\Microsoft\\WindowsFirewall\\DomainProfile\\EnableFirewall&quot; &quot;HKEY_LOCAL_MACHINE\\SOFTWARE\\Policies\\Microsoft\\WindowsFirewall\\StandardProfile\\EnableFirewall&quot;)</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="step-16a12-windows-management-instrumentation-t1047">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a12-windows-management-instrumentation-t1047">#</doc-anchor-trigger>
+        <span>Step 16.A.12 Windows Management Instrumentation (<a href="https://attack.mitre.org/techniques/T1047/" class="outbound" target="_blank"><span>T1047</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> executed WMI query <code v-pre>&quot;SELECT * FROM Win32_ShadowCopy&quot;</code> via CoInitializeEx, IWbemLocator::ConnectServer, and IWbemServices::ExecQuery</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>WMI Scripting Abuse: Use of WMI scripting (e.g., VBScript or PowerShell scripts leveraging WMI) to perform tasks that are typically not automated or are outside normal business operations.</li>
+<li>Log Anomalies: Unusual entries in event logs related to WMI activity, such as Event ID 5858, or 5861, which may indicate errors or suspicious activity.</li>
+<li>High-frequency or repeated WMI queries targeting specific namespaces (root\cimv2, Win32_* classes).</li>
+<li>Unexpected WMI connections to remote systems using non-standard credentials.</li>
+<li>Abnormal invocation of COM APIs such as IWbemLocator::ConnectServer or IWbemServices::ExecQuery.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=windows sourcetype=WinEventLog:* (EventCode=4688 OR EventCode=5861 OR EventCode=4104)
+| eval commandline=coalesce(CommandLine, ScriptBlockText)
+| search commandline=&quot;*SELECT*FROM*Win32_ShadowCopy*&quot; OR commandline=&quot;*root\\cimv2*&quot; OR commandline=&quot;*ExecQuery*&quot;
+| table _time, ComputerName, User, ParentImage, commandline, is_wmi_abuse</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="step-16a13-inhibit-system-recovery-t1490">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a13-inhibit-system-recovery-t1490">#</doc-anchor-trigger>
+        <span>Step 16.A.13 Inhibit System Recovery (<a href="https://attack.mitre.org/techniques/T1490/" class="outbound" target="_blank"><span>T1490</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> deletes shadow copies via <code v-pre>IWbemServices::DeleteInstance</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Disabling or Deleting Shadow Copies: Commands or scripts that delete Volume Shadow Copies (e.g., using vssadmin delete shadows), which are used by Windows to create backup copies of files.</li>
+<li>Unexpected File Deletions: Deletion of critical system files or logs that could hinder forensic analysis or system recovery efforts.</li>
+</ul>
+<doc-anchor-target id="step-16a14-inhibit-system-recovery-t1490">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a14-inhibit-system-recovery-t1490">#</doc-anchor-trigger>
+        <span>Step 16.A.14 Inhibit System Recovery (<a href="https://attack.mitre.org/techniques/T1490/" class="outbound" target="_blank"><span>T1490</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> disabled automatic Windows recovery features with <code v-pre>bcdedit.exe /set {default} bootstatuspolicy ignoreallfailures</code> OR <code v-pre>bcdedit.exe /set {default} recoveryenabled no</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Tampering with Recovery Partitions: Access or modifications to recovery partitions on disk drives, which are often used to restore systems to factory settings.</li>
+<li>Disabling System Restore: Unexpected changes to system settings that disable or delete system restore points, which are critical for recovering from system failures or malware infections.</li>
+<li>Suspicious Use of System Tools: Use of system tools like bcdedit, wbadmin, or vssadmin in a manner inconsistent with normal administrative tasks, especially by non-administrative users.</li>
+</ul>
+<doc-anchor-target id="step-16a15-system-network-configuration-discovery-t1016">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a15-system-network-configuration-discovery-t1016">#</doc-anchor-trigger>
+        <span>Step 16.A.15 System Network Configuration Discovery (<a href="https://attack.mitre.org/techniques/T1016/" class="outbound" target="_blank"><span>T1016</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> used API function <code v-pre>GetAdapterInfo</code> to discover local IP networks</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual File System Events: Monitoring frequent read/write operations (such as those initiated by main.exe).</li>
+<li>Unusual Network Scanning Activity: An increase in network scanning activities, such as port scans or IP sweeps, may indicate an attempt to discover network configurations.</li>
+<li>Unexpected Configuration Changes: Unauthorized or unexpected changes to network configurations, such as routing tables, firewall rules, or DNS settings, can indicate malicious activity.</li>
+<li>Unauthorized Use of Discovery Protocols: Unauthorized use of network discovery protocols, such as SNMP, LLDP, or CDP, can indicate attempts to gather network configuration information.</li>
+<li>Unusual Command Execution: Unexpected execution of network configuration commands such as <code v-pre>ipconfig</code>, <code v-pre>ifconfig</code>, or <code v-pre>route</code> by users or processes that do not typically require this information.</li>
+</ul>
+<doc-anchor-target id="step-16a16-remote-system-discovery-t1018">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a16-remote-system-discovery-t1018">#</doc-anchor-trigger>
+        <span>Step 16.A.16 Remote System Discovery (<a href="https://attack.mitre.org/techniques/T1018/" class="outbound" target="_blank"><span>T1018</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> discovers additional targets through ICMP or echo request/response​ via <code v-pre>IcmpSendEcho</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual Activity from User Accounts: Monitor volume of ARP requests and increased or abnormal use of commannds to enumerate domain information such as <code v-pre>nltest /dclist</code>.</li>
+<li>Increased Network Mapping Activities: Monitoring for increased ICMP sweeps originating from internal hosts that do not usually perform such actions.</li>
+</ul>
+<doc-anchor-target id="step-16a17-remote-services-smbwindows-admin-shares-t1021002">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a17-remote-services-smbwindows-admin-shares-t1021002">#</doc-anchor-trigger>
+        <span>Step 16.A.17 Remote Services: SMB/Windows Admin Shares (<a href="https://attack.mitre.org/techniques/T1021/002/" class="outbound" target="_blank"><span>T1021.002</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> executed <code v-pre>C:\ProgramData\chocolatey\lib\sysinternals\tools\PsExec64.exe&quot; -accepteula \\10.111.8.50,10.111.9.201,10.111.9.202 -u decryptmalfoy.net\gornuk.da -p Frown-Cement -s -e -d -f -c &quot;C:\Windows\main.exe&quot; -d -w</code> over SMB protocol​</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual Processes: Monitor interactions with network shares, such as reads or file transfers, using Server Message Block (SMB).</li>
+<li>Cross-Platform Connections: SSH sessions initiated from Windows to Linux systems can be unusual, especially if not commonly practiced in the environment.</li>
+<li>Privileged Account Use: The use of high-privilege accounts (such as GORNUK.DA) for SMB connections, especially outside normal business hours or from unexpected source IPs.</li>
+<li>Chained Activity: Monitor for newly constructed network connections (typically over ports 139 or 445) correlated with remote login events and associated SMB-related activity such as file transfers and remote process execution.</li>
+<li>File Writes: Creation of malicious executables (e.g., ransomware binaries) in shared directories.</li>
+<li>Registry and Service Manipulation: Changes to services or firewall rules post-execution to maintain persistence.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">EventCode=1
+| eval suspicious_command=if(like(CommandLine, &quot;%PsExec64.exe%&quot;) OR like(CommandLine, &quot;%-accepteula%&quot;), &quot;true&quot;, &quot;false&quot;)
+| where suspicious_command=&quot;true&quot;
+| stats count by ComputerName, User, ParentImage, CommandLine, ParentCommandLine</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="step-16a18-valid-accounts-domain-accounts-t1078002">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a18-valid-accounts-domain-accounts-t1078002">#</doc-anchor-trigger>
+        <span>Step 16.A.18 Valid Accounts: Domain Accounts (<a href="https://attack.mitre.org/techniques/T1078/002/" class="outbound" target="_blank"><span>T1078.002</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>GORNUK</code> successfully authenticated with domain admin credentials</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual Access Patterns: Monitor for deviations in the types of resources accessed.</li>
+<li>Volume of Activity: Monitor for unusual activity such as a sudden increase in data access or file transfers.</li>
+<li>Failed Login Attempts: A high number of failed login attempts can suggest an attempt to compromise an account.</li>
+<li>Concurrent Sessions: Monitor for multiple concurrent sessions from different locations or devices.</li>
+<li>Privileged Account Use: Unusual use of privileged accounts, such as accessing administrative tools or making unauthorized changes.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">(Account_Name=username EventCode IN (4648))</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="step-16a19-create-or-modify-system-process-windows-service-t1543003">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a19-create-or-modify-system-process-windows-service-t1543003">#</doc-anchor-trigger>
+        <span>Step 16.A.19 Create or Modify System Process: Windows Service (<a href="https://attack.mitre.org/techniques/T1543/003/" class="outbound" target="_blank"><span>T1543.003</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>PsExec64.exe</code> creates a service (<code v-pre>PSExecSvc</code>)</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Log Anomalies: Unusual entries in system logs related to service creation or modification, such as Event ID 7045 (A service was installed in the system) in the Windows Event Log.</li>
+<li>Use of System Tools for Service Management: Use of command-line tools like psexec.exe, sc.exe, powershell, or wmic to create or modify services, especially by users who do not typically perform administrative tasks.</li>
+<li>Creation of New Services: Detection of new services being created on a system, especially if they are created by non-administrative users or at unusual times.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=&lt;yourindex&gt; EventCode=7045</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="step-16a20-lateral-tool-transfer-t1570">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a20-lateral-tool-transfer-t1570">#</doc-anchor-trigger>
+        <span>Step 16.A.20 Lateral Tool Transfer (<a href="https://attack.mitre.org/techniques/T1570/" class="outbound" target="_blank"><span>T1570</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>PsExec64.exe</code> copies <code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> to <code v-pre>KNOCKTURNALLEY</code>, <code v-pre>VAULT12</code>, <code v-pre>GAUNTSHACK​</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Use of Built-in Tools for File Transfer: Use of native tools like PsExec, Robocopy, xcopy, certutil, or PowerShell to copy files between systems, particularly by users who do not typically perform such tasks.</li>
+<li>Suspicious Network Connections: Network connections between internal systems that are not part of regular communication patterns, potentially indicating tool transfer.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">(host=&quot;src_host&quot; EventCode=1 Image=“*psexec*” CommandLine=“*main.exe*”) OR
+(host=&quot;dst_host&quot; EventCode=11 TargetFileName=“*main.exe*”) </code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="step-16a21-system-services-service-execution-t1569002">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a21-system-services-service-execution-t1569002">#</doc-anchor-trigger>
+        <span>Step 16.A.21 System Services: Service Execution (<a href="https://attack.mitre.org/techniques/T1569/002/" class="outbound" target="_blank"><span>T1569.002</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>PsExec64.exe</code> executes <code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> on <code v-pre>KNOCKTURNALLEY</code>, <code v-pre>VAULT12</code>, <code v-pre>GAUNTSHACK​</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Use of System Tools for Service Management: Use of command-line tools like psexec.exe, sc.exe, powershell, or wmic to create or modify services, especially by users who do not typically perform administrative tasks.</li>
+<li>Network Connections from Service Processes: Network connections initiated by service processes to external or unusual IP addresses, which could indicate command-and-control communication or data exfiltration.</li>
+<li>Unusual Service Creation: Creation of services with suspicious names or pointing to non-standard directories.
+Services pointing to executables within user-writable paths or temp folders.</li>
+<li>Parent Process Relationships: Execution of PsExec64.exe with command-line parameters invoking service execution on remote targets. Parent processes such as PowerShell or cmd.exe initiating PsExec64.exe.</li>
+<li>Network Communication: Outbound SMB or RPC traffic to remote systems initiating service execution. Unusual frequency of service creation across multiple systems in a short time.</li>
+<li>Process Behavior: Remote execution of processes like ransomware binaries (main.exe) as child processes of services. Services being executed with admin privileges or domain credentials.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">EventCode IN (7045, 1)
+| eval is_psexec=if(like(CommandLine, &quot;%PsExec64.exe%&quot;) OR like(CommandLine, &quot;%-accepteula%&quot;), &quot;true&quot;, &quot;false&quot;)
+| eval is_service_execution=if(like(Service_Name, &quot;%PSEXESVC%&quot;), &quot;true&quot;, &quot;false&quot;)
+| eval correlation_flag=if(is_psexec=&quot;true&quot; OR is_service_execution=&quot;true&quot;, &quot;true&quot;, &quot;false&quot;)
+| where correlation_flag=&quot;true&quot;
+| stats count by ComputerName, User, CommandLine, ParentImage, ParentCommandLine, TargetHost</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="step-16a22-process-discovery-t1057">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a22-process-discovery-t1057">#</doc-anchor-trigger>
+        <span>Step 16.A.22 Process Discovery (<a href="https://attack.mitre.org/techniques/T1057/" class="outbound" target="_blank"><span>T1057</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> enumerates processes via <code v-pre>CreateToolhelp32Snapshot</code>, <code v-pre>Process32FirstW</code>, and <code v-pre>Process32NextW</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual Command Execution: Unusual use of process enumeration commands like <code v-pre>tasklist</code> or <code v-pre>ps</code>, especially if executed by non-administrative users or new processes or at unusual times.</li>
+<li>Chained Activity: Monitor for unusual sequence of commands that suggests reconnaissance or environment enumeration without associated normal administrative activity.</li>
+</ul>
+<doc-anchor-target id="step-16a23-service-stop-t1489">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a23-service-stop-t1489">#</doc-anchor-trigger>
+        <span>Step 16.A.23 Service Stop (<a href="https://attack.mitre.org/techniques/T1489/" class="outbound" target="_blank"><span>T1489</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> terminates processes via <code v-pre>OpenProcess</code> and <code v-pre>TerminateProcess</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Sudden service stop or disable actions, particularly involving security or monitoring services.</li>
+<li>Service management commands executed at unexpected times or by unusual accounts.</li>
+<li>Sequence of commands that suggests preparation for system shutdown or application/service disruptions.</li>
+</ul>
+<doc-anchor-target id="step-16a24-service-stop-t1489">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a24-service-stop-t1489">#</doc-anchor-trigger>
+        <span>Step 16.A.24 Service Stop (<a href="https://attack.mitre.org/techniques/T1489/" class="outbound" target="_blank"><span>T1489</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> terminates and disables services (such as <code v-pre>VSSC</code>) via <code v-pre>ControlService</code> and <code v-pre>ChangeServiceConfigW</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Sudden service stop or disable actions, particularly involving security or monitoring services.</li>
+<li>Service management commands executed at unexpected times or by unusual accounts.</li>
+<li>Sequence of commands that suggests preparation for system shutdown or application/service disruptions.</li>
+</ul>
+<doc-anchor-target id="step-16a25-data-destruction-t1485">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a25-data-destruction-t1485">#</doc-anchor-trigger>
+        <span>Step 16.A.25 Data Destruction (<a href="https://attack.mitre.org/techniques/T1485/" class="outbound" target="_blank"><span>T1485</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> clears the recycle bin</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Mass File Deletions: Sudden and large-scale deletion of files or directories, especially in critical or sensitive areas, which is not part of regular maintenance or operations.</li>
+<li>Log Tampering: Deletion or modification of system or application logs, which may indicate an attempt to cover tracks after data destruction.</li>
+</ul>
+<doc-anchor-target id="step-16a26-modify-registry-t1112">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a26-modify-registry-t1112">#</doc-anchor-trigger>
+        <span>Step 16.A.26 Modify Registry (<a href="https://attack.mitre.org/techniques/T1112/" class="outbound" target="_blank"><span>T1112</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> writes registry keys <code v-pre>HKCR\.sk12uyqzk</code> and <code v-pre>HKCR\.sk12uyqzk\DefaultIcon</code> to customize icons for encrypted files</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Use of Registry Editing Tools: Use of tools like regedit, reg.exe, or PowerShell cmdlets to modify the registry, especially by non-administrative users or from unusual locations.</li>
+<li>Alteration of File Associations: Changes to registry keys that control file associations, which could be used to hijack file types and execute malicious code.</li>
+</ul>
+<doc-anchor-target id="step-16a27-modify-registry-t1112">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a27-modify-registry-t1112">#</doc-anchor-trigger>
+        <span>Step 16.A.27 Modify Registry (<a href="https://attack.mitre.org/techniques/T1112/" class="outbound" target="_blank"><span>T1112</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> writes RSA public and private session keys to <code v-pre>HKCU\SOFTWARE\BlockBlit</code> via <code v-pre>RegCreateKeyExW</code> and <code v-pre>RegSetValueExW</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Use of Registry Editing Tools: Use of tools like regedit, reg.exe, or PowerShell cmdlets to modify the registry, especially by non-administrative users or from unusual locations.</li>
+<li>Unexpected Registry Key Changes: Modifications to critical registry keys or values that are not part of regular system updates or administrative tasks. This includes keys related to startup programs, services, or security settings.</li>
+<li>Modification of Security-Related Keys: Changes to registry keys that affect security settings, such as disabling Windows Defender, firewall settings, or User Account Control (UAC).</li>
+</ul>
+<doc-anchor-target id="step-16a28-obfuscated-files-or-information-t1027">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a28-obfuscated-files-or-information-t1027">#</doc-anchor-trigger>
+        <span>Step 16.A.28 Obfuscated Files or Information (<a href="https://attack.mitre.org/techniques/T1027/" class="outbound" target="_blank"><span>T1027</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p>RSA private session key is encrypted using RSA</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Use of Encoding or Encryption: Detection of files or scripts that are encoded or encrypted, especially if they are not typically used in the environment. This includes the use of Base64 encoding, XOR encryption, or custom encryption algorithms.</li>
+<li>Network Traffic with Encrypted Payloads: Detection of network traffic with encrypted or encoded payloads that do not match typical patterns for the organization, potentially indicating data exfiltration or command-and-control communication (i.e. data is encrypted with RSA prior to exfiltration).</li>
+</ul>
+<doc-anchor-target id="step-16a29-file-and-directory-discovery-t1083">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a29-file-and-directory-discovery-t1083">#</doc-anchor-trigger>
+        <span>Step 16.A.29 File and Directory Discovery (<a href="https://attack.mitre.org/techniques/T1083/" class="outbound" target="_blank"><span>T1083</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> enumerates target files in main <code v-pre>C:</code> drive</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Access to Sensitive or Uncommon Directories: Look for attempts to access directories that contain sensitive information, such as configuration files, user data, or system logs, especially if accessed by unauthorized users.</li>
+<li>Frequent Access to System Directories: Repeated or systematic access to system directories (e.g., /etc, /var, C:\Windows\System32) can indicate an attempt to gather information about the system.</li>
+<li>Use of Discovery Commands: Monitor for unusual use of commands commonly used for file and directory discovery, such as ls, dir, find, tree, grep, or PowerShell equivalents.</li>
+<li>Execution of Scripts for Enumeration: Detection of scripts or automated tools that perform directory enumeration or file listing.</li>
+<li>Access from Unusual Accounts: Attempts to access files or directories from accounts that typically do not perform such actions, especially if the account has elevated privileges.</li>
+<li>Login Anomalies: Logins from unusual locations or at odd hours, followed by file and directory access, can indicate malicious activity.</li>
+</ul>
+<doc-anchor-target id="step-16a30-data-encrypted-for-impact-t1486">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a30-data-encrypted-for-impact-t1486">#</doc-anchor-trigger>
+        <span>Step 16.A.30 Data Encrypted for Impact (<a href="https://attack.mitre.org/techniques/T1486/" class="outbound" target="_blank"><span>T1486</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> encrypts target files in main <code v-pre>C:</code> using <code v-pre>256-bit AES</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Mass File Access and Encryption: Sudden and widespread access to a large number of files, followed by modifications, can indicate encryption activities. This often involves changing file extensions to those commonly associated with ransomware.</li>
+<li>Creation of Encrypted File Copies: Detection of new files with encrypted content alongside original files, often with extensions like .encrypted, .locked, or specific ransomware-related extensions.</li>
+<li>Data Exfiltration Patterns: Unusual patterns of data being sent out of the network, which might occur before or during the encryption process.</li>
+<li>Processes with High I/O Activity: Processes that exhibit unusually high disk I/O activity, such activity could indicate bulk file encryption.</li>
+</ul>
+<doc-anchor-target id="step-16a31-file-and-directory-discovery-t1083">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a31-file-and-directory-discovery-t1083">#</doc-anchor-trigger>
+        <span>Step 16.A.31 File and Directory Discovery (<a href="https://attack.mitre.org/techniques/T1083/" class="outbound" target="_blank"><span>T1083</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> enumerates target files in mounted file share <code v-pre>Z:</code> drive</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Access to Sensitive or Uncommon Directories: Look for attempts to access directories that contain sensitive information, such as configuration files, user data, or system logs, especially if accessed by unauthorized users.</li>
+<li>Frequent Access to System Directories: Repeated or systematic access to system directories (e.g., /etc, /var, C:\Windows\System32) can indicate an attempt to gather information about the system.</li>
+<li>Use of Discovery Commands: Monitor for unusual use of commands commonly used for file and directory discovery, such as ls, dir, find, tree, grep, or PowerShell equivalents.</li>
+<li>Execution of Scripts for Enumeration: Detection of scripts or automated tools that perform directory enumeration or file listing.</li>
+<li>Access from Unusual Accounts: Attempts to access files or directories from accounts that typically do not perform such actions, especially if the account has elevated privileges.</li>
+<li>Login Anomalies: Logins from unusual locations or at odd hours, followed by file and directory access, can indicate malicious activity.</li>
+</ul>
+<doc-anchor-target id="step-16a32-data-encrypted-for-impact-t1486">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a32-data-encrypted-for-impact-t1486">#</doc-anchor-trigger>
+        <span>Step 16.A.32 Data Encrypted for Impact (<a href="https://attack.mitre.org/techniques/T1486/" class="outbound" target="_blank"><span>T1486</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code>, on <code v-pre>QUIRRELL</code>, encrypts target files in mounted file share <code v-pre>Z:</code> (on <code v-pre>GAUNTSHACK</code>) drive using <code v-pre>256-bit AES</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Mass File Access and Encryption: Sudden and widespread access to a large number of files, followed by modifications, can indicate encryption activities. This often involves changing file extensions to those commonly associated with ransomware.</li>
+<li>Creation of Encrypted File Copies: Detection of new files with encrypted content alongside original files, often with extensions like .encrypted, .locked, or specific ransomware-related extensions.</li>
+<li>Data Exfiltration Patterns: Unusual patterns of data being sent out of the network, which might occur before or during the encryption process.
+Processes with High I/O Activity: Processes that exhibit unusually high disk I/O activity, such activity could indicate bulk file encryption.</li>
+</ul>
+<doc-anchor-target id="step-16a33-defacement-internal-defacement-t1491001">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a33-defacement-internal-defacement-t1491001">#</doc-anchor-trigger>
+        <span>Step 16.A.33 Defacement: Internal Defacement (<a href="https://attack.mitre.org/techniques/T1491/001/" class="outbound" target="_blank"><span>T1491.001</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> creates a ransom note (<code v-pre>C:\Users\gornuk\.ssh\sk12uyqzk.README.txt</code>)</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unexpected File Uploads: Detection of unauthorized file uploads to web servers, which could be used to replace legitimate content with defaced pages.</li>
+<li>Network Traffic Anomalies: Unusual network traffic patterns involving web servers, such as unexpected outbound connections or data transfers.</li>
+<li>Unauthorized Changes to Web Content: Detection of unexpected modifications to web pages or internal applications, such as altered text, images, or links, especially if not part of scheduled updates or maintenance.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">Image=&quot;*main.exe*&quot; EventCode=11 TargetFilename &quot;README.txt&quot;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="step-16a34-modify-registry-t1112">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a34-modify-registry-t1112">#</doc-anchor-trigger>
+        <span>Step 16.A.34 Modify Registry (<a href="https://attack.mitre.org/techniques/T1112/" class="outbound" target="_blank"><span>T1112</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> modifies <code v-pre>HKCU\Control Panel\Desktop</code> via <code v-pre>RegCreateKeyExW</code> and <code v-pre>RegSetValueExW</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Execution Context and Use of Registry Editing Tools: Use of uncommon APIs like RegSetValueExW or tools like reg.exe, regedit, or PowerShell cmdlets to modify the registry, especially by non-administrative users or from unusual locations.</li>
+<li>Unexpected Registry Key Changes: Modifications to critical registry keys or values that are not part of regular system updates or administrative tasks. This includes keys related to startup programs, services, or security settings.</li>
+<li>Unusual Modification of Security-Related Keys: Changes to registry keys that affect security settings, such as disabling Windows Defender, firewall settings, or User Account Control (UAC). Keys like HKCU\Control Panel\Desktop or HKLM being modified by unexpected processes (e.g., BlockLit).</li>
+<li>User Behavior: High-privilege users modifying sensitive keys during unusual times.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">EventCode=13
+| eval is_registry_modify=if(like(TargetObject, &quot;%Control Panel\\Desktop\\Wallpaper%&quot;) AND (Details=&quot;%C:\\ProgramData%&quot;), &quot;true&quot;, &quot;false&quot;)
+| eval is_wallpaper_change=if(is_registry_modify=&quot;true&quot; AND (Image like &quot;%main.exe%&quot;), &quot;true&quot;, &quot;false&quot;)
+| where is_registry_modify=&quot;true&quot;
+| table _time, ComputerName, User, Image, CommandLine, TargetObject</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="step-16a35-defacement-internal-defacement-t1491001">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a35-defacement-internal-defacement-t1491001">#</doc-anchor-trigger>
+        <span>Step 16.A.35 Defacement: Internal Defacement (<a href="https://attack.mitre.org/techniques/T1491/001/" class="outbound" target="_blank"><span>T1491.001</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> changes <code v-pre>GORNUK's</code> wallpaper to <code v-pre>C:\ProgramData\sk12uyqzk.bmp</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unexpected File Uploads: Detection of unauthorized file uploads to web servers, which could be used to replace legitimate content with defaced pages.</li>
+<li>Network Traffic Anomalies: Unusual network traffic patterns involving web servers, such as unexpected outbound connections or data transfers.</li>
+<li>Unauthorized Changes to Web Content: Detection of unexpected modifications to web pages or internal applications, such as altered text, images, or links, especially if not part of scheduled updates or maintenance.</li>
+</ul>
+<doc-anchor-target id="step-16a36-indicator-removal-clear-windows-event-logs-t1070001">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a36-indicator-removal-clear-windows-event-logs-t1070001">#</doc-anchor-trigger>
+        <span>Step 16.A.36 Indicator Removal: Clear Windows Event Logs (<a href="https://attack.mitre.org/techniques/T1070/001/" class="outbound" target="_blank"><span>T1070.001</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> clears Windows Event Logs via EvtClearLog</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Use of Log Clearing Commands: Execution of commands or scripts that clear event logs, such as EvtClearLog, wevtutil cl or PowerShell cmdlets like Clear-EventLog, particularly by non-administrative users or from unusual locations.</li>
+<li>Unexpected Log Clearing: Detection of event logs being cleared without a legitimate reason, especially on critical systems or outside of scheduled maintenance windows.</li>
+<li>Unusual System Activity: Anomalous system activity preceding or following log clearing, such as unexpected process executions, file modifications, or network connections.</li>
+<li>Absence of Expected Logs: Missing expected log entries for critical events, such as security alerts, system errors, or administrative actions.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none"> &quot;LogName=Security&quot; EventCode=1102</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="step-16a37-impair-defenses-disable-windows-event-logging-t1562002">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a37-impair-defenses-disable-windows-event-logging-t1562002">#</doc-anchor-trigger>
+        <span>Step 16.A.37 Impair Defenses: Disable Windows Event Logging (<a href="https://attack.mitre.org/techniques/T1562/002/" class="outbound" target="_blank"><span>T1562.002</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> disables event log channels via <code v-pre>EvtSetChannelConfigProperty</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual System Activity: Anomalous system activity preceding or following changes to logging settings, such as unexpected process executions, file modifications, or network connections.</li>
+<li>Log Anomalies: Sudden absence or reducion of expected log entries, particularly for security-related events, which may indicate that logging has been disabled or tampered with.</li>
+<li>Unauthorized Access to Logging Configurations: Attempts to access or modify logging configurations by users who do not typically perform such tasks, or from unexpected IP addresses or geographic locations.</li>
+</ul>
+<doc-anchor-target id="step-16a38-indicator-removal-file-deletion-t1070004">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-16a38-indicator-removal-file-deletion-t1070004">#</doc-anchor-trigger>
+        <span>Step 16.A.38 Indicator Removal: File Deletion (<a href="https://attack.mitre.org/techniques/T1070/004/" class="outbound" target="_blank"><span>T1070.004</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>LOCKBIT (C:\ProgramData\chocolatey\lib\BlockLit\tools\main.exe)</code> executes <code v-pre>C:\Windows\temp\381jwk.tmp</code> to overwrite, rename, and delete <code v-pre>LOCKBIT</code></p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unexpected Deletion of Executables: Monitor for high-privilege processes executing file deletion commands, particularly in non-standard directories (such as, <code v-pre>\temp\381jwk.tmp</code>).</li>
+<li>Timing-based Process Termination: Monitor for process termination commands that are invoked after file deletion, especially with timing components like sleep.</li>
+<li>Multiple Related File Deletions: Detect simultaneous deletion of executable files and their configuration counterparts, suggesting potential malware cleanup activity.</li>
+<li>Privilege Escalation: Users escalating privileges shortly before or during file deletion activities, which may indicate attempts to gain the necessary permissions to delete protected files.</li>
+<li>Unusual Access Times: File deletions occurring outside normal business hours or from accounts that do not typically perform maintenance tasks.</li>
+</ul>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer class="clear-both">
+                            
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../../enterprise/lockbit/defense_measures/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">Lock​Bit Defense Measures</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../../enterprise/lockbit/emulation_plan/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                                                <span class="block mt-1">Lock​Bit Emulation Plans</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between">
+                                <div>
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                        <li>
+                                            <a class="inline-flex items-center mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="https://github.com/attackevals/ael">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                                    <g fill="currentColor">
+                                                        <symbol id="mark-github-icon-symbol" viewBox="0 0 16 16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></symbol><use xlink:href="#mark-github-icon-symbol" />
+                                                    </g>
+                                                </svg>
+                                                <span>ATTACK Evaluations Library GitHub</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2024. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="docs-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "LOCKBIT Detection Analysis", level: 4, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

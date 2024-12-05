@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+# traffic forwarding
+
+# first flush the rules
+iptables -t nat -F
+
+############ rules ##############
+{% for redirect in redirects %}
+iptables -t nat -A PREROUTING -p tcp -d {{ redirect.requested_ip }} --dport {{ redirect.requested_port }} -j DNAT --to-destination {{ redirect.redirected_ip }}:{{ redirect.redirected_port }}  # {{ redirect.requested_url }} - {{ redirect.redirected_name }}
+{% endfor %}
+iptables -t nat -A POSTROUTING -j MASQUERADE
+
+# print out updated nat
+iptables -L -t nat -v

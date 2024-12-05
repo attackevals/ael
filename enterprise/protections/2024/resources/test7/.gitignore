@@ -1,0 +1,5 @@
+target/*
+*.log
+resources/*
+!resources/.gitkeep
+*/Cargo.lock

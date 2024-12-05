@@ -1,0 +1,20 @@
+---
+- name: Common installs and configs across all Windows desktops
+  hosts: win_all_desktops
+  strategy: free
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: Install dev packages and tooling via choco
+      win_chocolatey:
+        name:
+          - git
+          - libreoffice-still
+          - python
+          - vscode
+          - notepadplusplus
+          - cyberduck.install
+        state: present
+        ignore_checksums: yes

@@ -1,0 +1,25 @@
+---
+- name: linux and mac cleanup
+  hosts: linux_servers, mac_all_desktops
+  gather_facts: no
+
+  tasks:
+    - name: cleanup shell history v1 zsh
+      ansible.builtin.shell:
+        cmd: history -p
+      ignore_errors: yes
+
+    - name: cleanup shell history v2 bash
+      ansible.builtin.shell:
+        cmd: echo > ~/.bash_history
+
+    - name: backup cleanup shell history
+      ansible.builtin.shell:
+        cmd: echo > ~/.zsh_history
+
+    - name: cleanup dirs
+      ansible.builtin.file:
+        path: "/opt/filegen"
+        state: absent
+        force: yes
+      become: yes

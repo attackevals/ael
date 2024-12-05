@@ -1,0 +1,17 @@
+# evals netplan configuration for secondary/tertiary nics for redirectors
+network:
+    ethernets:
+  {% for nic in nics %}
+      {{ nic.nic }}:
+            addresses:
+  {% for ip in nic.ips %}
+            - {{ ip.ip }}
+  {% endfor %}
+
+            dhcp4: true
+            dhcp6: false
+            match:
+              name: {{ nic.nic }}
+  {% endfor %}
+
+    version: 2

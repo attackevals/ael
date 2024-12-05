@@ -1,0 +1,108 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 26,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "default",
+      "binaryDir": "${sourceDir}/build",
+      "installDir": "${sourceDir}/install",
+      "generator": "Ninja Multi-Config",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "CMAKE_MODULE_PATH": "${sourceDir}/cmake",
+        "CMAKE_CXX_STANDARD": "26",
+        "CMAKE_C_STANDARD": "23",
+        "CMAKE_OSX_ARCHITECTURES": "x86_64",
+        "CMAKE_CONFIGURATION_TYPES": "Debug;Release;",
+        "CMAKE_CXX_COMPILER": "/usr/bin/clang++",
+        "TEST10_SIGN": "ON"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Darwin"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "release",
+      "description": "Build Protections Test 10 targets with release configuration",
+      "configurePreset": "default",
+      "inheritConfigureEnvironment": true,
+      "configuration": "Release",
+      "targets": [
+        "test10"
+      ]
+    },
+    {
+      "name": "debug",
+      "description": "Build Protections Test 10 targets with debug configuration",
+      "configurePreset": "default",
+      "inheritConfigureEnvironment": true,
+      "configuration": "Debug",
+      "targets": [
+        "test10"
+      ]
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "test10",
+      "configurePreset": "default",
+      "configuration": "Debug",
+      "inheritConfigureEnvironment": true
+    },
+    {
+      "name": "all",
+      "configurePreset": "default",
+      "configuration": "Debug",
+      "inheritConfigureEnvironment": true
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "cicd-debug",
+      "description": "Build all Protections Test 10 debug targets",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "default"
+        },
+        {
+          "type": "build",
+          "name": "debug"
+        },
+        {
+          "type": "test",
+          "name": "all"
+        }
+      ]
+    },
+    {
+      "name": "cicd-release",
+      "description": "Build all Protections Test 10 release targets",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "default"
+        },
+        {
+          "type": "build",
+          "name": "release"
+        },
+        {
+          "type": "test",
+          "name": "all"
+        }
+      ]
+    }
+  ]
+}

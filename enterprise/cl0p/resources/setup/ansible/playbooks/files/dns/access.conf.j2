@@ -1,0 +1,9 @@
+server:
+    # listen on all interfaces
+    interface: 0.0.0.0
+    # 10.x always included
+    access-control: 10.0.0.0/8 allow
+    # add non-rfc1918 cidrs
+  {% for cidr in cidrs_list %}
+    access-control: {{ cidr.prefix }} allow
+  {% endfor %}

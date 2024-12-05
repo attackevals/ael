@@ -1,0 +1,3 @@
+﻿"Path","State","GpoName","Domain","OUDN","OUName","OUCanonical","Index","TotalCount"
+"cn={24eb7489-9428-4736-aa81-7d8e1a3c7f3e},cn=policies,cn=system,DC=decryptmalfoy,DC=net","0","ER6-DC1","DECRYPTMALFOY.NET","OU=Domain Controllers,DC=decryptmalfoy,DC=net","Domain Controllers","decryptmalfoy.net/Domain Controllers","0","2"
+"CN={6AC1786C-016F-11D2-945F-00C04fB984F9},CN=Policies,CN=System,DC=decryptmalfoy,DC=net","0","Default Domain Controllers Policy","DECRYPTMALFOY.NET","OU=Domain Controllers,DC=decryptmalfoy,DC=net","Domain Controllers","decryptmalfoy.net/Domain Controllers","1","2"

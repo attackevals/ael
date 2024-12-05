@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H74RC38PBM"></script>
+    <script data-cfasync="false">window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-H74RC38PBM');</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-root" content="/ael">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.786727257842">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.6.0">
+
+    <!-- Primary Meta Tags -->
+    <title>LockBit</title>
+    <meta name="title" content="LockBit">
+    <meta name="description" content="LockBit is a ransomware variant used in many campaigns by operating on a ransomware-as-a-service basis.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://attackevals.github.io/ael/enterprise/lockbit/resources/lockbit/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://attackevals.github.io/ael/enterprise/lockbit/resources/lockbit/">
+    <meta property="og:title" content="LockBit">
+    <meta property="og:description" content="LockBit is a ransomware variant used in many campaigns by operating on a ransomware-as-a-service basis.">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://attackevals.github.io/ael/enterprise/lockbit/resources/lockbit/">
+    <meta property="twitter:title" content="LockBit">
+    <meta property="twitter:description" content="LockBit is a ransomware variant used in many campaigns by operating on a ransomware-as-a-service basis.">
+
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="../../../../favicon.png" rel="icon">
+    <link href="../../../../resources/css/retype.css?v=3.6.0.786727257842" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.786727257842" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.786727257842" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.6.0.786727257842" defer></script>
+</head>
+<body>
+    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    
+        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="docs-sidebar-toggle"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="docs-site-logo" href="../../../../" class="flex items-center leading-snug text-xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../../../images/attackevals-logo.png">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../../../images/attackevals-logo.png">
+                            </span>
+                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">ATTACK Evaluation Library</span>
+                        </a>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-gray-400 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 dark:placeholder-dark-400" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="docs-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <div class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            
+                <!-- Render this div, if config.showSidebarFilter is `true` -->
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                </div>
+            
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 dark:bg-dark-850">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="docs-markdown" id="docs-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="docs-sidebar-right-toggle"></div>
+                                <nav class="breadcrumb" aria-label="Breadcrumb">
+                                    <ol role="list">
+                                        <li class="pr-4">
+                                            <a href="../../../../" class="pr-4">
+                                                ATT&​CK Evaluations Library
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Enterprise
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/lockbit/" class="pr-4">
+                                                Lock​Bit
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/lockbit/resources/" class="pr-4">
+                                                Resources
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/lockbit/resources/lockbit/" class="pr-4">
+                                                Lock​Bit
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                
+                                <!-- Page content  -->
+<doc-anchor-target id="lockbit" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#lockbit">#</doc-anchor-trigger>
+        <span>LockBit</span>
+    </h1>
+</doc-anchor-target>
+<p>LockBit is a ransomware variant used in many campaigns by operating on a ransomware-as-a-service basis.
+The variant in this repository emulates several key features and TTPs of LockBit, drawing mostly from version 3.0
+of the ransomware.</p>
+<p>This project consists of several components:</p>
+<ul>
+<li>main LockBit ransomware executable (defined in <code v-pre>src/lockbit_main</code>): contains the main encryption logic and other features such as defense evasion, impact, discovery, and lateral movement</li>
+<li>minimal LockBit ransomware executable (defined in <code v-pre>src/lockbit_minimal</code>): only performs the encryption-related tasks.
+This component is used for LockBit alternative steps in the event that the main ransomware executable is blocked or fails
+unexpectedly during execution.</li>
+<li>LockBit self-destruct helper executable (defined in <code v-pre>src/self_del_helper</code>): executable that is embedded as a resource
+within the LockBit main executable. This executable will rename the main LockBit executable several times and overwrite
+it prior to deleting it from disk.</li>
+</ul>
+<p>Note: the following features and components have been removed for public release:</p>
+<ul>
+<li>AES and RSA encryption/decryption capabilities</li>
+<li>Usage of crypto++ library</li>
+<li>LockBit decryptor cleanup executable</li>
+<li>LockBit packer</li>
+</ul>
+<doc-anchor-target id="main-executable-features">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#main-executable-features">#</doc-anchor-trigger>
+        <span>Main Executable Features</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li><p>Current username, domain, and hostname discovery<sup><a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-075a" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></p>
+</li>
+<li><p>System information (OS version and architecture)<sup><a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-075a" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></p>
+</li>
+<li><p>Checks if a global mutex <code v-pre>Global\&lt;DJB2 hash of hostname&gt;</code> currently exists to ensure unique execution on the current host.<sup><a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-075a" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></p>
+<ul>
+<li>Original ransomware used MD4 hash of hostname<sup><a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-075a" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></li>
+</ul>
+</li>
+<li><p>Checks system install UI and default UI languages to avoid executing on systems in certain countries. Terminates early if the system language is any of the following<sup><a href="https://www.antiy.net/p/analysis-of-lockbit-ransomware-samples-and-considerations-for-defense-against-targeted-ransomware/" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-075a" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-165a" class="outbound" target="_blank"><span>3</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">0x2801 // ar-SY - Arabic (Syria)
+0x0819 // ru-MD - Russian (Moldova)
+0x042B // hy-AM - Armenian (Armenia)
+0x0419 // ru-RU - Russian (Russia)
+0x742C // az-Cyrl - Azerbaijani (Cyrillic Azerbaijani)
+0x0428 // tg-Cyrl-TJ - Tajik (Cyrillic Tajikistan)
+0x782C // az-Latn - Azerbaijani (Latin Azerbaijani)
+0x042C // az-Latn-AZ - Azerbaijani (Latin Azerbaijani (Azerbaijan))
+0x0442 // tk-TM - Turkmenistan (Turkmenistan)
+0x0423 // be-BY - Belarusian (Belarus)
+0x0444 // tt-RU - Tatar (Russia)
+0x0437 // ka-GE - Georgian (Georgia)
+0x0422 // uk-UA - Ukrainian (Ukraine)
+0x043F // kk-KZ - Kazakh (Kazakhstan)
+0x0843 // uz-Cyrl-UZ - Uzbek (Cyrillic Uzbekistan)
+0x0440 // ky-KG - (Kyrgyzstan)
+0x0443 // uz-Latn-UZ - Uzbek (Latin Uzbekistan)
+0x0818 // ro-MD - Romanian (Moldova)</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p>Enumerates logical drives on the local machine using the <code v-pre>GetLogicalDriveStringsW</code> API call to find additional encryption targets.<sup><a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-075a" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.trendmicro.com/vinfo/us/security/news/ransomware-spotlight/ransomware-spotlight-lockbit" class="outbound" target="_blank"><span>11</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.sangfor.com/farsight-labs-threat-intelligence/cybersecurity/lockbit-green-ransomware-conti-based-encryptor" class="outbound" target="_blank"><span>16</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></p>
+</li>
+<li><p>Impairs defenses by disabling the Windows firewall (domain and standard profiles) via
+registry edits. The following registry keys and values are created/modified:<sup><a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-075a" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-165a" class="outbound" target="_blank"><span>3</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></p>
+<ul>
+<li><code v-pre>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile</code>
+<ul>
+<li><code v-pre>EnableFirewall</code> set to <code v-pre>0</code></li>
+</ul>
+</li>
+<li><code v-pre>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile</code>
+<ul>
+<li><code v-pre>EnableFirewall</code> set to <code v-pre>0</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Pings hosts on local network to find targets for lateral movement via PsExec<sup><a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-075a" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://thedfirreport.com/2020/06/10/lockbit-ransomware-why-you-no-spread/" class="outbound" target="_blank"><span>9</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></p>
+</li>
+<li><p>Laterally moves to remote hosts on the local network via PsExec<sup><a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-075a" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://redpiranha.net/news/look-lockbit-3-ransomware" class="outbound" target="_blank"><span>4</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></p>
+<ul>
+<li>Currently relies on <code v-pre>PsExec64.exe</code> already existing on the initial target host</li>
+<li>The PsExec command executed is:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-powershell"><code v-pre class="language-powershell">PsExec64.exe -accepteula \\target1,target2,... -u psexec_user -p psexec_password -s -d -f -c &quot;C:\path\to\current\lockbit\binary&quot; -d -w -pw lockbit_access_token</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p>Terminates processes that may interfere with encryption<sup><a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-075a" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-165a" class="outbound" target="_blank"><span>3</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.cybereason.com/hubfs/dam/collateral/reports/Threat-Analysis-Assemble-LockBit-3.pdf" class="outbound" target="_blank"><span>5</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></p>
+<ul>
+<li>Processes are terminated if the case-insensitive DJB2 hash of the process name matches the list of
+target process name hashes in the configuration.<sup><a href="https://www.trendmicro.com/en_za/research/22/g/lockbit-ransomware-group-augments-its-latest-variant--lockbit-3-.html" class="outbound" target="_blank"><span>10</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></li>
+</ul>
+</li>
+<li><p>Terminates and disables services that may interfere with encryption<sup><a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-075a" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-165a" class="outbound" target="_blank"><span>3</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.cybereason.com/hubfs/dam/collateral/reports/Threat-Analysis-Assemble-LockBit-3.pdf" class="outbound" target="_blank"><span>5</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></p>
+</li>
+<li><p>Clears the Recycle Bin<sup><a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-075a" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></p>
+</li>
+<li><p>Clears Windows Event logs and disables event log channels<sup><a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-075a" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-165a" class="outbound" target="_blank"><span>3</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></p>
+</li>
+<li><p>Deletes shadow copies using WMI and Windows API calls. Shadow copies are discovered using WMI query <code v-pre>SELECT * FROM Win32_ShadowCopy</code><sup><a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-075a" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.cybereason.com/hubfs/dam/collateral/reports/Threat-Analysis-Assemble-LockBit-3.pdf" class="outbound" target="_blank"><span>5</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.trendmicro.com/en_za/research/22/g/lockbit-ransomware-group-augments-its-latest-variant--lockbit-3-.html" class="outbound" target="_blank"><span>10</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup>.</p>
+</li>
+<li><p>Disables automatic Windows recovery features by setting the boot loader display to ignore all boot failures and by disabling automatic repair at boot. This is done by creating the following processes:<sup><a href="https://www.cybereason.com/blog/threat-analysis-report-lockbit-2.0-all-paths-lead-to-ransom" class="outbound" target="_blank"><span>14</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a><a href="https://symantec-enterprise-blogs.security.com/blogs/threat-intelligence/lockbit-targets-servers" class="outbound" target="_blank"><span>15</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,</sup></p>
+<ul>
+<li><code v-pre>bcdedit.exe /set {default} bootstatuspolicy ignoreallfailures</code></li>
+<li><code v-pre>bcdedit.exe /set {default} recoveryenabled no</code></li>
+</ul>
+</li>
+<li><p>Sets a custom icon for the encrypted file extension <code v-pre>.sk12uyqzk</code> via registry writes:<sup><a href="https://www.antiy.net/p/analysis-of-lockbit-ransomware-samples-and-considerations-for-defense-against-targeted-ransomware/" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-075a" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-165a" class="outbound" target="_blank"><span>3</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></p>
+<ul>
+<li>Drops the icon image resource to disk at <code v-pre>%PROGRAMDATA%\sk12uyqzk.ico</code></li>
+<li>Creates registry key <code v-pre>HKCR\.sk12uyqzk</code> and sets its default value to <code v-pre>sk12uyqzk</code></li>
+<li>Creates registry key <code v-pre>HKCR\sk12uyqzk\DefaultIcon</code> and sets its default value to <code v-pre>C:\ProgramData\sk12uyqzk.ico</code></li>
+</ul>
+</li>
+<li><p>Generates a pair of 2048-bit RSA session keys to encrypt the AES keys used for file encryption (removed for public release)<sup><a href="https://redpiranha.net/news/look-lockbit-3-ransomware" class="outbound" target="_blank"><span>4</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://blog.lexfo.fr/lockbit-malware.html" class="outbound" target="_blank"><span>13</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></p>
+<ul>
+<li>The keys are stored in the registry at <code v-pre>HKCU\SOFTWARE\BlockBlit</code> under the <code v-pre>entire</code> (encrypted private session key) and <code v-pre>pub</code> (public session key) values. The original malware would write the keys to <code v-pre>HKCU\Software\LockBit</code> at the <code v-pre>full</code> and <code v-pre>Public</code> values.<sup><a href="https://news.sophos.com/en-us/2020/04/24/lockbit-ransomware-borrows-tricks-to-keep-up-with-revil-and-maze/" class="outbound" target="_blank"><span>12</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://blog.lexfo.fr/lockbit-malware.html" class="outbound" target="_blank"><span>13</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></li>
+</ul>
+</li>
+<li><p>Enumerates target files from each discovered drive and encrypts them using 256-bit AES in CTR mode (actual encryption removed for public release).<sup><a href="https://www.antiy.net/p/analysis-of-lockbit-ransomware-samples-and-considerations-for-defense-against-targeted-ransomware/" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://redpiranha.net/news/look-lockbit-3-ransomware" class="outbound" target="_blank"><span>4</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://blog.lexfo.fr/lockbit-malware.html" class="outbound" target="_blank"><span>13</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></p>
+<ul>
+<li>A random AES key is generated for each file</li>
+<li>Only the first 4KB of the file are encrypted. If the file is less than 4KB, the entire file is encrypted.</li>
+<li>Encrypts the AES key using the RSA private session key and appends the IV and encrypted AES key to the file</li>
+<li>The <code v-pre>.sk12uyqzk</code> extension is appended to the file path on successful encryption</li>
+<li>The enumeration/encryption routine will skip directory names, file names, and file extensions that
+are specified in the configuration. String checks are performed using case-insensitive DJB2 hashes and checking
+for the hash values in the configuration.<sup><a href="https://www.trendmicro.com/en_za/research/22/g/lockbit-ransomware-group-augments-its-latest-variant--lockbit-3-.html" class="outbound" target="_blank"><span>10</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></li>
+</ul>
+</li>
+<li><p>Drops a ransom note <code v-pre>sk12uyqzk.README.txt</code> in each traversed directory when encrypting files. Ransom note contents are as follows:<sup><a href="https://www.antiy.net/p/analysis-of-lockbit-ransomware-samples-and-considerations-for-defense-against-targeted-ransomware/" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-075a" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://redpiranha.net/news/look-lockbit-3-ransomware" class="outbound" target="_blank"><span>4</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">~~~ BlockLit 3.0 the world's fastest and most stable ransomware from 2019 ~~~
+&gt;&gt;&gt;&gt;&gt; Your data has been stolen and encrypted.
+If you don't pay the ransom, your data will be published on our TOR darknet sites. Keep in mind that once your data appears on our leak site, it could be bought by your competitors at any second, so don't hesitate for a long time. The sooner you pay the ransom, the sooner your company will be safe.</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p>Changes current user&#x27;s desktop wallpaper via registry edit:<sup><a href="https://www.antiy.net/p/analysis-of-lockbit-ransomware-samples-and-considerations-for-defense-against-targeted-ransomware/" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-075a" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-165a" class="outbound" target="_blank"><span>3</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></p>
+<ul>
+<li>Drops the desktop wallpaper image resource to disk at <code v-pre>%PROGRAMDATA%\sk12uyqzk.bmp</code></li>
+<li>Sets <code v-pre>Wallpaper</code> value for registry key <code v-pre>HKCU\Control Panel\Desktop</code> to <code v-pre>C:\ProgramData\sk12uyqzk.bmp</code></li>
+</ul>
+</li>
+<li><p>If the <code v-pre>enable_self_del</code> configuration setting is set to <code v-pre>true</code>, or if the <code v-pre>-d</code> command line flag is set, then
+LockBit will perform its self-destruct routine<sup><a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-075a" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-165a" class="outbound" target="_blank"><span>3</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.cybereason.com/hubfs/dam/collateral/reports/Threat-Analysis-Assemble-LockBit-3.pdf" class="outbound" target="_blank"><span>5</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.trendmicro.com/en_za/research/22/g/lockbit-ransomware-group-augments-its-latest-variant--lockbit-3-.html" class="outbound" target="_blank"><span>10</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup>:</p>
+<ul>
+<li>Close the handle to its global mutex</li>
+<li>Drop an auxiliary binary (stored as a resource) to <code v-pre>C:\Windows\Temp\381jwk.tmp</code> and then execute it.
+This binary will overwrite the LockBit executable with the <code v-pre>A</code> character, rename it by iterating through
+the uppercase letters A through Z (e.g. <code v-pre>lb.exe</code> will be renamed to <code v-pre>AAAAAA</code>, <code v-pre>BBBBBB</code>, ... <code v-pre>ZZZZZZ</code>,
+maintaining the same filename length), for a total of 26 renaming events. Finally, the auxiliary binary will
+delete the renamed LockBit executable from disk.</li>
+<li>Terminate after starting the auxiliary self-destruct process.</li>
+</ul>
+</li>
+<li><p>XOR-encrypts important strings and resources, such as its configuration, at compile-time using a hardcoded XOR key and decrypts them at run time
+to hinder static analysis.<sup><a href="https://www.trendmicro.com/en_za/research/22/g/lockbit-ransomware-group-augments-its-latest-variant--lockbit-3-.html" class="outbound" target="_blank"><span>10</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></p>
+<ul>
+<li>Resources are encrypted using the following XOR hex key:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">21be1e89c74b5641e6de86bc1f828ae505baab5b84c19411b0a0587c28f0eab1f77fa79774d19816a9ebaec7d265d1629cbb43eb3d0d8156182b08bb5d57f3a0b06ea7b8696fff3615d78a4aa89c58e5e549714b3daaf1732a0f307ab0545fd9cab2949a2056904c6be6a32dbbae92979cad1f142de9016ca5826ed79bcd1032</code></pre>
+</doc-codeblock></div>
+<ul>
+<li>Strings are encrypted using the following XOR hex key:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">ef94cc238aafed14f4dfa08e95fc16e37c55cc92e602ee18b2d92e5ad3f6da34efba966d355538dcea76e3411bcde9548243a029382bb7695098debe0cd0b530c358dc2eef0ef193b1d8c67ff63b38b3439bdc8237314f19c5bfa40f09f20c50ff2a4528a3f8fb4c8dce5a15ff3a856852bb6ca8b722771ce4144480d7958cf7</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p>Hides threads (main thread and threads created for thread pools) from debuggers using the <code v-pre>NtSetInformationThread</code>
+API call.<sup><a href="https://www.antiy.net/p/analysis-of-lockbit-ransomware-samples-and-considerations-for-defense-against-targeted-ransomware/" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>,<a href="https://www.trendmicro.com/en_za/research/22/g/lockbit-ransomware-group-augments-its-latest-variant--lockbit-3-.html" class="outbound" target="_blank"><span>10</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup></p>
+</li>
+<li><p>Uses API hashing to hide certain Windows API names from the IAT.<sup><a href="https://redpiranha.net/news/look-lockbit-3-ransomware" class="outbound" target="_blank"><span>4</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></sup>
+DJB2 string hashing is used for the API names, and the API addresses are XOR-encrypted
+to obfuscate them in memory. The following API calls are hashed:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">ChangeServiceConfigW
+CloseServiceHandle
+CoCreateInstance
+CoInitializeEx
+CoInitializeSecurity
+ControlService
+CoSetProxyBlanket
+CreateMutexW
+CreatePipe
+CreateProcessW
+CreateThread
+CreateToolhelp32Snapshot
+CoUninitialize
+EnumDependentServicesW
+EvtClearLog
+EvtClose
+EvtNextChannelPath
+EvtOpenChannelConfig
+EvtOpenChannelEnum
+EvtSaveChannelConfig
+EvtSetChannelConfigProperty
+FindResourceW
+GetAdaptersInfo
+GetComputerNameW
+GetComputerNameExW
+GetCurrentThread
+GetExitCodeProcess
+GetLogicalDriveStringsW
+GetUserNameExW
+IcmpCloseHandle
+IcmpCreateFile
+IcmpSendEcho
+LoadResource
+LockResource
+MoveFileW
+NtQueryDefaultUILanguage
+NtQueryInstallUILanguage
+NtSetInformationThread
+OpenProcess
+OpenSCManagerW
+OpenServiceW
+PeekNamedPipe
+Process32FirstW
+Process32NextW
+QueryServiceStatusEx
+RegCloseKey
+RegCreateKeyExW
+RegSetValueExW
+RtlGetVersion
+SetFilePointer
+SetHandleInformation
+SizeofResource
+WaitForSingleObject</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+<doc-anchor-target id="main-executable-usage">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#main-executable-usage">#</doc-anchor-trigger>
+        <span>Main Executable Usage</span>
+    </h2>
+</doc-anchor-target>
+<p>When executing LockBit, you can provide command-line arguments to adjust its behavior and override the options
+specified in the configuration file.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">lockbit.exe [-d] [-ps] [-w] [-path root_dir] </code></pre>
+</doc-codeblock></div>
+<ul>
+<li><code v-pre>-d</code>: flag that toggles the self-destruction feature</li>
+<li><code v-pre>-ps</code>: flag that toggles the propagation via ping and PsExec</li>
+<li><code v-pre>-w</code>: flag that toggles the wallpaper change after enumerating and encrypting files</li>
+<li><code v-pre>-pw</code>: specifies the password to decrypt itself for execution (unused for public release)</li>
+<li><code v-pre>-path</code>: takes a directory path to restrict LockBit encryption to only that directory.
+If not specified, LockBit will enumerate and encrypt files starting at each drive</li>
+</ul>
+<doc-anchor-target id="minimal-executable">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#minimal-executable">#</doc-anchor-trigger>
+        <span>Minimal Executable</span>
+    </h2>
+</doc-anchor-target>
+<p>The minimal executable only contains the minimal features to perform file enumeration and encryption:</p>
+<ul>
+<li>Enumerates logical drives on the local machine the same way as the main executable.</li>
+<li>Sets a custom icon for the encrypted file extension <code v-pre>.sk12uyqzk</code> the same way as the main executable.</li>
+<li>Generates the 2048-bit RSA session keys and saves them in the registry the same way as the main executable</li>
+<li>Enumerates and encrypts target files and drops ransom notes the same way as the main executable.</li>
+<li>Changes current user&#x27;s desktop wallpaper the same way as the main executable.</li>
+<li>XOR-encrypts important strings and its configuration at compile-time, just like the main executble.</li>
+<li>Does not leverage API hashing.</li>
+</ul>
+<p>When executing the minimal version of LockBit, you can provide command-line arguments to adjust its behavior
+and override the options specified in the configuration file.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">lockbit_minimal.exe [-path root_dir] </code></pre>
+</doc-codeblock></div>
+<ul>
+<li><code v-pre>-path</code>: takes a directory path to restrict LockBit encryption to only that directory.
+If not specified, LockBit will enumerate and encrypt files starting at each drive</li>
+</ul>
+<doc-anchor-target id="configuration">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#configuration">#</doc-anchor-trigger>
+        <span>Configuration</span>
+    </h2>
+</doc-anchor-target>
+<p>Configuration JSON files are located in the <code v-pre>config</code> folder and set the default behavior for the main and minimal executables.
+Some options are overridable by command-line arguments. <code v-pre>config\config.json</code> contains the production configuration
+for the main and minimal executables, and <code v-pre>config\unit_test_config.json</code> contains the configuration used in certain unit tests.</p>
+<p>To use a different configuration file when building the executable, set the <code v-pre>CONFIG_PATH</code> variable in
+<code v-pre>src\CMakeLists.txt</code> accordingly for the <code v-pre>main-lib</code> target compile definitions.
+Alternatively, for testing purposes, you can adjust the pre-provided <code v-pre>config\test_config.json</code> configuration file
+and use that when building LockBit components by setting the <code v-pre>LOCKBIT_TEST_CONFIG</code> cmake option to <code v-pre>ON</code>.</p>
+<p>Below is an example JSON configuration, with explanations for each field:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+    &quot;enable_enc&quot;: false,
+    &quot;enable_enum&quot;: true,
+    &quot;enable_prop&quot;: true,
+    &quot;enable_self_del&quot;: true,
+    &quot;disable_boot_recovery&quot;: true,
+    &quot;disable_av&quot;: true,
+    &quot;empty_recycle&quot;: true,
+    &quot;check_ui_lang&quot;: true,
+    &quot;check_mutex&quot;: true,
+    &quot;terminate_processes&quot;: true,
+    &quot;terminate_services&quot;: true,
+    &quot;change_wallpaper&quot;: true,
+    &quot;change_icon&quot;: true,
+    &quot;clear_evt_log&quot;: true,
+    &quot;delete_shadow&quot;: true,
+    &quot;excluded_filenames&quot;: [
+        &quot;autorun.inf&quot;, 
+        &quot;boot.ini&quot;, 
+        &quot;bootfont.bin&quot;, 
+        &quot;bootsect.bak&quot;, 
+        &quot;desktop.ini&quot;, 
+        &quot;iconcache.db&quot;, 
+        &quot;ntldr&quot;, 
+        &quot;ntuser.dat&quot;, 
+        &quot;ntuser.dat.log&quot;, 
+        &quot;ntuser.ini&quot;, 
+        &quot;thumbs.db&quot;, 
+        &quot;GDIPFONTCACHEV1.DAT&quot;, 
+        &quot;d3d9caps.dat&quot;,
+        &quot;lb.log&quot;
+    ],
+    &quot;excluded_dirs&quot;: [
+        &quot;$recycle.bin&quot;,
+        &quot;config.msi&quot;,
+        &quot;$windows.~bt&quot;,
+        &quot;$windows.~ws&quot;,
+        &quot;windows&quot;,
+        &quot;boot&quot;,
+        &quot;program files&quot;,
+        &quot;program files (x86)&quot;,
+        &quot;programdata&quot;,
+        &quot;system volume information&quot;,
+        &quot;tor browser&quot;,
+        &quot;windows.old&quot;,
+        &quot;intel&quot;,
+        &quot;msocache&quot;,
+        &quot;perflogs&quot;,
+        &quot;x64dbg&quot;,
+        &quot;public&quot;,
+        &quot;all users&quot;,
+        &quot;default&quot;,
+        &quot;microsoft&quot;,
+        &quot;ghosts&quot;,
+        &quot;ghosts_client&quot;
+    ],
+    &quot;excluded_ext&quot;: [
+        &quot;386&quot;, &quot;adv&quot;, &quot;ani&quot;, &quot;bat&quot;, &quot;bin&quot;, &quot;cab&quot;, &quot;cmd&quot;, &quot;com&quot;, &quot;cpl&quot;, &quot;cur&quot;,
+        &quot;deskthemepack&quot;, &quot;diagcab&quot;, &quot;diagcfg&quot;, &quot;diagpkg&quot;, &quot;dll&quot;, &quot;drv&quot;, &quot;exe&quot;,
+        &quot;hlp&quot;, &quot;icl&quot;, &quot;icns&quot;, &quot;ico&quot;, &quot;ics&quot;, &quot;idx&quot;, &quot;ldf&quot;, &quot;lnk&quot;, &quot;mod&quot;, &quot;mpa&quot;,
+        &quot;msc&quot;, &quot;msp&quot;, &quot;msstyles&quot;, &quot;msu&quot;, &quot;nls&quot;, &quot;nomedia&quot;, &quot;ocx&quot;, &quot;prf&quot;, &quot;ps1&quot;,
+        &quot;rom&quot;, &quot;rtp&quot;, &quot;scr&quot;, &quot;shs&quot;, &quot;spl&quot;, &quot;sys&quot;, &quot;theme&quot;, &quot;themepack&quot;, &quot;wpx&quot;,
+        &quot;lock&quot;, &quot;key&quot;, &quot;hta&quot;, &quot;msi&quot;, &quot;pdb&quot;, &quot;search-ms&quot;, &quot;sk12uyqzk&quot;
+    ],
+    &quot;target_processes&quot;: [
+        &quot;sql&quot;, &quot;oracle&quot;, &quot;ocssd&quot;, &quot;dbsnmp&quot;,
+        &quot;synctime&quot;, &quot;agntsvc&quot;, &quot;isqlplussvc&quot;,
+        &quot;xfssvccon&quot;, &quot;mydesktopservice&quot;, &quot;ocautoupds&quot;,
+        &quot;encsvc&quot;, &quot;firefox&quot;, &quot;tbirdconfig&quot;,
+        &quot;mydesktopqos&quot;, &quot;ocomm&quot;, &quot;dbeng50&quot;,
+        &quot;sqbcoreservice&quot;, &quot;scalc&quot;, &quot;infopath&quot;,
+        &quot;sbase&quot;, &quot;onenote&quot;, &quot;outlook&quot;,
+        &quot;simpres&quot;, &quot;steam&quot;, &quot;thebat&quot;, &quot;thunderbird&quot;,
+        &quot;sdraw&quot;, &quot;swriter&quot;,&quot;wordpad&quot;, &quot;notepad&quot;,
+        &quot;calc&quot;, &quot;wuauclt&quot;, &quot;onedrive&quot;, &quot;soffice&quot;
+    ],
+    &quot;target_services&quot;: [
+        &quot;vss&quot;, &quot;sql&quot;, &quot;svc$&quot;,
+        &quot;memtas&quot;, &quot;mepocs&quot;, &quot;msexchange&quot;,
+        &quot;veeam&quot;, &quot;backup&quot;,
+        &quot;GxVss&quot;, &quot;GxBlr&quot;, &quot;GxFWD&quot;,
+        &quot;GxCVD&quot;, &quot;GxCIMgr&quot;
+    ],
+    &quot;psexec_user&quot;: &quot;dummyusername&quot;,
+    &quot;psexec_pass&quot;: &quot;dummypassword&quot;,
+    &quot;extension&quot;: &quot;sk12uyqzk&quot;,
+    &quot;strict_include_ranges&quot;: [&quot;10.0.2.0/28&quot;, &quot;10.0.3.0/28&quot;],
+    &quot;strict_include_hosts&quot;: [&quot;10.0.2.4&quot;, &quot;10.0.3.2&quot;],
+    &quot;note_contents&quot;: &quot;~~~ BlockBlit 3.0 the world's fastest and most stable ransomware from 2019 ~~~\n&gt;&gt;&gt;&gt;&gt; Your data has been stolen and encrypted.\nIf you don't pay the ransom, your data will be published on our TOR darknet sites. Keep in mind that once your data appears on our leak site, it could be bought by your competitors at any second, so don't hesitate for a long time. The sooner you pay the ransom, the sooner your company will be safe.&quot;,
+    &quot;rsa_pub&quot;: &quot;base64-encoded RSA public key&quot;,
+    &quot;rsa_priv&quot;: &quot;base64-encoded RSA private key&quot;
+}</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><code v-pre>enable_enc</code>: boolean that determines whether or not to encrypt valid target files when enumerating them.</li>
+<li><code v-pre>enable_enum</code>: boolean that determines whether or not to enumerate files.
+Useful for skipping this step when testing or debugging.</li>
+<li><code v-pre>enable_prop</code>: boolean that enables/disables propagation via ping and PsExec.</li>
+<li><code v-pre>enable_self_del</code>: boolean that enables/disables the self destruction feature.</li>
+<li><code v-pre>disable_boot_recovery</code>: boolean that determines whether or not to disable boot recovery using <code v-pre>bcdedit.exe</code></li>
+<li><code v-pre>disable_av</code>: boolean that determines whether or not to disable security features.</li>
+<li><code v-pre>empty_recycle</code>: boolean that determines whether or not to empty the recycle bin.</li>
+<li><code v-pre>check_ui_lang</code>: boolean that determines whether or not to perform the system UI language check.</li>
+<li><code v-pre>check_mutex</code>: boolean that determines whether or not to perform the mutex check</li>
+<li><code v-pre>terminate_processes</code>: boolean that determines whether or not to terminate the processes specified in the <code v-pre>target_processes</code> configuration setting</li>
+<li><code v-pre>terminate_services</code>: boolean that determines whether or not to stop and disable the services specified in the <code v-pre>target_services</code> configuration setting</li>
+<li><code v-pre>change_wallpaper</code>: boolean that determines whether or not to change the wallpaper after performing enumeration/encryption</li>
+<li><code v-pre>change_icon</code>: boolean that determines whether or not to set the icon image for encrypted files</li>
+<li><code v-pre>clear_evt_log</code>: boolean that determines whether or not to clear and disable Windows event log channels</li>
+<li><code v-pre>delete_shadow</code>: boolean that determines whether or not to delete shadow copies</li>
+<li><code v-pre>excluded_filenames</code>: list of strings indicating which files to avoid encrypting.
+This list is converted to a set of case-insensitive DJB2 hashes when the configuration is loaded.</li>
+<li><code v-pre>excluded_dirs</code>: list of strings indicating which directories to avoid when finding files to encrypt.
+This list is converted to a list of case-insensitive DJB2 hashes when the configuration is loaded.</li>
+<li><code v-pre>excluded_ext</code>: list of strings indicating which file extensions to avoid when finding files to encrypt.
+This list is converted to a set of case-insensitive DJB2 hashes when the configuration is loaded.</li>
+<li><code v-pre>target_processes</code>: list of strings indicating which processes to terminate, if <code v-pre>terminate_processes</code> is set to <code v-pre>true</code>. This list is converted to a set of case-insensitive DJB2 hashes when the configuration is loaded.</li>
+<li><code v-pre>target_services</code>: list of strings indicating which services to stop and disable, if <code v-pre>terminate_services</code> is set to <code v-pre>true</code>.</li>
+<li><code v-pre>psexec_user</code>: string representing the username to use for PsExec</li>
+<li><code v-pre>psexec_pass</code>: string representing the password to use for PsExec</li>
+<li><code v-pre>extension</code>: string representing the file extension (excluding the <code v-pre>.</code> period) to append to encrypted files</li>
+<li><code v-pre>strict_include_ranges</code>: list of strings in CIDR format (e.g. <code v-pre>10.1.2.3/24</code>) representing which network ranges the
+executable is allowed to perform ping sweeps in. This setting is useful when trying to avoid pinging too large of a range, or if you want your ping sweeps to happen only within a certain subset of discovered local netranges.
+Set this to an empty list if you do not want to restrict the ping sweep targets.</li>
+<li><code v-pre>strict_include_hosts</code>: list of strings indicating which IP addresses the executable is allowed to laterally
+move to using PsExec, after performing the ping sweep. Note that this setting does not guarantee that lateral
+movement will occur to the specified hosts - PsExec propagation will only be attempted against the IP addresses
+within this list that respond to the ping sweep. The setting only ensures that PsExec will not run against IP
+addresses deemed out of scope.
+Set this to an empty list if you do not want to restrict the PsExec targets.</li>
+<li><code v-pre>note_contents</code>: string containing the ransom note contents.</li>
+<li><code v-pre>rsa_pub</code>: base64-encoded master RSA public key (DER-encoded). This key will be used to encrypt the randomly
+generated RSA private session key.</li>
+<li><code v-pre>rsa_priv</code>: base64-encoded master RSA private key (DER-encoded). This field is only used by the cleanup executable (removed for public release)
+to decrypt the randomly generated RSA private session key as part of the cleanup routine.</li>
+</ul>
+<doc-anchor-target id="build">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#build">#</doc-anchor-trigger>
+        <span>Build</span>
+    </h2>
+</doc-anchor-target>
+<p>LockBit can be built in Debug or Release mode using the included <code v-pre>CMakePreset.json</code> configurations.</p>
+<p>The following cmake options in <code v-pre>cmake\LockBit.cmake</code> are also provided to customize the build process:</p>
+<ul>
+<li><code v-pre>LOCKBIT_TEST_CONFIG</code>: Use the test configuration file when building LockBit (default <code v-pre>OFF</code>)</li>
+<li><code v-pre>LOCKBIT_DEBUG_LOGGING</code>: Enable debug logging for LockBit components, which will log to both terminal and the log file (default <code v-pre>ON</code>)</li>
+</ul>
+<doc-anchor-target id="dependencies">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#dependencies">#</doc-anchor-trigger>
+        <span>Dependencies</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><code v-pre>CMake</code> version <code v-pre>3.26</code></li>
+<li><code v-pre>CMakePresets.json</code> version <code v-pre>6</code> support (Visual Studio 17.7)</li>
+</ul>
+<doc-anchor-target id="quickstart">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#quickstart">#</doc-anchor-trigger>
+        <span>Quickstart</span>
+    </h3>
+</doc-anchor-target>
+<doc-anchor-target id="command-line">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#command-line">#</doc-anchor-trigger>
+        <span>Command Line</span>
+    </h4>
+</doc-anchor-target>
+<p>Build both Debug and Release configurations of LockBit. This will also kick off the GoogleTest unit tests.</p>
+<p>Note - in order for all unit tests to succeed, the tests will need to be run in an elevated context, since some tests
+will create and modify test services.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-powershell"><code v-pre class="language-powershell">cd Resources\Lockbit
+cmake.exe --workflow --preset cicd-debug
+cmake.exe --workflow --preset cicd-release</code></pre>
+</doc-codeblock></div>
+<p>For simplicity, all of the generated artifacts can be bundled into the
+top-level <code v-pre>install/</code> directory using the CMake installation facility.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-powershell"><code v-pre class="language-powershell">cmake.exe --install ./build --config release
+cmake.exe --install ./build --config debug</code></pre>
+</doc-codeblock></div>
+<p>You can then run LockBit from the command line:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-powershell"><code v-pre class="language-powershell">.\install\Debug\main.exe
+
+.\install\Release\main.exe</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="install">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#install">#</doc-anchor-trigger>
+        <span>Install</span>
+    </h2>
+</doc-anchor-target>
+<p>Installing LockBit simply copies all of the artifacts from both Release
+and Debug builds into the top-level <code v-pre>install/</code> directory. This is simply for
+ease of use and distributability.</p>
+<p>The final product should be a top-level directory named <code v-pre>install/</code> with the
+following layout:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-powershell"><code v-pre class="language-powershell">Lockbit/
+├─ install/
+   ├─ Debug/
+      ├─ main.exe      # main executable
+      ├─ main.pdb
+      ├─ minimal.exe   # minimal executable
+      ├─ minimal.pdb
+   ├─ Release/
+      ├─ main.exe      # main executable
+      ├─ minimal.exe   # minimal executable</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="test">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#test">#</doc-anchor-trigger>
+        <span>Test <span class="docs-emoji">&#x1F9EA;</span></span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="unit-tests">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#unit-tests">#</doc-anchor-trigger>
+        <span>Unit Tests</span>
+    </h3>
+</doc-anchor-target>
+<p>GoogleTest unit tests will automatically run when using the <code v-pre>cicd-debug</code> and <code v-pre>cicd-release</code> presets</p>
+<p>You can also run them ad-hoc by running:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-powershell"><code v-pre class="language-powershell">ctest.exe --preset all</code></pre>
+</doc-codeblock></div>
+<p>Note - in order for all unit tests to succeed, certain tests need to be run in an elevated context:</p>
+<ul>
+<li>Tests that create and modify dummy services to test service termination capabilities</li>
+</ul>
+<doc-anchor-target id="testing-shadow-copies">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#testing-shadow-copies">#</doc-anchor-trigger>
+        <span>Testing Shadow Copies</span>
+    </h3>
+</doc-anchor-target>
+<p>To test deleting shadow copies, run the following in an elevated PowerShell terminal or command prompt to create shadow copies:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-powershell"><code v-pre class="language-powershell">wmic shadowcopy call create Volume='C:\'</code></pre>
+</doc-codeblock></div>
+<p>You can query the current list of shadow copies from an elevated PowerShell terminal:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-powershell"><code v-pre class="language-powershell">Get-WmiObject -query &quot;SELECT * FROM Win32_ShadowCopy&quot;</code></pre>
+</doc-codeblock></div>
+<p>Note - if LockBit is configured to kill the <code v-pre>vss</code> service, then you will need to re-enable and restart the
+service prior to creating new shadow copies and re-running LockBit.</p>
+<doc-anchor-target id="troubleshoot">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#troubleshoot">#</doc-anchor-trigger>
+        <span>Troubleshoot</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="logs">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#logs">#</doc-anchor-trigger>
+        <span>Logs</span>
+    </h3>
+</doc-anchor-target>
+<p>For operator usability, LockBit will log XOR-encrypted and base64-encoded logs to the following
+log files in the current working directory:</p>
+<ul>
+<li><code v-pre>lb.log</code> (main executable)</li>
+<li><code v-pre>lbm.log</code> (minimal executable)</li>
+<li><code v-pre>lbsd.log</code> (self-delete helper)</li>
+</ul>
+<p>The current XOR key is <code v-pre>5a52ac49e070fb1b0a4ebb30d28121be3765f4b7a4105fbbd8d8f536a95f077072e2d4c8d2a23708eec22ef21224686d8e158084db2d6d97b2c49bc687618d9eb30e00e6747bebce1948b9aa4a2865efb8d54d0828423aaf2f73d0a4866ee5eeca94312c49029712ffbdab086f9a09abfd730c4d711556ff797ed7ef29cfe582</code></p>
+<p>You can decrypt these logs using the <code v-pre>aes_base64_log_decryptor.py</code> Python script from the <a href="../log_decryptor/">log_decryptor</a> directory:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">python3 aes_base64_log_decryptor.py --xor -i lb.log  -o decrypted.log -k `5a52ac49e070fb1b0a4ebb30d28121be3765f4b7a4105fbbd8d8f536a95f077072e2d4c8d2a23708eec22ef21224686d8e158084db2d6d97b2c49bc687618d9eb30e00e6747bebce1948b9aa4a2865efb8d54d0828423aaf2f73d0a4866ee5eeca94312c49029712ffbdab086f9a09abfd730c4d711556ff797ed7ef29cfe582`</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="developer-notes">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#developer-notes">#</doc-anchor-trigger>
+        <span>Developer Notes</span>
+    </h2>
+</doc-anchor-target>
+<p>The following table describes the project files and their purposes:</p>
+<details>
+  <summary>:link: Click to expand project structure table</summary>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>File/Directory</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>cmake/LockBit.cmake</code></td>
+<td>Contains configurable cmake options and variables for building LockBit</td>
+</tr>
+<tr>
+<td><code v-pre>config/</code></td>
+<td>Contains configuration JSON files for various LockBit components</td>
+</tr>
+<tr>
+<td><code v-pre>config/config.json</code></td>
+<td>JSON configuration for the main and minimal executables</td>
+</tr>
+<tr>
+<td><code v-pre>config/test_config.json</code></td>
+<td>JSON configuration that can be used for testing the main/minimal executable</td>
+</tr>
+<tr>
+<td><code v-pre>config/unit_test_config.json</code></td>
+<td>JSON configuration used in some unit tests</td>
+</tr>
+<tr>
+<td><code v-pre>include/</code></td>
+<td>Top-level directory for <code v-pre>include</code> files</td>
+</tr>
+<tr>
+<td><code v-pre>include/crypto/</code></td>
+<td>Contains cryptography <code v-pre>include</code> files</td>
+</tr>
+<tr>
+<td><code v-pre>include/crypto/djb2.hpp</code></td>
+<td>Defines DJB2 hash functions</td>
+</tr>
+<tr>
+<td><code v-pre>include/crypto/encryption.hpp</code></td>
+<td>Defines encryption-related functions (AES, RSA)</td>
+</tr>
+<tr>
+<td><code v-pre>include/crypto/xor_obfuscation.hpp</code></td>
+<td>Defines compile-time XOR-encryption of string-literals</td>
+</tr>
+<tr>
+<td><code v-pre>include/crypto/xor.hpp</code></td>
+<td>Defines compile-time XOR-encryption of string-literals</td>
+</tr>
+<tr>
+<td><code v-pre>include/util/</code></td>
+<td>Contains utility <code v-pre>include</code> files</td>
+</tr>
+<tr>
+<td><code v-pre>include/util/network_util.hpp</code></td>
+<td>Defines networking-related helper functions</td>
+</tr>
+<tr>
+<td><code v-pre>include/util/os_util.hpp</code></td>
+<td>Defines OS-related helper functions</td>
+</tr>
+<tr>
+<td><code v-pre>include/util/resource_util.hpp</code></td>
+<td>Defines functions for handling executable resources</td>
+</tr>
+<tr>
+<td><code v-pre>include/util/string_util.hpp</code></td>
+<td>Defines string-related helper functions</td>
+</tr>
+<tr>
+<td><code v-pre>include/util/winapihelper.hpp</code></td>
+<td>Defines string-related helper functions</td>
+</tr>
+<tr>
+<td><code v-pre>include/argparser.hpp</code></td>
+<td>Provides a basic argument parser that handles switches and string arguments</td>
+</tr>
+<tr>
+<td><code v-pre>include/base64.hpp</code></td>
+<td>Provides a standalone base64 encoding implementation</td>
+</tr>
+<tr>
+<td><code v-pre>include/config.hpp</code></td>
+<td>Defines the LockBit configuration structure and functionality (loading, parsing)</td>
+</tr>
+<tr>
+<td><code v-pre>include/defense_evasion_resource.hpp</code></td>
+<td>Resource header for the self-delete executable resource</td>
+</tr>
+<tr>
+<td><code v-pre>include/defense_evasion.hpp</code></td>
+<td>Defines functions for defense evasion (self destruct, disabling firewall, hiding threads from debugger)</td>
+</tr>
+<tr>
+<td><code v-pre>include/discovery.hpp</code></td>
+<td>Defines discovery functions (username, hostname, domain, OS arch, OS version)</td>
+</tr>
+<tr>
+<td><code v-pre>include/enumerate.hpp</code></td>
+<td>Defines functions for enumerating and encrypting files</td>
+</tr>
+<tr>
+<td><code v-pre>include/execute.hpp</code></td>
+<td>Defines functions for executing processes</td>
+</tr>
+<tr>
+<td><code v-pre>include/guardrails.hpp</code></td>
+<td>Defines functions for performing the mutex and system language checks</td>
+</tr>
+<tr>
+<td><code v-pre>include/impact.hpp</code></td>
+<td>Defines impact functionality (encrypting target files, dropping ransom notes, clearing recycle bin, changing wallpaper, storing RSA session keys in registry)</td>
+</tr>
+<tr>
+<td><code v-pre>include/json.hpp</code></td>
+<td>Provides standalone JSON implementation</td>
+</tr>
+<tr>
+<td><code v-pre>include/logger.hpp</code></td>
+<td>Defines XOR logger functionality</td>
+</tr>
+<tr>
+<td><code v-pre>include/propagate.hpp</code></td>
+<td>Defines functions for performing propagation via ping and PsExec</td>
+</tr>
+<tr>
+<td><code v-pre>include/registry.hpp</code></td>
+<td>Defines registry helper functions</td>
+</tr>
+<tr>
+<td><code v-pre>include/resource.hpp</code></td>
+<td>Resource header for the config, file icon, and wallpaper resources</td>
+</tr>
+<tr>
+<td><code v-pre>include/tamper.hpp</code></td>
+<td>Resource header for the config, file icon, and wallpaper resources</td>
+</tr>
+<tr>
+<td><code v-pre>include/test_utils.hpp</code></td>
+<td>Defines util functions for unit tests</td>
+</tr>
+<tr>
+<td><code v-pre>include/threadpool.hpp</code></td>
+<td>Provides standalone threadpool implementation</td>
+</tr>
+<tr>
+<td><code v-pre>include/resources/</code></td>
+<td>Contains desktop and icon resources</td>
+</tr>
+<tr>
+<td><code v-pre>include/resources/desktop.bmp</code></td>
+<td>Desktop wallpaper resource</td>
+</tr>
+<tr>
+<td><code v-pre>include/resources/icon.bmp</code></td>
+<td>Icon wallpaper resource</td>
+</tr>
+<tr>
+<td><code v-pre>src/</code></td>
+<td>Top-level source code directory</td>
+</tr>
+<tr>
+<td><code v-pre>src/common</code></td>
+<td>Contains source code used across multiple components</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/config/</code></td>
+<td>Contains source code for LockBit configuration</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/config/config.cpp</code></td>
+<td>Implements functionality for fetching the embedded config resource at run-time</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/config/config_test.cpp</code></td>
+<td>Configuration unit tests</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/config/config.rc</code></td>
+<td>Resource definition for the LockBit configuration</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/config/unit_test_config.rc</code></td>
+<td>Resource definition for the LockBit configuration (unit tests only)</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/crypto/</code></td>
+<td>Cryptography source code</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/crypto/djb2.cpp</code></td>
+<td>Implements DJB2 hash functions</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/crypto/encryption_test.cpp</code></td>
+<td>Cryptography unit tests</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/crypto/encryption.cpp</code></td>
+<td>Implements AES and RSA encryption</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/crypto/xor.cpp</code></td>
+<td>Implements XOR encryption</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/impact/</code></td>
+<td>Impact source code</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/impact/encryption_test.cpp</code></td>
+<td>Unit tests for encrypting files for impact</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/impact/encryption.cpp</code></td>
+<td>Implements file encryption and dropping ransom notes for impact</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/impact/icon.cpp</code></td>
+<td>Implements setting the custom file icon for encrypted files</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/impact/icon.rc</code></td>
+<td>Resource definition for the custom file icon</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/impact/impact_test.cpp</code></td>
+<td>Unit tests for setting the file icon and changing the wallpaper</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/impact/recycling.cpp</code></td>
+<td>Implements clearing the recycle bin</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/impact/wallpaper.cpp</code></td>
+<td>Implements changing the wallpaper</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/impact/wallpaper.rc</code></td>
+<td>Resource definition for the custom wallpaper</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/util/</code></td>
+<td>Common utility function source code</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/util/argparser_test.cpp</code></td>
+<td>Unit tests for the arg parser</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/util/base64_test.cpp</code></td>
+<td>Unit tests for base64</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/util/logger.cpp</code></td>
+<td>Implements the XOR logger</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/util/network_utils.cpp</code></td>
+<td>Implements network utility functions</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/util/os_utils.cpp</code></td>
+<td>Implements OS utilities</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/util/registry_test.cpp</code></td>
+<td>Unit tests for registry utility functions</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/util/registry.cpp</code></td>
+<td>Implements registry utility functions</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/util/resource_util.cpp</code></td>
+<td>Implements utility functions for working with Windows resources</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/util/string_utils.cpp</code></td>
+<td>Implements string utility functions</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/util/test_utils.cpp</code></td>
+<td>Implements utility functions for unit tests</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/util/threadpool_test.cpp</code></td>
+<td>Thread pool unit tests</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/util/util_test.cpp</code></td>
+<td>Unit tests for various utility functions</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/util/winapihelper.cpp</code></td>
+<td>Implements windows API hashing</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/enumerate_test.cpp</code></td>
+<td>Unit tests for enumerating and encrypting target files</td>
+</tr>
+<tr>
+<td><code v-pre>src/common/enumerate.cpp</code></td>
+<td>Implements enumerating and encrypting target files</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/</code></td>
+<td>Source code for the main executable</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/def_evasion</code></td>
+<td>Source code for the main executable&#x27;s defense evasion functionality</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/def_evasion/disable_security.cpp</code></td>
+<td>Implements disabling the firewall</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/def_evasion/hide_thread.cpp</code></td>
+<td>Implements hiding threads from debugger</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/def_evasion/invoke_self_del.cpp</code></td>
+<td>Implements starting the self-destruct process</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/def_evasion/self_del.rc</code></td>
+<td>Resource definition for the self destruct helper</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/guardrails/</code></td>
+<td>Source code for mutex and system language checks</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/guardrails/lang_test.cpp</code></td>
+<td>Unit tests for the language check</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/guardrails/lang.cpp</code></td>
+<td>Implements the system language check</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/guardrails/mutex_test.cpp</code></td>
+<td>Unit tests for the mutex check</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/guardrails/mutex.cpp</code></td>
+<td>Implements the mutex check</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/propagate/</code></td>
+<td>Source code for lateral movement</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/propagate/local_ips_test.cpp</code></td>
+<td>Unit tests for handling local IPs and CIDRs</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/propagate/local_ips.cpp</code></td>
+<td>Implements handling local IPs and CIDRs</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/propagate/ping_test.cpp</code></td>
+<td>Unit tests for pinging</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/propagate/ping.cpp</code></td>
+<td>Implements pinging targets</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/propagate/propagate_test.cpp</code></td>
+<td>Unit tests for propagation logic</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/propagate/propagate.cpp</code></td>
+<td>Implements propagation logic</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/tamper/</code></td>
+<td>Source code for tamper functionality</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/tamper/boot_recovery.cpp</code></td>
+<td>Implements disabling boot recovery</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/tamper/event_log.cpp</code></td>
+<td>Implements clearing and disabling Windows event log channels</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/tamper/proc_test.cpp</code></td>
+<td>Unit tests for terminating processes</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/tamper/proc.cpp</code></td>
+<td>Implements terminating processes</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/tamper/shadow.cpp</code></td>
+<td>Implements deleting shadow copies</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/tamper/svc_test.cpp</code></td>
+<td>Unit tests for terminating and disabling services</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/tamper/svc.cpp</code></td>
+<td>Implements terminating and disabling services</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/CMakeLists.txt</code></td>
+<td>Defines the main LockBit executable cmake target</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/discovery_test.cpp</code></td>
+<td>Unit tests for discovery</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/discovery.cpp</code></td>
+<td>Implements discovery functions (username, hostname, domain, OS arch, OS version)</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/execute_test.cpp</code></td>
+<td>Unit tests for executing processes</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/execute.cpp</code></td>
+<td>Implements executing processes</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/execute.cpp</code></td>
+<td>Implements executing processes</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_main/main.cpp</code></td>
+<td>Main logic for the main LockBit executable</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_minimal/</code></td>
+<td>Source code for the minimal executable</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_minimal/CMakeLists.txt</code></td>
+<td>Defines the minimal executable cmake target</td>
+</tr>
+<tr>
+<td><code v-pre>src/lockbit_minimal/minimal_main.cpp</code></td>
+<td>Main logic for the minimal executable</td>
+</tr>
+<tr>
+<td><code v-pre>src/self_del_helper/</code></td>
+<td>Source code for the self-delete helper executable</td>
+</tr>
+<tr>
+<td><code v-pre>src/self_del_helper/CMakeLists.txt</code></td>
+<td>Defines the self-delete helper cmake target</td>
+</tr>
+<tr>
+<td><code v-pre>src/self_del_helper/self_del_main.cpp</code></td>
+<td>Main logic for the self-delete helper</td>
+</tr>
+<tr>
+<td><code v-pre>src/self_del_helper/self_del_test.cpp</code></td>
+<td>Unit tests for the self-delete helper</td>
+</tr>
+<tr>
+<td><code v-pre>src/self_del_helper/self_del.cpp</code></td>
+<td>Implements self-delete functionality</td>
+</tr>
+<tr>
+<td><code v-pre>src/CMakeLists.txt</code></td>
+<td>Sets unit test files and invokes component cmake targets</td>
+</tr>
+<tr>
+<td><code v-pre>src/xor_file.ps1</code></td>
+<td>XORs a given file. Invoked during build process by cmake to XOR resources</td>
+</tr>
+<tr>
+<td><code v-pre>tests/</code></td>
+<td>main test directory</td>
+</tr>
+<tr>
+<td><code v-pre>tests/gtest/</code></td>
+<td>main google test directory</td>
+</tr>
+<tr>
+<td><code v-pre>tests/gtest/CMakeLists.txt</code></td>
+<td>Defines unit test and test helper targets, and runs unit tests</td>
+</tr>
+<tr>
+<td><code v-pre>tests/gtest/noop_proc.cpp</code></td>
+<td>Implements a no-op executable used to test process termination</td>
+</tr>
+<tr>
+<td><code v-pre>tests/gtest/noop_svc.cpp</code></td>
+<td>Implements a no-op service executable used to test service termination</td>
+</tr>
+<tr>
+<td><code v-pre>tests/CMakeLists.txt</code></td>
+<td>Invokes the google test cmake setup</td>
+</tr>
+<tr>
+<td><code v-pre>CMakeLists.txt</code></td>
+<td>Defines the LockBit cmake project</td>
+</tr>
+<tr>
+<td><code v-pre>CMakePresets.json</code></td>
+<td>Defines cmake presets</td>
+</tr>
+</tbody>
+</table>
+</div>
+</details>
+<doc-anchor-target id="cti">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cti">#</doc-anchor-trigger>
+        <span>CTI</span>
+    </h2>
+</doc-anchor-target>
+<ol>
+<li><a href="https://www.antiy.net/p/analysis-of-lockbit-ransomware-samples-and-considerations-for-defense-against-targeted-ransomware/" class="outbound" target="_blank"><span>Antiy Labs. (2023, Nov 27). Analysis of LockBit Ransomware Samples and Considerations for Defense Against Targeted Ransomware</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-075a" class="outbound" target="_blank"><span>CISA. (2023, Mar 16). #StopRansomware: LockBit 3.0</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-165a" class="outbound" target="_blank"><span>CISA. (2023, Jun 14). Understanding Ransomware Threat Actors: LockBit</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://redpiranha.net/news/look-lockbit-3-ransomware" class="outbound" target="_blank"><span>Red Piranha. (2023, Feb 22). A Look At Lockbit 3 Ransomware</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://www.cybereason.com/hubfs/dam/collateral/reports/Threat-Analysis-Assemble-LockBit-3.pdf" class="outbound" target="_blank"><span>Cybereason. (2023). Threat Analysis Report: Assemble Lockbit 3.0</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> <a href="https://www.cybereason.com/blog/threat-analysis-assemble-lockbit-3" class="outbound" target="_blank"><span>Associated blog post</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://www.swascan.com/lockbit-3-0-dynamic-malware-analysis/" class="outbound" target="_blank"><span>Swascan. LockBit 3.0: Dynamic malware analysis</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://securelist.com/lockbit-ransomware-builder-analysis/110370/" class="outbound" target="_blank"><span>Securelist. (2023, Aug 25). Lockbit leak, research opportunities on tools leaked from TAs</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://m365internals.com/2022/10/19/investigating-ransomware-deployments-that-happened-via-group-policy/" class="outbound" target="_blank"><span>Microsoft 365 Security. (2022, Oct 19). Investigating Ransomware Deployments That Happened Via Group Policy</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://thedfirreport.com/2020/06/10/lockbit-ransomware-why-you-no-spread/" class="outbound" target="_blank"><span>The DFIR Report. (2020, Jun 10). Lockbit Ransomware, Why You No Spread?</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://www.trendmicro.com/en_za/research/22/g/lockbit-ransomware-group-augments-its-latest-variant--lockbit-3-.html" class="outbound" target="_blank"><span>Trend Micro. (2022, Jul 25). LockBit Ransomware Group Augments Its Latest Variant, LockBit 3.0, With BlackMatter Capabilities</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://www.trendmicro.com/vinfo/us/security/news/ransomware-spotlight/ransomware-spotlight-lockbit" class="outbound" target="_blank"><span>Trend Micro. (2024, Feb 20). Ransomware Spotlight: LockBit</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://news.sophos.com/en-us/2020/04/24/lockbit-ransomware-borrows-tricks-to-keep-up-with-revil-and-maze/" class="outbound" target="_blank"><span>Sophos. (2020, Apr 24). LockBit ransomware borrows tricks to keep up with REvil and Maze</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://blog.lexfo.fr/lockbit-malware.html" class="outbound" target="_blank"><span>Lexfo. (2020, Oct 2). Lockbit analysis</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://www.cybereason.com/blog/threat-analysis-report-lockbit-2.0-all-paths-lead-to-ransom" class="outbound" target="_blank"><span>Cybereason. THREAT ANALYSIS REPORT: LockBit 2.0 - All Paths Lead to Ransom</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://symantec-enterprise-blogs.security.com/blogs/threat-intelligence/lockbit-targets-servers" class="outbound" target="_blank"><span>Symantec. (2022, Jul 20). LockBit: Ransomware Puts Servers in the Crosshairs</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://www.sangfor.com/farsight-labs-threat-intelligence/cybersecurity/lockbit-green-ransomware-conti-based-encryptor" class="outbound" target="_blank"><span>Sangfor. (2023, Feb 20). An Analysis of the New LockBit Green Ransomware with Conti-Based Encryptor</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+</ol>
+<doc-anchor-target id="other-references">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#other-references">#</doc-anchor-trigger>
+        <span>Other References</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>TBD</li>
+</ul>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer class="clear-both">
+                            
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../../enterprise/lockbit/resources/firepwd/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">Firefox Password Dumper</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../../enterprise/lockbit/resources/cleanup/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                                                <span class="block mt-1">Lockbit Component Cleanup</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between">
+                                <div>
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                        <li>
+                                            <a class="inline-flex items-center mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="https://github.com/attackevals/ael">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                                    <g fill="currentColor">
+                                                        <symbol id="mark-github-icon-symbol" viewBox="0 0 16 16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></symbol><use xlink:href="#mark-github-icon-symbol" />
+                                                    </g>
+                                                </svg>
+                                                <span>ATTACK Evaluations Library GitHub</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2024. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="docs-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "LockBit", level: 4, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "CN": "UK Trustworthy Authentication Root CA",
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+  {
+    "C": "GB",
+    "L": "Glasgow",
+    "O": "UK Trustworthy Authentication",
+    "OU": "UK Trustworthy Authentication Root CA",
+    "ST": "Scotland"
+  }
+ ]
+}

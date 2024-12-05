@@ -1,0 +1,5 @@
+add_subdirectory("common")
+add_subdirectory("rat")
+add_subdirectory("shellcode")
+add_subdirectory("installer")
+add_subdirectory("loader")

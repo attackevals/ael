@@ -1,0 +1,20 @@
+{
+  "CN": "sonicbeats37.fm",
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+  {
+    "C": "GB",
+    "L": "Cardiff",
+    "O": "Sonic Beats",
+    "OU": "Sonic Beats",
+    "ST": "Wales"
+  }
+  ],
+  "hosts": [
+    "sonicbeats37.fm",
+    "www.sonicbeats37.fm"
+  ]
+}

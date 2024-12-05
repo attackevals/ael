@@ -1,0 +1,130 @@
+---
+- name: set package name to range name
+  ansible.builtin.set_fact:
+    download_pkg_name: "{{ evals_cycle| lower}}-{{ range_name }}"
+  when: dev_pkg_name is undefined
+
+- name: set package name to dev package name
+  ansible.builtin.set_fact:
+    download_pkg_name: "{{ evals_cycle| lower}}-{{ dev_pkg_name }}"
+  when: dev_pkg_name is defined
+
+- name: Get latest artifact storage info based on lastModified
+  ansible.builtin.uri:
+    url: '{{ jfrog_artifactory_url}}/api/storage/{{ download_pkg_name }}/{{ operator_path}}?lastModified'
+    url_username: "{{ red_dev.artifacts_user }}"
+    url_password: "{{ red_dev.artifact_api_key }}"
+    force_basic_auth: yes
+    method: GET
+    status_code: 200
+    return_content: yes
+  register: result
+  tags:
+    - install
+    - always
+
+- name: Get the latest artifacts download url
+  ansible.builtin.uri:
+    url: "{{result.json.uri}}"
+    url_username: "{{ red_dev.artifacts_user }}"
+    url_password: "{{ red_dev.artifact_api_key }}"
+    force_basic_auth: yes
+    method: GET
+    status_code: 200
+    return_content: yes
+  register: download_uri
+  tags:
+    - install
+    - always
+
+- name: document bundle pulled for range
+  ansible.builtin.copy:
+    dest: "{{ output_path }}/{{ per_host_filename }}"
+    content: "{{ download_uri | to_nice_json }}"
+  become: no
+  delegate_to: localhost
+
+- name: cleanup old file if it exists
+  become: true
+  file:
+    path: "{{ red_dev.kali_dev_dir }}/{{ download_uri.json.downloadUri | basename }}"
+    state: absent
+
+- name: Download artifacts from artifactory
+  become: true
+  get_url:
+    url: "{{download_uri.json.downloadUri}}"
+    dest: "{{ red_dev.kali_dev_dir }}"
+    url_username: "{{ red_dev.artifacts_user }}"
+    url_password: "{{ red_dev.artifact_api_key }}"
+    force: true
+
+- name: get c2 url from s3
+  amazon.aws.s3_object:
+    bucket: "{{ aws_resources.s3_bucket }}"
+    object: "{{ aws_resources.c2_server }}"
+    expiration: 10800
+    mode: geturl
+    validate_certs: false
+  register: url_output
+  delegate_to: localhost
+  become: no
+
+- name: cleanup old c2 file if it exists
+  become: true
+  file:
+    path: "{{ red_dev.kali_dev_dir }}/{{ aws_resources.c2_server | basename }}"
+    state: absent
+
+- name: Download c2 to specified path
+  become: yes
+  ansible.builtin.get_url:
+    url: "{{ url_output.url }}"
+    dest: "{{ red_dev.kali_dev_dir }}/{{ evals_c2_filename }}"
+
+- name: unzip artifacts downloaded earlier from artifactory
+  ansible.builtin.unarchive:
+    src: "{{ red_dev.kali_dev_dir }}/{{ result.json.uri | basename }}"
+    dest: "{{ red_dev.kali_dev_dir }}"
+    remote_src: yes
+  become: yes
+  ignore_errors: yes
+
+# make sure all unzipped dirs have proper perms
+- name: Get list of subdirectories unzipped
+  find:
+    paths: "{{ red_dev.kali_dev_dir }}"
+    file_type: directory
+    recurse: yes
+  become: yes
+  register: subdirs
+
+- name: Set permissions on subdirectories of kali_dev_dir to be 755
+  file:
+    path: "{{ item.path }}"
+    mode: 0755
+    state: directory
+    recurse: yes
+  with_items: "{{ subdirs.files }}"
+
+- name: copy sha256 hash file from kali bundle
+  ansible.builtin.fetch:
+    src: "{{ red_dev.kali_dev_dir }}/{{ red_dev.sha256_file }}"
+    dest: "{{ output_path }}/{{ range_name }}_{{date}}_{{ red_dev.sha256_file }}"
+    flat: yes
+
+- name: copy git hash file from kali bundle
+  ansible.builtin.fetch:
+    src: "{{ red_dev.kali_dev_dir }}/{{ red_dev.git_hash_file }}"
+    dest: "{{ output_path }}/{{ range_name }}_{{date}}_{{ red_dev.git_hash_file }}"
+    flat: yes
+
+- name: Upload report of range
+  community.aws.s3_sync:
+    file_root: "{{ output_path }}"
+    bucket: "{{ aws_resources.report_upload_bucket }}"
+    key_prefix: "reports/{{ evals_cycle| lower}}/{{ range_name }}/{{ date_day }}/"
+    include: "{{ range_name }}*{{ date_day }}*"
+    validate_certs: false
+  delegate_to: localhost
+  become: no

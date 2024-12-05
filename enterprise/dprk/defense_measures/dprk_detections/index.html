@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H74RC38PBM"></script>
+    <script data-cfasync="false">window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-H74RC38PBM');</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-root" content="/ael">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.786727257842">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.6.0">
+
+    <!-- Primary Meta Tags -->
+    <title>DPRK Detection Analysis</title>
+    <meta name="title" content="DPRK Detection Analysis">
+    <meta name="description" content="This guide covers key detection criteria for DPRK-related malware activity as emulated by the ( Enterprise Round 6 Emulation Plan">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://attackevals.github.io/ael/enterprise/dprk/defense_measures/dprk_detections/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://attackevals.github.io/ael/enterprise/dprk/defense_measures/dprk_detections/">
+    <meta property="og:title" content="DPRK Detection Analysis">
+    <meta property="og:description" content="This guide covers key detection criteria for DPRK-related malware activity as emulated by the ( Enterprise Round 6 Emulation Plan">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://attackevals.github.io/ael/enterprise/dprk/defense_measures/dprk_detections/">
+    <meta property="twitter:title" content="DPRK Detection Analysis">
+    <meta property="twitter:description" content="This guide covers key detection criteria for DPRK-related malware activity as emulated by the ( Enterprise Round 6 Emulation Plan">
+
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="../../../../favicon.png" rel="icon">
+    <link href="../../../../resources/css/retype.css?v=3.6.0.786727257842" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.786727257842" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.786727257842" data-turbo-eval="false" defer></script>
+</head>
+<body>
+    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    
+        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="docs-sidebar-toggle"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="docs-site-logo" href="../../../../" class="flex items-center leading-snug text-xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../../../images/attackevals-logo.png">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../../../images/attackevals-logo.png">
+                            </span>
+                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">ATTACK Evaluation Library</span>
+                        </a>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-gray-400 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 dark:placeholder-dark-400" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="docs-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <div class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            
+                <!-- Render this div, if config.showSidebarFilter is `true` -->
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                </div>
+            
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 dark:bg-dark-850">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="docs-markdown" id="docs-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="docs-sidebar-right-toggle"></div>
+                                <nav class="breadcrumb" aria-label="Breadcrumb">
+                                    <ol role="list">
+                                        <li class="pr-4">
+                                            <a href="../../../../" class="pr-4">
+                                                ATT&​CK Evaluations Library
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Enterprise
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/dprk/" class="pr-4">
+                                                DPRK
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/dprk/defense_measures/" class="pr-4">
+                                                DPRK Defense Measures
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/dprk/defense_measures/dprk_detections/" class="pr-4">
+                                                DPRK Detection Analysis
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                
+                                <!-- Page content  -->
+<doc-anchor-target id="dprk-detection-analysis" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#dprk-detection-analysis">#</doc-anchor-trigger>
+        <span>DPRK Detection Analysis</span>
+    </h1>
+</doc-anchor-target>
+<p>This guide covers key detection criteria for DPRK-related malware activity as emulated by the (<a href="../dprk/emulation_plan/er6_dprk_scenario.md">Enterprise Round 6 Emulation Plan</a>), such as <code v-pre>FULLHOUSE.DOORED</code> and <code v-pre>STRATOFEAR</code>. The focus is on recognizing tool transfers, masquerading, system modifications, and encrypted communications.</p>
+<doc-anchor-target id="key-findings">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#key-findings">#</doc-anchor-trigger>
+        <span>Key Findings</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Ingress Tool Transfer (T1105) is prevalent, where DPRK uses tools like <code v-pre>start.rb</code> to drop malware such as FULLHOUSE.DOORED.</li>
+<li>Masquerading (T1036.005) through the use of file names mimicking legitimate services like Docker or Zoom.</li>
+<li>System Information Discovery (T1082) and User Discovery (T1033) involve commands like <code v-pre>logname</code> and <code v-pre>gethostname</code> to gather system and user data.</li>
+<li>File Deletion (T1070.004) is used to hide activity after execution.</li>
+</ul>
+<doc-anchor-target id="detection-tools">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#detection-tools">#</doc-anchor-trigger>
+        <span>Detection Tools</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><code v-pre>Sysmon</code> + <code v-pre>Splunk</code>: Detects file creation, process execution, and system calls.</li>
+<li><code v-pre>Suricata/Zeek</code>: Monitors network traffic for HTTP/HTTPS connections to suspicious domains.</li>
+<li><code v-pre>YARA</code>: Identify malicious binaries like FULLHOUSE.DOORED based on patterns.</li>
+<li><code v-pre>Sigma</code>: Use rule-based log analysis for identifying adversary activity.</li>
+</ul>
+<p><strong>Example Open Source Tools:</strong></p>
+<ul>
+<li>Zeek: Analyze network traffic to detect HTTP/HTTPS protocols.</li>
+<li>YARA/PEStudio: Examine malware binaries for signatures or behaviors.</li>
+<li>OSQuery: Query system-level artifacts for forensic analysis.</li>
+</ul>
+<doc-anchor-target id="step-1">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-1">#</doc-anchor-trigger>
+        <span>Step 1</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="1a1-ingress-tool-transfer-t1105">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#1a1-ingress-tool-transfer-t1105">#</doc-anchor-trigger>
+        <span>1.A.1 Ingress Tool Transfer (<a href="https://attack.mitre.org/techniques/T1105/" class="outbound" target="_blank"><span>T1105</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p>Adversary used <code v-pre>start.rb</code> to drop <code v-pre>FULLHOUSE.DOORED</code> (<code v-pre>/usr/local/bin/com.docker.sock</code>) and configuration file (<code v-pre>/usr/local/bin/com.docker.sock.lock</code>) from <code v-pre>b0ring-t3min4l[.]kr</code> (199.88.44.199) to <code v-pre>HOGSHEAD</code> (10.55.4.50)</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li><strong>Unusual Script Executions</strong>: Executing scripts (e.g., <code v-pre>.rb</code>, <code v-pre>.sh</code>, <code v-pre>.py</code>) to download and drop files in non-standard directories.</li>
+<li><strong>External Network Communication</strong>: Establishing connections to unfamiliar IPs or domains, especially those linked to C2 infrastructure.</li>
+<li><strong>File Creations in Non-Standard Directories</strong>: Creation of executables or configuration files in locations outside the typical software or system directories (e.g., <code v-pre>/usr/local/bin</code>, <code v-pre>/Library</code>).</li>
+<li><strong>Process-File Relationship</strong>: Newly spawned processes associated with dropped files exhibiting anomalous behavior, such as elevated privileges or unexpected communication patterns.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=mac_os sourcetype=process_activity OR sourcetype=sysmon OR sourcetype=network_traffic
+| eval is_abnormal=(case(
+  command_line LIKE &quot;%curl%&quot; OR command_line LIKE &quot;%wget%&quot;, 1, 
+  process_name IN (&quot;python&quot;, &quot;ruby&quot;, &quot;bash&quot;, &quot;zsh&quot;) AND (parent_process_name=&quot;launchd&quot; OR parent_process_name=&quot;zsh&quot;), 1, 
+  file_path LIKE &quot;/usr/local/bin%&quot; OR file_path LIKE &quot;/Library/LaunchDaemons%&quot;, 1, 
+  dest_ip IN (&quot;199.88.44.199&quot;, &quot;198.88.44.44&quot;), 1, 
+  process_parent IN (&quot;com.docker.sock&quot;), 1, 
+  process_name=&quot;launchctl&quot;, 1,
+  TRUE, 0))
+| where is_abnormal=1
+| transaction user, host startswith=&quot;curl&quot; OR startswith=&quot;wget&quot; OR startswith=&quot;launchctl&quot; endswith=&quot;file_modification&quot; maxspan=5m
+| stats count by host, user, file_path, command_line, parent_process_name, dest_ip
+| where count &gt; 1
+| sort by count desc </code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="1a2-masquerading-match-legitimate-name-or-location-t1036005">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#1a2-masquerading-match-legitimate-name-or-location-t1036005">#</doc-anchor-trigger>
+        <span>1.A.2 Masquerading: Match Legitimate Name or Location (<a href="https://attack.mitre.org/techniques/T1036/005/" class="outbound" target="_blank"><span>T1036.005</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p>Adversary used <code v-pre>FULLHOUSE.DOORED</code> (<code v-pre>/usr/local/bin/com.docker.sock</code>) on <code v-pre>HOGSHEAD</code>, masquerading as a legitimate Docker file to avoid detection.</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Uncommon file creation in typically legitimate directories, like <code v-pre>/usr/local/bin</code>, especially when tied to non-system processes or users.</li>
+<li>File or process names that closely resemble legitimate binaries but may have slight differences in behavior or origin.</li>
+<li>Execution of binaries in legitimate directories by non-privileged users or processes without administrative tasks.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=mac_os sourcetype=process_activity OR sourcetype=sysmon OR sourcetype=file_system_events
+| eval suspicious_file=(case(
+  file_path LIKE &quot;/usr/local/bin%&quot; AND process_name IN (&quot;bash&quot;, &quot;zsh&quot;, &quot;python&quot;, &quot;ruby&quot;), 1,
+  file_path LIKE &quot;/Library/LaunchDaemons%&quot; AND process_name IN (&quot;launchctl&quot;, &quot;com.docker.sock&quot;), 1,
+  command_line LIKE &quot;%com.docker.sock%&quot;, 1,
+  TRUE, 0))
+| where suspicious_file=1
+| transaction user, host startswith=&quot;file_creation&quot; endswith=&quot;process_execution&quot; maxspan=5m
+| stats count by host, user, process_name, file_path, command_line
+| where count &gt; 1
+| sort by count desc</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="1a3-application-layer-protocol-web-protocols-t1071001">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#1a3-application-layer-protocol-web-protocols-t1071001">#</doc-anchor-trigger>
+        <span>1.A.3 Application Layer Protocol: Web Protocols (<a href="https://attack.mitre.org/techniques/T1071/001/" class="outbound" target="_blank"><span>T1071.001</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>FULLHOUSE.DOORED</code> (<code v-pre>/usr/local/bin/com.docker.sock</code>) on <code v-pre>HOGSHEAD</code> (10.55.4.50) connects to <code v-pre>forev3r1[.]kr</code> (199.88.44.44) over protocol HTTP on port 80</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Outbound HTTP/HTTPS traffic to rare or untrusted external domains, especially over default ports like 80 or 443.</li>
+<li>Connections initiated from non-browser processes (e.g., <code v-pre>com.docker.sock</code>), which is unusual for typical HTTP communications.</li>
+<li>Consistent outbound traffic from systems that rarely initiate external communications, especially outside of business hours.</li>
+<li>Unencrypted HTTP traffic over port 80, which may expose sensitive data or facilitate C2 operations.</li>
+</ul>
+<p><strong>Detection SPL Query:</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=mac_os sourcetype=network_traffic
+| search dest_port=80 OR dest_port=443
+| eval suspicious_conn=(case(
+  dest_ip IN (&quot;199.88.44.44&quot;, &quot;198.88.44.96&quot;), 1,
+  process_name NOT IN (&quot;Safari&quot;, &quot;Chrome&quot;, &quot;Firefox&quot;, &quot;curl&quot;, &quot;wget&quot;), 1,
+  TRUE, 0))
+| where suspicious_conn=1
+| stats count by src_ip, dest_ip, dest_port, process_name, user
+| where count &gt; 5
+| sort by count desc </code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="step-2">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-2">#</doc-anchor-trigger>
+        <span>Step 2</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="2a1-ingress-tool-transfer-t1105">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#2a1-ingress-tool-transfer-t1105">#</doc-anchor-trigger>
+        <span>2.A.1 Ingress Tool Transfer (<a href="https://attack.mitre.org/techniques/T1105/" class="outbound" target="_blank"><span>T1105</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p>The adversary used <code v-pre>FULLHOUSE.DOORED (/usr/local/bin/com.docker.sock)</code> to download <code v-pre>STRATOFEAR (/Library/PrivilegedHelperTools/us.zoom.ZoomHelperTool)</code>, its LaunchDaemon (<code v-pre>/Library/LaunchDaemons/us.zoom.ZoomHelperTool.plist</code>), and configuration file (<code v-pre>/Library/Fonts/pingfang.ttf.md5</code>). These files were transferred from <code v-pre>b0ring-t3min4l[.]kr (199.88.44.44)</code> to <code v-pre>HOGSHEAD (10.55.4.50)</code>.</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual File Downloads: Downloading tools or binaries from untrusted remote servers like <code v-pre>b0ring-t3min4l[.]kr</code>.</li>
+<li>File Placement in Sensitive Locations: Storing binaries in directories like <code v-pre>/Library/LaunchDaemons</code> where legitimate helper tools are typically placed.</li>
+<li>Execution of Downloaded Files: Execution or registration of LaunchDaemons or services using the newly downloaded files.</li>
+<li>Use of Unusual Protocols or Ports: Adversary might use web protocols (HTTP/HTTPS) or obscure ports to blend into normal traffic patterns.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=os_logs sourcetype=sysmon EventID=11 OR sourcetype=network_traffic (process_name=&quot;*curl*&quot; OR process_name=&quot;*wget*&quot;)
+| search (dest_ip=&quot;199.88.44.44&quot; OR file_path=&quot;*/Library/LaunchDaemons/*&quot;)
+| stats count by process_name, file_path, dest_ip, user, command_line
+| where count &gt; 1
+| eval action=&quot;Ingress Tool Transfer detected&quot;, severity=&quot;high&quot;
+| table _time, process_name, user, file_path, dest_ip, command_line, action, severity</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="2a2-command-and-scripting-interpreter-unix-shell-t1059004">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#2a2-command-and-scripting-interpreter-unix-shell-t1059004">#</doc-anchor-trigger>
+        <span>2.A.2 Command and Scripting Interpreter: Unix Shell (<a href="https://attack.mitre.org/techniques/T1059/004/" class="outbound" target="_blank"><span>T1059.004</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>FULLHOUSE.DOORED (/usr/local/bin/com.docker.sock)</code> executed commands via <code v-pre>/bin/zsh</code> using the NSTask class. This activity involves using the Unix shell to load a LaunchDaemon for persistence.</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unexpected Shell Execution: Running Unix shells like /bin/zsh outside regular administrative tasks.</li>
+<li>Loading Daemons: Commands attempting to load or modify system daemons, especially from uncommon binaries like /usr/local/bin/com.docker.sock.</li>
+<li>NSTask Usage: Monitoring the usage of NSTask to execute shell commands that target system processes like launchctl for persistence.</li>
+<li>Parent-Child Process Relationships: Detecting relationships between unexpected binaries and shell executions.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=os_logs sourcetype=sysmon EventID=1 OR sourcetype=mac_os_logs (process_name=&quot;/bin/zsh&quot; OR process_name=&quot;launchctl&quot;)
+| search (file_path=&quot;*/Library/LaunchDaemons/*&quot; OR command_line=&quot;*NSTask*&quot;)
+| stats count by process_name, command_line, user, file_path
+| where count &gt; 1
+| eval action=&quot;Suspicious Shell Execution&quot;, severity=&quot;high&quot;
+| table _time, process_name, user, file_path, command_line, action, severity
+</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="2a3-create-or-modify-system-process-launch-daemon-t1543004">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#2a3-create-or-modify-system-process-launch-daemon-t1543004">#</doc-anchor-trigger>
+        <span>2.A.3 Create or Modify System Process: Launch Daemon (<a href="https://attack.mitre.org/techniques/T1543/004/" class="outbound" target="_blank"><span>T1543.004</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>FULLHOUSE.DOORED (/usr/local/bin/com.docker.sock)</code> registered <code v-pre>STRATOFEAR (/Library/LaunchDaemons/us.zoom.ZoomHelperTool.plist)</code> as a LaunchDaemon. This action is used to maintain persistence on the system by ensuring that the <code v-pre>STRATOFEAR</code> tool is launched at system startup.</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unauthorized LaunchDaemon Creation: Detection of new or modified LaunchDaemon files in <code v-pre>/Library/LaunchDaemons/</code> without associated system updates.</li>
+<li>Non-standard File Path: The presence of files like <code v-pre>us.zoom.ZoomHelperTool.plist</code> mimicking legitimate names but originating from unusual binaries.</li>
+<li>Unexpected Process Interaction: Processes such as <code v-pre>com.docker.sock</code> interacting with the <code v-pre>launchctl</code> process in non-standard execution contexts.</li>
+<li>Persistence Mechanism: Multiple executions of a specific daemon file on system startup or reboots.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=os_logs sourcetype=mac_os syslog_message=&quot;launchctl&quot; 
+| search file_path=&quot;/Library/LaunchDaemons/*&quot; 
+| stats count by file_path, user, process_name, command_line 
+| where count &gt; 1 
+| eval action=&quot;Suspicious LaunchDaemon Modification&quot;, severity=&quot;high&quot; 
+| table _time, file_path, user, process_name, command_line, action, severity</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="2a4-file-and-directory-permissions-modification-linux-and-mac-file-and-directory-permissions-modification-t1222002">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#2a4-file-and-directory-permissions-modification-linux-and-mac-file-and-directory-permissions-modification-t1222002">#</doc-anchor-trigger>
+        <span>2.A.4 File and Directory Permissions Modification: Linux and Mac File and Directory Permissions Modification (<a href="https://attack.mitre.org/techniques/T1222/002/" class="outbound" target="_blank"><span>T1222.002</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>FULLHOUSE.DOORED (/usr/local/bin/com.docker.sock)</code> modified the permissions of <code v-pre>STRATOFEAR (/Library/PrivilegedHelperTools/us.zoom.ZoomHelperTool)</code> using the chmod command. This action is part of the malware&#x27;s strategy to ensure it has the necessary permissions to execute and maintain persistence on the system.</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unauthorized Permission Changes: Detection of chmod applied to system-critical paths, especially to binary files or directories used by legitimate processes like Zoom.</li>
+<li>Non-Administrative User Modification: Permission changes made by non-administrative users on system-protected directories or files.</li>
+<li>Repeated Permission Adjustments: Multiple permission changes on the same file or directory within a short period, indicating an attempt to modify execution privileges.</li>
+<li>Chained Activity: If combined with file creation or modification events, this strengthens the malicious context.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=os_logs sourcetype=mac_os syslog_message=&quot;chmod&quot;
+| search file_path=&quot;/Library/PrivilegedHelperTools/*&quot; 
+| stats count by file_path, user, process_name, command_line 
+| where count &gt; 1 
+| eval action=&quot;Suspicious File/Directory Permission Modification&quot;, severity=&quot;high&quot; 
+| table _time, file_path, user, process_name, command_line, action, severity</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="2a5-system-services-launchctl-t1569001">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#2a5-system-services-launchctl-t1569001">#</doc-anchor-trigger>
+        <span>2.A.5 System Services: Launchctl (<a href="https://attack.mitre.org/techniques/T1569/001/" class="outbound" target="_blank"><span>T1569.001</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>FULLHOUSE.DOORED (/usr/local/bin/com.docker.sock)</code> executed <code v-pre>STRATOFEAR (/Library/LaunchDaemons/us.zoom.ZoomHelperTool.plist)</code> using the launchctl command. This activity indicates the malware&#x27;s attempt to maintain persistence by registering a LaunchDaemon.</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual Service Registration: Detecting the registration of a LaunchDaemon from unexpected directories or non-standard file paths such as <code v-pre>/Library/LaunchDaemons</code>.</li>
+<li>Unauthorized Use of <code v-pre>launchctl</code>: Monitoring for <code v-pre>launchctl</code> being executed by users or processes that are not typical administrators or system services.</li>
+<li>Repeated Service Modifications: Detecting multiple instances of services being registered or modified, especially for files not commonly associated with legitimate services.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=os_logs sourcetype=mac_os syslog_message=&quot;launchctl&quot;
+| search file_path=&quot;/Library/LaunchDaemons/*&quot;
+| stats count by file_path, user, command_line, process_name
+| where count &gt; 1
+| eval action=&quot;Suspicious LaunchDaemon Registration&quot;, severity=&quot;high&quot;
+| table _time, file_path, user, command_line, process_name, action, severity</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="2a6-masquerading-match-legitimate-name-or-location-t1036005">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#2a6-masquerading-match-legitimate-name-or-location-t1036005">#</doc-anchor-trigger>
+        <span>2.A.6 Masquerading: Match Legitimate Name or Location (<a href="https://attack.mitre.org/techniques/T1036/005/" class="outbound" target="_blank"><span>T1036.005</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>STRATOFEAR (/Library/PrivilegedHelperTools/us.zoom.ZoomHelperTool)</code> masquerades as a legitimate Zoom file, exploiting user trust in common software to avoid detection.</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Mismatch Between File Path and File Properties: Detect when files located in trusted directories (e.g., <code v-pre>/Library/PrivilegedHelperTools/</code>) do not match their expected properties (e.g., signed by a trusted vendor like Zoom).</li>
+<li>Unusual File Creation in Critical Directories: Monitor directories typically reserved for trusted applications or privileged tools for the creation of files that deviate from known software.</li>
+<li>Unverified File Origin: Detection of unsigned or incorrectly signed binaries located in sensitive directories associated with legitimate software.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=os_logs sourcetype=mac_os file_path=&quot;/Library/PrivilegedHelperTools/*&quot;
+| search NOT [| inputlookup legitimate_zoom_files.csv | fields file_name, file_hash]
+| stats count by file_path, file_name, file_hash, user
+| where count &gt; 1
+| eval action=&quot;Suspicious File Masquerading Detected&quot;, severity=&quot;high&quot;
+| table _time, file_path, file_name, file_hash, user, action, severity</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="2a7-application-layer-protocol-web-protocols-t1071001">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#2a7-application-layer-protocol-web-protocols-t1071001">#</doc-anchor-trigger>
+        <span>2.A.7 Application Layer Protocol: Web Protocols (<a href="https://attack.mitre.org/techniques/T1071/001/" class="outbound" target="_blank"><span>T1071.001</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>STRATOFEAR (/Library/PrivilegedHelperTools/us.zoom.ZoomHelperTool)</code> communicates with <code v-pre>t1g3r-heart[.]kr (198.88.44.96)</code> over HTTPS on port 443. This indicates potential data exfiltration or command-and-control activities.</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual HTTPS Connection: Monitor for unusual or infrequent connections to external domains over HTTPS, particularly those not matching known organizational traffic patterns.</li>
+<li>Connections to Newly Registered Domains: Connections to domains that have recently been registered (e.g., less than 30 days old).</li>
+<li>Suspicious External IPs: Traffic from sensitive internal systems (such as <code v-pre>/Library/PrivilegedHelperTools/</code>) to IPs outside regular business workflows.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=network_logs sourcetype=&quot;mac_os&quot; destination_ip=&quot;198.88.44.96&quot; dest_port=443
+| eval time_diff=now() - _time
+| where time_diff &lt; 300
+| stats count by source_ip, destination_ip, user, app_protocol, bytes_sent, bytes_received
+| eval action=&quot;Suspicious HTTPS Communication Detected&quot;, severity=&quot;high&quot;
+| table _time, source_ip, destination_ip, user, app_protocol, bytes_sent, bytes_received, action, severity
+</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="2a8-encrypted-channel-asymmetric-cryptography-t1573002">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#2a8-encrypted-channel-asymmetric-cryptography-t1573002">#</doc-anchor-trigger>
+        <span>2.A.8 Encrypted Channel: Asymmetric Cryptography (<a href="https://attack.mitre.org/techniques/T1573/002/" class="outbound" target="_blank"><span>T1573.002</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>STRATOFEAR (/Library/PrivilegedHelperTools/us.zoom.ZoomHelperTool)</code> establishes a connection to <code v-pre>t1g3r-heart[.]kr (198.88.44.96)</code> over encrypted protocol HTTPS.</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual Encrypted Communications: Monitoring for HTTPS connections to unknown or suspicious domains that do not align with regular business traffic.</li>
+<li>Frequent, High-Volume Encrypted Traffic: Repeated connections over HTTPS from privileged system directories (like <code v-pre>/Library/PrivilegedHelperTools/</code>) that are unexpected.</li>
+<li>Use of Non-standard Ports for HTTPS: Watch for attempts to use encryption protocols over non-standard ports.</li>
+<li>Encrypted Traffic without Prior Establishment: Sudden initiation of encrypted communication to external servers without prior resolution or DNS lookups from known trusted sources.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=network_logs sourcetype=&quot;mac_os&quot; destination_ip=&quot;198.88.44.96&quot; dest_port=443 
+| eval time_diff=now() - _time 
+| where time_diff &lt; 600 
+| stats count by source_ip, destination_ip, user, ssl_version, app_protocol, bytes_sent, bytes_received 
+| eval action=&quot;Encrypted HTTPS Communication to Suspicious IP Detected&quot;, severity=&quot;high&quot; 
+| table _time, source_ip, destination_ip, user, ssl_version, app_protocol, bytes_sent, bytes_received, action, severity</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="step-3">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-3">#</doc-anchor-trigger>
+        <span>Step 3</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="3a1-indicator-removal-file-deletion-t1070004">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#3a1-indicator-removal-file-deletion-t1070004">#</doc-anchor-trigger>
+        <span>3.A.1 Indicator Removal: File Deletion (<a href="https://attack.mitre.org/techniques/T1070/004/" class="outbound" target="_blank"><span>T1070.004</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>FULLHOUSE.DOORED (/usr/local/bin/com.docker.sock)</code> deletes itself and its configuration file <code v-pre>(/usr/local/bin/com.docker.sock.lock)</code> using the command <code v-pre>rm -f com.docker.sock com.docker.sock.lock &amp;&amp; (sleep 7 &amp;&amp; pkill com.docker.sock) &amp;</code>.</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unexpected Deletion of Executables: Monitor for high-privilege processes executing file deletion commands, particularly in non-standard directories (e.g., <code v-pre>/usr/local/bin</code>).</li>
+<li>Timing-based Process Termination: Monitor for process termination commands (e.g., <code v-pre>pkill</code>) that are invoked after file deletion, especially with timing components like sleep.</li>
+<li>Multiple Related File Deletions: Detect simultaneous deletion of executable files and their configuration counterparts, suggesting potential malware cleanup activity.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=system_logs sourcetype=&quot;mac_os&quot; event_type=process_deletion OR file_deletion
+| search &quot;command&quot;=&quot;rm -f&quot; AND &quot;pkill&quot; AND &quot;/usr/local/bin/com.docker.sock&quot;
+| stats count by process_name, user, file_path, command
+| eval anomaly=&quot;Suspicious File Deletion &amp; Process Termination Detected&quot;, severity=&quot;high&quot;
+| table _time, process_name, user, file_path, command, anomaly, severity</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="step-4">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-4">#</doc-anchor-trigger>
+        <span>Step 4</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="4a1-command-and-scripting-interpreter-unix-shell-t1059004">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#4a1-command-and-scripting-interpreter-unix-shell-t1059004">#</doc-anchor-trigger>
+        <span>4.A.1 Command and Scripting Interpreter: Unix Shell (<a href="https://attack.mitre.org/techniques/T1059/004/" class="outbound" target="_blank"><span>T1059.004</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>STRATOFEAR (/Library/PrivilegedHelperTools/us.zoom.ZoomHelperTool)</code> executed discovery commands through <code v-pre>/bin/sh</code> on <code v-pre>HOGSHEAD (10.55.4.50)</code>.</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unexpected Command Execution: Monitoring <code v-pre>/bin/sh</code> executions for commands not typically run by system administrators or automated scripts.</li>
+<li>Privilege Escalation: If the shell commands are executed with elevated privileges, it could indicate malicious intent.</li>
+<li>Command Chaining: Anomalous sequences of discovery-related commands executed in quick succession.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=system_logs sourcetype=&quot;mac_os&quot; event_type=process_execution
+| search &quot;command&quot;=&quot;/bin/sh&quot; AND (&quot;whoami&quot; OR &quot;logname&quot; OR &quot;ifconfig&quot;)
+| stats count by process_name, user, command
+| eval anomaly=&quot;Suspicious Shell Execution Detected&quot;, severity=&quot;high&quot;
+| table _time, process_name, user, command, anomaly, severity</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="4a2-system-owneruser-discovery-t1033">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#4a2-system-owneruser-discovery-t1033">#</doc-anchor-trigger>
+        <span>4.A.2 System Owner/User Discovery (<a href="https://attack.mitre.org/techniques/T1033/" class="outbound" target="_blank"><span>T1033</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>STRATOFEAR (/Library/PrivilegedHelperTools/us.zoom.ZoomHelperTool)</code> executed the command <code v-pre>sh -c logname</code> to retrieve the current user on <code v-pre>HOGSHEAD (10.55.4.50)</code>.</p>
+<p><strong>Behavorial Anomalies</strong></p>
+<ul>
+<li>Unexpected Command Execution: Monitoring execution of discovery commands such as logname using root privileges.</li>
+<li>Unusual Shell Execution: If observed shell (<code v-pre>/bin/sh</code>) commands are uncommon for legitimate Zoom files, this could indicate malicious intent.</li>
+<li>Chained Activity: If combined with file creation or modification events, this strengthens the malicious context.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=main sourcetype=&quot;mac_os&quot; 
+| search &quot;command&quot;=&quot;sh -c logname&quot;
+| stats count by host, user, parent_process, process, command_line
+| where parent_process != &quot;expected_process&quot;
+| table _time, host, user, parent_process, process, command_line</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="4a3-system-owneruser-discovery-t1033">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#4a3-system-owneruser-discovery-t1033">#</doc-anchor-trigger>
+        <span>4.A.3 System Owner/User Discovery (<a href="https://attack.mitre.org/techniques/T1033/" class="outbound" target="_blank"><span>T1033</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>STRATOFEAR (/Library/PrivilegedHelperTools/us.zoom.ZoomHelperTool)</code> executed the command <code v-pre>sh -c dscl . -list /Users | grep -v '^_'</code> to gather a list of users on the system on <code v-pre>HOGSHEAD (10.55.4.50)</code>.</p>
+<p><strong>Behavorial Anomalies</strong></p>
+<ul>
+<li>Execution of the <code v-pre>dscl</code> command outside typical administrative workflows.</li>
+<li>Suspicious account enumeration activity by unauthorized processes or users.</li>
+<li>Filtering of system accounts to focus on interactive users for further targeting.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=main sourcetype=&quot;mac_os&quot;
+| search &quot;command&quot;=&quot;sh -c dscl . -list /Users | grep -v '^_'&quot;
+| stats count by host, user, parent_process, process, command_line
+| where parent_process != &quot;expected_process&quot;
+| table _time, host, user, parent_process, process, command_line</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="4a4-system-information-discovery-t1082">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#4a4-system-information-discovery-t1082">#</doc-anchor-trigger>
+        <span>4.A.4 System Information Discovery (<a href="https://attack.mitre.org/techniques/T1082/" class="outbound" target="_blank"><span>T1082</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>STRATOFEAR (/Library/PrivilegedHelperTools/us.zoom.ZoomHelperTool)</code> used the API function <code v-pre>gethostname()</code> to gather the system&#x27;s hostname on <code v-pre>HOGSHEAD (10.55.4.50)</code>.</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unexpected API calls to gethostname from unusual processes.</li>
+<li>Host information retrieval by unauthorized or non-system-critical processes.</li>
+</ul>
+<doc-anchor-target id="4a5-system-information-discovery-t1082">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#4a5-system-information-discovery-t1082">#</doc-anchor-trigger>
+        <span>4.A.5 System Information Discovery (<a href="https://attack.mitre.org/techniques/T1082/" class="outbound" target="_blank"><span>T1082</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>STRATOFEAR (/Library/PrivilegedHelperTools/us.zoom.ZoomHelperTool)</code> executed the command <code v-pre>/usr/sbin/system_profiler SPHardwareDataType</code> to collect hardware information on <code v-pre>HOGSHEAD (10.55.4.50)</code>.</p>
+<p><strong>Behavorial Anomalies</strong></p>
+<ul>
+<li>Unusual execution of system_profiler from non-administrative processes or users.</li>
+<li>Hardware information collection outside of routine maintenance or expected usage.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=main sourcetype=&quot;mac_os&quot;
+| search &quot;system_profiler SPHardwareDataType&quot;
+| stats count by user, process, parent_process, host
+| where parent_process != &quot;expected_admin_process&quot;
+| table _time, host, user, process, parent_process </code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="4a6-system-information-discovery-t1082">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#4a6-system-information-discovery-t1082">#</doc-anchor-trigger>
+        <span>4.A.6 System Information Discovery (<a href="https://attack.mitre.org/techniques/T1082/" class="outbound" target="_blank"><span>T1082</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p>Description</p>
+<p><code v-pre>STRATOFEAR (/Library/PrivilegedHelperTools/us.zoom.ZoomHelperTool)</code> executed the command <code v-pre>/usr/bin/sw_vers</code> to collect OS and build information on <code v-pre>HOGSHEAD (10.55.4.50)</code>.</p>
+<p><strong>Behavorial Anomalies</strong></p>
+<ul>
+<li>Unexpected Command Execution: Monitoring for execution of system profiler commands by non-administrative applications. Repeated access to system profiling commands strengthens the malicious context.</li>
+<li>Unusual User-Level Execution: Non-administrative processes executing system information commands.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=main sourcetype=&quot;mac_os&quot; &quot;command_line&quot;=&quot;/usr/bin/sw_vers&quot; </code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="4a7-shared-modules-t1129">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#4a7-shared-modules-t1129">#</doc-anchor-trigger>
+        <span>4.A.7 Shared Modules (<a href="https://attack.mitre.org/techniques/T1129/" class="outbound" target="_blank"><span>T1129</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>STRATOFEAR (/Library/PrivilegedHelperTools/us.zoom.ZoomHelperTool)</code> dynamically loads modules from C2 using the <code v-pre>Initialize</code> function with <code v-pre>dlopen()</code> and <code v-pre>dlsym()</code>.</p>
+<p><strong>Behavorial Anomalies</strong></p>
+<ul>
+<li>Sudden use of dlopen() to load unusual shared libraries or temporary files.</li>
+<li>Files written in /tmp directories, often named with random alphanumeric strings, signal potential malicious code or modules loaded remotely.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=macOS sourcetype=syslog
+| search &quot;dlopen&quot; &quot;dlsym&quot;
+| eval file_path_extracted=if(match(file_path, &quot;/tmp/*&quot;), file_path, null())
+| search file_path_extracted!=null
+| stats count by process_name, file_path_extracted
+| where count &gt; 1  # Threshold to reduce noise
+| table _time, process_name, file_path_extracted</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="4a8-credentials-from-password-stores-t1555001">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#4a8-credentials-from-password-stores-t1555001">#</doc-anchor-trigger>
+        <span>4.A.8 Credentials from Password Stores (<a href="https://attack.mitre.org/techniques/T1555/001/" class="outbound" target="_blank"><span>T1555.001</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>STRATOFEAR (/Library/PrivilegedHelperTools/us.zoom.ZoomHelperTool)</code> reads the system <code v-pre>(/Library/Keychains/System.keychain)</code> and user <code v-pre>(/Users/ranrok/Library/Keychains/login.keychain-db)</code> Keychain files on the host <code v-pre>HOGSHEAD (10.55.4.50)</code>.</p>
+<p><strong>Behavorial Anomalies</strong></p>
+<ul>
+<li>Unusual access to the Keychain, especially in non-typical processes or outside regular administrative activity, should raise suspicion.</li>
+<li>Monitoring the execution of SecKeychainItemCopyContent and analyzing for processes that attempt unauthorized keychain access can reveal anomalies.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=your_index sourcetype=your_sourcetype
+| search &quot;SecKeychainItemCopyContent&quot; OR &quot;/Library/Keychains/System.keychain&quot; OR &quot;/Users/*/Library/Keychains/login.keychain-db&quot;
+| stats count by process_name, user, keychain_access_attempt
+| where count &gt; 1</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="4a9-network-share-discovery-t1135">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#4a9-network-share-discovery-t1135">#</doc-anchor-trigger>
+        <span>4.A.9 Network Share Discovery (<a href="https://attack.mitre.org/techniques/T1135/" class="outbound" target="_blank"><span>T1135</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>STRATOFEAR</code> is a persistent threat actor that uses the <code v-pre>us.zoom.ZoomHelperTool</code> located in <code v-pre>/Library/PrivilegedHelperTools/</code> to monitor and collect activity on shared drives and mounted devices. This tool leverages FSEventStream to track changes within the <code v-pre>/Volumes</code> folder, capturing details whenever a device (including USB or software) is mounted to the system.</p>
+<p><strong>Behavorial Anomalies</strong></p>
+<ul>
+<li>High-Frequency Access: Monitoring unusual high-frequency access to the /Volumes folder.</li>
+<li>Unusual File System Events: Monitoring frequent read/write operations (such as those initiated by us.zoom.ZoomHelperTool).</li>
+<li>Unusual File Operations: Multiple fsgetpath, getfsstat64, and getattrlist operations targeting the /Volumes folder, which can indicate unauthorized surveillance of file system activities.</li>
+<li>Unexpected mounting of devices that do not align with normal user behavior.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=&lt;your_index&gt; sourcetype=&quot;fsmon&quot; event_type=&quot;device_mount&quot;
+| eval suspicious_mount = if((mount_point == &quot;/Volumes&quot;) AND (process_name != &quot;Finder&quot;), 1, 0)
+| stats count by host, process_name, mount_point
+| where suspicious_mount &gt; 0
+| table host, process_name, mount_point
+| sort - count</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="4a10-automated-collection-t1119">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#4a10-automated-collection-t1119">#</doc-anchor-trigger>
+        <span>4.A.10 Automated Collection (<a href="https://attack.mitre.org/techniques/T1119/" class="outbound" target="_blank"><span>T1119</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>STRATOFEAR (/Library/PrivilegedHelperTools/us.zoom.ZoomHelperTool)</code> records device activity to <code v-pre>/Library/Fonts/AppleSDGothicNeo.ttc.1</code> on <code v-pre>HOGSHEAD (10.55.4.50)</code>.</p>
+<p><strong>Behavorial Anomalies</strong></p>
+<ul>
+<li>Unusual write operations in system directories like <code v-pre>/Library/Fonts</code>.</li>
+<li>Processes creating hidden or rarely-used files.</li>
+<li>Frequent writing to non-logging directories that typically host static files (e.g., fonts).</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=&lt;your_index&gt; sourcetype=&quot;fsmon&quot; file_path=&quot;/Library/Fonts/AppleSDGothicNeo.ttc.1&quot;
+| stats count by host, process_name, file_path
+| where count &gt; 0
+| table host, process_name, file_path
+| sort - count</code></pre>
+</doc-codeblock></div>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer class="clear-both">
+                            
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../../enterprise/dprk/defense_measures/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">DPRK Defense Measures</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../../enterprise/dprk/emulation_plan/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                                                <span class="block mt-1">DPRK Emulation Plans</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between">
+                                <div>
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                        <li>
+                                            <a class="inline-flex items-center mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="https://github.com/attackevals/ael">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                                    <g fill="currentColor">
+                                                        <symbol id="mark-github-icon-symbol" viewBox="0 0 16 16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></symbol><use xlink:href="#mark-github-icon-symbol" />
+                                                    </g>
+                                                </svg>
+                                                <span>ATTACK Evaluations Library GitHub</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2024. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="docs-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "DPRK Detection Analysis", level: 4, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H74RC38PBM"></script>
+    <script data-cfasync="false">window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-H74RC38PBM');</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-root" content="/ael">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.786727257842">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.6.0">
+
+    <!-- Primary Meta Tags -->
+    <title>CL0P Detection Analysis</title>
+    <meta name="title" content="CL0P Detection Analysis">
+    <meta name="description" content="This guide covers key detection criteria for CL0P-related ransomware as emulated by the Enterprise Round 6 Emulation Plan It involves tracking the...">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://attackevals.github.io/ael/enterprise/cl0p/defense_measures/cl0p_detections/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://attackevals.github.io/ael/enterprise/cl0p/defense_measures/cl0p_detections/">
+    <meta property="og:title" content="CL0P Detection Analysis">
+    <meta property="og:description" content="This guide covers key detection criteria for CL0P-related ransomware as emulated by the Enterprise Round 6 Emulation Plan It involves tracking the...">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://attackevals.github.io/ael/enterprise/cl0p/defense_measures/cl0p_detections/">
+    <meta property="twitter:title" content="CL0P Detection Analysis">
+    <meta property="twitter:description" content="This guide covers key detection criteria for CL0P-related ransomware as emulated by the Enterprise Round 6 Emulation Plan It involves tracking the...">
+
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="../../../../favicon.png" rel="icon">
+    <link href="../../../../resources/css/retype.css?v=3.6.0.786727257842" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.786727257842" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.786727257842" data-turbo-eval="false" defer></script>
+</head>
+<body>
+    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    
+        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="docs-sidebar-toggle"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="docs-site-logo" href="../../../../" class="flex items-center leading-snug text-xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../../../images/attackevals-logo.png">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../../../images/attackevals-logo.png">
+                            </span>
+                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">ATTACK Evaluation Library</span>
+                        </a>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-gray-400 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 dark:placeholder-dark-400" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="docs-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <div class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            
+                <!-- Render this div, if config.showSidebarFilter is `true` -->
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                </div>
+            
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 dark:bg-dark-850">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="docs-markdown" id="docs-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="docs-sidebar-right-toggle"></div>
+                                <nav class="breadcrumb" aria-label="Breadcrumb">
+                                    <ol role="list">
+                                        <li class="pr-4">
+                                            <a href="../../../../" class="pr-4">
+                                                ATT&​CK Evaluations Library
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Enterprise
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/cl0p/" class="pr-4">
+                                                CL​0​P
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/cl0p/defense_measures/" class="pr-4">
+                                                CL​0​P Defense Measures
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/cl0p/defense_measures/cl0p_detections/" class="pr-4">
+                                                CL​0​P Detection Analysis
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                
+                                <!-- Page content  -->
+<doc-anchor-target id="cl0p-detection-analysis" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cl0p-detection-analysis">#</doc-anchor-trigger>
+        <span>CL0P Detection Analysis</span>
+    </h1>
+</doc-anchor-target>
+<p>This guide covers key detection criteria for CL0P-related ransomware as emulated by the Enterprise Round 6 Emulation Plan It involves tracking the malicious activities of SDBbot, a loader used to deploy CL0P, and its associated behaviors like process injection, reflective code loading, and file manipulation. Key indicators of compromise include:</p>
+<ul>
+<li><strong>Registry Modifications</strong>: Monitoring for unauthorized registry changes (<a href="https://attack.mitre.org/techniques/T1112/" class="outbound" target="_blank"><span>T1112</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>) and IFEO debugger settings modification (<a href="https://attack.mitre.org/techniques/T1546/012" class="outbound" target="_blank"><span>T1546.012</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>).</li>
+<li><strong>Reflective Code Loading</strong>: Identifying reflective DLL injections by SDBbot in winlogon.exe (<a href="https://attack.mitre.org/techniques/T1620/" class="outbound" target="_blank"><span>T1620</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>).</li>
+<li><strong>Process &amp; System Discovery</strong>: Detecting information-gathering behaviors (<a href="https://attack.mitre.org/techniques/T1082/" class="outbound" target="_blank"><span>T1082</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>) targeting hostname, user, and system data.</li>
+<li><strong>File and Directory Discovery</strong>: Monitoring suspicious file access and discovery commands (<a href="https://attack.mitre.org/techniques/T1083/" class="outbound" target="_blank"><span>T1083</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>).</li>
+<li><strong>Exfiltration and Network Activity</strong>: Detecting C2 communication over TCP port 443 (<a href="https://attack.mitre.org/techniques/T1095/" class="outbound" target="_blank"><span>T1095</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>) and exfiltration attempts (<a href="https://attack.mitre.org/techniques/T1041/" class="outbound" target="_blank"><span>T1041</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>).</li>
+</ul>
+<doc-anchor-target id="key-findings">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#key-findings">#</doc-anchor-trigger>
+        <span>Key Findings</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><strong>SDBbot Deployment</strong>: Rundll32 is used to proxy-load malicious DLLs.</li>
+<li><strong>Fileless Persistence</strong>: Registry modifications ensure persistence without explicit files on disk.</li>
+<li><strong>Reflective Code Loading</strong>: SDBbot loads payloads into processes such as winlogon.exe to evade detection.</li>
+<li><strong>System Discovery and Exfiltration</strong>: Gathers system information and exfiltrates over C2 channels.</li>
+</ul>
+<doc-anchor-target id="detection-tools">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#detection-tools">#</doc-anchor-trigger>
+        <span>Detection Tools</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><strong>Sysmon</strong>: For detecting reflective DLL loading, registry modifications, and process execution.</li>
+<li><strong>YARA</strong>: To write signatures for detecting CL0P malware components and DLLs.</li>
+<li><strong>Zeek (formerly Bro)</strong>: Network monitoring for identifying suspicious network connections to C2 domains.</li>
+<li><strong>Suricata</strong>: For detecting abnormal traffic patterns, especially around port 443.</li>
+</ul>
+<doc-anchor-target id="step-5">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-5">#</doc-anchor-trigger>
+        <span>Step 5</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="5a1-system-binary-proxy-execution-rundll32t1218011">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#5a1-system-binary-proxy-execution-rundll32t1218011">#</doc-anchor-trigger>
+        <span>5.A.1 System Binary Proxy Execution: Rundll32 (<a href="https://attack.mitre.org/techniques/T1218/011/" class="outbound" target="_blank"><span>T1218.011</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>SDBbot</code> malware execution is detected through the usage of <code v-pre>rundll32.exe</code> to install an unsigned DLL (<code v-pre>IFInstaller.dll</code>) located in the user&#x27;s Roaming directory. The event indicates <code v-pre>GRIPHOOK</code> executing this command on the system named <code v-pre>DIAGONALLEY</code>.</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Execution of <code v-pre>rundll32.exe</code> with command-line parameters specifying an unusual DLL path.</li>
+<li>Loading of an unsigned DLL from a non-standard directory (AppData\Roaming).</li>
+<li>Anomalous process creation and command-line execution.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=* source=WinEventLog:Microsoft-Windows-Sysmon/Operational 
+| where CommandLine=&quot;rundll32.exe C:\\Users\\griphook\\AppData\\Roaming\\IFInstaller.dll,install&quot; </code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="5a2-obfuscated-files-or-information-embedded-payloads-t1027009">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#5a2-obfuscated-files-or-information-embedded-payloads-t1027009">#</doc-anchor-trigger>
+        <span>5.A.2 Obfuscated Files or Information: Embedded Payloads (<a href="https://attack.mitre.org/techniques/T1027/009/" class="outbound" target="_blank"><span>T1027.009</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p>The SDBbot Installer (<code v-pre>C:\Users\griphook\AppData\Roaming\IFInstaller.dll</code>) contains an embedded Portable Executable (PE) file within its resource section. This technique hides malicious payloads within seemingly benign files to evade detection.</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual or excessive use of resource sections within DLL files.</li>
+<li>Presence of embedded PE files within DLL resources.</li>
+</ul>
+<doc-anchor-target id="5a3-modify-registryt1112">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#5a3-modify-registryt1112">#</doc-anchor-trigger>
+        <span>5.A.3 Modify Registry (<a href="https://attack.mitre.org/techniques/T1112/" class="outbound" target="_blank"><span>T1112</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p>The <code v-pre>SDBbot</code> installer stores the loader shellcode and embedded PE file in the Windows registry under the key <code v-pre>HKLM\SOFTWARE\Microsoft\skw</code>. This technique involves hiding the malicious payload within the registry to avoid detection.</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual registry writes to HKLM\SOFTWARE\Microsoft\skw.</li>
+<li>Presence of binary data within the registry key, indicating potential embedded PE file.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=windows EventCode=13 ObjectType=Registry KeyName=&quot;HKLM\SOFTWARE\Microsoft\skw&quot; </code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="5a4-modify-registryt1112">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#5a4-modify-registryt1112">#</doc-anchor-trigger>
+        <span>5.A.4 Modify Registry (<a href="https://attack.mitre.org/techniques/T1112/" class="outbound" target="_blank"><span>T1112</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>rundll32.exe</code> is used to download the <code v-pre>SDBbot Loader DLL</code> to <code v-pre>C:\Windows\temp\tmp8AB2.tmp</code>, creating a symbolic link <code v-pre>C:\Windows\System32\msverload.dll</code>. It then modifies the Image File Execution Options (IFEO) debugger registry settings to point to this DLL. The registry keys modified are:</p>
+<ul>
+<li>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\</li>
+<li>VerifierDLL set to msverload</li>
+<li>FilterFullPath set to winlogon</li>
+</ul>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual usage of rundll32.exe to download DLL files.</li>
+<li>Modifications to the IFEO registry settings, especially setting VerifierDLL and FilterFullPath values.</li>
+<li>Creation of symbolic links in the System32 directory.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=windows EventCode=13 ObjectType=Registry KeyName=&quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\*&quot; ValueName IN (&quot;VerifierDLL&quot;, &quot;FilterFullPath&quot;) </code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="6a1-event-triggered-execution-image-file-execution-options-injectiont1546012">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#6a1-event-triggered-execution-image-file-execution-options-injectiont1546012">#</doc-anchor-trigger>
+        <span>6.A.1 Event Triggered Execution: Image File Execution Options Injection (<a href="https://attack.mitre.org/techniques/T1546/012/" class="outbound" target="_blank"><span>T1546.012</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>winlogon.exe</code> executed with an embedded <code v-pre>SDBbot Loader</code>, an unsigned DLL, found in <code v-pre>C:\Windows\Temp\tmp8AB2.tmp</code>, triggered post-login. This is indicative of Image File Execution Options (IFEO) injection, a technique where an attacker configures the system to execute a malicious payload when a specific executable is launched.</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Execution of unexpected DLLs by winlogon.exe.</li>
+<li>Presence of unsigned DLLs in C:\Windows\Temp.</li>
+<li>Modifications in IFEO registry settings for winlogon.exe.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">(process_name=&quot;rundll32.exe&quot; file_path=&quot;C:\\Windows\\Temp\\tmp8AB2.tmp&quot;) OR (process_name=&quot;winlogon.exe&quot; ImageLoaded=&quot;C:\\Windows\\Temp\\tmp8AB2.tmp&quot;)</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="6a2-reflective-code-loadingt1620">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#6a2-reflective-code-loadingt1620">#</doc-anchor-trigger>
+        <span>6.A.2 Reflective Code Loading (<a href="https://attack.mitre.org/techniques/T1620/" class="outbound" target="_blank"><span>T1620</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>winlogon.exe</code> reflectively loads the <code v-pre>SDBbot RAT</code> by replacing <code v-pre>setupapi.dll</code> with shellcode. This involves manipulating winlogon.exe to use a malicious setupapi.dll, allowing the attacker to inject and execute the RAT without writing the payload to disk.</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Loading of an unexpected or unsigned setupapi.dll by winlogon.exe.</li>
+<li>Execution of processes or DLLs not typically associated with winlogon.exe</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=process_monitor sourcetype=process_creation process_name=&quot;winlogon.exe&quot; image_path=&quot;C:\\Windows\\System32\\setupapi.dll&quot; </code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="6a3-process-discoveryt1057">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#6a3-process-discoveryt1057">#</doc-anchor-trigger>
+        <span>6.A.3 Process Discovery (<a href="https://attack.mitre.org/techniques/T1057/" class="outbound" target="_blank"><span>T1057</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p>The <code v-pre>SDBbot</code> Remote Access Trojan (RAT) uses <code v-pre>winlogon.exe</code> to gather information about running processes by calling API functions such as <code v-pre>GetCurrentProcess</code>, <code v-pre>GetTokenInformation</code>, and <code v-pre>OpenProcessToken</code>. This behavior can indicate attempts to gather information about other processes for further exploitation or evasion techniques.</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>winlogon.exe calling process discovery API functions unexpectedly.</li>
+<li>Elevated privileges used by winlogon.exe to query process information.</li>
+</ul>
+<doc-anchor-target id="6a4-system-information-discoveryt1082">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#6a4-system-information-discoveryt1082">#</doc-anchor-trigger>
+        <span>6.A.4 System Information Discovery (<a href="https://attack.mitre.org/techniques/T1082/" class="outbound" target="_blank"><span>T1082</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p>The <code v-pre>SDBbot</code> RAT uses <code v-pre>winlogon.exe</code> to discover system information, specifically obtaining the domain name through API functions <code v-pre>gethostname</code> and <code v-pre>getaddrinfo</code>. This technique allows the malware to gather network configuration details, aiding in further exploitation and lateral movement.</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual network-related API calls from winlogon.exe.</li>
+<li>Increased frequency of gethostname and getaddrinfo calls, indicating potential reconnaissance activity.</li>
+</ul>
+<doc-anchor-target id="6a5-system-information-discoveryt1082">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#6a5-system-information-discoveryt1082">#</doc-anchor-trigger>
+        <span>6.A.5 System Information Discovery (<a href="https://attack.mitre.org/techniques/T1082/" class="outbound" target="_blank"><span>T1082</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p>The <code v-pre>SDBbot</code> RAT leverages winlogon.exe to gather system information, specifically obtaining the computer name through the API function <code v-pre>GetComputerName</code>. This helps the malware identify the system it has compromised, which can assist in further exploitation or lateral movement.</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>winlogon.exe making unusual calls to GetComputerName.</li>
+<li>Increased frequency of system information queries from winlogon.exe.</li>
+</ul>
+<doc-anchor-target id="6a6-system-owneruser-discoveryt1033">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#6a6-system-owneruser-discoveryt1033">#</doc-anchor-trigger>
+        <span>6.A.6 System Owner/User Discovery (<a href="https://attack.mitre.org/techniques/T1033/" class="outbound" target="_blank"><span>T1033</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p>The <code v-pre>SDBbot</code> RAT leverages winlogon.exe to gather information about the system&#x27;s owner or user by utilizing the <code v-pre>GetUserNameA</code> API function. This allows the malware to identify the username of the current user on the compromised system, aiding in tailored attacks or further exploitation.</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual or frequent calls to GetUserNameA by winlogon.exe.</li>
+<li>winlogon.exe accessing user information outside of normal operating times or patterns.</li>
+</ul>
+<doc-anchor-target id="6a7-system-information-discoveryt1082">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#6a7-system-information-discoveryt1082">#</doc-anchor-trigger>
+        <span>6.A.7 System Information Discovery (<a href="https://attack.mitre.org/techniques/T1082/" class="outbound" target="_blank"><span>T1082</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p>The <code v-pre>SDBbot</code> RAT leverages winlogon.exe to gather geographical information about the system by utilizing the <code v-pre>GetUserGeoID</code> and <code v-pre>GetGeoInfoW</code> API functions. This allows the malware to identify the country code and other geographical details, aiding in targeted attacks or tailoring further actions based on the system&#x27;s location.</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual or frequent calls to GetUserGeoID and GetGeoInfoW by winlogon.exe.</li>
+<li>winlogon.exe accessing geographical information outside of normal operating patterns or times.</li>
+</ul>
+<doc-anchor-target id="6a8-system-information-discoveryt1082">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#6a8-system-information-discoveryt1082">#</doc-anchor-trigger>
+        <span>6.A.8 System Information Discovery (<a href="https://attack.mitre.org/techniques/T1082/" class="outbound" target="_blank"><span>T1082</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p>The <code v-pre>SDBbot</code> RAT leverages <code v-pre>winlogon.exe</code> to gather system information by calling the <code v-pre>RtlGetVersionAPI</code> function to determine the Windows version. This information helps the malware tailor its behavior based on the operating system it is running on.</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unexpected calls to RtlGetVersion by winlogon.exe, especially if not part of standard operating procedures.</li>
+<li>Frequent or repetitive access to the RtlGetVersion API, indicating potential reconnaissance activity.</li>
+</ul>
+<doc-anchor-target id="6a9-non-application-layer-protocol-t1095">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#6a9-non-application-layer-protocol-t1095">#</doc-anchor-trigger>
+        <span>6.A.9 Non-Application Layer Protocol (<a href="https://attack.mitre.org/techniques/T1095/" class="outbound" target="_blank"><span>T1095</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong>
+Winlogon.exe establishes communication to fortius-quo-fidelius[.]co[.]uk (14.121.222.11) over TCP port 443. This behavior indicates a potential misuse of the winlogon.exe process for unauthorized network communication.</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual outbound connections from winlogon.exe.</li>
+<li>Communication to uncommon or suspicious external IP addresses.</li>
+<li>Usage of TCP port 443 by non-browser applications.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=network_processes sourcetype=network_traffic dest_ip=&quot;14.121.222.11&quot; dest_port=443 process_name=&quot;winlogon.exe&quot; </code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="7a1-file-and-directory-discoveryt1083">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#7a1-file-and-directory-discoveryt1083">#</doc-anchor-trigger>
+        <span>7.A.1 File and Directory Discovery (<a href="https://attack.mitre.org/techniques/T1083/" class="outbound" target="_blank"><span>T1083</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p>The <code v-pre>SDBbot</code> RAT uses winlogon.exe to execute cmd.exe with the command dir <code v-pre>C:\users\</code> to enumerate user directories on the host <code v-pre>diagonalley</code>. This behavior helps the RAT gather information about the file system structure and user accounts.</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>winlogon.exe invoking cmd.exe to list directories, which is uncommon for normal operations.</li>
+<li>Repeated directory listing commands that do not align with typical user or system processes.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=* sourcetype=* host=diagonalley CommandLine=&quot;*dir C:\\users\\*&quot; </code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="7a2-exfiltration-over-c2-channelt1041">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#7a2-exfiltration-over-c2-channelt1041">#</doc-anchor-trigger>
+        <span>7.A.2 Exfiltration Over C2 Channel (<a href="https://attack.mitre.org/techniques/T1041/" class="outbound" target="_blank"><span>T1041</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p>The <code v-pre>SDBbot</code> RAT exfiltrates a file to <code v-pre>fortius-quo-fidelius[.]co[.]uk (14.121.222.11)</code> over <code v-pre>TCP (port 443)</code> on the host <code v-pre>diagonalley</code>.</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unusual network traffic to uncommon external IP addresses over port 443.</li>
+<li>Unexpected outbound connections from winlogon.exe.</li>
+<li>Data exfiltration activities occurring during non-business hours.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=* sourcetype=* host=diagonalley dest_ip=&quot;14.121.222.11&quot; dest_port=443 </code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="8a1-ingress-tool-transfert1105">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#8a1-ingress-tool-transfert1105">#</doc-anchor-trigger>
+        <span>8.A.1 Ingress Tool Transfer (<a href="https://attack.mitre.org/techniques/T1105/" class="outbound" target="_blank"><span>T1105</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p>The SDBbot RAT uses winlogon.exe to transfer and execute CL0P (C:\Windows\System32\SysMonitor.exe ) via cmd.exe.</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Execution of cmd.exe by winlogon.exe, which is unusual for typical system behavior.</li>
+<li>New or unfamiliar executables running from C:\Windows\System32.</li>
+<li>Network activity associated with newly introduced executables.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=* sourcetype=* host=diagonalley process_name=&quot;winlogon.exe&quot; EventCode=11 &quot;*C:\\Windows\\System32\\SysMonitor.exe&quot; </code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="8a2-command-and-scripting-interpreter-windows-command-shellt1059003">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#8a2-command-and-scripting-interpreter-windows-command-shellt1059003">#</doc-anchor-trigger>
+        <span>8.A.2 Command and Scripting Interpreter: Windows Command Shell (<a href="https://attack.mitre.org/techniques/T1059/003/" class="outbound" target="_blank"><span>T1059.003</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p>The <code v-pre>CL0P</code> malware is executed by <code v-pre>winlogon.exe</code> through <code v-pre>cmd.exe</code> using the command <code v-pre>cmd.exe /C C:\Windows\System32\SysMonitor.exe</code>. This indicates the use of the Windows Command Shell to launch malicious executables.</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Execution of cmd.exe by winlogon.exe, which is unusual for typical system operations.</li>
+<li>Unexpected or unauthorized executables running from C:\Windows\System32.</li>
+<li>Elevated command-line activity involving execution of potentially harmful scripts or executables.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=* sourcetype=* host=diagonalley process_name=&quot;winlogon.exe&quot; CommandLine=&quot;cmd.exe /C C:\\Windows\\System32\\SysMonitor.exe&quot; </code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="8a3-system-location-discovery-system-language-discoveryt1614001">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#8a3-system-location-discovery-system-language-discoveryt1614001">#</doc-anchor-trigger>
+        <span>8.A.3 System Location Discovery: System Language Discovery (<a href="https://attack.mitre.org/techniques/T1614/001/" class="outbound" target="_blank"><span>T1614.001</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p><code v-pre>CL0P (C:\Windows\System32\SysMonitor.exe)</code> uses API functions <code v-pre>GetKeyboardLayout</code> and <code v-pre>GetTextCharset</code> to determine the system&#x27;s keyboard layout and text charset, which helps identify the system language and regional settings.</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unexpected calls to GetKeyboardLayout and GetTextCharset by non-standard applications.</li>
+<li>Analysis of system language settings by executable files in critical system directories.</li>
+<li>Execution of SysMonitor.exe or similar files that typically should not engage in language discovery activities.</li>
+</ul>
+<doc-anchor-target id="8a4-command-and-scripting-interpreter-windows-command-shellt1059003">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#8a4-command-and-scripting-interpreter-windows-command-shellt1059003">#</doc-anchor-trigger>
+        <span>8.A.4 Command and Scripting Interpreter: Windows Command Shell (<a href="https://attack.mitre.org/techniques/T1059/003/" class="outbound" target="_blank"><span>T1059.003</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p>CL0P (C:\Windows\System32\SysMonitor.exe) executed commands using cmd.exe /c to carry out malicious activities on the host.</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>cmd.exe being used to execute unexpected commands or scripts.</li>
+<li>Unusual command-line arguments associated with cmd.exe, especially those invoking SysMonitor.exe.</li>
+<li>High frequency of cmd.exe executions within a short time frame.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=* sourcetype=* host=diagonalley process_name=&quot;cmd.exe&quot; CommandLine=&quot;* /c *SysMonitor.exe&quot; </code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="8a5-inhibit-system-recoveryt1490">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#8a5-inhibit-system-recoveryt1490">#</doc-anchor-trigger>
+        <span>8.A.5 Inhibit System Recovery (<a href="https://attack.mitre.org/techniques/T1490/" class="outbound" target="_blank"><span>T1490</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p>CL0P (C:\Windows\System32\SysMonitor.exe) attempts to inhibit system recovery by deleting shadow copies and resizing shadow storage on multiple drives (C:, D:, E:, F:, G:, H:) using the vssadmin command.</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unexpected or unauthorized use of vssadmin commands.</li>
+<li>Sudden deletion of shadow copies.</li>
+<li>Significant changes in shadow storage sizes.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=* sourcetype=* host=diagonalley process_name=&quot;cmd.exe&quot; CommandLine=&quot;*vssadmin*&quot; </code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="8a6-inhibit-system-recoveryt1490">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#8a6-inhibit-system-recoveryt1490">#</doc-anchor-trigger>
+        <span>8.A.6 Inhibit System Recovery (<a href="https://attack.mitre.org/techniques/T1490/" class="outbound" target="_blank"><span>T1490</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p>CL0P (C:\Windows\System32\SysMonitor.exe) disables boot recovery options on a system by executing commands to modify boot configuration data (BCD) settings. Detect instances where cmd.exe executes bcdedit commands to disable recovery options:</p>
+<ul>
+<li>cmd.exe /C bcdedit /set (default) recoveryenabled No</li>
+<li>cmd.exe /C bcdedit /set  bootstatuspolicy ignoreallfailures</li>
+</ul>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unauthorized changes to system boot configurations.</li>
+<li>Disabled recovery options that hinder system recovery after failures.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=* sourcetype=* host=diagonalley process_name=&quot;cmd.exe&quot; CommandLine=&quot;*bcdedit*&quot;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="8a7-service-stop-t1489">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#8a7-service-stop-t1489">#</doc-anchor-trigger>
+        <span>8.A.7 Service Stop (<a href="https://attack.mitre.org/techniques/T1489/" class="outbound" target="_blank"><span>T1489</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p>CL0P (C:\Windows\System32\SysMonitor.exe) stops several services to inhibit system defenses and recovery mechanisms. Detect instances where cmd.exe executes the command to stop services:</p>
+<ul>
+<li><strong>Full Command Line</strong>: cmd.exe /C net stop /y</li>
+</ul>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Sudden stopping of multiple system services.</li>
+<li>Services related to security, backup, or recovery are stopped unexpectedly.</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=* sourcetype=* host=diagonalley process_name=&quot;cmd.exe&quot; CommandLine=&quot;*net stop * /y&quot; </code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="8a9-data-encrypted-for-impact-t1486">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#8a9-data-encrypted-for-impact-t1486">#</doc-anchor-trigger>
+        <span>8.A.9 Data Encrypted for Impact (<a href="https://attack.mitre.org/techniques/T1486/" class="outbound" target="_blank"><span>T1486</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p>CL0P (C:\Windows\System32\SysMonitor.exe) encrypts files using AES, appending the [.]C_I0p extension</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unwarranted and unexpected encryption of files</li>
+<li>Unusual file extension not known to be used by common file types</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=* 
+| rex field=TargetFilename &quot;(?&lt;file_extension&gt;\.[^\.]+$)&quot; 
+| stats count by file_extension 
+| sort count</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="8a10-defacement-internal-defacement-t1491001">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#8a10-defacement-internal-defacement-t1491001">#</doc-anchor-trigger>
+        <span>8.A.10 Defacement: Internal Defacement (<a href="https://attack.mitre.org/techniques/T1491/001/" class="outbound" target="_blank"><span>T1491.001</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p>CL0P (C:\Windows\System32\SysMonitor.exe) creates a ransom note (Readme!_CI0P!.txt)</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Threatening note left by adversary indicating a compromise of sensitive data</li>
+<li>Unauthorized and unusual artifacts from adversary activity</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=* EventCode=11 | search TargetFilename=&quot;*.txt&quot; | stats count by _time, TargetFilename | sort - count</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="8a11-indicator-removal-clear-windows-event-logs-t1070001">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#8a11-indicator-removal-clear-windows-event-logs-t1070001">#</doc-anchor-trigger>
+        <span>8.A.11 Indicator Removal: Clear Windows Event Logs (<a href="https://attack.mitre.org/techniques/T1070/001/" class="outbound" target="_blank"><span>T1070.001</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p>CL0P (C:\Windows\System32\SysMonitor.exe) clears several Windows Event Logs</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Unexpected and unusual deletion of Windows Event Logs</li>
+<li>Adversary tactics to hide malicious activities</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">(`wineventlog_security` EventCode=1102) OR (`wineventlog_system` EventCode=104)</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="8a12-indicator-removal-file-deletion-t1070004">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#8a12-indicator-removal-file-deletion-t1070004">#</doc-anchor-trigger>
+        <span>8.A.12 Indicator Removal: File Deletion (<a href="https://attack.mitre.org/techniques/T1070/004/" class="outbound" target="_blank"><span>T1070.004</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>)</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Detection Criteria</strong></p>
+<p>CL0P (C:\Windows\System32\SysMonitor.exe) deleted itself</p>
+<p><strong>Behavioral Anomalies</strong></p>
+<ul>
+<li>Self-deleting executables are atypical from how a benign executable usually operates</li>
+</ul>
+<p><strong>Detection SPL Queries</strong></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">index=* process_name=&quot;cmd.exe&quot; | search &quot;del&quot; &quot;*.exe&quot;</code></pre>
+</doc-codeblock></div>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer class="clear-both">
+                            
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../../enterprise/cl0p/defense_measures/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">CL​0​P Defense Measures</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../../enterprise/cl0p/emulation_plan/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                                                <span class="block mt-1">CL​0​P Emulation Plans</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between">
+                                <div>
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                        <li>
+                                            <a class="inline-flex items-center mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="https://github.com/attackevals/ael">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                                    <g fill="currentColor">
+                                                        <symbol id="mark-github-icon-symbol" viewBox="0 0 16 16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></symbol><use xlink:href="#mark-github-icon-symbol" />
+                                                    </g>
+                                                </svg>
+                                                <span>ATTACK Evaluations Library GitHub</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2024. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="docs-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "CL0P Detection Analysis", level: 4, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>
