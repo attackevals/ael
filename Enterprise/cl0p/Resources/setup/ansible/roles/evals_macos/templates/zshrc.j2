@@ -1,0 +1,28 @@
+ZSH_THEME="robbyrussell" # set by `omz`
+
+# Enable CLI coloring
+export CLICOLOR=1
+
+# For Homebrew
+eval $(/opt/homebrew/bin/brew shellenv)
+
+# The following three checks are in place due to OS updates occasionally resetting the sshd_config file to default.
+# For security, Amazon suggests that password authentication over SSH be disabled.
+if sudo sshd -T | grep -x --quiet "passwordauthentication yes"; then
+  echo "WARNING: Password-based authentication enabled over SSH! This can be insecure and should be disabled in /etc/ssh/sshd_config"
+fi
+
+if sudo sshd -T | grep -x --quiet "challengeresponseauthentication yes"; then
+  echo "WARNING: Challenge Response Authentication enabled over SSH! This can be insecure and should be disabled in /etc/ssh/sshd_config"
+fi
+
+if sudo sshd -T | grep -x --quiet "usepam yes"; then
+  echo "WARNING: Use of Pluggable Authentication Module (PAM) submethod enabled over SSH! This can be insecure and should be disabled in /etc/ssh/sshd_config"
+fi
+
+# Path to your oh-my-zsh installation.
+export ZSH="/Users/${USER}/.oh-my-zsh"
+ZSH_THEME="robbyrussell" # set by `omz`
+plugins=(git macos)
+
+source $ZSH/oh-my-zsh.sh

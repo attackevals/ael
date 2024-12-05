@@ -1,0 +1,119 @@
+#### Traffic Mirroring Servers usually provided by vendor
+
+# module "mirror-a" {
+#   source            = "../../modules/aws/base-vm"
+#   description       = "[Scenario A] Traffic Mirror Server"
+#   platform          = "ubuntu-jammy"
+#   snapshot_required = true
+#   scope             = "internal"
+#
+#   ami_id            = module.defaults.ami-linux-ubuntu-jammy
+#   instance_type     = module.defaults.aws-vm-size.large
+#   availability_zone = var.aws-region-az
+#
+#   name               = local.victim-a-vms.tmt-srv1.vm-name
+#   hostname           = local.victim-a-vms.tmt-srv1.hostname
+#   subnet_id          = aws_subnet.victim-a.id
+#   private_ip         = local.victim-a-ips.tmt-srv1
+#   security_group_ids = [aws_security_group.victim-a.id]
+#   key_name           = aws_key_pair.ssh-key-pair.key_name
+#   disk_size          = local.disk-size.traffic-mirror
+#   disk_type          = local.standard-disk
+#   tags               = module.defaults.tags
+# }
+#
+# module "mirror-b" {
+#   source            = "../../modules/aws/base-vm"
+#   description       = "[Scenario B] Traffic Mirror Server"
+#   platform          = "ubuntu-jammy"
+#   snapshot_required = true
+#   scope             = "internal"
+#
+#   ami_id            = module.defaults.ami-linux-ubuntu-jammy
+#   instance_type     = module.defaults.aws-vm-size.large
+#   availability_zone = var.aws-region-az
+#
+#   name               = local.victim-b-vms.tmt-srv1.vm-name
+#   hostname           = local.victim-b-vms.tmt-srv1.hostname
+#   subnet_id          = aws_subnet.victim-b.id
+#   private_ip         = local.victim-b-ips.tmt-srv1
+#   security_group_ids = [aws_security_group.victim-b.id]
+#   key_name           = aws_key_pair.ssh-key-pair.key_name
+#   disk_size          = local.disk-size.traffic-mirror
+#   disk_type          = local.standard-disk
+#   tags               = module.defaults.tags
+# }
+#
+# module "mirror-p" {
+#   source            = "../../modules/aws/base-vm"
+#   description       = "[Protections] Traffic Mirror Server"
+#   platform          = "ubuntu-jammy"
+#   snapshot_required = true
+#   scope             = "internal"
+#
+#   ami_id            = module.defaults.ami-linux-ubuntu-jammy
+#   instance_type     = module.defaults.aws-vm-size.large
+#   availability_zone = var.aws-region-az
+#
+#   name               = local.victim-protections-vms.tmt-srv1.vm-name
+#   hostname           = local.victim-protections-vms.tmt-srv1.hostname
+#   subnet_id          = aws_subnet.victim-protections.id
+#   private_ip         = local.victim-protections-ips.tmt-srv1
+#   security_group_ids = [aws_security_group.victim-protections.id]
+#   key_name           = aws_key_pair.ssh-key-pair.key_name
+#   disk_size          = local.disk-size.traffic-mirror
+#   disk_type          = local.standard-disk
+#   tags               = module.defaults.tags
+# }
+
+module "traffic-mirror-a" {
+  source        = "../../modules/aws/traffic-mirror"
+  description   = "Traffic Mirror - Scenario A"
+  target_nic_id = ""
+  name          = "${local.victim-a-vms.tmt-srv1.vm-name}-a"
+
+  interface_ids = [
+    module.a-addc-srv1,
+    module.a-file-srv1,
+    module.a-mail-srv1,
+    module.a-win11-desk1,
+    module.a-win11-desk2,
+    module.a-macos-desk1[0],
+  ]
+  tags = aws_vpc.victim.tags
+}
+
+module "traffic-mirror-b" {
+  source        = "../../modules/aws/traffic-mirror"
+  description   = "Traffic Mirror - Scenario B"
+  target_nic_id = ""
+  name          = "${local.victim-b-vms.tmt-srv1.vm-name}-b"
+
+  interface_ids = [
+    module.b-addc-srv1,
+    module.b-kvm-srv1,
+    module.b-file-srv1,
+    module.b-mail-srv1,
+    module.b-win11-desk1,
+    module.b-win11-desk2,
+  ]
+  tags = aws_vpc.victim.tags
+}
+
+module "traffic-mirror-p" {
+  source        = "../../modules/aws/traffic-mirror"
+  description   = "Traffic Mirror - Protections"
+  target_nic_id = ""
+  name          = "${local.victim-protections-vms.tmt-srv1.vm-name}-protections"
+
+  interface_ids = [
+    module.protections-addc-srv1,
+    module.protections-file-srv1,
+    module.protections-mail-srv1,
+    module.protections-win11-desk1,
+    module.protections-win11-desk2,
+    module.protections-macos-desk1[0],
+    module.protections-linux-srv1,
+  ]
+  tags = aws_vpc.victim.tags
+}

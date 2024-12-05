@@ -1,0 +1,20 @@
+- name: fix dns and sudo group membership issues on mac detections
+  hosts:
+    - macos_desk1_a
+  become: yes
+  vars_files:
+    - ../vars/vars.yml
+  gather_facts: no
+
+  tasks:
+    - name: fix mac dns and sudo group membership issues
+      ansible.builtin.include_tasks: fix-mac-dns-and-groups.yml
+      vars:
+        ad_ip_addr: "{{ domain_info_encryptpotter.ad_ip_addr }}"
+        domain_shortname: "{{ domain_info_encryptpotter.shortname }}"
+        dns_domain_name: "{{ domain_info_encryptpotter.dns_domain_name }}"
+        admin_user: "{{ domain_info_encryptpotter.admin_user }}"
+        admin_pass: "{{ domain_info_encryptpotter.admin_pass }}"
+        mac_admin_group1: "Domain Admins"
+        mac_admin_group2: "Enterprise Admins"
+        ard_admin_group: ard_admin

@@ -1,0 +1,30 @@
+---
+- name: Common install and config across all victim windows systems
+  hosts: win_hosts
+  gather_facts: no
+  vars:
+    crash_dump_folder: "C:\\crash_dumps"
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - registry
+    - firewall
+    - crashdumps
+    - network
+    - share
+
+  tasks:
+    - name: Create crash dump folder
+      ansible.windows.win_file:
+        path: "{{ crash_dump_folder }}"
+        state: directory
+
+    - name: Enable user mode crash dumps via registry key
+      win_shell: |
+        reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps" /v "DumpType" /t REG_DWORD /d 2 /f
+        reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps" /v "DumpFolder" /t REG_SZ /d "{{ crash_dump_folder }}" /f
+
+    - name: Enable network sharing
+      win_shell: |
+        netsh advfirewall firewall set rule group="Network Discovery" new enable=Yes
+      register: share_result

@@ -1,0 +1,16 @@
+{
+  "CN": "Great Britain Digital Assurance Root CA",
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+  {
+    "C": "GB",
+    "L": "Cardiff",
+    "O": "Great Britain Digital Assurance",
+    "OU": "Great Britain Digital Assurance Root CA",
+    "ST": "Wales"
+  }
+ ]
+}

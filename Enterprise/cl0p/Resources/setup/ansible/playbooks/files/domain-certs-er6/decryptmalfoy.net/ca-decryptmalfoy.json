@@ -1,0 +1,16 @@
+{
+  "CN": "British Secure Certificates Root CA",
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+  {
+    "C": "GB",
+    "L": "London",
+    "O": "British Secure Certificates",
+    "OU": "British Secure Certificates Root CA",
+    "ST": "England"
+  }
+ ]
+}

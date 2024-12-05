@@ -1,0 +1,13 @@
+---
+- name: Update file server directory permissions on D drive
+  hosts: win_file_servers
+
+  tasks:
+    - name: Add domain user allow rights
+      ansible.windows.win_acl:
+        path: D:/
+        user: "Domain Users"
+        rights: FullControl
+        type: allow
+        state: present
+        propagation: 'None'

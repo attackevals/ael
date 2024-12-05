@@ -1,0 +1,3 @@
+#include "resource.hpp"
+
+CONFIG_RESOURCE_ID RCDATA CONFIG_PATH

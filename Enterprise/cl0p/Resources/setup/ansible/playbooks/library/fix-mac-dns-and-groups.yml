@@ -1,0 +1,93 @@
+---
+#- name: Get list of network interfaces
+#  shell: networksetup -listallnetworkservices
+#  register: network_interfaces
+#
+#- name: Parse network interfaces
+#  set_fact:
+#    thunderbolt_interfaces: "{{ network_interfaces.stdout_lines | select('match', '.*Thunderbolt.*') | list }}"
+#
+#- name: Set DNS configuration for Thunderbolt interfaces
+#  shell: "networksetup -setdnsservers \"{{ item }}\" \"{{ ad_ip_addr }}\""
+#  with_items: "{{ thunderbolt_interfaces }}"
+#  when: thunderbolt_interfaces is defined and thunderbolt_interfaces | length > 0
+#  register: dns_configuration_results
+#
+#- name: Display DNS configuration results
+#  debug:
+#    var: dns_configuration_results
+
+- name: Install setdns script
+  template:
+    src: ../files/mac/setdns.sh.j2
+    dest: /usr/local/bin/setdns.sh
+    owner: root
+    group: wheel
+    mode: 0755
+
+- name: Install setdns launch daemon configuration
+  template:
+    src: ../files/mac/com.evals.setdns.plist.j2
+    dest: /Library/LaunchDaemons/com.evals.setdns.plist
+    owner: root
+    group: wheel
+    mode: 0644
+
+- name: unload setdns launch daemon (in case already loaded)
+  shell: launchctl unload /Library/LaunchDaemons/com.evals.setdns.plist
+  ignore_errors: yes
+
+- name: Enable setdns launch daemon
+  shell: launchctl enable system/Library/LaunchDaemons/com.evals.setdns.plist
+  ignore_errors: yes
+
+- name: Load setdns launch daemon
+  shell: launchctl load /Library/LaunchDaemons/com.evals.setdns.plist
+  ignore_errors: yes
+
+- name: Set DNS configuration for all network interfaces
+  shell: /usr/local/bin/setdns.sh
+  register: setdns_result
+
+- name: Display setdns result
+  debug:
+    var: setdns_result
+
+- name: "Check that {{ mac_admin_group1 }} group from Active Directory is resolvable"
+  ansible.builtin.command:
+    cmd: |
+      dseditgroup -o read -u {{ admin_user }} "{{ mac_admin_group1 }}"
+  register: check_group_output
+  changed_when: false
+
+- name: Debug the output (optional)
+  debug:
+    var: check_group_output.stdout
+
+- name: "add ad admin groups explicitly to local admin group {{ mac_admin_group1 }}"
+  ansible.builtin.shell:
+    cmd: |
+      dseditgroup -o edit -a "{{ domain_shortname | upper}}\{{ mac_admin_group1 }}" -t group admin
+  become: yes
+  when: "'Group not found' not in check_group_output.stdout"
+
+- name: "add ad admin groups explicitly to local admin group {{ mac_admin_group1 }}"
+  ansible.builtin.shell:
+    cmd: |
+      dseditgroup -o edit -a "{{ domain_shortname | upper}}\{{ mac_admin_group1 }}" -t group {{ ard_admin_group }}
+  become: yes
+  when: "'Group not found' not in check_group_output.stdout"
+
+- name: "add ad admin groups explicitly to local admin group {{ mac_admin_group2 }}"
+  ansible.builtin.shell:
+    cmd: |
+      dseditgroup -o edit -a "{{ domain_shortname | upper}}\{{ mac_admin_group2 }}" -t group admin
+  become: yes
+  when: "'Group not found' not in check_group_output.stdout"
+
+- name: "add ad admin groups explicitly to local admin group {{ mac_admin_group2 }}"
+  ansible.builtin.shell:
+    cmd: |
+      dseditgroup -o edit -a "{{ domain_shortname | upper}}\{{ mac_admin_group2 }}" -t group {{ ard_admin_group }}
+  become: yes
+  when: "'Group not found' not in check_group_output.stdout"

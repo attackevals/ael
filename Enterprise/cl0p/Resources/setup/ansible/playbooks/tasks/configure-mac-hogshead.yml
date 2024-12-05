@@ -1,0 +1,26 @@
+- name: Configure Hogshead
+  hosts:
+    - macos_desk1_a
+  become: yes
+  vars_files:
+    - ../vars/vars.yml
+  vars:
+    extra_dir_name: "/Library/PrivilegedHelperTools"
+    extra_dir_owner: "root"
+    extra_dir_group: "wheel"
+    extra_dir_perms: "1755"
+
+  tasks:
+    - ansible.builtin.include_tasks: mac-configure-base.yml
+      vars:
+        eval_type: "er6"
+        short_hostname: "{{ domain_info_encryptpotter.mac_hostname }}"
+        full_hostname: "{{ domain_info_encryptpotter.mac_hostname }}.{{ domain_info_encryptpotter.dns_domain_name }}"
+
+    - name: Create Missing Library Directory
+      ansible.builtin.file:
+        path: "{{ extra_dir_name }}"
+        state: directory
+        owner: "{{ extra_dir_owner }}"
+        group: "{{ extra_dir_group }}"
+        mode: "{{ extra_dir_perms }}"

@@ -1,0 +1,20 @@
+{
+  "CN": "encryptpotter.net",
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+  {
+    "C": "GB",
+    "L": "Glasgow",
+    "O": "Encrypt Potter",
+    "OU": "Encrypt Potter",
+    "ST": "Scotland"
+  }
+  ],
+  "hosts": [
+    "encryptpotter.net",
+    "www.encryptpotter.net"
+  ]
+}

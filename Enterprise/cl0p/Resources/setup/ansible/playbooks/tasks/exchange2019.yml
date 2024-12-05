@@ -1,0 +1,40 @@
+---
+- name: "Install exchange scenario a"
+  hosts: mail_srv1_a
+  become: yes
+  gather_facts: yes
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - mail
+    - scenarioa
+    - exchange
+  vars:
+    ludus_exchange_iso_directory: "C:\\deploy"
+    ludus_exchange_domain: "{{ domain_info_encryptpotter.shortname }}"
+    ludus_exchange_dc: "{{ domain_info_encryptpotter.ad_ip_addr }}"
+    ludus_exchange_host: "{{ domain_info_encryptpotter.exchange_ip_addr }}"
+    ludus_exchange_domain_username: "{{ domain_info_encryptpotter.exchange_admin_user }}"
+    ludus_exchange_domain_password: "{{ domain_info_encryptpotter.exchange_admin_pass }}"
+    send_connector_name: "mailsender"
+    send_connector_smtpserver: "{{ domain_info_encryptpotter.exchange_ip_addr }}"
+    send_connector_source_transport_servers: "{{ domain_info_encryptpotter.exchange_ip_addr }}"
+    s3_bucket: "{{ aws_resources.s3_bucket }}"
+    s3_filename: "{{ aws_resources.exchange_iso }}"
+  roles:
+    - evals_exchange
+
+#  tasks:
+#    # Exchange mailbox enable for users
+#    - name: Enable Exchange mailboxes
+#      win_shell: |
+#        Import-module activedirectory
+#        Add-PSSnapin Microsoft.Exchange.Management.PowerShell.SnapIn
+#        get-aduser -Searchbase "CN=Users,DC={{ domain_info_encryptpotter.shortname }},DC={{ domain_info_encryptpotter.tld }}"-filter 'Enabled -eq $true' -prop emailAddress| ForEach-Object {Enable-Mailbox -Identity $_.samaccountname -Alias $_.samaccountname |Set-Mailbox -EmailAddressPolicyEnabled $false -PrimarySmtpAddress $_.EmailAddress}
+#      ignore_errors: yes
+#      vars:
+#        become: yes
+#        become_method: runas
+#        become_user: "{{ domain_info_encryptpotter.exchange_admin_user }}"
+#        become_pass: "{{ domain_info_encryptpotter.exchange_admin_pass }}"
+#

@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Drives clsid="{8FDDCC1A-0C3C-43cd-A6B4-71A6DF20DA8C}"><Drive clsid="{935D1B74-9CB8-4e3c-9914-7DD559B7A417}" name="Z:" status="Z:" image="2" changed="2024-07-10 20:00:38" uid="{BD346CF0-FC23-44CA-9D8C-8E575220CDC3}" userContext="1" bypassErrors="1"><Properties action="U" thisDrive="NOCHANGE" allDrives="NOCHANGE" userName="" path="\\gauntshack\d\data" label="gauntshare" persistent="1" useLetter="1" letter="Z"/><Filters><FilterDomain bool="AND" not="0" name="DECRYPTMALFOY" userContext="1"/></Filters></Drive>
+</Drives>

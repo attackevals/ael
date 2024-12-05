@@ -1,0 +1,54 @@
+---
+- name: cleanup windows
+  hosts: win_hosts
+  gather_facts: no
+  vars:
+    setup_dirs:
+      - "C:/deploy"
+      - "C:/tools"
+
+  tasks:
+    - name: remove setup dirs
+      win_file:
+        path: "{{ item }}"
+        state: absent
+      loop: "{{ setup_dirs }}"
+
+    - name: run cleanup step 1
+      become: yes
+      ansible.windows.win_powershell:
+        script: |
+          Write-Host "Cleaning up choco log file..."
+          $chocolog="C:\ProgramData\chocolatey\logs\chocolatey.log"
+          Remove-Item $chocolog -Force;
+          # cleanup recent files folders in windows
+          Write-Host "`nClearing . . . " -NoNewline
+          #
+          Get-ChildItem $env:APPDATA\Microsoft\Windows\Recent\* -File -Force -Exclude desktop.ini | Remove-Item -Force -ErrorAction SilentlyContinue
+          Get-ChildItem $env:APPDATA\Microsoft\Windows\Recent\AutomaticDestinations\* -File -Force -Exclude desktop.ini, f01b4d95cf55d32a.automaticDestinations-ms | Remove-Item -Force -ErrorAction SilentlyContinue
+          Get-ChildItem $env:APPDATA\Microsoft\Windows\Recent\CustomDestinations\* -File -Force -Exclude desktop.ini |Remove-Item -Force -ErrorAction SilentlyContinue
+          #
+          ## Clear unpinned folders from Quick Access, using the Verbs() method
+          $UnpinnedQAFolders = (0,0)
+          While ($UnpinnedQAFolders) {
+              $UnpinnedQAFolders = (((New-Object -ComObject Shell.Application).Namespace("shell:::{679f85cb-0220-4080-b29b-5540cc05aab6}").Items() |
+              where IsFolder -eq $true).Verbs() | where Name -match "Remove from Quick access")
+              If ($UnpinnedQAFolders) { $UnpinnedQAFolders.DoIt() }
+          }
+          Stop-Process -Name explorer -Force
+          Remove-Variable UnpinnedQAFolders
+
+          Write-Host "Clearing event logs..."
+          function clear-all-event-logs
+          {
+             $logs = Get-EventLog -List | ForEach-Object {$_.Log}
+             $logs | ForEach-Object {Clear-EventLog  -LogName $_ }
+             Get-EventLog -list
+          }
+
+          clear-all-event-logs
+
+          Write-Host "Clearing powershell history...."
+          [Microsoft.PowerShell.PSConsoleReadLine]::ClearHistory()
+          Write-Host "Powershell history cleared...."
+      ignore_errors: yes

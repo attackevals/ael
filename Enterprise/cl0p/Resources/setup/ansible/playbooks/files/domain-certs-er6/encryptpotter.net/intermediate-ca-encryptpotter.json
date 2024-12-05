@@ -1,0 +1,19 @@
+{
+  "CN": "UK Trustworthy Authentication Intermediate CA",
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+    {
+      "C":  "GB",
+      "L":  "Glasgow",
+      "O":  "UK Trustworthy Authentication",
+      "OU": "UK Trustworthy Authentication Intermediate CA",
+      "ST": "Scotland"
+    }
+  ],
+  "ca": {
+    "expiry": "35040h"
+  }
+}

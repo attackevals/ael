@@ -1,0 +1,132 @@
+---
+- name: Install programs on diagonalley host
+  hosts: win11_desk1_a
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+  vars:
+    ansible_become: true
+    ansible_become_method: runas
+    ansible_become_user: "{{ domain_info_encryptpotter.shortname }}\\{{ domain_info_encryptpotter.evals_domain_adm }}"
+    ansible_become_pass: "{{ domain_info_encryptpotter.admin_pass }}"
+
+    mssql_script_src_dir: "../files/mssql-services/"
+    mssql_script_dst_dir: "C:\\deploy\\mssql-scripts"
+    windows_services:
+      - MSSQLSERVER
+      - SamSs
+      - SstpSvc
+      - SQLBrowser
+      - SQLSERVERAGENT
+      - SQLServerReportingServices
+      - SQLTELEMETRY
+      - SQLWriter
+      - VeeamEndpointBackupSvc
+  tasks:
+    - name: increase winrm memory
+      ansible.windows.win_powershell:
+        script: Set-Item WSMan:\localhost\Shell\MaxMemoryPerShellMB 2048
+
+    - name: Install Choco Dependencies
+      win_chocolatey:
+        name:
+          - sql-server-management-studio
+          - veeam-agent
+        state: present
+        ignore_checksums: yes
+      ignore_errors: yes
+
+    - name: Windows Reboot for MSSQL Install
+      ansible.windows.win_reboot:
+
+    - name: Choco Install MSSQL Server
+      win_chocolatey:
+        name:
+          - sql-server-2019
+        force: true
+      vars:
+        ansible_become: true
+        ansible_become_method: runas
+        ansible_become_user: "{{ domain_info_encryptpotter.shortname }}\\{{ domain_info_encryptpotter.evals_domain_adm }}"
+        ansible_become_pass: "{{ domain_info_encryptpotter.admin_pass }}"
+
+    - name: Install postgres via choco
+      win_shell: choco install postgresql16 --params '/password:pizzapost123' --ia '--enable-components server,commandlinetools' -y
+      register: pg_result
+      ignore_errors: yes
+
+    - name: Install postgres via choco
+      win_shell: psql --command "create database spooky;" "postgresql://postgres:pizzapost123@localhost:5432"
+      register: db_result
+      ignore_errors: yes
+
+    - name: Enable Firewall Rule MSSQL (TCP)
+      community.windows.win_firewall_rule:
+        name: SQLServer default instance
+        localport: 1433
+        action: allow
+        direction: in
+        protocol: tcp
+        state: present
+        enabled: yes
+
+    - name: Enable Firewall Rule MSSQL (UDP)
+      community.windows.win_firewall_rule:
+        name: SQLServer Browser Service
+        localport: 1434
+        action: allow
+        direction: in
+        protocol: udp
+        state: present
+        enabled: yes
+
+    - name: install nuget provider
+      ansible.windows.win_shell: |
+        Install-PackageProvider -Name Nuget -MinimumVersion 2.8.5.201 -Force
+      ignore_errors: yes
+
+    - name: Install MSSQL Powershell Module
+      community.windows.win_psmodule:
+        name: SQLServer
+        required_version: "21.1.18068"
+        allow_clobber: true
+        force: true
+        state: present
+
+    - name: Creating MSSQL Deploy Directory
+      ansible.windows.win_file:
+        path: "{{ mssql_script_dst_dir }}"
+        state: directory
+
+    - name: Copying MSSQL Deploy Scripts into File Directory
+      ansible.windows.win_copy:
+        src: "{{ mssql_script_src_dir }}"
+        dest: "{{ mssql_script_dst_dir }}"
+
+    - name: Running MSSQL Deploy Scripts
+      ansible.windows.win_powershell:
+        script: |
+          cd "{{ mssql_script_dst_dir }}"
+          Invoke-Expression -Command ".\deploy_sql -ServerInstance hostname -Database DiscoverBackup"
+          Invoke-Expression -Command ".\firefox_insert_data_into_mssql.ps1 -csvPath .\firefox_users.csv -Encrypt"
+      vars:
+        ansible_become: true
+        ansible_become_method: runas
+        ansible_become_user: "{{ domain_info_encryptpotter.shortname }}\\{{ domain_info_encryptpotter.evals_domain_adm }}"
+        ansible_become_pass: "{{ domain_info_encryptpotter.admin_pass }}"
+
+    - name: Installing MSSQL SSRS
+      win_chocolatey:
+        name:
+          - ssrs-2019
+        state: present
+        force: true
+        choco_args: --force-dependencies
+        ignore_checksums: true
+
+    - name: Start and Set Auto Start on MSSQL Services
+      ansible.windows.win_service:
+        name: "{{ item }}"
+        start_mode: auto
+        state: started
+      loop: "{{ windows_services }}"

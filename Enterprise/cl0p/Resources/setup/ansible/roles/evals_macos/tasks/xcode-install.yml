@@ -1,0 +1,41 @@
+---
+- name: get status of local xcode file
+  stat:
+    path: "{{ xcode_installation_dir }}/{{ xcode_xip_file }}"
+  register: xcode_xip_info
+
+- name: get status of xcode app itself
+  stat:
+    path: "{{ xcode_installation_dir }}/{{ xcode_app_file }}"
+  register: xcode_app_info
+
+- name: get xcode from s3
+  amazon.aws.s3_object:
+    bucket: "{{ aws_resources.s3_bucket }}"
+    object: "{{ xcode_object_prefix }}"
+    dest: "{{ xcode_installation_dir }}/{{ xcode_xip_file }}"
+    mode: geturl
+  register: xcode_download_url
+  when: not xcode_xip_info.stat.exists and not xcode_app_info.stat.exists
+  delegate_to: localhost
+
+- name: Download xcode .xip file from S3 bucket
+  ansible.builtin.get_url:
+    url: "{{ xcode_download_url.url }}"
+    dest: /Applications
+  when: not xcode_xip_info.stat.exists and not xcode_app_info.stat.exists
+
+- name: Extract xcode from .xip file
+  ansible.builtin.command:
+    cmd: "xip --expand {{ xcode_installation_dir}}/{{ xcode_xip_file }}"
+  args:
+    chdir: "{{ xcode_installation_dir }}"
+#  poll: 5
+#  async: "{{ xip_extract_timeout }}"
+  when: not xcode_app_info.stat.exists
+
+# accept xcode license
+- name: Accept xcode license
+  ansible.builtin.command:
+    cmd: "sudo xcodebuild -license accept"
+  when: not xcode_app_info.stat.exists

@@ -1,0 +1,33 @@
+---
+- name: "Configure encryptpotter RANGE Windows Domain Controller GPO"
+  hosts: addc_srv1_a
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - addc
+    - domain
+    - network
+    - share
+    - winrm
+    - users
+    - groups
+    - server
+    - windows
+    - firewall
+    - encryptpotter
+    - scenarioa
+
+  tasks:
+    - ansible.builtin.include_tasks: configure-addc-gpo.yml
+      vars:
+        domain_shortname: "{{ domain_info_encryptpotter.shortname }}"
+        domain_dns_name: "{{ domain_info_encryptpotter.dns_domain_name }}"
+        domain_admin_user: "{{ domain_info_encryptpotter.admin_user }}"
+        domain_admin_pass: "{{ domain_info_encryptpotter.admin_pass }}"
+        domain_tld: "{{ domain_info_encryptpotter.tld }}"
+        ad_ip_addr: "{{ domain_info_encryptpotter.ad_ip_addr }}"
+        evals_range: "{{ evals_cycle }}"
+        gpo_src_dir: "../files/gpo/vault713"
+        gpo_dst_dir: "C:/deploy/vault713"
+        deploy_dir: "C:/deploy"

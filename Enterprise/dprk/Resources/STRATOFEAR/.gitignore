@@ -1,0 +1,32 @@
+# cmake gitignore https://github.com/github/gitignore/blob/main/CMake.gitignore
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps
+
+CMakeUserPresets.json
+
+# environment-specific
+.DS_Store
+out/
+build/
+install/
+TODO.md
+
+# Visual Studio
+.vs/
+
+# Visual Studio Code
+.vscode/
+
+# Implant Specific
+src/STRATOFEAR.vs
+src/STRATOFEAR
+sflog.log
