@@ -11,4 +11,4 @@ pertaining to each scenario step.
 
 | Red Team Playbook | CTI Operations Flow | Description |
 | ----------------- | ------------------- | ----------- |
-| [ER6_CL0P_Scenario.md](./ER6_CL0P_Scenario.md) | [CL0P_Scenario_Overview.md](../CTI_Emulation_resources/CL0P_Scenario_Overview.md) | This contains the scenario developed to emulate TTPs of CL0P in Round 6 of ATT&CK Evaluations for Enterprise |
+| [ER6_CL0P_Scenario.md](./ER6_CL0P_Scenario.md) | [CL0P_Scenario_Overview.md](../CTI_Emulation_Resources/CL0P_Scenario_Overview.md) | This contains the scenario developed to emulate TTPs of CL0P in Round 6 of ATT&CK Evaluations for Enterprise |

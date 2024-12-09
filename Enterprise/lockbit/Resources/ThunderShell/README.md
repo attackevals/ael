@@ -184,7 +184,7 @@ The following steps will walk through the setup of the build environment. Thunde
     python3.7 -m pip install -r requirements.txt
     ```
 
-1. Update the [default.json](default.json) file with the correct values (server, port, etc.)
+1. Update the [default.json](https://github.com/Mr-Un1k0d3r/ThunderShell/blob/ca9c7511725a23a5ccd47b288ce059377f1c5c5c/default.json) file with the correct values (server, port, etc.)
 
 1. Start the redis server
 

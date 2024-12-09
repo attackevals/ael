@@ -1,6 +1,6 @@
 # DPRK Detection Analysis 
 
-This guide covers key detection criteria for DPRK-related malware activity as emulated by the ([Enterprise Round 6 Emulation Plan](../DPRK/Emulation_Plan/ER6_DPRK_Scenario.md)), such as `FULLHOUSE.DOORED` and `STRATOFEAR`. The focus is on recognizing tool transfers, masquerading, system modifications, and encrypted communications.
+This guide covers key detection criteria for DPRK-related malware activity as emulated by the ([Enterprise Round 6 Emulation Plan](../Emulation_Plan/ER6_DPRK_Scenario.md)), such as `FULLHOUSE.DOORED` and `STRATOFEAR`. The focus is on recognizing tool transfers, masquerading, system modifications, and encrypted communications.
 
 
 ### Key Findings

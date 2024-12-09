@@ -217,7 +217,7 @@ FULLHOUSE.DOORED will create a log file `fdlog.log` in the current working direc
 
 #### Decrypting the log file
 
-Use the [log_decryptor](../../../Resources/log_decryptor/) decrypt the log file:
+Use the [log_decryptor](../log_decryptor/) decrypt the log file:
 
 ```bash
 python3 aes_base64_log_decryptor.py -i fdlog.log -o dec_fdlog.log -k FEEDCAFE --xor

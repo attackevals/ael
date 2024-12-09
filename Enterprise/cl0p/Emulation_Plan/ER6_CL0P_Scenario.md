@@ -29,7 +29,7 @@ handlers are enabled:
   * SDBbot
 
     ```bash
-    cd CL0P/Resources/control_server
+    cd cl0p/Resources/control_server
     sudo go build -o controlServer main.go
     sudo ./controlServer -c config/cl0p.yml
     ```
@@ -43,7 +43,7 @@ Horizontally". Within the new terminal, change directory to the location of the
 evalsC2client.py and **use this terminal for tasking implants**.
 
   ```bash
-  cd CL0P/Resources/control_server
+  cd cl0p/Resources/control_server
   ```
 
 * :arrow_right: Initiate an RDP session to the Windows jumpbox
