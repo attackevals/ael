@@ -1,4 +1,4 @@
-Based on open-source intelligence, the ATT&CK ® Evaluations team created the below scenario leveraging techniques seen from Oilrig in the wild. We have adapted the scenario based on tools and resources available at the time. Below is a diagram, [scenario overview](#emulation-scenario), [step-by-step breakdown](#scenario-steps), and an [infrastructure diagram](#infrastructure-diagram).
+Based on open-source intelligence, the ATT&CK ® Evaluations team created the below scenario leveraging techniques seen from Oilrig in the wild. We have adapted the scenario based on tools and resources available at the time. Below is a diagram, [scenario overview](#emulation-scenario-), [step-by-step breakdown](#scenario-steps), and an [infrastructure diagram](#infrastructure-diagram).
 
 # Emulation Scenario 📖
 

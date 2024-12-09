@@ -170,7 +170,7 @@ See [here](../../DebuggingGuide.md) for a guide on how to set up the Golang debu
 #### General
 - Ensure the IP address and port in the handler configuration matches those the implant is compiled with.
 - The handler is configured to discard any invalid/malicious data to avoid crashing, in the case of bad data the handler will throw an error message. Locate the error message in the source code and set a breakpoint in that function to debug the error.
-- If the implant data is not formatted correctly (*length of length* or *length* incorrect, etc.), it will most likely error out [here](https://github.com/attackevals/evalsC2server/blob/dce97c97b2c8d41c3e2608e2e29a77179353c98e/handlers/sodamaster/sodamaster_utility.go#L64). If the handler throws an error in this function, follow the steps below to validate the data and ensure the implant is functioning correctly.
+- If the implant data is not formatted correctly (*length of length* or *length* incorrect, etc.), it will most likely error out [here](./sodamaster_utility.go#L64). If the handler throws an error in this function, follow the steps below to validate the data and ensure the implant is functioning correctly.
 - There are several layers of b64 encoding and encryption on comms sent between the handler and implant that can potentially cause the data to be malformed- here are some tips to start debugging if the data appears invalid:
   - Set a breakpoint in `startListener` ([suggested line](https://github.com/attackevals/ael/blob/main/ManagedServices/menupass/Resources/control_server/handlers/sodamaster/sodamaster.go#L193))
     - Compare the `response` and `encryptedResponse` variables with the plain text data and encrypted data received by the implant, ensure this data matches

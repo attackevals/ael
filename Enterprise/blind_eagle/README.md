@@ -70,8 +70,8 @@ We would like to formally thank the people that contributed to the content, revi
 We 💖 feedback! Let us know how using ATT&CK Evaluation results has helped you and what we can do better.
 
 Email: <ctid@mitre-engenuity.org><br>
-LinkedIn: <https://www.linkedin.com/company/mitre-engenuity/><br>
-Twitter: <https://twitter.com/MITREengenuity><br>
+LinkedIn: <https://www.linkedin.com/showcase/attack-evaluations/><br>
+Twitter: <https://x.com/MITREcorp><br>
 
 ## Liability / Responsible Usage
 

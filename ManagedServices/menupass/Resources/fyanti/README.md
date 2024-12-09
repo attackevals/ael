@@ -184,7 +184,7 @@ fyanti/
 > **Important**
 > There are some differences in the functionality of FYAnti between Release
 > and Debug configurations. Please read the
-> [Troubleshoot section](#troubleshoot) for more information.
+> [Troubleshoot section](#troubleshoot-) for more information.
 
 #### Command Line
 

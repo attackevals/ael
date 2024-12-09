@@ -166,7 +166,7 @@ After completing all adversary steps outlined above, RDPing into the target host
 
 ## Issues?
 
-Please consult the [common problems](https://caldera.readthedocs.io/en/latest/Common-problems.html) page on the CALDERA Read the Docs page.
+Please consult the [common problems](https://caldera.readthedocs.io/en/2.6.63/Common-problems.html) page on the CALDERA Read the Docs page.
 If you're still having issues, please open a git issue on the evals plugin page and follow the guidelines within ISSUES.md for reporting issues.
 
 ## Acknowledgements
