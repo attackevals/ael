@@ -65,9 +65,9 @@ This scenario also utilizes `Mimikatz`, `Plink` and `PsExec` as payloads:
 
 We 💖 feedback! Let us know how using ATT&CK Evaluation results has helped you and what we can do better.
 
-Email: <evals@mitre-engenuity.org> <br>
-Twitter: <https://twitter.com/MITREengenuity> <br>
-LinkedIn: <https://www.linkedin.com/company/mitre-engenuity/>
+Email: <evals@mitre.org> <br>
+Twitter: <https://x.com/MITREcorp> <br>
+LinkedIn: <https://www.linkedin.com/showcase/attack-evaluations/>
 
 ## Liability / Responsible Usage
 

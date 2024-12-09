@@ -38,9 +38,9 @@ walkthrough for executing the Protections micros
 We 💖 feedback! Let us know how using ATT&CK Evaluation results has helped you
 and what we can do better.
 
-- Email: <evals@mitre-engenuity.org>
-- Twitter: <https://twitter.com/MITREengenuity>
-- LinkedIn: <https://www.linkedin.com/company/mitre-engenuity/>
+- Email: <evals@mitre.org>
+- Twitter: <https://x.com/MITREcorp>
+- LinkedIn: <https://www.linkedin.com/showcase/attack-evaluations/>
 
 ## Liability / Responsible Usage
 

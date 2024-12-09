@@ -155,7 +155,7 @@ python3 aes_base64_log_decryptor.py --xor -i stb.log  -o decrypted.log -k `00010
 A python script was created that can be used to test exfiltration. The script will help to determine if headers, file data, and other
 request information algins with expectation.
 
-You can access this script here: [Python PUT Server](scripts/htp_server.py):
+You can access this script here: [Python PUT Server](scripts/http_server.py):
 
 ```bash
 python3 http_server.py -b 127.0.0.1 8001

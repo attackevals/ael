@@ -1,6 +1,6 @@
 # LOCKBIT Detection Analysis 
 
-This guide covers key detection criteria for LOCKBIT-related malware activity as emulated by the ([Enterprise Round 6 Emulation Plan](../LockBit/Emulation_Plan/ER6_LockBit_Scenario.md)), such as STEALBIT and THUNDERSHELL. The focus is on External Remote Services (T1133) via VNC, Valid Accounts (T1078) for credential theft, and Command and Scripting (T1059) through Windows Shell. Further stages involve Credential Access (T1555), Process Discovery (T1057), and Inhibit System Recovery (T1490) by disabling Windows recovery features. Notably, LOCKBIT uses Encryption (T1486) for impact, targeting files and shares.
+This guide covers key detection criteria for LOCKBIT-related malware activity as emulated by the ([Enterprise Round 6 Emulation Plan](../Emulation_Plan/ER6_LockBit_Scenario.md)), such as STEALBIT and THUNDERSHELL. The focus is on External Remote Services (T1133) via VNC, Valid Accounts (T1078) for credential theft, and Command and Scripting (T1059) through Windows Shell. Further stages involve Credential Access (T1555), Process Discovery (T1057), and Inhibit System Recovery (T1490) by disabling Windows recovery features. Notably, LOCKBIT uses Encryption (T1486) for impact, targeting files and shares.
 
 ### Key Findings
 

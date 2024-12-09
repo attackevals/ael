@@ -43,7 +43,7 @@ Cl0p is a ransomware tool used to find and encrypt files of interest.
   - Uses the mutex name `Best-Fan-666`
   - Checks if the mutex already exists via `WaitForSingleObject` API call
     - If so, terminates early and self-deletes
-- Attempts to kill certain services related to backups or security products via the `net stop` command<sup>[1](https://www.securin.io/blog/all-about-clop-ransomware/),[2](https://www.cybereason.com/blog/research/cybereason-vs.-clop-ransomware),[3](https://sectrio.com/deconstructing-cl0p-ransomware-moveit-2023-breach/),[4](https://unit42.paloaltonetworks.com/clop-ransomware/)</sup>
+- Attempts to kill certain services related to backups or security products via the `net stop` command<sup>[1](https://www.securin.io/articles/all-about-clop-ransomware/),[2](https://www.cybereason.com/blog/research/cybereason-vs.-clop-ransomware),[3](https://sectrio.com/deconstructing-cl0p-ransomware-moveit-2023-breach/),[4](https://unit42.paloaltonetworks.com/clop-ransomware/)</sup>
   - `SQLAgent$SYSTEM_BGC`
   - `SQLAgent$ECWDB2`
   - `"Zoolz 2 Service"`
@@ -366,7 +366,7 @@ python3 aes_base64_log_decryptor.py --xor -i cbug.log  -o decrypted.log -k `a44e
 
 ## CTI
 
-1. <https://www.securin.io/blog/all-about-clop-ransomware/>
+1. <https://www.securin.io/articles/all-about-clop-ransomware/>
 1. <https://www.cybereason.com/blog/research/cybereason-vs.-clop-ransomware>
 1. <https://sectrio.com/deconstructing-cl0p-ransomware-moveit-2023-breach/>
 1. <https://unit42.paloaltonetworks.com/clop-ransomware/>

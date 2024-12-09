@@ -87,9 +87,9 @@ download the cleanup script using curl.
 | Red Team Activity | Source Code Link | ATT&CK Technique |
 | ----------------- | ---------------- | ---------------- |
 | cmd.exe executes test1.bat | - | T1059.003 Command and Scripting Interpreter: Windows Command Shell |
-| test1.bat enumerates files in all user Desktop, Documents, and Downloads folders | [enumerate files](../Resources/protections/test1/test1.bat#L15) | T1083 File and Directory Discovery |
-| test1.bat compresses files in a zip archive | [archive](../Resources/protections/test1/test1.bat#L23) | T1560.002 Archive Collected Data: Archive via Library |
-| test1.bat exfiltrates the archives using rclone | [exfiltrate](../Resources/protections/test1/test1.bat#L55) | T1048.003 Exfiltration Over Alternative Protocol: Exfiltration Over Unencrypted Non-C2 Protocol |
+| test1.bat enumerates files in all user Desktop, Documents, and Downloads folders | [enumerate files](../Resources/test1/test1.bat#L15) | T1083 File and Directory Discovery |
+| test1.bat compresses files in a zip archive | [archive](../Resources/test1/test1.bat#L23) | T1560.002 Archive Collected Data: Archive via Library |
+| test1.bat exfiltrates the archives using rclone | [exfiltrate](../Resources/test1/test1.bat#L55) | T1048.003 Exfiltration Over Alternative Protocol: Exfiltration Over Unencrypted Non-C2 Protocol |
 
 ## Test 2: Windows Exfiltration: Archive and SFTP
 
@@ -211,9 +211,9 @@ dir
 | Red Team Activity | Source Code Link | ATT&CK Technique |
 | ----------------- | ---------------- | ---------------- |
 | cmd.exe executes test2.exe | - | T1059.003 Command and Scripting Interpreter: Windows Command Shell |
-| test2.exe enumerates files in all user Desktop, Documents, and Downloads folders | [get_target_dirs](../Resources/protections/test2/main.go#L86) | T1083 File and Directory Discovery |
-| test2.exe compresses files in zip archives | [create_zip](../Resources/protections/test2/main.go#L126) | T1560.002 Archive Collected Data: Archive via Library |
-| test2.exe exfiltrates zip archives over SFTP | [exfiltrate](../Resources/protections/test2/main.go#L59) | T1048.002 Exfiltration Over Alternative Protocol: Exfiltration Over Asymmetric Encrypted Non-C2 Protocol |
+| test2.exe enumerates files in all user Desktop, Documents, and Downloads folders | [get_target_dirs](../Resources/test2/main.go#L86) | T1083 File and Directory Discovery |
+| test2.exe compresses files in zip archives | [create_zip](../Resources/test2/main.go#L126) | T1560.002 Archive Collected Data: Archive via Library |
+| test2.exe exfiltrates zip archives over SFTP | [exfiltrate](../Resources/test2/main.go#L59) | T1048.002 Exfiltration Over Alternative Protocol: Exfiltration Over Asymmetric Encrypted Non-C2 Protocol |
 
 ## Test 3: Enumeration and Exfiltration via APIs and HTTP
 
@@ -303,9 +303,9 @@ been successfully removed.
 | Red Team Activity | Source Code Link | ATT&CK Technique |
 | ----------------- | ---------------- | ---------------- |
 | /bin/bash executes test3 | - | T1059.004 Command and Scripting Interpreter: Unix Shell |
-| test3 enumerates files in all user Desktop, Documents, and Downloads folders | [getTargetFiles](../Resources/protections/test3/main.go#L38) | T1083 File and Directory Discovery |
-| test3 zips target directories in 1MB chunks | [zipTargetDirs](../Resources/protections/test3/main.go#L63) | T1560.002 Archive Collected Data: Archive via Library |
-| test3 exfiltrates zip archives using HTTP POST | [exfilZips](../Resources/protections/test3/main.go#L146) | T1048.002 Exfiltration Over Alternative Protocol: Exfiltration Over Unencrypted Non-C2 Protocol |
+| test3 enumerates files in all user Desktop, Documents, and Downloads folders | [getTargetFiles](../Resources/test3/main.go#L38) | T1083 File and Directory Discovery |
+| test3 zips target directories in 1MB chunks | [zipTargetDirs](../Resources/test3/main.go#L63) | T1560.002 Archive Collected Data: Archive via Library |
+| test3 exfiltrates zip archives using HTTP POST | [exfilZips](../Resources/test3/main.go#L146) | T1048.002 Exfiltration Over Alternative Protocol: Exfiltration Over Unencrypted Non-C2 Protocol |
 
 ## Test 4: PowerShell Script Encryption
 
@@ -335,7 +335,7 @@ victim host `bts (10.222.25.61)` as `sonicbeats37.fm\yoona` if not already conne
 
 * Search for and open PowerShell
 
-* :arrow_right: In a Browser on a **non-victim machine**, browse to [test4.ps1](../Resources/protections/test4/test4.ps1)
+* :arrow_right: In a Browser on a **non-victim machine**, browse to [test4.ps1](../Resources/test4/test4.ps1)
 and copy the script contents.
 
 * :arrow_right: Return to the RDP to `bts (10.222.25.61)`. Paste the test4.ps1
@@ -366,8 +366,8 @@ Execute-Test -action decrypt -startFolder Z:\ -key [KEY GENERATED DURING ENCRYPT
 | Red Team Activity | Source Code Link | ATT&CK Technique |
 | ----------------- | ---------------- | ---------------- |
 | powershell.exe executes test4.ps1 | - | T1059.001 Command and Scripting Interpreter: PowerShell |
-| test4.ps1 enumerates all files and folders recursively in Z:\ | [Get-ChildItem](../Resources/protections/test4/test4.ps1#L64) | T1083 File and Directory Discovery |
-| test4.ps1 encrypts files discovered in Z:\ | [encryption](../Resources/protections/test4/test4.ps1#L12) | T1486 Data Encrypted For Impact |
+| test4.ps1 enumerates all files and folders recursively in Z:\ | [Get-ChildItem](../Resources/test4/test4.ps1#L64) | T1083 File and Directory Discovery |
+| test4.ps1 encrypts files discovered in Z:\ | [encryption](../Resources/test4/test4.ps1#L12) | T1486 Data Encrypted For Impact |
 
 ## Test 5: Remote API and Library Encryption
 
@@ -450,9 +450,9 @@ net use Z: /delete
 | Red Team Activity | Source Code Link | ATT&CK Technique |
 | ----------------- | ---------------- | ---------------- |
 | cmd.exe executes test5.exe | - | T1059.003: Command and Scripting Interpreter: Windows Command Shell |
-| test5.exe enumerates all files and folders recursively in Z:\ | [enumeration](../Resources/protections/test5/src/enum.cpp#L17) | T1083 File and Directory Discovery |
-| test5.exe uses FindFirstFile and FindNextFile to enumerate files in Z:\ | [FindFirstFile](../Resources/protections/test5/src/enum.cpp#L26) | T1106 Native API |
-| test5.exe encrypts files discovered in Z:\ | [encryption](../Resources/protections/test5/src/main.cpp#L18) | T1486 Data Encrypted For Impact |
+| test5.exe enumerates all files and folders recursively in Z:\ | [enumeration](../Resources/test5/src/enum.cpp#L17) | T1083 File and Directory Discovery |
+| test5.exe uses FindFirstFile and FindNextFile to enumerate files in Z:\ | [FindFirstFile](../Resources/test5/src/enum.cpp#L26) | T1106 Native API |
+| test5.exe encrypts files discovered in Z:\ | [encryption](../Resources/test5/src/main.cpp#L18) | T1486 Data Encrypted For Impact |
 
 ## Test 6: Bash Script Encryption
 
@@ -517,8 +517,8 @@ sudo /tmp/test6.sh /home
 | Red Team Activity | Source Code Link | ATT&CK Technique |
 | ----------------- | ---------------- | ---------------- |
 | /bin/bash executes test6.sh | - | T1059.004 Command and Scripting Interpreter: Unix Shell |
-| test6.sh enumerates files in /home | [recurse_directories](../Resources/protections/test6/test6.sh#L14) | T1083 File and Directory Discovery |
-| test6.sh Encrypts files discovered on disk with OpenSSL using Blowfish in CBC mode | [encrypt_file](../Resources/protections/test6/test6.sh#L8) | T1486 Data Encrypted For Impact |
+| test6.sh enumerates files in /home | [recurse_directories](../Resources/test6/test6.sh#L14) | T1083 File and Directory Discovery |
+| test6.sh Encrypts files discovered on disk with OpenSSL using Blowfish in CBC mode | [encrypt_file](../Resources/test6/test6.sh#L8) | T1486 Data Encrypted For Impact |
 
 ## Test 7: Propagation: NetBIOS and PsExec
 
@@ -604,9 +604,9 @@ Invoke-Command -Computer exo -Scriptblock {
 | Red Team Activity | Source Code Link | ATT&CK Technique |
 | ----------------- | ---------------- | ---------------- |
 | cmd.exe executes test7.exe | - | T1059.003: Command and Scripting Interpreter: Windows Command Shell |
-| test7.exe discovers local IP networks via GetAdaptersInfo | [get_local_ipv4_and_cidr](../Resources/protections/test7/src/latmove/local_ips.rs#L21) | T1016 System Network Configuration Discovery |
-| test7.exe performs NetBIOS scans | [scan](../Resources/protections/test7/src/latmove/nbtscan/lib.rs#L52) | T1018 Remote System Discovery |
-| test7.exe executes PsExec to propagate to additional targets | [run_psexec](../Resources/protections/test7/src/psexec.rs#L105) | T1021.002 Remote Services: SMB/Windows Admin Shares |
+| test7.exe discovers local IP networks via GetAdaptersInfo | [get_local_ipv4_and_cidr](../Resources/test7/src/latmove/local_ips.rs#L21) | T1016 System Network Configuration Discovery |
+| test7.exe performs NetBIOS scans | [scan](../Resources/test7/src/latmove/nbtscan/lib.rs#L52) | T1018 Remote System Discovery |
+| test7.exe executes PsExec to propagate to additional targets | [run_psexec](../Resources/test7/src/psexec.rs#L105) | T1021.002 Remote Services: SMB/Windows Admin Shares |
 | PsExec creates a service | - | T1543.003 Create or Modify System Process: Windows Service |
 | PsExec copies test7.exe to additional targets | - | T1570 Lateral Tool Transfer |
 | PsExec executes test7.exe on additional targets | - | T1569.002 System Services: Service Execution |
@@ -709,6 +709,6 @@ Invoke-Command -Computer bts,exo,blackpink -Scriptblock {
 | Red Team Activity | Source Code Link | ATT&CK Technique |
 | ----------------- | ---------------- | ---------------- |
 | cmd.exe executes test8.exe | - | T1059.003: Command and Scripting Interpreter: Windows Command Shell |
-| test8.exe enumerates all network sessions connected to the file server | [sessions](../Resources/protections/test8/src/sessions.cpp#L12) | T1049 System Network Connections Discovery |
-| test8.exe copies itself to discovered hosts | [main](../Resources/protections/test8/src/main.cpp#L84) | T1570 Lateral Tool Transfer |
-| test8.exe creates remote scheduled tasks that execute 15 seconds after being registered | [lat_move](../Resources/protections/test8/src/lat_move.cpp#L28) | T1053.005 Scheduled Task/Job: Scheduled Task |
+| test8.exe enumerates all network sessions connected to the file server | [sessions](../Resources/test8/src/sessions.cpp#L12) | T1049 System Network Connections Discovery |
+| test8.exe copies itself to discovered hosts | [main](../Resources/test8/src/main.cpp#L84) | T1570 Lateral Tool Transfer |
+| test8.exe creates remote scheduled tasks that execute 15 seconds after being registered | [lat_move](../Resources/test8/src/lat_move.cpp#L28) | T1053.005 Scheduled Task/Job: Scheduled Task |

@@ -182,7 +182,7 @@ When compiled in debug mode, the SDBBot RAT will create a log file in the image 
 
 #### Decoding the log file
 
-The log file is base64 encoded and XOR encrypted. The log file decryptor can be found here: [log_decryptor](../../../Resources/log_decryptor/)
+The log file is base64 encoded and XOR encrypted. The log file decryptor can be found here: [log_decryptor](../log_decryptor/)
 
 The XOR key used to decrypt the log file is `0x0F, 0x00, 0x00, 0x0D`:
 
@@ -463,11 +463,6 @@ Stub targets are located in the [tests directory](tests/stubs).
 | PE Loader | [monoxgas/sRDI](https://github.com/monoxgas/srdi) |
 | Application Verifier | [Microsoft](https://learn.microsoft.com/en-us/windows-hardware/drivers/devtest/application-verifier) |
 | Application Verifier | [Sensepost](https://sensepost.com/blog/2020/masquerading-windows-processes-like-a-doubleagent./) |
-
-## Cleanup
-
-A cleanup script has been provided to remove any artifacts left behind by SDBBOT. This cleanup
-script can be found here: [CL0P Cleanup](../cleanup/cl0p_cleanup.ps1)
 
 ### Artifacts removed
 - SDBBot log `mswinsdr64.log`
