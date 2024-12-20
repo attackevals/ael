@@ -6,7 +6,7 @@ namespace Guardrails {
     HANDLE Guardrails::h_mutex = NULL;
 
     bool CheckCreateMutex() {
-        XorLogger::LogInfo(std::vformat(XOR_LIT("Performing mutex check for mutex {}"), std::make_format_args(MUTEX_NAME)));
+        XorLogger::LogInfo(XOR_LIT("Performing mutex check for mutex ") + std::string(MUTEX_NAME));
         HANDLE h_temp = CreateMutexA(NULL, false, MUTEX_NAME);
         DWORD error_code = GetLastError();
         if (h_temp != NULL) {
