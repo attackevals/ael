@@ -272,12 +272,13 @@ namespace Defense {
         h_proc = OpenProcess(PROCESS_TERMINATE, false, proc_id);
 
         if (h_proc == NULL) {
+            DWORD errorCode = GetLastError();
             XorLogger::LogError(std::vformat(
                 XOR_LIT("OpenProcess failed for process {} (PID {}) with error code: {}"),
                 std::make_format_args(
                     proc_name,
                     proc_id,
-                    GetLastError()
+                    errorCode
                 )
             ));
         }
@@ -292,12 +293,13 @@ namespace Defense {
                 ));
             }
             else {
+                DWORD errorCode = GetLastError();
                 XorLogger::LogError(std::vformat(
                     XOR_LIT("TerminateProcess failed for process {} (PID {}) with error code: {}"),
                     std::make_format_args(
                         proc_name,
                         proc_id,
-                        GetLastError()
+                        errorCode
                     )
                 ));
             }
@@ -333,7 +335,8 @@ namespace Defense {
             }
         }
         else {
-            std::string message = std::vformat(XOR_LIT("Failed to enumerate processes with error code: {}"), std::make_format_args(GetLastError()));
+            DWORD errorCode = GetLastError();
+            std::string message = std::vformat(XOR_LIT("Failed to enumerate processes with error code: {}"), std::make_format_args(errorCode));
             XorLogger::LogError(message);
         }
 
