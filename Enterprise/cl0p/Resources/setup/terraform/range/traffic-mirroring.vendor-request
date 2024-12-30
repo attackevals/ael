@@ -1,7 +1,7 @@
 #### Traffic Mirroring Servers usually provided by vendor
 
 # module "mirror-a" {
-#   source            = "../../modules/aws/base-vm"
+#   source            = "../modules/aws/base-vm"
 #   description       = "[Scenario A] Traffic Mirror Server"
 #   platform          = "ubuntu-jammy"
 #   snapshot_required = true
@@ -23,7 +23,7 @@
 # }
 #
 # module "mirror-b" {
-#   source            = "../../modules/aws/base-vm"
+#   source            = "../modules/aws/base-vm"
 #   description       = "[Scenario B] Traffic Mirror Server"
 #   platform          = "ubuntu-jammy"
 #   snapshot_required = true
@@ -45,7 +45,7 @@
 # }
 #
 # module "mirror-p" {
-#   source            = "../../modules/aws/base-vm"
+#   source            = "../modules/aws/base-vm"
 #   description       = "[Protections] Traffic Mirror Server"
 #   platform          = "ubuntu-jammy"
 #   snapshot_required = true
@@ -67,7 +67,7 @@
 # }
 
 module "traffic-mirror-a" {
-  source        = "../../modules/aws/traffic-mirror"
+  source        = "../modules/aws/traffic-mirror"
   description   = "Traffic Mirror - Scenario A"
   target_nic_id = ""
   name          = "${local.victim-a-vms.tmt-srv1.vm-name}-a"
@@ -84,7 +84,7 @@ module "traffic-mirror-a" {
 }
 
 module "traffic-mirror-b" {
-  source        = "../../modules/aws/traffic-mirror"
+  source        = "../modules/aws/traffic-mirror"
   description   = "Traffic Mirror - Scenario B"
   target_nic_id = ""
   name          = "${local.victim-b-vms.tmt-srv1.vm-name}-b"
@@ -101,7 +101,7 @@ module "traffic-mirror-b" {
 }
 
 module "traffic-mirror-p" {
-  source        = "../../modules/aws/traffic-mirror"
+  source        = "../modules/aws/traffic-mirror"
   description   = "Traffic Mirror - Protections"
   target_nic_id = ""
   name          = "${local.victim-protections-vms.tmt-srv1.vm-name}-protections"
