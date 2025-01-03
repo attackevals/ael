@@ -113,8 +113,7 @@ module "a-file-srv1" {
   platform          = local.platform.win-srv
   snapshot_required = true
 
-  #   ami_id            = module.defaults.ami-windows-server-2022
-  ami_id        = local.er6prod5.azkaban
+  ami_id            = module.defaults.ami-windows-server-2022
   instance_type = local.aws-vm-size-large
 
   availability_zone = var.aws-region-az
@@ -157,8 +156,7 @@ module "a-mail-srv1" {
   platform          = local.platform.win-srv
   snapshot_required = true
 
-  #   ami_id = module.defaults.ami-windows-server-2022
-  ami_id        = local.er6prod5.hangleton
+  ami_id = module.defaults.ami-windows-server-2022
   instance_type = local.aws-vm-size-large
 
   availability_zone = var.aws-region-az
