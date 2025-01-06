@@ -1,6 +1,6 @@
 ## resource group
 module "defaults" {
-  source      = "../../modules/aws/defaults"
+  source      = "../modules/aws/defaults"
   name        = var.name-prefix
   description = var.description
   category    = var.category
