@@ -4,7 +4,7 @@
 
 #module "baget-srv1" {
 #  scope             = "dev"
-#  source            = "../../modules/aws/base-vm"
+#  source            = "../modules/aws/base-vm"
 #  description       = "[VICTIM] Mirror server"
 #  platform          = "ubuntu"
 #  snapshot_required = true
