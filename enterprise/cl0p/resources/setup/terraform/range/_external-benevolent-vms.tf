@@ -213,8 +213,7 @@ module "redirect-srv4" {
   snapshot_required = false
   scope             = local.scopes.internal
 
-  #   ami_id = module.defaults.ami-linux-ubuntu-jammy
-  ami_id = local.er6prod5.doorman
+  ami_id = module.defaults.ami-linux-ubuntu-jammy
 
   name               = local.external-benevolent-vms.redirect-srv4.vm-name
   hostname           = local.external-benevolent-vms.redirect-srv4.hostname

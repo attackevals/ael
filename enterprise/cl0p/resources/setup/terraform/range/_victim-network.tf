@@ -200,7 +200,7 @@ resource "aws_subnet" "vpn" {
 
 ## openvpn
 module "openvpn-client" {
-  source            = "../../modules/aws/vpn-client"
+  source            = "../modules/aws/vpn-client"
   name              = var.name-prefix
   organization_name = local.vendor
   cidr              = local.openvpn-cidr
