@@ -73,13 +73,14 @@ std::wstring format_bytes(
     std::wstring_view source_template
 ) {
     constexpr const wchar_t* format = L"{:#04x},";
+    size_t bytes_size = bytes.size_bytes();
     std::wstring formatted;
 
     // Reserving space up front to prevent reallocations
     // There is a newline character for every 15 bytes
-    size_t lines = bytes.size_bytes() / 15;
+    size_t lines = bytes_size / 15;
     // Format each byte as "0xFF," and account for newlines
-    formatted.reserve((bytes.size_bytes() * (5 * sizeof(wchar_t))) + lines);
+    formatted.reserve((bytes_size * (5 * sizeof(wchar_t))) + lines);
 
     for (size_t i = 0; i < bytes.size(); ++i) {
         formatted += std::format(format, std::to_integer<uint8_t>(bytes[i]));
@@ -97,7 +98,7 @@ std::wstring format_bytes(
 
     return std::vformat(
         source_template,
-        std::make_wformat_args(bytes.size_bytes(), formatted)
+        std::make_wformat_args(bytes_size, formatted)
     );
 }
 
