@@ -26,7 +26,7 @@ data "aws_ami" "windows-server-2022" {
   owners      = ["amazon"]
   filter {
     name   = "name"
-    values = ["Windows_Server-2022-English-Full-Base-2024.05.15"]
+    values = ["Windows_Server-2022-English-Full-Base-2025.01.15"]
   }
 }
 
@@ -35,7 +35,7 @@ data "aws_ami" "windows-sql-server-2022" {
   owners      = ["amazon"]
   filter {
     name   = "name"
-    values = ["Windows_Server-2022-English-Full-SQL_2022_Standard-2023.12.13"]
+    values = ["Windows_Server-2022-English-Full-SQL_2022_Standard-2025.01.15"]
   }
 }
 
@@ -135,7 +135,7 @@ data "aws_ami" "ubuntu-focal" {
   owners      = ["099720109477"] # Canonical (posted on Ubuntu official docs, https://help.ubuntu.com/community/EC2StartersGuide)
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-20221014"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-20250111"]
   }
   # add filter for hvm virtualization type (vs pv)
   filter {
@@ -170,7 +170,7 @@ data "aws_ami" "kali" {
   # add filter for name
   filter {
     name   = "name"
-    values = ["kali-*2024.2*"]
+    values = ["kali-*2024.4*"]
   }
   # add filter for arch
   filter {
