@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/ael">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.789775911230">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.792191168345">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -35,11 +35,12 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../../favicon.png" rel="icon">
-    <link href="../../../../resources/css/retype.css?v=3.6.0.789775911230" rel="stylesheet">
+    <link href="../../../../resources/css/retype.css?v=3.6.0.792191168345" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.789775911230" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.792191168345" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.789775911230" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.792191168345" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.6.0.792191168345" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -327,7 +328,8 @@ Currently, the setting value of <code v-pre>&quot;D088E59E5C03F101FFC97A8469FE5C
 These values are decoded and decrypted when the client starts up. Note that since these values are hardcoded, changing settings will require re-encrypting and regenerating HMAC hashes. You may use the <code v-pre>config_enc_util.py</code> utility to generate these (Note: recommended to run this script on Linux to avoid quote issues on Windows.)</p>
 <p>Usage:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">python3 config_enc_util.py -p [ENCRYPTIONKEY password value] -i &quot;string to encrypt and encode&quot;</code></pre>
+<pre class="language-none"><code v-pre class="language-none">pip3 install pycryptodome
+python3 config_enc_util.py -p [ENCRYPTIONKEY password value] -i &quot;string to encrypt and encode&quot;</code></pre>
 </doc-codeblock></div>
 <p>Example:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
@@ -366,6 +368,87 @@ Server will attempt to read the <code v-pre>quasar.p12</code> file from the same
 # REST API server will listen on all interfaces on default port 8888
 .\Quasar.exe -c quasar.p12</code></pre>
 </doc-codeblock></div>
+<doc-anchor-target id="creating-or-changing-server-certificates">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#creating-or-changing-server-certificates">#</doc-anchor-trigger>
+        <span>Creating or Changing Server Certificates</span>
+    </h3>
+</doc-anchor-target>
+<p>If using the Quasar server for the first time, you will need to generate a <code v-pre>quasar.p12</code> certificate and update the Quasar client setting values.</p>
+<p>To generate a new certificate:</p>
+<ul>
+<li><p>Run the server without the <code v-pre>-c</code> flag and without an existing <code v-pre>quasar.p12</code> cert in the server&#x27;s working directory</p>
+</li>
+<li><p>When the Quasar Certificate Wizard popup appears, click &quot;Create&quot; and then wait for the certificate details to populate the window. Click &quot;Save&quot; and then &quot;Ok&quot;.</p>
+</li>
+<li><p>A filesystem window will appear showing where the <code v-pre>quasar.p12</code> cert file was generated, and the Quasar server GUI will also appear.</p>
+</li>
+<li><p>Open the <code v-pre>QuasarServerLogs.txt</code> log file in the Quasar server&#x27;s working directory, find the <code v-pre>Quasar Options</code> line, and make note of the following values:</p>
+<ul>
+<li><code v-pre>Encryption key</code></li>
+<li><code v-pre>Server Cert (base64)</code></li>
+<li><code v-pre>Server Cert Signature (base64)</code></li>
+</ul>
+</li>
+</ul>
+<p>The below log output provides an example</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">[DEBUG] 2025-02-06 18:08:18: Quasar Options:
+[DEBUG] 2025-02-06 18:08:18: Encryption key: 7DA227310A3CF11510AB8EF7221638F366530CDF
+[DEBUG] 2025-02-06 18:08:18: Server Cert (base64):
+[DEBUG] 2025-02-06 18:08:18: MIIE8jCCAtqgAwI... (truncated for readability)
+[DEBUG] 2025-02-06 18:08:18: Server Cert Signature (base64):
+[DEBUG] 2025-02-06 18:08:18: O0IFdXaFfMyfq6a52... (truncated for readability)
+[INFO] 2025-02-06 18:08:18: Listening...</code></pre>
+</doc-codeblock></div>
+<p>Now that the Quasar server certificate has changed, you will need to replace several Quasar client setting values that are decrypted at run-time using the certificate. These values are in the <code v-pre>Quasar.Client\Config\Settings.cs</code> file, and they need to be re-encrypted and replaced using the <code v-pre>resources/config_enc_util.py</code> Python script on a Linux machine. You can reference the below commands to see which settings need to be reencrypted and replaced, and you can replace the values according to your environment and cert encryption key. Note that for the <code v-pre>-p</code> script argument, you will need to use the <code v-pre>Encryption key</code> value from the Quasar server logs (in the above example log output, <code v-pre>7DA227310A3CF11510AB8EF7221638F366530CDF</code>).</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># HOSTS value - replace the example localhost:4782 C2 address 
+# with a semicolon-separated list of your C2 server values 
+# (e.g. host1:443;host2:80;). 
+# Make sure to keep the trailing semicolon
+python3 config_enc_util.py -p 7DA227310A3CF11510AB8EF7221638F366530CDF -i &quot;localhost:4782;&quot;
+
+# SUBDIRECTORY value
+python3 config_enc_util.py -p 7DA227310A3CF11510AB8EF7221638F366530CDF -i &quot;Client&quot;
+
+# INSTALLNAME value
+python3 config_enc_util.py -p 7DA227310A3CF11510AB8EF7221638F366530CDF -i &quot;Client.exe&quot;
+
+# MUTEX VALUE
+python3 config_enc_util.py -p 7DA227310A3CF11510AB8EF7221638F366530CDF -i &quot;sfkj39tg2qevuaoisvhkjg4qksjcvhkq2p&quot;
+
+# STARTUPKEY registry value for the client
+python3 config_enc_util.py -p 7DA227310A3CF11510AB8EF7221638F366530CDF -i &quot;ClientStartup&quot;
+
+# TAG value
+python3 config_enc_util.py -p 7DA227310A3CF11510AB8EF7221638F366530CDF -i &quot;RELEASE&quot;
+
+# LOGDIRECTORYNAME value
+python3 config_enc_util.py -p 7DA227310A3CF11510AB8EF7221638F366530CDF -i &quot;Logs&quot;
+
+# SERVERSIGNATURE value
+# use the &quot;Server Cert Signature (base64)&quot; output from the Quasar server logs
+python3 config_enc_util.py -p 7DA227310A3CF11510AB8EF7221638F366530CDF -i &quot;O0IFdXaFfMyfq6a52...&quot;
+
+# SERVERCERTIFICATESTR value
+# use the &quot;Server Cert (base64)&quot; output from the Quasar server logs
+python3 config_enc_util.py -p 7DA227310A3CF11510AB8EF7221638F366530CDF -i &quot;MIIE8jCCAtqgAwI...&quot;
+
+# DOWNLOADURL value for the client to use to check for internet connectivity
+python3 config_enc_util.py -p 7DA227310A3CF11510AB8EF7221638F366530CDF -i &quot;https://www.google.com/&quot;</code></pre>
+</doc-codeblock></div>
+<p>For each Python script invocation, copy the output into the corresponding string setting value in <code v-pre>Settings.cs</code>.</p>
+<p>Also make sure to update the <code v-pre>ENCRYPTIONKEY</code> setting value with the encryption key hex string (e.g. <code v-pre>7DA227310A3CF11510AB8EF7221638F366530CDF</code>). This string must not be encrypted or further encoded.</p>
+<p>Once you have replaced the setting values, rebuild the client binary. Your client should now be able to connect to the Quasar Server.</p>
+<doc-anchor-target id="changing-client-settings">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changing-client-settings">#</doc-anchor-trigger>
+        <span>Changing Client Settings</span>
+    </h3>
+</doc-anchor-target>
+<p>If you need to change client settings such as the Quasar server address, log directory, or mutex value, you will need to encrypt and encode the new setting value and replace the old one in the <code v-pre>Quasar.Client\Config\Settings.cs</code> source code file and rebuild the client binary.</p>
+<p>If using the same Quasar server certificate as before, you can use the existing <code v-pre>ENCRYPTIONKEY</code> value and the <code v-pre>config_enc_util.py</code> Python script to generate the new encrypted/encoded setting value. Otherwise, if you are using a different certificate, follow the instructions in the <doc-anchor-trigger to="#creating-or-changing-server-certificates">Creating or Changing Server Certificates section</doc-anchor-trigger>.</p>
 <doc-anchor-target id="logging">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#logging">#</doc-anchor-trigger>
@@ -815,7 +898,8 @@ information on red team activity.</p>
 </doc-anchor-target>
 <p>Built using Msbuild and .NET 4.7.2 (use release configuration for static builds):</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">MSBuild.exe Quasar.sln /t:Build /p:Configuration=Release</code></pre>
+<pre class="language-none"><code v-pre class="language-none">MSBuild.exe Quasar.sln /t:Restore /p:Configuration=Release
+MSBuild.exe Quasar.sln /t:Build /p:Configuration=Release</code></pre>
 </doc-codeblock></div>
 
                                 
@@ -893,6 +977,6 @@ information on red team activity.</p>
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Quasar (Modified)", level: 4, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Quasar (Modified)", level: 4, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>
