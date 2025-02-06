@@ -182,8 +182,7 @@ python3 config_enc_util.py -p 7DA227310A3CF11510AB8EF7221638F366530CDF -i "O0IFd
 # use the "Server Cert (base64)" output from the Quasar server logs
 python3 config_enc_util.py -p 7DA227310A3CF11510AB8EF7221638F366530CDF -i "MIIE8jCCAtqgAwI..."
 
-# DOWNLOADURL value
-# use the "Server Cert Signature (base64)" output from the Quasar server logs
+# DOWNLOADURL value for the client to use to check for internet connectivity
 python3 config_enc_util.py -p 7DA227310A3CF11510AB8EF7221638F366530CDF -i "https://www.google.com/"
 ```
 
