@@ -87,6 +87,7 @@ These values are decoded and decrypted when the client starts up. Note that sinc
 Usage:
 
 ```
+pip3 install pycryptodome
 python3 config_enc_util.py -p [ENCRYPTIONKEY password value] -i "string to encrypt and encode"
 ```
 
@@ -122,6 +123,79 @@ For example:
 # REST API server will listen on all interfaces on default port 8888
 .\Quasar.exe -c quasar.p12
 ```
+
+### Creating or Changing Server Certificates
+If using the Quasar server for the first time, you will need to generate a `quasar.p12` certificate and update the Quasar client setting values.
+
+To generate a new certificate:
+- Run the server without the `-c` flag and without an existing `quasar.p12` cert in the server's working directory
+- When the Quasar Certificate Wizard popup appears, click "Create" and then wait for the certificate details to populate the window. Click "Save" and then "Ok".
+- A filesystem window will appear showing where the `quasar.p12` cert file was generated, and the Quasar server GUI will also appear.
+
+- Open the `QuasarServerLogs.txt` log file in the Quasar server's working directory, find the `Quasar Options` line, and make note of the following values:
+    - `Encryption key`
+    - `Server Cert (base64)`
+    - `Server Cert Signature (base64)`
+
+The below log output provides an example
+```text
+[DEBUG] 2025-02-06 18:08:18: Quasar Options:
+[DEBUG] 2025-02-06 18:08:18: Encryption key: 7DA227310A3CF11510AB8EF7221638F366530CDF
+[DEBUG] 2025-02-06 18:08:18: Server Cert (base64):
+[DEBUG] 2025-02-06 18:08:18: MIIE8jCCAtqgAwI... (truncated for readability)
+[DEBUG] 2025-02-06 18:08:18: Server Cert Signature (base64):
+[DEBUG] 2025-02-06 18:08:18: O0IFdXaFfMyfq6a52... (truncated for readability)
+[INFO] 2025-02-06 18:08:18: Listening...
+```
+
+Now that the Quasar server certificate has changed, you will need to replace several Quasar client setting values that are decrypted at run-time using the certificate. These values are in the `Quasar.Client\Config\Settings.cs` file, and they need to be re-encrypted and replaced using the `resources/config_enc_util.py` Python script on a Linux machine. You can reference the below commands to see which settings need to be reencrypted and replaced, and you can replace the values according to your environment and cert encryption key. Note that for the `-p` script argument, you will need to use the `Encryption key` value from the Quasar server logs (in the above example log output, `7DA227310A3CF11510AB8EF7221638F366530CDF`). 
+```bash
+# HOSTS value - replace the example localhost:4782 C2 address 
+# with a semicolon-separated list of your C2 server values 
+# (e.g. host1:443;host2:80;). 
+# Make sure to keep the trailing semicolon
+python3 config_enc_util.py -p 7DA227310A3CF11510AB8EF7221638F366530CDF -i "localhost:4782;"
+
+# SUBDIRECTORY value
+python3 config_enc_util.py -p 7DA227310A3CF11510AB8EF7221638F366530CDF -i "Client"
+
+# INSTALLNAME value
+python3 config_enc_util.py -p 7DA227310A3CF11510AB8EF7221638F366530CDF -i "Client.exe"
+
+# MUTEX VALUE
+python3 config_enc_util.py -p 7DA227310A3CF11510AB8EF7221638F366530CDF -i "sfkj39tg2qevuaoisvhkjg4qksjcvhkq2p"
+
+# STARTUPKEY registry value for the client
+python3 config_enc_util.py -p 7DA227310A3CF11510AB8EF7221638F366530CDF -i "ClientStartup"
+
+# TAG value
+python3 config_enc_util.py -p 7DA227310A3CF11510AB8EF7221638F366530CDF -i "RELEASE"
+
+# LOGDIRECTORYNAME value
+python3 config_enc_util.py -p 7DA227310A3CF11510AB8EF7221638F366530CDF -i "Logs"
+
+# SERVERSIGNATURE value
+# use the "Server Cert Signature (base64)" output from the Quasar server logs
+python3 config_enc_util.py -p 7DA227310A3CF11510AB8EF7221638F366530CDF -i "O0IFdXaFfMyfq6a52..."
+
+# SERVERCERTIFICATESTR value
+# use the "Server Cert (base64)" output from the Quasar server logs
+python3 config_enc_util.py -p 7DA227310A3CF11510AB8EF7221638F366530CDF -i "MIIE8jCCAtqgAwI..."
+
+# DOWNLOADURL value for the client to use to check for internet connectivity
+python3 config_enc_util.py -p 7DA227310A3CF11510AB8EF7221638F366530CDF -i "https://www.google.com/"
+```
+
+For each Python script invocation, copy the output into the corresponding string setting value in `Settings.cs`.
+
+Also make sure to update the `ENCRYPTIONKEY` setting value with the encryption key hex string (e.g. `7DA227310A3CF11510AB8EF7221638F366530CDF`). This string must not be encrypted or further encoded.
+
+Once you have replaced the setting values, rebuild the client binary. Your client should now be able to connect to the Quasar Server.
+
+### Changing Client Settings
+If you need to change client settings such as the Quasar server address, log directory, or mutex value, you will need to encrypt and encode the new setting value and replace the old one in the `Quasar.Client\Config\Settings.cs` source code file and rebuild the client binary. 
+
+If using the same Quasar server certificate as before, you can use the existing `ENCRYPTIONKEY` value and the `config_enc_util.py` Python script to generate the new encrypted/encoded setting value. Otherwise, if you are using a different certificate, follow the instructions in the [Creating or Changing Server Certificates section](#creating-or-changing-server-certificates).
 
 ## Logging
 
@@ -543,5 +617,6 @@ curl -s -H "APIKEY:81152cc4c24d327f8fe800afbfb9777c" http://10.0.2.9:8888/api/be
 Built using Msbuild and .NET 4.7.2 (use release configuration for static builds):
 
 ```
+MSBuild.exe Quasar.sln /t:Restore /p:Configuration=Release
 MSBuild.exe Quasar.sln /t:Build /p:Configuration=Release
 ```
