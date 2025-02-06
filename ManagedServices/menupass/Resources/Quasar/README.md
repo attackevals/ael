@@ -181,6 +181,10 @@ python3 config_enc_util.py -p 7DA227310A3CF11510AB8EF7221638F366530CDF -i "MIIE8
 # SERVERCERTIFICATESTR value
 # use the "Server Cert Signature (base64)" output from the Quasar server logs
 python3 config_enc_util.py -p 7DA227310A3CF11510AB8EF7221638F366530CDF -i "O0IFdXaFfMyfq6a52..."
+
+# DOWNLOADURL value
+# use the "Server Cert Signature (base64)" output from the Quasar server logs
+python3 config_enc_util.py -p 7DA227310A3CF11510AB8EF7221638F366530CDF -i "https://www.google.com/"
 ```
 
 For each Python script invocation, copy the output into the corresponding string setting value in `Settings.cs`.
