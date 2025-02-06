@@ -87,6 +87,7 @@ These values are decoded and decrypted when the client starts up. Note that sinc
 Usage:
 
 ```
+pip3 install pycryptodome
 python3 config_enc_util.py -p [ENCRYPTIONKEY password value] -i "string to encrypt and encode"
 ```
 
