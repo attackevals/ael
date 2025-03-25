@@ -9,6 +9,7 @@ Legend of symbols:
 * :red_circle: - Sign out of RDP
 * :camera: - take a screenshot
 * :clock2: - Record timestamp
+* :loud_sound: - Noise activity
 
 ---
 
@@ -243,6 +244,34 @@ Keychain file paths to an environment variable. STRATOFEAR then executes the
 `0x64` command which uploads files to the  C2 server using the paths saved in
 the environment variables set using the dylib file. DRPK then tasks STRATOFEAR to
 monitor for all devices mounted to the system using the `0x47` command.
+
+### :loud_sound: Noise
+* :arrow_right: Initiate an RDP session to the Windows jumpbox
+`spitfire (223.246.0.90)`
+* :arrow_right: From the Windows jumpbox `spitfire (223.246.0.90)`, initiate a VNC
+session to the MacOS victim workstation `hogshead (10.55.4.50)`.
+    | Hostname | Password |
+    | -------- | -------- |
+    | 10.55.4.50::5900 | test1234 |
+  * At the MacOS login screen, authenticate with the following credentials:
+    | Username | Password |
+    | -------- | -------- |
+    | ranrok | Ladylike-Laugh |
+* Open Script Editor and save the following as `count_files.scpt`
+    ```applescript
+    tell application "Finder"
+        set ffolder to choose folder
+        set sccripts to every item of ffolder whose kind is not "folder"
+        get count of sccripts
+    end tell
+    ```
+* In Script Editor, click the Play ▶️ button to run the script. In the
+Finder terminal to choose a folder, pick Applications
+* Open Safari and browse to <https://www.jetbrains.com/idea/download/?section=mac>
+to download IntelliJ. In the .dmg dropdown, select ".dmg (Apple Silicon)"
+* Follow the instructions to install IntelliJ
+* Once installation has completed, open IntelliJ
+
 
 ### :biohazard: Procedures
 

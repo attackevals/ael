@@ -1,4 +1,4 @@
-# CL0P Scenario Overview
+﻿# CL0P Scenario Overview
 
 Legend of symbols:
 
@@ -9,7 +9,7 @@ Legend of symbols:
 * :red_circle: - Sign out of RDP
 * :camera: - take a screenshot
 * :clock2: - Record timestamp
-
+* :loud_sound: - Noise activity
 ---
 
 ## Step 0 - Red Setup
@@ -103,6 +103,17 @@ Run as Administrator.
 
 * :camera: Confirm and screenshot that the payload was executed in Command Prompt.
 
+### :loud_sound: Noise
+The following noise activity is executed:
+* User will execute rundll32.exe to load scripts with msedge
+    * cmd.exe executed `rundll32  url.dll,FileProtocolHandler https://www.google.com & taskkill /F /IM \"msedge.exe\" /T`
+* User will create text files using Notepad
+    * notepad.exe creates C:\\Users\\Public\\hidden.txt" & "C:\\Users\\Public\\original.txt
+* User will embed a text file within another text file
+    * cmd.exe executed `copy /b C:\\Users\\Public\\hidden.txt C:\\Users\\Public\\original.txt`
+* User will modify the IFEO registry for msedge
+    * `reg add \HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\msedge.exe\" /v Debugger /t REG_SZ /d \"C:\\ Program Files\\Mozilla Firefox\\firefox.exe\""`
+
 ### :mag: Reference Code & Reporting
 
 > :information_source: **NOTE:** Not all techniques listed in this table
@@ -195,6 +206,74 @@ directly map to evaluation substeps
 | SDBbot RAT executes dir | [core.cpp](../Resources/sdbbot/src/rat/core.cpp#L218) | T1083 File and Directory Discovery | - |
 | SDBbot RAT exfiltrates files | [core.cpp](../Resources/sdbbot/src/rat/core.cpp#L272) | T1041 Exfiltration Over C2 Channel | [Cybereason - 2020](https://www.cybereason.com/blog/research/cybereason-vs.-clop-ransomware) |
 
+---
+
+### :loud_sound: Noise Step
+
+* :exclamation: Notify your Threat Hunter that you are starting execution of the
+Detections manual noise step
+
+* :arrow_right: From the Windows jumpbox `spitfire (223.246.0.90)`, watch the RDP
+session to the Windows victim workstation `vault713 (10.55.3.100)` as
+`encryptpotter.net\ranrok`. If GHOSTS is currently performing actions or in the
+middle of a timeline, wait for it to finish. Then click into the RDP session and
+you'll have a brief window to do the following.
+
+* search for PowerShell and right-click to Run as Administrator
+
+* Execute the following command to install 7zip to computers in the domain
+
+```cmd
+Invoke-Command -ComputerName diagonalley,gobbledgook,vault713,azkaban,hangleton -ScriptBlock { choco install 7zip -y }
+```
+
+* :arrow_right: Minimize your RDP then From the Windows jumpbox
+`spitfire (223.246.0.90)`, initiate an RDP session to the Windows victim
+workstation `diagonalley (10.55.4.21)` as `encryptpotter.net\griphook` if one
+does not already exist.
+
+    | Hostname | Username | Password |
+    | -------- | -------- | -------- |
+    | diagonalley.encryptpotter.net | encryptpotter.net\griphook | Feral-Studs |
+
+* Open File Explorer then browse to Documents and create a new folder named `xfer`
+
+* Drag all files in Documents into `xfer`
+
+* Right-click the xfer folder > Show More Options > 7-ZIP > Add to Archive...
+
+  * Use `leakycauldron` as the zip password
+
+* Delete the original `xfer` folder
+
+* Under �This PC�, open the share in a **new** File Explorer window and click
+into the mounted share `Z:`
+
+* Drag the xfer.zip to the root of the network share
+
+* Search for and open `WordPad`. Do not close the application.
+
+* :red_circle: Disconnect from the RDP to `diagonalley (10.55.4.21)`
+
+* :arrow_right: From the Windows jumpbox `spitfire (223.246.0.90)`, watch the RDP
+session to the Windows victim workstation `gobbledgook (10.55.4.22)`. If GHOSTS is
+currently performing actions or in the middle of a timeline, wait for it to finish.
+Then click into the RDP session and you'll have a brief window to do the following.
+
+* In a new File Explorer window, click "This PC" from the left menu
+
+* Click on the mapped network drive `Z:`
+
+* Copy the xfer.zip to Downloads
+
+* Right-click the xfer folder > Show More Options > 7-ZIP > Extract Here
+then enter `leakycauldron` for the password
+
+* Click out of the RDP window to `gobbledgook (10.55.4.22)` but leave it open and
+running so that GHOSTS can continue executing.
+
+---
+
 ## Step 4 - Defense Evasion and Impact (Evaluation Step 8)
 
 ### :microphone: Voice Track
@@ -214,6 +293,21 @@ extension to encrypted files
 * Leave ransom notes in affected folders
 * Clear Windows Event Logs
 * Delete itself on completion
+
+### :loud_sound: Noise
+The following noise activity is executed:
+* User will execute commands
+   * `cmd.exe executed systeminfo | findstr /B /C:'System Locale'`
+   * `cmd.exe executed netsh advfirewall set allprofiles state off`
+* User will execute powershell commands
+   * `Get-WmiObject -Class Win32_Service | Where-Object {{}$_.State -eq
+      \"Running\"{}} | Format-Table`
+   * `Stop-Service -Name Bluetooth{TAB}`
+   * `Stop-Service -Name BTAGService`
+   * `Stop-Service -Name OneSync{TAB}`
+   * `Stop-Service -Name XblGameSave`
+   * `Stop-Service -Name WbioSrvc`
+   * `Get-WinSystemLocale`
 
 ### :biohazard: Procedures
 
