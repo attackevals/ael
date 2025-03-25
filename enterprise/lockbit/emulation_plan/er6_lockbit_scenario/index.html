@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/ael">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.793286094485">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.796247571474">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -35,12 +35,12 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../../favicon.png" rel="icon">
-    <link href="../../../../resources/css/retype.css?v=3.6.0.793286094485" rel="stylesheet">
+    <link href="../../../../resources/css/retype.css?v=3.6.0.796247571474" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.793286094485" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.796247571474" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.793286094485" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.6.0.793286094485" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.796247571474" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.6.0.796247571474" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -219,6 +219,7 @@
 <li><span class="docs-emoji">&#x1F534;</span> - Sign out of RDP</li>
 <li><span class="docs-emoji">&#x1F4F7;</span> - take a screenshot</li>
 <li><span class="docs-emoji">&#x1F551;</span> - Record timestamp</li>
+<li><span class="docs-emoji">&#x1F50A;</span> - Noise activity</li>
 </ul>
 <hr>
 <doc-anchor-target id="step-0---red-setup">
@@ -499,6 +500,28 @@ running services:</p>
 <li><p>Minimize the elevated Command Prompt for later use</p>
 </li>
 </ul>
+<doc-anchor-target id="noise">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#noise">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F50A;</span> Noise</span>
+    </h3>
+</doc-anchor-target>
+<p>The following noise activity is executed:</p>
+<ul>
+<li>User will create symbolic links to the volume shadow copy
+<ul>
+<li><code v-pre>cmd /c mklink /D C:\\Temp\\vss \\\\?\\GLOBALROOT\\Device\\HarddiskVolumeShadowCopy1\\</code></li>
+</ul>
+</li>
+<li>User will execute following commands in PowerShell:
+<ul>
+<li><code v-pre>Get-ChildItem</code></li>
+<li><code v-pre>Set-Location -Path C:\\Users\\Public\\</code></li>
+<li><code v-pre>New-Item -ItemType File -Name new_readme_report.txt</code></li>
+<li><code v-pre>Remove-Item new_readme_report.txt</code></li>
+</ul>
+</li>
+</ul>
 <doc-anchor-target id="reference-code-reporting">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#reference-code-reporting">#</doc-anchor-trigger>
@@ -685,6 +708,27 @@ directly map to evaluation substeps</p>
 <p>The LockBit affiliate ingresses the FireFox password dumper using <code v-pre>chocolatey</code>
 then dumps passwords from the FireFox browser, recovering the domain admin
 credentials to access the Linux KVM server.</p>
+<doc-anchor-target id="noise">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#noise">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F50A;</span> Noise</span>
+    </h3>
+</doc-anchor-target>
+<p>The following noise activity is executed:</p>
+<ul>
+<li>User will manipulate volume shadow copy
+<ul>
+<li><code v-pre>vssadmin add shadowstorage /for=C: /on=C: /maxsize=UNBOUNDED</code></li>
+<li><code v-pre>vssadmin create shadow /for=C:</code></li>
+</ul>
+</li>
+<li>User will execute chocolatey to install profwiz and ldapadmin
+<ul>
+<li><code v-pre>choco install profwiz -y</code></li>
+<li><code v-pre>choco install ldapadmin -y</code></li>
+</ul>
+</li>
+</ul>
 <doc-anchor-target id="biohazard-procedures-5">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#biohazard-procedures-5">#</doc-anchor-trigger>
@@ -1182,6 +1226,19 @@ executable at <code v-pre>C:\Windows\Temp\381jwk.tmp</code>.
 removing it from disk.</li>
 </ul>
 </li>
+</ul>
+<doc-anchor-target id="noise">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#noise">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F50A;</span> Noise</span>
+    </h3>
+</doc-anchor-target>
+<p>The following noise activity is executed:</p>
+<ul>
+<li>User will map a network drive to a remote SMB share</li>
+<li>User will copy files from the mapped network drive to local directory</li>
+<li>User will disconnect from the mapped network drive</li>
+<li>User will clear the recycling bin</li>
 </ul>
 <doc-anchor-target id="biohazard-procedures-9">
     <h3>

@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/ael">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.793286094485">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.796247571474">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -35,12 +35,12 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../../../favicon.png" rel="icon">
-    <link href="../../../../../resources/css/retype.css?v=3.6.0.793286094485" rel="stylesheet">
+    <link href="../../../../../resources/css/retype.css?v=3.6.0.796247571474" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../../resources/js/config.js?v=3.6.0.793286094485" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../../resources/js/config.js?v=3.6.0.796247571474" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../../resources/js/lunr.js?v=3.6.0.793286094485" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../../../resources/js/prism.js?v=3.6.0.793286094485" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../../resources/js/lunr.js?v=3.6.0.796247571474" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../../resources/js/prism.js?v=3.6.0.796247571474" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -258,6 +258,31 @@ zips of files within the target directories, then exfiltrate the zips using
 rclone to the adversary server at <code v-pre>m1sfir3d.blog (36.43.97.151)</code>. The batch
 script will sleep for 30 seconds in between zip creations and rclone
 exfiltrations.</p>
+<doc-anchor-target id="noise">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#noise">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F50A;</span> Noise</span>
+    </h3>
+</doc-anchor-target>
+<p>The following noise activity is executed:</p>
+<ul>
+<li>User will execute curl to create CSV files
+<ul>
+<li><code v-pre>curl -O https://data.un.org/_Docs/SYB/CSV/SYB66_1_202310_Population,%20Surface%20Area%20and%20Density.csv</code></li>
+<li><code v-pre>curl -O https://data.un.org/_Docs/SYB/CSV/SYB66_327_202310_International%20Migrants%20and%20Refugees.csv</code></li>
+<li><code v-pre>curl -O https://data.un.org/_Docs/SYB/CSV/SYB61_253_Population%20Growth%20Rates%20in%20Urban%20areas%20and%20Capital%20cities.csv</code></li>
+<li><code v-pre>curl -O https://data.un.org/_Docs/SYB/CSV/SYB66_230_202310_GDP%20and%20GDP%20Per%20Capita.csv&quot;</code></li>
+<li><code v-pre>curl -O https://data.un.org/_Docs/SYB/CSV/SYB66_153_202310_Gross%20Value%20Added%20by%20Economic%20Activity.csv</code></li>
+<li><code v-pre>curl -O https://data.un.org/_Docs/SYB/CSV/SYB66_128_202310_Consumer%20Price%20Index.csv</code></li>
+</ul>
+</li>
+<li>User will install Chrome
+<ul>
+<li><code v-pre>choco install googlechrome -y</code></li>
+</ul>
+</li>
+<li>User will RDP from EXO to BLACKPINK</li>
+</ul>
 <doc-anchor-target id="setup">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#setup">#</doc-anchor-trigger>
@@ -403,6 +428,35 @@ connection to the attacker-controlled SFTP server. Once established, the
 executable will upload each zip archive to the SFTP server, sleeping for 15-30
 seconds after each upload has completed. Finally, the executable will output the
 list of uploaded files in the SFTP server.</p>
+<doc-anchor-target id="noise">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#noise">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F50A;</span> Noise</span>
+    </h3>
+</doc-anchor-target>
+<p>The following noise activity is executed:</p>
+<ul>
+<li>User will execute rundll32.exe to load scripts
+<ul>
+<li><code v-pre>cmd.exe executed rundll32  url.dll,FileProtocolHandler https://www.google.com &amp; taskkill /F /IM \&quot;msedge.exe\&quot; /T</code></li>
+</ul>
+</li>
+<li>User will create text files using Notepad
+<ul>
+<li><code v-pre>notepad.exe creates C:\\Users\\Public\\hidden.txt&quot; &amp; &quot;C:\\Users\\Public\\original.txt</code></li>
+</ul>
+</li>
+<li>User will embed a text file within another text file
+<ul>
+<li><code v-pre>cmd.exe executed copy /b C:\\Users\\Public\\hidden.txt C:\\Users\\Public\\original.txt</code></li>
+</ul>
+</li>
+<li>User will modify the IFEO registry for msedge
+<ul>
+<li><code v-pre>reg add \HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\msedge.exe\&quot; /v Debugger /t REG_SZ /d \&quot;C:\\Program Files\\Mozilla Firefox\\firefox.exe\&quot;&quot;</code></li>
+</ul>
+</li>
+</ul>
 <doc-anchor-target id="setup">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#setup">#</doc-anchor-trigger>
@@ -612,6 +666,33 @@ All files found in the <code v-pre>Desktop</code>, <code v-pre>Documents</code>,
 be zipped into zip archives up to 1MB.</p>
 <p>After all of the zips have been created, the executable will upload
 each zip archive to the adversary server via HTTP POST requests.</p>
+<doc-anchor-target id="noise">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#noise">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F50A;</span> Noise</span>
+    </h3>
+</doc-anchor-target>
+<p>The following noise activity is executed:</p>
+<ul>
+<li>User will execute commands
+<ul>
+<li><code v-pre>cmd.exe executed systeminfo | findstr /B /C:'System Locale'</code></li>
+<li><code v-pre>cmd.exe executed netsh advfirewall set allprofiles state off</code></li>
+</ul>
+</li>
+<li>User will execute powershell commands
+<ul>
+<li><code v-pre>Get-WmiObject -Class Win32_Service | Where-Object {{}$_.State -eq \&quot;Running\&quot;{}} | Format-Table</code></li>
+<li><code v-pre>Stop-Service -Name Bluetooth{TAB}</code></li>
+<li><code v-pre>Stop-Service -Name BTAGService</code></li>
+<li><code v-pre>Stop-Service -Name OneSync{TAB}</code></li>
+<li><code v-pre>Stop-Service -Name XblGameSave</code></li>
+<li><code v-pre>Stop-Service -Name WbioSrvc</code></li>
+<li><code v-pre>Get-WinSystemLocale</code></li>
+</ul>
+</li>
+<li>User will RDP from EXO to ASIX</li>
+</ul>
 <doc-anchor-target id="setup">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#setup">#</doc-anchor-trigger>
@@ -764,6 +845,23 @@ directories inside of <code v-pre>Z:\</code> using <code v-pre>Get-ChildItem</co
 After all files have been enumerated, they will all be encrypted using
 an encryption key generated by the test4 application.
 Target files will be overwritten by the corresponding encrypted contents.</p>
+<doc-anchor-target id="noise">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#noise">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F50A;</span> Noise</span>
+    </h3>
+</doc-anchor-target>
+<p>The following noise activity is executed:</p>
+<ul>
+<li>User will execute following commands in PowerShell:
+<ul>
+<li><code v-pre>Get-ChildItem</code></li>
+<li><code v-pre>Set-Location -Path C:\\Users\\Public\\</code></li>
+<li><code v-pre>New-Item -ItemType File -Name new_readme_report.txt</code></li>
+<li><code v-pre>Remove-Item new_readme_report.txt</code></li>
+</ul>
+</li>
+</ul>
 <doc-anchor-target id="setup">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#setup">#</doc-anchor-trigger>
@@ -887,6 +985,75 @@ system file, sym-link, or directory will be added to a file list.
 After all files have been enumerated, they will all be encrypted using
 an encryption key generated by the test5 application. The executable will
 sleep for 250-1000 milliseconds after each file is encrypted.</p>
+<doc-anchor-target id="noise">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#noise">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F50A;</span> Noise</span>
+    </h3>
+</doc-anchor-target>
+<p>The following noise activity is executed:
+Execute this section prior to Setup. Any blocks that occur during this
+section will be considered for False Positive measurement.</p>
+<ul>
+<li><p>From the Windows jumpbox <code v-pre>spitfire (223.246.0.90)</code>, search for Command Prompt
+then right-click to Run as Administrator if not already running</p>
+</li>
+<li><p><span class="docs-emoji">&#x27A1;&#xFE0F;</span> From the Windows jumpbox <code v-pre>spitfire (223.246.0.90)</code>, RDP
+to <code v-pre>eyescream (199.88.44.201)</code> as <code v-pre>devadmin</code>
+| Hostname | Username | Password |
+| -------- | -------- | -------- |
+| eyescream | devadmin | DevPass123! |</p>
+</li>
+<li><p>Search for Command Prompt and right-click to Run as Administrator</p>
+</li>
+<li><p>Check that the share is mounted, otherwise, mount it</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">net use</code></pre>
+</doc-codeblock></div>
+<ul>
+<li>If the Z: is not mounted to <code v-pre>asix (10.222.15.15)</code>, mount the
+share and enter the password when prompted:
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">net use Z: \\10.222.15.15\D$\data /persistent:yes /user:sonicbeats37.fm\sooyoung</code></pre>
+</doc-codeblock></div>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dental-Crew</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Install 7zip:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">choco install 7zip -y</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p>Zip the files in the share&#x27;s Documents folder:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">7z a Z:\transition_off_share.zip Z:\Documents\ -p!Evals123</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p>Move the zip from the Documents folder to the Desktop of <code v-pre>eyescream (199.88.44.201)</code></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">move Z:\transition_off_share.zip C:\users\op1\Desktop</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p>Delete the share&#x27;s Documents folder</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">rmdir /S /Q Z:\Documents\</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
 <doc-anchor-target id="setup">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#setup">#</doc-anchor-trigger>
@@ -1029,6 +1196,22 @@ will be executed with the argument <code v-pre>/home</code>.</p>
 directories inside of <code v-pre>/home</code>. Any file that is deemed not a directory
 will be encrypted using an encryption key generated with OpenSSL inside
 the test6 bash script.</p>
+<doc-anchor-target id="noise">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#noise">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F50A;</span> Noise</span>
+    </h3>
+</doc-anchor-target>
+<p>The following noise activity is executed:</p>
+<ul>
+<li>User will execute chocolatey to install profwiz and ldapadmin
+<ul>
+<li><code v-pre>choco install profwiz -y</code></li>
+<li><code v-pre>choco install ldapadmin -y</code></li>
+</ul>
+</li>
+<li>User will RDP from BLACKPINK to EXO</li>
+</ul>
 <doc-anchor-target id="setup">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#setup">#</doc-anchor-trigger>
@@ -1157,6 +1340,43 @@ as Windows machines. Upon having discovered at least one Windows target, the
 test binary will drop an embedded PsExec binary to disk at <code v-pre>C:\Windows\Temp\pm.exe</code>
 and run it to copy itself and execute itself on each target. The propagated
 processes will attempt to run as the SYSTEM user.</p>
+<doc-anchor-target id="noise">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#noise">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F50A;</span> Noise</span>
+    </h3>
+</doc-anchor-target>
+<p>The following noise activity is executed:
+Execute this section prior to Setup. Any blocks that occur during this
+section will be considered for False Positive measurement.</p>
+<ul>
+<li><p><span class="docs-emoji">&#x27A1;&#xFE0F;</span> From the Windows jumpbox <code v-pre>spitfire (223.246.0.90)</code>, RDP
+to <code v-pre>blackpink (10.222.15.10)</code> as <code v-pre>sonicbeats37.fm\sooyoung</code> if not already connected
+| Hostname | Username | Password |
+| -------- | -------- | -------- |
+| blackpink.sonicbeats37.fm | sonicbeats37.fm\sooyoung | Dental-Crew |</p>
+</li>
+<li><p>Search for PowerShell then right-click to Run as Administrator</p>
+</li>
+<li><p>Open Notepad and save the following to the Desktop as <code v-pre>install_software.bat</code>
+(save your file with type &quot;All Files (<em>.</em>)&quot; to ensure your .bat extension is
+saved correctly):</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">choco install -y notepadplusplus
+choco install -y adobereader</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p>From PowerShell, execute the batch script using PsExec against the workstations
+in the range:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">psh</div>
+<pre class="language-none"><code v-pre class="language-none">$computers=&quot;10.222.25.61&quot;,&quot;10.222.25.62&quot;;
+foreach ($computer in $computers){
+psexec \\$computer -s -u sonicbeats37.fm\sooyoung -p Dental-Crew -c &quot;C:\users\sooyoung\Desktop\install_software.bat&quot;;
+}</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
 <doc-anchor-target id="setup">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#setup">#</doc-anchor-trigger>
@@ -1321,6 +1541,19 @@ itself to the <code v-pre>C:\Windows\System32</code> folder of the remote host a
 scheduled task <code v-pre>\Microsoft\Windows\Net Session File Management Task</code> on the
 remote host. The created task will automatically execute 15 seconds after being
 registered.</p>
+<doc-anchor-target id="noise">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#noise">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F50A;</span> Noise</span>
+    </h3>
+</doc-anchor-target>
+<p>The following noise activity is executed:</p>
+<ul>
+<li>User will map a network drive to a remote SMB share</li>
+<li>User will copy files from the mapped network drive to local directory</li>
+<li>User will disconnect from the mapped network drive</li>
+<li>User will clear the recycling bin</li>
+</ul>
 <doc-anchor-target id="setup">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#setup">#</doc-anchor-trigger>
@@ -1518,10 +1751,10 @@ Invoke-Command -Computer bts,exo,blackpink -Scriptblock {
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../../../enterprise/protections/2024/cti_emulation_resources/">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../../../enterprise/protections/2024/resources/">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                                                <span class="block mt-1">Ransomware Protections Micros</span>
+                                                <span class="block mt-1">Resources</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>

@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/ael">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.793286094485">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.796247571474">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -35,12 +35,12 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../../favicon.png" rel="icon">
-    <link href="../../../../resources/css/retype.css?v=3.6.0.793286094485" rel="stylesheet">
+    <link href="../../../../resources/css/retype.css?v=3.6.0.796247571474" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.793286094485" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.796247571474" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.793286094485" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.6.0.793286094485" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.796247571474" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.6.0.796247571474" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -219,6 +219,7 @@
 <li><span class="docs-emoji">&#x1F534;</span> - Sign out of RDP</li>
 <li><span class="docs-emoji">&#x1F4F7;</span> - take a screenshot</li>
 <li><span class="docs-emoji">&#x1F551;</span> - Record timestamp</li>
+<li><span class="docs-emoji">&#x1F50A;</span> - Noise activity</li>
 </ul>
 <hr>
 <doc-anchor-target id="step-0---red-setup">
@@ -696,6 +697,43 @@ Keychain file paths to an environment variable. STRATOFEAR then executes the
 <code v-pre>0x64</code> command which uploads files to the  C2 server using the paths saved in
 the environment variables set using the dylib file. DRPK then tasks STRATOFEAR to
 monitor for all devices mounted to the system using the <code v-pre>0x47</code> command.</p>
+<doc-anchor-target id="noise">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#noise">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F50A;</span> Noise</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><span class="docs-emoji">&#x27A1;&#xFE0F;</span> Initiate an RDP session to the Windows jumpbox
+<code v-pre>spitfire (223.246.0.90)</code></li>
+<li><span class="docs-emoji">&#x27A1;&#xFE0F;</span> From the Windows jumpbox <code v-pre>spitfire (223.246.0.90)</code>, initiate a VNC
+session to the MacOS victim workstation <code v-pre>hogshead (10.55.4.50)</code>.
+| Hostname | Password |
+| -------- | -------- |
+| 10.55.4.50::5900 | test1234 |
+<ul>
+<li>At the MacOS login screen, authenticate with the following credentials:
+| Username | Password |
+| -------- | -------- |
+| ranrok | Ladylike-Laugh |</li>
+</ul>
+</li>
+<li>Open Script Editor and save the following as <code v-pre>count_files.scpt</code>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-applescript"><code v-pre class="language-applescript">tell application &quot;Finder&quot;
+    set ffolder to choose folder
+    set sccripts to every item of ffolder whose kind is not &quot;folder&quot;
+    get count of sccripts
+end tell</code></pre>
+</doc-codeblock></div>
+</li>
+<li>In Script Editor, click the Play <span class="docs-emoji">&#x25B6;&#xFE0F;</span> button to run the script. In the
+Finder terminal to choose a folder, pick Applications</li>
+<li>Open Safari and browse to <a href="https://www.jetbrains.com/idea/download/?section=mac">https://www.jetbrains.com/idea/download/?section=mac</a>
+to download IntelliJ. In the .dmg dropdown, select &quot;.dmg (Apple Silicon)&quot;</li>
+<li>Follow the instructions to install IntelliJ</li>
+<li>Once installation has completed, open IntelliJ</li>
+</ul>
 <doc-anchor-target id="biohazard-procedures-4">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#biohazard-procedures-4">#</doc-anchor-trigger>

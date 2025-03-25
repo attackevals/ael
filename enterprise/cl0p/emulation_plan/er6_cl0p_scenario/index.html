@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/ael">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.793286094485">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.796247571474">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -35,12 +35,12 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../../favicon.png" rel="icon">
-    <link href="../../../../resources/css/retype.css?v=3.6.0.793286094485" rel="stylesheet">
+    <link href="../../../../resources/css/retype.css?v=3.6.0.796247571474" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.793286094485" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.6.0.796247571474" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.793286094485" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.6.0.793286094485" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.6.0.796247571474" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.6.0.796247571474" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -219,6 +219,7 @@
 <li><span class="docs-emoji">&#x1F534;</span> - Sign out of RDP</li>
 <li><span class="docs-emoji">&#x1F4F7;</span> - take a screenshot</li>
 <li><span class="docs-emoji">&#x1F551;</span> - Record timestamp</li>
+<li><span class="docs-emoji">&#x1F50A;</span> - Noise activity</li>
 </ul>
 <hr>
 <doc-anchor-target id="step-0---red-setup">
@@ -392,6 +393,35 @@ Run as Administrator.</p>
 </doc-codeblock></div>
 </li>
 <li><p><span class="docs-emoji">&#x1F4F7;</span> Confirm and screenshot that the payload was executed in Command Prompt.</p>
+</li>
+</ul>
+<doc-anchor-target id="noise">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#noise">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F50A;</span> Noise</span>
+    </h3>
+</doc-anchor-target>
+<p>The following noise activity is executed:</p>
+<ul>
+<li>User will execute rundll32.exe to load scripts with msedge
+<ul>
+<li>cmd.exe executed <code v-pre>rundll32  url.dll,FileProtocolHandler https://www.google.com &amp; taskkill /F /IM \&quot;msedge.exe\&quot; /T</code></li>
+</ul>
+</li>
+<li>User will create text files using Notepad
+<ul>
+<li>notepad.exe creates C:\Users\Public\hidden.txt&quot; &amp; &quot;C:\Users\Public\original.txt</li>
+</ul>
+</li>
+<li>User will embed a text file within another text file
+<ul>
+<li>cmd.exe executed <code v-pre>copy /b C:\\Users\\Public\\hidden.txt C:\\Users\\Public\\original.txt</code></li>
+</ul>
+</li>
+<li>User will modify the IFEO registry for msedge
+<ul>
+<li><code v-pre>reg add \HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\msedge.exe\&quot; /v Debugger /t REG_SZ /d \&quot;C:\\ Program Files\\Mozilla Firefox\\firefox.exe\&quot;&quot;</code></li>
+</ul>
 </li>
 </ul>
 <doc-anchor-target id="reference-code-reporting">
@@ -651,6 +681,94 @@ directly map to evaluation substeps</p>
 </tbody>
 </table>
 </div>
+<hr>
+<doc-anchor-target id="noise-step">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#noise-step">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F50A;</span> Noise Step</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x2757;</span> Notify your Threat Hunter that you are starting execution of the
+Detections manual noise step</p>
+</li>
+<li><p><span class="docs-emoji">&#x27A1;&#xFE0F;</span> From the Windows jumpbox <code v-pre>spitfire (223.246.0.90)</code>, watch the RDP
+session to the Windows victim workstation <code v-pre>vault713 (10.55.3.100)</code> as
+<code v-pre>encryptpotter.net\ranrok</code>. If GHOSTS is currently performing actions or in the
+middle of a timeline, wait for it to finish. Then click into the RDP session and
+you&#x27;ll have a brief window to do the following.</p>
+</li>
+<li><p>search for PowerShell and right-click to Run as Administrator</p>
+</li>
+<li><p>Execute the following command to install 7zip to computers in the domain</p>
+</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-batch"><code v-pre class="language-batch">Invoke-Command -ComputerName diagonalley,gobbledgook,vault713,azkaban,hangleton -ScriptBlock { choco install 7zip -y }</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p><span class="docs-emoji">&#x27A1;&#xFE0F;</span> Minimize your RDP then From the Windows jumpbox
+<code v-pre>spitfire (223.246.0.90)</code>, initiate an RDP session to the Windows victim
+workstation <code v-pre>diagonalley (10.55.4.21)</code> as <code v-pre>encryptpotter.net\griphook</code> if one
+does not already exist.</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Hostname</th>
+<th>Username</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>diagonalley.encryptpotter.net</td>
+<td>encryptpotter.net\griphook</td>
+<td>Feral-Studs</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><p>Open File Explorer then browse to Documents and create a new folder named <code v-pre>xfer</code></p>
+</li>
+<li><p>Drag all files in Documents into <code v-pre>xfer</code></p>
+</li>
+<li><p>Right-click the xfer folder &gt; Show More Options &gt; 7-ZIP &gt; Add to Archive...</p>
+<ul>
+<li>Use <code v-pre>leakycauldron</code> as the zip password</li>
+</ul>
+</li>
+<li><p>Delete the original <code v-pre>xfer</code> folder</p>
+</li>
+<li><p>Under �This PC�, open the share in a <strong>new</strong> File Explorer window and click
+into the mounted share <code v-pre>Z:</code></p>
+</li>
+<li><p>Drag the xfer.zip to the root of the network share</p>
+</li>
+<li><p>Search for and open <code v-pre>WordPad</code>. Do not close the application.</p>
+</li>
+<li><p><span class="docs-emoji">&#x1F534;</span> Disconnect from the RDP to <code v-pre>diagonalley (10.55.4.21)</code></p>
+</li>
+<li><p><span class="docs-emoji">&#x27A1;&#xFE0F;</span> From the Windows jumpbox <code v-pre>spitfire (223.246.0.90)</code>, watch the RDP
+session to the Windows victim workstation <code v-pre>gobbledgook (10.55.4.22)</code>. If GHOSTS is
+currently performing actions or in the middle of a timeline, wait for it to finish.
+Then click into the RDP session and you&#x27;ll have a brief window to do the following.</p>
+</li>
+<li><p>In a new File Explorer window, click &quot;This PC&quot; from the left menu</p>
+</li>
+<li><p>Click on the mapped network drive <code v-pre>Z:</code></p>
+</li>
+<li><p>Copy the xfer.zip to Downloads</p>
+</li>
+<li><p>Right-click the xfer folder &gt; Show More Options &gt; 7-ZIP &gt; Extract Here
+then enter <code v-pre>leakycauldron</code> for the password</p>
+</li>
+<li><p>Click out of the RDP window to <code v-pre>gobbledgook (10.55.4.22)</code> but leave it open and
+running so that GHOSTS can continue executing.</p>
+</li>
+</ul>
+<hr>
 <doc-anchor-target id="step-4---defense-evasion-and-impact-evaluation-step-8">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#step-4---defense-evasion-and-impact-evaluation-step-8">#</doc-anchor-trigger>
@@ -678,6 +796,32 @@ extension to encrypted files</li>
 <li>Leave ransom notes in affected folders</li>
 <li>Clear Windows Event Logs</li>
 <li>Delete itself on completion</li>
+</ul>
+<doc-anchor-target id="noise">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#noise">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F50A;</span> Noise</span>
+    </h3>
+</doc-anchor-target>
+<p>The following noise activity is executed:</p>
+<ul>
+<li>User will execute commands
+<ul>
+<li><code v-pre>cmd.exe executed systeminfo | findstr /B /C:'System Locale'</code></li>
+<li><code v-pre>cmd.exe executed netsh advfirewall set allprofiles state off</code></li>
+</ul>
+</li>
+<li>User will execute powershell commands
+<ul>
+<li><code v-pre>Get-WmiObject -Class Win32_Service | Where-Object {{}$_.State -eq \&quot;Running\&quot;{}} | Format-Table</code></li>
+<li><code v-pre>Stop-Service -Name Bluetooth{TAB}</code></li>
+<li><code v-pre>Stop-Service -Name BTAGService</code></li>
+<li><code v-pre>Stop-Service -Name OneSync{TAB}</code></li>
+<li><code v-pre>Stop-Service -Name XblGameSave</code></li>
+<li><code v-pre>Stop-Service -Name WbioSrvc</code></li>
+<li><code v-pre>Get-WinSystemLocale</code></li>
+</ul>
+</li>
 </ul>
 <doc-anchor-target id="biohazard-procedures-4">
     <h3>
