@@ -1,4 +1,4 @@
-# DPRK Protections Micros
+﻿# DPRK Protections Micros
 
 ## Test 9: Keychain dumping via AppleScript
 
@@ -23,6 +23,40 @@ The AppleScript executes the `security` tool via `do shell script` with the
 
 Successful execution will create the `kc.txt` output file, containing the
 machine account's plaintext password from being domain joined.
+
+### :loud_sound: Noise
+The following noise activity is executed:
+Execute this section prior to Setup. Any blocks that occur during this section
+will be considered for False Positive measurement.
+
+* :arrow_right: Initiate an RDP session to the Windows jumpbox
+`spitfire (223.246.0.90)`
+
+* :arrow_right: From the Windows jumpbox `spitfire (223.246.0.90)`, initiate a VNC
+session to the MacOS victim workstation `itzy (10.222.25.70)`.
+
+    | Hostname | Password |
+    | -------- | -------- |
+    | 10.222.25.70::5900 | test1234 |
+
+  * At the MacOS login screen, authenticate with the following credentials:
+
+    | Username | Password |
+    | -------- | -------- |
+    | venom | Thin-Hash |
+
+* Open Script Editor and save the following as `count_files.scpt`
+
+    ```applescript
+    tell application "Finder"
+        set ffolder to choose folder
+        set sccripts to every item of ffolder whose kind is not "folder"
+        get count of sccripts
+    end tell
+    ```
+* In Script Editor, click the Play ▶️ button to run the script. In the
+Finder terminal to choose a folder, pick Applications
+
 
 ### :hammer: Setup
 
@@ -117,6 +151,28 @@ plaintext password content for the given keychain item.
 
 Successful execution will print the machine account's plaintext password from
 being domain joined.
+
+### :loud_sound: Noise
+The following noise activity is executed:
+Execute this section prior to Setup. Any blocks that occur during this section
+will be considered for False Positive measurement.
+* :arrow_right: Initiate an RDP session to the Windows jumpbox
+`spitfire (223.246.0.90)` if not already connected
+* :arrow_right: From the Windows jumpbox `spitfire (223.246.0.90)`, initiate a VNC
+session to the MacOS victim workstation `itzy (10.222.25.70)` if not already
+connected.
+    | Hostname | Password |
+    | -------- | -------- |
+    | 10.222.25.70::5900 | test1234 |
+  * At the MacOS login screen, authenticate with the following credentials:
+    | Username | Password |
+    | -------- | -------- |
+    | venom | Thin-Hash |
+* Open Safari and browse to <https://www.jetbrains.com/idea/download/?section=mac>
+to download IntelliJ. In the .dmg dropdown, select ".dmg (Apple Silicon)"
+* Follow the instructions to install IntelliJ
+* Once installation has completed, open IntelliJ
+
 
 ### :hammer: Setup
 

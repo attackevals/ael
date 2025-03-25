@@ -9,6 +9,7 @@ Legend of symbols:
 * :red_circle: - Sign out of RDP
 * :camera: - take a screenshot
 * :clock2: - Record timestamp
+* :loud_sound: - Noise activity
 
 ---
 
@@ -158,6 +159,16 @@ running services:
 
 * Minimize the elevated Command Prompt for later use
 
+### :loud_sound: Noise
+The following noise activity is executed:
+* User will create symbolic links to the volume shadow copy
+   * `cmd /c mklink /D C:\\Temp\\vss \\\\?\\GLOBALROOT\\Device\\HarddiskVolumeShadowCopy1\\`
+* User will execute following commands in PowerShell:
+   * `Get-ChildItem`
+   * `Set-Location -Path C:\\Users\\Public\\`
+   * `New-Item -ItemType File -Name new_readme_report.txt`
+   * `Remove-Item new_readme_report.txt`
+
 ### :mag: Reference Code & Reporting
 
 > :information_source: **NOTE:** Not all techniques listed in this table
@@ -232,6 +243,15 @@ directly map to evaluation substeps
 The LockBit affiliate ingresses the FireFox password dumper using `chocolatey`
 then dumps passwords from the FireFox browser, recovering the domain admin
 credentials to access the Linux KVM server.
+
+### :loud_sound: Noise
+The following noise activity is executed:
+* User will manipulate volume shadow copy
+   * `vssadmin add shadowstorage /for=C: /on=C: /maxsize=UNBOUNDED`
+   * `vssadmin create shadow /for=C:`
+* User will execute chocolatey to install profwiz and ldapadmin
+   * `choco install profwiz -y`
+   * `choco install ldapadmin -y`
 
 ### :biohazard: Procedures
 
@@ -498,6 +518,13 @@ encryption and stores them in `HKCU\SOFTWARE\BlockBlit`
 executable at `C:\Windows\Temp\381jwk.tmp`.
   * The helper executable will overwrite and rename the LockBit binary prior to
   removing it from disk.
+
+### :loud_sound: Noise
+The following noise activity is executed:
+* User will map a network drive to a remote SMB share
+* User will copy files from the mapped network drive to local directory
+* User will disconnect from the mapped network drive
+* User will clear the recycling bin
 
 ### :biohazard: Procedures
 
