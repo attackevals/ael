@@ -12,7 +12,7 @@ Based on open-source intelligence, the MITRE ATT&CK&reg; Evaluations team create
 
 ALPHV BlackCat, also known as Noberus, was a prolific Russian-speaking, ransomware-as-a-service (RaaS) group that emerged in 2021 and was linked to BlackMatter, DarkSide, REvil, and other RaaS groups [1](https://www.ic3.gov/Media/News/2022/220420.pdf). ALPHV BlackCat utilized ransomware coded in Rust, allowing for enhanced performance, flexibility, and cross-platform capabilities. During it's tenure, ALPHV BlackCat consistently upgraded its tooling and tradecraft, with the last variant, Sphynx, rewritten with enhanced defense evasion capabilities, according to the group [2](https://twitter.com/vxunderground/status/1649094229413761030), [3](https://aspr.hhs.gov/cyber/Documents/stopransomware-508.pdf). The group is alleged to have targeted over a thousand victims across the globe [4](https://www.state.gov/reward-for-information-alphv-blackcat-ransomware-as-a-service/).  In December 2023, The United States (U.S.) Department of Justice announced they had disrupted group operations and developed an decryption tool for victims [5](https://www.justice.gov/opa/pr/justice-department-disrupts-prolific-alphvblackcat-ransomware-variant). The group announced it was removing restrictions previously placed on affiliates, and the most recent targets included [MGM Resorts](https://blog.morphisec.com/mgm-resorts-alphv-spider-ransomware-attack) and [Change Healthcare](https://www.reuters.com/technology/cybersecurity/cyber-security-outage-change-healthcare-continues-sixth-straight-day-2024-02-26/) in March 2024. Following the Change Healthcare incident, the Department of State issued a [reward offer](https://www.state.gov/rewards-for-justice-reward-offer-for-information-on-alphv-blackcat-linked-cyber-actors-targeting-u-s-critical-infrastructure/) for information on the group due to its targeting of U.S. Critical Infrastructure.
 
-# Quick Links
+## Quick Links
 
 ### Resources
 
@@ -20,6 +20,10 @@ The [Resources Folder](./Resources/) contains the emulated software source code.
 
 All other pre-built executables have been removed. To rebuild the binaries,
 follow the documentation for the respective binary.
+
+#### Infrastructure Configuration
+
+The [Resources/setup folder](./Resources/setup/) contains the infrastructure setup, including Terraform, Ansible, and related configurations and code.
 
 ### Emulation Key Software 💻
 

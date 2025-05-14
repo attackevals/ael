@@ -1,4 +1,8 @@
-# menuPass Setup Procedure
+---
+tags: [infrastructure, terraform, setup, ansible, managedservices2023]
+---
+
+# Infrastructure - menuPass Setup Procedure
 
 ## Infrastructure Configuration
 

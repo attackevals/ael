@@ -20,6 +20,10 @@ The [Resources Folder](./Resources/) contains the emulated software source code.
 All other pre-built executables have been removed. To rebuild the binaries,
 follow the documentation for the respective binary.
 
+#### Infrastructure Configuration
+
+The [Resources/setup folder](./Resources/setup/) contains the infrastructure setup, including Terraform, Ansible, and related configurations and code.
+
 ### Emulation Key Software 💻
 
 - [SDBbot](./Resources/sdbbot/)

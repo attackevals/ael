@@ -1,4 +1,8 @@
-# CL0P, LockBit, DPRK and Standalone Protections Setup Information
+---
+tags: [infrastructure, terraform, setup, ansible, enterprise2024]
+---
+
+# Infrastructure - CL0P, LockBit, DPRK and Standalone Protections Setup Information
 
 ## Infrastructure Configuration
 

@@ -1,3 +1,7 @@
+---
+tags: [infrastructure, terraform, setup, ansible, enterprise2024]
+---
+
 # CL0P, LockBit, DPRK and Standalone Ransomware Protections Setup Information
 
 ## Infrastructure Configuration
