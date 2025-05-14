@@ -64,3 +64,7 @@ jspm_packages/
 
 # Optional npm cache directory
 .npm
+
+# exclude VSCode files
+# VSCode
+.vscode
