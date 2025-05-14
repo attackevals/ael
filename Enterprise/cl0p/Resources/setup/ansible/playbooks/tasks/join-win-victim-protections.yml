@@ -1,0 +1,22 @@
+---
+- name: "Configure ER6 Windows Domain {{ domain_info_sonicbeats.shortname }}"
+  strategy: free
+  hosts: victim_non_ad_win_protections
+#  become: yes
+  gather_facts: no
+  vars:
+    deploy_dir: "C:\\deploy"
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - joindomain
+    - scenariop
+
+  tasks:
+    - ansible.builtin.include_tasks: configure-and-join-domain-win-all.yml
+      vars:
+        domain_shortname: "{{ domain_info_sonicbeats.shortname }}"
+        domain_dns_name: "{{ domain_info_sonicbeats.dns_domain_name }}"
+        domain_admin_user: "{{ domain_info_sonicbeats.admin_user }}"
+        domain_admin_pass: "{{ domain_info_sonicbeats.admin_pass }}"
+        ad_ip_addr: "{{ domain_info_sonicbeats.ad_ip_addr }}"

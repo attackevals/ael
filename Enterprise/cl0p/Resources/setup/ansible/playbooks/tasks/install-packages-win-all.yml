@@ -1,0 +1,86 @@
+---
+- name: Install programs on all Windows Hosts
+  hosts: win_hosts, jumpbox_srv1
+  strategy: free
+  gather_facts: no
+  vars:
+    deploy_dir: "C:/tools"
+    choco_script_local: "../files/choco/chocolateyInstall.ps1"
+    choco_script_dest: "C:/tools/install.ps1"
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    # check if chocolatey is already installed
+    - name: Get status of Chocolatey installation
+      win_stat:
+        path: c:\programdata\chocolatey\choco.exe
+      register: choco_file_info
+      changed_when: false
+
+    # if choco not installed, delete directory so installer runs
+    - name: TEMP - delete dir
+      ansible.windows.win_file:
+        path: "C:\\ProgramData\\chocolatey"
+        state: absent
+      when: choco_file_info.stat.exists == false
+
+    - name: "Create directory for choco installer script: {{ deploy_dir }}"
+      ansible.windows.win_file:
+        path: "{{ deploy_dir }}"
+        state: directory
+      when: choco_file_info.stat.exists == false
+
+    - name: "Copy choco installer script host: {{ choco_script_local }}"
+      ansible.windows.win_copy:
+        src: "{{ choco_script_local }}"
+        dest: "{{ choco_script_dest }}"
+      when: choco_file_info.stat.exists == false
+
+    # if it isn't, install it
+    # Powershell command forces TLS 1.2 as the internal chocolatey server only listens on that
+#    - name: Install Chocolatey
+#      win_command: |
+#        powershell.exe -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12; iex ((New-Object System.Net.WebClient).DownloadString('{{ choco_script_dest }}'))"
+#      when: choco_file_info.stat.exists == false
+
+    - name: Install chocolatey
+      win_chocolatey:
+        name:
+          - chocolatey
+        bootstrap_script: "{{ choco_script_dest }}"
+        state: present
+        ignore_checksums: yes
+      environment:
+        - chocolateyDownloadUrl: "http://27.21.12.121:8081/nexus/service/local/repositories/chocolatey-proxy/content/chocolatey/2.3.0/chocolatey-2.3.0.nupkg"
+
+    - name: Remove the default public source
+      win_chocolatey_source:
+        name: chocolatey
+        state: absent
+
+    - name: Add new internal source
+      win_chocolatey_source:
+        name: nexus
+        state: present
+        source: "{{ support_vars.choco_mirror_url }}"
+
+    - name: Install common packages amongst Windows hosts
+      win_chocolatey:
+        name:
+          - apimonitor
+          - firefox
+          - sysinternals
+          - systeminformer-nightlybuilds
+          - pebear
+          - zoom
+        state: present
+        ignore_checksums: yes
+
+    - name: Configure ghosts
+      win_shell: |
+        Import-Module $env:ChocolateyInstall\helpers\chocolateyInstaller.psm1
+        Install-ChocolateyPath "$($env:SystemDrive)\Program Files\Mozilla Firefox" -PathType 'Machine'
+
+    - name: run defender disable
+      ansible.builtin.include_tasks: disable-defender-task.yml

@@ -1,0 +1,65 @@
+---
+- name: NetBios-Discovery Configurations
+  hosts: victim_non_ad_win_protections
+
+  tasks:
+    - name: Enable NetBios Service on Windows Victim Hosts
+      community.windows.win_netbios:
+        state: enabled
+
+    - name: Opening Firewall Ports for NetBios-Discovery (UDP)
+      community.windows.win_firewall_rule:
+        name: NetBIOS Name service
+        localport: 137-138
+        action: allow
+        direction: in
+        protocol: udp
+        state: present
+        enabled: true
+
+    - name: Opening Firewall Ports for NetBios-Discovery (TCP)
+      community.windows.win_firewall_rule:
+        name: NetBIOS Session service
+        localport: 139
+        action: allow
+        direction: in
+        protocol: tcp
+        state: present
+        enabled: true
+
+    - name: Opening Firewall Ports for NetBios-Discovery LLMNR (TCP)
+      community.windows.win_firewall_rule:
+        name: Link-Local Multicast Name Resolution
+        localport: 5535
+        action: allow
+        direction: in
+        protocol: tcp
+        state: present
+        enabled: true
+
+    - name: Opening Firewall Ports for NetBios-Discovery LLMNR (UDP)
+      community.windows.win_firewall_rule:
+        name: Link-Local Multicast Name Resolution
+        localport: 5535
+        action: allow
+        direction: in
+        protocol: udp
+        state: present
+        enabled: true
+
+    - name: Enable NetBios Service Registry Key
+      ansible.windows.win_regedit:
+        path: HKLM:\System\CurrentControlSet\Services\Dnscache\Parameters
+        name: EnableNetbios
+        data: 1
+        type: dword
+
+    - name: Enable NetBios LMHOSTS Service Registry Key
+      ansible.windows.win_regedit:
+        path: HKLM:\System\CurrentControlSet\Services\NetBT\Parameters
+        name: EnableLMHOSTS
+        data: 1
+        type: dword
+
+    - name: Rebooting Host for NetBios
+      ansible.windows.win_reboot:
