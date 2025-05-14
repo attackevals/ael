@@ -1,0 +1,314 @@
+#file: noinspection SpellCheckingInspection
+win_all_servers:
+  children:
+    win_servers:
+      hosts:
+        addc_srv1_a:
+        file_srv1_a:
+        addc_srv1_b:
+        addc_srv1_protections:
+        file_srv1_protections:
+        file_srv1_b:
+        mail_srv1_a:
+        mail_srv1_b:
+        mail_srv1_protections:
+  vars:
+    ansible_user: "devadmin"
+    ansible_password: "DevPass123!"
+    ansible_port: 5986
+    ansible_connection: winrm
+    ansible_winrm_transport: ntlm
+    ansible_winrm_server_cert_validation: ignore
+    ansible_winrm_connection_timeout: 1800
+    ansible_winrm_operation_timeout_sec: 1800
+    ansible_winrm_read_timeout_sec: 1800
+    ansible_become_method: runas
+    ansible_become_user: "devadmin"
+    ansible_become_pass: "DevPass123!"
+    node_type: windows_server
+
+win_ad_servers:
+  hosts:
+    addc_srv1_a:
+    addc_srv1_b:
+    addc_srv1_protections:
+non_ad_win_servers:
+  hosts:
+    file_srv1_a:
+    file_srv1_protections:
+
+win_all_desktops:
+  hosts:
+    win11_desk1_a:
+    win11_desk2_a:
+    win11_desk3_a:
+    win11_desk1_b:
+    win11_desk2_b:
+    win11_desk1_protections:
+    win11_desk2_protections:
+  vars:
+    ansible_user: windesk
+    ansible_password: "windesk"
+    ansible_port: 5986
+    ansible_connection: winrm
+    ansible_winrm_transport: ntlm
+    ansible_winrm_server_cert_validation: ignore
+    ansible_winrm_connection_timeout: 1800
+    ansible_winrm_operation_timeout_sec: 1800
+    ansible_winrm_read_timeout_sec: 1800
+    ansible_become_user: "windesk"
+    ansible_become_pass: "windesk"
+    ansible_become_method: runas
+    node_type: windows_desktop
+
+win_hosts:
+  children:
+    win_all_desktops:
+    win_all_servers:
+    remote_workers:
+
+win_file_servers:
+  hosts:
+    file_srv1_a:
+    file_srv1_b:
+    file_srv1_protections:
+
+win_mail_servers:
+  hosts:
+    mail_srv1_a:
+    mail_srv1_b:
+    mail_srv1_protections:
+
+mac_all_desktops:
+  hosts:
+    macos_desk1_a:
+    macos_desk1_protections:
+  vars:
+    ansible_user: ec2-user
+    ansible_private_key_file: ../aws1
+    node_type: mac_desktop
+
+linux_servers:
+  hosts:
+    kvm_srv1_b:
+    linux_srv1_protections:
+  vars:
+    ansible_user: ubuntu
+    ansible_private_key_file: ../aws1
+    node_type: linux_server
+
+kali_hosts:
+  hosts:
+    kali_srv1:
+      ansible_user: kali
+      ansible_private_key_file: ../aws1
+
+red_infra:
+  hosts:
+    kali_srv1:
+    jumpbox_srv1:
+      ansible_user: op1
+      ansible_password: "Subpar-Parabola"
+      ansible_port: 5986
+      ansible_connection: winrm
+      ansible_winrm_transport: ntlm
+      ansible_winrm_server_cert_validation: ignore
+
+victim_desktops_a:
+  hosts:
+    win11_desk1_a:
+    win11_desk2_a:
+    win11_desk3_a:
+
+victim_desktops_b:
+  hosts:
+    win11_desk1_b:
+    win11_desk2_b:
+
+victim_desktops_protections:
+  hosts:
+    win11_desk1_protections:
+    win11_desk2_protections:
+
+support_infra:
+  hosts:
+    dns_srv1:
+  vars:
+    ansible_user: ubuntu
+    ansible_private_key_file: ../aws1
+
+red_win_hosts:
+  hosts:
+    jumpbox_srv1:
+
+red_linux_hosts:
+  hosts:
+    kali_srv1:
+
+# windows host groups per domain for domain join
+victim_non_ad_win_a:
+  hosts:
+    file_srv1_a:
+    win11_desk1_a:
+    win11_desk3_a:
+    win11_desk2_a:
+    mail_srv1_a:
+
+victim_non_ad_win_b:
+  hosts:
+    win11_desk1_b:
+    win11_desk2_b:
+    file_srv1_b:
+    mail_srv1_b:
+
+victim_non_ad_win_protections:
+  hosts:
+    file_srv1_protections:
+    win11_desk1_protections:
+    win11_desk2_protections:
+    mail_srv1_protections:
+
+# linux and mac host groups per domain
+victim_mac_a:
+  hosts:
+    macos_desk1_a:
+
+victim_linux_b:
+  hosts:
+    kvm_srv1_b:
+
+victim_linux_protections:
+  hosts:
+    linux_srv1_protections:
+  vars:
+    ansible_user: ubuntu
+    ansible_private_key_file: ../aws1
+
+victim_mac_protections:
+  hosts:
+    macos_desk1_protections:
+
+linux_hosts:
+  children:
+    support_hosts:
+    redirect_hosts:
+    choco_mirrors:
+    linux_servers:
+
+# BlueLab Instances
+bluelab_addc:
+  hosts:
+    blue_addc_srv1:
+
+bluelab_win_hosts:
+  hosts:
+    blue_win11_desk1:
+    blue_win11_desk2:
+
+# define all ip addresses in one place for all hosts
+# ansible will combine all references automatically
+# ########################################################
+# ### NO IP ADDRESSES SHOULD BE DEFINED ABOVE THIS COMMENT
+# ########################################################
+
+victim_a_hosts:
+  hosts:
+    addc_srv1_a:
+      ansible_host: 10.55.3.100
+    file_srv1_a:
+      ansible_host: 10.55.3.105
+    mail_srv1_a:
+      ansible_host: 10.55.3.110
+    win11_desk1_a:
+      ansible_host: 10.55.4.21
+    win11_desk2_a:
+      ansible_host: 10.55.4.22
+    win11_desk3_a:
+      ansible_host: 10.55.4.23
+    macos_desk1_a:
+      ansible_host: 10.55.4.50
+victim_b_hosts:
+  hosts:
+    addc_srv1_b:
+      ansible_host: 10.111.8.30
+    kvm_srv1_b:
+      ansible_host: 10.111.8.40
+    file_srv1_b:
+      ansible_host: 10.111.8.50
+    mail_srv1_b:
+      ansible_host: 10.111.8.60
+    win11_desk1_b:
+      ansible_host: 10.111.9.201
+    win11_desk2_b:
+      ansible_host: 10.111.9.202
+victim_protections_hosts:
+  hosts:
+    addc_srv1_protections:
+      ansible_host: 10.222.15.10
+    file_srv1_protections:
+      ansible_host: 10.222.15.15
+    mail_srv1_protections:
+      ansible_host: 10.222.15.20
+    win11_desk1_protections:
+      ansible_host: 10.222.25.61
+    win11_desk2_protections:
+      ansible_host: 10.222.25.62
+    linux_srv1_protections:
+      ansible_host: 10.222.25.65
+    macos_desk1_protections:
+      ansible_host: 10.222.25.70
+
+redirect_hosts:
+  hosts:
+    redirect_srv1:
+      ansible_host: 14.121.222.9
+    redirect_srv2:
+      ansible_host: 27.21.12.9
+    redirect_srv3:
+      ansible_host: 199.88.44.9
+    redirect_srv4:
+      ansible_host: 36.43.97.9
+  vars:
+    ansible_user: ubuntu
+    ansible_private_key_file: ../aws1
+
+red_hosts:
+  hosts:
+    kali_srv1:
+      ansible_host: 223.246.0.70
+    jumpbox_srv1:
+      ansible_host: 223.246.0.90
+
+support_hosts:
+  hosts:
+    dns_srv1:
+      ansible_host: 223.246.0.60
+
+choco_mirrors:
+  hosts:
+    choco_mirror:
+      ansible_host: 27.21.12.121
+  vars:
+    ansible_user: ubuntu
+    ansible_private_key_file: ../aws1
+
+remote_workers:
+  hosts:
+    remote_worker_1:
+      ansible_host: 199.88.44.201
+    remote_worker_2:
+      ansible_host: 27.21.12.74
+  vars:
+    ansible_user: "devadmin"
+    ansible_password: "DevPass123!"
+    ansible_port: 5986
+    ansible_connection: winrm
+    ansible_winrm_transport: ntlm
+    ansible_winrm_server_cert_validation: ignore
+    ansible_winrm_connection_timeout: 1800
+    ansible_winrm_operation_timeout_sec: 1800
+    ansible_winrm_read_timeout_sec: 1800
+    ansible_become_method: runas
+    ansible_become_user: "op1"
+    ansible_become_pass: "Subpar-Parabola"
+    node_type: windows_server

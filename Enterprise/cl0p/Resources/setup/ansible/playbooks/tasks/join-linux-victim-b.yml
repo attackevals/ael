@@ -1,0 +1,21 @@
+---
+- name: "Configure ER6 Windows Domain {{ domain_info_decryptmalfoy.shortname }}"
+  hosts: victim_linux_b
+  become: yes
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - joindomain
+    - scenariob
+    - linux
+
+  tasks:
+    - ansible.builtin.include_tasks: configure-and-join-domain-linux.yml
+      vars:
+        linux_hostname: "{{ domain_info_decryptmalfoy.linux_hostname }}"
+        domain_dns_name: "{{ domain_info_decryptmalfoy.dns_domain_name }}"
+        domain_admin_user: "{{ domain_info_decryptmalfoy.admin_user }}"
+        domain_admin_pass: "{{ domain_info_decryptmalfoy.admin_pass }}"
+        ad_ip_addr: "{{ domain_info_decryptmalfoy.ad_ip_addr }}"
+        tuned_profile: "virtual-guest"

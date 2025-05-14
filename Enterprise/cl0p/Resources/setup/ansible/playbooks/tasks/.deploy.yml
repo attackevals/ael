@@ -1,0 +1,81 @@
+---
+# range dns
+- import_playbook: support-unbound-dns.yml
+
+# create domains
+- import_playbook: configure-addc-encryptpotter.yml
+- import_playbook: configure-addc-decryptmalfoy.yml
+- import_playbook: configure-addc-sonicbeats.yml
+
+# update gpo
+- import_playbook: configure-addc-encryptpotter-gpo.yml
+- import_playbook: configure-addc-decryptmalfoy-gpo.yml
+- import_playbook: configure-addc-sonicbeats-gpo.yml
+
+# ensure file server happy
+- import_playbook: file-server.yml
+
+# mac
+- import_playbook: configure-mac-hogshead.yml
+- import_playbook: configure-mac-itzy.yml
+- import_playbook: join-mac-victim-a.yml
+- import_playbook: join-mac-victim-protections.yml
+
+# linux
+- import_playbook: join-linux-victim-protections.yml
+- import_playbook: join-linux-victim-b.yml
+- import_playbook: linux-disable-updates.yml
+
+# non ad joined hosts
+- import_playbook: remote-workers.yml
+
+# force gp update
+- import_playbook: force-gp-update.yml
+
+- import_playbook: choco-mirror-setup.yml
+- import_playbook: allow-ping.yml
+
+# sw install and configure
+- import_playbook: install-packages-win-all.yml
+- import_playbook: install-packages-win-b.yml
+- import_playbook: disable-win-update.yml
+
+# redirectors
+- import_playbook: redirect-setup-red1.yml
+- import_playbook: redirect-setup-red2.yml
+- import_playbook: redirect-setup-red3.yml
+- import_playbook: redirect-setup-red4.yml
+
+# per-host setup
+- import_playbook: install-packages-win-dev.yml
+- import_playbook: add-admin-bts.yml
+- import_playbook: add-admin-diagonalley.yml
+- import_playbook: add-admin-knockturnalley.yml
+- import_playbook: add-admin-quirrell.yml
+- import_playbook: victim-a-diagonalley.yml
+- import_playbook: victim-b-quirrell.yml
+- import_playbook: configure-win-netbios.yml
+
+# all host tasks
+- import_playbook: configure-shadow-copy.yml
+- import_playbook: decoy-files.yml
+- import_playbook: victim-linux-decoy-files.yml
+
+# red resources
+- import_playbook: configure-kali-all.yml
+- import_playbook: red-cfg-win.yml
+
+# prepopulate directories for users
+- import_playbook: victim-a-populate.yml
+- import_playbook: victim-b-populate.yml
+- import_playbook: victim-protections-populate.yml
+
+# ensure sudo group membership fixes are applied
+- import_playbook: fix-mac-hogshead.yml
+- import_playbook: fix-mac-itzy.yml
+
+# note Exchange setup separately as it takes forever
+
+# capture configuration
+- import_playbook: test-os.yml
+- import_playbook: test-os-linux-mac.yml

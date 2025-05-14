@@ -1,3 +1,7 @@
+---
+tags: [infrastructure, terraform, setup, ansible, managedservices2023]
+---
+
 # Resources
 
 The Resources directory contains the following:

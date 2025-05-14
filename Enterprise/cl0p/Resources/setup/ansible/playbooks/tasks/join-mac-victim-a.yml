@@ -1,0 +1,24 @@
+---
+- name: "Configure ER6 Windows Domain {{ domain_info_encryptpotter.shortname }}"
+  hosts: victim_mac_a
+#  become: yes
+  gather_facts: yes
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - joindomain
+    - scenarioa
+    - macos
+
+  tasks:
+    - ansible.builtin.include_role:
+        name: evals_macos
+      vars:
+        domain_shortname: "{{ domain_info_encryptpotter.shortname }}"
+        dns_domain_name: "{{ domain_info_encryptpotter.dns_domain_name }}"
+        admin_user: "{{ domain_info_encryptpotter.admin_user }}"
+        admin_pass: "{{ domain_info_encryptpotter.admin_pass }}"
+        xcode_download_link: "XCODE_XIP_PACKAGE_URL"
+        ad_ip_addr: "{{ domain_info_encryptpotter.ad_ip_addr }}"
+        join_domain: true
+        mac_admin_group2: "Enterprise Admins"

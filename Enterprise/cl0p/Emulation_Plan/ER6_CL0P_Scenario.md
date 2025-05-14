@@ -10,6 +10,7 @@ Legend of symbols:
 * :camera: - take a screenshot
 * :clock2: - Record timestamp
 * :loud_sound: - Noise activity
+
 ---
 
 ## Step 0 - Red Setup
@@ -106,13 +107,13 @@ Run as Administrator.
 ### :loud_sound: Noise
 The following noise activity is executed:
 * User will execute rundll32.exe to load scripts with msedge
-    * cmd.exe executed `rundll32  url.dll,FileProtocolHandler https://www.google.com & taskkill /F /IM \"msedge.exe\" /T`
+  * cmd.exe executed `rundll32  url.dll,FileProtocolHandler https://www.google.com & taskkill /F /IM \"msedge.exe\" /T`
 * User will create text files using Notepad
-    * notepad.exe creates C:\\Users\\Public\\hidden.txt" & "C:\\Users\\Public\\original.txt
+  * notepad.exe creates C:\\Users\\Public\\hidden.txt" & "C:\\Users\\Public\\original.txt
 * User will embed a text file within another text file
-    * cmd.exe executed `copy /b C:\\Users\\Public\\hidden.txt C:\\Users\\Public\\original.txt`
+  * cmd.exe executed `copy /b C:\\Users\\Public\\hidden.txt C:\\Users\\Public\\original.txt`
 * User will modify the IFEO registry for msedge
-    * `reg add \HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\msedge.exe\" /v Debugger /t REG_SZ /d \"C:\\ Program Files\\Mozilla Firefox\\firefox.exe\""`
+  * `reg add \HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\msedge.exe\" /v Debugger /t REG_SZ /d \"C:\\ Program Files\\Mozilla Firefox\\firefox.exe\""`
 
 ### :mag: Reference Code & Reporting
 
@@ -295,19 +296,21 @@ extension to encrypted files
 * Delete itself on completion
 
 ### :loud_sound: Noise
+
 The following noise activity is executed:
-* User will execute commands
-   * `cmd.exe executed systeminfo | findstr /B /C:'System Locale'`
-   * `cmd.exe executed netsh advfirewall set allprofiles state off`
-* User will execute powershell commands
-   * `Get-WmiObject -Class Win32_Service | Where-Object {{}$_.State -eq
-      \"Running\"{}} | Format-Table`
-   * `Stop-Service -Name Bluetooth{TAB}`
-   * `Stop-Service -Name BTAGService`
-   * `Stop-Service -Name OneSync{TAB}`
-   * `Stop-Service -Name XblGameSave`
-   * `Stop-Service -Name WbioSrvc`
-   * `Get-WinSystemLocale`
+
+* User will execute at Command Prompt
+  * `cmd.exe executed systeminfo | findstr /B /C:'System Locale'`
+  * `cmd.exe executed netsh advfirewall set allprofiles state off`
+
+* User will execute PowerShell commands
+  * `Get-WmiObject -Class Win32_Service | Where-Object {{}$_.State -eq \"Running\"{}} | Format-Table`
+  * `Stop-Service -Name Bluetooth{TAB}`
+  * `Stop-Service -Name BTAGService`
+  * `Stop-Service -Name OneSync{TAB}`
+  * `Stop-Service -Name XblGameSave`
+  * `Stop-Service -Name WbioSrvc`
+  * `Get-WinSystemLocale`
 
 ### :biohazard: Procedures
 
@@ -352,3 +355,5 @@ directly map to evaluation substeps
 ---
 
 ## :end: End of Execution
+
+Execution is complete.

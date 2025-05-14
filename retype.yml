@@ -16,6 +16,9 @@ footer:
     - text: ATTACK Evaluations Library GitHub
       link: https://github.com/attackevals/ael
       icon: mark-github
+nav:
+  mode: stack # Pro key required
+
 
 start:
   pro: true
