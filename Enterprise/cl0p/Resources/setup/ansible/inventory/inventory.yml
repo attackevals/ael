@@ -15,8 +15,6 @@ win_all_servers:
   vars:
     ansible_user: "devadmin"
     ansible_password: "DevPass123!"
-#    ansible_user: "evals_domain_admin"
-#    ansible_password: "Honest-Plating"
     ansible_port: 5986
     ansible_connection: winrm
     ansible_winrm_transport: ntlm
@@ -25,8 +23,6 @@ win_all_servers:
     ansible_winrm_operation_timeout_sec: 1800
     ansible_winrm_read_timeout_sec: 1800
     ansible_become_method: runas
-#    ansible_become_user: "evals_domain_admin"
-#    ansible_become_pass: "Honest-Plating"
     ansible_become_user: "devadmin"
     ansible_become_pass: "DevPass123!"
     node_type: windows_server
@@ -113,7 +109,6 @@ red_infra:
     jumpbox_srv1:
       ansible_user: op1
       ansible_password: "Subpar-Parabola"
-#      ansible_password: "P@ssword1!"
       ansible_port: 5986
       ansible_connection: winrm
       ansible_winrm_transport: ntlm
@@ -317,22 +312,3 @@ remote_workers:
     ansible_become_user: "op1"
     ansible_become_pass: "Subpar-Parabola"
     node_type: windows_server
-
-  detlab_hosts:
-    hosts:
-      blue_addc_srv1:
-        ansible_host: 10.100.0.45
-      blue_kvm_srv1:
-        ansible_host: 10.100.0.61
-      blue_srv1:
-        ansible_host: 10.100.0.71
-      blue_srv2:
-        ansible_host: 10.100.0.72
-      blue_win11_desk1:
-        ansible_host: 10.100.0.101
-      blue_win11_desk2:
-        ansible_host: 10.100.0.102
-      blue_linux:
-        ansible_host: 10.100.0.197
-      blue_macos_desk1:
-        ansible_host: 10.100.0.201
