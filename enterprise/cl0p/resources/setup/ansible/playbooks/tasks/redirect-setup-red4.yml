@@ -1,0 +1,15 @@
+---
+- name: "Configure redirect4"
+  hosts: redirect_srv4
+  become: yes
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - redirect
+
+  tasks:
+    - ansible.builtin.include_tasks: redirect-setup.yml
+      vars:
+        redirects: "{{ redirect4.redirects }}"
+        nics: "{{ redirect4_nic_cfg.nics }}"
