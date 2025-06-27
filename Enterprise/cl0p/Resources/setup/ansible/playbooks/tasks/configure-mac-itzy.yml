@@ -1,0 +1,13 @@
+- name: Install Mac Base Configuration (protections)
+  hosts:
+    - macos_desk1_protections
+  become: yes
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - ansible.builtin.include_tasks: mac-configure-base.yml
+      vars:
+        eval_type: "er6"
+        short_hostname: "{{ domain_info_sonicbeats.mac_hostname }}"
+        full_hostname: "{{ domain_info_sonicbeats.mac_hostname }}.{{ domain_info_sonicbeats.dns_domain_name }}"
