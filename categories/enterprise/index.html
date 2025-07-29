@@ -7,10 +7,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/ael">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.8.1.800553374803">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.807110018169">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 3.8.1">
+    <meta name="generator" content="Retype 3.11.0">
 
     <!-- Primary Meta Tags -->
     <title>enterprise</title>
@@ -29,29 +29,29 @@
     <meta property="twitter:url" content="https://attackevals.github.io/ael/categories/enterprise/">
     <meta property="twitter:title" content="enterprise">
 
-    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+    <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
     <link href="../../favicon.png" rel="icon">
-    <link href="../../resources/css/retype.css?v=3.8.1.800553374803" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.11.0.807110018169" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.8.1.800553374803" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.8.1" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.8.1.800553374803" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.11.0.807110018169" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.11.0.807110018169" data-turbo-eval="false" defer></script>
 </head>
 <body>
-    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
-        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
+        <div class="absolute bottom-0 left-0" style="top: 5rem; right: 50%"></div>
     
-        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+        <header id="retype-header" class="sticky top-0 z-30 flex w-full h-16 bg-header-bg border-b border-header-border md:h-20">
             <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
                 <!-- Mobile menu button skeleton -->
-                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
-                <div v-cloak id="docs-sidebar-toggle"></div>
+                <button v-cloak class="skeleton retype-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="retype-sidebar-left-toggle-button"></div>
         
                 <!-- Logo -->
                 <div class="flex items-center justify-between h-full py-2 md:w-75">
                     <div class="flex items-center px-2 md:px-6">
-                        <a id="docs-site-logo" href="../../" class="flex items-center leading-snug text-xl">
+                        <a id="retype-branding-logo" href="../../" class="flex items-center leading-snug text-xl">
                             <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
                                 <img class="max-h-10 dark:hidden md:inline-block" src="../../images/attackevals-logo.png">
                                 <img class="max-h-10 hidden dark:inline-block" src="../../images/attackevals-logo.png">
@@ -60,15 +60,15 @@
                         </a>
                     </div>
         
-                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                    <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
                 </div>
         
                 <div class="flex justify-between md:grow">
                     <!-- Top Nav -->
-                    <nav class="hidden md:flex">
+                    <nav id="retype-header-nav" class="hidden md:flex">
                         <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
                             <li class="mr-6">
-                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
                             </li>
         
                         </ul>
@@ -82,7 +82,7 @@
                             <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
                             </div>
-                            <input class="w-full h-10 placeholder-gray-400 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 dark:placeholder-dark-400" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                            <input class="w-full h-10 placeholder-search-placeholder transition-colors duration-200 ease-in bg-search-bg border border-transparent rounded md:text-sm hover:border-search-border-hover focus:outline-none focus:border-search-border-focus" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
                         </div>
         
                         <!-- Mobile search button -->
@@ -100,7 +100,7 @@
                     </div>
         
                     <div v-cloak class="flex justify-end grow">
-                        <div id="docs-mobile-search-button"></div>
+                        <div id="retype-mobile-search-button"></div>
                         <doc-search-desktop></doc-search-desktop>
         
                         <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
@@ -110,21 +110,22 @@
             </div>
         </header>
     
-        <div class="container relative flex bg-white">
+    
+        <div id="retype-container" class="container relative flex bg-white">
             <!-- Sidebar Skeleton -->
-            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-white border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-sidebar-left-bg border-sidebar-left-border sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton">
             
                 <div class="flex items-center h-16 px-6">
-                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-filter-bg border border-filter-border rounded shadow-none text-sm focus:outline-none focus:border-filter-border-focus" type="text" placeholder="Filter">
                 </div>
             
                 <div class="pl-6 mt-1 mb-4">
-                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
-                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
-                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
-                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
-                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
-                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
                 </div>
             
             </div>
@@ -132,13 +133,13 @@
             <!-- Sidebar component -->
             <doc-sidebar v-cloak>
                 <template #sidebar-footer>
-                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-base-border">
             
-                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                        <div class="py-3 px-6 md:hidden border-b dark:border-base-border">
                             <nav>
                                 <ul class="flex flex-wrap justify-center items-center">
                                     <li class="mr-6">
-                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
                                     </li>
             
                                 </ul>
@@ -148,15 +149,15 @@
                 </template>
             </doc-sidebar>
     
-            <div class="grow min-w-0 dark:bg-dark-850">
+            <div class="grow min-w-0 bg-body-bg">
                 <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
                 <div class="flex">
-                    <div class="min-w-0 p-4 grow md:px-16">
+                    <div id="retype-main" class="min-w-0 p-4 grow md:px-16">
                         <main class="relative pb-12 lg:pt-2">
-                            <div class="docs-markdown" id="docs-content">
+                            <div class="retype-markdown" id="retype-content">
                                 <!-- Rendered if sidebar right is enabled -->
-                                <div id="docs-sidebar-right-toggle"></div>
-                                <nav class="breadcrumb" aria-label="Breadcrumb">
+                                <div id="retype-sidebar-right-toggle"></div>
+                                <nav id="retype-breadcrumb" class="breadcrumb" aria-label="Breadcrumb">
                                     <ol role="list">
                                         <li class="pr-4">
                                             <a href="../../" class="pr-4">
@@ -192,56 +193,56 @@
 <p>See all <a href="../">categories</a>.</p>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/apt29/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">APT29</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">This adversary emulation plan is derived from the original APT29 content developed and used in the 2019 ATT&CK Evaluations</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/apt29/emulation_plan/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">APT29 Adversary Emulation</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">This adversary emulation plan is derived from the original APT29 content developed and used in the 2019 ATT&CK Evaluations</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/apt29/emulation_plan/scenario_1/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Scenario 1</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">APT29 operations have been separated into two scenarios, with steps and granular procedures contained within each.</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/apt29/emulation_plan/scenario_1/infrastructure/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Scenario 1 Infrastructure</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">We hope to capture the general structure of what is reported to have been seen being used by APT29.</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/apt29/emulation_plan/scenario_2/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Scenario 2</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">APT29 operations have been separated into two scenarios, with steps and granular procedures contained within each.</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/apt29/emulation_plan/scenario_2/infrastructure/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Scenario 2 Infrastructure</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">We hope to capture the general structure of what is reported to have been seen being used by APT29.</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/apt29/emulation_plan/yaml/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Machine-Readable APT29 Emulation Plans</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">The universal, technology-agnostic version of the APT29 emulation plan YAML has been provided as starting point for machine parsing and execution of...</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/apt29/archive/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">APT29 Emulation (ARCHIVED)</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">This content was developed as part of the APT29 ATT&CK Evaluations and includes both the resources used to </p></div>
     </div>
@@ -251,21 +252,21 @@
         <img class="absolute object-cover w-full h-full" src="../../enterprise/apt29/archive/caldera_diy/evals/imgs/0-caldera.png">
     </div>
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">CALDERA plugin: evals  (ARCHIVED)</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">This repository contains the evals plugin for CALDERA. This plugin contains the TTPs used within the ATT&CK Evaluations round 2 (APT29) and round 1...</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/apt29/archive/caldera_diy/evals/issues/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">ISSUES</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">Before reporting an issue with GitHub, be sure that:</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/apt29/archive/caldera_diy/evals/payloads/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Payloads</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block"><code v-pre>2016_United_States_presidential_election_-_Wikipedia.html</code>: Staging payload for ADFS.</p></div>
     </div>
@@ -275,14 +276,14 @@
         <img class="absolute object-cover w-full h-full" src="../../enterprise/apt29/archive/emulation_plan/apt29_opflow.png">
     </div>
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Emulation Plan (ARCHIVED)</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">Please see the formal APT29 emulation document, which includes a break-down of the cited intelligence used for each step of this emulation.</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/apt29/archive/emulation_plan/day-1/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">APT29 Day 1 (Steps 1 through 10) (ARCHIVED)</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">Metasploit ( https://github.com/rapid7/metasploit-framework)</p></div>
     </div>
@@ -292,28 +293,28 @@
         <img class="absolute object-cover w-full h-full" src="https://mk0resourcesinfm536w.kinstacdn.com/wp-content/uploads/041515_2317_SpoofUsingR1.png">
     </div>
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Payload configs</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">Filename</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/apt29/archive/emulation_plan/day-2/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">APT29 Day 2 (Steps 11 through 20) (ARCHIVED)</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">Atomic Red Team ( https://github.com/redcanaryco/atomic-red-team)</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/apt29/resources/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Resources</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">Please note that binary files hosted in Scenario_1 and Scenario_2 have been added to password protected zip files. The password for these files is </p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/apt29/resources/scenario_1/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Scenario 1</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">See for additional information.</p></div>
     </div>
@@ -323,14 +324,14 @@
         <img class="absolute object-cover w-full h-full" src="https://mk0resourcesinfm536w.kinstacdn.com/wp-content/uploads/041515_2317_SpoofUsingR1.png">
     </div>
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Payload configs</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">Filename</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/apt29/resources/scenario_2/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Scenario 2</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">See for additional information.</p></div>
     </div>
@@ -340,7 +341,7 @@
         <img class="absolute object-cover w-full h-full" src="../../enterprise/apt29/attack_layers/apt29_g0016.png">
     </div>
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">APT29 Intelligence Summary</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block"><strong>Objectives:</strong> APT29 is thought to be an organized and well-resourced cyber threat actor whose collection objectives align with the interests of the...</p></div>
     </div>
@@ -350,70 +351,70 @@
         <img class="absolute object-cover w-full h-full" src="../../enterprise/apt29/emulation_plan/opflow_diagram.png">
     </div>
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">APT29 Operations Flow</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">Please see the formal APT29 Intelligence Summary which includes a break-down of the cited intelligence used for each step of this emulation.</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/apt29/change_log/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Change Log</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">Version</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/carbanak/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Carbanak</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">This adversary emulation plan is derived from the original Carbanak content developed and used in the </p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/carbanak/emulation_plan/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Carbanak Adversary Emulation</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">This adversary emulation plan is derived from the original Carbanak content developed and used in the </p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/carbanak/emulation_plan/scenario_1/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Scenario 1</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">For the purpose of this emulation plan, Carbanak operations have been separated into 2 scenarios (detections and protections), with steps and...</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/carbanak/emulation_plan/scenario_1/infrastructure/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Scenario 1 Infrastructure</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">The infrastructure listed below is specific to Scenario 1, and assumes that the target environment is configured to only capture detections, rather...</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/carbanak/emulation_plan/scenario_2/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Scenario 2</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">For the purpose of this emulation plan, Carbanak operations have been separated into 2 scenarios (detections and protections), with steps and...</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/carbanak/emulation_plan/scenario_2/infrastructure/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Scenario 2 Infrastructure</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">The infrastructure listed below is specific to Scenario 2, which assumes that protective/preventative actions may be performed within the target...</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/carbanak/emulation_plan/yaml/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Machine-Readable Carbanak Emulation Plan</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">The universal, technology-agnostic version of the Carbanak emulation plan YAML has been provided as starting point for machine parsing and execution...</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/carbanak/resources/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Resources</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">Please note that binary executable files hosted here have been added to password protected zip files. The password for these files is "malware."</p></div>
     </div>
@@ -423,21 +424,21 @@
         <img class="absolute object-cover w-full h-full" src="../../enterprise/carbanak/resources/utilities/attackkatz-source/imgs/build-options.png">
     </div>
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Attackkatz source</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">AttackKatz is a modified version of Mimikatz. For information on Mimikatz, please take a look at "HOWTO-Mimikatz.md".</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/carbanak/resources/utilities/attackkatz-source/howto-mimikatz/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">mimikatz</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block"><strong><code v-pre>mimikatz</code></strong> is a tool I've made to learn <code v-pre>C</code> and make somes experiments with Windows security.</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/carbanak/resources/utilities/carbanak_c2server/c2server/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Carbon-ACK</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">A repo for the ATT&CK Evals Carbanak C2 server</p></div>
     </div>
@@ -447,55 +448,55 @@
         <img class="absolute object-cover w-full h-full" src="../../enterprise/carbanak/resources/utilities/uac-bypass/imgs/uac-bypass-1.png">
     </div>
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Uac bypass</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">This UAC bypass relies on launching a native Windows process (performance monitor) and leveraging it's default</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/carbanak/resources/vendor_scripts/telemetry_generator/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">ATT&CK Evaluations Telemetry Generator</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">The ATT&CK Evaluations Telemetry Generator ( <code v-pre>telemetry-generator.ps1</code>) is a repeatable, adversary focused data creation mechanism to exercise a...</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/carbanak/resources/placeholder_substitution/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Placeholder Substitution Script</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">The emulation plans contain placeholders, such as <code v-pre>&lt;domain&gt;</code>, that represent values unique to the target environment that the plans are to be tested...</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/carbanak/resources/setup/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Setup</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">See for setup information.</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/carbanak/resources/step7/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Step7</div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/carbanak/resources/step8/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Step8</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">Step 8</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/carbanak/resources/step10/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Step10</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">step 10</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/carbanak/resources/step3/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Step 3</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">On Kali box (192.168.0.4):</p></div>
     </div>
@@ -505,63 +506,63 @@
         <img class="absolute object-cover w-full h-full" src="../../enterprise/carbanak/attack_layers/carbanak_g0008.png">
     </div>
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Carbanak Intelligence Summary</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block"><strong>Objectives:</strong> Carbanak is a threat group who has been found to manipulate financial assets, such as by transferring funds from bank accounts or by...</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/carbanak/operations_flow/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Carbanak Operations Flow</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">Please see the formal Carbanak Intelligence Summary which includes a break-down of the cited intelligence used for each step of this emulation.</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/carbanak/change_log/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Change Log</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">Version</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/carbanak/yara-rules/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Emulation Plan Signatures</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">This section contains YARA rules that can be used to identify files used during the Carbanak ATT&CK Evaluation scenario.</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/carbanak/hashes/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">File Hashes</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">This section contains files hashes that can be used to verify integrity of files used in this adversary emulation plan.</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/fin7/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">FIN7</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">This adversary emulation plan is derived from the original FIN7 content developed and used in the 2020 ATT&CK Evaluations</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/fin7/emulation_plan/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">FIN7 Adversary Emulation</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">This adversary emulation plan is derived from the original FIN7 content developed and used in the 2020 ATT&CK Evaluations</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/fin7/emulation_plan/scenario_1/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Scenario 1</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">For the purpose of this emulation plan, FIN7 operations have been separated into 2 scenarios (detections and protections), with steps and granular...</p></div>
     </div>
 </a>
 <a class="no-link mb-6 overflow-hidden border border-gray-200 rounded-lg md:flex dark:border-dark-700 hover:border-gray-400 dark:hover:border-dark-450" href="../../enterprise/fin7/emulation_plan/scenario_1/infrastructure/">
     <div class="p-6">
-        <div class="text-xs font-semibold text-blue-500 uppercase dark:text-blue-400">enterprise</div>
+        <div class="text-xs font-semibold text-body-link uppercase">enterprise</div>
         <div class="mt-2 text-lg font-semibold leading-snug text-gray-900 dark:text-white md:text-xl">Scenario 1 Infrastructure</div>
         <div class="line-clamp-3"><p class="hidden mt-2 md:block">We hope to capture the general structure of what is reported to have been seen being used by FIN7.</p></div>
     </div>
@@ -571,20 +572,20 @@
                                 <!-- Required only on API pages -->
                                 <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
                             </div>
-                            <footer class="clear-both">
+                            <footer id="retype-content-footer" class="clear-both">
                             
                             </footer>
                         </main>
                 
-                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
-                            <footer class="flex flex-wrap items-center justify-between">
-                                <div>
+                        <div id="retype-page-footer" class="print:border-none border-t border-base-border pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between print:justify-center">
+                                <div id="retype-footer-links" class="print:hidden">
                                     <ul class="flex flex-wrap items-center text-sm">
                                         <li>
-                                            <a class="inline-flex items-center mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="https://github.com/attackevals/ael">
+                                            <a class="inline-flex items-center mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-footer-link hover:text-footer-link-hover md:mb-0" href="https://github.com/attackevals/ael">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
                                                     <g fill="currentColor">
-                                                        <path d="M12 1C5.9225 1 1 5.9225 1 12C1 16.8675 4.14875 20.9787 8.52125 22.4362C9.07125 22.5325 9.2775 22.2025 9.2775 21.9137C9.2775 21.6525 9.26375 20.7862 9.26375 19.865C6.5 20.3737 5.785 19.1912 5.565 18.5725C5.44125 18.2562 4.905 17.28 4.4375 17.0187C4.0525 16.8125 3.5025 16.3037 4.42375 16.29C5.29 16.2762 5.90875 17.0875 6.115 17.4175C7.105 19.0812 8.68625 18.6137 9.31875 18.325C9.415 17.61 9.70375 17.1287 10.02 16.8537C7.5725 16.5787 5.015 15.63 5.015 11.4225C5.015 10.2262 5.44125 9.23625 6.1425 8.46625C6.0325 8.19125 5.6475 7.06375 6.2525 5.55125C6.2525 5.55125 7.17375 5.2625 9.2775 6.67875C10.1575 6.43125 11.0925 6.3075 12.0275 6.3075C12.9625 6.3075 13.8975 6.43125 14.7775 6.67875C16.8813 5.24875 17.8025 5.55125 17.8025 5.55125C18.4075 7.06375 18.0225 8.19125 17.9125 8.46625C18.6138 9.23625 19.04 10.2125 19.04 11.4225C19.04 15.6437 16.4688 16.5787 14.0213 16.8537C14.42 17.1975 14.7638 17.8575 14.7638 18.8887C14.7638 20.36 14.75 21.5425 14.75 21.9137C14.75 22.2025 14.9563 22.5462 15.5063 22.4362C19.8513 20.9787 23 16.8537 23 12C23 5.9225 18.0775 1 12 1Z"/>
+                                                        <path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"/>
                                                     </g>
                                                 </svg>
                                                 <span>ATTACK Evaluations Library GitHub</span>
@@ -592,18 +593,18 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2025. All rights reserved.</p></div>
+                                <div id="retype-copyright" class="print:justify-center py-2 text-footer-text font-footer-link-weight text-sm leading-relaxed"><p>© Copyright 2025. All rights reserved.</p></div>
                             </footer>
                         </div>
                     </div>
                 
                     <!-- Rendered if sidebar right is enabled -->
                     <!-- Sidebar right skeleton-->
-                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-sidebar-right-bg border-sidebar-right-border lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton">
                         <div class="pl-5">
-                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
-                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
-                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
                         </div>
                     </div>
                 
@@ -619,7 +620,7 @@
     </div>
 
 
-    <div id="docs-overlay-target"></div>
+    <div id="retype-overlay-target"></div>
 
     <script data-cfasync="false">window.__DOCS__ = { "title": "enterprise", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>

