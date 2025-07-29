@@ -21,7 +21,7 @@ domain_info_encryptpotter:
   admin_user: evals_domain_admin
   admin_pass: "Honest-Plating"
   exchange_admin_user: "evals_domain_admin"
-  exchange_admin_pass: Honest-Plating
+  exchange_admin_pass: "Honest-Plating"
   exchange_admin_group: "Exchange Admins"
   evals_domain_adm: "evals_domain_admin"
   vndr_domain_adm: "vendor_domain_admin"
@@ -39,7 +39,7 @@ domain_info_decryptmalfoy:
   ad_ip_addr: "10.111.8.30"
   safe_mode_pass: "AiV4doh(sh9eim"
   admin_user: evals_domain_admin
-  admin_pass: Honest-Plating
+  admin_pass: "Honest-Plating"
   exchange_ip_addr: "10.111.8.60"
   exchange_admin_user: "evals_domain_admin"
   exchange_admin_pass: "Honest-Plating"
@@ -411,14 +411,7 @@ domain_users_decryptmalfoy:
       - Domain Users
       - Domain Admins
       - Enterprise Admins
-  - username: gornuk.da
-    firstname: Gordon
-    surname: Nuckett
-    password: "Frown-Cement"
-    group_list:
-      - Domain Users
-      - Domain Admins
-      - Enterprise Admins
+# Removed duplicate entry for gornuk.da
   - username: nagnok
     firstname: Nagios
     surname: Nok
