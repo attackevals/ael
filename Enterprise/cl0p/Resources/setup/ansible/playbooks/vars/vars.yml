@@ -1,0 +1,570 @@
+---
+# overall configs
+evals_cycle: ER6
+
+aws_resources:
+#  s3_bucket: "your-s3-bucket" ### TODO: REPLACE WITH YOUR S3 bucket
+  c2_server: /c2/evalsC2server-latest.zip
+  exchange_iso: /isos/ExchangeServer2019-x64-CU9.ISO
+#  report_upload_bucket: "your-s3-bucket" ## TODO: REPLACE WITH YOUR S3 bucket
+  aws_s3_report_prefix: "reports/er6"
+  evals_cycle: "er6"
+
+domain_info_encryptpotter:
+  dns_domain_name: "encryptpotter.net"
+  ad_hostname: "vault713"
+  shortname: "encryptpotter"
+  tld: "net"
+  ad_ip_addr: "10.55.3.100"
+  exchange_ip_addr: "10.55.3.110"
+  safe_mode_pass: "ofie?qu%uoXo3s"
+  admin_user: evals_domain_admin
+  admin_pass: "Honest-Plating"
+  exchange_admin_user: "evals_domain_admin"
+  exchange_admin_pass: "Honest-Plating"
+  exchange_admin_group: "Exchange Admins"
+  evals_domain_adm: "evals_domain_admin"
+  vndr_domain_adm: "vendor_domain_admin"
+  mac_hostname: "hogshead"
+  systemd_resolved:
+    DNS: "10.55.3.100"
+    Domain: "encryptpotter.net"
+    Cache: yes
+
+domain_info_decryptmalfoy:
+  dns_domain_name: "decryptmalfoy.net"
+  ad_hostname: "vault12"
+  shortname: "decryptmalfoy"
+  tld: "net"
+  ad_ip_addr: "10.111.8.30"
+  safe_mode_pass: "AiV4doh(sh9eim"
+  admin_user: evals_domain_admin
+  admin_pass: "Honest-Plating"
+  exchange_ip_addr: "10.111.8.60"
+  exchange_admin_user: "evals_domain_admin"
+  exchange_admin_pass: "Honest-Plating"
+  exchange_admin_group: "Exchange Admins"
+  evals_domain_adm: "evals_domain_admin"
+  vndr_domain_adm: "vendor_domain_admin"
+  linux_hostname: "horcrux"
+  firefox_user: "gornuk"
+  firefox_user_pass: "Concave-Monsieur"
+  systemd_resolved:
+    DNS: "10.111.8.30"
+    Domain: "decryptmalfoy.net"
+    Cache: yes
+
+domain_info_sonicbeats:
+  dns_domain_name: "sonicbeats37.fm"
+  ad_hostname: "blackpink"
+  shortname: "sonicbeats37"
+  tld: "fm"
+  ad_ip_addr: "10.222.15.10"
+  safe_mode_pass: "oodah4eir*ovai"
+  admin_user: evals_domain_admin
+  admin_pass: "Honest-Plating"
+  exchange_ip_addr: "10.222.15.20"
+  exchange_admin_user: "evals_domain_admin"
+  exchange_admin_pass: "Honest-Plating"
+  exchange_admin_group: "Exchange Admins"
+  evals_domain_adm: "evals_domain_admin"
+  vndr_domain_adm: "vendor_domain_admin"
+  linux_hostname: "lisa"
+  mac_hostname: "itzy"
+  systemd_resolved:
+    DNS: "10.222.15.10"
+    Domain: "sonicbeats37.fm"
+    Cache: yes
+
+#########################################################
+
+support_vars:
+  dns_server_hostname: "ronan"
+  dns_server_ip: "223.246.0.60"
+  choco_mirror_url: "http://27.21.12.121:8081/nexus/service/local/nuget/choco-mirror/"
+
+red_dev:
+  sandbox_dev_dir: "C:/dev/"
+  kali_dev_dir: "/opt/kalidev/"
+  sftp_srv_dir: "/srv/sftp"
+  sftp_user: "sftp_user"
+  ftp_srv_dir: "/srv/ftp"
+  kali_hostname: "corsair.fetch111.co.uk."
+  kali_dns_name: "fetch111.co.uk"
+  kali_ip: "223.246.0.70"
+#  artifacts_url: # TODO: REPLACE WITH YOUR JFROG ARTIFACTORY URL
+#  artifacts_version_url: # TODO: REPLACE WITH YOUR JFROG ARTIFACTORY URL
+#  artifacts_user: # TODO: REPLACE WITH YOUR JFROG ARTIFACTORY USER
+#  artifact_api_key: # TODO: REPLACE WITH YOUR JFROG ARTIFACTORY API KEY
+  sha256_file: "SHA256.txt"
+  git_hash_file: "er6_git_hash.txt"
+xrdp:
+  security_layer: "tls"
+  tls_ciphers: "FIPS:-eNULL:-aNULL"
+  crypt_level: "high"
+# blue team lab info
+blue_vars:
+  splunk_server_ip: "20.20.20.20"
+  user_seed_file:
+    USERNAME: "splunk"
+    PASSWORD: "splunk123!"
+  wazuh_server_ip: "34.232.142.92"
+
+# 10.x already included
+cidrs_list:
+  - prefix: "14.121.0.0/16"
+    usage: "benev redirect 1"
+  - prefix: "27.21.0.0/16"
+    usage: "benev redirect 2"
+  - prefix: "199.88.0.0/16"
+    usage: "benev redirect 3"
+  - prefix: "36.43.0.0/16"
+    usage: "benev redirect 4"
+  - prefix: "42.53.0.0/16"
+    usage: "attacker redirect"
+  - prefix: "223.246.0.0/16"
+    usage: "attacker"
+
+redirect1_nic_cfg:
+  nics:
+    - nic: "ens6"
+      ips:
+        - ip: "14.121.11.99/16"
+        - ip: "14.121.35.185/16"
+        - ip: "14.121.97.244/16"
+
+redirect2_nic_cfg:
+  nics:
+    - nic: "ens6"
+      ips:
+        - ip: "27.21.12.59/24"
+
+redirect3_nic_cfg:
+  nics:
+    - nic: "ens6"
+      ips:
+        - ip: "199.88.44.169/24"
+        - ip: "199.88.44.199/24"
+        - ip: "199.88.44.224/24"
+
+redirect4_nic_cfg:
+  nics:
+    - nic: "ens6"
+      ips:
+        - ip: "36.43.97.151/16"
+        - ip: "36.43.97.203/16"
+    - nic: "ens7"
+      ips:
+        - ip: "36.43.97.230/16"
+        - ip: "36.43.97.251/16"
+
+redirect1:
+  redirects:
+    - requested_url: fortius-quo-fidelius.co.uk
+      requested_ip: 14.121.222.11
+      requested_port: '443'
+      redirected_ip: 223.246.0.70
+      redirected_port: '443'
+      redirected_name: Scenario A - implant
+      redirect_id: 1
+    - requested_url: curse-breaker.org
+      requested_ip: 14.121.201.33
+      requested_port: '80'
+      redirected_ip: 223.246.0.70
+      redirected_port: '80'
+      redirected_name: Scenario A - SFS
+      redirect_id: 1
+    - requested_url: 1nf1n1ty-b3y0nd.app
+      requested_ip: 14.121.11.99
+      requested_port: '80'
+      redirected_ip: 223.246.0.70
+      redirected_port: '80'
+      redirected_name: Protections - Test 3
+      redirect_id: 1
+    - requested_url: c4sh-m0n33y.fr
+      requested_ip: 14.121.35.185
+      requested_port: '80'
+      redirected_ip: 223.246.0.70
+      redirected_port: '80'
+      redirected_name: Protections - SFS Test 3
+      redirect_id: 1
+    - requested_url: bw-er3ader.org
+      requested_ip: 14.121.97.244
+      requested_port: '80'
+      redirected_ip: 223.246.0.70
+      redirected_port: '80'
+      redirected_name: Protections - SFS Test 9
+      redirect_id: 1
+
+redirect2:
+  redirects:
+    - requested_url: knuts-to-galleons.net
+      requested_ip: 27.21.12.21
+      requested_port: '80'
+      redirected_ip: 223.246.0.70
+      redirected_port: '8080'
+      redirected_name: Scenario B - implant
+      redirect_id: 2
+    - requested_url: muggle-m0ney.com
+      requested_ip: 27.21.12.54
+      requested_port: '80'
+      redirected_ip: 223.246.0.70
+      redirected_port: '8081'
+      redirected_name: Scenario B - exfil
+      redirect_id: 2
+    - requested_url: 1nvisibility-cl0ak.net
+      requested_ip: 27.21.12.59
+      requested_port: '80'
+      redirected_ip: 223.246.0.70
+      redirected_port: '80'
+      redirected_name: Scenario B - SFS
+      redirect_id: 2
+    - requested_url: evals-preflights.org
+      requested_ip: 27.21.12.94
+      requested_port: '80'
+      redirected_ip: 223.246.0.70
+      redirected_port: '80'
+      redirected_name: Preflight Testing
+      redirect_id: 2
+
+redirect3:
+  redirects:
+    - requested_url: forev3r1.kr
+      requested_ip: 199.88.44.44
+      requested_port: '80'
+      redirected_ip: 223.246.0.70
+      redirected_port: '8080'
+      redirected_name: macOS - implant 1
+      redirect_id: 3
+    - requested_url: t1g3r-heart.kr
+      requested_ip: 199.88.44.96
+      requested_port: '443'
+      redirected_ip: 223.246.0.70
+      redirected_port: '8443'
+      redirected_name: macOS - implant 2
+      redirect_id: 3
+    - requested_url: b0ring-t3min4l.kr
+      requested_ip: 199.88.44.199
+      requested_port: '80'
+      redirected_ip: 223.246.0.70
+      redirected_port: '80'
+      redirected_name: macOS - SFS
+      redirect_id: 3
+    - requested_url: d3fend-ev1l.radio
+      requested_ip: 199.88.44.169
+      requested_port: '80'
+      redirected_ip: 223.246.0.70
+      redirected_port: '80'
+      redirected_name: Protections - SFS Test 2
+      redirect_id: 3
+    - requested_url: off1ce-p4p4r.co.uk
+      requested_ip: 199.88.44.224
+      requested_port: '80'
+      redirected_ip: 223.246.0.70
+      redirected_port: '80'
+      redirected_name: Protections - SFS Test 7
+      redirect_id: 3
+
+redirect4:
+  redirects:
+    - requested_url: psycho-v3lv3t.app
+      requested_ip: 36.43.97.65
+      requested_port: '80'
+      redirected_ip: 223.246.0.70
+      redirected_port: '8080'
+      redirected_name: Protections - Test 1
+      redirect_id: 4
+    - requested_url: dejavu122.radio
+      requested_ip: 36.43.97.72
+      requested_port: '22'
+      redirected_ip: 223.246.0.70
+      redirected_port: '22'
+      redirected_name: Protections - Test 2
+      redirect_id: 4
+    - requested_url: m1sfir3d.blog
+      requested_ip: 36.43.97.151
+      requested_port: '80'
+      redirected_ip: 223.246.0.70
+      redirected_port: '80'
+      redirected_name: Protections - SFS Test 1
+      redirect_id: 4
+    - requested_url: rub3ks-c4be.net
+      requested_ip: 36.43.97.203
+      requested_port: '80'
+      redirected_ip: 223.246.0.70
+      redirected_port: '80'
+      redirected_name: Protections - SFS Test 5
+      redirect_id: 4
+    - requested_url: p1nk-p3ncil.net
+      requested_ip: 36.43.97.230
+      requested_port: '80'
+      redirected_ip: 223.246.0.70
+      redirected_port: '80'
+      redirected_name: Protections - SFS Test 8
+      redirect_id: 4
+    - requested_url: ta11-acfan.net
+      requested_ip: 36.43.97.251
+      requested_port: '80'
+      redirected_ip: 223.246.0.70
+      redirected_port: '80'
+      redirected_name: Protections - SFS Test 10
+      redirect_id: 4
+
+# users
+domain_users_common:
+  - username: evals_domain_admin
+    firstname: Evals
+    surname: Admin
+    password: "Honest-Plating"
+    group_list:
+      - Domain Users
+      - Domain Admins
+      - Enterprise Admins
+  - username: vendor_domain_admin
+    firstname: Vendor
+    surname: Admin
+    password: "Fragile-Chest"
+    group_list:
+      - Domain Admins
+      - Domain Users
+      - Enterprise Admins
+  - username: evals_domain_user
+    firstname: Evals
+    surname: User
+    password: "Harmful-Receiver"
+    group_list:
+      - Domain Users
+  - username: vendor_domain_user
+    firstname: Vendor
+    surname: User
+    password: "Peachy-County"
+    group_list:
+      - Domain Users
+
+domain_groups_encryptpotter:
+  - group_name: Diagonalley Admins
+
+domain_groups_encryptpotter_diagon: Diagonalley Admins
+
+domain_users_encryptpotter:
+  - username: griphook
+    firstname: Grippen
+    surname: Hook
+    password: "Feral-Studs"
+    group_list:
+      - Domain Users
+      - Diagonalley Admins
+  - username: ranrok
+    firstname: Randel
+    surname: Rok
+    password: "Ladylike-Laugh"
+    group_list:
+      - Domain Users
+      - Domain Admins
+      - Enterprise Admins
+  - username: bellatrix
+    firstname: Bella
+    surname: Trix
+    password: "Foolish-Victim"
+    group_list:
+      - Domain Users
+  - username: travers
+    firstname: Don
+    surname: Travers
+    password: "Lustful-Pop"
+    group_list:
+      - Domain Users
+
+domain_groups_decryptmalfoy:
+  - group_name: Knockturnalley Admins
+  - group_name: Quirrell Admins
+
+domain_groups_decryptmalfoy_knockturn: Knockturnalley Admins
+domain_groups_decryptmalfoy_quirrell: Quirrell Admins
+
+domain_users_decryptmalfoy:
+  - username: bodrod
+    firstname: Bod
+    surname: Rodrick
+    password: "Safest-Violets"
+    group_list:
+      - Domain Users
+      - Knockturnalley Admins
+  - username: quirrell
+    firstname: Professor
+    surname: Quirrell
+    password: "Inert-Meals"
+    group_list:
+      - Domain Users
+  - username: gornuk
+    firstname: Gorn
+    surname: Nuk
+    password: "Concave-Monsieur"
+    group_list:
+      - Domain Users
+      - Quirrell Admins
+  - username: gornuk.da
+    firstname: Gordon
+    surname: Nuckett
+    password: "Frown-Cement"
+    group_list:
+      - Domain Users
+      - Domain Admins
+      - Enterprise Admins
+# Removed duplicate entry for gornuk.da
+  - username: nagnok
+    firstname: Nagios
+    surname: Nok
+    password: "Grubby-Baker"
+    group_list:
+      - Domain Users
+  - username: snaglok
+    firstname: Snagarov
+    surname: Nok
+    password: "Darned-Display"
+    group_list:
+      - Domain Users
+
+domain_groups_sonicbeats:
+  - group_name: BTS Admins
+  - group_name: Mac Users
+
+domain_groups_sonicbeats_bts: BTS Admins
+
+domain_users_sonicbeats:
+  - username: yoona
+    firstname: Yoon
+    surname: An
+    password: "Exposed-Backpack"
+    group_list:
+      - Domain Users
+      - BTS Admins
+  - username: sooyoung
+    firstname: Young
+    surname: Soo
+    password: "Dental-Crew"
+    group_list:
+      - Domain Users
+      - Domain Admins
+      - Enterprise Admins
+  - username: venom
+    firstname: Eddie
+    surname: Brock
+    password: "Thin-Hash"
+    group_list:
+      - Domain Users
+      - Mac Users
+  - username: sunny
+    firstname: Kang
+    surname: Sora
+    password: "Angular-Porch"
+    group_list:
+      - Domain Users
+  - username: midzy
+    firstname: Nam
+    surname: Bora
+    password: "Large-Fools"
+    group_list:
+      - Domain Users
+
+red_users:
+  - username: op1
+    firstname: Operator
+    surname: One
+    password: "Subpar-Parabola"
+    group_list:
+      - Domain Users
+      - Domain Admins
+      - Enterprise Admins
+  - username: op2
+    firstname: Operator
+    surname: Two
+    password: "Sulky-Swimwear"
+    group_list:
+      - Domain Admins
+      - Domain Users
+      - Enterprise Admins
+  - username: op3
+    firstname: Operator
+    surname: Three
+    password: "Wonky-Assassin"
+    group_list:
+      - Domain Users
+  - username: op4
+    firstname: Operator
+    surname: Four
+    password: "Viral-Operas"
+    group_list:
+      - Domain Users
+
+red_users_sftp:
+  - username: sftp_user
+    firstname: SFTP
+    surname: User
+    password: "Password1!"
+    group_list:
+      - Domain Users
+
+## random users
+dummy_domain_users:
+  - username: kmimi
+    firstname: Koga
+    surname: Mimi
+    password: "cHjc3p3hJHJYPUzT@"
+    group_list:
+      - Domain Users
+  - username: zorimoto
+    firstname: Zoe
+    surname: Orimoto
+    password: "tzTVgs44isT4YxWU!"
+    group_list:
+      - Domain Users
+  - username: karaki
+    firstname: Kae
+    surname: Araki
+    password: "R99yiEfgfg7Myvdr@"
+    group_list:
+      - Domain Users
+  - username: masuka
+    firstname: Yuto
+    surname: Kazama
+    password: "vMMHEstLXhp7cwXc!"
+    group_list:
+      - Domain Users
+  - username: mbellucci
+    firstname: Menoa
+    surname: Bellucci
+    password: "V9UpFannvp4AF7Ka@"
+    group_list:
+      - Domain Users
+  - username: hamanokawa
+    firstname: Hiro
+    surname: Amanokawa
+    password: "YW9uPCCW9nw4C3mY!"
+    group_list:
+      - Domain Users
+  - username: marakawa
+    firstname: Miho
+    surname: Arakawa
+    password: "cuL9LmnrdnWqbqcA@"
+    group_list:
+      - Domain Users
+  - username: ykaida
+    firstname: Yuko
+    surname: Kaida
+    password: "FWy9aXyXbYrbxFcE!"
+    group_list:
+      - Domain Users
+  - username: ykaida.da
+    firstname: Yuko
+    surname: Kaida_Admin
+    password: "FWy9aXyXbYrbxFcE!"
+    group_list:
+      - Domain Users
+      - Domain Admins
+  # Required for Kali
+  - username: sftpupload
+    firstname: SFTP
+    surname: Upload
+    group_list:
+      - Remote Desktop Users
