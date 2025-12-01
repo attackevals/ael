@@ -1,0 +1,136 @@
+---
+- name: "Add KingsLanding local admins to all kingslanding hosts"
+  hosts: domain_kingslanding:&victim:&windows
+  become: yes
+  gather_facts: yes
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - localadmin
+    - kingslanding
+    - scenarioa
+  tasks:
+    - name: add local admin group
+      ansible.builtin.include_tasks: "{{ playbook_dir }}/../library/add-local-admin-groups.yml"
+      vars:
+        domain_shortname: "{{ domain_info_kingslanding.shortname }}"
+        admin_group: "{{ domain_group_local_admin }}"
+
+######################
+
+- name: "Add KingsLanding local admins to onprem hosts only"
+  hosts: domain_kingslanding:&victim:&onprem:&windows
+  become: yes
+  gather_facts: yes
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - localadmin
+    - kingslanding
+    - scenarioa
+  tasks:
+    - name: add local admin group
+      ansible.builtin.include_tasks: "{{ playbook_dir }}/../library/add-local-admin-groups.yml"
+      vars:
+        domain_shortname: "{{ domain_info_kingslanding.shortname }}"
+        admin_group: "{{ domain_info_kingslanding.onprem_admin_group_name}}"
+
+######################
+
+- name: "Add KingsLanding local admins to cloud hosts only"
+  hosts: domain_kingslanding:&victim:&cloud:&windows
+  become: yes
+  gather_facts: yes
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - localadmin
+    - kingslanding
+    - scenarioa
+  tasks:
+    - name: add local admin group
+      ansible.builtin.include_tasks: "{{ playbook_dir }}/../library/add-local-admin-groups.yml"
+      vars:
+        domain_shortname: "{{ domain_info_kingslanding.shortname }}"
+        admin_group: "{{ domain_info_kingslanding.cloud_admin_group_name}}"
+
+######################
+
+- name: "Add vale local admins"
+  hosts: domain_vale:&victim:&windows
+  become: yes
+  gather_facts: yes
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - localadmin
+    - vale
+    - scenariob
+  tasks:
+    - name: add local admin group
+      ansible.builtin.include_tasks: "{{ playbook_dir }}/../library/add-local-admin-groups.yml"
+      vars:
+        domain_shortname: "{{ domain_info_vale.shortname }}"
+        admin_group: "{{ domain_group_local_admin }}"
+
+######################
+
+- name: "Add linux local admin permissions"
+  hosts: victim:&linux
+  become: yes
+  gather_facts: yes
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - localadmin
+
+  tasks:
+    - name: install local admin group sudo configuration
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/../files/92-sudo-local-admin.j2"
+        dest: /etc/sudoers.d/92-sudo-local-admin
+        mode: '0440'
+        owner: root
+        group: root
+        validate: /usr/sbin/visudo -cs %s
+
+######################
+
+- name: "Add non-domain local admin permissions to unmanaged kingslanding host"
+  hosts: unmanaged-win11-desk1
+  gather_facts: yes
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - localadmin
+
+  tasks:
+    - name: Create user accounts
+      ansible.windows.win_user:
+        name: "{{ item.username }}"
+        password: "{{ item.password }}"
+        fullname: "{{ item.firstname }}"
+        password_never_expires: yes
+        state: present
+        groups:
+          - Administrators
+      loop: "{{ domain_users_kingslanding }}"
+      when: "'System Admins' in item.group_list "
+
+######################
+# for any hosts that have the host variable local_admin_groups defined, add the values of that variable list to the local Administrators group on that host
+- name: "Add local admin groups to all hosts"
+  hosts: windows:&victim
+  gather_facts: yes
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - localadmin
+  tasks:
+    - name: add local admin group
+      ansible.builtin.include_tasks: "{{ playbook_dir }}/../library/add-local-admin-groups.yml"
+      vars:
+        domain_shortname: "{{ domain_info.shortname }}"
+        admin_group: "{{ item }}"
+      loop: "{{ local_admin_groups }}"
+      when: local_admin_groups is defined and domain_info is defined

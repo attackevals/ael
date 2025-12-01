@@ -1,0 +1,147 @@
+---
+- name: query authentik authorization flow UUID
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/flows/instances/?slug=default-provider-authorization-implicit-consent"
+    method: GET
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+  register: authorization_flow
+
+- name: set auth flow uuid
+  set_fact:
+    flow_uuid: "{{ authorization_flow.json.results[0].pk }}"
+
+- name: query authentik authentication flow UUID
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/flows/instances/?slug=default-authentication-flow"
+    method: GET
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+  register: authentication_flow
+
+- name: set authentication flow uuid
+  set_fact:
+    authentication_flow_uuid: "{{ authorization_flow.json.results[0].pk }}"
+
+- name: query authentik invalidation flow UUID
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/flows/instances/?slug=default-invalidation-flow"
+    method: GET
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+  register: inval_flow
+
+- name: set invalidation flow uuid
+  set_fact:
+    inval_flow_uuid: "{{ inval_flow.json.results[0].pk }}"
+
+- name: Create OIDC Provider for GitLab
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/providers/oauth2/"
+    method: POST
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+    body_format: json
+    body:
+      name: "GitLab OIDC"
+      authorization_flow: "{{ flow_uuid }}"
+      authentication_flow: "{{ authentication_flow.json.results[0].pk }}"
+      invalidation_flow: "{{ inval_flow_uuid }}"
+      client_type: "confidential"
+      client_id: "{{ oidc_client_id }}"
+      sub_mode: "user_email" # use email as subject
+      redirect_uris: "https://{{ gitlab_domain }}/users/auth/openid_connect/callback"
+    status_code: 201
+  register: oidc_provider
+  ignore_errors: true
+
+- name: query oidc provider
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/providers/oauth2/?client_id={{ oidc_client_id }}"
+    method: GET
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+  register: app_provider
+
+- name: query scope mappings
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}/api/v3/propertymappings/provider/scope/?search=openID"
+    method: GET
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+  register: scope_map
+
+- name: query certificates
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/crypto/certificatekeypairs/?name={{ authentik_domain }}"
+    method: GET
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+    validate_certs: no
+  register: cert_response
+
+- name: Update GitLab Provider in Authentik
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/providers/oauth2/{{ app_provider.json.results[0].pk }}/"
+    method: PATCH
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+    body_format: json
+    body:
+      property_mappings: "{{ scope_map.json | json_query('results[*].pk') }}"
+      signing_key: "{{ cert_response.json | json_query('results[*].pk') | join('') }}"
+      authorization_flow: "{{ flow_uuid }}"
+      authentication_flow: "{{ authentication_flow.json.results[0].pk }}"
+      invalidation_flow: "{{ inval_flow_uuid }}"
+      client_type: "confidential"
+      client_id: "{{ oidc_client_id }}"
+      sub_mode: "user_email" # use email as subject
+      redirect_uris: "https://{{ gitlab_domain }}/users/auth/openid_connect/callback"
+
+- name: Create GitLab Application in Authentik
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/core/applications/"
+    method: POST
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+    body_format: json
+    body:
+      name: "{{ app_name }}"
+      slug: "{{ app_slug }}"
+      protocol_provider: "openid"
+      provider: "{{ app_provider.json.results[0].pk }}"
+      meta_launch_url: "https://{{ gitlab_domain }}/users/auth/openid_connect/callback"
+    status_code: 201
+  register: gitlab_app
+  ignore_errors: true
+
+- name: set secret
+  set_fact:
+    oidc_secret: "{{ app_provider.json.results[0].client_secret }}"
+
+- name: set oidc template content
+  set_fact:
+    oidc_config: "{{ lookup('template', 'oidc_config.rb.j2') }}"
+
+- name: render the template and append to the gitlab rb config file
+  ansible.builtin.blockinfile:
+    path: "{{ gitlab_config_file }}"
+    insertafter: EOF
+    block: "{{ oidc_config }}"
+    mode: '0600'

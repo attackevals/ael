@@ -1,0 +1,22 @@
+---
+- name: "Configure Windows Domain for Scenario B.3"
+  hosts: b3:&windows:&victim:!b3-addc-srv1
+  become: yes
+  strategy: free
+  gather_facts: no
+  vars:
+    deploy_dir: "C:\\deploy"
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - joindomain
+    - scenariob3
+
+  tasks:
+    - ansible.builtin.include_tasks: "{{ playbook_dir }}/../library/configure-and-join-domain-win-all.yml"
+      vars:
+        domain_shortname: "{{ domain_info_vale.shortname }}"
+        domain_dns_name: "{{ domain_info_vale.dns_domain_name }}"
+        domain_admin_user: "{{ domain_info_vale.admin_user }}"
+        domain_admin_pass: "{{ domain_info_vale.admin_pass }}"
+        ad_ip_addr: "{{ domain_info_vale.ad_ip_addr }}"

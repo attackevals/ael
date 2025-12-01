@@ -1,0 +1,238 @@
+---
+- name: Configure preflights box (vendor validation)
+  hosts: preflights
+  become: true
+  gather_facts: true
+  vars_files:
+    - ../vars/vars.yml
+  vars:
+    preflights_username: "{{ (domain_users_common| selectattr('username', 'equalto', 'preflights_user') | first).username }}"
+    preflights_password: "{{ (domain_users_common| selectattr('username', 'equalto', 'preflights_user') | first).password }}"
+  tags:
+    - preflights
+
+  tasks:
+    - name: Allow password authentication to preflights
+      ansible.builtin.copy:
+        src: ../files/52-sshd-allow-pass-auth.conf
+        dest: /etc/ssh/sshd_config.d/
+        owner: root
+        group: root
+        mode: '0644'
+      tags:
+        - deployment
+
+    - name: Restart ssh service
+      ansible.builtin.service:
+        name: ssh
+        state: restarted
+        enabled: yes
+
+    - name: Create {{ preflights_username }} group
+      ansible.builtin.group:
+        name: "{{ preflights_username }}"
+        state: present
+
+    # create_home = yes
+    - name: Create {{ preflights_username }} on vendor box
+      ansible.builtin.user:
+        create_home: yes
+        name: "{{ preflights_username }}"
+        password: "{{ preflights_password  | password_hash('sha512')  }}"
+        update_password: always
+        shell: /bin/bash
+        groups: adm
+        expires: -1
+        state: present
+        force: yes
+
+    # create_home = no
+    - name: Create admins on vendor box
+      ansible.builtin.user:
+        create_home: no
+        name: "{{ item.username }}"
+        password: "{{ item.password | password_hash('sha512') }}"
+        update_password: always
+        shell: /bin/bash
+        groups: adm
+        expires: -1
+        state: present
+        force: yes
+      loop: [
+        "{{(domain_users_common | selectattr('username', 'equalto', 'evals_domain_admin') | first)}}",
+        "{{(domain_users_common | selectattr('username', 'equalto', 'vendor_domain_admin') | first)}}"
+      ]
+      tags:
+        - domain_admins
+
+- name: Copy ssh keys to Kali and Vendor boxes
+  hosts:
+    - preflights
+    - red-kali1
+  become: true
+  gather_facts: true
+  vars_files:
+    - ../vars/vars.yml
+  vars:
+    preflights_username: "{{ (domain_users_common | selectattr('username', 'equalto', 'preflights_user') | first).username }}"
+    preflights_ssh_private_key: "{{ hostvars['preflights-box1'].vendor_ssh_private_key }}"
+    preflights_ssh_public_key: "{{ hostvars['preflights-box1'].vendor_ssh_public_key }}"
+
+    ssh_dir: "/opt/validation"
+    ssh_keyname: "aws1-vendor"  # pass in ansible var in tf
+    ssh_private_key_dest: "{{ ssh_dir }}/{{ ssh_keyname }}"
+    ssh_public_key_dest: "{{ ssh_dir }}/{{ ssh_keyname }}.pub"
+
+  tags:
+    - preflights
+    - ssh
+    - kali
+
+  tasks:
+    - name: Remove {{ ssh_dir }}
+      ansible.builtin.file:
+        path: "{{ ssh_dir }}"
+        state: absent
+
+    - name: Ensure {{ ssh_dir }} exists
+      ansible.builtin.file:
+        path: "{{ ssh_dir }}"
+        state: directory
+        mode: '0755'
+        group: "{{ 'adm' if 'preflights' in inventory_hostname else 'sudo' }}"
+
+    - name: Copy private key to {{ ssh_private_key_dest }}
+      ansible.builtin.copy:
+        dest: "{{ ssh_private_key_dest }}"
+        content: "{{ preflights_ssh_private_key }}"
+        force: yes
+        mode: '0600'
+        group: "{{ preflights_username  if 'preflights' in inventory_hostname else 'sudo' }}"
+        owner: "{{ preflights_username  if 'preflights' in inventory_hostname else 'kali' }}"
+
+    - name: Copy public key to {{ ssh_public_key_dest }}
+      ansible.builtin.copy:
+        dest: "{{ ssh_public_key_dest }}"
+        content: "{{ preflights_ssh_public_key }}"
+        force: yes
+        mode: '0644'
+        group: "{{ preflights_username if 'preflights' in inventory_hostname else 'sudo' }}"
+        owner: "{{ preflights_username if 'preflights' in inventory_hostname else 'kali' }}"
+
+- name: Configure preflights access to range
+  hosts: victim:&linux:!preflights
+  become: true
+  gather_facts: true
+  vars_files:
+    - ../vars/vars.yml
+  vars:
+    preflights_username: "{{ (domain_users_common | selectattr('username', 'equalto', 'preflights_user') | first).username }}"
+    preflights_groups: "{{ (domain_users_common | selectattr('username', 'equalto', 'preflights_user') | first).group_list }}"
+    preflights_ssh_public_key: "{{ hostvars['preflights-box1'].vendor_ssh_public_key }}"
+
+  tags:
+    - preflights
+    - victim
+    - ssh
+
+  tasks:
+    - name: Ensure home directory exists for user
+      ansible.builtin.user:
+        name: "{{ preflights_username }}"  # Replace with the actual username
+        move_home: false  # Set to true if you want to move an existing directory
+        home: "/home/{{ preflights_username }}"  # Specify the desired home directory path
+        state: present # Ensure the user exists and is configured as specified
+
+    - name: Ensure groups exist on hosts
+      ansible.builtin.group:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ preflights_groups }}"
+
+    - name: Add public key to authorized hosts on victim linux hosts
+      ansible.posix.authorized_key:
+        key: "{{ preflights_ssh_public_key }}"
+        user: "{{ preflights_username }}"
+
+    - name: Restart ssh service
+      ansible.builtin.systemd:
+        name: ssh
+        state: restarted
+        enabled: yes
+
+######################################################################
+# create virtualenv and install requirements on preflights host
+- name: "create virtualenv and install requirements on preflights host"
+  hosts: preflights
+  become: true
+  vars:
+    venv_umask: "0022"
+    updated_kali_signing_key: "https://archive.kali.org/archive-keyring.gpg"
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - preflight_venv
+
+  tasks:
+    # fix kali signing key update, upstream signing key was rotated and new key needs to be installed, https://www.kali.org/blog/new-kali-archive-signing-key/
+    - name: Add Kali signing key
+      # note: cannot use ansible apt_key module as gpg binary is not guaranteed installed at this point and required
+      # to use apt_key module
+      ansible.builtin.shell: |
+        wget {{ updated_kali_signing_key}} -O /usr/share/keyrings/kali-archive-keyring.gpg
+      args:
+        executable: /bin/bash
+      tags:
+        - deployment
+        - download
+        - kali
+
+    - name: install apt packages for venv and metasploit
+      ansible.builtin.apt:
+        update_cache: yes
+        name:
+          - curl
+          - gnupg2
+          - metasploit-framework # kali specific
+          - python3-venv # kali specific
+          - python3.13-venv # kali specific
+          - wget
+#          - python3.12-venv # ubuntu specific
+        state: present
+
+    - name: create venv directory
+      ansible.builtin.file:
+        path: "{{ support_vars.preflights_venv_dir }}"
+        state: directory
+        mode: '0755'
+        owner: "{{ support_vars.preflights_user }}"
+        group: "{{ support_vars.preflights_user }}"
+
+    - name: "copy requirements.txt to preflight host"
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/../files/{{ support_vars.preflights_requirements_file }}"
+        dest: "{{ support_vars.preflights_venv_dir }}/requirements.txt"
+        mode: '0644'
+
+    - name: Create venv using ansible pip module
+      ansible.builtin.pip:
+        virtualenv: "{{ support_vars.preflights_venv_dir }}"
+        umask: "{{ venv_umask }}"
+        state: present
+        virtualenv_command: "python3 -m venv"
+        requirements: "{{ support_vars.preflights_venv_dir }}/requirements.txt"
+
+    - name: "Ensure virtualenv is owned by {{ support_vars.preflights_user }} user"
+      ansible.builtin.file:
+        path: "{{ support_vars.preflights_venv_dir }}"
+        state: directory
+        recurse: yes
+        owner: "{{ support_vars.preflights_user }}"
+        group: "{{ support_vars.preflights_user }}"
+
+    - name: "Ensure parent directory is owned by {{ support_vars.preflights_user }} user"
+      ansible.builtin.file:
+        path: "{{ support_vars.preflights_base_dir }}"
+        state: directory
+        owner: "{{ support_vars.preflights_user }}"
+        group: "{{ support_vars.preflights_user }}"

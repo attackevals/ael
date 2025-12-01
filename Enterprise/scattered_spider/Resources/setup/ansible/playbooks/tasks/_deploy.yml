@@ -1,0 +1,77 @@
+---
+# base config
+- import_playbook: configure-dns.yml
+- import_playbook: autologon-disabled-win11.yml
+- import_playbook: configure-shadow-copy.yml
+- import_playbook: configure-addc-kingslanding.yml
+- import_playbook: configure-addc-vale.yml
+- import_playbook: configure-addc-kingslanding-gpo.yml
+- import_playbook: configure-addc-vale-gpo.yml
+- import_playbook: configure-kali-all.yml
+- import_playbook: join-win-victim-a.yml # hosts need to be joined to domain so DNS resolves to internal choco mirror
+- import_playbook: join-win-victim-b3.yml
+- import_playbook: join-linux-victim-a.yml
+- import_playbook: join-linux-victim-b3.yml
+- import_playbook: util-fix-expired-login-windows.yml
+- import_playbook: choco-mirror-setup.yml
+- import_playbook: install-packages-win-dev.yml
+- import_playbook: install-packages-win-srv.yml
+- import_playbook: win-reverse-dns.yml
+- import_playbook: add-system-local-admin.yml
+- import_playbook: disable-win-update.yml
+- import_playbook: enable--ping.yml
+- import_playbook: configure-unmanaged-victim.yml
+
+# preflights (vendor validation)
+- import_playbook: configure-preflights.yml
+
+# windows servers
+- import_playbook: configure-rds.yml
+- import_playbook: configure-rdp-domain-users.yml
+- import_playbook: configure-file-servers.yml
+
+# docker
+- import_playbook: configure-linux-docker.yml
+
+# authentik
+- import_playbook: install-authentik-a.yml
+- import_playbook: install-authentik-b3.yml
+
+# guac
+- import_playbook: guacamole-install.yml
+
+# pre-stage
+- import_playbook: generate-certs.yml
+- import_playbook: distribute-certs.yml
+- import_playbook: decoy-files.yml
+- import_playbook: s3-keys.yml
+- import_playbook: victim-linux-decoy-files.yml
+- import_playbook: victim-populate.yml
+- import_playbook: victim-populate-tharlaw.yml
+- import_playbook: jmormont-word-doc.yml
+- import_playbook: red-cfg-win.yml
+
+# linux
+- import_playbook: linux-disable-updates.yml
+
+# services
+- import_playbook: gitlab.yml # if errors, rerun playbook with --tags "gitlab_sso"
+- import_playbook: postfix.yml
+- import_playbook: rustdesk.yml
+- import_playbook: wekan.yml
+- import_playbook: wstunnel.yml
+- import_playbook: tactical-rmm.yml
+- import_playbook: redirect-setup.yml
+- import_playbook: airbyte.yml # see docs on airbyte custom connector
+- import_playbook: configure-fleet.yml
+
+# post setup staging
+- import_playbook: red-staging.yml
+- import_playbook: stage_s3_protections_files.yml
+# config
+- import_playbook: enroll-ssm-systems.yml
+
+# exchange
+- import_playbook: exchange2019.yml
+# exchange cert install
+- import_playbook: exchange-certs-install.yml

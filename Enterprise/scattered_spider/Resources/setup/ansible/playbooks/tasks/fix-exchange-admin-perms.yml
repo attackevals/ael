@@ -1,0 +1,25 @@
+---
+- name: Add Domain Admins to Exchange Organization Management
+  hosts: windows_mail_servers:&victim
+  become: yes
+  gather_facts: yes
+  strategy: free
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - mail
+    - exchange
+    - fix
+
+  tasks:
+    - name: Add Domain Admins group to Organization Management
+      #language=PowerShell
+      ansible.windows.win_shell: |
+        Import-module activedirectory
+        Add-PSSnapin Microsoft.Exchange.Management.PowerShell.SnapIn
+        Add-RoleGroupMember -Identity "Organization Management" -Member "Domain Admins" -BypassSecurityGroupManagerCheck
+      vars:
+        ansible_become: true
+        ansible_become_method: runas
+        ansible_become_user: "{{ domain_info.shortname }}\\{{ domain_info.exchange_admin_user }}"
+        ansible_become_pass: "{{ domain_info.exchange_admin_pass }}"

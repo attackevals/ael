@@ -1,0 +1,44 @@
+---
+- name: Disable IPv6 on Ubuntu 22.04 and 24.04
+  hosts: linux_ubuntu
+  become: yes
+  tasks:
+    - name: Check Ubuntu version
+      ansible.builtin.command: lsb_release -rs
+      register: ubuntu_version
+      changed_when: false
+      check_mode: no
+
+    - name: Ensure this playbook runs only on Ubuntu 22.04 or 24.04
+      ansible.builtin.assert:
+        that: ubuntu_version.stdout is match('22.04|24.04')
+        fail_msg: "This playbook only supports Ubuntu 22.04 and 24.04. Current version: {{ ubuntu_version.stdout }}"
+
+    - name: Create sysctl configuration file to disable IPv6
+      ansible.builtin.copy:
+        dest: /etc/sysctl.d/60-disable-ipv6.conf
+        content: |
+          # Disable IPv6
+          net.ipv6.conf.all.disable_ipv6 = 1
+          net.ipv6.conf.default.disable_ipv6 = 1
+          net.ipv6.conf.lo.disable_ipv6 = 1
+        mode: '0644'
+        owner: root
+        group: root
+      notify: Apply sysctl changes
+
+    - name: Disable IPv6 in GRUB
+      ansible.builtin.lineinfile:
+        path: /etc/default/grub
+        regexp: '^GRUB_CMDLINE_LINUX_DEFAULT="((?!.*ipv6.disable=1).*)"$'
+        line: 'GRUB_CMDLINE_LINUX_DEFAULT="\1 ipv6.disable=1"'
+        backrefs: yes
+        state: present
+      notify: Update GRUB
+
+  handlers:
+    - name: Apply sysctl changes
+      ansible.builtin.command: sysctl --system
+
+    - name: Update GRUB
+      ansible.builtin.command: update-grub

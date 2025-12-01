@@ -1,0 +1,175 @@
+---
+- name: cleanup windows
+  hosts: windows:&victim
+  gather_facts: yes
+  vars:
+    setup_dirs:
+      - "C:/deploy"
+      - "C:/tools"
+      - "C:/temp"
+      - "C:/gpo"
+      - "C:/ansible"
+      - "C:/Windows/Temp"
+      - "C:/ProgramData/ansible"
+      - "C:/Users/Administrator/AppData/Local/Temp/ansible-tmp*"
+
+  tasks:
+    - name: remove setup dirs
+      win_file:
+        path: "{{ item }}"
+        state: absent
+      loop: "{{ setup_dirs }}"
+      ignore_errors: yes
+
+    - name: run system-wide cleanup
+      become: yes
+      ansible.windows.win_powershell:
+        script: |
+          # Clean up Chocolatey logs
+          Write-Host "Cleaning up Chocolatey logs..."
+          Remove-Item "C:\ProgramData\chocolatey\logs\*.log" -Force -ErrorAction SilentlyContinue
+
+          # Clean up Windows temp directories
+          Write-Host "Cleaning Windows temp directories..."
+          Remove-Item "C:\Windows\Temp\*" -Recurse -Force -ErrorAction SilentlyContinue
+          Remove-Item "C:\Windows\Prefetch\*" -Force -ErrorAction SilentlyContinue
+
+          # Clean up system-wide logs
+          Write-Host "Clearing event logs..."
+          wevtutil el | ForEach-Object {wevtutil cl "$_"}
+
+          # Clean up Windows Defender logs
+          Remove-Item "C:\ProgramData\Microsoft\Windows Defender\Scans\History\*" -Recurse -Force -ErrorAction SilentlyContinue
+
+          # Clean up Windows Update logs
+          Remove-Item "C:\Windows\SoftwareDistribution\Download\*" -Recurse -Force -ErrorAction SilentlyContinue
+
+          # Clean up IIS logs if IIS is installed
+          if (Test-Path "C:\inetpub\logs") {
+            Remove-Item "C:\inetpub\logs\LogFiles\*" -Recurse -Force -ErrorAction SilentlyContinue
+          }
+
+          # Clean up SCCM/ConfigMgr logs if they exist
+          Remove-Item "C:\Windows\CCM\Logs\*" -Recurse -Force -ErrorAction SilentlyContinue
+
+          # Clean up PowerShell transcript logs
+          Remove-Item "C:\Transcripts\*" -Recurse -Force -ErrorAction SilentlyContinue
+
+          # Clean up WinSxS backup folder to remove patch uninstall data
+          Start-Process -FilePath "dism.exe" -ArgumentList "/online /cleanup-image /startcomponentcleanup /resetbase" -NoNewWindow -Wait -ErrorAction SilentlyContinue
+
+          # Clean up Windows Error Reporting
+          Remove-Item "C:\ProgramData\Microsoft\Windows\WER\*" -Recurse -Force -ErrorAction SilentlyContinue
+
+          # Clean up Task Scheduler logs
+          Remove-Item "C:\Windows\Tasks\SchedLgU.txt" -Force -ErrorAction SilentlyContinue
+      ignore_errors: yes
+
+    - name: run per-user cleanup
+      become: yes
+      ansible.windows.win_powershell:
+        script: |
+          # Get all user profiles
+          $userProfiles = Get-ChildItem "C:\Users" -Directory | Where-Object { $_.Name -ne "Public" -and $_.Name -ne "Default" -and $_.Name -ne "defaultuser0" }
+
+          foreach ($userProfile in $userProfiles) {
+            $username = $userProfile.Name
+            Write-Host "Cleaning up for user: $username"
+
+            # Clean Recent Items for each user
+            Remove-Item "$($userProfile.FullName)\AppData\Roaming\Microsoft\Windows\Recent\*" -Force -Exclude desktop.ini -ErrorAction SilentlyContinue
+            Remove-Item "$($userProfile.FullName)\AppData\Roaming\Microsoft\Windows\Recent\AutomaticDestinations\*" -Force -Exclude desktop.ini,f01b4d95cf55d32a.automaticDestinations-ms -ErrorAction SilentlyContinue
+            Remove-Item "$($userProfile.FullName)\AppData\Roaming\Microsoft\Windows\Recent\CustomDestinations\*" -Force -Exclude desktop.ini -ErrorAction SilentlyContinue
+
+            # Clean browser history for each user
+            Remove-Item "$($userProfile.FullName)\AppData\Local\Microsoft\Edge\User Data\Default\History" -Force -ErrorAction SilentlyContinue
+            Remove-Item "$($userProfile.FullName)\AppData\Local\Google\Chrome\User Data\Default\History" -Force -ErrorAction SilentlyContinue
+            Remove-Item "$($userProfile.FullName)\AppData\Local\Mozilla\Firefox\Profiles\*\places.sqlite" -Force -ErrorAction SilentlyContinue
+
+            # Clean PowerShell history for each user
+            Remove-Item "$($userProfile.FullName)\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt" -Force -ErrorAction SilentlyContinue
+
+            # Clean user temp folders
+            Remove-Item "$($userProfile.FullName)\AppData\Local\Temp\*" -Recurse -Force -ErrorAction SilentlyContinue
+
+            # Clean Downloads folder (optional, uncomment if needed)
+            # Remove-Item "$($userProfile.FullName)\Downloads\*" -Recurse -Force -ErrorAction SilentlyContinue
+          }
+
+          # Clear Quick Access history
+          $UnpinnedQAFolders = (0,0)
+          While ($UnpinnedQAFolders) {
+              $UnpinnedQAFolders = (((New-Object -ComObject Shell.Application).Namespace("shell:::{679f85cb-0220-4080-b29b-5540cc05aab6}").Items() |
+              Where-Object { $_.IsFolder -eq $true }).Verbs() | Where-Object { $_.Name -match "Remove from Quick access" })
+              If ($UnpinnedQAFolders) { $UnpinnedQAFolders.DoIt() }
+          }
+
+          # Restart Explorer to apply changes
+          Stop-Process -Name explorer -Force -ErrorAction SilentlyContinue
+          Start-Process explorer
+      ignore_errors: yes
+
+    - name: clean registry traces
+      become: yes
+      ansible.windows.win_powershell:
+        script: |
+          # Get all user profiles and their SIDs
+          $userProfiles = Get-ChildItem "C:\Users" -Directory | Where-Object { $_.Name -ne "Public" -and $_.Name -ne "Default" -and $_.Name -ne "defaultuser0" }
+          $userSIDs = @{}
+
+          foreach ($userProfile in $userProfiles) {
+            $username = $userProfile.Name
+            try {
+              $sid = (New-Object System.Security.Principal.NTAccount($username)).Translate([System.Security.Principal.SecurityIdentifier]).Value
+              $userSIDs[$username] = $sid
+            } catch {
+              Write-Host "Could not get SID for $username"
+            }
+          }
+
+          # Clean registry for each user
+          foreach ($username in $userSIDs.Keys) {
+            $sid = $userSIDs[$username]
+            Write-Host "Cleaning registry for user: $username (SID: $sid)"
+
+            # Load user registry hive
+            reg load "HKU\$sid" "C:\Users\$username\NTUSER.DAT"
+
+            # Clean Run MRU (recently executed commands)
+            Remove-ItemProperty -Path "Registry::HKEY_USERS\$sid\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU" -Name "*" -ErrorAction SilentlyContinue
+
+            # Clean TypedPaths (addresses typed in Explorer)
+            Remove-ItemProperty -Path "Registry::HKEY_USERS\$sid\Software\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths" -Name "*" -ErrorAction SilentlyContinue
+
+            # Clean UserAssist (tracks application usage)
+            Get-ChildItem -Path "Registry::HKEY_USERS\$sid\Software\Microsoft\Windows\CurrentVersion\Explorer\UserAssist" -ErrorAction SilentlyContinue |
+            ForEach-Object { Get-ChildItem -Path $_.PSPath | ForEach-Object { Remove-ItemProperty -Path "$($_.PSPath)\Count" -Name "*" -ErrorAction SilentlyContinue } }
+
+            # Clean RecentDocs
+            Get-ChildItem -Path "Registry::HKEY_USERS\$sid\Software\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs" -ErrorAction SilentlyContinue |
+            ForEach-Object { Remove-ItemProperty -Path $_.PSPath -Name "*" -ErrorAction SilentlyContinue }
+
+            # Clean Office MRU lists if they exist
+            Remove-Item -Path "Registry::HKEY_USERS\$sid\Software\Microsoft\Office\*\*\File MRU" -Recurse -ErrorAction SilentlyContinue
+            Remove-Item -Path "Registry::HKEY_USERS\$sid\Software\Microsoft\Office\*\*\Place MRU" -Recurse -ErrorAction SilentlyContinue
+
+            # Unload user registry hive
+            [gc]::Collect()
+            reg unload "HKU\$sid"
+          }
+
+          # Clean current user registry as well (for logged in user)
+          # Clean Run MRU (recently executed commands)
+          Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU" -Name "*" -ErrorAction SilentlyContinue
+
+          # Clean TypedPaths (addresses typed in Explorer)
+          Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths" -Name "*" -ErrorAction SilentlyContinue
+
+          # Clean UserAssist (tracks application usage)
+          Get-ChildItem -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\UserAssist" -ErrorAction SilentlyContinue |
+          ForEach-Object { Get-ChildItem -Path $_.PSPath | ForEach-Object { Remove-ItemProperty -Path "$($_.PSPath)\Count" -Name "*" -ErrorAction SilentlyContinue } }
+
+          # Clean RecentDocs
+          Get-ChildItem -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs" -ErrorAction SilentlyContinue |
+          ForEach-Object { Remove-ItemProperty -Path $_.PSPath -Name "*" -ErrorAction SilentlyContinue }
+      ignore_errors: yes

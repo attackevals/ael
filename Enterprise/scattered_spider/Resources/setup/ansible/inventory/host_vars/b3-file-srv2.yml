@@ -1,0 +1,9 @@
+---
+drive_configs:
+  - drive_letter: 'E'
+    drive_label: 'PressReleaseShare'
+    share_name: 'press'
+    disk_number: 1
+    custom_decoy_seed: "Library"
+local_admin_groups:
+  - "File Server Admins"

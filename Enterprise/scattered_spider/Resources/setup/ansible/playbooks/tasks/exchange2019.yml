@@ -1,0 +1,63 @@
+---
+- name: "Install exchange"
+  hosts: windows_mail_servers:&victim
+  become: yes
+  gather_facts: yes
+  strategy: free
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - mail
+    - protections
+    - b3
+    - exchange
+  vars:
+    ludus_exchange_iso_directory: "{{ aws_resources.exchange_local_iso_dir }}"
+    ludus_exchange_domain: "{{ domain_info.shortname }}"
+    ludus_exchange_dc: "{{ domain_info.ad_ip_addr }}"
+    ludus_exchange_host: "{{ domain_info.exchange_addr }}"
+    ludus_exchange_domain_username: "{{ domain_info.exchange_admin_user }}"
+    ludus_exchange_domain_password: "{{ domain_info.exchange_admin_pass }}"
+    send_connector_name: "mailsender"
+    send_connector_smtpserver: "{{ hostname }}"
+    send_connector_source_transport_servers: "{{ hostname }}"
+    exchange_prereqs_complete_file: "{{ aws_resources.exchange_local_iso_dir }}/{{ aws_resources.exchange_prereq_complete_file }}"
+    s3_bucket: "{{ aws_resources.s3_bucket }}"
+    s3_filename: "{{ aws_resources.exchange_iso }}"
+    default_mailbox_timezone: "UTC"
+  roles:
+    - evals_exchange
+
+  tasks:
+    # Exchange mailbox enable for users
+    - name: Enable Exchange mailboxes
+      # language=PowerShell
+      ansible.windows.win_shell: |
+        Import-module activedirectory
+        Add-PSSnapin Microsoft.Exchange.Management.PowerShell.SnapIn
+        Set-MailboxRegionalConfiguration -Identity Default -TimeZone "{{ default_mailbox_timezone }}"
+        $adUsers = get-aduser -Searchbase "CN=Users,DC={{ domain_info.shortname }},DC={{ domain_info.tld }}" -filter 'Enabled -eq $true' -prop emailAddress
+        $adUsers | ForEach-Object {
+            $mailbox = Get-Mailbox -Identity $_.samaccountname -ErrorAction SilentlyContinue
+            if (-not $mailbox) {
+                Enable-Mailbox -Identity $_.samaccountname -Alias $_.samaccountname | Set-Mailbox -EmailAddressPolicyEnabled $false -PrimarySmtpAddress $_.EmailAddress
+            }
+        }
+        Get-Mailbox -ResultSize Unlimited | ForEach-Object {Set-MailboxRegionalConfiguration $_.Identity -TimeZone "{{ default_mailbox_timezone }}"}
+        Get-OwaMailboxPolicy | Set-OwaMailboxPolicy -DefaultClientLanguage 0 -LogonAndErrorLanguage 0 -UseGB18030 $false -UseISO885915 $false -OutboundCharset AutoDetect -GlobalAddressListEnabled $true -OrganizationEnabled $true -ExplicitLogonEnabled $true
+        Get-Mailbox -ResultSize Unlimited | ForEach-Object {Set-CASMailbox $_.Identity -OwaMailboxPolicy "Default" -MAPIEnabled $true -OWAEnabled $true -ActiveSyncEnabled $true -PopEnabled $false -ImapEnabled $false}
+        Get-Mailbox -ResultSize Unlimited | ForEach-Object {
+            $userDN = $_.DistinguishedName
+            Set-ADObject -Identity $userDN -Add @{msExchOWAPolicy="CN=Default,CN=OWA Mailbox Policies,CN=" + (Get-OrganizationConfig).Name + ",CN=Microsoft Exchange,CN=Services,CN=Configuration," + (Get-ADRootDSE).configurationNamingContext}
+        }
+      ignore_errors: yes
+      vars:
+        ansible_become: true
+        ansible_become_method: runas
+        ansible_become_user: "{{ domain_info.shortname }}\\{{ domain_info.exchange_admin_user }}"
+        ansible_become_pass: "{{ domain_info.exchange_admin_pass }}"
+      tags:
+        - mail
+        - protections
+        - exchange
+        - exchange_mailbox_enable_users

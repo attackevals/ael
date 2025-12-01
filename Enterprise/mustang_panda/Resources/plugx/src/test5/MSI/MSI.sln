@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MSI", "MSI.vdproj", "{84E33058-A687-4886-A3D9-222AD8DBFE60}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{84E33058-A687-4886-A3D9-222AD8DBFE60}.Debug|Default.ActiveCfg = Debug
+		{84E33058-A687-4886-A3D9-222AD8DBFE60}.Debug|Default.Build.0 = Debug
+		{84E33058-A687-4886-A3D9-222AD8DBFE60}.Release|Default.ActiveCfg = Release
+		{84E33058-A687-4886-A3D9-222AD8DBFE60}.Release|Default.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

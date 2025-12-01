@@ -1,0 +1,19 @@
+---
+- name: Browser configuration
+  hosts: linux_kali
+  become: true
+  vars:
+    chrome_deb_url: "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+  vars_files:
+    - ../vars/vars.yml
+    - ../vars/cert_vars.yml
+
+  tasks:
+    - name: Run firefox configuration for Kali
+      include_tasks: "{{ playbook_dir }}/../library/kali-firefox-trust-ca.yml"
+
+    - name: install google chrome from deb package
+      apt:
+        deb: "{{ chrome_deb_url }}"
+        state: present
+      when: chrome_deb_url is defined

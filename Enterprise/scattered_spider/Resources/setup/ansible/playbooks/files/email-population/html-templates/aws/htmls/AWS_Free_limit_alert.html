@@ -1,0 +1,102 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    </head>
+    <body>
+        <table>
+            <tr>
+                <td>
+                    AWS Free Tier usage limit alerting via AWS Budgets
+                </td>
+                <td align="right">
+                    {{ date }}
+                </td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <table>
+            <tr>
+                <td>Dear AWS Customer, </td>
+            </tr>
+        </table>
+        <br>
+        <table>
+            <tr>
+                <td>
+                    Your AWS account {{ aws_account_id }} has exceeded 85% of the usage limit for one or more AWS Free Tier-eligible services for the month of {{ month }}
+                </td>
+            </tr>
+        </table>
+        <br>
+        <table style="border-collapse: collapse; max-width: 800px;">
+            <tr align="left" bgcolor="#CCCCCC">
+                <td>
+                    <font color="#000000">Product</font>
+                </td>
+                <td>
+                    <font color="#000000">AWS Free Tier Usage as of {{ date }}</font>
+                </td>
+                <td style="min-width: 100px">
+                    <font color="#000000">Usage Limit</font>
+                </td>
+                <td>
+                    <font color="#000000">AWS Free Tier Usage Limit</font>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    AmazonEC2
+                </td>
+                <td>
+                    0.91896369 GB-mo
+                </td>
+                <td>
+                    1 GB-mo
+                </td>
+                <td>
+                    1.0 GB-mo for free for 12 months as part of AWS Free Usage Tier (Global-EBS:SnapshotUsage)
+                </td>
+            </tr>
+
+        </table>
+        <br>
+        <table>
+            <tr>
+                <td>
+                    To learn more about your AWS Free Tier usage, please access the <a href="{{ aws_account_billing_link }}">AWS Billing &amp; Cost Management Dashboard</a>.
+                    You can find more information on AWS Free Tier <a href="https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc&awsf.Free%20Tier%20Types=*all&awsf.Free%20Tier%20Categories=*all">here</a>.
+                </td>
+            </tr>
+        </table>
+        <br>
+        <table>
+            <tr>
+                <td>
+                    <em>This alert is provided by AWS Budgets. AWS automatically tracks your service usage and will alert you if you have reached 85% of the usage
+                        limit for one or more AWS Free Tier-eligible services. To unsubscribe from these alerts or to change the email address to which you would
+                        like your alerts to be sent, please visit the <a href="{{ aws_account_billing_link }}">Cost Management Preferences</a>.</em>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <p>
+            Please do not reply directly to this email. If you have any questions or comments regarding this email, please contact us
+            at <a href="{{ aws_support_link }}">https://aws.amazon.com/support</a>
+        </p>
+        <p>
+            This message was produced and distributed by Amazon Web Services, Inc., 410 Terry Avenue North, Seattle, Washington 98109-5210.
+            AWS will not be bound by, and specifically objects to, any term, condition or other provision which is different from or in addition
+            to the provisions of the AWS Customer Agreement or AWS Enterprise Agreement between AWS and you (whether or not it would materially
+            alter such AWS Customer Agreement or AWS Enterprise Agreement) and which is submitted in any order, receipt, acceptance, confirmation,
+            correspondence or otherwise, unless AWS specifically agrees to such provision in a written instrument signed by AWS.
+        </p>
+    </body>
+</html>

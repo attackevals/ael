@@ -1,0 +1,765 @@
+---
+# overall configs
+evals_cycle: ER7
+
+aws_resources:
+  s3_bucket: evals-artifacts-storage
+  aws_deployed_region: "us-east-1"
+  c2_server: c2/evalsC2server-latest.zip
+  exchange_iso: isos/ExchangeServer2019-x64-CU9.ISO
+  exchange_prereq_complete_file: "exchange_prereq_complete.txt"
+  exchange_local_iso_dir: "C:/deploy"
+  report_upload_bucket: "evals-artifacts-storage"
+  aws_s3_report_prefix: "reports/er7dev"
+  evals_cycle: "er7"
+
+## host -> mail server hostname
+## fqdn -> domain name (kingslanding)
+## ip   -> ip of mail server
+mail_records:
+  - host: "{{ hostvars['on-prem-mail-srv1'].ansible_host }}.kingslanding.net"
+    fqdn: "kingslanding.net"
+    ip: "{{ hostvars['on-prem-mail-srv1'].ansible_host }}"
+  - host: "{{ hostvars['b3-mail-srv1'].ansible_host }}.vale.net"
+    fqdn: "vale.net"
+    ip: "{{ hostvars['b3-mail-srv1'].ansible_host }}"
+
+support_vars:
+  dns_server_hostname: "twins.firest0rm.ie"
+  dns_server_ip: "12.78.0.60"
+  airbyte_fqdn: "rookery.kingslanding.net"
+  choco_fqdn: "mines.westerlands.ie"
+  choco_mirror_url: "http://mines.westerlands.ie/repository/chocolatey-proxy/"
+  postfix_smtp_port: 2525
+  pfx_password: "Calibrate-Epidermal"
+  upstream_primary_dns_server_ip: "1.1.1.1"
+  upstream_secondary_dns_server_ip: "1.0.0.1"
+  preflights_validation_ssh_private_key_path: "/opt/validation/"
+  preflights_validation_ssh_private_key_filename: "aws1"
+  preflights_venv_dir: "/opt/validation/venv"
+  preflights_user: "preflights_user"
+  preflights_requirements_file: "preflights/venv-requirements.txt"
+  preflights_base_dir: "/opt/validation"
+
+red_pyenv:
+  ansible_user: "{{ red_users[0].username }}"
+  ansible_pass: "{{ red_users[0].password }}"
+  ansible_become_pass: "{{ red_users[0].password }}"
+  home: "/home/{{ red_users[0].username }}"
+  root: "/home/{{ red_users[0].username }}/.pyenv"
+  init_shell: true
+  python_version: "3.7.17"
+
+gitlab_config:
+  my_gitlab_domain: "gitlab.kingslanding.net"
+  my_gitlab_ssl_certificate: "/etc/gitlab/ssl/gitlab.kingslanding.net.pem"
+  my_gitlab_ssl_certificate_key: "/etc/gitlab/ssl/gitlab.kingslanding.net-key.pem"
+  gitlab_source_ssl_certificate: "{{ playbook_dir }}/../files/certs/kingslanding.net/gitlab/gitlab.kingslanding.net.pem"
+  gitlab_source_ssl_certificate_key: "{{ playbook_dir }}/../files/certs/kingslanding.net/gitlab/gitlab.kingslanding.net-key.pem"
+  root_ca_source_cert: "{{ playbook_dir }}/../files/certs/ca/COUNCILCA.pem"
+  gitlab_external_url: "https://gitlab.kingslanding.net/"
+  gitlab_git_data_dir: "/opt/gitlab/git-data"
+  gitlab_edition: "gitlab-ce"
+  gitlab_version: "17.11.5-ce.0"
+  gitlab_install_async_timeout: 600
+  gitlab_install_async_poll: 5
+  gitlab_backup_path: "/opt/gitlab/backups"
+  gitlab_config_template: "gitlab.rb.j2"
+  gitlab_registry_enable: false
+  gitlab_registry_external_url: "https://gitlab.kingslanding.net:4567"
+  gitlab_registry_nginx_ssl_certificate: "/etc/gitlab/ssl/gitlab.kingslanding.net.pem"
+  gitlab_registry_nginx_ssl_certificate_key: "/etc/gitlab/ssl/gitlab.kingslanding.net-key.pem"
+  gitlab_automation_username: "automation-bot"
+  gitlab_automation_name: "Automation Bot User"
+  gitlab_automation_email: "automation-bot@kingslanding.net"
+  gitlab_automation_password: "Pushpin-Line"
+  gitlab_automation_token: "TruffleUntoastedBoas" # must be 20 characters
+  gitlab_automation_token_expiration_days: 365
+  gitlab_automation_token_name: "Automation token"
+  gitlab_populate_user: "atargaryen"
+  gitlab_populate_repo: "airbyte-config-storage"
+  gitlab_populate_group: "systems"
+  gitlab_tokens_file_local: "{{ playbook_dir }}/../files/gitignore/gitlab-tokens.txt"
+
+red_dev:
+  # s3 setup
+  kali_dev_dir: "/opt/kalidev/"
+  kali_scenario1: "demeter"
+  kali_scenario2: "hermes"
+  kali_hostname: "{{ hostvars['red-kali1'].hostname }}"
+  kali_fqdn: "driftmark.redhound.co.nz"
+  kali_dns_suffix: "redhound.co.nz"
+  kali_ip: "{{ hostvars['red-kali1'].ansible_host }}"
+  kali_bundle_name: "operator-bundle"
+
+  c2_server_filename: "{{ aws_resources.c2_server | basename }}"
+  output_path: "./reports/"
+  sha256_file: "SHA256.txt"
+  git_hash_file: "git_hash.txt"
+
+  s3:
+    red_mountpoint: "/srv/red"
+    blue_mountpoint: "/srv/blue"
+    red_bucket: "evals-red-storage"
+    blue_bucket: "evals-blue-storage"
+    mounts3_x86_deb: "https://s3.amazonaws.com/mountpoint-s3-release/latest/x86_64/mount-s3.deb"
+    mount_user: "kali"
+    mount_group: "sudo"
+    mount_s3_script_dest: "/usr/local/bin/mount-s3.sh"
+    mount_s3_script_src: "../files/kali/mount-s3.sh"
+
+  # sftp_srv_dir: "/srv/sftp"
+  ftp_srv_dir: "/srv/ftp"
+  ftp_user: "ftp_user"
+  ftp_redirector_ip: "49.67.12.21"
+  use_ftp_redirector: yes
+  ftp_pasv_min_port: 40000
+  ftp_pasv_max_port: 40003
+  tuned_profile: "virtual-guest"
+
+xrdp:
+  security_layer: "tls"
+  tls_ciphers: "FIPS:-eNULL:-aNULL"
+  crypt_level: "high"
+
+# 10.x already included
+# cidrs list used to allow access to dns server from those cidrs
+cidrs_list:
+  - prefix: "86.123.0.0/16"
+    usage: "redirect 1"
+  - prefix: "174.3.0.0/16"
+    usage: "attacker"
+  - prefix: "12.78.0.0/16"
+    usage: "neutral"
+  - prefix: "86.234.0.0/16"
+    usage: "redirect 1"
+  - prefix: "49.67.12.0/24"
+    usage: "redirect 2"
+  - prefix: "191.44.44.0/24"
+    usage: "redirect 3"
+  - prefix: "78.31.97.0/24"
+    usage: "redirect 4"
+
+domain_info_kingslanding:
+  ad_hostname: "redkeep"
+  dns_domain_name: "kingslanding.net"
+  shortname: "kingslanding"
+  tld: "net"
+  ad_ip_addr: "10.55.3.100"
+  exchange_ip_addr: "10.55.3.110"
+  safe_mode_pass: "Thud-Pulse-Expensive"
+  admin_user: evals_domain_admin
+  admin_pass: "Neurotic-Octopus"
+  exchange_admin_user: "evals_domain_admin"
+  exchange_admin_pass: "Neurotic-Octopus"
+  exchange_admin_group: "Exchange Admins"
+  evals_domain_adm: "evals_domain_admin"
+  vndr_domain_adm: "vendor_domain_admin"
+  onprem_reverse_zone_name: "55.10"
+  cloud_reverse_zone_name: "212.10"
+  onprem_admin_group_name: "On-Prem System Admins"
+  cloud_admin_group_name: "Cloud System Admins"
+
+domain_dns_records_kingslanding:
+  - host: "exchange"
+    ip: "{{ hostvars['on-prem-mail-srv1'].ansible_host }}"
+  # - host: "{{ hostvars['on-prem-mfa-srv1'].fqdn }}" # Authentik host
+  #   ip: "{{ hostvars['on-prem-mfa-srv1'].ansible_host }}"
+  - host: "{{ app_configuration.authentik_fqdn | split('.') | first }}" # Authentik app
+    ip: "{{ hostvars['on-prem-mfa-srv1'].ansible_host }}"
+  - host: "{{ app_configuration.guac_fqdn | split('.') | first }}" # Guac app
+    ip: "{{ hostvars['dmz-guacamole-srv1'].ansible_host }}"
+  - host: "{{ support_vars.airbyte_fqdn | split('.') | first }}" # Airbyte app
+    ip: "{{ hostvars['cloud-airbyte-srv1'].ansible_host }}"
+  - host: "{{ hostvars['cloud-gitlab-srv1'].fqdn }}" # Gitlab host
+    ip: "{{ hostvars['cloud-gitlab-srv1'].ansible_host }}"
+  - host: "{{ app_configuration.gitlab_fqdn | split('.') | first }}" # Gitlab app
+    ip: "{{ hostvars['cloud-gitlab-srv1'].ansible_host }}"
+  - host: "wekan" # Wekan app
+    ip: "{{ hostvars['cloud-wekan-srv1'].ansible_host }}"
+  - host: "{{ hostvars['cloud-wekan-srv1'].fqdn }}" # Wekan host
+    ip: "{{ hostvars['cloud-wekan-srv1'].ansible_host }}"
+
+domain_users_kingslanding:
+  - username: "atargaryen"
+    password: "Graph-Frozen"
+    firstname: "Aegon"
+    surname: "Targaryen"
+    group_list:
+      - Domain Users
+      - Domain Admins
+      - Schema Admins
+      - Organization Management
+  - username: "tlannister"
+    password: "Engine-Dropkick"
+    firstname: "Tyland"
+    surname: "Lannister"
+    group_list:
+      - Domain Users
+      - System Admins
+      - On-Prem System Admins
+      - Cloud System Admins
+      - Security System Admins
+  - username: "sclegane"
+    password: "Freeway-Shelve"
+    firstname: Sandor
+    surname: Clegane
+    group_list:
+      - Domain Users
+      - Cloud System Admins
+  - username: "jmormont"
+    password: "Patchwork-Spoon"
+    firstname: Jonah
+    surname: Mormont
+    group_list:
+      - Domain Users
+      - On-Prem System Admins
+  - username: "jsnow"
+    password: "Fable-Shifter"
+    firstname: Jon
+    surname: Snow
+    group_list:
+      - Domain Users
+  - username: "astark"
+    password: "Job-Parachute"
+    firstname: Arya
+    surname: Stark
+    group_list:
+      - Domain Users
+      - Security System Admins
+  - username: "dseaworth"
+    password: "Sedan-Skilled"
+    firstname: Davos
+    surname: Seaworth
+    group_list:
+      - Domain Users
+      - Domain Admins
+  - username: "mtyrell"
+    password: "Pardon-Clustered"
+    firstname: Margaery
+    surname: Tyrell
+    group_list:
+      - Domain Users
+  - username: "htargaryen"
+    password: "Pidgeon-Book"
+    firstname: Helaena
+    surname: Targaryen
+    group_list:
+      - Domain Users
+      - Domain Admins
+  - username: "ccole"
+    password: "Cruel-Bold"
+    firstname: Criston
+    surname: Cole
+    group_list:
+      - Domain Users
+  - username: "authentik"
+    password: "Derived-Stunned"
+    firstname: Authentik
+    surname: Service
+    group_list:
+      - Domain Users
+
+domain_info_vale:
+  ad_hostname: "eyrie"
+  dns_domain_name: "vale.net"
+  shortname: "vale"
+  tld: "net"
+  ad_ip_addr: "10.26.3.100"
+  safe_mode_pass: "Thud-Pulse-Expensive"
+  admin_user: evals_domain_admin
+  admin_pass: "Neurotic-Octopus"
+  evals_domain_adm: "evals_domain_admin"
+  vndr_domain_adm: "vendor_domain_admin"
+  exchange_admin_user: "evals_domain_admin"
+  exchange_admin_pass: "Neurotic-Octopus"
+  exchange_admin_group: "Exchange Admins"
+  reverse_zone_name: "26.10"
+  exchange_addr: "{{ hostvars['b3-mail-srv1'].ansible_host }}"
+
+domain_dns_records_vale:
+  - host: "guac" # Guac app
+    ip: "{{ hostvars['b3-dmz-guacamole-srv1'].ansible_host }}"
+  - host: "{{ hostvars['b3-dmz-guacamole-srv1'].hostname }}" # Guac host
+    ip: "{{ hostvars['b3-dmz-guacamole-srv1'].ansible_host }}"
+  - host: "{{ hostvars['b3-dmz-mfa-srv1'].hostname }}" # mfa/sso host
+    ip: "{{ hostvars['b3-dmz-mfa-srv1'].ansible_host }}"
+  - host: sso # mfa/sso app
+    ip: "{{ hostvars['b3-dmz-mfa-srv1'].ansible_host }}"
+  - host: "{{ hostvars['b3-mdm-srv1'].hostname }}" # mdm/fleet host
+    ip: "{{ hostvars['b3-mdm-srv1'].ansible_host }}"
+  - host: fleet # mdm/fleet app
+    ip: "{{ hostvars['b3-mdm-srv1'].ansible_host }}"
+# Replace brackets with list of host/ip pairs to add to the DNS on the DC
+# For example:
+# - host: "{{ hostvars['b3-dmz-mfa-srv1'].hostname }}" # mfa host
+#   ip: "{{ hostvars['b3-dmz-mfa-srv1'].ansible_host }}"
+
+domain_users_vale:
+  - username: "rarrayn"
+    password: "Atlantic-Exhale"
+    firstname: "Robin"
+    surname: "Arrayn"
+    group_list:
+      - Domain Users
+      - Domain Admins
+  - username: "awaynwood"
+    password: "Wheel-Grand"
+    firstname: "Anya"
+    surname: "Waynwood"
+    group_list:
+      - Domain Users
+  - username: "awaynwood.server"
+    password: "Badge-Chapped"
+    firstname: "Awaynwood"
+    surname: "Server Account"
+    group_list:
+      - Domain Users
+      - System Admins
+      - File Server Admins
+  - username: "kdrogo"
+    password: "Apply-Precision"
+    firstname: "Khal"
+    surname: "Drogo"
+    group_list:
+      - Domain Users
+      - Domain Admins
+  - username: "gworm"
+    password: "Humble-Removed"
+    firstname: "Grey"
+    surname: "Worm"
+    group_list:
+      - Domain Users
+      - Domain Admins
+  - username: "tharlaw"
+    password: "Wrecking-Pumice"
+    firstname: "Theomore"
+    surname: "Harlaw"
+    group_list:
+      - Domain Users
+      - Domain Admins
+  - username: "btully"
+    password: "Finished-Debug"
+    firstname: "Brynden"
+    surname: "Tully"
+    group_list:
+      - Domain Users
+      - File Server Admins
+  - username: "sstark"
+    password: "Flourish-Paradox"
+    firstname: "Sansa"
+    surname: "Stark"
+    group_list:
+      - Domain Users
+      - Cloud System Admins
+
+# groups
+domain_groups_common:
+  - group_name: "Domain Users"
+    description: "Domain Users"
+  - group_name: "Domain Admins"
+    description: "Domain Admins"
+  - group_name: "Exchange Admins"
+    description: "Exchange Admins"
+  - group_name: "System Admins"
+    description: "System Admins"
+  - group_name: "Cloud System Admins"
+    description: "Cloud System Admins"
+  - group_name: "On-Prem System Admins"
+    description: "On-Prem System Admins"
+  - group_name: "Security System Admins"
+    description: "Security System Admins"
+  - group_name: "Server Admins"
+    description: "Server Admins"
+  - group_name: "Organization Management"
+    description: "Organization Management"
+  - group_name: "File Server Admins"
+    description: "File Server Admins"
+  - group_name: "Vendors"
+    description: "Vendors"
+
+domain_group_local_admin: "System Admins"
+
+# users
+domain_users_common:
+  - username: evals_domain_admin
+    firstname: Evals
+    surname: Admin
+    password: "Neurotic-Octopus"
+    group_list:
+      - Domain Users
+      - Domain Admins
+      - Enterprise Admins
+      - Cloud System Admins
+      - Exchange Admins
+      - Organization Management
+  - username: vendor_domain_admin
+    firstname: Vendor
+    surname: Admin
+    password: "Cottage-Detector"
+    group_list:
+      - Domain Admins
+      - Domain Users
+      - Enterprise Admins
+      - Vendors
+      - Exchange Admins
+      - Organization Management
+  - username: evals_domain_user
+    firstname: Evals
+    surname: User
+    password: "Scope-Hyperlink"
+    group_list:
+      - Domain Users
+      - Cloud System Admins
+  - username: vendor_domain_user
+    firstname: Vendor
+    surname: User
+    password: "Subzero-Wrench"
+    group_list:
+      - Domain Users
+      - Vendors
+  - username: preflights_user
+    firstname: Preflights
+    surname: User
+    password: "Velvet-Crater"
+    group_list:
+      - Domain Admins
+      - Domain Users
+      - Vendors
+
+red_users:
+  - username: op1
+    firstname: Operator
+    surname: One
+    password: "Barbed-Directive"
+    group_list:
+      - Domain Users
+      - Domain Admins
+      - Enterprise Admins
+  - username: op2
+    firstname: Operator
+    surname: Two
+    password: "Relay-Onyx"
+    group_list:
+      - Domain Admins
+      - Domain Users
+      - Enterprise Admins
+  - username: op3
+    firstname: Operator
+    surname: Three
+    password: "Reboot-Upscale"
+    group_list:
+      - Domain Users
+  - username: op4
+    firstname: Operator
+    surname: Four
+    password: "Unshaven-Float"
+    group_list:
+      - Domain Users
+
+# red_users_sftp:
+#  - username: sftp_user
+#   firstname: SFTP
+#   surname: User
+#   password: "Gracious-Coat"
+#   group_list:
+#     - Domain Users
+
+red_users_ftp:
+  - username: ftp_user
+    firstname: FTP
+    surname: User
+    password: "Gracious-Coat"
+    group_list:
+      - Domain Users
+
+postfix2:
+  - username: fantaryon
+    firstname: Ferrego
+    surname: Antaryon
+    password: "Dollar-Notice"
+
+dns_records:
+  - fqdn: "redkeep.kingslanding.net"
+    ip: "{{ hostvars['on-prem-addc-srv1'].ansible_host }}"
+  - fqdn: "driftmark.redhound.co.nz"
+    ip: "{{ hostvars['red-kali1'].ansible_host }}"
+  - fqdn: "twins.firest0rm.ie"
+    ip: "{{ hostvars['dns-srv1'].ansible_host }}"
+  - fqdn: "{{ support_vars.choco_fqdn }}"
+    ip: "{{ hostvars['choco-srv1'].ansible_host }}"
+  - fqdn: "rmm.kingslanding-hr.com"
+    ip: "{{ hostvars['rmm-srv1'].ansible_host }}"
+  - fqdn: "api.kingslanding-hr.com"
+    ip: "{{ hostvars['rmm-srv1'].ansible_host }}"
+  - fqdn: "mesh.kingslanding-hr.com"
+    ip: "{{ hostvars['rmm-srv1'].ansible_host }}"
+  - fqdn: "mail.hulln.net"
+    ip: "{{ hostvars['postfix-srv1'].ansible_host }}" # postfix 1
+  - fqdn: "mail.lorath.com"
+    ip: "{{ hostvars['postfix-srv2'].ansible_host }}" # postfix 2
+  - fqdn: "mail.pentos.com"
+    ip: "{{ hostvars['postfix-srv3'].ansible_host }}" # postfix 3
+  - fqdn: "kingslanding-it.net" # needs to be resolvable so postfix will allow email from sender domain, ip does not matter
+    ip: "12.78.0.114"
+  - fqdn: "braavos.net" # needs to be resolvable so postfix will allow email from sender domain, ip does not matter
+    ip: "86.234.22.11"
+  - fqdn: "tyrosh.com" # needs to be resolvable so postfix will allow email from sender domain, ip does not matter
+    ip: "49.67.12.104"
+  - fqdn: "idp.braavos.com"
+    ip: "{{ hostvars['red-idp-srv1'].ansible_host }}"
+  - fqdn: "councilcasecurity.com"
+    ip: "{{ hostvars['dns-srv1'].ansible_host }}"
+
+app_configuration:
+  guac_fqdn: "guac.kingslanding.net"
+  authentik_fqdn: "sso.kingslanding.net"
+  gitlab_fqdn: "gitlab.kingslanding.net"
+  portainer_admin_password: "Agility-Zoom-Pyromania-March"
+  authentik_port: "443"
+  guac_port: "443"
+authentik_admin_token: "Slightly-Snowstorm-Semantic-Equator"
+
+redirect1_nic_cfg:
+  nics:
+    - nic: "ens6"
+      ips:
+        - ip: "86.234.15.38/16"    # kingslanding-rmm.com
+        - ip: "86.234.158.146/16"  # sso-kingslanding.net
+        - ip: "86.234.54.133/16"   # evals-preflights.org
+        - ip: "86.234.232.55/16"   # pasteme.io
+        - ip: "86.234.99.108/16"   # ramsgate.com
+
+redirect2_nic_cfg:
+  nics:
+    - nic: "ens6"
+      ips:
+        - ip: "49.67.12.21/16"   # karhold.com
+        - ip: "49.67.12.54/16"   # livesso.com
+        - ip: "49.67.12.59/16"   # mailstreamnet.com
+        - ip: "49.67.12.94/16"   # edupronewscd.com
+
+redirect3_nic_cfg:
+  nics:
+    - nic: "ens6"
+      ips:
+        - ip: "191.44.44.96/16"  # faithoftheseven.com
+        - ip: "191.44.44.169/16" # essos-news.com
+        - ip: "191.44.44.44/16"  # pentos-analysis.org
+
+redirect4_nic_cfg:
+  nics:
+    - nic: "ens6"
+      ips:
+        - ip: "78.31.97.251/16"  # maesterjam2025.com
+        - ip: "78.31.97.203/16"  # valarmorghulis.org
+
+redirect1:
+  filename: "redirect1"
+  redirects:
+    - requested_url: kingslanding-rmm.com
+      requested_ip: 86.234.15.38
+      requested_port: '80'
+      redirected_ip: "{{ hostvars['red-kali1'].ansible_host }}"
+      redirected_port: '80'
+      redirected_name: A Scenario - Simple File Server
+      protocol: tcp
+    - requested_url: sso-kingslanding.net
+      requested_ip: 86.234.158.146
+      requested_port: '80'
+      redirected_ip: "{{ hostvars['red-kali1'].ansible_host }}"
+      redirected_port: '8888'
+      redirected_name: A Scenario - Spearphishing link to adversary AITM
+      protocol: tcp
+    - requested_url: evals-preflights.org
+      requested_ip: 86.234.54.133
+      requested_port: '80'
+      redirected_ip: "{{ hostvars['red-kali1'].ansible_host }}"
+      redirected_port: '80'
+      redirected_name: A Scenario - Simple File Server (Preflight)
+      protocol: tcp
+    - requested_url: pasteme.io
+      requested_ip: 86.234.232.55
+      requested_port: '80'
+      redirected_ip: "{{ hostvars['red-kali1'].ansible_host }}"
+      redirected_port: '80'
+      redirected_name: B.1 Scenario - Simple File Server
+      protocol: tcp
+    - requested_url: ramsgate.com
+      requested_ip: 86.234.99.108
+      requested_port: '22'
+      redirected_ip: "{{ hostvars['red-kali1'].ansible_host }}"
+      redirected_port: '22'
+      redirected_name: C Scenario - SFTP
+      protocol: tcp
+
+redirect2:
+  filename: "redirect2"
+  redirects:
+    - requested_url: karhold.com
+      requested_ip: 49.67.12.21
+      requested_port: '20'
+      redirected_ip: "{{ hostvars['red-kali1'].ansible_host }}"
+      redirected_port: '20'
+      redirected_name: Hermes Scenario (Orpheus) - ftp server
+      protocol: tcp
+    - requested_url: karhold.com
+      requested_ip: 49.67.12.21
+      requested_port: '21'
+      redirected_ip: "{{ hostvars['red-kali1'].ansible_host }}"
+      redirected_port: '21'
+      redirected_name: Hermes Scenario (Orpheus) - ftp server
+      protocol: tcp
+    # Port range redirect (new format, single port redirect uses old format)
+    - requested_url: karhold.com
+      requested_ip: 49.67.12.21
+      requested_port_range:
+        start: 40000
+        end: 40004
+      redirected_ip: "{{ hostvars['red-kali1'].ansible_host }}"
+      # Optional: redirected_port_offset to shift destination ports
+      # redirected_port_offset: 1000  # Would map 30000->31000, 30001->31001, etc.
+      redirected_name: Hermes Scenario (Orpheus) - ftp server
+      protocol: tcp
+    - requested_url: livesso.com
+      requested_ip: 49.67.12.54
+      requested_port: '80'
+      redirected_ip: 12.78.0.93
+      redirected_port: '80'
+      redirected_name: Protections B.3 - Rustdesk
+      protocol: tcp
+    - requested_url: livesso.com
+      requested_ip: 49.67.12.54
+      requested_port: '443'
+      redirected_ip: 12.78.0.93
+      redirected_port: '443'
+      redirected_name: Protections B.3 - Rustdesk
+      protocol: tcp
+    - requested_url: livesso.com
+      requested_ip: 49.67.12.54
+      requested_port: '22'
+      redirected_ip: 12.78.0.93
+      redirected_port: '22'
+      redirected_name: Protections B.3 - Rustdesk
+      protocol: tcp
+    - requested_url: livesso.com  # still need entry for each protocol (tcp/udp)
+      requested_ip: 49.67.12.54
+      requested_port: '21114'
+      requested_port_range:
+        start: 21114
+        end: 21120
+      redirected_ip: 12.78.0.93
+      # Optional: redirected_port_offset to shift destination ports
+      # redirected_port_offset: 1000  # Would map 30000->31000, 30001->31001, etc.
+      redirected_name: "Protections - Rustdesk (http/signal/relay/nat tcp)"
+      protocol: tcp
+    - requested_url: livesso.com  # still need entry for each protocol (tcp/udp)
+      requested_ip: 49.67.12.54
+      requested_port: '21114'
+      requested_port_range:
+        start: 21114
+        end: 21120
+      redirected_ip: 12.78.0.93
+      # Optional: redirected_port_offset to shift destination ports
+      # redirected_port_offset: 1000  # Would map 30000->31000, 30001->31001, etc.
+      redirected_name: "Protections - Rustdesk (http/signal/relay/nat udp)"
+      protocol: udp
+    - requested_url: livesso.com
+      requested_ip: 49.67.12.54
+      requested_port: '8000'
+      redirected_ip: 12.78.0.93
+      redirected_port: '8000'
+      redirected_name: Protections B.3 - Rustdesk
+      protocol: tcp
+    - requested_url: mailstreamnet.com
+      requested_ip: 49.67.12.59
+      requested_port: '80'
+      redirected_ip: "{{ hostvars['red-kali1'].ansible_host }}"
+      redirected_port: '80'
+      redirected_name: Hermes Scenario - Perseus HTML file
+      protocol: tcp
+    - requested_url: edupronewscd.com
+      requested_ip: 49.67.12.94
+      requested_port: '80'
+      redirected_ip: "{{ hostvars['red-kali1'].ansible_host }}"
+      redirected_port: '8888'
+      redirected_name: Hermes - VSCode Tunnel Handler
+      protocol: tcp
+
+redirect3:
+  filename: "redirect3"
+  redirects:
+    - requested_url: faithoftheseven.com
+      requested_ip: 191.44.44.96
+      requested_port: '80'
+      redirected_ip: "{{ hostvars['red-kali1'].ansible_host }}"
+      redirected_port: '80'
+      redirected_name: Protections Test 5 - SFS for MSC file
+      protocol: tcp
+    - requested_url: essos-news.com
+      requested_ip: 191.44.44.169
+      requested_port: '80'
+      redirected_ip: "{{ hostvars['red-kali1'].ansible_host }}"
+      redirected_port: '80'
+      redirected_name: Protections Test 5 - SFS for MSI file
+      protocol: tcp
+    - requested_url: pentos-analysis.org
+      requested_ip: 191.44.44.44
+      requested_port: '80'
+      redirected_ip: "{{ hostvars['red-kali1'].ansible_host }}"
+      redirected_port: '80'
+      redirected_name: Hermes Scenario - Orpheus SFS for RAR
+      protocol: tcp
+    - requested_url: karstarkland.net
+      requested_ip: 191.44.44.199
+      requested_port: '443'
+      redirected_ip: "{{ hostvars['red-kali1'].ansible_host }}"
+      redirected_port: '8443'
+      redirected_name: "Orpheus C2 handler - Detections"
+      protocol: tcp
+    - requested_url: casterlystone.com
+      requested_ip: 191.44.44.224
+      requested_port: '443'
+      redirected_ip: "{{ hostvars['red-kali1'].ansible_host }}"
+      redirected_port: '8443'
+      redirected_name: "Protections Test 4 - Orpheus C2 handler"
+      protocol: tcp
+
+redirect4:
+  filename: "redirect4"
+  redirects:
+    - requested_url: ironborn.io
+      requested_ip: 78.31.97.65
+      requested_port: '443'
+      redirected_ip: "{{ hostvars['b3-dmz-mfa-srv1'].ansible_host }}"
+      redirected_port: '443'
+      redirected_name: Protections Test 7 - Attacker Proxy 1
+      protocol: tcp
+    - requested_url: shadowbinders.net
+      requested_ip: 78.31.97.72
+      requested_port: '443'
+      redirected_ip: "{{ hostvars['b3-dmz-mfa-srv1'].ansible_host }}"
+      redirected_port: '443'
+      redirected_name: Protections Test 7 - Attacker Proxy 2
+      protocol: tcp
+    - requested_url: goldcloaks.org
+      requested_ip: 78.31.97.151
+      requested_port: '443'
+      redirected_ip: "{{ hostvars['b3-dmz-mfa-srv1'].ansible_host }}"
+      redirected_port: '443'
+      redirected_name: Protections Test 7 - Attacker Proxy 3
+      protocol: tcp
+    - requested_url: valarmorghulis.org
+      requested_ip: 78.31.97.203
+      requested_port: '443'
+      redirected_ip: "{{ hostvars['red-kali1'].ansible_host }}"
+      redirected_port: '9443'
+      redirected_name: Hermes Scenario - Perseus C2 handler
+      protocol: tcp
+    - requested_url: maesterjam2025.com
+      requested_ip: 78.31.97.251
+      requested_port: '443'
+      redirected_ip: "{{ hostvars['red-kali1'].ansible_host }}"
+      redirected_port: '9443'
+      redirected_name: Protections Test 5 - Perseus C2 Handler
+      protocol: tcp

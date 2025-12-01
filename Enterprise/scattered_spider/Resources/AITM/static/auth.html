@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {transition: opacity ease-in 0.2s; }
+            body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; }
+        </style>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <title>Welcome to authentik! - authentik</title>
+        <link rel="icon" href="/static/icons/icon.png">
+        <link rel="shortcut icon" href="/static/icons/icon.png">
+        <link rel="prefetch" href="/static/images/flow_background.jpg">
+
+        <script>
+            window.authentik = {
+                locale: "en-us",
+                config: JSON.parse('{\u0022error_reporting\u0022: {\u0022enabled\u0022: false, \u0022sentry_dsn\u0022: \u0022https://151ba72610234c4c97c5bcff4e1cffd8@authentik.error\u002Dreporting.a7k.io/4504163677503489\u0022, \u0022environment\u0022: \u0022customer\u0022, \u0022send_pii\u0022: false, \u0022traces_sample_rate\u0022: 0.1}, \u0022capabilities\u0022: [\u0022can_save_media\u0022, \u0022can_asn\u0022, \u0022can_geo_ip\u0022, \u0022can_impersonate\u0022, \u0022is_enterprise\u0022], \u0022cache_timeout\u0022: 300, \u0022cache_timeout_flows\u0022: 300, \u0022cache_timeout_policies\u0022: 300, \u0022cache_timeout_reputation\u0022: 0}'),
+                brand: JSON.parse('{\u0022matched_domain\u0022: \u0022authentik\u002Ddefault\u0022, \u0022branding_title\u0022: \u0022authentik\u0022, \u0022branding_logo\u0022: \u0022/static/icons/icon_left_brand.svg\u0022, \u0022branding_favicon\u0022: \u0022/static/icons/icon.png\u0022, \u0022ui_footer_links\u0022: [], \u0022ui_theme\u0022: \u0022automatic\u0022, \u0022flow_authentication\u0022: \u0022default\u002Dauthentication\u002Dflow\u0022, \u0022flow_invalidation\u0022: \u0022default\u002Dinvalidation\u002Dflow\u0022, \u0022flow_user_settings\u0022: \u0022default\u002Duser\u002Dsettings\u002Dflow\u0022, \u0022default_locale\u0022: \u0022\u0022}'),
+                versionFamily: "2024.8",
+                versionSubdomain: "version-2024-8",
+                build: "",
+            };
+            window.addEventListener("DOMContentLoaded", function () {
+
+            });
+        </script>
+
+        <script>
+        window.authentik.flow = {
+            "layout": "stacked",
+        };
+        </script>
+
+        <link rel="stylesheet" type="text/css" href="/static/authentik.css">
+
+        <style>
+        :root {
+            --ak-flow-background: url("/static/images/flow_background.jpg");
+        }
+        </style>
+
+        <meta name="sentry-trace" content="ffff951bfa954db8bb370d970b6b039c-a6b1a233355df3bd-0">
+    </head>
+    <body>
+        <ak-message-container theme="light">
+            <ul class="pf-c-alert-group pf-m-toast">
+                <!--?lit$789608246$-->
+            </ul>
+        </ak-message-container>
+        <ak-flow-executor flowslug="default-authentication-flow" data-ak-interface-root="true" theme="light">
+            <ak-locale-context theme="light">
+                <slot></slot>
+                <div class="pf-c-background-image">
+                </div>
+                <div class="background-img">
+                    <style>
+                        body {
+                            background-image: url('/static/images/flow_background.jpg');
+                            background-repeat: no-repeat;
+                            background-size: cover;
+                        }
+                    </style>
+                </div>
+                <div class="pf-c-page__drawer">
+                    <div class="pf-c-drawer pf-m-collapsed">
+                        <div class="pf-c-drawer__main">
+                            <div class="pf-c-drawer__content">
+                                <div class="pf-c-drawer__body">
+                                    <div class="pf-c-login stacked">
+                                        <div class="ak-login-container">
+                                            <div class="pf-c-login__main">
+                                                <!--?lit$789608246$-->
+                                                <div class="pf-c-login__main-header pf-c-brand ak-brand">
+                                                    <img alt="authentik Logo" src="/static/icons/icon_left_brand.svg">
+                                                </div>
+                                                <!--?lit$789608246$-->
+                                                <ak-stage-identification theme="light">
+                                                    <header class="pf-c-login__main-header">
+                                                        <h1 class="pf-c-title pf-m-3xl"><!--?lit$789608246$-->Welcome to authentik!</h1>
+                                                    </header>
+                                                    <div class="pf-c-login__main-body">
+                                                        <form class="pf-c-form" id="pf-c-login-form">
+                                                            <!--?lit$789608246$-->
+                                                            <!--?lit$789608246$--><!--?lit$789608246$-->
+                                                            <ak-form-element required="" class="pf-c-form__group" label="Email or Username" theme="light">
+                                                                <div class="pf-c-form__group">
+                                                                    <label class="pf-c-form__label">
+                                                                        <span class="pf-c-form__label-text"><!--?lit$789608246$-->Email or Username</span>
+                                                                        <!--?lit$789608246$--><span class="pf-c-form__label-required" aria-hidden="true">*</span>
+                                                                    </label>
+                                                                    <slot></slot>
+                                                                    <!--?lit$789608246$-->
+                                                                </div>
+                                                                <input id="pf-uid-field" name="uidField" autofocus="" autocomplete="username" class="pf-c-form-control" required="" aria-invalid="false" type="text" placeholder="Email or Username">
+                                                            </ak-form-element>
+                                                            <!--?lit$789608246$-->
+                                                            <!--?lit$789608246$-->
+                                                            <div class="pf-c-form__group pf-m-action">
+                                                                <button type="submit" class="pf-c-button pf-m-primary pf-m-block">
+                                                                    <!--?lit$789608246$-->
+                                                                    Log in
+                                                                </button>
+                                                            </div>
+                                                            <!--?lit$789608246$--><!--?-->
+                                                            <!--?lit$789608246$-->
+                                                        </form>
+                                                    </div>
+                                                    <footer class="pf-c-login__main-footer">
+                                                        <ul class="pf-c-login__main-footer-links">
+                                                            <!--?lit$789608246$-->
+                                                        </ul>
+                                                        <!--?lit$789608246$-->
+                                                    </footer>
+                                                </ak-stage-identification>
+                                            </div>
+                                            <footer class="pf-c-login__footer">
+                                                <ul class="pf-c-list pf-m-inline">
+                                                    <!--?lit$789608246$-->
+                                                    <li>
+                                                        <span><!--?lit$789608246$-->Powered by authentik</span>
+                                                    </li>
+                                                </ul>
+                                            </footer>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--?lit$789608246$-->
+                        </div>
+                    </div>
+                </div>
+            </ak-locale-context>
+        </ak-flow-executor>
+    </body>
+    <script src="/static/index-2024.8.2.js"></script>
+</html>

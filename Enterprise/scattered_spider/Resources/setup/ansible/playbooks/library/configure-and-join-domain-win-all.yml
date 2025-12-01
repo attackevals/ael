@@ -1,0 +1,39 @@
+---
+# Required variables:
+# - ad_ip_addr: IP address of the Active Directory server
+# - domain_dns_name: DNS name of the domain
+# - domain_shortname: Domain short name
+# - domain_admin_user: Domain administrator username
+# - domain_admin_pass: Domain administrator password
+
+- name: Configure DNS to use AD Server
+  ansible.windows.win_dns_client:
+    adapter_names: '*'
+    dns_servers:
+      - "{{ ad_ip_addr }}"
+
+- name: Join AD Domain
+  microsoft.ad.membership:
+    dns_domain_name: "{{ domain_dns_name }}"
+    domain_admin_user: "{{ domain_shortname}}\\{{ domain_admin_user }}"
+    domain_admin_password: "{{ domain_admin_pass }}"
+    state: domain
+    reboot: yes
+
+- name: Add domain admins to local admin
+  ansible.windows.win_group_membership:
+    name: Administrators
+    members:
+      - "{{ domain_shortname }}\\Domain Admins"
+
+- name: Add admins and users to RDP group
+  ansible.windows.win_group_membership:
+    name: Remote Desktop Users
+    members:
+      - "{{ domain_shortname }}\\Domain Users"
+      - "{{ domain_shortname }}\\Domain Admins"
+
+- name: Enable network sharing
+  win_shell: |
+    netsh advfirewall firewall set rule group="Network Discovery" new enable=Yes
+  register: share_result

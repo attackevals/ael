@@ -1,0 +1,8 @@
+server:
+  # add a and ptr records
+  {% for zone in item.redirects %}
+  # dns record to forward {{ zone.requested_url }}, {{ zone.requested_ip }} to {{ zone.redirected_ip }}, {{ zone.redirected_name }}
+  local-data: "{{ zone.requested_url }}. A {{ zone.requested_ip }}"
+  local-data-ptr: "{{ zone.requested_ip }} {{ zone.requested_url }}."
+
+  {% endfor %}

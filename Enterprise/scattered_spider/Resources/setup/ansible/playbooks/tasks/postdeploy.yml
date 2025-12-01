@@ -1,0 +1,11 @@
+---
+# base postdeploy stuff
+- import_playbook: certs-sync.yml
+- import_playbook: update-authentik-postdeploy.yml
+- import_playbook: enroll-ssm-systems.yml
+- import_playbook: rustdesk-deploy-key.yml
+- import_playbook: rustdesk-deploy.yml
+- import_playbook: s3-keys.yml
+- import_playbook: decoy-files.yml
+- import_playbook: gather-info.yml
+- import_playbook: configure-preflights.yml

@@ -1,0 +1,4 @@
+{
+  "expiry": "{{ crl_days * 24 }}h",
+  "crl_number": "{{ ansible_date_time.epoch | default(0) }}"
+}

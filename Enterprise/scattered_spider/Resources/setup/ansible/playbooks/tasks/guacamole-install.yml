@@ -1,0 +1,46 @@
+---
+- name: Deploy Guacamole A
+  hosts: dmz-guacamole-srv1
+  become: true
+  vars:
+    domain_info: "{{ domain_info_kingslanding }}"
+    domain_name: "{{ domain_info.dns_domain_name }}"
+    authentik_admin_token: "Slightly-Snowstorm-Semantic-Equator"
+    authentik_port: "443"
+    authentik_domain: "sso.{{ domain_name }}"
+    guac_postgres_db: "guacamole_db"
+    guac_postgres_user: "guacamole_user"
+    guac_postgres_password: "Device-Reshuffle-Bullfight-Chummy"
+    guacamole_domain: "guac.{{ domain_name }}"
+    guac_port: "{{ app_configuration.guac_port }}"
+    oidc_client_id: "guacamole"
+  vars_files:
+    - ../vars/cert_vars.yml
+    - ../vars/vars.yml
+  roles:
+    - guacamole
+
+- import_playbook: guacamole-populate-a.yml
+
+- name: Deploy Guacamole B
+  hosts: b3-dmz-guacamole-srv1
+  become: true
+  vars:
+    domain_info: "{{ domain_info_vale }}"
+    domain_name: "{{ domain_info.dns_domain_name }}"
+    authentik_admin_token: "Slightly-Snowstorm-Semantic-Equator"
+    authentik_port: "443"
+    authentik_domain: "sso.{{ domain_name }}"
+    guac_postgres_db: "guacamole_db"
+    guac_postgres_user: "guacamole_user"
+    guac_postgres_password: "Device-Reshuffle-Bullfight-Chummy"
+    guacamole_domain: "guac.{{ domain_name }}"
+    guac_port: "443"
+    oidc_client_id: "guacamole"
+  vars_files:
+    - ../vars/cert_vars.yml
+    - ../vars/vars.yml
+  roles:
+    - guacamole
+
+- import_playbook: guacamole-populate-b.yml

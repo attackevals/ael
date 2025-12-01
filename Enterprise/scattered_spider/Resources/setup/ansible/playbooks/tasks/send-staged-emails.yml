@@ -1,0 +1,159 @@
+---
+- name: Send Emails with Populated Variables
+  hosts: redirect-srv1
+  gather_facts: yes
+  vars:
+    mail_server: mail.hulln.net
+    email_dest: tlannister@kingslanding.net
+    email_script_path: "/tmp/email_scripts/send_email.py"
+    templates_path: "/tmp/email_templates"
+    local_script_path: "{{ playbook_dir }}/../files/email-population/email_generation_script/send_email.py"
+    local_templates_path: "{{ playbook_dir }}/../files/email-population/html-templates"
+
+    # Common variables
+    aws_account_id: "{{ hostvars[groups['linux_cloud'][0]]['detections_acct_arn']  }}"
+    aws_account_last_4: "{{ hostvars[groups['linux_cloud'][0]]['detections_acct_arn'][-4:] }}"
+    aws_login_link: "https://signin.aws.amazon.com/console"
+    aws_account_billing_link: "https://console.aws.amazon.com/billing/home"
+    aws_support_link: "https://aws.amazon.com/support"
+    username: "tlannister"
+    date: "{{ '%Y-%m-%d' | strftime }}"
+    month: "{{ '%B' | strftime }}"
+
+    # Airbyte specific variables
+    airbyte_login_link: "https://rookery.kingslanding.net/login"
+    airbyte_connections_link: "https://rookery.kingslanding.net/connections"
+    health_check_check_link: "https://rookery.kingslanding.net/health-check"
+    email_link: "mailto:support@kingslanding.net"
+
+    # AWS specific variables
+    billing_amount: "42.71"
+
+    # Job specific variables
+    job_id: "job-229417"
+    job_source: "MongoDB"
+    job_dest: "Snowflake"
+    job_status: "Completed"
+
+    # Email configurations
+    emails:
+      - name: airbyte_health_check
+        template: "airbyte/htmls/health_check_alert.html"
+        from: "no-reply@rookery.kingslanding.net"
+        subject: "Connection Warning"
+      - name: airbyte_new_user
+        template: "airbyte/htmls/new_user.html"
+        from: "no-reply@rookery.kingslanding.net"
+        subject: "Welcome to Airbyte"
+      - name: airbyte_sync_job
+        template: "airbyte/htmls/sync_job.html"
+        from: "no-reply@rookery.kingslanding.net"
+        subject: "Sync Job Failed"
+      - name: aws_billing
+        template: "aws/htmls/Amazon_Web_Services_Billing_Statement_Available.html"
+        from: "no-reply-aws@amazon.com"
+        subject: "Amazon Web Services Billing Statement Available [Account {{ aws_account_id }}]"
+      - name: aws_free_limit
+        template: "aws/htmls/AWS_Free_limit_alert.html"
+        from: "no-reply-aws@amazon.com"
+        subject: "AWS Free limit alert"
+      - name: aws_iam_invitation
+        template: "aws/htmls/Invitation_to_join_AWS_IAM.html"
+        from: "no-reply-aws@amazon.com"
+        subject: "[EXT] Invitation to join AWS IAM"
+
+  tasks:
+    # Create directories on remote host
+    - name: Ensure script directory exists
+      ansible.builtin.file:
+        path: "/tmp/email_scripts"
+        state: directory
+        mode: '0755'
+
+    # No need to create templates directory on remote host since we render locally
+
+    # Copy necessary files to remote host
+    - name: Copy email script to remote host
+      ansible.builtin.copy:
+        src: "{{ local_script_path }}"
+        dest: "{{ email_script_path }}"
+        mode: '0755'
+
+    # No need to copy raw templates to remote host since we'll render them locally
+
+    # Create local temporary directory for rendered templates
+    - name: Create local temporary directory for rendered templates
+      ansible.builtin.tempfile:
+        state: directory
+        suffix: email_templates
+      register: local_temp_dir
+      delegate_to: localhost
+
+    # Render all templates locally
+    - name: Render email templates locally
+      ansible.builtin.template:
+        src: "{{ local_templates_path }}/{{ item.template }}"
+        dest: "{{ local_temp_dir.path }}/{{ item.name }}.html"
+      loop: "{{ emails }}"
+      loop_control:
+        label: "{{ item.name }}"
+      delegate_to: localhost
+
+    # Create remote temporary directory
+    - name: Create remote temporary directory for rendered templates
+      ansible.builtin.tempfile:
+        state: directory
+        suffix: email_templates
+      register: remote_temp_dir
+
+    # Copy rendered templates to remote host
+    - name: Copy rendered templates to remote host
+      ansible.builtin.copy:
+        src: "{{ local_temp_dir.path }}/{{ item.name }}.html"
+        dest: "{{ remote_temp_dir.path }}/{{ item.name }}.html"
+        mode: '0644'
+      loop: "{{ emails }}"
+      loop_control:
+        label: "{{ item.name }}"
+
+    # Send all emails
+    - name: Send emails
+      ansible.builtin.command: >
+        python3 {{ email_script_path }} {{ mail_server }} {{ remote_temp_dir.path }}/{{ item.name }}.html
+        -t {{ email_dest }}
+        -f {{ item.from }}
+        -s "{{ item.subject }}"
+      register: email_results
+      loop: "{{ emails }}"
+      loop_control:
+        label: "{{ item.name }}"
+      ignore_errors: yes
+
+    # Clean up remote directory
+    - name: Remove remote temporary directory
+      ansible.builtin.file:
+        path: "{{ remote_temp_dir.path }}"
+        state: absent
+      when: remote_temp_dir.path is defined
+
+    # Clean up local directory
+    - name: Remove local temporary directory
+      ansible.builtin.file:
+        path: "{{ local_temp_dir.path }}"
+        state: absent
+      when: local_temp_dir.path is defined
+      delegate_to: localhost
+
+    - name: Clean up script (optional)
+      ansible.builtin.file:
+        path: "/tmp/email_scripts"
+        state: absent
+      when: cleanup_remote_files | default(true)
+
+    # Display results
+    - name: Show email sending results
+      ansible.builtin.debug:
+        msg: "{{ item.item.name }}: {{ 'Success' if item.rc == 0 else 'Failed' }}"
+      loop: "{{ email_results.results }}"
+      loop_control:
+        label: "{{ item.item.name }}"

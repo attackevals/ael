@@ -1,0 +1,99 @@
+---
+- name: Create CA directory
+  ansible.builtin.file:
+    path: "{{ certs_folder }}/ca/"
+    state: directory
+
+- name: Create cfssl config directory
+  ansible.builtin.file:
+    path: "{{ certs_folder }}/config/"
+    state: directory
+
+# Include CRL tasks if enabled
+#- name: Include CRL setup tasks
+#  ansible.builtin.import_tasks: ../../certs_crl/tasks/crl.yml
+#  when: crl_enabled | bool
+
+- name: Template CA configuration
+  ansible.builtin.template:
+    src: ca-config.json.j2
+    dest: "{{ certs_folder }}/config/ca-config.json"
+  vars:
+    ca_config:
+      signing:
+        default:
+          expiry: "8760h"
+        profiles:
+          server:
+            usages:
+              - signing
+              - key encipherment
+              - server auth
+            expiry: "8760h"
+
+- name: Template CA CSR configuration
+  ansible.builtin.template:
+    src: ca-csr.json.j2
+    dest: "{{ certs_folder }}/config/ca-csr.json"
+  vars:
+    ca_csr:
+      CN: "{{ ca_common_name }}"
+      key:
+        algo: "rsa"
+        size: 4096
+      names:
+        - C: "{{ ca_country_name }}"
+          L: "{{ ca_locality_name }}"
+          O: "{{ ca_organization_name }}"
+          ST: "{{ ca_state_or_province_name }}"
+
+- name: Generate CA certificate
+  # language=Shell
+  ansible.builtin.shell: |
+    cfssl gencert -initca {{ certs_folder }}/config/ca-csr.json | cfssljson -bare {{ certs_folder }}/ca/{{ ca_cert_name }}
+  args:
+    creates: "{{ certs_folder }}/ca/{{ ca_cert_name }}.pem"
+
+- name: Create site directories
+  file:
+    path: "{{ certs_folder }}/{{ item.0.domain }}/{{ item.1.name }}"
+    state: directory
+  loop: "{{ query('subelements', cert_domains, 'sites') }}"
+
+- name: Template server CSR configurations
+  ansible.builtin.template:
+    src: server-csr.json.j2
+    dest: "{{ certs_folder }}/{{ item.0.domain }}/{{ item.1.name }}/{{ item.1.name }}.{{ item.0.domain }}-csr.json"
+  loop: "{{ query('subelements', cert_domains, 'sites') }}"
+  vars:
+    server_csr:
+      CN: "{{ item.1.name }}.{{ item.0.domain }}"
+      key:
+        algo: "rsa"
+        size: 2048
+      names:
+        - C: "{{ ca_country_name }}"
+          L: "{{ ca_locality_name }}"
+          O: "{{ ca_organization_name }}"
+          ST: "{{ ca_state_or_province_name }}"
+      hosts: >-
+        {{
+          ([item.1.name + '.' + item.0.domain] +
+           (item.1.dns | default([]) | map('regex_replace', '^(.*)$', '\1.' + item.0.domain) | list) +
+           ([item.1.ip] if item.1.ip is defined else []))
+          | unique | list
+        }}
+
+- name: Generate server certificates
+  # language=Shell
+  ansible.builtin.shell: |
+    cfssl gencert \
+      -ca={{ certs_folder }}/ca/{{ ca_cert_name }}.pem \
+      -ca-key={{ certs_folder }}/ca/{{ ca_cert_name }}-key.pem \
+      -config={{ certs_folder }}/config/ca-config.json \
+      -profile=server \
+      {{ certs_folder }}/{{ item.0.domain }}/{{ item.1.name }}/{{ item.1.name }}.{{ item.0.domain }}-csr.json | \
+      cfssljson -bare {{ certs_folder }}/{{ item.0.domain }}/{{ item.1.name }}/{{ item.1.name }}.{{ item.0.domain }}
+  loop: "{{ query('subelements', cert_domains, 'sites') }}"
+  args:
+    creates: "{{ certs_folder }}/{{ item.0.domain }}/{{ item.1.name }}/{{ item.1.name }}.{{ item.0.domain }}.pem"

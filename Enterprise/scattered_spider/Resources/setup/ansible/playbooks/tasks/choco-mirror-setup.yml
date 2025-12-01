@@ -1,0 +1,160 @@
+---
+- name: Install and Configure SonaType Nexus container for Choco Mirror
+  become: yes
+  hosts: linux_choco
+  vars:
+    nexus_container_name: "nexus"
+    nexus_data_dir: "/opt/nexus-data"
+    nexus_port: "80"
+    nexus_image: "sonatype/nexus3:3.84.1"
+
+  tasks:
+    - name: Install general linux dependencies
+      ansible.builtin.apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - cockpit
+          - cockpit-machines
+          - curl
+          - etckeeper
+          - git
+          - libvirt-daemon-system
+          - packagekit
+          - python3-lxml
+          - software-properties-common
+          - tuned
+          - tuned-utils
+        state: present
+        update_cache: yes
+
+    - name: Install docker repo
+      block:
+        - name: docker |no apt key
+          ansible.builtin.get_url:
+            url: https://download.docker.com/linux/ubuntu/gpg
+            dest: /etc/apt/keyrings/docker.asc
+
+        - name: docker repo | apt source
+          ansible.builtin.apt_repository:
+            repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+            update_cache: yes
+            state: present
+
+    - name: Install docker-ce
+      ansible.builtin.apt:
+        name:
+          - docker-ce
+        state: present
+        update_cache: yes
+
+    - name: Add user to docker group
+      ansible.builtin.user:
+        name: "{{ ansible_user }}"
+        groups: docker
+        append: yes
+
+    - name: Create nexus data directory
+      ansible.builtin.file:
+        path: "{{ nexus_data_dir }}"
+        state: directory
+        owner: "200"
+        group: "200"
+        mode: '0755'
+
+    # docker run -d --name nexus -p 80:8081 sonatype/nexus3:3.84.1
+    - name: Start Nexus container
+      community.docker.docker_container:
+        name: "{{ nexus_container_name }}"
+        image: "{{ nexus_image }}"
+        state: started
+        restart_policy: always
+        published_ports:
+          - "{{ nexus_port }}:8081"
+        volumes:
+          - "{{ nexus_data_dir }}:/nexus-data"
+        env:
+          INSTALL4J_ADD_VM_PARAMS: "-Xms1g -Xmx1g -XX:MaxDirectMemorySize=2g"
+
+    - name: Wait for Nexus to start
+      ansible.builtin.uri:
+        url: "http://localhost:{{ nexus_port }}/service/rest/v1/status"
+        method: GET
+        status_code: 200
+      register: nexus_status
+      until: nexus_status.status == 200
+      retries: 30
+      delay: 10
+
+    - name: Get initial admin password
+      ansible.builtin.slurp:
+        src: "{{ nexus_data_dir }}/admin.password"
+      register: nexus_admin_password
+      ignore_errors: yes
+
+    - name: Display initial admin password
+      ansible.builtin.debug:
+        msg: "Initial Nexus admin password: {{ nexus_admin_password.content | b64decode | trim }}"
+      when: nexus_admin_password is succeeded
+
+    - name: Create Chocolatey proxy repository via API
+      ansible.builtin.uri:
+        url: "http://localhost:{{ nexus_port }}/service/rest/v1/repositories/nuget/proxy"
+        method: POST
+        url_username: admin
+        url_password: "{{ nexus_admin_password.content | b64decode | trim }}"
+        force_basic_auth: yes
+        body_format: json
+        body:
+          name: "chocolatey-proxy"
+          online: true
+          storage:
+            blobStoreName: "default"
+            strictContentTypeValidation: true
+          proxy:
+            remoteUrl: "https://community.chocolatey.org/api/v2/"
+            contentMaxAge: 1440
+            metadataMaxAge: 1440
+          negativeCache:
+            enabled: true
+            timeToLive: 1440
+          httpClient:
+            blocked: false
+            autoBlock: true
+          nugetProxy:
+            nugetVersion: "V3"
+            queryCacheItemMaxAge: 3600
+        status_code: [201, 400]
+      when: nexus_admin_password is succeeded
+      ignore_errors: yes
+
+    - name: Accept Nexus EULA
+      ansible.builtin.uri:
+        url: "http://localhost:{{ nexus_port }}/service/rest/v1/system/eula"
+        method: POST
+        url_username: admin
+        url_password: "{{ nexus_admin_password.content | b64decode | trim }}"
+        force_basic_auth: yes
+        body_format: json
+        body:
+          accepted: true
+          disclaimer: "Use of Sonatype Nexus Repository - Community Edition is governed by the End User License Agreement at https://links.sonatype.com/products/nxrm/ce-eula. By returning the value from ‘accepted:false’ to ‘accepted:true’, you acknowledge that you have read and agree to the End User License Agreement at https://links.sonatype.com/products/nxrm/ce-eula."
+        status_code: [200]
+      when: nexus_admin_password is succeeded
+      ignore_errors: yes
+
+    - name: Allow anonymous access to Nexus/Chocolatey proxy
+      ansible.builtin.uri:
+        url: "http://localhost:{{ nexus_port }}/service/rest/v1/security/anonymous"
+        method: POST
+        url_username: admin
+        url_password: "{{ nexus_admin_password.content | b64decode | trim }}"
+        force_basic_auth: yes
+        body_format: json
+        body:
+          enabled: true
+          userId: "anonymous"
+          realmName: "NexusAuthorizingRealm"
+        status_code: [200]
+      when: nexus_admin_password is succeeded
+      ignore_errors: yes

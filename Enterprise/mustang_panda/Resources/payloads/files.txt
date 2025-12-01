@@ -1,0 +1,9 @@
+*.pdf
+*.doc*
+*.xls*
+*.ppt*
+*.txt
+*.csv
+*\users\*.png
+*\users\*.jpg
+*\users\*.jpeg

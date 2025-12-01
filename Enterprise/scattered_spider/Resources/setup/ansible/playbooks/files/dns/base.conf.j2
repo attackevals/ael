@@ -1,0 +1,8 @@
+server:
+
+    # allow rfc1918 dns override
+    local-zone: "10.in-addr.arpa." transparent
+    local-zone: "local." static
+
+    use-syslog: yes
+    log-queries: yes

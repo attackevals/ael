@@ -1,0 +1,45 @@
+---
+- name: Get rustdesk token for url access
+  hosts: rustdesk-srv1
+  become: yes
+  vars:
+    rustdesk_admin_password_file: "/opt/rustdesk/admin_token.txt"
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: use slurp to retrieve value of admin token file
+      ansible.builtin.slurp:
+        src: "{{ rustdesk_admin_password_file }}"
+      register: rustdesk_admin_pw_b64
+      tags:
+        - rustdesk-client
+
+      # slurp loves the base64, cant get enough
+    - name: decode slurped file
+      ansible.builtin.set_fact:
+        rustdesk_admin_password: "{{ rustdesk_admin_pw_b64['content'] | b64decode }}"
+      tags:
+        - rustdesk-client
+
+### time to grab file from kali
+
+- name: Configure Kali box
+  hosts:
+    - linux_kali
+  gather_facts: yes
+  become: yes
+  vars_files:
+    - ../vars/vars.yml
+  vars:
+    rustdesk_user: "op1"
+
+  tasks:
+    - name: grab rustdesk installer and install client
+      ansible.builtin.shell: |
+        curl -u "admin:{{ hostvars['rustdesk-srv1'].rustdesk_admin_password }}" http://{{ hostvars['rustdesk-srv1'].ansible_host }}/linuxclientinstall.sh | bash
+      args:
+        executable: /bin/bash
+      tags:
+        - rustdesk-client
+      when: hostvars['rustdesk-srv1'].rustdesk_admin_password is defined

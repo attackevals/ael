@@ -1,0 +1,71 @@
+---
+- name: Install Portainer
+  hosts: linux_docker
+  become: yes
+  vars:
+    portainer_version: "latest"
+    portainer_port: 4443
+    portainer_data_path: /opt/portainer
+    portainer_admin_password: "{{ app_configuration.portainer_admin_password }}"
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: Delete Portainer data directory if exists (overwrite)
+      file:
+        path: "{{ portainer_data_path }}"
+        state: absent
+
+    - name: Create Portainer data directory
+      file:
+        path: "{{ portainer_data_path }}"
+        state: directory
+        mode: '0750'
+
+    - name: Remove existing Portainer container if exists (overwrite)
+      community.docker.docker_container:
+        name: portainer
+        state: absent
+
+    - name: Set admin password
+      copy:
+        content: "{{ portainer_admin_password }}"
+        dest: "{{ portainer_data_path }}/admin_password.txt"
+        mode: '0600'
+      when: portainer_admin_password is defined
+
+    - name: Deploy Portainer
+      community.docker.docker_container:
+        name: portainer
+        image: "portainer/portainer-ce:{{ portainer_version }}"
+        state: started
+        restart_policy: always
+        ports:
+          - "{{ portainer_port }}:9443"
+          - "8000:8000"  # Required for Edge agent communication
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock:ro
+          - "{{ portainer_data_path }}:/data"
+        command:
+          - --admin-password-file
+          - /data/admin_password.txt
+
+    - name: Wait for Portainer to be available
+      uri:
+        url: "https://localhost:{{ portainer_port }}"
+        validate_certs: no
+        status_code: 200
+      register: result
+      until: result.status == 200
+      retries: 30
+      delay: 1
+      ignore_errors: yes
+
+    - name: Print installation complete message
+      debug:
+        msg: |
+          Portainer has been installed successfully, time for pizza party!
+          Access it at https://{{ hostvars[inventory_hostname].ansible_host }}:{{ portainer_port }}
+          Default credentials:
+          Username: admin
+          Password: {{ portainer_admin_password |  default('not set') }}

@@ -1,0 +1,76 @@
+---
+- name: Check if IAM user exists
+  amazon.aws.iam_user_info:
+    name: "{{ user_name }}"
+  register: iam_user_check
+  failed_when: false
+  delegate_to: localhost
+
+- name: Debug IAM user info result
+  debug:
+    var: iam_user_check
+
+- name: Proceed only if IAM user exists
+  block:
+
+    - name: Create new access key for user
+      amazon.aws.iam_access_key:
+        user_name: "{{ user_name }}"
+        state: present
+        rotate_keys: true
+      register: access_key_result
+
+    - name: Set active access key variables
+      set_fact:
+        access_key_id_final: "{{ access_key_result.access_key_id }}"
+        secret_access_key_final: "{{ access_key_result.secret_access_key }}"
+        s3_test_bucket_access_name: "{{ vendor_item.hash_prefix }}-{{ vendor_item.suffix }}"
+
+    - name: Validate access key by listing bucket using aws CLI
+      ansible.builtin.command:
+        cmd: >
+          aws s3api list-objects-v2
+          --bucket {{ s3_test_bucket_access_name }}
+          --max-items 1
+      environment:
+        AWS_ACCESS_KEY_ID: "{{ access_key_id_final }}"
+        AWS_SECRET_ACCESS_KEY: "{{ secret_access_key_final }}"
+      register: s3_cli_validation
+      retries: 5
+      delay: 2
+      until: s3_cli_validation.rc == 0 and
+             '"AccessDenied"' not in s3_cli_validation.stderr and
+             '"InvalidAccessKeyId"' not in s3_cli_validation.stderr
+      failed_when: s3_cli_validation.rc != 0 or '"AccessDenied"' in s3_cli_validation.stderr
+      changed_when: false
+      delegate_to: localhost
+
+    - name: Ensure key staging directory exists
+      ansible.builtin.file:
+        path: "{{ key_staging_dir }}"
+        state: directory
+        mode: '0755'
+
+    - name: Create enriched CSV file
+      template:
+        src: user_keys.csv.j2
+        dest: "{{ key_staging_dir }}/{{ s3_user_key_filename }}"
+      vars:
+        user_name_var: "{{ user_name }}"
+        access_key_id: "{{ access_key_id_final }}"
+        secret_access_key: "{{ secret_access_key_final }}"
+        vendor_name: "{{ vendor_name }}"
+        s3_bucket_url: "{{ s3_bucket_url }}"
+
+    - name: Upload CSV to S3
+      amazon.aws.aws_s3:
+        bucket: "{{ s3_bucket_name }}"
+        object: "{{ s3_object_prefix }}"
+        src: "{{ key_staging_dir}}/{{ s3_user_key_filename }}"
+        mode: put
+  when: iam_user_check.iam_users is defined and iam_user_check.iam_users | length > 0
+
+- name: Log skipped IAM user
+  debug:
+    msg: "Skipping IAM user '{{ user_name }}' for vendor '{{ range_name }}'.  — user does not exist in AWS."
+  when: iam_user_check.iam_users is not defined or iam_user_check.iam_users | length == 0

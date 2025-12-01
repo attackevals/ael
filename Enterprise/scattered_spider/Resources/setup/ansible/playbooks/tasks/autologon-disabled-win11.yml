@@ -1,0 +1,36 @@
+---
+- name: Disable autologon
+  hosts: windows_desktops
+  strategy: free
+  become: yes
+  gather_facts: false
+
+  tasks:
+    - name: Disable autologon
+      win_shell: |
+        $RegKey = “HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon”
+        ForEach ($subkey in “AutoAdminLogon”, “DefaultPassword”)
+        {
+        if (Get-ItemProperty -Name $subkey -path $RegKey -ErrorAction SilentlyContinue)
+        {
+        Remove-ItemProperty -Path $RegKey -Name $subkey
+        }
+        }
+
+    - name: Reboot the machine with all defaults
+      ansible.windows.win_reboot:
+
+- name: Set windows devadmin login
+  hosts: windows
+  become: yes
+  gather_facts: false
+
+  tasks:
+    - name: Ensure devadmin does not expire
+      ansible.windows.win_user:
+        name: "devadmin"
+        password_never_expires: yes
+        state: present
+        account_disabled: no
+        account_locked: no
+        password_expired: no

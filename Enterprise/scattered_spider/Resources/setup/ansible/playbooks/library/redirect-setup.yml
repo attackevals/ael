@@ -1,0 +1,139 @@
+---
+# Required variables:
+# - None (this task uses AWS metadata and built-in configurations)
+
+- name: Copy resolv dns configuration
+  template:
+    src: "../files/common/resolv.conf.j2"
+    dest: "/etc/resolv.conf"
+    mode: '0644'
+    owner: root
+    group: root
+
+- name: Install redirector deps and useful tools
+  ansible.builtin.apt:
+    name:
+      - curl
+      - etckeeper
+      - iptables-persistent
+      - git
+      - packagekit
+      - resolvconf
+      - tuned
+      - tuned-utils
+    state: present
+    update_cache: yes
+
+# Collect all local IPs from AWS metadata
+- name: Get primary interface MAC
+  ansible.builtin.shell: curl -s http://169.254.169.254/latest/meta-data/network/interfaces/macs/ | head -1
+  register: primary_mac
+  ignore_errors: yes
+
+- name: Get primary interface IPs
+  ansible.builtin.shell: curl -s http://169.254.169.254/latest/meta-data/network/interfaces/macs/{{ primary_mac.stdout }}/local-ipv4s/
+  register: primary_ips
+  ignore_errors: yes
+
+- name: Get all interface MACs
+  ansible.builtin.shell: curl -s http://169.254.169.254/latest/meta-data/network/interfaces/macs/
+  register: all_macs
+  ignore_errors: yes
+
+- name: Initialize local IPs list
+  ansible.builtin.set_fact:
+    local_ips: ["127.0.0.0/8"]
+
+- name: Add primary IPs to local IPs list
+  ansible.builtin.set_fact:
+    local_ips: "{{ local_ips + [item] }}"
+  with_items: "{{ primary_ips.stdout_lines | default([]) }}"
+  when: primary_ips.stdout_lines is defined and primary_ips.stdout_lines | length > 0
+
+- name: Process secondary interfaces for local IPs
+  block:
+    - name: Get all secondary MACs
+      ansible.builtin.set_fact:
+        secondary_macs: "{{ all_macs.stdout_lines | default([]) | difference([primary_mac.stdout]) }}"
+
+    - name: Get secondary interface IPs
+      ansible.builtin.shell: curl -s http://169.254.169.254/latest/meta-data/network/interfaces/macs/{{ item }}/local-ipv4s/
+      register: secondary_ips_results
+      with_items: "{{ secondary_macs }}"
+      when: secondary_macs | length > 0
+
+    - name: Add secondary IPs to local IPs list
+      ansible.builtin.set_fact:
+        local_ips: "{{ local_ips + [item] }}"
+      with_items: "{{ secondary_ips.stdout_lines | default([]) }}"
+      when: secondary_ips.stdout_lines is defined and secondary_ips.stdout_lines | length > 0
+  when: all_macs.stdout_lines is defined and all_macs.stdout_lines | length > 1
+
+- name: Configure redirect script for host
+  template:
+    src: "../files/redirectors/enable-traffic-forwarding-rules.sh.j2"
+    dest: "/usr/local/bin/enable-traffic-forwarding-rules.sh"
+    mode: '0755'
+    group: root
+    owner: root
+
+- name: Copy disable script
+  copy:
+    src: "../files/redirectors/disable-traffic-forwarding-rules.sh"
+    dest: "/usr/local/bin/"
+    mode: '0755'
+    owner: root
+    group: root
+
+- name: Copy print script
+  copy:
+    src: "../files/redirectors/print-traffic-forwarding-rules.sh"
+    dest: "/usr/local/bin/"
+    mode: '0755'
+    owner: root
+    group: root
+
+- name: Copy sysctl conf
+  copy:
+    src: "../files/redirectors/98-er6.conf"
+    dest: "/etc/sysctl.d/"
+    mode: '0644'
+    owner: root
+    group: root
+
+- name: Apply sysctl conf
+  ansible.builtin.shell: |
+    sysctl --system
+  ignore_errors: yes
+
+- name: Configure netplan for additional IPs
+  template:
+    src: "../files/redirectors/redirect1-51-ens6.yaml.j2"
+    dest: "/etc/netplan/51-redirect-ips.yaml"
+    mode: '0644'
+
+- name: Apply netplan rules
+  ansible.builtin.shell: |
+    netplan --debug apply
+  ignore_errors: yes
+
+- name: Flush iptables rules
+  ansible.builtin.command: iptables -t nat -v -F
+  ignore_errors: yes
+  become: yes
+
+- name: Process forwarding rules
+  ansible.builtin.command: /usr/local/bin/enable-traffic-forwarding-rules.sh
+  async: 60
+  poll: 5
+  ignore_errors: yes
+  become: yes
+
+- name: Save and persist forwarding rules
+  ansible.builtin.shell: |
+    sudo netfilter-persistent save
+  ignore_errors: yes
+  become: yes
+
+- name: reboot hosts
+  ansible.builtin.reboot:

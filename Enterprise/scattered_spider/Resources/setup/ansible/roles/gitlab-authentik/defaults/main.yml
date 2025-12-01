@@ -1,0 +1,14 @@
+---
+
+app_name: "GitLab"
+app_slug: "gitlab"
+domain_info: "{{ domain_info_kingslanding }}"
+domain_name: "{{ domain_info.dns_domain_name }}"
+authentik_admin_token: "Slightly-Snowstorm-Semantic-Equator"
+authentik_port: "443"
+authentik_domain: "sso.{{ domain_name }}"
+gitlab_domain: "gitlab.{{ domain_name }}"
+gitlab_port: "443"
+oidc_client_id: "gitlab"
+gitlab_authentik_label_text: "GitLab SSO Login"
+gitlab_config_file: "/etc/gitlab/gitlab.rb"

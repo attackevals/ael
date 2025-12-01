@@ -1,0 +1,208 @@
+import argparse
+import os
+import time
+
+import git
+import gitlab
+
+# Static commit variables using gitlab-staging-repo
+ssh_key_path = "{{ gitlab_priv_key_path }}"
+commits = [
+    {
+        "branch": "configs",
+        "commit_message": "Changing name to old README",
+        "actions": [
+            {
+                "action": "move",
+                "file_path": "Quickstarts_README.md",
+                "previous_path": "README.md",
+            },
+        ],
+    },
+    {
+        "branch": "configs",
+        "commit_message": "Adding README",
+        "actions": [
+            {
+                "action": "create",
+                "file_path": "README.md",
+                "content": open("gitlab-staging-repo/README.md").read(),
+            },
+        ],
+    },
+    {
+        "branch": "configs",
+        "commit_message": "AirByte CLI install script",
+        "actions": [
+            {
+                "action": "create",
+                "file_path": "pkg/setup/abctl-setup.sh",
+                "content": open(
+                    "gitlab-staging-repo/pkg/setup/abctl-setup.sh",
+                ).read(),
+            },
+        ],
+    },
+    {
+        "branch": "configs",
+        "commit_message": "Adding backup-config script",
+        "actions": [
+            {
+                "action": "create",
+                "file_path": "pkg/backup-config.sh",
+                "content": open("gitlab-staging-repo/pkg/backup-config.sh").read(),
+            },
+            {
+                "action": "create",
+                "file_path": "pkg/setup/id_rsa",
+                "content": open(ssh_key_path).read(),
+            },
+        ],
+    },
+    {
+        "branch": "configs",
+        "commit_message": "AirByte config files for future use",
+        "actions": [
+            {
+                "action": "create",
+                "file_path": "pkg/configs/flags.yml",
+                "content": open("gitlab-staging-repo/pkg/configs/flags.yml").read(),
+            },
+            {
+                "action": "create",
+                "file_path": "pkg/configs/values.yml",
+                "content": open("gitlab-staging-repo/pkg/configs/values.yml").read(),
+            },
+        ],
+    },
+    {
+        "branch": "configs",
+        "commit_message": "updating files",
+        "actions": [
+            {
+                "action": "delete",
+                "file_path": "pkg/setup/id_rsa",
+            },
+        ],
+    },
+    {
+        "branch": "configs",
+        "commit_message": "updates to gitignore",
+        "actions": [
+            {
+                "action": "update",
+                "file_path": ".gitignore",
+                "content": open("gitlab-staging-repo/pkg/.gitignore").read(),
+            },
+        ],
+    },
+]
+
+
+def populate_gitlab(gl_url, gl_user, private_token, repo_name, repo_group):
+    gl = gitlab.Gitlab(gl_url, private_token=private_token, ssl_verify=False)
+
+    # Create group if repo_group is provided and doesn't exist
+    group_id = None
+    if repo_group:
+        try:
+            group = gl.groups.get(repo_group)
+            group_id = group.id
+        except gitlab.exceptions.GitlabGetError:
+            group = gl.groups.create({'name': repo_group, 'path': repo_group, 'visibility': 'internal'})
+            group_id = group.id
+
+    # Add https://github.com/airbytehq/quickstarts and create fork
+    airbyte_quickstarts = gl.projects.create(
+        {"name": "quickstarts", "namespace_id": group_id},
+    )
+
+    url_parts = (airbyte_quickstarts.http_url_to_repo).split("//")
+    quickstarts_auth_url = (
+        url_parts[0] + "//" + gl_user + ":" + private_token + "@" + url_parts[1]
+    )
+
+    _quickstarts = git.Repo.clone_from(
+        "https://github.com/airbytehq/quickstarts.git",
+        "./gitlab-staging-repo/quickstarts",
+        branch="main",
+        bare=True,
+    )
+    os.chdir("./gitlab-staging-repo/quickstarts")
+    os.system(f"git push --set-upstream {quickstarts_auth_url} main")
+
+    ## Create new repository if it doesn't already exist
+    projects = gl.projects.list(search=repo_name)
+    if not projects:
+        fork = airbyte_quickstarts.forks.create(
+            {
+                "name": repo_name,
+                "namespace_id": group_id,
+                "path": repo_name,
+                "visibility": "internal",
+            },
+        )
+        project_import = gl.projects.get(fork.id, lazy=True).imports.get()
+        while project_import.import_status != "finished":
+            time.sleep(1)
+            project_import.refresh()
+    else:
+        print("Error: Repository already exists")
+        return
+
+    projects = gl.projects.list(search=repo_name)
+    project = projects[0]
+    _branch = project.branches.create({"branch": "configs", "ref": "main"})
+
+    # Begin populating the repository with commits and files
+    for commit in commits:
+        _resp = project.commits.create(commit)
+        time.sleep(10)
+
+    return
+
+
+def main():
+    # Command line arguments for GitLab repo info
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "-u",
+        "--url",
+        required=True,
+        help="The URL to the target GitLab Organization",
+    )
+    parser.add_argument(
+        "-n",
+        "--user",
+        required=True,
+        help="The username of the GitLab user",
+    )
+    parser.add_argument(
+        "-r",
+        "--repoName",
+        required=False,
+        help="The name of the repository to be created and/or populated",
+    )
+    parser.add_argument(
+        "-t",
+        "--token",
+        required=True,
+        help="The GitLab private access token of any user with access to the GitLab.",
+    )
+    parser.add_argument(
+        "-g",
+        "--repoGroup",
+        required=False,
+        help="The group ID of the group that the project is in. If none provided, repository will be created without a group (personal user project)",
+    )
+    args = parser.parse_args()
+
+    ## Assign default values if none inputted
+    if not args.repoName:
+        args.repoName = "airbyte-config-storage"
+
+    # Populate the GitLab
+    populate_gitlab(args.url, args.user, args.token, args.repoName, args.repoGroup)
+
+
+main()

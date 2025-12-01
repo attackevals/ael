@@ -1,0 +1,4 @@
+ansible_root: "ansible"
+playbook_dir: "playbooks"
+reusable_task_dir: "playbooks/library"
+output_file: "ansible/ansible-docs.md"

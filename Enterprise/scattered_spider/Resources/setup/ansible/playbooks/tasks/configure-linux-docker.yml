@@ -1,0 +1,80 @@
+---
+- name: Install and Configure Docker on Linux
+  become: yes
+  hosts: linux_docker:linux_rustdesk
+  vars_files:
+    - ../vars/vars.yml
+  # vars:
+  #   nexus_container_name: "nexus"
+  #   security_config_file: "/opt/sonatype_nexus/conf/security-configuration.xml"
+
+  tasks:
+    - name: Copy resolv dns configuration
+      template:
+        src: "../files/common/resolv.conf.j2"
+        dest: "/etc/resolv.conf"
+        mode: '0644'
+        owner: root
+        group: root
+
+    - name: Install general linux dependencies
+      ansible.builtin.apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - cockpit
+          - cockpit-machines
+          - curl
+          - etckeeper
+          - git
+          - libvirt-daemon-system
+          - packagekit
+          - python3-lxml
+          - software-properties-common
+          - tuned
+          - tuned-utils
+        state: present
+        update_cache: yes
+
+    - name: Install docker repo
+      block:
+        - name: docker |no apt key
+          ansible.builtin.get_url:
+            url: https://download.docker.com/linux/ubuntu/gpg
+            dest: /etc/apt/keyrings/docker.asc
+
+        - name: docker | apt source
+          ansible.builtin.apt_repository:
+            repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+            update_cache: yes
+            state: present
+
+    - name: Install docker-ce
+      ansible.builtin.apt:
+        name:
+          - docker-ce
+        state: present
+        update_cache: yes
+
+    - name: Configure docker perms
+      become: no
+      shell: |
+        sudo usermod -aG docker ${USER}
+
+#    - name: Enable nuget api key access
+#      community.general.xml:
+#        path: "{{ security_config_file }}"
+#        xpath: /security-configuration/realms
+#        add_children:
+#          - realm: X-NuGet-ApiKey
+
+    - name: reboot server
+      reboot:
+
+#    - name: Configure container restart policy so nexus starts on boot (only works when running from ami)
+#      shell: |
+#        docker update --restart=always {{ nexus_container_name }}
+#
+#    - name: Start container manually for the first time (restart policy will apply going forward)
+#      shell: |
+#        docker run {{ nexus_container_name }}

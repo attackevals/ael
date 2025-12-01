@@ -1,0 +1,84 @@
+---
+- name: configure LDAP source
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/sources/ldap/"
+    method: POST
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+    body_format: json
+    body:
+      name: "{{ shortname }}"
+      slug: "{{ shortname }}"
+      server_uri: "ldap://{{ dc }}.{{ domain_name }}"
+      base_dn: "DC={{ shortname }},DC={{ tld }}"
+      enabled: true
+      bind_cn: "{{ domain_info.admin_user }}@{{ domain_name }}"
+      bind_password: "{{ domain_info.admin_pass }}"
+      additional_user_dn: "CN=Users"
+      additional_group_dn: ""
+      user_object_filter: "(&(objectClass=user)(!(objectClass=computer)))"
+    status_code: 201
+  ignore_errors: true
+
+- name: query AD property mappings
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/propertymappings/source/ldap/?search=Active%20Directory"
+    method: GET
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+  register: property_map
+
+- name: set AD property mappings
+  set_fact:
+    user_property_map: "{{ property_map.json | json_query('results[*].pk') }}"
+
+- name: query property for email
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/propertymappings/source/ldap/?search=mail"
+    method: GET
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+  register: property_map_mail
+
+- name: set property mapping for mail
+  set_fact:
+    mail_property_map: "{{ property_map_mail.json | json_query('results[*].pk') }}"
+
+- name: query property for ldap groups
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/propertymappings/source/ldap/?managed=goauthentik.io/sources/ldap/default-name"
+    method: GET
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+  register: property_map_group
+
+- name: update LDAP source
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/sources/ldap/{{ shortname }}/"
+    method: PATCH
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+    body_format: json
+    body:
+      name: "{{ shortname }}"
+      server_uri: "ldap://{{ dc }}.{{ domain_name }}"
+      base_dn: "DC={{ shortname }},DC={{ tld }}"
+      enabled: true
+      bind_cn: "{{ domain_info.admin_user }}@{{ domain_name }}"
+      bind_password: "{{ domain_info.admin_pass }}"
+      additional_user_dn: "CN=Users"
+      additional_group_dn: ""
+      user_object_filter: "(&(objectClass=user)(!(objectClass=computer)))"
+      user_property_mappings: "{{ user_property_map + mail_property_map }}"
+      group_property_mappings: "{{ property_map_group.json | json_query('results[*].pk') }}"
+    status_code: 200

@@ -1,0 +1,20 @@
+# evals netplan configuration for secondary/tertiary nics for redirectors
+network:
+  ethernets:
+{% for nic in nics %}
+    {{ nic.nic }}:
+      addresses:
+{% for ip in nic.ips %}
+      - {{ ip.ip }}
+{% endfor %}
+      dhcp4: false
+      dhcp6: false
+{% if nic.gateway is defined %}
+      gateway4: {{ nic.gateway }}
+{% endif %}
+{% if nic.nameservers is defined %}
+      nameservers:
+        addresses: {{ nic.nameservers }}
+{% endif %}
+{% endfor %}
+  version: 2

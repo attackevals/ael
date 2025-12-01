@@ -1,0 +1,9 @@
+hostname,os_type,cpu_cores,memory_gb,uptime_days,last_boot,timezone
+{% for host in groups['victim'] %}
+{% if hostvars[host]['win_system_output'] is defined and hostvars[host]['win_system_output']['output'][0] is defined %}
+{% set win_system_info = (hostvars[host]['win_system_output']['output'][0] | from_json) %}
+{{ hostvars[host]['ansible_hostname'] }},Windows,{{ win_system_info.CPUCores }},{{ win_system_info.MemoryGB }},{{ win_system_info.UptimeDays }},{{ win_system_info.LastBoot }},{{ win_system_info.TimeZone }}
+{% elif hostvars[host]['ansible_os_family'] != "Windows" and hostvars[host]['ansible_processor_vcpus'] is defined %}
+{{ hostvars[host]['ansible_hostname'] }},Linux,{{ hostvars[host]['ansible_processor_vcpus'] }},{{ (hostvars[host]['ansible_memtotal_mb']/1024) | round(2) }},{{ (hostvars[host]['ansible_uptime_seconds']/86400) | round(1) }},{{ hostvars[host]['ansible_date_time']['iso8601'] }},{{ hostvars[host]['ansible_date_time']['tz'] }}
+{% endif %}
+{% endfor %}

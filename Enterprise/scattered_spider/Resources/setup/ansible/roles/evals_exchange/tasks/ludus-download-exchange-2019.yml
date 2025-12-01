@@ -1,0 +1,33 @@
+---
+- name: Check if EXCHANGE ISO exists on host
+  ansible.windows.win_stat:
+    path: "{{ ludus_exchange_iso_directory }}\\{{ ludus_exchange_iso_url.split('/') | last }}"
+  register: exchange_iso_host_check
+
+- name: get exchange url from s3
+  amazon.aws.s3_object:
+    bucket: "{{ s3_bucket }}"
+    object: "{{ s3_filename }}"
+    expiration: 10800
+    mode: geturl
+  register: url_output
+  when: not exchange_iso_host_check.stat.exists
+  delegate_to: localhost
+  become: no
+
+- name: ensure destination directory exists
+  ansible.windows.win_file:
+    path: "{{ ludus_exchange_iso_directory }}"
+    state: directory
+
+# - name: Copy Exchange ISO to windows host
+#   ansible.windows.win_copy:
+#     src: "{{ ludus_install_directory }}/resources/iso/{{ ludus_exchange_iso_url.split('/') | last }}"
+#     dest: "{{ ludus_exchange_iso_directory }}\\{{ ludus_exchange_iso_url.split('/') | last }}"
+#   when: not exchange_iso_host_check.stat.exists
+
+- name: Download exchange to specified path
+  ansible.windows.win_get_url:
+    url: "{{ url_output.url }}"
+    dest: "{{ ludus_exchange_iso_directory }}\\{{ ludus_exchange_iso_url.split('/') | last }}"
+  when: not exchange_iso_host_check.stat.exists and url_output is defined

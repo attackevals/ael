@@ -1,0 +1,21 @@
+---
+- name: Copy MFA Notification Word document to Fleabottom desktop (jmormont)
+  hosts: on-prem-win11-desk1
+  become: yes
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - scenarioa
+    - fleabottom
+    - windows
+    - windesk
+    - victim
+    - onprem
+  tasks:
+
+    # This file gets emailed by jmormont through Outlook Web
+    - name: Copy "MFA Notification.docx"
+      ansible.windows.win_copy:
+        src: "../files/desktop/MFA Notification.docx"
+        dest: "C:\\Users\\jmormont\\Desktop\\MFA Notification.docx"

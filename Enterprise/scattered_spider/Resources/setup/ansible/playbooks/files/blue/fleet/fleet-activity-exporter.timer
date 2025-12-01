@@ -1,0 +1,10 @@
+[Unit]
+Description=Run Fleet Activity Exporter every hour
+Requires=fleet-activity-exporter.service
+
+[Timer]
+OnCalendar=hourly
+Persistent=true
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,4 @@
+address: "127.0.0.1:9999"
+dbPath: "./evalsC2server.db"
+caldera_forwarding_address: "http://10.2.3.4:8888/plugins/emu"
+enable_caldera_forwarding: false

@@ -1,0 +1,119 @@
+---
+- name: Install nginx and all dependencies necessary to generate CRLs and add cron job to recreate CRL on regular basis
+  hosts: dns-srv1
+  become: yes
+  vars_files:
+    - ../vars/vars.yml
+
+  vars:
+    cfssl_base_dir: "/opt/cfssl"
+    certs_folder: "certs"
+    ca_cert_name: "COUNCILCA"
+    crl_enabled: true
+    crl_dir: "/var/www/crl"
+    crl_filename: "councilca.crl"
+    crl_revocation_list: "serials"
+    crl_days: 30
+    crl_nginx_port: 80
+    crl_nginx_server_name: "{{ inventory_hostname }}"
+    ca_domain: "{{ inventory_hostname }}"
+
+  tasks:
+    - name: Install required packages
+      ansible.builtin.package:
+        name:
+          - nginx
+          - golang-cfssl
+          - cron
+        state: present
+
+    - name: Create certificates directory structure
+      ansible.builtin.file:
+        path: "{{ cfssl_base_dir }}/{{ item }}"
+        state: directory
+        mode: '0755'
+      with_items:
+        - "{{ certs_folder }}"
+        - "{{ certs_folder }}/ca"
+        - "{{ certs_folder }}/config"
+        - "{{ certs_folder }}/crl"
+
+    - name: Create CRL web directory
+      ansible.builtin.file:
+        path: "{{ crl_dir }}"
+        state: directory
+        mode: '0755'
+
+    - name: Create blank revocation serials list
+      ansible.builtin.file:
+        path: "{{ cfssl_base_dir }}/{{ certs_folder }}/config/{{ crl_revocation_list }}"
+        state: touch
+        mode: '0644'
+      when: crl_enabled
+
+    - name: Copy CA certificate and key
+      ansible.builtin.copy:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        mode: "{{ item.mode }}"
+      with_items:
+        - { src: "../files/certs/ca/{{ ca_cert_name }}.pem", dest: "{{ cfssl_base_dir }}/{{ certs_folder }}/ca/{{ ca_cert_name }}.pem", mode: '0644' }
+        - { src: "../files/certs/ca/{{ ca_cert_name }}-key.pem", dest: "{{ cfssl_base_dir }}/{{ certs_folder }}/ca/{{ ca_cert_name }}-key.pem", mode: '0600' }
+      ignore_errors: yes
+
+    - name: Template CRL configuration
+      ansible.builtin.template:
+        src: "{{ playbook_dir  }}/../../roles/certs_crl/templates/crl-config.json.j2"
+        dest: "{{ cfssl_base_dir }}/{{ certs_folder }}/config/crl-config.json"
+        mode: '0644'
+
+    - name: Generate initial CRL
+      ansible.builtin.shell: |
+        cfssl gencrl \
+        {{ cfssl_base_dir }}/{{ certs_folder }}/config/{{ crl_revocation_list }} \
+        {{ cfssl_base_dir }}/{{ certs_folder }}/ca/{{ ca_cert_name }}.pem \
+        {{ cfssl_base_dir }}/{{ certs_folder }}/ca/{{ ca_cert_name }}-key.pem \
+        | base64 -d > {{ crl_dir }}/{{ crl_filename }}
+      args:
+        creates: "{{ crl_dir }}/{{ crl_filename }}"
+      register: crl_generated
+
+    - name: Configure nginx for CRL hosting
+      ansible.builtin.template:
+        src: "{{ playbook_dir  }}/../../roles/certs_crl/templates/nginx-crl.conf.j2"
+        dest: /etc/nginx/sites-available/crl.conf
+        mode: '0644'
+      notify: restart nginx
+
+    - name: create symlink from sites-available to sites-enabled
+      ansible.builtin.file:
+        path: /etc/nginx/sites-enabled/crl.conf
+        src: /etc/nginx/sites-available/crl.conf
+        state: link
+
+    - name: Remove default sites-enabled link
+      ansible.builtin.file:
+        path: /etc/nginx/sites-enabled/default
+        state: absent
+
+    - name: Create cron job for CRL regeneration
+      ansible.builtin.cron:
+        name: "Regenerate CRL"
+        user: root
+        day: "*/{{ (crl_days/3)|round|int }}"
+        hour: "12"
+        minute: "0"
+        state: present
+        job: "cfssl gencrl {{ cfssl_base_dir }}/{{ certs_folder }}/config/{{ crl_revocation_list }} {{ cfssl_base_dir }}/{{ certs_folder }}/ca/{{ ca_cert_name }}.pem {{ cfssl_base_dir }}/{{ certs_folder }}/ca/{{ ca_cert_name }}-key.pem | base64 -d > {{ crl_dir }}/{{ crl_filename }}"
+
+    - name: Ensure nginx is started and enabled
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: yes
+
+  handlers:
+    - name: restart nginx
+      ansible.builtin.service:
+        name: nginx
+        state: restarted

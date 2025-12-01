@@ -1,0 +1,195 @@
+---
+- name: CloudWatch Monitoring for CPU and Memory
+  hosts: all
+  gather_facts: yes
+  become: yes
+  serial: 10
+  vars:
+    linux_cwagent_config_dir: "/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.env.d/"
+    linux_cwagent_config_file: "/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.d/amazon-cloudwatch-agent.json"
+    linux_cwagent_download_dest: "/tmp/"
+    win_cwagent_download_dest: "C:\\tools\\"
+    win_cwagent_config_file: "C:\\ProgramData\\Amazon\\AmazonCloudWatchAgent\\amazon-cloudwatch-agent.json"
+    region: "us-east-1"
+
+  tasks:
+    # Linux tasks
+    - name: Create required directories for CloudWatch agent (Linux)
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        mode: '0755'
+      loop:
+        - "/etc/systemd/system/amazon-cloudwatch-agent.service.d/"
+        - "/opt/aws/amazon-cloudwatch-agent/etc/"
+        - "/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.env.d/"
+        - "/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.d/"
+      when: ansible_os_family != "Windows"
+
+    - name: Install required packages (Linux)
+      ansible.builtin.package:
+        name:
+          - jq
+          - unzip
+          - curl
+        state: present
+      when: ansible_os_family == "Debian" or ansible_os_family == "RedHat"
+      ignore_errors: true
+
+    - name: Download CloudWatch agent (Debian/Ubuntu)
+      ansible.builtin.get_url:
+        url: https://amazoncloudwatch-agent.s3.amazonaws.com/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb
+        dest: "{{ linux_cwagent_download_dest }}/amazon-cloudwatch-agent.deb"
+      when: ansible_os_family == "Debian"
+
+    - name: Install CloudWatch agent (Debian/Ubuntu)
+      #language=Shell
+      ansible.builtin.shell:
+        cmd: sudo dpkg -i -E {{ linux_cwagent_download_dest }}/amazon-cloudwatch-agent.deb
+      when: ansible_os_family == "Debian"
+
+    - name: Download CloudWatch agent (RedHat/CentOS)
+      ansible.builtin.get_url:
+        url: https://amazoncloudwatch-agent.s3.amazonaws.com/amazon_linux/amd64/latest/amazon-cloudwatch-agent.rpm
+        dest: "{{ linux_cwagent_download_dest }}/amazon-cloudwatch-agent.rpm"
+      when: ansible_os_family == "RedHat"
+
+    - name: Install CloudWatch agent (RedHat/CentOS)
+      #language=Shell
+      ansible.builtin.shell:
+        cmd: sudo rpm -U {{ linux_cwagent_download_dest }}/amazon-cloudwatch-agent.rpm
+      when: ansible_os_family == "RedHat"
+
+    - name: Create Linux CloudWatch agent config
+      ansible.builtin.copy:
+        dest: "{{ linux_cwagent_config_dir }}/amazon-cloudwatch-agent.json"
+        content: |
+          {
+            "agent": {
+              "metrics_collection_interval": 60,
+              "region": "{{ region }}"
+            },
+            "metrics": {
+              "namespace": "CWAgent",
+              "metrics_collected": {
+                "cpu": {
+                  "resources": ["*"],
+                  "measurement": ["usage_active", "usage_system", "usage_user", "usage_idle"],
+                  "totalcpu": true
+                },
+                "mem": {
+                  "measurement": ["used_percent", "available_percent", "used", "available", "total"]
+                },
+                "swap": {
+                  "measurement": ["used_percent", "used", "free"]
+                },
+                "disk": {
+                  "resources": ["*"],
+                  "measurement": ["used_percent", "used", "free", "total"]
+                }
+              },
+              "append_dimensions": {
+                "InstanceId": "${aws:InstanceId}",
+                "InstanceType": "${aws:InstanceType}"
+              }
+            }
+          }
+        mode: '0644'
+      when: ansible_os_family != "Windows"
+
+    - name: Start and enable CloudWatch agent service (Linux)
+      ansible.builtin.service:
+        name: amazon-cloudwatch-agent
+        state: restarted
+        enabled: yes
+      when: ansible_os_family != "Windows"
+
+    - name: Copy config to final location (Linux)
+      ansible.builtin.copy:
+        src: "{{ linux_cwagent_config_dir }}/amazon-cloudwatch-agent.json"
+        dest: "{{ linux_cwagent_config_file }}"
+        remote_src: yes
+        mode: '0644'
+      when: ansible_os_family != "Windows"
+
+    - name: Configure CloudWatch agent (Linux)
+      #language=Shell
+      ansible.builtin.shell:
+        cmd: |
+          sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:"{{ linux_cwagent_config_file }}"
+      ignore_errors: yes
+      when: ansible_os_family != "Windows"
+
+    - name: Clean up Linux installation files
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - "{{ linux_cwagent_download_dest }}/amazon-cloudwatch-agent.deb"
+        - "{{ linux_cwagent_download_dest }}/amazon-cloudwatch-agent.rpm"
+      when: ansible_os_family != "Windows"
+
+    # Windows tasks
+    - name: Create required directories for CloudWatch agent (Windows)
+      ansible.windows.win_file:
+        path: "{{ win_cwagent_download_dest }}"
+        state: directory
+      when: ansible_os_family == "Windows"
+
+    - name: Download CloudWatch agent (Windows)
+      ansible.windows.win_get_url:
+        url: https://amazoncloudwatch-agent.s3.amazonaws.com/windows/amd64/latest/amazon-cloudwatch-agent.msi
+        dest: "{{ win_cwagent_download_dest }}\\amazon-cloudwatch-agent.msi"
+      when: ansible_os_family == "Windows"
+
+    - name: Install CloudWatch agent (Windows)
+      ansible.windows.win_package:
+        path: "{{ win_cwagent_download_dest }}\\amazon-cloudwatch-agent.msi"
+        state: present
+      when: ansible_os_family == "Windows"
+
+    - name: Create Windows CloudWatch agent config
+      ansible.windows.win_copy:
+        dest: "{{ win_cwagent_config_file }}"
+        content: |
+          {
+            "agent": {
+              "metrics_collection_interval": 60,
+              "region": "{{ region }}"
+            },
+            "metrics": {
+              "namespace": "CWAgent",
+              "metrics_collected": {
+                "cpu": {
+                  "resources": ["*"],
+                  "measurement": ["% Idle Time", "% Interrupt Time", "% User Time", "% Processor Time"],
+                  "aggregation_dimensions": [["InstanceId"]]
+                },
+                "memory": {
+                  "measurement": ["% Committed Bytes In Use", "Available Bytes", "Cache Bytes", "Committed Bytes", "Page Faults/sec"],
+                  "aggregation_dimensions": [["InstanceId"]]
+                },
+                "LogicalDisk": {
+                  "measurement": ["% Free Space", "Free Megabytes"],
+                  "resources": ["*"],
+                  "aggregation_dimensions": [["InstanceId", "instance"]]
+                }
+              },
+              "append_dimensions": {
+                "InstanceId": "${aws:InstanceId}",
+                "InstanceType": "${aws:InstanceType}"
+              }
+            }
+          }
+      when: ansible_os_family == "Windows"
+
+    - name: Start CloudWatch agent (Windows)
+      ansible.windows.win_shell: |
+        & "C:\Program Files\Amazon\AmazonCloudWatchAgent\amazon-cloudwatch-agent-ctl.ps1" -a fetch-config -m ec2 -s -c file:"{{ win_cwagent_config_file }}"
+      when: ansible_os_family == "Windows"
+
+    - name: Clean up Windows installation files
+      ansible.windows.win_file:
+        path: "{{ win_cwagent_download_dest }}\\amazon-cloudwatch-agent.msi"
+        state: absent
+      when: ansible_os_family == "Windows"

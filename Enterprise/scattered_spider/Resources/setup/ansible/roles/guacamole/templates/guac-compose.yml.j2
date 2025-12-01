@@ -1,0 +1,74 @@
+networks:
+  guacnetwork_compose:
+    driver: bridge
+
+# services
+services:
+  # guacd
+  guacd:
+    container_name: guacd_compose
+    image: guacamole/guacd
+    networks:
+      - guacnetwork_compose
+    restart: always
+    volumes:
+    - ./drive:/drive:rw
+    - ./record:/record:rw
+  # postgres
+  postgres:
+    container_name: postgres_guacamole_compose
+    environment:
+      PGDATA: /var/lib/postgresql/data/guacamole
+      POSTGRES_DB: {{ guac_postgres_db }}
+      POSTGRES_PASSWORD: {{ guac_postgres_password }}
+      POSTGRES_USER: {{ guac_postgres_user }}
+    image: postgres:15.2-alpine
+    networks:
+      - guacnetwork_compose
+    restart: always
+    volumes:
+    - ./init:/docker-entrypoint-initdb.d:z
+    - ./data:/var/lib/postgresql/data:Z
+
+  # guacamole
+  guacamole:
+    image: guacamole/guacamole
+    container_name: guacamole_compose
+    depends_on:
+    - guacd
+    - postgres
+    environment:
+      GUACD_HOSTNAME: guacd
+      POSTGRESQL_DATABASE: {{ guac_postgres_db }}
+      POSTGRESQL_HOSTNAME: postgres
+      POSTGRESQL_PASSWORD: {{ guac_postgres_password }}
+      POSTGRESQL_USER: {{ guac_postgres_user }}
+      OPENID_AUTHORIZATION_ENDPOINT: "https://{{ authentik_domain }}/application/o/authorize/"
+      OPENID_JWKS_ENDPOINT: "https://{{ authentik_domain }}/application/o/guacamole/jwks/"
+      OPENID_ISSUER: "https://{{ authentik_domain }}/application/o/guacamole/"
+      OPENID_CLIENT_ID: "{{ oidc_client_id }}"
+      OPENID_CLIENT_SECRET: "{{ oidc_secret }}"
+      OPENID_REDIRECT_URI: "https://{{ guacamole_domain }}"
+      OPENID_USERNAME_CLAIM_TYPE: preferred_username
+    networks:
+      - guacnetwork_compose
+    volumes:
+      - ./record:/record:rw
+    ports:
+      - 8080/tcp
+    restart: unless-stopped
+
+########### optional ##############
+  # nginx
+  nginx:
+   container_name: nginx_guacamole_compose
+   restart: always
+   image: nginx:latest
+   volumes:
+   - ./nginx/templates:/etc/nginx/templates:ro
+   - ./nginx/ssl/self.cert:/etc/nginx/ssl/self.cert:ro
+   - ./nginx/ssl/self-ssl.key:/etc/nginx/ssl/self-ssl.key:ro
+   ports:
+   - {{ guac_port }}:443
+   networks:
+     - guacnetwork_compose

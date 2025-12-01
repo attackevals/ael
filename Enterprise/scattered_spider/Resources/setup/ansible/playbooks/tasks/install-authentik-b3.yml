@@ -1,0 +1,256 @@
+---
+- name: Sync certs from AWS
+  hosts: localhost
+  vars_files:
+    - ../vars/vars.yml
+    - ../vars/cert_vars.yml
+  roles:
+    - role: certs_sync
+
+- name: Deploy B3 Authentik
+  hosts: b3-dmz-mfa-srv1
+  become: yes
+  vars:
+    ldap_source: true
+    aws_authentication: true
+    domain_info: "{{ domain_info_vale }}"
+    authentik_version: "2024.10.1"
+    authentik_postgres_user: "authentik"
+    authentik_postgres_db: "authentik"
+    authentik_secret_key: "Impale-Uncork-Corsage-Verbalize"
+    authentik_postgres_password: "Halogen-Until-Swapping-Underuse"
+    authentik_admin_token: "Slightly-Snowstorm-Semantic-Equator"
+    authentik_admin_password: "Broker-Eagle-Angrily-Candied"
+    authentik_admin_email: "authentik@{{ authentik_domain }}"
+    authentik_port: "443"
+    site: "sso"
+    authentik_domain: "{{ site }}.{{ domain_name }}"
+    scenario_admin: gworm
+  vars_files:
+    - ../vars/vars.yml
+  roles:
+    - authentik
+
+  tasks:
+    - name: Query group uuid
+      ansible.builtin.uri:
+        url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/core/groups/?name=authentik%20Admins"
+        method: GET
+        headers:
+          Authorization: "Bearer {{ authentik_admin_token }}"
+        validate_certs: no
+      register: group_response
+
+    - name: Query admin user uuid
+      ansible.builtin.uri:
+        url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/core/users/?username={{ scenario_admin }}"
+        method: GET
+        headers:
+          Authorization: "Bearer {{ authentik_admin_token }}"
+        validate_certs: no
+      register: admin_user_response
+
+    - name: add user to group
+      ansible.builtin.uri:
+        url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/core/groups/{{ group_response.json | json_query('results[*].pk') | join('') }}/add_user/"
+        method: POST
+        validate_certs: no
+        headers:
+          Authorization: "Bearer {{ authentik_admin_token }}"
+          Content-Type: "application/json"
+        body_format: json
+        body:
+          pk: "{{ admin_user_response.json | json_query('results[*].pk') | join('') }}"
+        status_code: 204
+      ignore_errors: true
+
+- name: Deploy Red Authentik
+  hosts: red-idp-srv1
+  become: yes
+  vars:
+    fqdn: "braavos"
+    ldap_source: false
+    aws_authentication: false
+    authentik_version: "2024.10.1"
+    authentik_postgres_user: "authentik"
+    authentik_postgres_db: "authentik"
+    authentik_secret_key: "Impale-Uncork-Corsage-Verbalize"
+    authentik_postgres_password: "Halogen-Until-Swapping-Underuse"
+    authentik_admin_token: "Slightly-Snowstorm-Semantic-Equator"
+    authentik_admin_password: "Broker-Eagle-Angrily-Candied"
+    authentik_port: "{{ app_configuration.authentik_port }}"
+    authentik_admin_email: "authentik@{{ authentik_domain }}"
+    site: idp
+    authentik_domain: "{{ site }}.{{ fqdn }}.com"
+    domain_info:
+      dns_domain_name: "{{ fqdn }}.com"
+  vars_files:
+    - ../vars/vars.yml
+  roles:
+    - authentik
+
+  tasks:
+    - name: Create red user
+      ansible.builtin.uri:
+        url: "https://{{ authentik_domain }}/api/v3/core/users/"
+        method: POST
+        validate_certs: no
+        headers:
+          Authorization: "Bearer {{ authentik_admin_token }}"
+          Content-Type: "application/json"
+        body_format: json
+        body:
+          username: "kdrogo"
+          name: "Khal Drogo"
+          email: "kdrogo@vale.net"
+        status_code: 201
+      ignore_errors: true
+      register: red_user
+
+    - name: Query red user uuid
+      ansible.builtin.uri:
+        url: "https://{{ authentik_domain }}/api/v3/core/users/?username=kdrogo"
+        method: GET
+        headers:
+          Authorization: "Bearer {{ authentik_admin_token }}"
+        validate_certs: no
+      register: red_user_response
+
+    - name: Update red user password
+      ansible.builtin.uri:
+        url: "https://{{ authentik_domain }}/api/v3/core/users/{{ red_user_response.json | json_query('results[*].pk') | join('') }}/set_password/"
+        method: POST
+        validate_certs: no
+        headers:
+          Authorization: "Bearer {{ authentik_admin_token }}"
+          Content-Type: "application/json"
+        body_format: json
+        body:
+          password: "Bypassed123"
+        status_code: 204
+      ignore_errors: true
+
+    - name: query nameid property mapping ids
+      ansible.builtin.uri:
+        url: "https://{{ authentik_domain }}/api/v3/propertymappings/provider/saml/?search=WindowsAccountname"
+        method: GET
+        validate_certs: no
+        headers:
+          Authorization: "Bearer {{ authentik_admin_token }}"
+          Content-Type: "application/json"
+      register: name_id
+
+    - name: query authentik authorization flow UUID
+      ansible.builtin.uri:
+        url: "https://{{ authentik_domain }}/api/v3/flows/instances/?slug=default-provider-authorization-implicit-consent"
+        method: GET
+        validate_certs: no
+        headers:
+          Authorization: "Bearer {{ authentik_admin_token }}"
+          Content-Type: "application/json"
+      register: authorization_flow
+
+    - name: query authentik invalidation flow UUID
+      ansible.builtin.uri:
+        url: "https://{{ authentik_domain }}/api/v3/flows/instances/?slug=default-invalidation-flow"
+        method: GET
+        validate_certs: no
+        headers:
+          Authorization: "Bearer {{ authentik_admin_token }}"
+          Content-Type: "application/json"
+      register: inval_flow
+
+    - name: query authentik authentication flow UUID
+      ansible.builtin.uri:
+        url: "https://{{ authentik_domain }}/api/v3/flows/instances/?slug=default-authentication-flow"
+        method: GET
+        validate_certs: no
+        headers:
+          Authorization: "Bearer {{ authentik_admin_token }}"
+          Content-Type: "application/json"
+      register: authentication_flow
+
+    - name: query saml property mapping ids
+      ansible.builtin.uri:
+        url: "https://{{ authentik_domain }}/api/v3/propertymappings/provider/saml/"
+        method: GET
+        validate_certs: no
+        headers:
+          Authorization: "Bearer {{ authentik_admin_token }}"
+          Content-Type: "application/json"
+      register: saml_property_map
+
+    - name: Create SAML provider for victim
+      ansible.builtin.uri:
+        url: "https://{{ authentik_domain }}/api/v3/providers/saml/"
+        method: POST
+        validate_certs: no
+        headers:
+          Authorization: "Bearer {{ authentik_admin_token }}"
+          Content-Type: "application/json"
+        body_format: json
+        body:
+          name: "victim"
+          authentication_flow: "{{ authentication_flow.json.results[0].pk }}"
+          authorization_flow: "{{ authorization_flow.json.results[0].pk }}"
+          invalidation_flow: "{{ inval_flow.json.results[0].pk }}"
+          acs_url: "https://sso.vale.net/source/saml/upstream/acs/"
+          issuer: "authentik"
+          property_mappings: "{{ saml_property_map.json | json_query('results[*].pk') }}"
+          name_id_mapping: "{{ name_id.json | json_query('results[*].pk') | join('') }}"
+          signing_kp: "{{ cert_response.json | json_query('results[*].pk') | join('') }}"
+          sp_binding: "post"
+          sign_assertion: "true"
+          sign_response: "false"
+        status_code: 201
+      ignore_errors: true
+
+    - name: query saml provider
+      ansible.builtin.uri:
+        url: "https://{{ authentik_domain }}/api/v3/providers/saml/?name=victim"
+        method: GET
+        validate_certs: no
+        headers:
+          Authorization: "Bearer {{ authentik_admin_token }}"
+          Content-Type: "application/json"
+      register: victim_provider
+
+    - name: Update SAML provider for victim
+      ansible.builtin.uri:
+        url: "https://{{ authentik_domain }}/api/v3/providers/saml/{{ victim_provider.json.results[0].pk }}/"
+        method: PATCH
+        validate_certs: no
+        headers:
+          Authorization: "Bearer {{ authentik_admin_token }}"
+          Content-Type: "application/json"
+        body_format: json
+        body:
+          name: "victim"
+          authentication_flow: "{{ authentication_flow.json.results[0].pk }}"
+          authorization_flow: "{{ authorization_flow.json.results[0].pk }}"
+          invalidation_flow: "{{ inval_flow.json.results[0].pk }}"
+          acs_url: "https://sso.vale.net/source/saml/upstream/acs/"
+          issuer: "authentik"
+          property_mappings: "{{ saml_property_map.json | json_query('results[*].pk') }}"
+          name_id_mapping: "{{ name_id.json | json_query('results[*].pk') | join('') }}"
+          signing_kp: "{{ cert_response.json | json_query('results[*].pk') | join('') }}"
+          sp_binding: "post"
+          sign_assertion: "true"
+          sign_response: "false"
+
+    - name: Create Victim Application in Authentik
+      ansible.builtin.uri:
+        url: "https://{{ authentik_domain }}/api/v3/core/applications/"
+        method: POST
+        validate_certs: no
+        headers:
+          Authorization: "Bearer {{ authentik_admin_token }}"
+          Content-Type: "application/json"
+        body_format: json
+        body:
+          name: "Victim"
+          slug: "victim"
+          provider: "{{ victim_provider.json.results[0].pk }}"
+          meta_launch_url: ""
+        status_code: 201
+      ignore_errors: true

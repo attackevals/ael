@@ -1,0 +1,13 @@
+hostname,os_type,package_name,version
+{% for host in groups['victim'] %}
+{% if hostvars[host]['rpm_packages'] is defined and hostvars[host]['rpm_packages']['stdout_lines'] is defined %}
+{% for package in hostvars[host]['rpm_packages']['stdout_lines'] %}
+{{ hostvars[host]['ansible_hostname'] }},Linux,{{ package }}
+{% endfor %}
+{% endif %}
+{% if hostvars[host]['deb_packages'] is defined and hostvars[host]['deb_packages']['stdout_lines'] is defined %}
+{% for package in hostvars[host]['deb_packages']['stdout_lines'] %}
+{{ hostvars[host]['ansible_hostname'] }},Linux,{{ package }}
+{% endfor %}
+{% endif %}
+{% endfor %}

@@ -1,0 +1,50 @@
+---
+- name: "Configure kingslanding scenario A RANGE Windows Domain Controller"
+  hosts: on-prem-addc-srv1
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - addc
+    - domain
+    - network
+    - share
+    - winrm
+    - groups
+    - server
+    - windows
+  vars:
+    domain_info: "{{ domain_info_kingslanding }}"
+    domain_users: "{{ domain_users_kingslanding + domain_users_common }}"
+    domain_groups: "{{ domain_groups_common }}"
+    range_dns_server_ip: "{{ support_vars.dns_server_ip }}"
+    domain_dns_records: "{{ domain_dns_records_kingslanding }}"
+  tasks:
+    - name: Update kingslanding user display names {{ playbook_dir }}
+      ansible.builtin.include_tasks:
+        file: "{{ playbook_dir }}/../library/fix-domain-user-name-display.yml"
+
+- name: "Configure vale Scenario B.3 range Windows Domain Controller"
+  hosts: b3-addc-srv1
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - addc
+    - domain
+    - network
+    - share
+    - winrm
+    - groups
+    - server
+    - windows
+  vars:
+    domain_info: "{{ domain_info_vale }}"
+    domain_users: "{{ domain_users_vale + domain_users_common }}"
+    domain_groups: "{{ domain_groups_common }}"
+    range_dns_server_ip: "{{ support_vars.dns_server_ip }}"
+    domain_dns_records: "{{ domain_dns_records_vale }}"
+  tasks:
+    - name: Update kingslanding user display names {{ playbook_dir }}
+      ansible.builtin.include_tasks:
+        file: "{{ playbook_dir }}/../library/fix-domain-user-name-display.yml"

@@ -1,0 +1,236 @@
+---
+- hosts: localhost
+  vars_files:
+    - ../vars/vars.yml
+    - ../vars/cert_vars.yml
+  roles:
+    - role: certs_sync
+
+- name: Install fleet
+  hosts: b3-mdm-srv1
+  become: yes
+  gather_facts: false
+  vars_files:
+    - ../vars/cert_vars.yml
+    - ../vars/vars.yml
+  vars:
+    fleetdir: "/opt/fleetdm"
+    caddy_proxy_network: "caddy_proxy"
+    domain: vale.net
+    app: fleet
+    authentik_domain: "sso.{{ domain }}"
+    fqdn: "{{ app }}.{{ domain }}"
+    crt: "{{ fqdn }}.pem"
+    key: "{{ fqdn }}-key.pem"
+    activity_log_export_dir: "/var/log/fleet-activities"
+    activity_log_export_script_dir: "/opt/scripts"
+
+  tasks:
+    - name: Create directories
+      file:
+        path: "{{ item }}"
+        state: directory
+      with_items:
+        - "{{ fleetdir }}/caddy/certs"
+        - "{{ fleetdir }}/config"
+        - "{{ fleetdir }}/fleet"
+        - "{{ fleetdir }}/mysql"
+
+    - name: Create nested dirs with required perms
+      file:
+        path: "{{ item }}"
+        state: directory
+        mode: 0777
+      with_items:
+        - "{{ fleetdir }}/fleet/logs"
+        - "{{ fleetdir }}/fleet/vulndb"
+
+    - name: create Caddyfile
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/../files/fleetdm/caddy/Caddyfile.j2"
+        dest: "{{ fleetdir }}/caddy/Caddyfile"
+
+    - name: create fleet default env
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/../files/fleetdm/fleet/default.env.j2"
+        dest: "{{ fleetdir }}/fleet/default.env"
+
+    - name: create mysql default.env file
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/../files/fleetdm/mysql/default.env.j2"
+        dest: "{{ fleetdir }}/mysql/default.env"
+
+    - name: copy certs
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/../files/certs/{{ domain }}/{{ app }}/{{ item }}"
+        dest: "{{ fleetdir }}/caddy/certs/{{ item }}"
+      with_items:
+        - "{{ crt }}"
+        - "{{ key }}"
+
+    - name: copy root ca cert
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/../files/certs/ca/{{ca_cert_name}}.pem"
+        dest: "{{ fleetdir }}/caddy/certs.pem"
+
+    - name: create compose file
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/../files/fleetdm/docker-compose-caddy-standalone.yml.j2"
+        dest: "{{ fleetdir }}/docker-compose.yml"
+
+    - name: Create caddy proxy network
+      community.docker.docker_network:
+        name: "{{ caddy_proxy_network }}"
+        state: present
+
+    - name: Start Fleet
+      community.docker.docker_compose_v2:
+        project_src: "{{ fleetdir }}"
+        state: present
+
+  ##### Configure Authentik SAML provider
+
+    - name: query authentik authorization flow UUID
+      ansible.builtin.uri:
+        url: "https://{{ authentik_domain }}/api/v3/flows/instances/?slug=default-provider-authorization-implicit-consent"
+        method: GET
+        validate_certs: no
+        headers:
+          Authorization: "Bearer {{ authentik_admin_token }}"
+          Content-Type: "application/json"
+      register: authorization_flow
+
+    - name: query authentik authentication flow UUID
+      ansible.builtin.uri:
+        url: "https://{{ authentik_domain }}/api/v3/flows/instances/?slug=default-authentication-flow"
+        method: GET
+        validate_certs: no
+        headers:
+          Authorization: "Bearer {{ authentik_admin_token }}"
+          Content-Type: "application/json"
+      register: authentication_flow
+
+    - name: query authentik invalidation flow UUID
+      ansible.builtin.uri:
+        url: "https://{{ authentik_domain }}/api/v3/flows/instances/?slug=default-invalidation-flow"
+        method: GET
+        validate_certs: no
+        headers:
+          Authorization: "Bearer {{ authentik_admin_token }}"
+          Content-Type: "application/json"
+      register: inval_flow
+
+    - name: query nameid property mapping ids
+      ansible.builtin.uri:
+        url: "https://{{ authentik_domain }}/api/v3/propertymappings/provider/saml/?search=email"
+        method: GET
+        validate_certs: no
+        headers:
+          Authorization: "Bearer {{ authentik_admin_token }}"
+          Content-Type: "application/json"
+      register: name_id
+
+    - name: query certificates
+      ansible.builtin.uri:
+        url: "https://{{ authentik_domain }}/api/v3/crypto/certificatekeypairs/?name={{ authentik_domain }}"
+        method: GET
+        headers:
+          Authorization: "Bearer {{ authentik_admin_token }}"
+        validate_certs: no
+      register: cert_response
+
+    - name: query default SAML property mapping ids
+      ansible.builtin.uri:
+        url: "https://{{ authentik_domain }}/api/v3/propertymappings/provider/saml/?search=default"
+        method: GET
+        validate_certs: no
+        headers:
+          Authorization: "Bearer {{ authentik_admin_token }}"
+          Content-Type: "application/json"
+      register: saml_property_map
+
+    - name: Create SAML provider for Fleet
+      ansible.builtin.uri:
+        url: "https://{{ authentik_domain }}/api/v3/providers/saml/"
+        method: POST
+        validate_certs: no
+        headers:
+          Authorization: "Bearer {{ authentik_admin_token }}"
+          Content-Type: "application/json"
+        body_format: json
+        body:
+          name: "Fleet"
+          authentication_flow: "{{ authentication_flow.json.results[0].pk }}"
+          authorization_flow: "{{ authorization_flow.json.results[0].pk }}"
+          invalidation_flow: "{{ inval_flow.json.results[0].pk }}"
+          acs_url: "https://{{ app }}.{{ domain}}/api/v1/fleet/sso/callback"
+          audience: "https://fleet.vale.net"
+          issuer: "authentik"
+          property_mappings: "{{ saml_property_map.json | json_query('results[*].pk') }}"
+          name_id_mapping: "{{ name_id.json | json_query('results[*].pk') | join('') }}"
+          signing_kp: "{{ cert_response.json | json_query('results[*].pk') | join('') }}"
+          sp_binding: "post"
+          sign_assertion: "true"
+          sign_response: "true"
+        status_code: 201
+      ignore_errors: true
+
+    - name: query fleet provider
+      ansible.builtin.uri:
+        url: "https://{{ authentik_domain }}/api/v3/providers/saml/?name=Fleet"
+        method: GET
+        validate_certs: no
+        headers:
+          Authorization: "Bearer {{ authentik_admin_token }}"
+          Content-Type: "application/json"
+      register: fleet_provider
+
+    - name: Update Fleet Provider in Authentik
+      ansible.builtin.uri:
+        url: "https://{{ authentik_domain }}/api/v3/providers/saml/{{ fleet_provider.json.results[0].pk }}/"
+        method: PATCH
+        validate_certs: no
+        headers:
+          Authorization: "Bearer {{ authentik_admin_token }}"
+          Content-Type: "application/json"
+        body_format: json
+        body:
+          authentication_flow: "{{ authentication_flow.json.results[0].pk }}"
+          authorization_flow: "{{ authorization_flow.json.results[0].pk }}"
+          invalidation_flow: "{{ inval_flow.json.results[0].pk }}"
+          acs_url: "https://{{ app }}.{{ domain}}/api/v1/fleet/sso/callback"
+          audience: "https://fleet.vale.net"
+          issuer: "authentik"
+          property_mappings: "{{ saml_property_map.json | json_query('results[*].pk') }}"
+          name_id_mapping: "{{ name_id.json | json_query('results[*].pk') | join('') }}"
+          signing_kp: "{{ cert_response.json | json_query('results[*].pk') | join('') }}"
+          sp_binding: "post"
+          sign_assertion: "true"
+          sign_response: "true"
+
+    - name: Create Fleet Application in Authentik
+      ansible.builtin.uri:
+        url: "https://{{ authentik_domain }}/api/v3/core/applications/"
+        method: POST
+        validate_certs: no
+        headers:
+          Authorization: "Bearer {{ authentik_admin_token }}"
+          Content-Type: "application/json"
+        body_format: json
+        body:
+          name: "Fleet"
+          slug: "fleet"
+          provider: "{{ fleet_provider.json.results[0].pk }}"
+        status_code: 201
+      ignore_errors: true
+
+    - name: Wait for fleet to start
+      wait_for:
+        timeout: 30
+        msg: "Waiting for Fleet to initialize"
+
+    - name: Configure fleet activity log export
+      ansible.builtin.include_tasks: "{{ playbook_dir }}/../library/configure-fleet-activity-exporter.yml"
+      vars:
+        scripts_dir: "{{ activity_log_export_script_dir }}"
+        log_dir: "{{ activity_log_export_dir }}"

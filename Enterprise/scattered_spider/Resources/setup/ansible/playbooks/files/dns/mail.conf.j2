@@ -1,0 +1,8 @@
+server:
+  # mail records
+  {% for zone in mail_records %}
+  local-data: "{{ zone.host }}. A {{ zone.ip }}"
+  local-data: "{{ zone.fqdn }}. MX 10 {{ zone.host }}"
+  local-data-ptr: "{{ zone.ip }} {{ zone.host }}."
+
+  {% endfor %}

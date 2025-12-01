@@ -1,0 +1,30 @@
+---
+# Required variables:
+# - None (this task uses only built-in configurations)
+
+- name: install firefox
+  win_chocolatey:
+    name:
+      - firefox
+    state: present
+    ignore_checksums: yes
+
+- name: Disable automatic firefox updates
+  ansible.windows.win_regedit:
+    path: HKLM:\SOFTWARE\Policies\Mozilla\Firefox
+    name: "DisableAppUpdate"
+    data: 1
+    type: dword
+
+- name: Disable firefox default browser check
+  ansible.windows.win_regedit:
+    path: HKLM:\SOFTWARE\Policies\Mozilla\Firefox
+    name: "DontCheckDefaultBrowser"
+    data: 1
+    type: dword
+
+- name: Disable firefox first run
+  ansible.windows.win_regedit:
+    path: HKLM:\SOFTWARE\Policies\Mozilla\Firefox
+    name: "OverrideFirstRunPage"
+    type: string

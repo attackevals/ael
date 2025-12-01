@@ -1,0 +1,46 @@
+---
+- hosts: localhost
+  vars_files:
+    - ../vars/vars.yml
+    - ../vars/cert_vars.yml
+  roles:
+    - role: certs_sync
+
+- name: Install root CA cert linux
+  become: yes
+  hosts: linux_kali:linux_ubuntu:!redirectors:!dns
+  serial: 10  # Process 10 hosts at a time instead of all
+  vars_files:
+    - ../vars/vars.yml
+    - ../vars/cert_vars.yml
+
+  tasks:
+    - name: Copy the certificate
+      ansible.builtin.copy:
+        src: "{{ certs_folder }}/ca/{{ ca_cert_name }}.pem"
+        dest: "/usr/local/share/ca-certificates/{{ ca_cert_name }}.crt"
+      register: result
+
+    - name: Update CA Trust (Debian, Ubuntu)
+      ansible.builtin.command: update-ca-certificates
+      when: result is changed
+
+- name: Install root CA cert windows
+  become: yes
+  hosts: windows
+  serial: 10  # Process 10 hosts at a time instead of all
+  vars_files:
+    - ../vars/vars.yml
+    - ../vars/cert_vars.yml
+  tasks:
+    - name: Copy the certificate
+      ansible.windows.win_copy:
+        src: "{{ certs_folder }}/ca/{{ ca_cert_name }}.pem"
+        dest: "C:/Users/Public/Documents/{{ ca_cert_name }}.crt"
+      register: result
+
+    - name: Import root CA cert to windows cert store
+      ansible.windows.win_certificate_store:
+        path: "C:/Users/Public/Documents/{{ ca_cert_name }}.crt"
+        state: present
+        store_name: Root

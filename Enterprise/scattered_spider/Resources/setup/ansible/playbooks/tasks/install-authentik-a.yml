@@ -1,0 +1,32 @@
+---
+- name: Sync certs from AWS
+  hosts: localhost
+  vars_files:
+    - ../vars/vars.yml
+    - ../vars/cert_vars.yml
+  roles:
+    - role: certs_sync
+
+- name: Deploy Authentik A
+  hosts: on-prem-mfa-srv1
+  become: yes
+  vars:
+    ldap_source: true
+    aws_authentication: true
+    domain_info: "{{ domain_info_kingslanding }}"
+    authentik_version: "2024.10.1"
+    authentik_postgres_user: "authentik"
+    authentik_postgres_db: "authentik"
+    authentik_secret_key: "Impale-Uncork-Corsage-Verbalize"
+    authentik_postgres_password: "Halogen-Until-Swapping-Underuse"
+    authentik_admin_token: "Slightly-Snowstorm-Semantic-Equator"
+    authentik_admin_password: "Broker-Eagle-Angrily-Candied"
+    authentik_admin_email: "authentik@sso.{{ domain_name }}"
+    authentik_port: "443"
+    site: sso
+    authentik_domain: "{{ site }}.{{ domain_name }}"
+    guacamole_domain: "{{ site }}.{{ domain_name }}"
+  vars_files:
+    - ../vars/vars.yml
+  roles:
+    - authentik

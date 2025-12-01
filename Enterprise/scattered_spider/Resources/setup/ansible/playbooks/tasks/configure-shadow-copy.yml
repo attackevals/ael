@@ -1,0 +1,58 @@
+---
+- name: Configure Shadow Copy
+  hosts: windows
+  gather_facts: no
+  strategy: free
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: List state of shadow volumes
+      ansible.windows.win_command: "vssadmin.exe list volumes"
+      changed_when: false
+      register: vssvol
+    - name: Debug | vssvol output
+      ansible.builtin.debug:
+        var: vssvol
+    - name: List state of shadowstorage
+      ansible.windows.win_command: "vssadmin.exe list shadowstorage"
+      changed_when: false
+      register: vssstor
+      failed_when: false
+    - name: Debug | vssstor output
+      ansible.builtin.debug:
+        var: vssstor
+
+    - name: Enable shadow copy for c on servers
+      ansible.windows.win_command:
+        cmd: "vssadmin.exe add shadowstorage /for=c: /on=c:"
+      when:
+        - '"Shadow Copy Storage volume: (C:)" not in vssstor.stdout'
+      ignore_errors: yes
+
+    - name: Enable shadow copy for c on desktops
+      ansible.windows.win_command:
+        cmd: "wmic shadowcopy call create Volume='C:\\'"
+      ignore_errors: yes
+
+    - name: Ensure VSS service enabled
+      ansible.windows.win_service:
+        name: "VSS"
+        start_mode: auto
+        state: started
+
+    - name: Schedule regular shadow copy
+      community.windows.win_scheduled_task:
+        name: "VSS_Snapshot"
+        description: "Take daily shadow copy for c"
+        actions:
+          - path: wmic.exe
+            arguments: "/Namespace:\\root\\default Path SystemRestore Call CreateRestorePoint \"%DATE%\", 100, 7"
+        triggers:
+          - type: daily
+            start_boundary: '2024-10-09T09:00:00'
+        state: present
+        user: SYSTEM
+      ignore_errors: yes
+
+      # when: ansible_distribution_major_version | int < 10

@@ -1,0 +1,19 @@
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+#Desktop Services Store
+.DS_Store
+
+# PyAirbyte caches and virtual environments
+.cache
+.venv*
+
+id_rsa
+id_rsa.pub
+temp/

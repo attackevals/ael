@@ -1,0 +1,23 @@
+---
+- name: "Configure kingslanding RANGE Windows Domain Controller GPO"
+  hosts: on-prem-addc-srv1
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - addc
+    - gpo
+
+  tasks:
+    - ansible.builtin.include_tasks: "{{ playbook_dir }}/../library/configure-addc-gpo.yml"
+      vars:
+        domain_shortname: "{{ domain_info_kingslanding.shortname }}"
+        domain_dns_name: "{{ domain_info_kingslanding.dns_domain_name }}"
+        domain_admin_user: "{{ domain_info_kingslanding.admin_user }}"
+        domain_admin_pass: "{{ domain_info_kingslanding.admin_pass }}"
+        domain_tld: "{{ domain_info_kingslanding.tld }}"
+        ad_ip_addr: "{{ domain_info_kingslanding.ad_ip_addr }}"
+        evals_range: "{{ evals_cycle }}"
+        gpo_src_dir: "../files/gpo/kingslanding"
+        gpo_dst_dir: "C:/deploy/kingslanding"
+        deploy_dir: "C:/deploy"

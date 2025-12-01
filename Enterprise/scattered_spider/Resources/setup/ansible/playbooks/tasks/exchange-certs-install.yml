@@ -1,0 +1,64 @@
+- name: Install new OWA certs on Exchange
+  become: yes
+  hosts: windows_mail_servers:&victim
+  vars:
+    win_tmp_dir: "C:/deploy/certs"
+  vars_files:
+    - ../vars/vars.yml
+    - ../vars/cert_vars.yml
+  tasks:
+    - name: Make sure tmp dir for upload exists
+      ansible.windows.win_file:
+        path: "{{ win_tmp_dir }}"
+        state: directory
+
+    - name: create pfx files for the certificate and key locally before uploading
+      community.crypto.openssl_pkcs12:
+        path: "{{ certs_folder }}/{{ domain_info.dns_domain_name}}/mail/mail.{{ domain_info.dns_domain_name }}.pfx"
+        friendly_name: mail.{{ domain_info.dns_domain_name }}
+        privatekey_path: "{{ certs_folder }}/{{ domain_info.dns_domain_name}}/mail/mail.{{ domain_info.dns_domain_name }}-key.pem"
+        certificate_path: "{{ certs_folder }}/{{ domain_info.dns_domain_name}}/mail/mail.{{ domain_info.dns_domain_name }}.pem"
+        passphrase: "{{ support_vars.pfx_password | default('ExchangeCert123') }}"
+        state: present
+      delegate_to: localhost
+      become: no
+
+    - name: Copy PFX certificate to Exchange server
+      ansible.windows.win_copy:
+        src: "{{ certs_folder }}/{{ domain_info.dns_domain_name}}/mail/mail.{{ domain_info.dns_domain_name }}.pfx"
+        dest: "{{ win_tmp_dir }}/mail.{{ domain_info.dns_domain_name }}.pfx"
+
+    - name: Import PFX certificate to Exchange
+      ansible.windows.win_powershell:
+        script: |
+          Add-PSSnapin Microsoft.Exchange.Management.PowerShell.SnapIn
+          Import-ExchangeCertificate -FileData ([System.IO.File]::ReadAllBytes('{{ win_tmp_dir }}/mail.{{ domain_info.dns_domain_name }}.pfx')) -Password (ConvertTo-SecureString -String "{{ support_vars.pfx_password | default('ExchangeCert123') }}" -AsPlainText -Force)
+      vars:
+        ansible_become: true
+        ansible_become_method: runas
+        ansible_become_user: "{{ domain_info.shortname }}\\{{ domain_info.exchange_admin_user }}"
+        ansible_become_pass: "{{ domain_info.exchange_admin_pass }}"
+
+    - name: Get certificate thumbprint
+      ansible.windows.win_powershell:
+        script: |
+          Add-PSSnapin Microsoft.Exchange.Management.PowerShell.SnapIn
+          $cert = Get-ExchangeCertificate | Where-Object {$_.Subject -like "*mail.{{ domain_info.dns_domain_name }}*"}
+          $cert.Thumbprint
+      register: cert_thumbprint
+      vars:
+        ansible_become: true
+        ansible_become_method: runas
+        ansible_become_user: "{{ domain_info.shortname }}\\{{ domain_info.exchange_admin_user }}"
+        ansible_become_pass: "{{ domain_info.exchange_admin_pass }}"
+
+    - name: Enable certificate for Exchange services
+      ansible.windows.win_powershell:
+        script: |
+          Add-PSSnapin Microsoft.Exchange.Management.PowerShell.SnapIn
+          Enable-ExchangeCertificate -Thumbprint "{{ cert_thumbprint.output[0] }}" -Services IIS,SMTP,POP,IMAP -Force
+      vars:
+        ansible_become: true
+        ansible_become_method: runas
+        ansible_become_user: "{{ domain_info.shortname }}\\{{ domain_info.exchange_admin_user }}"
+        ansible_become_pass: "{{ domain_info.exchange_admin_pass }}"

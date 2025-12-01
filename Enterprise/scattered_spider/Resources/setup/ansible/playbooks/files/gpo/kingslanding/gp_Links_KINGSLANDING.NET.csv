@@ -1,0 +1,2 @@
+﻿"Path","State","GpoName","Domain","OUDN","OUName","OUCanonical","Index","TotalCount"
+"CN={6AC1786C-016F-11D2-945F-00C04fB984F9},CN=Policies,CN=System,DC=kingslanding,DC=net","0","Default Domain Controllers Policy","KINGSLANDING.NET","OU=Domain Controllers,DC=kingslanding,DC=net","Domain Controllers","kingslanding.net/Domain Controllers","0","1"

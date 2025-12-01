@@ -1,0 +1,59 @@
+---
+# Required variables:
+# - None (this task automatically discovers home directories)
+
+- name: Get list of home directories
+  ansible.builtin.find:
+    paths: /home
+    file_type: directory
+    depth: 1
+  register: home_dirs
+
+- name: Create XFCE config directories
+  ansible.builtin.file:
+    path: "{{ item.path }}/.config/xfce4/xfconf/xfce-perchannel-xml"
+    state: directory
+    owner: "{{ item.path | basename }}"
+    mode: '0755'
+  loop: "{{ home_dirs.files }}"
+
+- name: Configure power manager settings
+  ansible.builtin.copy:
+    content: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <channel name="xfce4-power-manager" version="1.0">
+        <property name="xfce4-power-manager" type="empty">
+          <property name="blank_on_ac" type="int" value="0"/>
+          <property name="blank_on_battery" type="int" value="0"/>
+          <property name="dpms_enabled" type="bool" value="false"/>
+        </property>
+      </channel>
+    dest: "{{ item.path }}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml"
+    owner: "{{ item.path | basename }}"
+    mode: '0644'
+  loop: "{{ home_dirs.files }}"
+
+- name: Configure screensaver settings
+  ansible.builtin.copy:
+    content: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <channel name="xfce4-screensaver" version="1.0">
+        <property name="lock" type="empty">
+          <property name="embedded-keyboard" type="empty">
+            <property name="enabled" type="empty"/>
+            <property name="command" type="empty"/>
+          </property>
+        </property>
+        <property name="lock-enabled" type="bool" value="false"/>
+        <property name="saver" type="empty">
+          <property name="mode" type="int" value="0"/>
+          <property name="enabled" type="bool" value="true"/>
+          <property name="idle-activation" type="empty">
+            <property name="delay" type="int" value="90"/>
+          </property>
+        </property>
+      </channel>
+    dest: "{{ item.path }}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-screensaver.xml"
+    owner: "{{ item.path | basename }}"
+    mode: '0644'
+  loop: "{{ home_dirs.files }}"

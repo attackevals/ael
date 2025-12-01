@@ -1,0 +1,23 @@
+plugx:
+  host: 174.3.0.70
+  port: 9443
+  https: true
+  cert_file: '/opt/kalidev/mustang_panda/Resources/controlServer/certs/plugx.pem'
+  key_file: '/opt/kalidev/mustang_panda/Resources/controlServer/certs/plugx.key'
+  enabled: true
+toneshell:
+  host: 174.3.0.70
+  port: 8443
+  enabled: true
+  encryption_type: XOR
+vscode_tunnel:
+  host: 174.3.0.70
+  port: 8888
+  enabled: true
+simplefileserver:
+  host: 174.3.0.70
+  port: 80
+  mappings:
+    - prefix: /files
+      dir: /opt/kalidev/mustang_panda/Resources/payloads
+  enabled: true

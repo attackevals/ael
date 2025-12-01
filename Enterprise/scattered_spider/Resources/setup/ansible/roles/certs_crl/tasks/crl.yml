@@ -1,0 +1,61 @@
+---
+# CRL generation and management tasks
+
+- name: Create CRL directory
+  ansible.builtin.file:
+    path: "{{ crl_dir }}"
+    state: directory
+    mode: '0755'
+  when: crl_enabled | bool
+
+- name: Template CRL configuration
+  ansible.builtin.template:
+    src: crl-config.json.j2
+    dest: "{{ certs_folder }}/config/crl-config.json"
+    mode: '0644'
+  when: crl_enabled | bool
+
+- name: Generate initial CRL
+  ansible.builtin.shell: |
+    cfssl gencrl \
+      -ca {{ certs_folder }}/ca/{{ ca_cert_name }}.pem \
+      -ca-key {{ certs_folder }}/ca/{{ ca_cert_name }}-key.pem \
+      -config {{ certs_folder }}/config/crl-config.json \
+      {{ certs_folder }}/config/crl-config.json | \
+      base64 -d > {{ crl_dir }}/{{ crl_filename }}
+  args:
+    creates: "{{ crl_dir }}/{{ crl_filename }}"
+  register: crl_generated
+  when: crl_enabled | bool
+
+- name: Install nginx for CRL hosting
+  ansible.builtin.package:
+    name: nginx
+    state: present
+  when: crl_enabled | bool
+
+- name: Configure nginx for CRL hosting
+  ansible.builtin.template:
+    src: nginx-crl.conf.j2
+    dest: /etc/nginx/conf.d/crl.conf
+    mode: '0644'
+  notify: restart nginx
+  when: crl_enabled | bool
+
+- name: Create cron job for CRL regeneration
+  ansible.builtin.cron:
+    name: "Regenerate CRL"
+    job: "cfssl gencrl -ca {{ certs_folder }}/ca/{{ ca_cert_name }}.pem -ca-key {{ certs_folder }}/ca/{{ ca_cert_name }}-key.pem -config {{ certs_folder }}/config/crl-config.json {{ certs_folder }}/config/crl-config.json | base64 -d > {{ crl_dir }}/{{ crl_filename }}"
+    user: root
+    day: "*/{{ (crl_days/2)|round|int }}" # ensure crl is regenerated no later than halfway through lifespan, crl expiration is not ideal
+    hour: "12" # run at noon to avoid range shutoff potential issues
+    minute: "0"
+    state: present
+  when: crl_enabled | bool
+
+- name: Ensure nginx is started and enabled
+  ansible.builtin.service:
+    name: nginx
+    state: started
+    enabled: yes
+  when: crl_enabled | bool

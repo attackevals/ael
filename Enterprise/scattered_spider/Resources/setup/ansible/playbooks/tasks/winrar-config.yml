@@ -1,0 +1,25 @@
+---
+- name: Add winrar to context menus on Windows
+  hosts: windows:&victim
+  gather_facts: no
+  strategy: free
+  vars:
+    winrar_settings: "{{ playbook_dir }}/../files/winrar/winrar-settings.reg"
+    winrar_dest: "C:/tools/"
+    winrar_dest_cfg_file: "winrar-settings.reg"
+    vars_files:
+      - ../vars/vars.yml
+  tags:
+    - victim
+    - winrar
+    - winrar-config
+
+  tasks:
+    - name: import winrar config
+      ansible.builtin.include_tasks: "{{ playbook_dir }}/../library/run-windows-reg-file.yml"
+      vars:
+        winrar_reg_file: "{{ winrar_settings }}"
+        winrar_dest_dir: "{{ winrar_dest }}"
+        winrar_dest_file: "winrar-settings.reg"
+      tags:
+        - winrar-config

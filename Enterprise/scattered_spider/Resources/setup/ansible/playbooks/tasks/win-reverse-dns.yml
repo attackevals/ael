@@ -1,0 +1,80 @@
+---
+# configure kingslanding reverse dns
+- name: "Configure kingslanding scenario reverse DNS"
+  hosts: on-prem-addc-srv1
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - dns
+    - server
+    - windows
+
+  tasks:
+    - name: Create reverse DNS zone for onprem
+      ansible.windows.win_dns_zone:
+        name: "{{ domain_info_kingslanding.onprem_reverse_zone_name }}.in-addr.arpa"  # Example: "0.168.192.in-addr.arpa"
+        state: present
+        replication: "domain"
+        type: "primary"
+        dynamic_update: "none"
+
+    - name: Create reverse DNS zone for cloud
+      ansible.windows.win_dns_zone:
+        name: "{{ domain_info_kingslanding.cloud_reverse_zone_name }}.in-addr.arpa"  # Example: "0.168.192.in-addr.arpa"
+        state: present
+        replication: "domain"
+        type: "primary"
+        dynamic_update: "none"
+
+    - name: Create reverse DNS PTR records for terraform domain hosts
+      ansible.windows.win_dns_record:
+        name: "{{ hostvars[item].ansible_host | community.dns.reverse_pointer }}"
+        type: "PTR"
+        value: "{{ hostvars[item].hostname }}.{{ domain_info_kingslanding.dns_domain_name }}"
+        zone: "{{ domain_info_kingslanding.onprem_reverse_zone_name }}.in-addr.arpa"
+      loop: "{{ groups['domain_kingslanding'] }}"
+
+    - name: Create reverse DNS PTR records for vars defined additional records
+      ansible.windows.win_dns_record:
+        name: "{{ item.ip | community.dns.reverse_pointer }}"
+        type: "PTR"
+        value: "{{ item.host }}.{{ domain_info_kingslanding.dns_domain_name }}"
+        zone: "{{ item.ip.split('.')[1] }}.10.in-addr.arpa"
+      loop: "{{ domain_dns_records_kingslanding }}"
+
+# configure vale reverse dns
+- name: "Configure vale scenario reverse DNS"
+  hosts: b3-addc-srv1
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - dns
+    - server
+    - windows
+
+  tasks:
+    - name: Create reverse DNS zone for onprem
+      ansible.windows.win_dns_zone:
+        name: "{{ domain_info_vale.reverse_zone_name }}.in-addr.arpa"  # Example: "0.168.192.in-addr.arpa"
+        state: present
+        replication: "domain"
+        type: "primary"
+        dynamic_update: "none"
+
+    - name: Create reverse DNS PTR records for terraform domain hosts
+      ansible.windows.win_dns_record:
+        name: "{{ hostvars[item].ansible_host | community.dns.reverse_pointer }}"
+        type: "PTR"
+        value: "{{ hostvars[item].hostname }}.{{ domain_info_kingslanding.dns_domain_name }}"
+        zone: "{{ domain_info_vale.reverse_zone_name }}.in-addr.arpa"
+      loop: "{{ groups['domain_vale'] }}"
+
+    - name: Create reverse DNS PTR records for vars defined additional records
+      ansible.windows.win_dns_record:
+        name: "{{ item.ip | community.dns.reverse_pointer }}"
+        type: "PTR"
+        value: "{{ item.host }}.{{ domain_info_vale.dns_domain_name }}"
+        zone: "{{ item.ip.split('.')[1] }}.10.in-addr.arpa"
+      loop: "{{ domain_dns_records_vale }}"

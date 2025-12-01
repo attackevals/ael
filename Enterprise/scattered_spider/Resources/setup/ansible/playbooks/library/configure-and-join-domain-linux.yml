@@ -1,0 +1,193 @@
+---
+# Required variables:
+# - linux_hostname: Hostname for the Linux system
+# - domain_admin_user: Domain administrator username
+# - domain_admin_pass: Domain administrator password
+# - domain_dns_name: DNS name of the domain
+# - tuned_profile: Tuned profile to apply
+
+- name: Install packages required for AD and some useful tools
+  become: yes
+  ansible.builtin.apt:
+    name:
+      - adcli
+      - cockpit
+      - cockpit-machines
+      - curl
+      - etckeeper
+      - freerdp2-x11
+      - git
+      - libnss-sss
+      - libpam-sss
+      - libvirt-daemon-system
+      - oddjob
+      - oddjob-mkhomedir
+      - packagekit
+      - qemu-kvm
+      - realmd
+      - resolvconf
+      - samba-common-bin
+      - sscg
+      - sssd
+      - sssd-tools
+      - tuned
+      - tuned-utils
+    state: present
+    update_cache: yes
+  ignore_errors: yes
+
+# handler does not reliably trigger, forcibly restart resolved
+- name: restart sssd
+  systemd:
+    name: sssd
+    daemon_reload: yes
+    state: restarted
+    enabled: yes
+
+- name: disable ufw
+  systemd:
+    name: ufw
+    state: stopped
+    enabled: no
+
+- name: Forcibly remove resolv.conf
+  ansible.builtin.shell: |
+    sudo rm -f /etc/resolv.conf
+  ignore_errors: yes
+
+- name: disable systemd resolved
+  systemd:
+    name: systemd-resolved
+    state: stopped
+    enabled: no
+
+- name: Copy resolv dns configuration
+  template:
+    src: "{{ playbook_dir }}/../files/common/resolv.conf.j2"
+    dest: "/etc/resolv.conf"
+    mode: '0644'
+    owner: root
+    group: root
+
+- name: Set hostname
+  ansible.builtin.hostname:
+    name: "{{ linux_hostname }}"
+    use: systemd
+
+- name: Preserve hostname after reboot
+  lineinfile:
+    backup: yes
+    state: present
+    path: /etc/cloud/cloud.cfg
+    regexp: '^{{ item.search }}'
+    line: '{{ item.replace }}'
+  with_items:
+    - { search: 'preserve_hostname', replace: 'preserve_hostname: true' }
+
+- name: Disable Kerberos reverse dns during domain join
+  ansible.builtin.copy:
+    content: |
+      [libdefaults]
+      rdns = false
+    dest: "/etc/krb5.conf"
+    mode: 0644
+
+- name: Join the AD domain
+  ansible.builtin.shell: |
+    echo "{{ domain_admin_pass }}" | realm join -U "{{ domain_admin_user }}@{{ domain_dns_name | upper }}" {{ domain_dns_name }}
+    realm list
+  register: join_result
+  ignore_errors: yes
+
+- name: See the Results from Joining
+  debug:
+    msg: "{{ join_result }}"
+
+- name: Check the AD join result
+  fail:
+    msg: "Unable to join the AD domain, {{ join_result.stderr }}"
+  when: join_result.rc != 0
+  notify: restart sssd
+
+- name: Validate the AD join
+  ansible.builtin.command: getent passwd {{ domain_admin_user }}
+  register: validate_result
+  ignore_errors: yes
+
+- name: Check the validation result
+  fail:
+    msg: "AD join validation failed, {{ validate_result.stderr }}"
+  when: validate_result.rc != 0
+  ignore_errors: yes
+
+- name: install sudo configuration
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/../files/91-sudo-domain-admin"
+    dest: /etc/sudoers.d/91-sudo-domain-admin
+    mode: '0440'
+    owner: root
+    group: root
+    validate: /usr/sbin/visudo -cs %s
+
+- name: allow password auth for domain users over ssh
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/../files/30-allow-password-auth.conf"
+    dest: /etc/ssh/sshd_config.d/30-allow-password-auth.conf
+    mode: '0644'
+    owner: root
+    group: root
+
+- name: Enable home dir creation on first login
+  ansible.builtin.shell: |
+    sudo pam-auth-update --enable mkhomedir
+  register: mkhomedir_result
+  ignore_errors: yes
+
+- name: See the result from configuring mkhomedir
+  debug:
+    msg: "{{ mkhomedir_result }}"
+
+- name: Permit domain logins
+  ansible.builtin.shell: |
+    realm permit --all
+  ignore_errors: yes
+
+- name: Allow user Login without FQDN
+  lineinfile:
+    backup: yes
+    state: present
+    path: /etc/sssd/sssd.conf
+    regexp: '^{{ item.search }}'
+    line: '{{ item.replace }}'
+  loop:
+    - search: 'use_fully_qualified_names'
+      replace: 'use_fully_qualified_names = False'
+    - search: 'fallback_homedir'
+      replace: 'fallback_homedir = /home/%u'
+    - search: 'access_provider = ad'
+      replace: 'access_provider = simple'
+
+- name: add gpo disable login configuration to sssd config
+  lineinfile:
+    backup: yes
+    state: present
+    path: /etc/sssd/sssd.conf
+    search_string: '{{ item.search }}'
+    insertafter: "{{ item.insertafter }}"
+    line: '{{ item.replace }}'
+  loop:
+    - search: 'ad_gpo_access_control'
+      replace: 'ad_gpo_access_control = disabled'
+      insertafter: 'access_provider'
+
+- name: check tuned profile
+  ansible.builtin.shell: tuned-adm active
+  register: tuned_admin
+  changed_when: false
+
+- name: set tuned profile
+  ansible.builtin.shell: tuned-adm profile {{ tuned_profile }}
+  when: "'Current active profile: virtual-host' not in tuned_admin.stdout"
+
+- name: reboot host
+  ansible.builtin.reboot:

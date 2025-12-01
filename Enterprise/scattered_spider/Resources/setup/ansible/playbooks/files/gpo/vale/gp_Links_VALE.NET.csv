@@ -1,0 +1,3 @@
+﻿"Path","State","GpoName","Domain","OUDN","OUName","OUCanonical","Index","TotalCount"
+"CN={6AC1786C-016F-11D2-945F-00C04fB984F9},CN=Policies,CN=System,DC=vale,DC=net","0","Default Domain Controllers Policy","VALE.NET","OU=Domain Controllers,DC=vale,DC=net","Domain Controllers","vale.net/Domain Controllers","0","2"
+"cn={be8e1ff7-b674-4499-98ab-436048c61994},cn=policies,cn=system,DC=vale,DC=net","0","ER7-DC1","VALE.NET","OU=Domain Controllers,DC=vale,DC=net","Domain Controllers","vale.net/Domain Controllers","1","2"

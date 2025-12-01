@@ -1,0 +1,28 @@
+---
+# Required variables:
+# - ad_domain: Active Directory domain name
+# - ad_user: Active Directory username
+# - ad_pass: Active Directory password
+
+- name: "Repairing Domain Trust to {{ ad_domain }}"
+  ansible.builtin.win_shell: |
+    # do the fixing
+    if (!(Test-ComputerSecureChannel)) {
+    # setup credential for ad auth
+      Set-NetFirewallRule -DisplayGroup "File And Printer Sharing" -Enabled True
+
+      $username = "{{ ad_domain | upper }}\{{ ad_user }}"
+      $password = "{{ ad_pass }}" | ConvertTo-SecureString -AsPlainText -Force
+      $credential = New-Object System.Management.Automation.PSCredential($username, $password)
+
+      Test-ComputerSecureChannel -Repair -Credential $credential
+    }
+    else {
+      Write-Host "Trust relationship good, nothing to do..."
+    }
+  ignore_errors: true
+
+- name: Delete PSCrendential Automations
+  ansible.builtin.win_shell: |
+    $credential = $null
+    Remove-Variable -Name credential -ErrorAction SilentlyContinue

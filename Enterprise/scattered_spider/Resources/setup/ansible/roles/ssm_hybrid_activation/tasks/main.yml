@@ -1,0 +1,4 @@
+---
+# Perform activation with AWS SSM
+- name: Perform SSM hybrid activation
+  include_tasks: "{{ ansible_os_family | lower }}.yml"

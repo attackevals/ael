@@ -1,0 +1,169 @@
+---
+- name: Verify OS for instances
+  hosts: victim
+  gather_facts: yes
+  vars:
+    output_path: "./reports/"
+    os_filename: "{{range_name}}_os_report_{{date}}.csv"
+    packages_filename: "{{range_name}}_packages_{{date}}.csv"
+    programs_filename: "{{range_name}}_programs_{{date}}.csv"
+    disk_filename: "{{range_name}}_disk_usage_{{date}}.csv"
+    system_filename: "{{range_name}}_system_info_{{date}}.csv"
+    services_filename: "{{range_name}}_services_{{date}}.csv"
+    hotfix_filename: "{{range_name}}_hotfix_{{date}}.csv"
+    per_host_filename: "{{range_name}}_hotfix_{{date}}_{{ansible_hostname}}.txt"
+    per_host_disk_filename: "{{range_name}}_disk_{{date}}_{{ansible_hostname}}.txt"
+    aws_s3_bucket: "evals-artifacts-storage"
+    aws_s3_report_prefix: "reports/er7"
+    evals_cycle: "er7"
+  ignore_unreachable: yes
+
+  tasks:
+    - name: CSV - Generate output filename
+      ansible.builtin.set_fact: date="{{lookup('pipe','date +%Y%m%d_%H%M%S')}}"
+      run_once: true
+
+    - name: CSV - Generate just ymd for organizing range reports in s3
+      ansible.builtin.set_fact: date_day="{{lookup('pipe','date +%Y%m%d')}}"
+      run_once: true
+
+    - name: Create reports directory
+      ansible.builtin.file:
+        path: "{{ output_path }}"
+        state: directory
+      delegate_to: localhost
+      run_once: true
+
+    # Windows-specific tasks
+    - name: Gather Windows OS info
+      ansible.windows.win_powershell:
+        script: get-computerinfo osversion,osbuildnumber,csname,CsDomain,osname
+      register: win_info_output
+      when: ansible_os_family == "Windows"
+
+    - name: Gather Windows installed programs
+      ansible.windows.win_powershell:
+        script: |
+          Get-WmiObject -Class Win32_Product | Select-Object Name, Version, Vendor | ConvertTo-Json
+      register: win_programs_output
+      when: ansible_os_family == "Windows"
+
+    - name: Gather Windows disk usage
+      ansible.windows.win_powershell:
+        script: |
+          Get-WmiObject -Class Win32_LogicalDisk | Select-Object DeviceID, Size, FreeSpace, @{Name="UsedSpace";Expression={$_.Size - $_.FreeSpace}} | ConvertTo-Json
+      register: win_disk_output
+      when: ansible_os_family == "Windows"
+
+    - name: Gather Windows system info
+      ansible.windows.win_powershell:
+        script: |
+          $os = Get-WmiObject -Class Win32_OperatingSystem
+          $cs = Get-WmiObject -Class Win32_ComputerSystem
+          $uptime = (Get-Date) - $os.ConvertToDateTime($os.LastBootUpTime)
+          @{
+            CPUCores = $cs.NumberOfProcessors
+            MemoryGB = [math]::Round($os.TotalVisibleMemorySize/1MB, 2)
+            UptimeDays = [math]::Round($uptime.TotalDays, 1)
+            LastBoot = $os.ConvertToDateTime($os.LastBootUpTime).ToString()
+            TimeZone = $os.CurrentTimeZone
+          } | ConvertTo-Json
+      register: win_system_output
+      when: ansible_os_family == "Windows"
+
+    - name: Gather Windows services
+      ansible.windows.win_powershell:
+        script: |
+          Get-Service | Select-Object Name, Status, StartType | ConvertTo-Json
+      register: win_services_output
+      when: ansible_os_family == "Windows"
+
+    # Linux-specific tasks
+#    - name: Gather Linux packages (RPM-based)
+#      ansible.builtin.shell: rpm -qa --queryformat '%{NAME},%{VERSION}\n'
+#      register: rpm_packages
+#      when: ansible_os_family != "Windows" and ansible_pkg_mgr in ['yum', 'dnf', 'zypper']
+
+    - name: Gather Linux packages (DEB-based)
+      ansible.builtin.shell: dpkg-query -W -f='${Package},${Version}\n'
+      register: deb_packages
+      when: ansible_os_family != "Windows" and ansible_pkg_mgr == 'apt'
+
+    - name: Gather Linux disk usage
+      ansible.builtin.shell: df -h | tail -n +2 | awk '{print $1","$2","$3","$4","$5","$6}'
+      register: linux_disk_output
+      when: ansible_os_family != "Windows"
+
+    # Generate all CSV reports using templates
+    - name: Generate OS report CSV
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/../files/reporting/os_report.csv.j2"
+        dest: "{{ output_path }}/{{ os_filename }}"
+      delegate_to: localhost
+      run_once: true
+
+    - name: Generate packages CSV
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/../files/reporting/packages.csv.j2"
+        dest: "{{ output_path }}/{{ packages_filename }}"
+      delegate_to: localhost
+      run_once: true
+
+    - name: Generate programs CSV
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/../files/reporting/programs.csv.j2"
+        dest: "{{ output_path }}/{{ programs_filename }}"
+      delegate_to: localhost
+      run_once: true
+
+    - name: Generate disk usage CSV
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/../files/reporting/disk_usage.csv.j2"
+        dest: "{{ output_path }}/{{ disk_filename }}"
+      delegate_to: localhost
+      run_once: true
+
+    - name: Generate system info CSV
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/../files/reporting/system_info.csv.j2"
+        dest: "{{ output_path }}/{{ system_filename }}"
+      delegate_to: localhost
+      run_once: true
+
+    - name: Generate services CSV
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/../files/reporting/services.csv.j2"
+        dest: "{{ output_path }}/{{ services_filename }}"
+      delegate_to: localhost
+      run_once: true
+
+    - name: Gather Linux services (systemd)
+      ansible.builtin.shell: systemctl list-units --type=service --no-pager --no-legend | awk '{print $1","$3","$4}'
+      register: linux_services_output
+      when: ansible_os_family != "Windows" and ansible_service_mgr == "systemd"
+
+    - name: Gather Windows hotfix list
+      ansible.windows.win_powershell:
+        script: |
+          Get-HotFix | Select-Object HotFixID, Description, InstalledBy, InstalledOn | ConvertTo-Json
+      register: hotfix_output
+      when: ansible_os_family == "Windows"
+      ignore_errors: yes
+
+    - name: Generate hotfix CSV
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/../files/reporting/hotfix.csv.j2"
+        dest: "{{ output_path }}/{{ hotfix_filename }}"
+      delegate_to: localhost
+      run_once: true
+      ignore_errors: yes
+
+    - name: Upload all reports to S3
+      community.aws.s3_sync:
+        file_root: "{{ output_path }}"
+        bucket: "{{ aws_s3_bucket }}"
+        key_prefix: "reports/{{ evals_cycle| lower}}/{{ range_name }}/{{ date_day }}/"
+        include: "{{ range_name }}*{{ date_day }}*"
+        validate_certs: false
+      delegate_to: localhost
+      run_once: true

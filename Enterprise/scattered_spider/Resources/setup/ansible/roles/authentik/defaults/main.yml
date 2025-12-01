@@ -1,0 +1,6 @@
+---
+shortname: "{{ domain_info.shortname }}"
+dc: "{{ domain_info.ad_hostname }}"
+domain_name: "{{ domain_info.dns_domain_name }}"
+tld: "{{ domain_info.tld }}"
+post_deploy: false

@@ -1,0 +1,13 @@
+---
+- name: Create certs dir
+  ansible.builtin.file:
+    path: "{{ certs_folder }}"
+    state: directory
+
+- name: Pull from AWS
+  ansible.builtin.command:
+    "aws s3 sync s3://{{ certs_bucket }}/{{bucket_path}} {{ certs_folder }}"
+
+- name: Push to AWS (complete two way sync)
+  ansible.builtin.command:
+    "aws s3 sync {{ certs_folder }} s3://{{ certs_bucket }}/{{bucket_path}}"

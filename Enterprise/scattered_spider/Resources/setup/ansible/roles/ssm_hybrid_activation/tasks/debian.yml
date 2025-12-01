@@ -1,0 +1,82 @@
+---
+- name: Install snapd
+  package:
+    name: snapd
+    state: present
+
+- name: Start snapd service
+  systemd:
+    name: snapd
+    state: started
+    enabled: yes
+
+- name: Wait for snapd service to start
+  wait_for:
+    timeout: 30
+
+- name: Install SSM agent snap
+  snap:
+    name: amazon-ssm-agent
+    classic: yes
+    state: present
+
+- name: Check SSM agent installation method
+  stat:
+    path: '/snap/amazon-ssm-agent/current/amazon-ssm-agent'
+  register: snap_ssm_exists
+
+- name: Set SSM agent path and service name for Snap
+  set_fact:
+    ssm_binary: '/snap/amazon-ssm-agent/current/amazon-ssm-agent'
+    ssm_service: 'snap.amazon-ssm-agent.amazon-ssm-agent.service'
+  when: snap_ssm_exists.stat.exists
+
+- name: Set SSM agent path and service name for traditional install
+  set_fact:
+    ssm_binary: 'amazon-ssm-agent'
+    ssm_service: 'amazon-ssm-agent'
+  when: not snap_ssm_exists.stat.exists
+
+- name: Create SSM config directory
+  file:
+    path: '/etc/amazon/ssm'
+    state: directory
+    mode: '0755'
+
+- name: Stop SSM agent service before registration
+  systemd:
+    name: "{{ ssm_service }}"
+    state: stopped
+  ignore_errors: yes
+
+- name: Force clear existing SSM registration
+  command: "{{ ssm_binary }} -clear"
+  ignore_errors: yes
+
+- name: Clear SSM registration data files
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - '/var/lib/amazon/ssm/registration'
+    - '/var/lib/amazon/ssm/Vault'
+  ignore_errors: yes
+
+- name: Register the Linux instance with SSM
+  expect:
+    command: >
+      {{ ssm_binary }} -register
+      -code "{{ ssm_activation_code }}"
+      -id "{{ ssm_activation_id }}"
+      -region "{{ ssm_region }}"
+    responses:
+      'Would you like to override existing with new registration information\? \[Yes/No\]:': 'Yes'
+    timeout: 300
+  register: ssm_register_result
+
+- name: Start SSM agent service
+  systemd:
+    name: "{{ ssm_service }}"
+    state: started
+    enabled: yes
+  when: ssm_register_result is changed

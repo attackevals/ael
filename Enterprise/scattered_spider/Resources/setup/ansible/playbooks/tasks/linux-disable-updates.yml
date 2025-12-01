@@ -1,0 +1,22 @@
+---
+- name: Lock linux kernel version
+  hosts: linux:!linux_kali
+  become: yes
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: Lock kernel at version
+      ansible.builtin.shell: |
+        sudo apt-mark hold $(uname -r)
+        sudo apt-mark hold linux-image-generic linux-headers-generic
+        sudo apt-mark hold linux-image-aws linux-headers-aws
+
+    - name: disable kernel updates
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/../files/51disable-kernel-updates"
+        dest: "/etc/apt/apt.conf.d/51disable-kernel-updates"
+        mode: '0644'
+        owner: root
+        group: root

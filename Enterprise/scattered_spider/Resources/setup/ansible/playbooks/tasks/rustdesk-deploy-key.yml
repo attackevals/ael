@@ -1,0 +1,27 @@
+---
+- name: Copy rustdesk public key to kali host
+  hosts: linux_kali
+  gather_facts: false
+  become: true
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: Fetch rustdesk public key from server
+      ansible.builtin.fetch:
+        src: /opt/rustdesk/id_ed25519.pub
+        dest: /tmp/rustdesk-key
+        flat: true
+      delegate_to: "{{ groups['linux_rustdesk'][0] }}"
+
+    - name: Ensure rustdesk key directory
+      ansible.builtin.file:
+        path: "/srv/red/er7/{{ range_name }}"
+        state: directory
+        mode: '0755'
+
+    - name: Copy rustdesk key to kali host
+      ansible.builtin.copy:
+        src: /tmp/rustdesk-key
+        dest: "/srv/red/er7/{{ range_name }}/rustdesk-key"
+        mode: '0644'

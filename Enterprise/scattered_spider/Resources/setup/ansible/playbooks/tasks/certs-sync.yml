@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  vars_files:
+    - ../vars/vars.yml
+    - ../vars/cert_vars.yml
+  roles:
+    - role: certs_sync

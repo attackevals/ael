@@ -1,0 +1,54 @@
+---
+- hosts: localhost
+  gather_facts: false
+  become: no
+  tasks:
+    - name: Read tactical-rmm 2fa.txt file
+      ansible.builtin.slurp:
+        src: "{{ playbook_dir }}/../files/tactical-rmm/2fa.txt"
+      register: totp_file
+
+    - name: Extract TOTP secret from file content
+      set_fact:
+        totp_secret: "{{ (totp_file.content | b64decode | regex_search('setup key: ([A-Z0-9]+)', '\\1'))[0] }}"
+
+    - name: Create totp-cli import file content
+      set_fact:
+        totp_import_content: |
+          - name: tacticalrmm
+            accounts:
+              - name: tactical-lstrong
+                token: {{ totp_secret }}
+
+    - name: Write totp-cli import file locally
+      copy:
+        content: "{{ totp_import_content }}"
+        dest: "/tmp/totp-import.txt"
+
+    - name: Add localhost to dummy group with totp_secret
+      add_host:
+        name: localhost
+        groups: totp_vars
+        totp_secret: "{{ totp_secret }}"
+
+- name: Configure Kali totp for tactical rmm
+  hosts: linux_kali
+  gather_facts: yes
+  become: yes
+  vars:
+    totp_import_template: ../files/totp/generic_totp_import.yml.j2
+    totp_import_dest: /tmp/import.yaml
+    totp_user: "op1" # primary_red_user in configure-kali-all
+    totp_passcode: "Decode-Acclimate"
+    rmm_account: "tactical-lstrong"
+    rmm_namespace: "tacticalrmm"
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: import into totp-cli
+      ansible.builtin.include_tasks: ../library/configure-totp-cli-import.yml
+      vars:
+        totp_token: "{{ hostvars['localhost']['totp_secret'] }}"
+        totp_namespace: "{{ rmm_namespace }}"
+        totp_account: "{{ rmm_account }}"

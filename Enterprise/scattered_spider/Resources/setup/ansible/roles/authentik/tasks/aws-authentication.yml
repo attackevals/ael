@@ -1,0 +1,209 @@
+---
+- name: configure AWS session property mapping
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/propertymappings/provider/saml/"
+    method: POST
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+    body_format: json
+    body:
+      name: "https://aws.amazon.com/SAML/Attributes/RoleSessionName"
+      expression: "return user.username"
+      saml_name: "https://aws.amazon.com/SAML/Attributes/RoleSessionName"
+    status_code: 201
+  ignore_errors: true
+
+- name: query AWS property mapping ids
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}/api/v3/propertymappings/provider/saml/?search=aws"
+    method: GET
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+  register: aws_property_map
+
+- name: query nameid property mapping ids
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}/api/v3/propertymappings/provider/saml/?search=email"
+    method: GET
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+  register: name_id
+
+- name: query authentik authorization flow UUID
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/flows/instances/?slug=default-provider-authorization-implicit-consent"
+    method: GET
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+  register: authorization_flow
+
+- name: set auth flow uuid
+  set_fact:
+    flow_uuid: "{{ authorization_flow.json.results[0].pk }}"
+
+- name: query authentik invalidation flow UUID
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/flows/instances/?slug=default-invalidation-flow"
+    method: GET
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+  register: inval_flow
+
+- name: set invalidation flow uuid
+  set_fact:
+    inval_flow_uuid: "{{ inval_flow.json.results[0].pk }}"
+
+- name: query certificates
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/crypto/certificatekeypairs/?name={{ authentik_domain }}"
+    method: GET
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+    validate_certs: no
+  register: cert_response
+
+- name: Create SAML provider for AWS
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/providers/saml/"
+    method: POST
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+    body_format: json
+    body:
+      name: "Provider for AWS"
+      authorization_flow: "{{ flow_uuid }}"
+      invalidation_flow: "{{ inval_flow_uuid }}"
+      acs_url: "https://signin.aws.amazon.com/saml"
+      audience: "urn:amazon:webservices"
+      issuer: "authentik"
+      property_mappings: "{{ aws_property_map.json | json_query('results[*].pk') }}"
+      name_id_mapping: "{{ name_id.json | json_query('results[*].pk') | join('') }}"
+      signing_kp: "{{ cert_response.json | json_query('results[*].pk') | join('') }}"
+      sp_binding: "post"
+      sign_assertion: "true"
+      sign_response: "false"
+    status_code: 201
+  ignore_errors: true
+
+- name: query saml provider
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/providers/saml/?name=Provider%20for%20AWS"
+    method: GET
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+  register: aws_provider
+
+- name: Update AWS Provider in Authentik
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/providers/saml/{{ aws_provider.json.results[0].pk }}/"
+    method: PATCH
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+    body_format: json
+    body:
+      authorization_flow: "{{ flow_uuid }}"
+      invalidation_flow: "{{ inval_flow_uuid }}"
+      acs_url: "https://signin.aws.amazon.com/saml"
+      audience: "urn:amazon:webservices"
+      issuer: "authentik"
+      property_mappings: "{{ aws_property_map.json | json_query('results[*].pk') }}"
+      name_id_mapping: "{{ name_id.json | json_query('results[*].pk') | join('') }}"
+      signing_kp: "{{ cert_response.json | json_query('results[*].pk') | join('') }}"
+      sp_binding: "post"
+      sign_assertion: "true"
+      sign_response: "false"
+
+- name: Create AWS Application in Authentik
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/core/applications/"
+    method: POST
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+    body_format: json
+    body:
+      name: "AWS"
+      slug: "aws"
+      provider: "{{ aws_provider.json.results[0].pk }}"
+      meta_launch_url: ""
+    status_code: 201
+  ignore_errors: true
+
+- name: query cloud admin group to fetch uuid and attributes
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/core/groups/?search=cloud%20admin"
+    method: GET
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+  register: cloud_admin_group
+
+- name: Set aws_role item (admin)
+  set_fact:
+    admin_role_dict_item:
+      aws_role: "{{ domain_info.shortname }}-sso-admin"
+
+- name: Add aws_role to attributes dict (admin)
+  set_fact:
+    admin_attributes: "{{ cloud_admin_group.json.results[0].attributes | ansible.builtin.combine(admin_role_dict_item) }}"
+
+- name: Update Cloud Admin group in Authentik
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/core/groups/{{ cloud_admin_group.json.results[0].pk }}/"
+    method: PATCH
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+    body_format: json
+    body:
+      attributes: "{{ admin_attributes }}"
+
+- name: query vendor group to fetch uuid and attributes
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/core/groups/?search=vendor"
+    method: GET
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+  register: cloud_vendor_group
+
+- name: Set aws_role item (vendor)
+  set_fact:
+    vendor_role_dict_item:
+      aws_role: "{{ domain_info.shortname }}-sso-vendor"
+
+- name: Add aws_role to attributes dict (vendor)
+  set_fact:
+    vendor_attributes: "{{ cloud_vendor_group.json.results[0].attributes | ansible.builtin.combine(vendor_role_dict_item) }}"
+
+- name: Update Vendor group in Authentik
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/core/groups/{{ cloud_vendor_group.json.results[0].pk }}/"
+    method: PATCH
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+    body_format: json
+    body:
+      attributes: "{{ vendor_attributes }}"

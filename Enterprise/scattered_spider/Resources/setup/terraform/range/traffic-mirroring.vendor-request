@@ -1,0 +1,136 @@
+# #### Traffic Mirroring Servers usually provided by vendor
+#
+# module "mirror-onprem" {
+#   source            = "../modules/aws/base-vm"
+#   description       = "[On Prem] Traffic Mirror Server"
+#   platform          = "ubuntu-jammy"
+#   snapshot_required = true
+#   scope             = "internal"
+#
+#   iam_role          = local.roles.cwagent-policy
+#   ami_id            = module.amis.linux-ubuntu-jammy
+#   instance_type     = local.instance-type-large
+#   availability_zone = var.aws-region-az
+#
+#   name               = local.victim-on-prem-vms.tmt-srv1.vm-name
+#   hostname           = local.victim-on-prem-vms.tmt-srv1.hostname
+#   subnet_id          = aws_subnet.victim-desktops.id
+#   private_ip         = local.victim-on-prem-ips.tmt-srv1
+#   security_group_ids = concat(local.victim-on-prem-security-groups-to-apply, local.victim-dmz-security-groups-to-apply)
+#   key_name           = aws_key_pair.ssh-key-pair.key_name
+#   disk_size          = local.disk-size.traffic-mirror
+#   disk_type          = local.standard-disk
+#   tags               = local.victim-onprem-tags
+# }
+#
+# module "mirror-cloud" {
+#   providers = {
+#     aws = aws.cloud-detections
+#   }
+#   source            = "../modules/aws/base-vm"
+#   description       = "[Cloud] Traffic Mirror Server"
+#   platform          = "ubuntu-jammy"
+#   snapshot_required = true
+#   scope             = "internal"
+#
+#   iam_role          = local.roles.cwagent-policy
+#   ami_id            = module.amis.linux-ubuntu-jammy
+#   instance_type     = local.instance-type-large
+#   availability_zone = var.aws-region-az
+#
+#   name               = local.cloud-vms.tmt-srv1.vm-name
+#   hostname           = local.cloud-vms.tmt-srv1.hostname
+#   subnet_id          = aws_subnet.cloud.id
+#   private_ip         = local.cloud-ips.tmt-srv1
+#   security_group_ids = tolist(local.victim-on-prem-security-groups-to-apply)
+#   key_name           = aws_key_pair.ssh-key-pair.key_name
+#   disk_size          = local.disk-size.traffic-mirror
+#   disk_type          = local.standard-disk
+#   tags               = local.victim-cloud-tags
+# }
+#
+# module "mirror-protections" {
+#   source            = "../modules/aws/base-vm"
+#   description       = "[Protections] Traffic Mirror Server"
+#   platform          = "ubuntu-jammy"
+#   snapshot_required = true
+#   scope             = "internal"
+#
+#   iam_role          = local.roles.cwagent-policy
+#   ami_id            = module.amis.linux-ubuntu-jammy
+#   instance_type     = local.instance-type-large
+#   availability_zone = var.aws-region-az
+#
+#   name               = local.b3-vms.tmt-srv1.vm-name
+#   hostname           = local.b3-vms.tmt-srv1.hostname
+#   subnet_id          = aws_subnet.b3-servers.id
+#   private_ip         = local.b3-ips.tmt-srv1
+#   security_group_ids = concat(local.b3-security-groups-to-apply, local.b3-dmz-security-groups-to-apply)
+#   key_name           = aws_key_pair.ssh-key-pair.key_name
+#   disk_size          = local.disk-size.traffic-mirror
+#   disk_type          = local.standard-disk
+#   tags               = local.b3-tags
+# }
+#
+# # ------------------------------------------------------------------------
+#
+# module "traffic-mirror-onprem" {
+#   source        = "../modules/aws/traffic-mirror"
+#   description   = "[On Prem] Traffic Mirror"
+#   target_nic_id = module.mirror-onprem.network_interface_id    # or vendor-requested.tf
+#   name          = "${local.victim-on-prem-vms.tmt-srv1.vm-name}-onprem"
+#
+#   interface_ids = [
+#     module.dmz-guacamole-srv1,
+#     module.on-prem-access-srv1,
+#     module.on-prem-addc-srv1,
+#     module.on-prem-file-srv1,
+#     module.on-prem-file-srv2,
+#     module.on-prem-mail-srv1,
+#     module.on-prem-mfa-srv1,
+#     module.on-prem-win11-desk1,
+#     module.on-prem-win11-desk2,
+#     module.on-prem-win11-desk3,
+#     module.on-prem-win11-desk4,
+#   ]
+#   tags = local.victim-onprem-tags
+# }
+#
+# module "traffic-mirror-cloud" {
+#   providers     = { aws = aws.cloud-detections }
+#   source        = "../modules/aws/traffic-mirror"
+#   description   = "[Cloud] Traffic Mirror"
+#   target_nic_id = module.mirror-cloud.network_interface_id    # or vendor-requested.tf
+#   name          = "${local.cloud-vms.tmt-srv1.vm-name}-cloud"
+#
+#   interface_ids = [
+#     module.cloud-airbyte-srv1,
+#     module.cloud-gitlab-srv1,
+#     module.cloud-wekan-srv1,
+#   ]
+#   tags = local.victim-cloud-tags
+# }
+#
+# module "traffic-mirror-p" {
+#   source        = "../modules/aws/traffic-mirror"
+#   description   = "[Protections] Traffic Mirror"
+#   target_nic_id = module.mirror-protections.network_interface_id  # or vendor-requested.tf
+#   name          = "${local.b3-vms.tmt-srv1.vm-name}-protections"
+#
+#   interface_ids = [
+#     module.b3-access-srv1,
+#     module.b3-addc-srv1,
+#     module.b3-dmz-guacamole-srv1,
+#     module.b3-dmz-mfa-srv1,
+#     module.b3-file-srv1,
+#     module.b3-file-srv2,
+#     module.b3-mail-srv1,
+#     module.b3-mdm-srv1,
+#     module.b3-rd-srv1,
+#     module.b3-win11-desk1,
+#     module.b3-win11-desk2,
+#     module.b3-win11-desk3,
+#     module.b3-win11-desk4,
+#   ]
+#   tags = local.b3-tags
+# }

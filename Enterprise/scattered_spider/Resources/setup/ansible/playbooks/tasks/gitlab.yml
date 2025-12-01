@@ -1,0 +1,420 @@
+---
+- name: Install Certs for Gitlab
+  hosts: cloud-gitlab-srv1
+  become: yes
+  vars:
+    gitlab_domain: "{{ gitlab_config.my_gitlab_domain }}"
+    gitlab_ssl_certificate: "{{ gitlab_config.my_gitlab_ssl_certificate }}"
+    gitlab_ssl_certificate_key: "{{ gitlab_config.my_gitlab_ssl_certificate_key }}"
+    gitlab_source_ssl_certificate: "{{ gitlab_config.gitlab_source_ssl_certificate }}"
+    gitlab_source_ssl_certificate_key: "{{ gitlab_config.gitlab_source_ssl_certificate_key }}"
+    root_ca_source_cert: "{{ gitlab_config.root_ca_source_cert }}"
+  vars_files:
+    - ../vars/vars.yml
+  tasks:
+    - name: create ssl dir
+      file:
+        path: /etc/gitlab/ssl
+        state: directory
+        mode: 0755
+        owner: root
+        group: root
+
+    - name: create trusted certs dir
+      file:
+        path: /etc/gitlab/trusted-certs
+        state: directory
+        mode: 0755
+        owner: root
+        group: root
+
+    - name: copy ssl cert and key up to gitlab
+      copy:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+      with_items:
+        - {src: "{{ gitlab_source_ssl_certificate }}", dest: "{{ gitlab_ssl_certificate }}" }
+        - {src: "{{ gitlab_source_ssl_certificate_key }}", dest: "{{ gitlab_ssl_certificate_key }}" }
+        - {src: "{{ root_ca_source_cert }}", dest: "/etc/gitlab/trusted-certs/root-ca.crt" }
+
+- name: Install Gitlab and Create User Tokens
+  hosts: cloud-gitlab-srv1
+  become: yes
+  vars:
+    aws_deployed_region: "us-east-1"
+    gitlab_domain: "{{ gitlab_config.my_gitlab_domain }}"
+    gitlab_external_url: "{{ gitlab_config.gitlab_external_url }}"
+    gitlab_git_data_dir: "{{ gitlab_config.gitlab_git_data_dir }}"
+    gitlab_edition: "{{ gitlab_config.gitlab_edition }}"
+    gitlab_version: "{{ gitlab_config.gitlab_version }}"
+    gitlab_install_async_timeout: "{{ gitlab_config.gitlab_install_async_timeout }}"
+    gitlab_install_async_poll: "{{ gitlab_config.gitlab_install_async_poll }}"
+    gitlab_backup_path: "{{ gitlab_config.gitlab_backup_path }}"
+    gitlab_config_template: "{{ gitlab_config.gitlab_config_template }}"
+
+    # SSL Configuration.
+    gitlab_redirect_http_to_https: true
+    gitlab_ssl_certificate: "{{ gitlab_config.my_gitlab_ssl_certificate }}"
+    gitlab_ssl_certificate_key: "{{ gitlab_config.my_gitlab_ssl_certificate_key }}"
+    gitlab_source_ssl_certificate: "{{ gitlab_config.gitlab_source_ssl_certificate }}"
+    gitlab_source_ssl_certificate_key: "{{ gitlab_config.gitlab_source_ssl_certificate_key }}"
+
+        # Have setup create a self-signed cert initially so that GitLab will start properly, will replace after role deploy
+    #    gitlab_create_self_signed_cert: false
+    #    gitlab_self_signed_cert_subj: "/C=US/ST=Virginia/L=McLean/O=Dev/CN={{ gitlab_domain }}"
+
+    # LDAP Configuration.
+    gitlab_ldap_enabled: false
+#    gitlab_ldap_host: "example.com"
+#    gitlab_ldap_port: "389"
+#    gitlab_ldap_uid: "sAMAccountName"
+#    gitlab_ldap_method: "plain"
+#    gitlab_ldap_bind_dn: "CN=Username,CN=Users,DC=example,DC=com"
+#    gitlab_ldap_password: "password" # pragma: allowlist secret
+#    gitlab_ldap_base: "DC=example,DC=com"
+
+    # SMTP Configuration
+    gitlab_smtp_enable: false
+#    gitlab_smtp_address: "smtp.server"
+#    gitlab_smtp_port: "465"
+#    gitlab_smtp_user_name: "smtp user"
+#    gitlab_smtp_password: "smtp password" # pragma: allowlist secret
+#    gitlab_smtp_domain: "example.com"
+#    gitlab_smtp_authentication: "login"
+#    gitlab_smtp_enable_starttls_auto: true
+#    gitlab_smtp_tls: false
+#    gitlab_smtp_openssl_verify_mode: "none"
+#    gitlab_smtp_ca_path: "/etc/ssl/certs"
+#    gitlab_smtp_ca_file: "/etc/ssl/certs/ca-certificates.crt"
+
+    # 2-way SSL Client Authentication support.
+#    gitlab_nginx_ssl_verify_client: ""
+#    gitlab_nginx_ssl_client_certificate: ""
+
+    # Probably best to leave this as the default, unless doing testing.
+    gitlab_restart_handler_failed_when: "gitlab_restart.rc != 0"
+
+    # Dependencies.
+    _gitlab_dependencies:
+      default:
+        - openssh-server
+        - postfix
+        - curl
+        - openssl
+        - tzdata
+      # Since `curl` presence is essential for DNF, we should be able to skip installation
+      # of curl to EL systems, as they are all shipped with it as of today.
+      RedHat_9:
+        - openssh-server
+        - postfix
+        - openssl
+        - tzdata
+
+    gitlab_dependencies: "{{
+      _gitlab_dependencies[ansible_distribution ~ '_' ~ ansible_distribution_major_version]|default(
+      _gitlab_dependencies[ansible_os_family ~ '_' ~ ansible_distribution_major_version])|default(
+      _gitlab_dependencies[ansible_distribution])|default(
+      _gitlab_dependencies[ansible_os_family])|default(
+      _gitlab_dependencies['default']) }}"
+
+    # Optional settings.
+    gitlab_time_zone: "UTC"
+    gitlab_backup_keep_time: "604800"
+    gitlab_download_validate_certs: true
+    gitlab_default_theme: "2"
+
+    # Email configuration.
+    gitlab_email_enabled: false
+    gitlab_email_from: "gitlab@kingslanding.net"
+    gitlab_email_display_name: "Gitlab"
+    gitlab_email_reply_to: "gitlab@kingslanding.net"
+
+    # Registry configuration.
+    gitlab_registry_enable: "{{ gitlab_config.gitlab_registry_enable }}"
+    gitlab_registry_external_url: "{{ gitlab_config.gitlab_registry_external_url }}"
+    gitlab_registry_nginx_ssl_certificate: "{{ gitlab_ssl_certificate }}"
+    gitlab_registry_nginx_ssl_certificate_key: "{{ gitlab_ssl_certificate_key }}"
+
+    gitlab_automation_username: "{{ gitlab_config.gitlab_automation_username }}"
+    gitlab_automation_name: "{{ gitlab_config.gitlab_automation_name }}"
+    gitlab_automation_email: "{{ gitlab_config.gitlab_automation_email }}"
+    gitlab_automation_password: "{{ gitlab_config.gitlab_automation_password }}"
+    gitlab_automation_token: "{{ gitlab_config.gitlab_automation_token }}" # must be 20 characters
+    gitlab_automation_token_expiration_days: "{{ gitlab_config.gitlab_automation_token_expiration_days }}"
+    gitlab_automation_token_name: "{{ gitlab_config.gitlab_automation_name }}"
+
+    # LetsEncrypt configuration.
+    gitlab_letsencrypt_enable: false
+  vars_files:
+    - ../vars/vars.yml
+  roles:
+    - JonasPammer.gitlab
+  tags:
+    - gitlab_automation
+
+  tasks:
+    - name: wait for gitlab to be ready
+      ansible.builtin.command: gitlab-rails runner "puts 'GitLab is ready'"
+      register: gitlab_ready
+      until: gitlab_ready.rc == 0
+      retries: 10
+      delay: 30
+
+    - name: create automation bot user and a token for the user
+      ansible.builtin.command: |
+        sudo gitlab-rails runner "
+        unless User.find_by_username('{{ gitlab_automation_username }}')
+          u = Users::CreateService.new(nil,
+            username: '{{ gitlab_automation_username}}',
+            email: '{{ gitlab_automation_email}}',
+            name: '{{ gitlab_automation_name }}',
+            password: '{{ gitlab_automation_password }}',
+            password_confirmation: '{{ gitlab_automation_password }}',
+            organization_id: Organizations::Organization.first.id,
+            skip_confirmation: true
+            ).execute
+        end"
+      tags:
+        - gitlab_automation_user
+
+    - name: create automation bot token
+      ansible.builtin.command: |
+        sudo gitlab-rails runner "
+        user = User.find_by_username('{{ gitlab_automation_username }}')
+        raise 'User not found' unless user
+
+        # Clean up existing tokens with same name
+        user.personal_access_tokens.where(name: '{{ gitlab_automation_token_name }}').destroy_all
+
+        token = user.personal_access_tokens.create!(
+          scopes: ['api', 'sudo'],
+          name: '{{ gitlab_automation_token_name }}',
+          expires_at: {{ gitlab_automation_token_expiration_days }}.days.from_now
+        )
+        token.set_token('{{ gitlab_automation_token }}')
+        token.save!
+        puts 'Token created successfully'
+        "
+      register: token_creation_result
+      failed_when: token_creation_result.rc != 0
+      tags:
+        - gitlab_automation_user
+
+    - name: generate random tokens for users
+      ansible.builtin.set_fact:
+        user_tokens: |
+          {% set tokens = {} %}
+          {%- for user in domain_users_kingslanding -%}
+            {%- set _ = tokens.update({
+              user.username: {
+                'api': lookup('password', '/dev/null chars=ascii_letters,digits length=20'),
+                'read': lookup('password', '/dev/null chars=ascii_letters,digits length=20'),
+              }
+            }) -%}
+          {%- endfor -%}
+          {{ tokens }}
+      run_once: true
+      delegate_to: localhost
+      tags:
+        - gitlab_automation
+
+    - name: create users and tokens in gitlab
+      ansible.builtin.command: |
+        sudo gitlab-rails runner "
+        unless User.find_by_username('{{ item.username }}')
+          result = Users::CreateService.new(nil,
+            username: '{{ item.username }}',
+            email: '{{ item.username }}@{{ domain_info_kingslanding.dns_domain_name}}',
+            name: '{{ item.firstname }} {{ item.surname }}',
+            password: '{{ item.password }}',
+            password_confirmation: '{{ item.password }}',
+            organization_id: Organizations::Organization.first.id,
+            skip_confirmation: true
+          ).execute
+          raise result[:message] unless result[:status] == :success
+        end
+
+        user = User.find_by_username('{{ item.username }}')
+        raise 'User not found after creation' unless user
+
+        # Clean up existing tokens
+        user.personal_access_tokens.where(name: ['{{ item.username }}-api-token', '{{ item.username }}-read-token']).destroy_all
+
+        api_token = user.personal_access_tokens.create!(
+          scopes: ['api', 'read_user', 'read_repository', 'write_repository'],
+          name: '{{ item.username }}-api-token',
+          expires_at: {{ gitlab_automation_token_expiration_days }}.days.from_now
+        )
+        api_token.set_token('{{ user_tokens[item.username].api }}')
+        api_token.save!
+
+        read_token = user.personal_access_tokens.create!(
+          scopes: ['read_api', 'read_user', 'read_repository'],
+          name: '{{ item.username }}-read-token',
+          expires_at: {{ gitlab_automation_token_expiration_days }}.days.from_now
+        )
+        read_token.set_token('{{ user_tokens[item.username].read }}')
+        read_token.save!
+
+        puts 'Tokens created successfully for {{ item.username }}'
+        "
+      loop: "{{ domain_users_kingslanding }}"
+      register: user_token_results
+      failed_when: user_token_results.rc != 0
+      tags:
+        - gitlab_automation
+
+    - name: ensure local directory exists to write tokens to
+      ansible.builtin.file:
+        path: "{{ gitlab_config.gitlab_tokens_file_local | dirname }}"
+        state: directory
+      become: no
+      delegate_to: localhost
+      tags:
+        - gitlab_automation
+
+    - name: write all tokens to file
+      ansible.builtin.copy:
+        content: |
+          {% for user in domain_users_kingslanding %}
+          {{ user.username }}-api: {{ user_tokens[user.username].api }}
+          {{ user.username }}-read: {{ user_tokens[user.username].read }}
+          {% endfor %}
+        dest: "{{ gitlab_config.gitlab_tokens_file_local }}"
+        backup: yes
+        force: yes
+      become: no
+      delegate_to: localhost
+      tags:
+        - gitlab_automation
+
+    - name: Change AWS Accounts to Cloud Management Account as part of Chain
+      shell: >
+        aws sts assume-role \
+        --role-arn "{{ cloud_mgmt_arn }}" \
+        --role-session-name cross-cloud-mgmt \
+        --query 'Credentials' \
+        --output json
+      register: cross_account_creds
+      vars:
+        cloud_mgmt_arn: "{{ hostvars[groups['linux_cloud'][0]]['cloud_management_arn'] }}"
+      changed_when: false
+      failed_when: cross_account_creds.rc != 0
+      delegate_to: localhost
+      become: no
+      tags:
+        - red_staging
+        - aws
+
+    - name: Parse credentials from CrossAccountAccess assume-role
+      set_fact:
+        aws_cross_creds:
+          AWS_ACCESS_KEY_ID: "{{ cross_account_creds.stdout | from_json | json_query('AccessKeyId') }}"
+          AWS_SECRET_ACCESS_KEY: "{{ cross_account_creds.stdout | from_json | json_query('SecretAccessKey') }}"
+          AWS_SESSION_TOKEN: "{{ cross_account_creds.stdout | from_json | json_query('SessionToken') }}"
+      delegate_to: localhost
+      become: no
+      tags:
+        - red_staging
+        - aws
+
+    - name: Assume cloud-detections role using CrossAccountAccess credentials
+      shell: >
+        AWS_ACCESS_KEY_ID={{ aws_cross_creds.AWS_ACCESS_KEY_ID }} \
+        AWS_SECRET_ACCESS_KEY={{ aws_cross_creds.AWS_SECRET_ACCESS_KEY }} \
+        AWS_SESSION_TOKEN={{ aws_cross_creds.AWS_SESSION_TOKEN }} \
+        aws sts assume-role \
+          --role-arn "{{ hostvars[groups['linux_cloud'][0]]['detections_acct_arn'] }}" \
+          --role-session-name cloud-detections \
+          --query 'Credentials' \
+          --output json
+      register: detections_creds
+      changed_when: false
+      failed_when: detections_creds.rc != 0
+      delegate_to: localhost
+      become: no
+      tags:
+        - red_staging
+        - aws
+
+    - name: Parse credentials for cloud-detections role
+      set_fact:
+        aws_detections_creds:
+          AWS_ACCESS_KEY_ID: "{{ detections_creds.stdout | from_json | json_query('AccessKeyId') }}"
+          AWS_SECRET_ACCESS_KEY: "{{ detections_creds.stdout | from_json | json_query('SecretAccessKey') }}"
+          AWS_SESSION_TOKEN: "{{ detections_creds.stdout | from_json | json_query('SessionToken') }}"
+      delegate_to: localhost
+      become: no
+      tags:
+        - red_staging
+        - aws
+
+    - name: Use assumed role credentials to get new identity
+      shell: >
+        AWS_ACCESS_KEY_ID={{ aws_detections_creds.AWS_ACCESS_KEY_ID }} \
+        AWS_SECRET_ACCESS_KEY={{ aws_detections_creds.AWS_SECRET_ACCESS_KEY }} \
+        AWS_SESSION_TOKEN={{ aws_detections_creds.AWS_SESSION_TOKEN }} \
+        aws sts get-caller-identity --output json
+      register: validated_identity
+      changed_when: false
+      delegate_to: localhost
+      become: no
+      tags:
+        - red_staging
+        - aws
+
+    # have to use cli because ansible module does not handle assumed role when a profile
+    # was previously used
+    - name: upload atargaryen api token to aws secrets manager
+      shell: |
+        unset AWS_PROFILE
+        AWS_REGION={{ aws_deployed_region }} \
+        AWS_ACCESS_KEY_ID={{ aws_detections_creds.AWS_ACCESS_KEY_ID }} \
+        AWS_SECRET_ACCESS_KEY={{ aws_detections_creds.AWS_SECRET_ACCESS_KEY }} \
+        AWS_SESSION_TOKEN={{ aws_detections_creds.AWS_SESSION_TOKEN }} \
+        aws secretsmanager put-secret-value \
+          --secret-id "{{ hostvars['red-kali1'].gitlab_pat_secret_name }}" \
+          --secret-string "glpat-{{ user_tokens.atargaryen.api }}" || \
+        AWS_REGION={{ aws_deployed_region }} \
+        AWS_ACCESS_KEY_ID={{ aws_detections_creds.AWS_ACCESS_KEY_ID }} \
+        AWS_SECRET_ACCESS_KEY={{ aws_detections_creds.AWS_SECRET_ACCESS_KEY }} \
+        AWS_SESSION_TOKEN={{ aws_detections_creds.AWS_SESSION_TOKEN }} \
+        aws secretsmanager create-secret \
+          --name "{{ hostvars['red-kali1'].gitlab_pat_secret_name }}" \
+          --secret-string "glpat-{{ user_tokens.atargaryen.api }}"
+      environment:
+        AWS_SHARED_CREDENTIALS_FILE: ""
+        AWS_CONFIG_FILE: ""
+        AWS_SDK_LOAD_CONFIG: "0"
+      become: no
+      delegate_to: localhost
+      tags:
+        - red_staging
+        - aws
+        - gitlab_automation
+
+##### Gitlab SSO OIDC
+
+- name: Install Gitlab Authentik SSO configuration
+  hosts: cloud-gitlab-srv1
+  become: yes
+  vars:
+    gitlab_domain: "{{ gitlab_config.my_gitlab_domain }}"
+    gitlab_ssl_certificate: "{{ gitlab_config.my_gitlab_ssl_certificate }}"
+    gitlab_ssl_certificate_key: "{{ gitlab_config.my_gitlab_ssl_certificate_key }}"
+    gitlab_source_ssl_certificate: "{{ gitlab_config.gitlab_source_ssl_certificate }}"
+    gitlab_source_ssl_certificate_key: "{{ gitlab_config.gitlab_source_ssl_certificate_key }}"
+  vars_files:
+    - ../vars/vars.yml
+  roles:
+    - gitlab-authentik
+  tags:
+    - gitlab_sso
+
+  tasks:
+    - name: reconfigure gitlab
+      ansible.builtin.command: gitlab-ctl reconfigure
+
+    - name: reboot gitlab server
+      ansible.builtin.reboot:
+        reboot_timeout: 90

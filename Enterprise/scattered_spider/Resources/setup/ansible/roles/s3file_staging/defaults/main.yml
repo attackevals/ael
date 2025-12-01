@@ -1,0 +1,64 @@
+---
+# Default variables for s3file_staging role
+source_bucket: evals-artifacts-storage
+source_path_prefix: er7
+source_path_suffix: s3-staging
+dest_cloud_bucket: "er7-{{ range_name }}-storage"
+CrossAccountAccess_arn: "{{ hostvars[groups['linux_cloud'][0]]['cloud_management_arn'] }}"
+Cloud_Protections_arn: "{{ hostvars[groups['linux_cloud'][0]]['protections_acct_arn'] }}"
+cloud_detections_arn: "{{ hostvars[groups['linux_cloud'][0]]['detections_acct_arn'] }}"
+target_account: protections  # Options: protections, detections
+
+source_cloud_directories:
+  Archive:
+    dest_key: Archive
+    tag: confidential
+  Engineering:
+    dest_key: Engineering
+    tag: confidential
+  Executive:
+    dest_key: Executive
+    tag: confidential
+  Finance:
+    dest_key: Finance
+    tag: secret
+  Human_Resources:
+    dest_key: Human_Resources
+    tag: human_resources
+  IT:
+    dest_key: IT
+    tag: sensitive
+  Legal:
+    dest_key: Legal
+    tag: privileged
+  Marketing:
+    dest_key: Marketing
+    tag: sensitive
+  Operations:
+    dest_key: Operations
+    tag: confidential
+  Sales:
+    dest_key: Sales
+    tag: confidential
+  Shared:
+    dest_key: Shared
+    tag: na
+  Temp:
+    dest_key: Temp
+    tag: na
+protections_cloud_files:
+  Financial_Q3_Records.csv:
+    src_key: er7/protections/s3-staging/Financial_Q3_Records.csv
+    dest_key: Finance Department/Q3/Financial_Q3_Records.csv
+    tag: sensitive
+    dept: Finance Department
+  Employee_Info.csv:
+    src_key: er7/protections/s3-staging/Employee_Info.csv
+    dest_key: Human Resources/Employees/Employee_Info.csv
+    tag: confidential
+    dept: Human Resources
+  password_backup.txt:
+    src_key: er7/protections/s3-staging/password_backup.txt
+    dest_key: IT Department/Backups/password_backup.txt
+    tag: secret
+    dept: IT Department

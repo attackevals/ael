@@ -1,0 +1,38 @@
+---
+- name: Decoy files install on linux
+  hosts:
+    - linux_servers
+  become: yes
+  vars_files:
+    - ../vars/vars.yml
+  vars:
+    linux_noise_gen_dst_dir: "/opt/filegen"
+    linux_noise_gen_src_dir: "../files/filegen/file_generator"
+    decoy_src_files: "../files/filegen"
+    linux_filegen_exe: "generate-files.py"
+    decoy_base_dir: "/home/"
+    decoy_seed: "KPOP"
+    decoy_file_count: "100"
+    filegen_zip: "file_generator//generate-files.exe.zip"
+    filegen_exe_dir: "file_generator"
+
+  tasks:
+    - name: Create directory for file generator files
+      file:
+        path: "{{ linux_noise_gen_dst_dir }}"
+        state: directory
+
+    - name: Copy filegen bundle to host
+
+      ansible.builtin.copy:
+        src: "{{ decoy_src_files }}/"
+        dest: "{{ linux_noise_gen_dst_dir }}"
+
+    - name: Run decoy commands
+      ansible.builtin.shell: |
+        python3 {{ linux_noise_gen_dst_dir}}/{{ filegen_exe_dir }}/{{linux_filegen_exe}} -d "{{ decoy_base_dir }}" --seed "{{ decoy_seed }}" -c {{ decoy_file_count }} --noprompt
+
+#    - name: Remove noise gen stuff
+#      file:
+#        path: "{{ linux_noise_gen_dst_dir }}"
+#        state: absent

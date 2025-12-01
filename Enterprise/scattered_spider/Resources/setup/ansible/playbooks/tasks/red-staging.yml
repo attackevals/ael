@@ -1,0 +1,190 @@
+---
+# stage atargaryen ssh key as authorized key on airbyte server
+- name: "stage atargaryen ssh key as authorized key on airbyte server"
+  hosts: cloud-airbyte-srv1
+  become: true
+  vars:
+    pub_key_filename: "{{ playbook_dir }}/../files/red-staging/ssh-keys/atargaryen.pub"
+    pub_key: "{{ lookup('file', '{{ pub_key_filename }}') }}"
+    key_user: "atargaryen"
+    key_path: "/home/{{ key_user }}/.ssh/authorized_keys"
+  vars_files:
+    - ../vars/vars.yml
+  tasks:
+    - name: use pam mkhomedir_helper to create home directories and loop through all ad users
+      ansible.builtin.shell:
+        cmd: "mkhomedir_helper {{ item.username }}"
+      loop: "{{ domain_users_kingslanding }}"
+      when: domain_users_kingslanding is defined
+
+    - name: "stage atargaryen ssh key as authorized key on airbyte server"
+      ansible.posix.authorized_key:
+        user: "{{ key_user }}"
+        path: "{{ key_path }}"
+        key: "{{ pub_key }}"
+        state: present
+
+######################################################################
+# create virtualenv and install requirements on kali host
+- name: "create virtualenv and install requirements on kali host"
+  hosts: red-kali1
+  become: true
+  vars:
+    # dest
+    gitlab_venv_base_dir: "/opt/gitlab"
+    gitlab_venv_dir: "{{ gitlab_venv_base_dir }}/venv"
+    gitlab_scripts_dir: "{{ gitlab_venv_base_dir }}/scripts"
+    gitlab_requirements_path: "{{ gitlab_scripts_dir }}/requirements.txt"
+    gitlab_priv_key_path: "{{ gitlab_scripts_dir }}/atargaryen_id_rsa"
+    venv_umask: "0022"
+
+    # src
+    gitlab_source_base_dir: "{{ playbook_dir }}/../files/red-staging/"
+    gitlab_source_scripts_dir: "{{ gitlab_source_base_dir }}/populate-gitlab"
+    gitlab_source_staging_repo_path: "{{ gitlab_source_scripts_dir }}/gitlab-staging-repo"
+    gitlab_source_requirements_path: "{{ gitlab_source_scripts_dir }}/requirements.txt"
+    gitlab_source_populate_template_path: "{{ gitlab_source_scripts_dir }}/populate-gitlab.py.j2"
+    gitlab_source_priv_key_path: "{{ playbook_dir }}/../files/red-staging/ssh-keys/atargaryen_id_rsa"
+  vars_files:
+    - ../vars/vars.yml
+  tasks:
+    - name: create venv directory
+      ansible.builtin.file:
+        path: "{{ gitlab_venv_dir }}"
+        state: directory
+        mode: '0755'
+        owner: op1
+        group: op1
+    - name: create scripts directory
+      ansible.builtin.file:
+        path: "{{ gitlab_scripts_dir }}"
+        state: directory
+        mode: '0755'
+        owner: op1
+        group: op1
+
+    - name: "copy requirements.txt to kali host"
+      ansible.builtin.copy:
+        src: "{{ gitlab_source_requirements_path }}"
+        dest: "{{ gitlab_requirements_path }}"
+        mode: '0644'
+
+    - name: "copy populate-gitlab.py to kali host"
+      ansible.builtin.template:
+        src: "{{ gitlab_source_populate_template_path }}"
+        dest: "{{ gitlab_scripts_dir }}/populate-gitlab.py"
+        mode: '0644'
+
+    - name: copy priv key to kali host
+      ansible.builtin.copy:
+        src: "{{ gitlab_source_priv_key_path }}"
+        dest: "{{ gitlab_priv_key_path }}"
+        mode: '0600'
+
+    - name: upload gitlab staging repo files to kali host
+      ansible.builtin.copy:
+        src: "{{ gitlab_source_staging_repo_path }}"
+        dest: "{{ gitlab_scripts_dir }}"
+        mode: '0755'
+
+    - name: Create venv using ansible pip module
+      ansible.builtin.pip:
+        virtualenv: "{{ gitlab_venv_dir }}"
+        umask: "{{ venv_umask }}"
+        state: present
+        virtualenv_command: "python3 -m venv"
+        requirements: "{{ gitlab_requirements_path }}"
+
+    - name: Ensure virtualenv is owned by op1 user
+      ansible.builtin.file:
+        path: "{{ gitlab_venv_dir }}"
+        state: directory
+        recurse: yes
+        owner: op1
+        group: op1
+
+    - name: Ensure parent directory is owned by op1 user
+      ansible.builtin.file:
+        path: "{{ gitlab_venv_base_dir }}"
+        state: directory
+        owner: op1
+        group: op1
+
+    - name: parse gitlab tokens file and extract atargaryen api token
+      ansible.builtin.set_fact:
+        atargaryen_api_token: "{{ lookup('file', gitlab_config.gitlab_tokens_file_local) | regex_search('atargaryen-api: (.+)', '\\1') | first }}"
+      delegate_to: localhost
+      run_once: true
+
+#    - name: execute python populate script within virtualenv
+#      ansible.builtin.shell:
+#        cmd: "{{ gitlab_venv_dir }}/bin/python {{ gitlab_scripts_dir }}/populate-gitlab.py"
+#        chdir: "{{ gitlab_scripts_dir }}"
+    - name: execute python populate script within virtualenv
+      #language=Shell
+      ansible.builtin.shell:
+        cmd: |
+          {{ gitlab_venv_dir }}/bin/python {{ gitlab_scripts_dir }}/populate-gitlab.py --url https://{{ gitlab_config.my_gitlab_domain }} --user {{ gitlab_config.gitlab_populate_user}} --repoName {{ gitlab_config.gitlab_populate_repo }} --repoGroup {{ gitlab_config.gitlab_populate_group }} --token glpat-{{ atargaryen_api_token }}
+        chdir: "{{ gitlab_scripts_dir }}"
+
+######################################################################
+# stage airbyte config files
+- name: "stage network_files files"
+  hosts: on-prem-file-srv1
+  become: true
+  vars:
+    src_dir: "{{ playbook_dir }}/../files/red-staging/network_files"
+    dst_dir: "{{ (drive_configs | selectattr('drive_letter', 'equalto', 'E') | first).drive_letter }}:/{{ (drive_configs | selectattr('drive_letter', 'equalto', 'E') | first).share_name }}"
+  vars_files:
+    - ../vars/vars.yml
+  tasks:
+    - name: "copy files to windows file server"
+      ansible.windows.win_copy:
+        src: "{{ src_dir }}"
+        dest: "{{ dst_dir }}"
+
+######################################################################
+# create venv on kali host
+- name: "create venv on kali host"
+  hosts: red-kali1
+  become: true
+  vars:
+    kali_base_dir: "/opt/kalidev"
+    kali_venv_dir: "/opt/kalidev/venv"
+    kali_requirements_path: "/tmp/requirements.txt"
+    kali_source_requirements_path: "{{ playbook_dir }}/../files/kali/venv-requirements.txt"
+    venv_umask: "0022"
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - kali-venv
+  tasks:
+    - name: create parent dir for venv
+      ansible.builtin.file:
+        state: directory
+        path: "{{ kali_base_dir }}"
+        mode: '0755'
+        owner: op1
+        group: op1
+
+    - name: copy requirements file to kali
+      ansible.builtin.copy:
+        src: "{{ kali_source_requirements_path }}"
+        dest: "{{ kali_requirements_path }}"
+        mode: '0644'
+
+    - name: Create venv using ansible pip module
+      ansible.builtin.pip:
+        virtualenv: "{{ kali_venv_dir }}"
+        umask: "{{ venv_umask }}"
+        state: present
+        virtualenv_command: "python3 -m venv"
+        requirements: "{{ kali_requirements_path }}"
+
+    - name: Ensure virtualenv is owned by op1 user
+      ansible.builtin.file:
+        path: "{{ kali_venv_dir }}"
+        state: directory
+        recurse: yes
+        owner: op1
+        group: op1

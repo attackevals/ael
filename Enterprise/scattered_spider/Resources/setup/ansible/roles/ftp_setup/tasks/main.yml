@@ -1,0 +1,35 @@
+---
+# FTP setup tasks
+
+- name: Create FTP users
+  ansible.builtin.user:
+    name: "{{ item.username }}"
+    expires: -1
+    generate_ssh_key: yes
+    password: "{{ item.password | password_hash('sha512')}}"
+    state: present
+    shell: /bin/bash
+  loop: "{{ ftp_users }}"
+
+- name: Configure VSFTPD
+  ansible.builtin.template:
+    src: vsftpd.conf.j2
+    dest: /etc/vsftpd.conf
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Create FTP directories
+  ansible.builtin.file:
+    path: "{{ ftp_srv_dir }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ ftp_user }}"
+    group: ftp
+
+- name: Enable and Restart VSFTP service
+  ansible.builtin.systemd:
+    name: "vsftpd"
+    daemon_reload: yes
+    state: restarted
+    enabled: yes

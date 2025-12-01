@@ -1,0 +1,172 @@
+---
+- name: Provision and configure additional drive on File Servers
+  hosts: windows_file_servers
+  strategy: free
+  gather_facts: no
+  vars:
+    share_domain_users: Domain Users
+
+  tasks:
+    - name: List all available disks
+      ansible.windows.win_powershell:
+        script: |
+          Get-Disk | Select-Object Number, FriendlyName, OperationalStatus, PartitionStyle, Size | Format-Table -AutoSize
+      register: all_disks_info
+      changed_when: false
+
+    - name: Display all disks information
+      debug:
+        var: all_disks_info.output
+
+    - name: Initialize and prepare disks
+      ansible.windows.win_powershell:
+        script: |
+          $diskNumber = {{ item.disk_number }}
+
+          # Get the disk
+          $disk = Get-Disk -Number $diskNumber -ErrorAction SilentlyContinue
+
+          if ($disk) {
+            # Bring disk online if needed
+            if ($disk.IsOffline -eq $true) {
+              $disk | Set-Disk -IsOffline $false
+              Write-Output "Disk $diskNumber brought online"
+            }
+
+            # Make disk writable if needed
+            if ($disk.IsReadOnly -eq $true) {
+              $disk | Set-Disk -IsReadOnly $false
+              Write-Output "Disk $diskNumber set to writable"
+            }
+
+            # Initialize disk if needed
+            if ($disk.PartitionStyle -eq 'RAW') {
+              $disk | Initialize-Disk -PartitionStyle GPT
+              Write-Output "Disk $diskNumber initialized with GPT partition style"
+            }
+
+            Write-Output "Disk $diskNumber prepared successfully"
+            $true
+          } else {
+            Write-Output "Disk $diskNumber not found"
+            $false
+          }
+      register: disk_init_result
+      loop: "{{ drive_configs }}"
+      ignore_errors: yes
+
+    - name: Create partitions and format drives
+      ansible.windows.win_powershell:
+        script: |
+          $diskNumber = {{ item.disk_number }}
+          $driveLetter = "{{ item.drive_letter }}"
+
+          # Get the disk
+          $disk = Get-Disk -Number $diskNumber -ErrorAction SilentlyContinue
+
+          if ($disk) {
+            # Check if partition with this drive letter already exists
+            $partition = Get-Partition -DiskNumber $diskNumber -ErrorAction SilentlyContinue |
+                         Where-Object { $_.DriveLetter -eq $driveLetter }
+
+            if (-not $partition) {
+              Write-Output "Creating new partition on disk $diskNumber with drive letter $driveLetter"
+              $partition = New-Partition -DiskNumber $diskNumber -UseMaximumSize -DriveLetter $driveLetter
+
+              # Format the new partition
+              Format-Volume -DriveLetter $driveLetter -FileSystem NTFS -NewFileSystemLabel "{{ item.drive_label }}" -Confirm:$false
+              Write-Output "Formatted drive $driveLetter with label {{ item.drive_label }}"
+              $true
+            } else {
+              Write-Output "Partition with drive letter $driveLetter already exists on disk $diskNumber"
+              $false
+            }
+          } else {
+            Write-Output "Disk $diskNumber not found"
+            $false
+          }
+      register: partition_result
+      loop: "{{ drive_configs }}"
+      ignore_errors: yes
+
+    - name: Create share directories
+      ansible.windows.win_powershell:
+        script: |
+          $driveLetter = "{{ item.drive_letter }}"
+          $shareName = "{{ item.share_name | default(item.drive_label) }}"
+          $sharePath = "${driveLetter}:\\${shareName}"
+
+          # Wait for the drive to be available
+          $retries = 5
+          $driveReady = $false
+
+          while ($retries -gt 0 -and -not $driveReady) {
+            if (Test-Path -Path "${driveLetter}:") {
+              $driveReady = $true
+              Write-Output "Drive $driveLetter is ready"
+            } else {
+              Write-Output "Waiting for drive $driveLetter to be ready... ($retries attempts left)"
+              Start-Sleep -Seconds 2
+              $retries = $retries - 1
+            }
+          }
+
+          if ($driveReady) {
+            if (-not (Test-Path -Path $sharePath)) {
+              New-Item -Path $sharePath -ItemType Directory -Force
+              Write-Output "Created directory $sharePath"
+            } else {
+              Write-Output "Directory $sharePath already exists"
+            }
+            # Return the path for use in subsequent tasks
+            Write-Output $sharePath
+          } else {
+            Write-Output "Drive $driveLetter is not available after waiting"
+          }
+      register: share_dir_result
+      loop: "{{ drive_configs }}"
+      ignore_errors: yes
+
+    - name: Create SMB shares
+      ansible.windows.win_powershell:
+        script: |
+          $driveLetter = "{{ item.drive_letter }}"
+          $shareName = "{{ item.share_name | default(item.drive_label) }}"
+          $sharePath = "$driveLetter`:\$shareName"  # Using PowerShell backtick for escaping
+
+          if (Test-Path -Path $sharePath) {
+            # Check if share already exists
+            $existingShare = Get-SmbShare -Name $shareName -ErrorAction SilentlyContinue
+
+            if (-not $existingShare) {
+              # Create the share
+              New-SmbShare -Name $shareName -Path $sharePath -FullAccess "Everyone"
+              Write-Output "Created share $shareName for path $sharePath"
+            } else {
+              Write-Output "Share $shareName already exists"
+            }
+
+            # Return success
+            $true
+          } else {
+            Write-Output "Path $sharePath does not exist, cannot create share"
+            $false
+          }
+      register: share_create_result
+      loop: "{{ drive_configs }}"
+      ignore_errors: yes
+
+    - name: Verify shares are accessible
+      ansible.windows.win_powershell:
+        script: |
+          $shareName = "{{ item.share_name | default(item.drive_label) }}"
+          if (Test-Path -Path "\\localhost\$shareName") {
+            Write-Output "Share $shareName is accessible"
+            $true
+          } else {
+            Write-Output "Share $shareName is not accessible"
+            $false
+          }
+      register: share_test
+      loop: "{{ drive_configs }}"
+      changed_when: false

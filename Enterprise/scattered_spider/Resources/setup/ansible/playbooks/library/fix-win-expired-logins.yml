@@ -1,0 +1,12 @@
+---
+# Required variables:
+# - None (this task uses hardcoded devadmin user)
+
+- name: Ensure devadmin does not expire
+  ansible.windows.win_user:
+    name: "devadmin"
+    password_never_expires: yes
+    state: present
+    account_disabled: no
+    account_locked: no
+    password_expired: no

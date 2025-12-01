@@ -1,0 +1,71 @@
+---
+- name: CREATE Windows Domain {{ domain_info.dns_domain_name }}
+  microsoft.ad.domain:
+    dns_domain_name: "{{ domain_info.dns_domain_name }}"
+    safe_mode_password: "{{ domain_info.safe_mode_pass }}"  # Replace as appropriate with properly secured token.
+    reboot: yes
+  register: domain_result
+
+- name: Delay-start WinRM after system has booted and works reliably
+  ansible.windows.win_service:
+    name: WinRM
+    start_mode: delayed
+
+- name: Configure AD Server DNS
+  ansible.windows.win_dns_client:
+    adapter_names: '*'
+    dns_servers:
+      - "{{ domain_info.ad_ip_addr }}"
+      - "{{ range_dns_server_ip }}"
+
+- name: set dns forwarder to use range dns
+  ansible.windows.win_shell: |
+    Set-DnsServerForwarder -IPAddress {{ range_dns_server_ip }}
+    Clear-DNSServerCache -Force
+    Clear-DnsClientCache
+  ignore_errors: yes
+
+- name: CREATE groups for scenario
+  microsoft.ad.group:
+    name: "{{ item.group_name }}"
+    description: "{{ item.description | default('AD Group') }}"
+    scope: global
+    category: security
+  loop: "{{ domain_groups }}"
+  tags: users
+
+- name: CREATE Domain Users
+  microsoft.ad.user:
+    name: "{{ item.username }}"
+    firstname: "{{ item.firstname }}"
+    surname: "{{ item.surname }}"
+    password: "{{ item.password }}"
+    email: "{{ item.username }}@{{ domain_info.dns_domain_name }}"
+    display_name: "{{ item.firstname }} {{ item.surname }}"
+    groups:
+      set: "{{ item.group_list }}"
+    password_never_expires: yes
+    state: present
+  loop: "{{ domain_users }}"
+  tags: users
+
+- name: Debug user creation
+  ansible.builtin.debug:
+    msg: "{{ item }}"
+  loop: "{{ domain_users }}"
+  tags: users
+
+- name: Create domain dns records
+  community.windows.win_dns_record:
+    name: "{{ item.host }}"
+    type: "A"
+    value: "{{ item.ip }}"
+    state: present
+    zone: "{{ domain_info.dns_domain_name }}"
+  loop: "{{ domain_dns_records }}"
+  tags: dns
+
+- name: Enable network sharing
+  win_shell: |
+    netsh advfirewall firewall set rule group="Network Discovery" new enable=Yes
+  register: share_result

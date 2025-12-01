@@ -1,0 +1,119 @@
+---
+- name: Install Unbound DNS
+  hosts: dns
+  become: yes
+  # vars:
+  #   redirects: "{{ redirect1.redirects + redirect2.redirects + redirect3.redirects + redirect4.redirects }}"
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    # dns server needs separate resolvable upstream configuration so it can forward requests and reach internet before configuration
+    - name: Copy resolv dns configuration specifically for dns server
+      template:
+        src: "../files/dns/resolv.conf.j2"
+        dest: "/etc/resolv.conf"
+        mode: '0644'
+        owner: root
+        group: root
+
+    - name: Ansible apt install unbound
+      apt:
+        name:
+          - unbound
+          - iptables-persistent
+          - unbound
+          - git
+          - etckeeper
+        state: present
+        update_cache: yes
+
+    - name: Set hostname
+      ansible.builtin.hostname:
+        name: "{{ support_vars.dns_server_hostname }}"
+        use: systemd
+
+    - name: Preserve hostname after reboot
+      lineinfile:
+        backup: yes
+        state: present
+        path: /etc/cloud/cloud.cfg
+        regexp: '^{{ item.search }}'
+        line: '{{ item.replace }}'
+      with_items:
+        - { search: 'preserve_hostname', replace: 'preserve_hostname: true' }
+
+    - name: Configure Unbound DNS common zones
+      template:
+        src: "../files/dns/common-zone.conf.j2"
+        dest: /etc/unbound/unbound.conf.d/common-zone.conf
+
+    - name: Configure Unbound DNS access policy
+      template:
+        src: "../files/dns/access.conf.j2"
+        dest: /etc/unbound/unbound.conf.d/access.conf
+
+    - name: Configure Unbound DNS base configuration
+      template:
+        src: "../files/dns/base.conf.j2"
+        dest: /etc/unbound/unbound.conf.d/base.conf
+
+    # mail not currently setup
+    - name: Configure Unbound DNS mail policy
+      template:
+        src: "../files/dns/mail.conf.j2"
+        dest: /etc/unbound/unbound.conf.d/mail.conf
+
+    - name: Configure Unbound DNS AD domain forwarding zones
+      template:
+        src: "../files/dns/forward-zone.conf.j2"
+        dest: /etc/unbound/unbound.conf.d/forward.conf
+
+    - name: Configure Unbound DNS A and PTR records for range
+      template:
+        src: "../files/dns/dns-records.conf.j2"
+        dest: /etc/unbound/unbound.conf.d/dns-records.conf
+      vars:
+        records: "{{ dns_records }}"
+
+    - name: Configure Unbound DNS redirectors
+      template:
+        src: "../files/dns/redirect-zone.conf.j2"
+        dest: /etc/unbound/unbound.conf.d/redirect-{{ item.filename }}.conf
+      loop:
+        - "{{ redirect1 }}"
+        - "{{ redirect2 }}"
+        - "{{ redirect3 }}"
+        - "{{ redirect4 }}"
+
+    - name: Remove qname default file
+      ansible.builtin.file:
+        path: /etc/unbound/unbound.conf.d/qname-minimization.conf
+        state: absent
+
+    - name: Remove dnssec config file
+      ansible.builtin.file:
+        path: /etc/unbound/unbound.conf.d/root-auto-trust-anchor-file.conf
+        state: absent
+
+    - name: Disable systemd resolved to avoid port conflict
+      systemd:
+        name: "systemd-resolved"
+        daemon_reload: yes
+        state: stopped
+        enabled: no
+
+    - name: Start and enable unbound
+      systemd:
+        name: "unbound"
+        daemon_reload: yes
+        state: restarted
+        enabled: yes
+
+  handlers:
+    - name: restart unbound
+      systemd:
+        name: "unbound"
+        daemon_reload: yes
+        state: restarted
+        enabled: yes
