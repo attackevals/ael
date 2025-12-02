@@ -1,6 +1,6 @@
 # Icons
 
-This directory contains icon resources for the AITM phishing framework web interface.
+This directory contains icon resources for the AITM framework web interface.
 
 ## Purpose
 

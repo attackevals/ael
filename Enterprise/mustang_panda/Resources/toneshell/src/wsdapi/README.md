@@ -1,7 +1,7 @@
-# WSD API Integration
+# Malicious Sideloaded DLL
 
-This directory contains Web Services for Devices (WSD) API integration for ToneShell.
+This directory contains the implementation of the malicious DLL (`wsdapi.dll`) used to load and execute ToneShell.
 
 ## Purpose
 
-Provides WSD API functionality for network discovery and communication capabilities within ToneShell.
+Provides DLL-based payload delivery and execution capabilities, including required exports to perform DLL sideloading.

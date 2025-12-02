@@ -1,6 +1,6 @@
 # Test Certificates
 
-This directory contains test SSL certificates for the AITM phishing framework.
+This directory contains test SSL certificates for the AITM framework.
 
 ## Contents
 

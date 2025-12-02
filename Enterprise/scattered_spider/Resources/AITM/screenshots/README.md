@@ -1,6 +1,6 @@
 # Screenshots
 
-This directory contains screenshots demonstrating the AITM phishing framework functionality.
+This directory contains screenshots demonstrating the AITM framework functionality.
 
 ## Contents
 

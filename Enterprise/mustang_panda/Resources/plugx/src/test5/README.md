@@ -1,9 +1,9 @@
-# Test5 Variant
+# Protections Test 5 Variant
 
-This directory contains the Test5 variant implementation of PlugX.
+This directory contains the Protections Test 5 variant implementation of PlugX.
 
 ## Contents
 
 - MSI installer components
-- Resource DLL (rcdll) implementation
-- Test5-specific build configurations
+- Malicious DLL for DLL sideloading
+- Build configurations for this specific variant

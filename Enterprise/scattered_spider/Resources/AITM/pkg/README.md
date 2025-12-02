@@ -1,6 +1,6 @@
 # AITM Packages
 
-This directory contains Go packages for the AITM phishing framework.
+This directory contains Go packages for the AITM framework.
 
 ## Purpose
 

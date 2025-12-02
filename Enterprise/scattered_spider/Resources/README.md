@@ -4,7 +4,7 @@ This directory contains all source code, tools, and infrastructure components re
 
 ## Overview
 
-The Scattered Spider emulation leverages social engineering, adversary-in-the-middle (AiTM) attacks, and cloud-focused techniques to replicate the tactics of this cybercrime group. All components are provided as source code and must be built before use.
+The Scattered Spider emulation leverages social engineering, adversary-in-the-middle (AiTM) attacks, and cloud-focused techniques to emulate the behaviors of this cybercrime group. All components are provided as source code and must be built before use.
 
 ## Directory Structure
 
@@ -48,7 +48,7 @@ The Scattered Spider emulation leverages social engineering, adversary-in-the-mi
 
 ## Prerequisites
 
-- Go 1.15+ (for control server and Go-based tools)
+- Go 1.23+ (for control server, AITM server, and TruffleHog)
 - Python 3.x (for various scripts and tools)
 - Terraform and Ansible (for infrastructure deployment)
 - AWS account (for cloud-based scenarios)

@@ -1,6 +1,6 @@
 # Static Web Resources
 
-This directory contains static web assets for the AITM phishing framework.
+This directory contains static web assets for the AITM framework.
 
 ## Contents
 

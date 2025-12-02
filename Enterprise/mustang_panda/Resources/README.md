@@ -18,14 +18,14 @@ The Mustang Panda emulation replicates the tactics, techniques, and procedures (
 
 - **[plugx/](plugx/)** - Custom PlugX malware implementation in C++
   - Modular shellcode architecture with multiple capabilities
-  - MSI-based deployment mechanism
-  - Test5 variant with DLL side-loading
-  - Comprehensive unit tests using Google Test
+  - MSI-based deployment mechanism with Nim-based loader
+  - Protections Test 5 variant with separate MSI installer and sideloaded DLL
+  - Unit testing framework using Google Test
 - **[toneshell/](toneshell/)** - ToneShell malware implementation in C++
-  - WSD API-based communication
-  - Test4 variant with dropper and GFlags integration
+  - Deployment via DLL sideloading
+  - Protections Test 4 variant with dropper and modified C2 encryption
   - Shellcode-based execution
-  - Unit testing framework
+  - Unit testing framework using Google Test
 
 ### Supporting Tools
 
@@ -62,7 +62,7 @@ The Mustang Panda emulation replicates the tactics, techniques, and procedures (
 
 ### PlugX and ToneShell
 
-- CMake 3.15+
+- CMake 3.26+
 - Visual Studio 2019+ or compatible C++ compiler
 - Windows SDK
 - Nim compiler (for PlugX loader)
@@ -70,7 +70,7 @@ The Mustang Panda emulation replicates the tactics, techniques, and procedures (
 
 ### Control Server
 
-- Go 1.15+
+- Go 1.18+
 
 ### SharpNBTScan
 
@@ -95,10 +95,10 @@ PlugX is implemented as a modular malware with:
 
 ToneShell features:
 
-- **WSD API**: Web Services for Devices-based communication
-- **Dropper**: Initial payload delivery mechanism
+- **C2 Comms**: TCP-based C2 channel that supports task execution and file uploads/downloads.
+- **Defense Evason**: Sandbox checks, process injection to obfuscate execution flow.
 - **Shellcode**: Core malicious functionality
-- **GFlags Integration**: Debugging and process manipulation
+- **Deployment**: DLL sideloading
 
 ## Important Notes
 
@@ -113,13 +113,15 @@ ToneShell features:
 Both PlugX and ToneShell include comprehensive unit test suites:
 
 ```shell
-# Run PlugX tests
+# Build and run PlugX tests
 cd plugx
-cmake --build build --target test
+cmake --workflow --preset cicd-debug
+cmake --workflow --preset cicd-release
 
-# Run ToneShell tests
+# Build and run ToneShell tests
 cd toneshell
-cmake --build build --target test
+cmake --workflow --preset cicd-debug
+cmake --workflow --preset cicd-release
 ```
 
 ## Documentation

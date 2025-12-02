@@ -7,5 +7,5 @@ This directory contains payload files used in the Mustang Panda emulation scenar
 - MSC files for calendar invitation lures
 - VBS scripts for data collection
 - HTML spearphishing templates for PlugX and ToneShell
-- Batch scripts for service management
+- Batch scripts for establishing VS Code tunnels and cleaning up after malware
 - DOCX spearphishing documents
