@@ -112,7 +112,7 @@ An overview of the TruffleHog Open-Source project can be found [here](https://tr
   Example with output:
 
   ```cmd
-  PS C:\Users\drstrange> .\truffleHog.exe gitlab --repo=http://10.100.0.64/eviltruffle/truffletest --token=glpat-8qB6MkRyofkcQWsySG9A
+  PS C:\Users\drstrange> .\truffleHog.exe gitlab --repo=http://10.100.0.64/eviltruffle/truffletest --token=glpat-GITLAB_TOKEN_HEREgit 
 
   🐷🔑🐷  TruffleHog. Unearth your secrets. 🐷🔑🐷
 
