@@ -1,0 +1,7 @@
+build/
+install/
+external/
+out/
+CMakeUserPresets.json
+**.xor
+**.log

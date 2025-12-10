@@ -1,0 +1,30 @@
+---
+- name: Install RDS Session Host role
+  ansible.windows.win_feature:
+    name: RDS-RD-Server
+    state: present
+    include_management_tools: yes
+    include_sub_features: yes
+
+- name: Install RDS Licensing Server role
+  ansible.windows.win_feature:
+    name: RDS-Licensing
+    state: present
+    include_management_tools: yes
+    include_sub_features: yes
+
+- name: Reboot if required
+  ansible.windows.win_reboot:
+    msg: "Rebooting for role installation"
+    connect_timeout: 600
+    reboot_timeout: 1200
+  when: ansible_facts.reboot_required is defined and ansible_facts.reboot_required
+
+# Set licensing mode (Per User or Per Device) (We want per user)
+- name: Set RDS licensing mode (Per User)
+  win_regedit:
+    path: HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\RCM\Licensing Core
+    name: LicensingMode
+    data: 2
+    type: dword
+    # data: 2 for Per User, 4 for Per Device

@@ -1,0 +1,21 @@
+---
+# Required variables:
+# - support_vars.choco_mirror_url: URL for the Chocolatey mirror
+
+- name: Install chocolatey
+  chocolatey.chocolatey.win_chocolatey:
+    name:
+      - chocolatey
+    state: present
+    ignore_checksums: yes
+
+- name: Remove the default public source
+  chocolatey.chocolatey.win_chocolatey_source:
+    name: chocolatey
+    state: absent
+
+- name: Add new internal source
+  chocolatey.chocolatey.win_chocolatey_source:
+    name: nexus
+    state: present
+    source: "{{ support_vars.choco_mirror_url }}"

@@ -1,0 +1,51 @@
+---
+# kingslanding
+- name: fix expired devadmin logins for windows hosts (Scenario A - kingslanding)
+  hosts: windows:&onprem
+  strategy: free
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+  vars:
+    ansible_user: "{{ domain_info_kingslanding.shortname }}\\{{ domain_info_kingslanding.evals_domain_adm }}"
+    ansible_password: "{{ domain_info_kingslanding.admin_pass }}"
+    ansible_winrm_transport: ntlm
+  tasks:
+    - ansible.builtin.include_tasks: ../library/fix-win-expired-logins.yml
+
+# vale
+- name: fix expired devadmin logins for windows hosts (Scenario B3 - vale)
+  hosts: windows:&b3
+  strategy: free
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+  vars:
+    ansible_user: "{{ domain_info_vale.shortname }}\\{{ domain_info_vale.evals_domain_adm }}"
+    ansible_password: "{{ domain_info_vale.admin_pass }}"
+    ansible_winrm_transport: ntlm
+  tasks:
+    - ansible.builtin.include_tasks: ../library/fix-win-expired-logins.yml
+
+#    # If `evals_domain_admin` does not exist (e.g., on red systems),
+#    # reenable the devadmin account manually over RDP (Administrator PS)
+#    # --------------------------------------------------------
+#    # PS> $Password = Read-Host "Password" -AsSecureString
+#    # PS> Set-LocalUser -Name devadmin -Password $Password
+#    # --------------------------------------------------------
+#    # then rerun this playbook with the devadmin credentials:
+#    ansible_user: "devadmin"
+#    ansible_password: "<devadmin password>"
+
+# - name: fix expired devadmin login for windows host (Red)
+#   hosts: windows:&red
+#   strategy: free
+#   gather_facts: no
+#   vars_files:
+#     - ../vars/vars.yml
+#   vars:
+#     ansible_user: "devadmin"
+#     ansible_password: "<devadmin password>"
+#     ansible_winrm_transport: ntlm
+#   tasks:
+#     - ansible.builtin.include_tasks: ../library/fix-win-expired-logins.yml

@@ -1,0 +1,43 @@
+---
+- name: Install wstunnel on Ubuntu
+  hosts: wstunnel-srv1
+  become: yes
+  vars:
+    wstunnel_directory: "/opt/wstunnel"
+  vars_files:
+    - ../vars/vars.yml
+  tasks:
+    - name: Create wstunnel directory
+      ansible.builtin.file:
+        path: "{{ wstunnel_directory }}"
+        state: directory
+        mode: "0755"
+
+    - name: Get wstunnel installer
+      ansible.builtin.get_url:
+        url: https://github.com/erebe/wstunnel/releases/download/v10.1.8/wstunnel_10.1.8_linux_amd64.tar.gz
+        dest: "{{ wstunnel_directory }}/wstunnel_10.1.8_linux_amd64.tar.gz"
+        mode: '0440'
+
+    - name: Install wstunnel
+      ansible.builtin.unarchive:
+        src: "{{ wstunnel_directory }}/wstunnel_10.1.8_linux_amd64.tar.gz"
+        remote_src: yes
+        dest: "/usr/local/bin/"
+        mode: "+x"
+
+    - name: Configure wstunnel as a systemd service
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/../files/wstunnel/wstunnel-systemd.service.j2"
+        dest: /etc/systemd/system/wstunnel.service
+        mode: "0644"
+
+    - name: Reload systemd daemon to apply wstunnel service
+      ansible.builtin.systemd:
+        daemon_reload: yes
+
+    - name: Start and enable wstunnel service
+      ansible.builtin.systemd:
+        name: wstunnel
+        state: started
+        enabled: yes

@@ -1,0 +1,40 @@
+---
+- name: configure AWS role property mapping
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/propertymappings/provider/saml/"
+    method: POST
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+    body_format: json
+    body:
+      name: "https://aws.amazon.com/SAML/Attributes/Role"
+      expression: "role_name = user.group_attributes().get(\"aws_role\", \"\")\nreturn f\"arn:aws:iam::{{ aws_provider }}:role/{role_name},arn:aws:iam::{{ aws_provider }}:saml-provider/authentik\""
+      saml_name: "https://aws.amazon.com/SAML/Attributes/Role"
+    status_code: 201
+  ignore_errors: true
+
+- name: query AWS property role map ids
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}/api/v3/propertymappings/provider/saml/?name=https://aws.amazon.com/SAML/Attributes/Role"
+    method: GET
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+  register: aws_role_property_map
+
+- name: update AWS role property mapping
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/propertymappings/provider/saml/{{ aws_role_property_map.json.results[0].pk }}/"
+    method: PATCH
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+    body_format: json
+    body:
+      name: "https://aws.amazon.com/SAML/Attributes/Role"
+      expression: "role_name = user.group_attributes().get(\"aws_role\", \"\")\nreturn f\"arn:aws:iam::{{ aws_provider }}:role/{role_name},arn:aws:iam::{{ aws_provider }}:saml-provider/authentik\""
+      saml_name: "https://aws.amazon.com/SAML/Attributes/Role"

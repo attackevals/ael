@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airbyte Sync Job Notification</title>
+</head>
+<body style="font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;">
+    <div style="max-width: 600px;
+            margin: 20px auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
+        <div style="text-align: center;
+            padding: 10px 0;">
+            <h1 style="color: #333;">Airbyte Sync Job Notification</h1>
+        </div>
+        <div style="text-align: center;
+            padding: 20px;">
+            <p>Your Airbyte sync job has completed.</p>
+            <p><strong>Job ID:</strong> {{ job_id }} </p>
+            <p><strong>Source:</strong> {{ job_source }} </p>
+            <p><strong>Destination:</strong> {{ job_dest }} </p>
+            <p><strong>Status:</strong> {{ job_status }} </p>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" style="margin: 0 auto;">
+                <tr>
+                    <td class="button-td" style="background: #2B98D6; border-radius: 3px; text-align: center;">
+                        <a href="{{ airbyte_connections_link }}" class="button-a"
+                           style="background: #2B98D6; border: 15px solid #2B98D6; border-radius: 3px;
+                                  color: #FFF; display: block; font-family: sans-serif; font-size: 14px;
+                                  line-height: 110%; text-align: center; text-decoration: none; padding: 10px 20px;">
+                            <span class="button-link" style="color: #FFF;">
+                                &nbsp;&nbsp;View Job Details&nbsp;&nbsp;
+                            </span>
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="text-align: center;
+            font-size: 12px;
+            color: #777;
+            margin-top: 20px;">
+            <p>If you didn’t initiate this sync, please contact support.</p>
+            <p>Need help? Contact support at <a href="{{ email_link }}">support@airbyte.io</a></p>
+        </div>
+    </div>
+</body>
+</html>

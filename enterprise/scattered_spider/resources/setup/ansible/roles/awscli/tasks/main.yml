@@ -1,0 +1,16 @@
+---
+- name: Install awscli windows
+  win_chocolatey:
+    name:
+      - awscli
+    state: present
+  ignore_errors: true
+  when: ansible_os_family == "Windows"
+
+- name: Install awscli linux
+  package:
+    name:
+      - awscli
+    state: present
+  ignore_errors: true
+  when: ansible_system == "Linux"

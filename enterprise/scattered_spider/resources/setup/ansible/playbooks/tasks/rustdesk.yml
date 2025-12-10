@@ -1,0 +1,170 @@
+---
+- name: Install RustDesk on Ubuntu
+  hosts: rustdesk-srv1
+  become: yes
+  vars:
+    rustdesk_directory: "/opt/rustdesk"
+    rustdesk_install_script: "../files/rustdesk/install.sh"
+    rustdesk_proxy_domain: "livesso.com"
+    rustdesk_upstream_client_installer: "https://github.com/rustdesk/rustdesk/releases/download/1.4.0/rustdesk-1.4.0-x86_64.AppImage"
+    rustdesk_key_file: "/opt/rustdesk/id_ed25519.pub"
+    rustdesk_admin_password_file: "/opt/rustdesk/admin_token.txt"
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: set fact with consistent random value for admin token
+      set_fact:
+        admin_token: "{{ lookup('password', '/dev/null chars=ascii_letters,digits length=16') }}"
+
+    - name: Update APT cache
+      ansible.builtin.apt:
+        update_cache: yes
+
+    - name: Install dependencies
+      ansible.builtin.apt:
+        name:
+          - curl
+          - dnsutils
+          - etckeeper
+          - git
+          - tar
+          - ufw
+          - unzip
+          - wget
+        state: present
+
+    # Firewall Configurations
+    - name: Allow SSH access
+      community.general.ufw:
+        rule: allow
+        port: 22
+        proto: tcp
+
+    - name: Allow TCP ports 21114-21119
+      community.general.ufw:
+        rule: allow
+        port: 21114:21119
+        proto: tcp
+
+    - name: Allow TCP port 80
+      community.general.ufw:
+        rule: allow
+        port: 80
+        proto: tcp
+
+    - name: Allow UDP port 21116
+      community.general.ufw:
+        rule: allow
+        port: 21116
+        proto: udp
+
+    # Install RustDesk
+    - name: Create RustDesk directory
+      ansible.builtin.file:
+        path: "{{ rustdesk_directory }}"
+        state: directory
+        mode: "0755"
+
+    - name: Copy RustDesk installer
+      ansible.builtin.copy:
+        src: "{{ rustdesk_install_script }}"
+        dest: "{{ rustdesk_directory }}/install.sh"
+        mode: "0755"
+
+    - name: Create log directory
+      ansible.builtin.file:
+        path: "/var/log/rustdesk"
+        state: directory
+        mode: "0755"
+
+    # Run the installer with non-interactive options
+    - name: Run RustDesk install script with auto options
+      ansible.builtin.command:
+        cmd: "{{ rustdesk_directory }}/install.sh --install-http --resolvedns '{{ rustdesk_proxy_domain }}'"
+        chdir: "{{ rustdesk_directory }}"
+      register: install_result
+      changed_when: true
+
+    # Create directories for HTTP server if they don't exist
+    - name: Ensure gohttp directories exist
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        mode: "0755"
+      loop:
+        - /opt/gohttp
+        - /opt/gohttp/public
+        - /var/log/gohttp
+
+    # Copy the custom service file for gohttpserver
+    - name: Create gohttpserver service file
+      ansible.builtin.template:
+        src: "../files/rustdesk/gohttpserver.service.j2"
+        dest: "/etc/systemd/system/gohttpserver.service"
+        mode: "0644"
+        force: yes
+
+    # Reload systemd and restart gohttpserver
+    - name: Reload systemd
+      ansible.builtin.systemd:
+        daemon_reload: yes
+
+    - name: Restart gohttpserver
+      ansible.builtin.systemd:
+        name: gohttpserver
+        state: restarted
+        enabled: yes
+
+    - name: Display installation result
+      ansible.builtin.debug:
+        var: install_result.stdout_lines
+
+    - name: Create admin token file
+      ansible.builtin.copy:
+        content: "{{ admin_token }}"
+        dest: "{{ rustdesk_admin_password_file }}"
+        mode: "0644"
+        force: yes
+
+    - name: debug note about port change
+      ansible.builtin.debug:
+        msg: "Note: The port has changed to 80 (from 8000), and the username/password are in the /opt/rustdesk/admin_token.txt file."
+
+    - name: Create client config directory
+      ansible.builtin.file:
+        path: "/opt/gohttp/public/rustdesk-client"
+        state: directory
+        mode: "0755"
+      tags:
+        - rustdesk-client
+
+    - name: use slurp to read remote rustdesk pub key file
+      ansible.builtin.slurp:
+        src: "{{ rustdesk_key_file }}"
+      register: rustdesk_key_file_content
+      tags:
+        - rustdesk-client
+
+      # slurp loves the base64, cant get enough
+    - name: decode slurped file
+      ansible.builtin.set_fact:
+        rustdesk_key_file_decoded: "{{ rustdesk_key_file_content['content'] | b64decode }}"
+      tags:
+        - rustdesk-client
+#
+# leave copy of config in place in case needed in future
+#    - name: Create RustDesk client config toml file
+#      ansible.builtin.copy:
+#        content: |
+#          [options]
+#          api-server = 'http://{{ rustdesk_proxy_domain }}'
+#          custom-rendezvous-server = '{{ rustdesk_proxy_domain }}'
+#          relay-server = '{{ rustdesk_proxy_domain }}'
+#          key = '{{ rustdesk_key_file_decoded | regex_replace('\n', '') }}'
+#          av1-test = 'Y'
+#        dest: "/opt/gohttp/public/rustdesk-client/RustDesk.toml"
+#        mode: "0644"
+#        force: yes
+#      tags:
+#        - rustdesk-client

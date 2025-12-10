@@ -1,0 +1,6 @@
+---
+# Default vars
+ssm_activation_code: ""
+ssm_activation_id: ""
+ssm_region: ""
+ssm_agent_download_url: ""  # Optional custom URL for SSM Agent

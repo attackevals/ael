@@ -1,0 +1,27 @@
+---
+drive_configs:
+  - drive_letter: 'E'
+    drive_label: 'ProjectsShare'
+    share_name: 'projects'
+    disk_number: 1
+    custom_decoy_seed: "Plaster"
+  - drive_letter: 'F'
+    drive_label: 'MediaShare'
+    share_name: 'media'
+    disk_number: 2
+    custom_decoy_seed: "Coagulant"
+  - drive_letter: 'G'
+    drive_label: 'ArchiveShare'
+    share_name: 'archive'
+    disk_number: 3
+    custom_decoy_seed: "Catnip"
+  - drive_letter: 'H'
+    drive_label: 'MarketingShare'
+    share_name: 'marketing'
+    disk_number: 4
+    custom_decoy_seed: "Mutation"
+  - drive_letter: 'J'
+    drive_label: 'DevShare'
+    share_name: 'dev'
+    disk_number: 5
+    custom_decoy_seed: "Frostbite"

@@ -1,0 +1,11 @@
+{
+  "policies": {
+    "Certificates": {
+      "ImportEnterpriseRoots": true,
+      "Install": [
+        "{{ ca_cert_name }}.crt",
+        "/usr/local/share/ca-certificates/{{ ca_cert_name }}.crt"
+      ]
+    }
+  }
+}

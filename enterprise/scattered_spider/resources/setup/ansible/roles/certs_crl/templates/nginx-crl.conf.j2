@@ -1,0 +1,18 @@
+server {
+    listen {{ crl_nginx_port }};
+    server_name {{ crl_nginx_server_name }};
+
+    access_log /var/log/nginx/crl-access.log;
+    error_log /var/log/nginx/crl-error.log;
+
+    location / {
+        root {{ crl_dir }};
+        autoindex off;
+    }
+
+    location /{{ crl_filename }} {
+        alias {{ crl_dir }}/{{ crl_filename }};
+        default_type application/pkix-crl;
+        add_header Content-Disposition "attachment; filename={{ crl_filename }}";
+    }
+}

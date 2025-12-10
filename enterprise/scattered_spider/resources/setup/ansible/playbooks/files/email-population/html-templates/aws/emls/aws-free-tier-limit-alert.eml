@@ -1,0 +1,287 @@
+Received: from SA1PR05MB7935.namprd05.prod.outlook.com (2603:10b6:806:1a3::24)
+ by CY5PR05MB10295.namprd05.prod.outlook.com with HTTPS; Sat, 18 Jan 2025
+ 20:44:19 +0000
+Received: from SJ0PR13CA0176.namprd13.prod.outlook.com (2603:10b6:a03:2c7::31)
+ by SA1PR05MB7935.namprd05.prod.outlook.com (2603:10b6:806:1a3::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.18; Sat, 18 Jan
+ 2025 20:44:16 +0000
+Received: from SJ1PEPF000023CC.namprd02.prod.outlook.com
+ (2603:10b6:a03:2c7:cafe::52) by SJ0PR13CA0176.outlook.office365.com
+ (2603:10b6:a03:2c7::31) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8377.8 via Frontend Transport; Sat,
+ 18 Jan 2025 20:44:16 +0000
+Authentication-Results: spf=pass (sender IP is 54.240.8.241)
+ smtp.mailfrom=amazonses.com; dkim=pass (signature was verified)
+ header.d=costalerts.amazonaws.com;dkim=pass (signature was verified)
+ header.d=amazonses.com;dmarc=pass action=none
+ header.from=costalerts.amazonaws.com;compauth=pass reason=100
+Received-SPF: Pass (protection.outlook.com: domain of amazonses.com designates
+ 54.240.8.241 as permitted sender) receiver=protection.outlook.com;
+ client-ip=54.240.8.241; helo=a8-241.smtp-out.amazonses.com; pr=C
+Received: from mta-4c2eab.us.email.fireeyecloud.com (3.93.93.217) by
+ SJ1PEPF000023CC.mail.protection.outlook.com (10.167.244.6) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.8377.8
+ via Frontend Transport; Sat, 18 Jan 2025 20:44:15 +0000
+Return-Path: 010001947b28ad18-62c12f5a-ea90-47aa-87f6-fc4b9ea20501-000000@amazonses.com
+Received: from [127.0.0.1] ([127.0.0.1:31830] helo=smtp-injection-worker)
+	by prd09-use1-08 (envelope-from <010001947b28ad18-62c12f5a-ea90-47aa-87f6-fc4b9ea20501-000000@amazonses.com>)
+	(ecelerity 4.7.0.20111 r(msys-ecelerity:tags/4.7.0-ga^0)) with ESMTPS (cipher=ECDHE-RSA-AES128-GCM-SHA256)
+	id 9D/0B-09408-E921C876; Sat, 18 Jan 2025 20:44:14 +0000
+X-FE-ETP-SENDER-IP: 54.240.8.241
+X-FE-ETP-CONNECTING-IP: 54.240.8.241
+Authentication-Results-Original: mta-4c2eab.us.email.fireeyecloud.com;
+	dmarc=pass (p=none; dis=none) header.from=costalerts.amazonaws.com
+Received: from a8-241.smtp-out.amazonses.com (a8-241.smtp-out.amazonses.com [54.240.8.241])
+	by prd09-use1-14 (envelope-from <010001947b28ad18-62c12f5a-ea90-47aa-87f6-fc4b9ea20501-000000@amazonses.com>)
+	FireEye ETP with ESMTPS (cipher=TLS_AES_128_GCM_SHA256)
+	id 3z2qk1u-66874-09bD0E401480B921C876177bde3; batch_id D0/E4-01480-B921C876; Sat, 18 Jan 2025 20:44:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=mjo66pvhzvdxwfwn4iugbtkujgjrjifi; d=costalerts.amazonaws.com;
+	t=1737233051;
+	h=Date:From:To:Subject:MIME-Version:Content-Type:Message-ID;
+	bh=vs8oLlSUzmo6V1J1XNQKHiczE7Id4CWDyz29uFFvRQM=;
+	b=OBi4dSR7LHB3vjHqk2LUCgttSsadKyiiXiRk2MB8EEmA1UJafuXU39V+4/tUrttz
+	i6qwYpCO4yWCDqOH9VjeMB5zXeepGK4DpLw9dpVPD70iSviwsYoHRdNaoGTNZh1okl/
+	4+Ml7gsFm4vZ1J/8hN9XT2acC8VPhGqFBVR7scOU=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=ug7nbtf4gccmlpwj322ax3p6ow6yfsug; d=amazonses.com; t=1737233051;
+	h=Date:From:To:Subject:MIME-Version:Content-Type:Message-ID:Feedback-ID;
+	bh=vs8oLlSUzmo6V1J1XNQKHiczE7Id4CWDyz29uFFvRQM=;
+	b=biRZ6CF1dgKRt6VMv0+lulnkO0P2crpMktUFKGHE1eiTvtiyfA0Li9OWenU0Wqe1
+	MKk39iy5ePof+8imMD/VhWZEeZ8ueWA/xUZ5fFjP+mIme1k5glzbrneCntdFQwkLP5n
+	H9Gt+3GDo+hivjtq2CF9mdwX2povyPAbKV8SSkoU=
+Date: Sat, 18 Jan 2025 20:44:10 +0000
+From: freetier@costalerts.amazonaws.com
+To: infrastructure@kingslanding.net
+Subject: AWS Free Tier limit alert
+Content-Type: multipart/alternative;
+	boundary="----=_Part_1132008_178669014.1737233051001"
+Message-ID: <010001947b28ad18-62c12f5a-ea90-47aa-87f6-fc4b9ea20501-000000@email.amazonses.com>
+Feedback-ID: ::1.us-east-1.TyT8QzFMZs+mBiVACSbAZGE0CDhMgZCYcegKG+YNyrM=:AmazonSES
+X-SES-Outgoing: 2025.01.18-54.240.8.241
+X-FE-ETP-METADATA: eyAidGlkIjogIjN6MnFrMXUtNjY4NzQtMDliRDBFNDAxNDgwQjkyMUM4NzYxNzdiZGUzIiwgImFj
+ Y2VwdGVkX3RpbWVzdGFtcCI6ICIyMDI1MDExODIwNDQxMSIsICJhY2NlcHRlZF90aW1lc3RhbXBf
+ ZXBvY2giOiAiMTczNzIzMzA1MSIsICJkb21haW5fbmFtZSI6ICJtaXRyZS1lbmdlbnVpdHkub3Jn
+ IiwgImF0dF9jb3VudCI6IC0yLCAic3JjX2lwIjogIjU0LjI0MC44LjI0MSIgfQ==
+X-MS-Exchange-Organization-ExpirationStartTime: 18 Jan 2025 20:44:15.8976
+ (UTC)
+X-MS-Exchange-Organization-ExpirationStartTimeReason: OriginalSubmit
+X-MS-Exchange-Organization-ExpirationInterval: 1:00:00:00.0000000
+X-MS-Exchange-Organization-ExpirationIntervalReason: OriginalSubmit
+X-MS-Exchange-Organization-Network-Message-Id: b192b09e-c9b3-43c1-f234-08dd3800df98
+X-EOPAttributedMessage: 0
+X-EOPTenantAttributedMessage: 78bf2ef2-f219-468e-956f-46690360df46:0
+X-MS-Exchange-Organization-MessageDirectionality: Incoming
+X-MS-Exchange-SkipListedInternetSender: ip=[54.240.8.241];domain=a8-241.smtp-out.amazonses.com
+X-MS-Exchange-ExternalOriginalInternetSender: ip=[54.240.8.241];domain=a8-241.smtp-out.amazonses.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF000023CC:EE_|SA1PR05MB7935:EE_|CY5PR05MB10295:EE_
+X-MS-Exchange-Organization-AuthSource: SJ1PEPF000023CC.namprd02.prod.outlook.com
+X-MS-Exchange-Organization-AuthAs: Anonymous
+X-MS-Office365-Filtering-Correlation-Id: b192b09e-c9b3-43c1-f234-08dd3800df98
+X-MS-Exchange-AtpMessageProperties: SA|SL
+X-MS-Exchange-Organization-SCL: -1
+X-Microsoft-Antispam: BCL:2;ARA:13230040|82310400026|32142699015|5062899012|3092899012|69100299015|12012899012|2092899012|3072899012|4022899009|5073199012|8096899003|4076899003;
+X-Forefront-Antispam-Report: CIP:3.93.93.217;CTRY:US;LANG:en;SCL:-1;SRV:;IPV:NLI;SFV:NSPM;H:a8-241.smtp-out.amazonses.com;PTR:a8-241.smtp-out.amazonses.com;CAT:NONE;SFS:(13230040)(82310400026)(32142699015)(5062899012)(3092899012)(69100299015)(12012899012)(2092899012)(3072899012)(4022899009)(5073199012)(8096899003)(4076899003);DIR:INB;
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jan 2025 20:44:15.5539
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b192b09e-c9b3-43c1-f234-08dd3800df98
+X-MS-Exchange-CrossTenant-Id: 78bf2ef2-f219-468e-956f-46690360df46
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF000023CC.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR05MB7935
+X-MS-Exchange-Transport-EndToEndLatency: 00:00:04.1976869
+X-MS-Exchange-Processed-By-BccFoldering: 15.20.8356.017
+X-Microsoft-Antispam-Mailbox-Delivery: ucf:0;jmr:0;auth:0;dest:I;ENG:(910001)(944506478)(944626604)(920097)(930097)(140003)(1420198);
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Q6iWywouke1Ein8oDecnipQ/7ypPWudR8sm221B0tQs3CXQx660Cjz2KPeyB?=
+ =?us-ascii?Q?bZAbCcWEEi4bkBEwEjM45IaGUIgVItPWmmGZyLwQiLo+4tf7H9c7eSn70Tvc?=
+ =?us-ascii?Q?4lJRSq+WO5h/Lyzygx545AGweBuWqLzpewjdugTnHOSLwyL6qbCmwRlzTPHj?=
+ =?us-ascii?Q?NBB4AW45lvPoApOpn0QnzQ6IjNnV5BLt7u6om0AsV6iRCEBh18f4p78X2p+R?=
+ =?us-ascii?Q?AJvd+//0finHTszQ/YPooo00cLxnOjJ+4Ar6RaBL1MObUaVScM9+GU30Z5RV?=
+ =?us-ascii?Q?jOn5aPGBuHwSwOTWRhioS9srueqxJu3+r+3T/By7ZfMmj8CYF3zxXBTUd8m9?=
+ =?us-ascii?Q?FwEuSRhxdbbd+sprgvoWOBxm/7LS1q2z0n8v09hipCnp4ahwmrH9l/t0446p?=
+ =?us-ascii?Q?ZuIOvYWSD4ffxMes2O4vN+GIsVJF7K1+TGuUK9tSv7VgL8ksJVlUBAjpeSiI?=
+ =?us-ascii?Q?tTk8B//2t8Ul02TlBwpUg8dyLAxJoa4JIQ4ZAaNxOn+5zp/q5ISMEX1qghxq?=
+ =?us-ascii?Q?kgHv3oRA0rLLh9xnYPQAsQul3XMJ03Z0U/hZLDQ/Bt3rpSceyknJGtP53wE+?=
+ =?us-ascii?Q?Hn9ySv201flJmJ1H6Xgn5ZZR2xkCJRA5PWxlGuLIOJyK64upKQtKdvNNZpgm?=
+ =?us-ascii?Q?KcWxdyUEMbfWAT2hXOCq8qNkeDW6Wq/T85IoXRSKvsElmO9KOsPe4ZhHUTyK?=
+ =?us-ascii?Q?hV1trIaRJIEEljXmiYUKud7QX1TNLOWnH8XHqgSNQ2FCpIwHI90GTj+OLpHC?=
+ =?us-ascii?Q?3qNwOVEdcTQ5jupIY7f46Tfyjiul8n8MWu0i2jtYBvMJCYnIBvx6reiKAeEr?=
+ =?us-ascii?Q?YwWs+n+FiwW30lSP2X9+wJ5q7FHqkR7ZHqjN1zVuY9PuEFawOGkCVIGLX7hG?=
+ =?us-ascii?Q?oU0PhwtwmrlUPhev9BhWF6YgsJ0PlrQDu8/dXrfysaptWmrNjeuf+Ud/LnxB?=
+ =?us-ascii?Q?RD8mTR9S+bVW3HlhKhnpuCztcPJZriKjrfz1VTKQWVBLeU5WLKcvwRBI0K1g?=
+ =?us-ascii?Q?LqP7Jjkvb4GsLRyiNc52xAy3j3oO+o0kR/6XF/2e4HbO3Hc1HWwSm9NBMssm?=
+ =?us-ascii?Q?ouk9RqrJiUxqPrQ9fBkiTfV8QxccoG7wQvloIIPoiERQlAGhbJWv+JknMQxR?=
+ =?us-ascii?Q?/L07AxlzdoltbEIXNm2HeKyx3PBLAz4L+grH8uVZlcSfN8+bObzfCtqgKJ6s?=
+ =?us-ascii?Q?hBg2NCAZIGbENMPNEygeGjDVz37ScWQqd1Urac+CFPQhwmAP3x1zf3rnxvfI?=
+ =?us-ascii?Q?n2XAyq0Fg1rx/Rc/ppZc6H7Fx7OIfwxGOUHKRy9VqXCWWp3/QjjcpkrGxtJo?=
+ =?us-ascii?Q?CVFaenrAQbj+I0Ed6sD1SB4vlgdZWnTVjQqWP7XYv6YiIt0kGHCV5OclScfm?=
+ =?us-ascii?Q?EsfaPxYT+2SenOIasQuc8rjVJtvPt1Dezk7RiTwhOlmbJMeA0QW/lCgRA2U2?=
+ =?us-ascii?Q?Xd0///9qfcNj/KvNzQNPjC/xyeS8G/BQEqS172P5wHaxK3VKmKKkUm7FmkMG?=
+ =?us-ascii?Q?JaGg5THWkZpQabwPW1KvMpPh394hinLnim0ieZGQBIJgl5GYyi+wwSU/mMm1?=
+ =?us-ascii?Q?tLwEO74JUb6MNVSIgjSnFFKwXhewfRuySjvAoipnEqkKsKPhk2nBUWSWrw50?=
+ =?us-ascii?Q?yZdkBTQ0bnVIhgSnLsAAWRt0n3AcVqW2vn1f5Dzgs/Php8Tias4Adjx1eAoh?=
+ =?us-ascii?Q?1WQ3xVxsVqBpoY3TaBTm6fBCS6BU+R5wod5Q2pA7XpgcrOQm7f5awoAynujO?=
+ =?us-ascii?Q?bd3vQXdGWXHZCezLrIIAT1RA2CHLO2F0uTWTua2mql0ZBMlFiDPYnCkQOjVW?=
+ =?us-ascii?Q?AxKoN87FOAYH6aLYC7juahpgVraUiG9Hhmc9mMJC6cYExkgwWdVpfwFrnE2W?=
+ =?us-ascii?Q?KqJ9feKhUBEtCkW9jDrkGEtBfWGB8q40KgqSjwZdXZTyDpB3HIpOIjiV62+0?=
+ =?us-ascii?Q?p1cYkEirGxrA57klfQa0rJxtoAQkGDVopBTi4iXThZM5Myh9ciUVGb1qTDq+?=
+ =?us-ascii?Q?bL6yEGQY6ifM/suTTzAlw0YjWWabXiFBWL2GCl8H5eIe3Xb+mBAAx0ic1Di+?=
+ =?us-ascii?Q?nZQQWY0gW1WrTTaqfn6QQdG9o19puG721zbzEt7y0rLGA9/fvpgVZOH41aFp?=
+ =?us-ascii?Q?n71CbiGNaXIlOFZowZCiHspDVOwKyGWGpHJ1efvApBZsoRjaw1RAZ4KBUK8q?=
+ =?us-ascii?Q?8i0sKVv5nQk2nkrGs6v1KBIN916U1djDAfDylwkXK1V9Iaq0wQUzrVrUMCGo?=
+ =?us-ascii?Q?Lf2FTikiKKvvj9ECAnrRz7H7YkpSwB6iJjmxmUonJQ8FKeVpHEGZtr84aJ3l?=
+ =?us-ascii?Q?VR9KCjXp2tdMFv8xF4wL7JHv1L/fpoOYzWqHa8cnDEKu5hyif7BllxnND/Yl?=
+ =?us-ascii?Q?targ3DszVueWs78zuNRXfHdLMNFg2/6olbr8PecXorvbB7MV9TOfx/eA/V9c?=
+ =?us-ascii?Q?kR91plZET9w=3D?=
+MIME-Version: 1.0
+
+------=_Part_1132008_178669014.1737233051001
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+AWS Free Tier usage limit alerting via AWS Budgets           01/18/2025
+
+Dear AWS Customer,
+
+Your AWS account 980921758675 has exceeded 85% of the usage limit for one or more AWS Free Tier-eligible services for the month of January.
+
+To learn more about your AWS Free Tier usage, please access the AWS Billing & Cost Management Dashboard at https://console.aws.amazon.com/billing/home?#/bills. You can find more information on AWS Free Tier here: https://aws.amazon.com/free/.
+
+This alert is provided by AWS Budgets. AWS automatically tracks your service usage and will alert you if you have reached 85% of the usage limit for one or more AWS Free Tier-eligible services. To unsubscribe from these alerts or to change the email address to which you would like your alerts to be sent, please visit the Cost Management Preferences at https://console.aws.amazon.com/billing/home#/preference.
+------=_Part_1132008_178669014.1737233051001
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+<style type="text/css">
+        table {
+            width:100%;
+            font-family: Helvetica, Arial,sans-serif;
+        }
+
+        .tableCell {
+            border: 1px solid #CCCCCC;
+            padding:5px 10px;
+        }
+
+        p.footer {
+            font-family: Helvetica, Arial,sans-serif;
+            font-size:6pt;
+            color:#000000;
+            text-align:justify
+        }
+    </style>
+<body>
+<table>
+    <tr>
+        <td align="right">
+            <img style="display:block;" height="35" src="https://d1.awsstatic.com/logos/aws-logo/full-color/AWS-Logo_Full-Color_100x60.5e9a396f44e8a57089a6c62488cd51517ae74f4b.png" align="right" hspace="6" vspace="6" alt="Description: awslogo" title="Description: awslogo" v:shapes="Picture_x0020_1">
+            <!-- </img> -->
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p style="margin-bottom: 6px; margin-top: 0px; border-top: 7px solid #FFC000; text-align:center; font-size:1px; ">&nbsp;</p>
+
+        </td>
+    </tr>
+</table>
+<br>
+<table>
+    <tr>
+        <td>
+            AWS Free Tier usage limit alerting via AWS Budgets
+        </td>
+        <td align="right">
+            01/18/2025
+        </td>
+    </tr>
+</table>
+<br>
+<br>
+<table>
+    <tr>
+        <td>Dear AWS Customer, </td>
+    </tr>
+</table>
+<br>
+<table>
+    <tr>
+        <td>
+            Your AWS account 980921758675 has exceeded 85% of the usage limit for one or more AWS Free Tier-eligible services for the month of January.
+        </td>
+    </tr>
+</table>
+<br>
+<table style="border-collapse: collapse; max-width: 800px;">
+    <tr align="left" bgcolor="#CCCCCC">
+        <td class="tableCell">
+            <font color="#000000">Product</font>
+        </td>
+        <td class="tableCell">
+            <font color="#000000">AWS Free Tier Usage as of 01/18/2025</font>
+        </td>
+        <td class="tableCell" style="min-width: 100px">
+            <font color="#000000">Usage Limit</font>
+        </td>
+        <td class="tableCell">
+            <font color="#000000">AWS Free Tier Usage Limit</font>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="tableCell">
+            AmazonEC2
+        </td>
+        <td class="tableCell">
+            0.91896369 GB-mo
+        </td>
+        <td class="tableCell">
+            1 GB-mo
+        </td>
+        <td class="tableCell">
+            1.0 GB-mo for free for 12 months as part of AWS Free Usage Tier (Global-EBS:SnapshotUsage)
+        </td>
+    </tr>
+
+</table>
+<br>
+<table>
+    <tr>
+        <td>
+            To learn more about your AWS Free Tier usage, please access the <a href="https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Ffp60bjgi.r.us-east-1.awstrack.me%2FL0%2Fhttps%3A%252F%252Fconsole.aws.amazon.com%252Fbilling%252Fhome%253F%2523%252Fbills%253F%2F1%2F010001947b28ad18-62c12f5a-ea90-47aa-87f6-fc4b9ea20501-000000%2FNqheI05JbP9_vRc81_3tSZPAYuU%3D409&amp;data=05%7C02%7Cnfrastructure%40kingslanding.net%7Cb192b09ec9b343c1f23408dd3800df98%7C78bf2ef2f219468e956f46690360df46%7C0%7C0%7C638728298599980556%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata=5ZLTfjDXqv%2BmbXDeJdj2lN7ww2eJ3S9UM9vwxzrpnn8%3D&amp;reserved=0" originalsrc="https://fp60bjgi.r.us-east-1.awstrack.me/L0/https:%2F%2Fconsole.aws.amazon.com%2Fbilling%2Fhome%3F%23%2Fbills%3F/1/010001947b28ad18-62c12f5a-ea90-47aa-87f6-fc4b9ea20501-000000/NqheI05JbP9_vRc81_3tSZPAYuU=409" shash="bE6vGFPiOkWQrLavOWxGZ6FwOQ4bj9Je47CahlzYX+jpuokavUEYn4G3uhhS46t/V4vs8D7v028Bnfpsgdv2XDpQwgPxc5g703OJHP8zlQcIc5Df3nobbA7YTJ4J7xkMqE3+yG3m1a8nWmIM4i2Ml/eR2R2TWGAdp9B+dW0HzfE=">AWS Billing &amp; Cost Management Dashboard</a>. You can find more information on AWS Free Tier <a href="https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Ffp60bjgi.r.us-east-1.awstrack.me%2FL0%2Fhttps%3A%252F%252Faws.amazon.com%252Ffree%252F%2F1%2F010001947b28ad18-62c12f5a-ea90-47aa-87f6-fc4b9ea20501-000000%2F8cxPEePRFWWnybQ4a9QqtazM1dc%3D409&amp;data=05%7C02%7Cinfrastructure%40kingslanding.net%7Cb192b09ec9b343c1f23408dd3800df98%7C78bf2ef2f219468e956f46690360df46%7C0%7C0%7C638728298600011114%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata=XARG46cwq9jk86z0Rts9UNHLIZMM%2FuzO6oiva20YcCI%3D&amp;reserved=0" originalsrc="https://fp60bjgi.r.us-east-1.awstrack.me/L0/https:%2F%2Faws.amazon.com%2Ffree%2F/1/010001947b28ad18-62c12f5a-ea90-47aa-87f6-fc4b9ea20501-000000/8cxPEePRFWWnybQ4a9QqtazM1dc=409" shash="BBYqHaUVIrutWhZD4TCL05qJbIDx0HCj5v0LgSN02Eou7zBYfZywzQfd1b/3+GDIFT5qS9HAUsg9uglc0a+k7Z+8a1Vpx1I6nopDXkodYxsZXNs8luWDHc+aMjj9EuYPZH+0QJe522bNENKCjSfNlLtm8tz5N1+UszbyyAu/Ecg=">here</a>.
+        </td>
+    </tr>
+</table>
+<br>
+<table>
+    <tr>
+        <td>
+            <em>This alert is provided by <a href="https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Ffp60bjgi.r.us-east-1.awstrack.me%2FL0%2Fhttps%3A%252F%252Fconsole.aws.amazon.com%252Fbilling%252Fhome%253F%252F%2523%252Fbudgets%2F1%2F010001947b28ad18-62c12f5a-ea90-47aa-87f6-fc4b9ea20501-000000%2FWFFjBAbUbM2Q90kvl6lotUpzrqI%3D409&amp;data=05%7C02%7Cinfrastructure%40kingslanding.net%7Cb192b09ec9b343c1f23408dd3800df98%7C78bf2ef2f219468e956f46690360df46%7C0%7C0%7C638728298600028473%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata=ZPDJs8R0w3OUqTWPBV9VOS5miwZNFAVmKwwIzKXCtYg%3D&amp;reserved=0" originalsrc="https://fp60bjgi.r.us-east-1.awstrack.me/L0/https:%2F%2Fconsole.aws.amazon.com%2Fbilling%2Fhome%3F%2F%23%2Fbudgets/1/010001947b28ad18-62c12f5a-ea90-47aa-87f6-fc4b9ea20501-000000/WFFjBAbUbM2Q90kvl6lotUpzrqI=409" shash="gGmgIvorkDggYfs1PhJ4df+9VREkMGIcoHffQWLpktg96iEO1jYSry/VFJWuqrzzf0ZY7guaAdjK2DGKls0Hafc58nsNoK2DoPu8gRiEGUwAvbRQDnRIJ+O+GAR0ILTaLeazn8hgvq8mvBV7dyD7o04gM4gIZ2/hbKgBiZ/x7yE=">AWS Budgets</a>. AWS automatically tracks your service usage and will alert you if you have reached 85% of the usage limit for one or more AWS Free Tier-eligible services. To unsubscribe from these alerts or to change the email address to which you would like your alerts to be sent, please visit the <a href="https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Ffp60bjgi.r.us-east-1.awstrack.me%2FL0%2Fhttps%3A%252F%252Fconsole.aws.amazon.com%252Fbilling%252Fhome%2523%252Fpreference%2F1%2F010001947b28ad18-62c12f5a-ea90-47aa-87f6-fc4b9ea20501-000000%2FjSpoUKuPtud5dDK6Pfg2WJq8msU%3D409&amp;data=05%7C02%7Cinfrastructure%40kingslanding.net%7Cb192b09ec9b343c1f23408dd3800df98%7C78bf2ef2f219468e956f46690360df46%7C0%7C0%7C638728298600043291%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata=HAt5zNXbzycAvkl2%2BwyYb4U95gNqRvVJta8ogzNdzXc%3D&amp;reserved=0" originalsrc="https://fp60bjgi.r.us-east-1.awstrack.me/L0/https:%2F%2Fconsole.aws.amazon.com%2Fbilling%2Fhome%23%2Fpreference/1/010001947b28ad18-62c12f5a-ea90-47aa-87f6-fc4b9ea20501-000000/jSpoUKuPtud5dDK6Pfg2WJq8msU=409" shash="AoVnHvytpQhs/66NbkHv2+4mV6AvX35up18gqxSDwD7SLN9nPZ1IF/ug2b+EZDQXlqTWszwr14p4367XyB6suuq58Qtywf9QgD0sUVCwB9++rKTpyjXcxtg1Mgn4gz207fg/VkuQc16tXhoWO8sDkhTnBz4UBg+YEK18WwZb82g=">Cost Management Preferences</a>.</em>
+        </td>
+    </tr>
+</table>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<p class="footer">
+    Please do not reply directly to this email. If you have any questions or comments regarding this email, please contact us at <a href="https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Ffp60bjgi.r.us-east-1.awstrack.me%2FL0%2Fhttps%3A%252F%252Faws.amazon.com%252Fsupport%2F1%2F010001947b28ad18-62c12f5a-ea90-47aa-87f6-fc4b9ea20501-000000%2FTh5-HXwZl0RnLZU3CDjWhtbopAg%3D409&amp;data=05%7C02%7Cinfrastructure%40kingslanding.net%7Cb192b09ec9b343c1f23408dd3800df98%7C78bf2ef2f219468e956f46690360df46%7C0%7C0%7C638728298600057317%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata=TF4I8H94FtShbS5HviqkmRbQjNIrww%2BxA3uZlNPGoMk%3D&amp;reserved=0" originalsrc="https://fp60bjgi.r.us-east-1.awstrack.me/L0/https:%2F%2Faws.amazon.com%2Fsupport/1/010001947b28ad18-62c12f5a-ea90-47aa-87f6-fc4b9ea20501-000000/Th5-HXwZl0RnLZU3CDjWhtbopAg=409" shash="usKi9QnZhB259GhAdMBh1SmO/GnDzyhwX8iEC9IfVaiKw9AbrLfRKvrqhB4jJw8Tl9oHlHoErMQ7OIL2wLaXbLZVFHXCzw1r9fPNimHXUddfY1SajIC2pDLKUiCeXh24l84nEcgb8wMj4OZQUoCdCVMg6t4MIS17i9DWKyX1ttk=">https://aws.amazon.com/support</a>
+</p>
+<p class="footer">
+
+    This message was produced and distributed by Amazon Web Services, Inc., 410 Terry Avenue North, Seattle, Washington 98109-5210. AWS will not be bound by, and specifically objects to, any term, condition or other provision which is different from or in addition to the provisions of the AWS Customer Agreement or AWS Enterprise Agreement between AWS and you (whether or not it would materially alter such AWS Customer Agreement or AWS Enterprise Agreement) and which is submitted in any order, receipt, acceptance, confirmation, correspondence or otherwise, unless AWS specifically agrees to such provision in a written instrument signed by AWS.
+
+
+</p>
+<img alt="" src="https://fp60bjgi.r.us-east-1.awstrack.me/I0/010001947b28ad18-62c12f5a-ea90-47aa-87f6-fc4b9ea20501-000000/YzPX2b2RZGsXr8VYxYs7mO09NG4=409" style="display: none; width: 1px; height: 1px;">
+</body>
+</html>
+------=_Part_1132008_178669014.1737233051001--

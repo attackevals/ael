@@ -1,0 +1,15 @@
+hostname,os_type,hotfix_id,description,installed_by,installed_on
+{% for host in groups['victim'] %}
+{% if hostvars[host]['hotfix_output'] is defined and hostvars[host]['hotfix_output']['output'][0] is defined %}
+{% set hotfix_data = hostvars[host]['hotfix_output']['output'][0] | from_json %}
+{% if hotfix_data is iterable and hotfix_data is not string %}
+{% if hotfix_data is mapping %}
+{{ hostvars[host]['ansible_hostname'] }},Windows,{{ hotfix_data.HotFixID | default('') }},{{ hotfix_data.Description | default('') }},{{ hotfix_data.InstalledBy | default('') }},{{ hotfix_data.InstalledOn | default('') }}
+{% else %}
+{% for hotfix in hotfix_data %}
+{{ hostvars[host]['ansible_hostname'] }},Windows,{{ hotfix.HotFixID | default('') }},{{ hotfix.Description | default('') }},{{ hotfix.InstalledBy | default('') }},{{ hotfix.InstalledOn | default('') }}
+{% endfor %}
+{% endif %}
+{% endif %}
+{% endif %}
+{% endfor %}

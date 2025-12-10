@@ -1,0 +1,9 @@
+- name: Stage cloud detections files
+  hosts: localhost
+  gather_facts: no
+
+  roles:
+    - role: s3file_staging
+  vars:
+    target_account: detections
+    dest_cloud_bucket: "er7-{{ range_name }}-backup-data"

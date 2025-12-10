@@ -1,0 +1,14 @@
+[Unit]
+Description=Airbyte Service
+After=network.target
+
+[Service]
+ExecStart={{ airbyte_directory }}/abctl start
+ExecStop={{ airbyte_directory }}/abctl stop
+WorkingDirectory={{ airbyte_directory }}
+Restart=always
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target

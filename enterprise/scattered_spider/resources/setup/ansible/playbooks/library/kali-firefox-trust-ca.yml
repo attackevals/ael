@@ -1,0 +1,47 @@
+---
+# Required variables:
+# - cert_name: Name for the certificate (optional, defaults to 'Custom CA')
+# - cert_path: Path to the certificate file
+# - ca_cert_name: CA certificate name
+
+# linux and firefox do not play nicely
+# even though kali uses firefox-esr, and has a pre-created directory /etc/firefox-esr, the policy file has to
+# be in /etc/firefox/policies/ for firefox to load it.
+- name: create firefox policy directory
+  become: true
+  ansible.builtin.file:
+    path: /etc/firefox/policies
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: copy firefox policy file
+  become: true
+  ansible.builtin.template:
+    dest: /etc/firefox/policies/policies.json
+    src: "{{ playbook_dir }}/../files/kali/firefox-policies.json.j2"
+    owner: root
+    group: root
+    mode: '0644'
+
+# trust certificates for chrome on kali using certutil
+- name: install libnss3-tools for certutil
+  become: true
+  ansible.builtin.apt:
+    name: libnss3-tools
+    state: present
+
+- name: add certificate to chrome nss database for all users
+  ansible.builtin.shell: |
+    for user_home in /home/*; do
+      if [ -d "$user_home" ]; then
+        for certdb in $(find "$user_home" -name "cert9.db" 2>/dev/null); do
+          sudo -u $(basename "$user_home") certutil -A -n "{{ cert_name | default('Custom CA') }}" -t "TCu,Cu,Tu" -i "{{ cert_path }}" -d "$(dirname $certdb)"
+        done
+      fi
+    done
+  become: true
+  vars:
+    cert_path: "/usr/local/share/ca-certificates/{{ ca_cert_name }}.crt"
+  when: cert_path is defined

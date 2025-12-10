@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+    <head>
+      <meta name="viewport" content="width=device-width">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="x-apple-disable-message-reformatting">
+      <title>
+        Invitation to join AWS IAM
+      </title>
+    </head>
+    <body width="100%" bgcolor="#F9F9F9" style="margin: 0; mso-line-height-rule: exactly;">
+      <center style="width: 100%; background: #F9F9F9; text-align: left;">
+          <div id="preheaderSpacingHack" style="display: none; font-family: sans-serif; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; mso-hide: all; opacity: 0; overflow: hidden;">
+          </div>
+          <div style="max-width: 600px; margin: auto;" class="email-container">
+            <br>
+            <br>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" id="emailBodyContainer" style="border: 1px solid #E5E5E5; border-bottom-color: #CCC; border-top-color: #F0F0F0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); max-width: 600px;">
+              <tr>
+                <td class="module" style="background-color: #FFF; color: #444; font-family: sans-serif; font-size: 14px; line-height: 140%; padding: 25px 35px;">
+                  <p style="margin: 0 0 15px 0; padding: 0 0 0 0;">
+                    Hello {{ username }},
+                  </p>
+                  <p style="margin: 0 0 15px 0; padding: 0 0 0 0;">
+                    Your administrator for AWS Account #{{ aws_account_id }} has invited you to AWS IAM. Accepting this invitation activates your user account in
+                    IAM so that you can access assigned AWS resources.
+                  </p>
+                  <p>
+                    Click the link below to sign in and accept your invitation. Once signed in you will be prompted to change your password. Your temporary password was sent to you separately.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td class="module module-button" style="background-color: #FFF; color: #444; font-family: sans-serif; font-size: 14px; line-height: 140%; padding: 0px 35px;">
+                  <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="left" style="margin: auto;">
+                    <tr>
+                      <td class="button-td" style="background: #2B98D6; border-radius: 3px; text-align: center;">
+                      <a href="{{ aws_login_link }}" class="button-a" style="background: #2B98D6; border: 15px solid #2B98D6; border-radius: 3px; color: #1166BB; display: block; font-family: sans-serif; font-size: 14px; line-height: 110%; text-align: center; text-decoration: none;">
+                        <span class="button-link" style="color: #FFF;">
+                          &nbsp;&nbsp;Accept invitation&nbsp;&nbsp;
+                        </span>
+                      </a>
+                      </td>
+                    </tr>
+                  </table>
+              <tr>
+                <td class="module" style="background-color: #FFF; color: #444; font-family: sans-serif; font-size: 14px; line-height: 140%; padding: 25px 35px;">
+                  <p style="margin: 0; padding: 0;">
+                    <strong>
+                      Your Username:
+                    </strong>
+                    <br>
+                    {{ username }}
+                  </p>
+                </td>
+              </tr>
+            </table>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" id="footer" style="max-width: 600px;">
+              <tr>
+                <td style="color: #777; font-family: sans-serif; font-size: 12px; line-height: 18px; padding: 20px 10px; text-align: center;">
+                  Amazon Web Services, Inc. is a subsidiary of Amazon.com, Inc. <a href="https://aws.amazon.com/free/?trk=7d475c59-1af1-47f8-b4c7-88482cbd0e73&sc_channel=ps&s_kwcid=AL!4422!10!71880808791517!!!!71881335348519!!482510739!1150090164275788&ef_id=fe1463ecf3ad1aa063ee0b818187a9d6:G:s&msclkid=fe1463ecf3ad1aa063ee0b818187a9d6&all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc&awsf.Free%20Tier%20Types=*all&awsf.Free%20Tier%20Categories=*all"
+                                                                                  style="color: #777; text-decoration: none;">Amazon.com</a> is a registered trademark of Amazon.com, Inc. This message was produced and distributed by Amazon Web Services, Inc., 410 Terry Ave. North, Seattle, WA 98109-5210.
+                </td>
+              </tr>
+            </table>
+          </div>
+      </center>
+    </body>
+  </html>

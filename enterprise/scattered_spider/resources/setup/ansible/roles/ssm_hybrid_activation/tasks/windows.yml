@@ -1,0 +1,40 @@
+---
+- name: Check if SSM Agent is installed on Windows
+  # language=Shell
+  ansible.windows.win_shell: |
+    if (Test-Path "C:\Program Files\Amazon\SSM\amazon-ssm-agent.exe") { exit 0 } else { exit 1 }
+  register: ssm_agent_installed
+  failed_when: false  # Don't fail if the command returns non-zero
+  changed_when: false
+
+- name: Check if SSM agent is already registered
+  win_stat:
+    path: 'C:\Program Files\Amazon\SSM\registration'
+  register: ssm_registration
+
+- name: Clear any pre-existing the Windows instance with SSM
+  win_command: >-
+    "{{ 'C:/Program Files/Amazon/SSM/amazon-ssm-agent.exe' | win_dirname }}/amazon-ssm-agent.exe"
+    -register -clear
+  ignore_errors: yes
+#  when: ssm_registration is defined and ssm_registration.stat.exists
+
+- name: Register the Windows instance with SSM
+  win_command: >-
+    "{{ 'C:/Program Files/Amazon/SSM/amazon-ssm-agent.exe' | win_dirname }}/amazon-ssm-agent.exe"
+    -register
+    -code "{{ ssm_activation_code }}"
+    -id "{{ ssm_activation_id }}"
+    -region "{{ ssm_region }}"
+  args:
+    creates: 'C:\Program Files\Amazon\SSM\registration'
+  when: not ssm_registration.stat.exists
+  register: ssm_register_result
+  failed_when: ssm_register_result.rc != 0
+  timeout: 300
+
+- name: Restart SSM agent service
+  win_service:
+    name: AmazonSSMAgent
+    state: restarted
+  when: ssm_register_result is changed

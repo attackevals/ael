@@ -1,0 +1,7 @@
+server:
+  # add a and ptr records
+  {% for zone in records %}
+  local-data: "{{ zone.fqdn }}. A {{ zone.ip }}"
+  local-data-ptr: "{{ zone.ip }} {{ zone.fqdn }}."
+
+  {% endfor %}

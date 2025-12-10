@@ -1,0 +1,8 @@
+- name: Stage cloud protection files
+  hosts: localhost
+  gather_facts: no
+
+  roles:
+    - role: s3file_staging
+  vars:
+    target_account: protections

@@ -1,0 +1,139 @@
+---
+- name: "Enroll all on-prem victim hosts in SSM using activation credentials from AWS"
+  hosts: onprem:&victim
+  become: yes
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - scenarioa
+    - ssm
+  vars:
+    ssm_region: "us-east-1"
+    name_prefix: "{{ evals_cycle| lower | default('er7') }}-{{ range_name }}"
+    # Account IDs and roles for chaining
+    mgmt_role_name: "CrossAccountAccess"
+    target_role_name: "CrossAccountAccess"
+    mgmt_account_arn: "{{ hostvars[groups['linux_cloud'][0]]['cloud_management_arn']  }}"
+    detections_account_arn: "{{ hostvars[groups['linux_cloud'][0]]['detections_acct_arn']  }}"
+
+  tasks:
+    - name: Change AWS Accounts to Cloud Management Account as part of Chain
+      shell: >
+        aws sts assume-role \
+        --role-arn "{{ cloud_mgmt_arn }}" \
+        --role-session-name cross-cloud-mgmt \
+        --query 'Credentials' \
+        --output json
+      register: cross_account_creds
+      vars:
+        cloud_mgmt_arn: "{{ hostvars[groups['linux_cloud'][0]]['cloud_management_arn'] }}"
+      changed_when: false
+      failed_when: cross_account_creds.rc != 0
+      delegate_to: localhost
+      become: no
+      run_once: yes
+      tags:
+        - aws
+
+    - name: Parse credentials from CrossAccountAccess assume-role
+      set_fact:
+        aws_cross_creds:
+          AWS_ACCESS_KEY_ID: "{{ cross_account_creds.stdout | from_json | json_query('AccessKeyId') }}"
+          AWS_SECRET_ACCESS_KEY: "{{ cross_account_creds.stdout | from_json | json_query('SecretAccessKey') }}"
+          AWS_SESSION_TOKEN: "{{ cross_account_creds.stdout | from_json | json_query('SessionToken') }}"
+      delegate_to: localhost
+      become: no
+      run_once: yes
+      tags:
+        - aws
+
+    - name: Assume cloud-detections role using CrossAccountAccess credentials
+      shell: >
+        AWS_ACCESS_KEY_ID={{ aws_cross_creds.AWS_ACCESS_KEY_ID }} \
+        AWS_SECRET_ACCESS_KEY={{ aws_cross_creds.AWS_SECRET_ACCESS_KEY }} \
+        AWS_SESSION_TOKEN={{ aws_cross_creds.AWS_SESSION_TOKEN }} \
+        aws sts assume-role \
+          --role-arn "{{ hostvars[groups['linux_cloud'][0]]['detections_acct_arn'] }}" \
+          --role-session-name cloud-detections \
+          --query 'Credentials' \
+          --output json
+      register: detections_creds
+      changed_when: false
+      failed_when: detections_creds.rc != 0
+      delegate_to: localhost
+      run_once: yes
+      become: no
+      tags:
+        - aws
+
+    - name: Parse credentials for cloud-detections role
+      set_fact:
+        aws_detections_creds:
+          AWS_ACCESS_KEY_ID: "{{ detections_creds.stdout | from_json | json_query('AccessKeyId') }}"
+          AWS_SECRET_ACCESS_KEY: "{{ detections_creds.stdout | from_json | json_query('SecretAccessKey') }}"
+          AWS_SESSION_TOKEN: "{{ detections_creds.stdout | from_json | json_query('SessionToken') }}"
+      delegate_to: localhost
+      become: no
+      run_once: yes
+      tags:
+        - aws
+
+    - name: Use assumed role credentials to get new identity
+      shell: >
+        AWS_ACCESS_KEY_ID={{ aws_detections_creds.AWS_ACCESS_KEY_ID }} \
+        AWS_SECRET_ACCESS_KEY={{ aws_detections_creds.AWS_SECRET_ACCESS_KEY }} \
+        AWS_SESSION_TOKEN={{ aws_detections_creds.AWS_SESSION_TOKEN }} \
+        aws sts get-caller-identity --output json
+      register: validated_identity
+      changed_when: false
+      delegate_to: localhost
+      become: no
+      run_once: yes
+      tags:
+        - aws
+
+    # have to use cli because ansible module does not handle assumed role when a profile
+    # was previously used
+    - name: Get SSM activation ID from Parameter Store
+      ansible.builtin.shell: |
+        unset AWS_PROFILE
+        AWS_ACCESS_KEY_ID={{ aws_detections_creds.AWS_ACCESS_KEY_ID }} \
+        AWS_SECRET_ACCESS_KEY={{ aws_detections_creds.AWS_SECRET_ACCESS_KEY }} \
+        AWS_SESSION_TOKEN={{ aws_detections_creds.AWS_SESSION_TOKEN }} \
+        aws ssm get-parameter \
+          --name "/{{ name_prefix }}/ssm/activation_id" \
+          --region "{{ ssm_region }}" \
+          --query 'Parameter.Value' \
+          --output text
+      register: ssm_activation_id_result
+      delegate_to: localhost
+      become: no
+      run_once: yes
+      changed_when: false
+
+    - name: Get SSM activation code from Parameter Store
+      ansible.builtin.shell: |
+        unset AWS_PROFILE
+        AWS_ACCESS_KEY_ID={{ aws_detections_creds.AWS_ACCESS_KEY_ID }} \
+        AWS_SECRET_ACCESS_KEY={{ aws_detections_creds.AWS_SECRET_ACCESS_KEY }} \
+        AWS_SESSION_TOKEN={{ aws_detections_creds.AWS_SESSION_TOKEN }} \
+        aws ssm get-parameter \
+          --name "/{{ name_prefix }}/ssm/activation_code" \
+          --region "{{ ssm_region }}" \
+          --with-decryption \
+          --query 'Parameter.Value' \
+          --output text
+      register: ssm_activation_code_result
+      delegate_to: localhost
+      become: no
+      run_once: yes
+      changed_when: false
+
+    - name: Set SSM activation variables
+      set_fact:
+        ssm_activation_id: "{{ ssm_activation_id_result.stdout }}"
+        ssm_activation_code: "{{ ssm_activation_code_result.stdout }}"
+
+    - name: run role for ssm activation
+      ansible.builtin.import_role:
+        name: ssm_hybrid_activation

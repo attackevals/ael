@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ST8G6EL3M2"></script>
+    <script data-cfasync="false">window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-ST8G6EL3M2');</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-root" content="/ael">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.818693826522">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.11.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Protections Test 2 Scenario</title>
+    <meta name="title" content="Protections Test 2 Scenario">
+    <meta name="description" content="Initiate an RDP session to the Kali attack host driftmark (174.3.0.70)">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://attackevals.github.io/ael/enterprise/scattered_spider/emulation_plan/protections_test_2_scenario/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://attackevals.github.io/ael/enterprise/scattered_spider/emulation_plan/protections_test_2_scenario/">
+    <meta property="og:title" content="Protections Test 2 Scenario">
+    <meta property="og:description" content="Initiate an RDP session to the Kali attack host driftmark (174.3.0.70)">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://attackevals.github.io/ael/enterprise/scattered_spider/emulation_plan/protections_test_2_scenario/">
+    <meta property="twitter:title" content="Protections Test 2 Scenario">
+    <meta property="twitter:description" content="Initiate an RDP session to the Kali attack host driftmark (174.3.0.70)">
+
+    <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
+
+    <link href="../../../../favicon.png" rel="icon">
+    <link href="../../../../resources/css/retype.css?v=3.11.0.818693826522" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.11.0.818693826522" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.11.0.818693826522" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.11.0.818693826522" defer></script>
+</head>
+<body>
+    <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
+        <div class="absolute bottom-0 left-0" style="top: 5rem; right: 50%"></div>
+    
+        <header id="retype-header" class="sticky top-0 z-30 flex w-full h-16 bg-header-bg border-b border-header-border md:h-20">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton retype-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="retype-sidebar-left-toggle-button"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="retype-branding-logo" href="../../../../" class="flex items-center leading-snug text-xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../../../images/attackevals-logo.png">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../../../images/attackevals-logo.png">
+                            </span>
+                            <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">ATTACK Evaluation Library</span>
+                        </a>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav id="retype-header-nav" class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-search-placeholder transition-colors duration-200 ease-in bg-search-bg border border-transparent rounded md:text-sm hover:border-search-border-hover focus:outline-none focus:border-search-border-focus" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="retype-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+    
+        <div id="retype-container" class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-sidebar-left-bg border-sidebar-left-border sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton">
+            
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-filter-bg border border-filter-border rounded shadow-none text-sm focus:outline-none focus:border-filter-border-focus" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                </div>
+            
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-base-border">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-base-border">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 bg-body-bg">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div id="retype-main" class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="retype-markdown" id="retype-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="retype-sidebar-right-toggle"></div>
+                                <nav id="retype-breadcrumb" class="breadcrumb" aria-label="Breadcrumb">
+                                    <ol role="list">
+                                        <li class="pr-4">
+                                            <a href="../../../../" class="pr-4">
+                                                ATT&​CK Evaluations Library
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Enterprise
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/scattered_spider/" class="pr-4">
+                                                Scattered Spider
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/scattered_spider/emulation_plan/" class="pr-4">
+                                                Scattered Spider Emulation Plans
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/scattered_spider/emulation_plan/protections_test_2_scenario/" class="pr-4">
+                                                Protections Test 2 Scenario
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                
+                                <!-- Page content  -->
+<doc-anchor-target id="protections-test-2-scenario" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#protections-test-2-scenario">#</doc-anchor-trigger>
+        <span>Protections Test 2 Scenario</span>
+    </h1>
+</doc-anchor-target>
+<doc-anchor-target id="step-0---setup">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-0---setup">#</doc-anchor-trigger>
+        <span>Step 0 - Setup</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="procedures">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p>Initiate an RDP session to the Kali attack host <code v-pre>driftmark (174.3.0.70)</code></p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Destination</th>
+<th>Username</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>driftmark</td>
+<td>op1</td>
+<td>Barbed-Directive</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><p>Initiate an RDP session to the Jumpbox host <code v-pre>dreadfort (10.26.3.125)</code></p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Destination</th>
+<th>Username</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10.26.3.125</td>
+<td>op1</td>
+<td>Barbed-Directive</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> From the Windows Jumpbox <code v-pre>dreadfort (10.26.3.125)</code>, open FireFox and browse
+to <code v-pre>https://sso.vale.net/</code>. Use the following credentials to log into the Single
+Sign-On (SSO) portal.</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Destination</th>
+<th>Username</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://sso.vale.net/">https://sso.vale.net/</a></td>
+<td>gworm</td>
+<td>Humble-Removed</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> When prompted for an MFA token, switch to the existing Kali RDP session, open
+a new terminal window, and run the following command and provide the following
+password when prompted. Copy the MFA code then switch back to the Windows
+jumpbox to enter the MFA code into the SSO login page</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Decode-Acclimate</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">totp-cli generate --follow vale vale-gworm</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p><em><strong>Expected Output</strong></em></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">######</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+<li><p>In the browser window click the three dots on the right hand side, select &quot;More
+Tools&quot;, then select &quot;Developer Tools&quot;. In the newly opened panel, select
+&quot;Storage&quot;, then select &quot;Cookies&quot;. Select the SSO domain sso.vale.net. Copy the
+<code v-pre>authentik_csrf</code> and <code v-pre>authentik_session</code> into a text document for use later</p>
+</li>
+</ul>
+<doc-anchor-target id="step-1---initial-access">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-1---initial-access">#</doc-anchor-trigger>
+        <span>Step 1 - Initial Access</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>Scattered Spider uses a previously compromised SSO cookie to log into the victims SSO
+dashboard.</p>
+<doc-anchor-target id="procedures-1">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-1">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><span class="docs-emoji">&#x2623;&#xFE0F;</span> From the Kali attack host <code v-pre>driftmark (174.3.0.70)</code>, open FireFox and browse
+to the real SSO portal at <code v-pre>https://sso.vale.net/</code>. Open the developer console
+and go to the <code v-pre>Storage</code> tab and then to the <code v-pre>Cookies</code> drop-down menu. For the
+SSO portal site, replace the <code v-pre>authentik_csrf</code> and <code v-pre>authentik_session</code> cookie
+values with the values noted in the setup phase. After saving the cookie,
+replace the URL with <code v-pre>https://sso.vale.net/</code> and reload the page.</li>
+</ul>
+<doc-anchor-target id="reference-tables">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reference-tables">#</doc-anchor-trigger>
+        <span>Reference Tables</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique ID</th>
+<th>Technique Name</th>
+<th>Platform</th>
+<th>Detection Criteria</th>
+<th>Category</th>
+<th>Red Team Activity</th>
+<th>Hosts</th>
+<th>Users</th>
+<th>Source Code Links</th>
+<th>Relevant CTI Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Initial Access</td>
+<td>T1133</td>
+<td>External Remote Services</td>
+<td>Linux</td>
+<td>Adversary initiated access to the <a href="https://sso.vale.net/">https://sso.vale.net/</a></td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider connected to the external facing SSO portal.</td>
+<td>bloodygate (10.26.5.101)</td>
+<td>gworm</td>
+<td>-</td>
+<td><a href="https://cloud.google.com/blog/topics/threat-intelligence/unc3944-sms-phishing-sim-swapping-ransomware/" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://cloud.google.com/blog/topics/threat-intelligence/sim-swapping-abuse-azure-serial" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Initial Access</td>
+<td>T1550.004</td>
+<td>Use Alternate Authentication Material: Web Session Cookie</td>
+<td>Identity Provider</td>
+<td>Adversary used gworm stolen web session cookie to bypass login</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider uses a cookie from an existing authenticated session to access the SSO portal.</td>
+<td>bloodygate (10.26.5.101)</td>
+<td>gworm</td>
+<td>-</td>
+<td><a href="https://cloud.google.com/blog/topics/threat-intelligence/unc3944-sms-phishing-sim-swapping-ransomware/" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://cloud.google.com/blog/topics/threat-intelligence/sim-swapping-abuse-azure-serial" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Initial Access</td>
+<td>T1078</td>
+<td>Valid Accounts</td>
+<td>Linux, Identity Provider</td>
+<td>Adversary successfully logged into <a href="https://sso.vale.net/">https://sso.vale.net/</a> as gworm</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider uses a valid account to access the SSO portal.</td>
+<td>bloodygate (10.26.5.101)</td>
+<td>gworm</td>
+<td>-</td>
+<td><a href="https://cloud.google.com/blog/topics/threat-intelligence/unc3944-sms-phishing-sim-swapping-ransomware/" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://cloud.google.com/blog/topics/threat-intelligence/sim-swapping-abuse-azure-serial" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="step-2---privilege-escalation-and-persistence">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-2---privilege-escalation-and-persistence">#</doc-anchor-trigger>
+        <span>Step 2 - Privilege Escalation and Persistence</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-1">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-1">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>After Scattered Spider logs into the SSO dashboard they configure a secondary IdP in the
+SSO admin interface. Scattered Spider then logs back into the SSO dashboard using a valid
+domain administrator account and the secondary IdP.</p>
+<doc-anchor-target id="procedures-2">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-2">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Inside the SSO dashboard, click the &quot;Admin interface&quot; button at the top
+right. Under &quot;Directory&quot; on the left panel, select &quot;Federation and Social
+login&quot;. Create a new source and select the &quot;SAML Source&quot; type. Click &quot;Next&quot; to
+reach the source configuration menu.</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Set &quot;Name&quot; and &quot;Slug&quot; to <code v-pre>upstream</code>, ensure the source is enabled, set &quot;User
+matching mode&quot; to &quot;Link to a user with identical username&quot;, set &quot;Group matching
+mode&quot; to &quot;Link to a group with identical name&quot;, and keep the default icon.</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Expand the Protocol settings, set the SSO URL to
+<code v-pre>https://idp.braavos.com/application/saml/victim/sso/binding/post/</code>, and set
+binding type to &quot;Post-auto binding&quot;.</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Expand the Advanced protocol settings, toggle on &quot;Allow IDP-initiated
+logins&quot;, then set &quot;NameID Policy&quot; to &quot;Windows&quot;. Expand the Flow settings and
+ensure &quot;Pre-authentication flow&quot; is set to <code v-pre>default-source-pre-authentication (Pre-Authentication)</code>. Click the Finish button to finish creating the source.</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Under &quot;Flows and Stages&quot; on the left panel, select &quot;Flows&quot;. Select
+<code v-pre>default-authentication-flow</code> and click the &quot;Stage Bindings&quot; tab. Click the
+&quot;Edit Stage&quot; button for the &quot;default-authentication-identification&quot; table entry.</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Scroll down and expand &quot;Source settings&quot;. Confirm that the <code v-pre>upstream</code> source
+you just created is listed as an available source. Select it and then click the
+single right arrow to add it to the &quot;Select sources&quot; list. Ensure that it is the
+only selected source on the right side then click &quot;Update&quot;</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Log out of the SSO dashboard and confirm that the secondary IdP icon appears
+in the login prompt window under the login button.</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Open an incognito window to avoid using any previously established cookies
+and browse to <a href="https://sso.vale.net/">https://sso.vale.net/</a>. Click the secondary IdP icon below the
+login button to be redirected to the attacker-controlled secondary IdP. If
+prompted with a security warning, click &quot;Advanced&quot; &gt; &quot;Accept Security Risk&quot; &gt;
+&quot;Resend&quot;. Log in using the attacker-created domain administrator credentials and
+confirm that you were successfully redirected to the victim SSO dashboard as the
+domain user and that the Guacamole application is available.</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Destination</th>
+<th>Username</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://sso.vale.net/">https://sso.vale.net/</a></td>
+<td>kdrogo</td>
+<td>Bypassed123</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ul>
+<doc-anchor-target id="reference-tables-1">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reference-tables-1">#</doc-anchor-trigger>
+        <span>Reference Tables</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique ID</th>
+<th>Technique Name</th>
+<th>Platform</th>
+<th>Detection Criteria</th>
+<th>Category</th>
+<th>Red Team Activity</th>
+<th>Hosts</th>
+<th>Users</th>
+<th>Source Code Links</th>
+<th>Relevant CTI Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Privilege Escalation</td>
+<td>T1484.002</td>
+<td>Domain or Tenant Policy Modification: Trust Modification</td>
+<td>Windows, Identity Provider</td>
+<td>gworm changed the identity provider configuration to insert a new path to domain-level or admin-level access</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider adds a secondary IdP to Authentik that will allow them to log in as a domain admin</td>
+<td>bloodygate (10.26.5.101)</td>
+<td>gworm</td>
+<td>-</td>
+<td><a href="https://www.microsoft.com/en-us/security/blog/2023/10/25/octo-tempest-crosses-boundaries-to-facilitate-extortion-encryption-and-destruction/" class="outbound" target="_blank"><span>3</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://cloud.google.com/blog/topics/threat-intelligence/unc3944-sms-phishing-sim-swapping-ransomware/" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Persistence</td>
+<td>T1078</td>
+<td>Valid Accounts</td>
+<td>Linux, Identity Provider</td>
+<td>Adversary successfully logged into <a href="https://sso.vale.net/">https://sso.vale.net/</a> with kdrogo domain account</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider uses a valid domain admin account to access the SSO dashboard.</td>
+<td>bloodygate (10.26.5.101)</td>
+<td>kdrogo</td>
+<td>-</td>
+<td><a href="https://cloud.google.com/blog/topics/threat-intelligence/unc3944-sms-phishing-sim-swapping-ransomware/" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://cloud.google.com/blog/topics/threat-intelligence/sim-swapping-abuse-azure-serial" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Privilege Escalation</td>
+<td>T1484.002</td>
+<td>Domain or Tenant Policy Modification: Trust Modification</td>
+<td>Identity Provider</td>
+<td>kdrogo successfully logs in through the newly added IdP</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider uses the secondary IdP to log in as a domain admin user</td>
+<td>bloodygate (10.26.5.101)</td>
+<td>kdrogo</td>
+<td>-</td>
+<td><a href="https://www.microsoft.com/en-us/security/blog/2023/10/25/octo-tempest-crosses-boundaries-to-facilitate-extortion-encryption-and-destruction/" class="outbound" target="_blank"><span>3</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://cloud.google.com/blog/topics/threat-intelligence/unc3944-sms-phishing-sim-swapping-ransomware/" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="step-3---lateral-movement">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-3---lateral-movement">#</doc-anchor-trigger>
+        <span>Step 3 - Lateral Movement</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-2">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-2">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>After Scattered Spider logs into the SSO portal as the domain admin, they wait until the
+legitimate domain admin initiates a Guacamole session then hijacks the session
+to gain access to an endpoint in the victim environment.</p>
+<doc-anchor-target id="procedures-3">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-3">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p>Return to the Windows Jumpbox <code v-pre>dreadfort (10.26.3.125)</code>, open FireFox and browse
+to <code v-pre>https://sso.vale.net/</code>. Use the following credentials to log into the Single
+Sign-On (SSO) portal.</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Destination</th>
+<th>Username</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://sso.vale.net/">https://sso.vale.net/</a></td>
+<td>kdrogo</td>
+<td>Apply-Precision</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><p>When prompted for an MFA token, switch to the existing Kali RDP session, open a
+new terminal window, and run the following command and provide the following
+password when prompted. Copy the MFA code then switch back to the Windows
+jumpbox to enter the MFA code into the SSO login page</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Decode-Acclimate</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">totp-cli generate --follow vale vale-kdrogo</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p><em><strong>Expected Output</strong></em></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">######</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+<li><p>From the SSO dashboard, right-click on the Guacamole application to Open in New
+Tab and access the Guacamole dashboard with available remote machines. Select
+<code v-pre>blacktyde</code> from the list and authenticate to the remote desktop session using
+the following credentials. For <code v-pre>Domain</code> enter <code v-pre>vale</code></p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Destination</th>
+<th>Username</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>vale</code></td>
+<td>kdrogo</td>
+<td>Apply-Precision</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Switch back to Kali. Inside the SSO dashboard, click the Guacamole
+application. In the top right, confirm a user is logged in by clicking Settings
+then under &quot;Active Connections&quot;, observing text mentioning a &quot;1 user is logged
+in&quot; next to <code v-pre>blacktyde</code>. Click the <code v-pre>blacktyde</code> link to hijack the session.</p>
+</li>
+</ul>
+<doc-anchor-target id="reference-tables-2">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reference-tables-2">#</doc-anchor-trigger>
+        <span>Reference Tables</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique ID</th>
+<th>Technique Name</th>
+<th>Platform</th>
+<th>Detection Criteria</th>
+<th>Category</th>
+<th>Red Team Activity</th>
+<th>Hosts</th>
+<th>Users</th>
+<th>Source Code Links</th>
+<th>Relevant CTI Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lateral Movement</td>
+<td>T1563</td>
+<td>Remote Service Session Hijacking</td>
+<td>Windows</td>
+<td>kdrogo successfully connected to eastgate (10.26.5.100) and blacktyde (10.26.3.101) through RDP</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider uses the Guacamole application to hijack a Guacamole session to <code v-pre>blacktyde (10.26.3.101)</code></td>
+<td>bloodygate (10.26.5.101), eastgate (10.26.5.100), blacktyde (10.26.3.101)</td>
+<td>kdrogo</td>
+<td>-</td>
+<td><a href="https://cloud.google.com/blog/topics/threat-intelligence/unc3944-sms-phishing-sim-swapping-ransomware/" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://cloud.google.com/blog/topics/threat-intelligence/sim-swapping-abuse-azure-serial" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="end-of-test">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#end-of-test">#</doc-anchor-trigger>
+        <span>End of Test</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-3">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-3">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>This step includes the shutdown procedures for the end of this Protections Test</p>
+<doc-anchor-target id="procedures-4">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-4">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p>From Kali, close the browser to Guacamole</p>
+</li>
+<li><p>Return to the RDP to <code v-pre>dreadfort (10.26.3.125)</code>. Close the FireFox tabs with the
+SSO and Guacamole</p>
+</li>
+</ul>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer id="retype-content-footer" class="clear-both">
+                            
+                                <nav id="retype-nextprev" class="print:hidden flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../../enterprise/scattered_spider/emulation_plan/protections_test_1_scenario/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-base-text-muted">Previous</span>
+                                                <span class="block mt-1">Protections Test 1 Scenario</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../../enterprise/scattered_spider/emulation_plan/protections_test_3_scenario/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
+                                                <span class="block mt-1">Protections Test 3 Scenario</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div id="retype-page-footer" class="print:border-none border-t border-base-border pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between print:justify-center">
+                                <div id="retype-footer-links" class="print:hidden">
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                        <li>
+                                            <a class="inline-flex items-center mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-footer-link hover:text-footer-link-hover md:mb-0" href="https://github.com/attackevals/ael">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                                    <g fill="currentColor">
+                                                        <path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"/>
+                                                    </g>
+                                                </svg>
+                                                <span>ATTACK Evaluations Library GitHub</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div id="retype-copyright" class="print:justify-center py-2 text-footer-text font-footer-link-weight text-sm leading-relaxed"><p>© Copyright 2025. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-sidebar-right-bg border-sidebar-right-border lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="retype-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Protections Test 2 Scenario", level: 4, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

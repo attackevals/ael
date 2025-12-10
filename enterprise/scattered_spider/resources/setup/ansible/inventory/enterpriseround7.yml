@@ -1,0 +1,9 @@
+---
+plugin: cloud.terraform.terraform_provider
+
+# This is dynamically set by `make check_path`
+# This plugin is overriding the -e option; it requires a hard-coded value
+project_path: ../terraform/range
+
+# Terraform binary (available in the $PATH) or full path to the binary.
+binary_path: terraform

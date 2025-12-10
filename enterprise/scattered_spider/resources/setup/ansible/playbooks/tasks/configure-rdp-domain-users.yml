@@ -1,0 +1,19 @@
+---
+- name: "Ensure remote desktop users includes domain users and domain admin groups"
+  hosts: domain_kingslanding:&victim:&windows
+  become: yes
+  gather_facts: yes
+  strategy: free
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - rdp
+    - windows
+
+  tasks:
+    - name: Add admins and users to RDP group
+      ansible.windows.win_group_membership:
+        name: Remote Desktop Users
+        members:
+          - "{{ domain_short_name }}\\Domain Users"
+          - "{{ domain_short_name }}\\Domain Admins"

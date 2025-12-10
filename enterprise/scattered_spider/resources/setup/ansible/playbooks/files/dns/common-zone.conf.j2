@@ -1,0 +1,10 @@
+server:
+    # add a and ptr records for base zones
+    local-data: "{{ domain_info_kingslanding.ad_hostname }}.{{ domain_info_kingslanding.dns_domain_name }}. A {{ domain_info_kingslanding.ad_ip_addr }}"
+    local-data-ptr: "{{ domain_info_kingslanding.ad_ip_addr }} {{ domain_info_kingslanding.ad_hostname }}.{{ domain_info_kingslanding.dns_domain_name }}."
+
+    local-data: "{{ red_dev.kali_fqdn }}. A {{ red_dev.kali_ip }}"
+    local-data-ptr: "{{ red_dev.kali_ip }} {{ red_dev.kali_fqdn }}."
+
+    local-data: "{{ support_vars.dns_server_hostname }}. A {{ support_vars.dns_server_ip }}"
+    local-data-ptr: "{{ support_vars.dns_server_ip }} {{ support_vars.dns_server_hostname }}."

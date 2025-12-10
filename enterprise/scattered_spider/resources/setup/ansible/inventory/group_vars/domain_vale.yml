@@ -1,0 +1,6 @@
+---
+domain_info: "{{ domain_info_vale }}"
+domain_users: "{{ domain_users_vale + domain_users_common }}"
+domain_groups: "{{ domain_groups_common }}"
+range_dns_server_ip: "{{ support_vars.dns_server_ip }}"
+domain_dns_records: "{{ domain_dns_records_vale }}"

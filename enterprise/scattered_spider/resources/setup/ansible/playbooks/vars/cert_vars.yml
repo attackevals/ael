@@ -1,0 +1,80 @@
+---
+certs_folder: "../files/certs"
+certs_bucket: "er7-vendor-resources"
+bucket_path: "certs"
+
+ca_cert_name: "COUNCILCA"
+ca_domain: "councilcasecurity.com"
+# crl will be hosted at councilcasecurity.com/councilca.crl
+ca_crl_url: "http://{{ ca_domain }}/{{ ca_cert_name | lower }}.crl"
+
+ca_common_name: "Council Secure Certificates Intermediate CA"
+ca_country_name: "WT"
+ca_locality_name: "Cove"
+ca_organization_name: "Council Secure Certificates"
+ca_state_or_province_name: "Kynance"
+
+cert_domains:
+  - domain: kingslanding.net
+    sites:
+      - name: sso
+        dns:
+          - sso
+          - authentik
+          - "{{ hostvars['on-prem-mfa-srv1'].fqdn }}"
+        ip: "{{ hostvars['on-prem-mfa-srv1'].ansible_host }}"
+      - name: guac
+        dns:
+          - "{{ app_configuration.guac_fqdn | split('.') | first }}"
+        ip: "{{ hostvars['dmz-guacamole-srv1'].ansible_host }}"
+      - name: airbyte
+        dns:
+          - "{{ support_vars.airbyte_fqdn | split('.') | first }}"
+        ip: "{{ hostvars['cloud-airbyte-srv1'].ansible_host }}"
+      - name: gitlab
+        dns:
+          - "{{ hostvars['cloud-gitlab-srv1'].fqdn }}"
+          - "{{ app_configuration.gitlab_fqdn | split('.') | first }}"
+        ip: "{{ hostvars['cloud-gitlab-srv1'].ansible_host }}"
+      - name: mail
+        dns:
+          - mail
+          - "{{ hostvars['on-prem-mail-srv1'].fqdn }}"
+        ip: "{{ hostvars['on-prem-mail-srv1'].ansible_host }}"
+  - domain: vale.net
+    sites:
+      - name: sso
+        dns:
+          - sso
+          - authentik
+          - "{{ hostvars['b3-dmz-mfa-srv1'].fqdn }}"
+        ip: "{{ hostvars['b3-dmz-mfa-srv1'].ansible_host }}"
+      - name: guac
+        dns:
+          - guac
+          - "{{ app_configuration.guac_fqdn | split('.') | first }}"
+        ip: "{{ hostvars['b3-dmz-guacamole-srv1'].ansible_host }}"
+      - name: fleet
+        dns:
+          - fleet
+          - knights
+        ip: "{{ hostvars['b3-mdm-srv1'].ansible_host }}"
+      - name: mail
+        dns:
+          - mail
+          - "{{ hostvars['b3-mail-srv1'].fqdn }}"
+        ip: "{{ hostvars['b3-mail-srv1'].ansible_host }}"
+  - domain: kingslanding-hr.com
+    sites:
+      - name: api
+        dns:
+          - api
+          - mesh
+          - rmm
+        ip: "{{ hostvars['rmm-srv1'].ansible_host }}"
+  - domain: braavos.com
+    sites:
+      - name: idp
+        dns:
+          - idp
+        ip: "{{ hostvars['red-idp-srv1'].ansible_host }}"

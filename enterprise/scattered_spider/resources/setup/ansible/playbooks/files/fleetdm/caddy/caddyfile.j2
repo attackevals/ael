@@ -1,0 +1,4 @@
+{{ fqdn }} {
+    tls /data/caddy/pki/authorities/local/{{ crt }}  /opt/certs/{{ key }}
+    reverse_proxy * fleet:8412
+}

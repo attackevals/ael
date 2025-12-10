@@ -1,0 +1,7 @@
+---
+local_admin_groups:
+  - "btully"
+mount_drive:
+  - file_server: redfort
+    file_share: marketing
+    drive_mount: M

@@ -1,0 +1,15 @@
+{
+  "CN": "{{ ca_common_name }}",
+  "key": {
+    "algo": "rsa",
+    "size": 4096
+  },
+  "names": [
+    {
+      "C": "{{ ca_country_name }}",
+      "L": "{{ ca_locality_name }}",
+      "O": "{{ ca_organization_name }}",
+      "ST": "{{ ca_state_or_province_name }}"
+    }
+  ]
+}

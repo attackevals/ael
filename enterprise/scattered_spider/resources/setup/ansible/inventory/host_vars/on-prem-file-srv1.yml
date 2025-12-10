@@ -1,0 +1,7 @@
+---
+drive_configs:
+  - drive_letter: 'E'
+    drive_label: 'ProdShare'
+    share_name: 'alchemy'
+    disk_number: 1
+    custom_decoy_seed: "Genre"

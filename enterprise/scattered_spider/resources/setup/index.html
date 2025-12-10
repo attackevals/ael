@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ST8G6EL3M2"></script>
+    <script data-cfasync="false">window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-ST8G6EL3M2');</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-root" content="/ael">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.818693826522">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.11.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Infrastructure for ATT&amp;CK Evaluations — Scattered Spider &amp; Mustang Panda (2025)</title>
+    <meta name="title" content="Infrastructure for ATT&CK Evaluations — Scattered Spider & Mustang Panda (2025)">
+    <meta name="description" content="Note: During development, the threat actors were referred to by the codenames \"Demeter\" (Scattered Spider) and \"Hermes\" (Mustang Panda).">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://attackevals.github.io/ael/enterprise/scattered_spider/resources/setup/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://attackevals.github.io/ael/enterprise/scattered_spider/resources/setup/">
+    <meta property="og:title" content="Infrastructure for ATT&CK Evaluations — Scattered Spider & Mustang Panda (2025)">
+    <meta property="og:description" content="Note: During development, the threat actors were referred to by the codenames \"Demeter\" (Scattered Spider) and \"Hermes\" (Mustang Panda).">
+    <meta property="og:image" content="https://attackevals.github.io/ael/enterprise/scattered_spider/resources/setup/assets/evaluations-enterprise-round-7.svg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://attackevals.github.io/ael/enterprise/scattered_spider/resources/setup/">
+    <meta property="twitter:title" content="Infrastructure for ATT&CK Evaluations — Scattered Spider & Mustang Panda (2025)">
+    <meta property="twitter:description" content="Note: During development, the threat actors were referred to by the codenames \"Demeter\" (Scattered Spider) and \"Hermes\" (Mustang Panda).">
+    <meta property="twitter:image" content="https://attackevals.github.io/ael/enterprise/scattered_spider/resources/setup/assets/evaluations-enterprise-round-7.svg">
+
+    <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
+
+    <link href="../../../../favicon.png" rel="icon">
+    <link href="../../../../resources/css/retype.css?v=3.11.0.818693826522" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.11.0.818693826522" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.11.0.818693826522" data-turbo-eval="false" defer></script>
+</head>
+<body>
+    <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
+        <div class="absolute bottom-0 left-0" style="top: 5rem; right: 50%"></div>
+    
+        <header id="retype-header" class="sticky top-0 z-30 flex w-full h-16 bg-header-bg border-b border-header-border md:h-20">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton retype-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="retype-sidebar-left-toggle-button"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="retype-branding-logo" href="../../../../" class="flex items-center leading-snug text-xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../../../images/attackevals-logo.png">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../../../images/attackevals-logo.png">
+                            </span>
+                            <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">ATTACK Evaluation Library</span>
+                        </a>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav id="retype-header-nav" class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-search-placeholder transition-colors duration-200 ease-in bg-search-bg border border-transparent rounded md:text-sm hover:border-search-border-hover focus:outline-none focus:border-search-border-focus" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="retype-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+    
+        <div id="retype-container" class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-sidebar-left-bg border-sidebar-left-border sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton">
+            
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-filter-bg border border-filter-border rounded shadow-none text-sm focus:outline-none focus:border-filter-border-focus" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                </div>
+            
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-base-border">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-base-border">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 bg-body-bg">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div id="retype-main" class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="retype-markdown" id="retype-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="retype-sidebar-right-toggle"></div>
+                                <nav id="retype-breadcrumb" class="breadcrumb" aria-label="Breadcrumb">
+                                    <ol role="list">
+                                        <li class="pr-4">
+                                            <a href="../../../../" class="pr-4">
+                                                ATT&​CK Evaluations Library
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Enterprise
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/scattered_spider/" class="pr-4">
+                                                Scattered Spider
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/scattered_spider/resources/" class="pr-4">
+                                                Scattered Spider Resources
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/scattered_spider/resources/setup/" class="pr-4">
+                                                Infrastructure for ATT&​CK Evaluations — Scattered Spider & Mustang Panda (2025)
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                
+                                <!-- Page content  -->
+<doc-anchor-target id="infrastructure-for-attck-evaluations--scattered-spider--mustang-panda-2025" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#infrastructure-for-attck-evaluations--scattered-spider--mustang-panda-2025">#</doc-anchor-trigger>
+        <span>Infrastructure for <a href="https://evals.mitre.org/" class="outbound" target="_blank"><span>ATT&amp;CK Evaluations</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> — Scattered Spider &amp; Mustang Panda (2025)</span>
+    </h1>
+</doc-anchor-target>
+<p><strong>Note:</strong> During development, the threat actors were referred to by the codenames &quot;Demeter&quot; (Scattered Spider) and &quot;Hermes&quot; (Mustang Panda). These codenames may still appear in internal documentation and configuration files outside of this public release.</p>
+<p>Please see <a href="gettingstarted/">Getting Started</a> for prerequisites, tooling, and setup guidance for the emulation of Scattered Spider and Mustang Panda.</p>
+<p>Intermediate understanding of Terraform, Ansible, AWS, and AWS Billing are considered prerequisites to deploy the infrastructure configuration.</p>
+<doc-anchor-target id="providers">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#providers">#</doc-anchor-trigger>
+        <span>Providers</span>
+    </h2>
+</doc-anchor-target>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-primary"></div>
+    <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-callout-primary" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+<p><strong>NOTE</strong>: Access to at least two AWS accounts is required:</p>
+<ol>
+<li><code v-pre>aws.default</code> — an AWS account with cross-account permissions, where on-prem scenarios are emulated.</li>
+<li><code v-pre>aws.cloud</code> — an AWS account with organizations permissions, where cloud-based scenarios are emulated.</li>
+</ol>
+<p>Alternatively, you can deploy the infrastructure with existing Detections/Protections accounts:</p>
+<ol>
+<li><code v-pre>aws.default</code> — an AWS account for emulating on-prem scenarios, with cross-account permissions into <code v-pre>aws.cloud-detections</code> and <code v-pre>aws.cloud-protections</code>.</li>
+<li><code v-pre>aws.cloud-detections</code>  — an AWS account for emulating cloud-based Detections scenarios.</li>
+<li><code v-pre>aws.cloud-protections</code> — an AWS account for emulating cloud-based Protections scenarios.</li>
+</ol>
+<p>Please see the <a href="terraform/orgs/"><code v-pre>orgs</code></a> deployment for approaches to AWS Organizations &amp; Accounts.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="infrastructure-overview">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#infrastructure-overview">#</doc-anchor-trigger>
+        <span>Infrastructure Overview</span>
+    </h2>
+</doc-anchor-target>
+<p>The infrastructure below was staged for both Scattered Spider &amp; Mustang Panda (2025).</p>
+<p>Initial infrastructure was setup using Terraform, with configurations applied via scripts and configuration files.
+Please see the <a href="terraform/">Deployment Overview</a> and <a href="ansible/">Configuration Overview</a> for technical documentation.</p>
+<p>For an overview of traffic redirection used for obfuscation during emulation of Scattered Spider and Mustang Panda adversaries, please see <a href="traffic-redirection/">Traffic Redirection</a>.</p>
+<hr>
+<ul>
+<li><doc-anchor-trigger to="#infrastructure-for-attck-evaluations--scattered-spider--mustang-panda-2025">Infrastructure for ATT&amp;CK Evaluations — Scattered Spider &amp; Mustang Panda (2025)</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#scenario-domains--hosts">Scenario Domains &amp; Hosts</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#detections-domain--kingslandingnet">Detections Domain — <code v-pre>kingslanding[.]net</code></doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#detections-on-premises">Detections On-Premises</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#detections-cloud">Detections Cloud</doc-anchor-trigger></li>
+</ul>
+</li>
+<li><doc-anchor-trigger to="#protections-domain--valenet">Protections Domain — <code v-pre>vale[.]net</code></doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#protections-on-premises">Protections On-Premises</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#protections-cloud">Protections Cloud</doc-anchor-trigger></li>
+</ul>
+</li>
+<li><doc-anchor-trigger to="#support-and-red-team-hosts">Support and Red Team Hosts</doc-anchor-trigger>
+<ul>
+<li><doc-anchor-trigger to="#external-benevolent-hosts">External Benevolent Hosts</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#red-team-hosts">Red Team Hosts</doc-anchor-trigger></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><doc-anchor-trigger to="#network-diagram">Network Diagram</doc-anchor-trigger></li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="scenario-domains--hosts">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#scenario-domains--hosts">#</doc-anchor-trigger>
+        <span>Scenario Domains &amp; Hosts</span>
+    </h2>
+</doc-anchor-target>
+<p>This document provides an overview of the infrastructure support used for the evaluation.
+In addition to setup and configuration of virtual machines, this document covers infrastructure support services —
+such as domain name services (DNS), mail, and traffic redirection — used to support the evaluation.
+Support services are used throughout the evaluation for resource efficiency.</p>
+<p>The <a href="https://en.wikipedia.org/wiki/Game_of_Thrones" class="outbound" target="_blank"><span>Game of Thrones</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a> television series inspired the naming scheme for this evaluation&#x27;s infrastructure.</p>
+<p>Enterprise 2025 infrastructure consists of an organization with on-premises resources and an AWS-provided cloud environment,
+with network isolation into two environments for Detections and Protections.</p>
+<hr>
+<doc-anchor-target id="detections-domain--kingslandingnet">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#detections-domain--kingslandingnet">#</doc-anchor-trigger>
+        <span>Detections Domain — <code v-pre>kingslanding[.]net</code></span>
+    </h2>
+</doc-anchor-target>
+<p>The Detections domain <code v-pre>kingslanding[.]net</code> contains fourteen (14) virtual machines.</p>
+<doc-anchor-target id="detections-on-premises">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#detections-on-premises">#</doc-anchor-trigger>
+        <span>Detections On-Premises</span>
+    </h3>
+</doc-anchor-target>
+<p>The Detections On-Prem environment consists of eleven (11) virtual machines joined to the <code v-pre>kingslanding[.]net</code> Active Directory domain.</p>
+<p>Detections On-Prem resources are provisioned under <doc-anchor-trigger to="#providers"><code v-pre>aws.default</code></doc-anchor-trigger>.</p>
+<blockquote>
+<p><em>DMZ Subnet — 10.55.2.0/24</em></p>
+</blockquote>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Hostname</strong></th>
+<th style="text-align: left;"><strong>OS</strong></th>
+<th style="text-align: left;"><strong>IP</strong></th>
+<th style="text-align: left;"><strong>Role</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code v-pre>kingswood</code></td>
+<td style="text-align: left;">Ubuntu 24.04 LTS</td>
+<td style="text-align: left;"><code v-pre>10.55.2.100</code></td>
+<td style="text-align: left;">Guacamole Server</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<blockquote>
+<p><em>Servers Subnet — 10.55.3.0/24</em></p>
+</blockquote>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Hostname</strong></th>
+<th style="text-align: left;"><strong>OS</strong></th>
+<th style="text-align: left;"><strong>IP</strong></th>
+<th style="text-align: left;"><strong>Role</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code v-pre>redkeep</code></td>
+<td style="text-align: left;">Windows Server 2022</td>
+<td style="text-align: left;"><code v-pre>10.55.3.100</code></td>
+<td style="text-align: left;">AD Domain Controller</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>sept</code></td>
+<td style="text-align: left;">Windows Server 2022</td>
+<td style="text-align: left;"><code v-pre>10.55.3.101</code></td>
+<td style="text-align: left;">Exchange Server</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>citywatch</code></td>
+<td style="text-align: left;">Ubuntu 24.04 LTS</td>
+<td style="text-align: left;"><code v-pre>10.55.3.102</code></td>
+<td style="text-align: left;">Authentik IdP/SSO Server</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>citadel</code></td>
+<td style="text-align: left;">Windows Server 2022</td>
+<td style="text-align: left;"><code v-pre>10.55.3.103</code></td>
+<td style="text-align: left;">File Server</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>dragongate</code></td>
+<td style="text-align: left;">Windows Server 2022</td>
+<td style="text-align: left;"><code v-pre>10.55.3.104</code></td>
+<td style="text-align: left;">Remote Desktop Server</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>conclave</code></td>
+<td style="text-align: left;">Windows Server 2022</td>
+<td style="text-align: left;"><code v-pre>10.55.3.105</code></td>
+<td style="text-align: left;">File Server</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<blockquote>
+<p><em>Desktops Subnet — 10.55.4.0/24</em></p>
+</blockquote>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Hostname</strong></th>
+<th style="text-align: left;"><strong>OS</strong></th>
+<th style="text-align: left;"><strong>IP</strong></th>
+<th style="text-align: left;"><strong>Role</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code v-pre>fleabottom</code></td>
+<td style="text-align: left;">Windows 11</td>
+<td style="text-align: left;"><code v-pre>10.55.4.101</code></td>
+<td style="text-align: left;">Desktop</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>fishmonger</code></td>
+<td style="text-align: left;">Windows 11</td>
+<td style="text-align: left;"><code v-pre>10.55.4.102</code></td>
+<td style="text-align: left;">Desktop</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>harrenhal</code></td>
+<td style="text-align: left;">Windows 11</td>
+<td style="text-align: left;"><code v-pre>10.55.4.103</code></td>
+<td style="text-align: left;">Desktop</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>stepstones</code></td>
+<td style="text-align: left;">Windows 11</td>
+<td style="text-align: left;"><code v-pre>10.55.4.104</code></td>
+<td style="text-align: left;">Desktop</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<doc-anchor-target id="detections-cloud">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#detections-cloud">#</doc-anchor-trigger>
+        <span>Detections Cloud</span>
+    </h3>
+</doc-anchor-target>
+<p>The Detections Cloud environment consists of three (3) virtual machines joined to the <code v-pre>kingslanding[.]net</code> Active Directory domain.</p>
+<p>Detections Cloud resources are provisioned under <doc-anchor-trigger to="#providers"><code v-pre>aws.cloud-detections</code></doc-anchor-trigger>.</p>
+<blockquote>
+<p><em>Servers Subnet — 10.212.3.0/24</em></p>
+</blockquote>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Hostname</strong></th>
+<th style="text-align: left;"><strong>OS</strong></th>
+<th style="text-align: left;"><strong>IP</strong></th>
+<th style="text-align: left;"><strong>Role</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code v-pre>dragonpit</code></td>
+<td style="text-align: left;">Ubuntu 24.04 LTS</td>
+<td style="text-align: left;"><code v-pre>10.212.3.105</code></td>
+<td style="text-align: left;">Wekan Server</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>guildhall</code></td>
+<td style="text-align: left;">Ubuntu 24.04 LTS</td>
+<td style="text-align: left;"><code v-pre>10.212.3.106</code></td>
+<td style="text-align: left;">Gitlab Server</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>rookery</code></td>
+<td style="text-align: left;">Ubuntu 24.04 LTS</td>
+<td style="text-align: left;"><code v-pre>10.212.3.107</code></td>
+<td style="text-align: left;">Airbyte Server</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<hr>
+<doc-anchor-target id="protections-domain--valenet">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#protections-domain--valenet">#</doc-anchor-trigger>
+        <span>Protections Domain — <code v-pre>vale[.]net</code></span>
+    </h2>
+</doc-anchor-target>
+<p>The Protections domain <code v-pre>vale[.]net</code> contains twelve (12) virtual machines.</p>
+<doc-anchor-target id="protections-on-premises">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#protections-on-premises">#</doc-anchor-trigger>
+        <span>Protections On-Premises</span>
+    </h3>
+</doc-anchor-target>
+<p>The Protections On-Prem Scenario consists of twelve (12) virtual machines joined to the <code v-pre>vale[.]net</code> Active Directory domain.</p>
+<p>Protections On-Prem resources are provisioned under <doc-anchor-trigger to="#providers"><code v-pre>aws.default</code></doc-anchor-trigger>.</p>
+<blockquote>
+<p><em>Servers Subnet — 10.26.3.0/24</em></p>
+</blockquote>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Hostname</strong></th>
+<th style="text-align: left;"><strong>OS</strong></th>
+<th style="text-align: left;"><strong>IP</strong></th>
+<th style="text-align: left;"><strong>Role</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code v-pre>eyrie</code></td>
+<td style="text-align: left;">Windows Server 2022</td>
+<td style="text-align: left;"><code v-pre>10.26.3.100</code></td>
+<td style="text-align: left;">AD Domain Controller</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>blacktyde</code></td>
+<td style="text-align: left;">Windows Server 2022</td>
+<td style="text-align: left;"><code v-pre>10.26.3.101</code></td>
+<td style="text-align: left;">Remote Desktop Server</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>godswood</code></td>
+<td style="text-align: left;">Windows Server 2022</td>
+<td style="text-align: left;"><code v-pre>10.26.3.102</code></td>
+<td style="text-align: left;">Exchange Server</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>knights</code></td>
+<td style="text-align: left;">Ubuntu 24.04 LTS</td>
+<td style="text-align: left;"><code v-pre>10.26.3.103</code></td>
+<td style="text-align: left;">MDM Server (Fleet)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>redfort</code></td>
+<td style="text-align: left;">Windows Server 2022</td>
+<td style="text-align: left;"><code v-pre>10.26.3.105</code></td>
+<td style="text-align: left;">File Server</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>heartshome</code></td>
+<td style="text-align: left;">Windows Server 2022</td>
+<td style="text-align: left;"><code v-pre>10.26.3.106</code></td>
+<td style="text-align: left;">File Server</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<blockquote>
+<p><em>Desktops Subnet — 10.26.4.0/24</em></p>
+</blockquote>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Hostname</strong></th>
+<th style="text-align: left;"><strong>OS</strong></th>
+<th style="text-align: left;"><strong>IP</strong></th>
+<th style="text-align: left;"><strong>Role</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code v-pre>runestone</code></td>
+<td style="text-align: left;">Windows 11</td>
+<td style="text-align: left;"><code v-pre>10.26.4.101</code></td>
+<td style="text-align: left;">Desktop</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>tentowers</code></td>
+<td style="text-align: left;">Windows 11</td>
+<td style="text-align: left;"><code v-pre>10.26.4.102</code></td>
+<td style="text-align: left;">Desktop</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>bitterbridge</code></td>
+<td style="text-align: left;">Windows 11</td>
+<td style="text-align: left;"><code v-pre>10.26.4.103</code></td>
+<td style="text-align: left;">Desktop</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>ironoaks</code></td>
+<td style="text-align: left;">Windows 11</td>
+<td style="text-align: left;"><code v-pre>10.26.4.104</code></td>
+<td style="text-align: left;">Desktop</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<blockquote>
+<p><em>DMZ Subnet — 10.26.5.0/24</em></p>
+</blockquote>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Hostname</strong></th>
+<th style="text-align: left;"><strong>OS</strong></th>
+<th style="text-align: left;"><strong>IP</strong></th>
+<th style="text-align: left;"><strong>Role</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code v-pre>eastgate</code></td>
+<td style="text-align: left;">Ubuntu 24.04 LTS</td>
+<td style="text-align: left;"><code v-pre>10.26.5.100</code></td>
+<td style="text-align: left;">Guacamole Server</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>bloodygate</code></td>
+<td style="text-align: left;">Ubuntu 24.04 LTS</td>
+<td style="text-align: left;"><code v-pre>10.26.5.101</code></td>
+<td style="text-align: left;">Authentik IdP/SSO Server</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<doc-anchor-target id="protections-cloud">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#protections-cloud">#</doc-anchor-trigger>
+        <span>Protections Cloud</span>
+    </h3>
+</doc-anchor-target>
+<blockquote>
+<p><em>Subnet — 10.115.5.0/24</em></p>
+</blockquote>
+<p>The Protections Cloud Scenario does not involve any EC2 hosts.</p>
+<p>Protections Cloud resources are provisioned under <doc-anchor-trigger to="#providers"><code v-pre>aws.cloud-protections</code></doc-anchor-trigger>.</p>
+<br>
+<hr>
+<doc-anchor-target id="support-and-red-team-hosts">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#support-and-red-team-hosts">#</doc-anchor-trigger>
+        <span>Support and Red Team Hosts</span>
+    </h2>
+</doc-anchor-target>
+<p>The following hosts are dedicated to networking support and red team use.</p>
+<doc-anchor-target id="validation-hosts">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#validation-hosts">#</doc-anchor-trigger>
+        <span>Validation Hosts</span>
+    </h3>
+</doc-anchor-target>
+<p>The hosts below are used to perform validation on victim infrastructure in each scenario domain.</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Hostname</strong></th>
+<th style="text-align: left;"><strong>OS</strong></th>
+<th style="text-align: left;"><strong>IP</strong></th>
+<th style="text-align: left;"><strong>Role</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code v-pre>preflights</code></td>
+<td style="text-align: left;">Kali Linux 2024.4</td>
+<td style="text-align: left;"><code v-pre>10.55.4.120</code></td>
+<td style="text-align: left;">Detections Validation</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>preflights2</code></td>
+<td style="text-align: left;">Kali Linux 2024.4</td>
+<td style="text-align: left;"><code v-pre>10.26.4.120</code></td>
+<td style="text-align: left;">Protections Validation</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<doc-anchor-target id="external-benevolent-hosts">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#external-benevolent-hosts">#</doc-anchor-trigger>
+        <span>External Benevolent Hosts</span>
+    </h3>
+</doc-anchor-target>
+<p>The hosts below are not accessible by evaluation participants.</p>
+<blockquote>
+<p><em>Support Subnet — 12.78.0.0/16</em></p>
+</blockquote>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Hostname</strong></th>
+<th style="text-align: left;"><strong>OS</strong></th>
+<th style="text-align: left;"><strong>IP</strong></th>
+<th style="text-align: left;"><strong>Role</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code v-pre>twins</code></td>
+<td style="text-align: left;">Ubuntu 24.04 LTS</td>
+<td style="text-align: left;"><code v-pre>12.78.0.60</code></td>
+<td style="text-align: left;">DNS Server</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>volantis</code></td>
+<td style="text-align: left;">Ubuntu 24.04 LTS</td>
+<td style="text-align: left;"><code v-pre>12.78.0.91</code></td>
+<td style="text-align: left;">RMM Server</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>dorne</code></td>
+<td style="text-align: left;">Ubuntu 24.04 LTS</td>
+<td style="text-align: left;"><code v-pre>12.78.0.92</code></td>
+<td style="text-align: left;">Chocolatey Mirror</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>stonehedge</code></td>
+<td style="text-align: left;">Ubuntu 24.04 LTS</td>
+<td style="text-align: left;"><code v-pre>12.78.0.93</code></td>
+<td style="text-align: left;">RustDesk Server</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>sunspear</code></td>
+<td style="text-align: left;">Ubuntu 24.04 LTS</td>
+<td style="text-align: left;"><code v-pre>12.78.0.94</code></td>
+<td style="text-align: left;">WSTunnel Server</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>casterlyrock</code></td>
+<td style="text-align: left;">Windows</td>
+<td style="text-align: left;"><code v-pre>12.78.44.201</code></td>
+<td style="text-align: left;">Unmanaged Desktop</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<blockquote>
+<p><em>Redirector Subnet — 86.234.0.0/16</em></p>
+</blockquote>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Hostname</strong></th>
+<th style="text-align: left;"><strong>OS</strong></th>
+<th style="text-align: left;"><strong>IP</strong></th>
+<th style="text-align: left;"><strong>Role</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code v-pre>stormlands</code></td>
+<td style="text-align: left;">Ubuntu 24.04 LTS</td>
+<td style="text-align: left;"><code v-pre>14.121.222.9</code></td>
+<td style="text-align: left;">Redirection Server 1</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>stark</code></td>
+<td style="text-align: left;">Ubuntu 24.04 LTS</td>
+<td style="text-align: left;"><code v-pre>49.67.12.9</code></td>
+<td style="text-align: left;">Redirection Server 2</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>bolton</code></td>
+<td style="text-align: left;">Ubuntu 24.04 LTS</td>
+<td style="text-align: left;"><code v-pre>10.44.44.9</code></td>
+<td style="text-align: left;">Redirection Server 3</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>greyjoy</code></td>
+<td style="text-align: left;">Ubuntu 24.04 LTS</td>
+<td style="text-align: left;"><code v-pre>10.44.44.9</code></td>
+<td style="text-align: left;">Redirection Server 4</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><em>For more about redirection, please see <a href="traffic-redirection/">Traffic Redirection</a>.</em></p>
+<br>
+<doc-anchor-target id="red-team-hosts">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#red-team-hosts">#</doc-anchor-trigger>
+        <span>Red Team Hosts</span>
+    </h3>
+</doc-anchor-target>
+<p>The hosts below are not accessible by evaluation participants.</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Hostname</strong></th>
+<th style="text-align: left;"><strong>OS</strong></th>
+<th style="text-align: left;"><strong>IP</strong></th>
+<th style="text-align: left;"><strong>Scenario</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code v-pre>driftmark</code></td>
+<td style="text-align: left;">Kali Linux 2024.4</td>
+<td style="text-align: left;"><code v-pre>174.3.0.70</code></td>
+<td style="text-align: left;">Attacker</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>braavos</code></td>
+<td style="text-align: left;">Kali Linux 2024.4</td>
+<td style="text-align: left;"><code v-pre>174.3.0.100</code></td>
+<td style="text-align: left;">Attacker IdP</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>jumpbox</code></td>
+<td style="text-align: left;">Windows Server 2022</td>
+<td style="text-align: left;"><code v-pre>12.78.110.37</code></td>
+<td style="text-align: left;">Detections Jumpbox</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>dreadfort</code></td>
+<td style="text-align: left;">Windows Server 2022</td>
+<td style="text-align: left;"><code v-pre>10.26.3.125</code></td>
+<td style="text-align: left;">Protections Jumpbox</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<hr>
+<doc-anchor-target id="network-diagram">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#network-diagram">#</doc-anchor-trigger>
+        <span>Network Diagram</span>
+    </h2>
+</doc-anchor-target>
+<p>The diagram below shows the layout of all victim hosts, attack platform, and support hosts.
+<figure class="content-center">
+    <img src="assets/evaluations-enterprise-round-7.svg" alt="Evaluations Enterprise 2025" class="rounded-image-rounded border-image-border border-image-border-width" />
+    <figcaption class="caption">Evaluations Enterprise 2025</figcaption>
+</figure>
+</p>
+<doc-anchor-target id="notice">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#notice">#</doc-anchor-trigger>
+        <span>Notice</span>
+    </h2>
+</doc-anchor-target>
+<p>© 2025 MITRE. Approved for public release. Document number 25-2969.</p>
+<p>Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); you may not use this
+file except in compliance with the License. You may obtain a copy of the License at</p>
+<p><a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied. See the License for the specific language governing
+permissions and limitations under the License.</p>
+
+                                <div id="retype-tags" class="flex items-center mt-6 mb-6 clear-both">
+                                    <span>
+                                        <a href="../../../../tags/">
+                                            <svg class="inline-block -mb-px mr-1.5 text-body-link hover:text-body-link-hover" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" overflow="visible" fill="currentColor"><g><path d="M21.3 9.88l-8.59-8.59C12.52 1.11 12.27 1 12 1H2c-.55 0-1 .45-1 1v10c0 .27.11.52.29.71l8.59 8.58c.57.57 1.32.88 2.12.88s1.55-.31 2.12-.88l7.17-7.17a3.009 3.009 0 00.01-4.24zm-1.42 2.82l-7.17 7.17c-.39.39-1.02.39-1.42 0L3 11.59V3h8.59l8.29 8.29c.39.39.39 1.03 0 1.41z" /><path d="M7.01 6C6.45 6 6 6.45 6 7s.45 1 1 1 1-.45 1-1-.44-1-.99-1z" /></g></svg>
+                                        </a>
+                                        <span class="mr-2"><a href="../../../../tags/infrastructure/" class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-info-text bg-badge-info border border-badge-info-border hover:text-badge-info-text-hover hover:bg-badge-info-hover hover:border-badge-info-border-hover transition-colors duration-200 ease-out h-6 px-2 text-xs rounded-md">
+                                    <span>infrastructure</span>
+                                </a></span>
+                                        <span class="mr-2"><a href="../../../../tags/enterprise2025/" class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-info-text bg-badge-info border border-badge-info-border hover:text-badge-info-text-hover hover:bg-badge-info-hover hover:border-badge-info-border-hover transition-colors duration-200 ease-out h-6 px-2 text-xs rounded-md">
+                                    <span>enterprise2025</span>
+                                </a></span>
+                                        <span class="mr-2"><a href="../../../../tags/cloud/" class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-info-text bg-badge-info border border-badge-info-border hover:text-badge-info-text-hover hover:bg-badge-info-hover hover:border-badge-info-border-hover transition-colors duration-200 ease-out h-6 px-2 text-xs rounded-md">
+                                    <span>cloud</span>
+                                </a></span>
+                                        <span class="mr-2"><a href="../../../../tags/diagram/" class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-info-text bg-badge-info border border-badge-info-border hover:text-badge-info-text-hover hover:bg-badge-info-hover hover:border-badge-info-border-hover transition-colors duration-200 ease-out h-6 px-2 text-xs rounded-md">
+                                    <span>diagram</span>
+                                </a></span>
+                                        <span class="mr-2"><a href="../../../../tags/networking/" class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-info-text bg-badge-info border border-badge-info-border hover:text-badge-info-text-hover hover:bg-badge-info-hover hover:border-badge-info-border-hover transition-colors duration-200 ease-out h-6 px-2 text-xs rounded-md">
+                                    <span>networking</span>
+                                </a></span>
+                                        <span class="mr-2"><a href="../../../../tags/hosts/" class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-badge-info-text bg-badge-info border border-badge-info-border hover:text-badge-info-text-hover hover:bg-badge-info-hover hover:border-badge-info-border-hover transition-colors duration-200 ease-out h-6 px-2 text-xs rounded-md">
+                                    <span>hosts</span>
+                                </a></span>
+                                    </span>
+                                </div>
+                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer id="retype-content-footer" class="clear-both">
+                            
+                                <nav id="retype-nextprev" class="print:hidden flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../../enterprise/scattered_spider/resources/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-base-text-muted">Previous</span>
+                                                <span class="block mt-1">Scattered Spider Resources</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../../enterprise/scattered_spider/resources/setup/terraform/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
+                                                <span class="block mt-1">Deployment Overview</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div id="retype-page-footer" class="print:border-none border-t border-base-border pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between print:justify-center">
+                                <div id="retype-footer-links" class="print:hidden">
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                        <li>
+                                            <a class="inline-flex items-center mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-footer-link hover:text-footer-link-hover md:mb-0" href="https://github.com/attackevals/ael">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                                    <g fill="currentColor">
+                                                        <path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"/>
+                                                    </g>
+                                                </svg>
+                                                <span>ATTACK Evaluations Library GitHub</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div id="retype-copyright" class="print:justify-center py-2 text-footer-text font-footer-link-weight text-sm leading-relaxed"><p>© Copyright 2025. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-sidebar-right-bg border-sidebar-right-border lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="retype-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Infrastructure for ATT&CK Evaluations — Scattered Spider & Mustang Panda (2025)", level: 4, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

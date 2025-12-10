@@ -1,0 +1,15 @@
+
+## no loop in ansible template because they are separate constructs and easier to reuse-as
+
+forward-zone:
+    name: "{{ domain_info_kingslanding.dns_domain_name }}"
+    forward-addr: {{ domain_info_kingslanding.ad_ip_addr }}
+
+forward-zone:
+    name: "{{ domain_info_vale.dns_domain_name }}"
+    forward-addr: {{ domain_info_vale.ad_ip_addr }}
+
+forward-zone:
+        name: "."
+        forward-addr: {{ support_vars.upstream_primary_dns_server_ip }}
+        forward-addr: {{ support_vars.upstream_secondary_dns_server_ip }}

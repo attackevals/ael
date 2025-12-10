@@ -1,0 +1,7 @@
+simplefileserver:
+  host: 174.3.0.70
+  port: 80
+  mappings:
+    - prefix: /files
+      dir: /opt/kalidev/scattered_spider/Resources/payloads
+  enabled: true

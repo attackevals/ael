@@ -1,0 +1,18 @@
+[Unit]
+Description=Go HTTP Server
+
+[Service]
+Type=simple
+LimitNOFILE=1000000
+ExecStart=/opt/gohttp/gohttpserver -r ./public --port 80 --auth-type http --auth-http admin:{{ admin_token }}
+WorkingDirectory=/opt/gohttp/
+User=root
+Group=root
+Restart=always
+StandardOutput=append:/var/log/gohttp/gohttpserver.log
+StandardError=append:/var/log/gohttp/gohttpserver.error
+# Restart service after 10 seconds if node service crashes
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

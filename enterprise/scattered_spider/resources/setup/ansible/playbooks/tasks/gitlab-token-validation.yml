@@ -1,0 +1,27 @@
+---
+- name: Validate GitLab Tokens
+  hosts: localhost
+  become: no
+  vars_files:
+    - ../vars/vars.yml
+  tasks:
+    - name: test automation token
+      uri:
+        url: "{{ gitlab_config.gitlab_external_url }}/api/v4/user"
+        headers:
+          Authorization: "Bearer {{ gitlab_config.gitlab_automation_token }}"
+        method: GET
+        validate_certs: false
+      register: automation_token_test
+      failed_when: automation_token_test.status != 200
+
+    - name: test user tokens
+      uri:
+        url: "{{ gitlab_config.gitlab_external_url }}/api/v4/user"
+        headers:
+          Authorization: "Bearer {{ user_tokens[item.username].api }}"
+        method: GET
+        validate_certs: false
+      loop: "{{ domain_users_kingslanding }}"
+      register: user_token_tests
+      failed_when: user_token_tests.status != 200

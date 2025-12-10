@@ -1,0 +1,32 @@
+// This is a header template that is populated at build time.
+#pragma once
+#include <array>
+
+#ifndef PAYLOAD_KEY_LEN
+#define PAYLOAD_KEY_LEN 32
+#endif
+
+#ifndef KEY_XOR_KEY
+#define KEY_XOR_KEY 0x3F
+#endif
+
+namespace EMBEDDED_NAMESPACE {
+
+/*
+ * payload:
+ *      About:
+ *          Embed the payload array within the .data section
+ *      MITRE ATT&CK Techniques:
+ *          T1027.009 Obfuscated Files or Information: Embedded Payloads
+ *      CTI:
+ *          https://www.trendmicro.com/en_us/research/25/b/earth-preta-mixes-legitimate-and-malicious-components-to-sidestep-detection.html
+ *          https://www.trendmicro.com/en_us/research/22/k/earth-preta-spear-phishing-governments-worldwide.html
+ */
+#pragma data_seg(".data")
+__declspec(allocate(".data"))
+inline const std::array<uint8_t, PAYLOAD_SIZE> payload{PAYLOAD_BYTES};
+
+__declspec(allocate(".data"))
+inline const std::array<uint8_t, PAYLOAD_KEY_LEN> payload_key{KEY_BYTES};
+
+} // namespace

@@ -1,0 +1,16 @@
+category                    = "er7"
+aws-region                  = "us-east-1"
+aws-region-az               = "us-east-1a"
+aws-shared-credentials      = ["~/.aws/credentials"]
+charge-code                 = "GNA063.0002.005.02"
+round-name                  = "ER7"
+name-prefix                 = "er7-enterpriseround7"
+ssh_private_key_path        = "../terraform/range/aws1"
+ssh_public_key_path         = "./aws1.pub"
+ssh_private_key_path_vendor = "../terraform/range/aws1-vendor"
+ssh_public_key_path_vendor  = "../terraform/range/aws1-vendor.pub"
+shutdown_ok                 = "dev-schedule"
+vendor                      = "enterpriseround7"
+win_srv_admin_username      = "" # TODO
+win_srv_admin_password      = "" # TODO
+aws_trusted_account_id      = "" # TODO

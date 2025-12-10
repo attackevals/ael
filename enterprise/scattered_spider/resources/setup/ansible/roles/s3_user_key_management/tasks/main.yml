@@ -1,0 +1,47 @@
+# s3_user_key_management/tasks/main.yml
+---
+- name: Build vendor loop list
+  set_fact:
+    vendor_loop_list: >-
+      {{
+        ([{
+          "suffix": "b3",
+          "hash_prefix": b3_prefix,
+          "user_name": b3_user_name,
+          "s3_user_key_filename": b3_user_name ~ "_accessKeys.csv",
+          "s3_bucket_url": "s3://" ~ b3_prefix ~ "-b3"
+        }] if b3_user_name is defined else [])
+        +
+        ([{
+          "suffix": "vermillion",
+          "hash_prefix": vermillion_prefix,
+          "user_name": vermillion_user_name,
+          "s3_user_key_filename": vermillion_user_name ~ "_accessKeys.csv",
+          "s3_bucket_url": "s3://" ~ vermillion_prefix ~ "-vermillion"
+        }] if vermillion_user_name is defined else [])
+      }}
+
+- name: Include create_user_output for each defined vendor from Terraform
+  include_tasks: create_user_output.yml
+  loop: "{{ vendor_loop_list }}"
+  loop_control:
+    loop_var: vendor_item
+  vars:
+    user_name: "{{ vendor_item.user_name }}"
+    s3_user_key_filename: "{{ vendor_item.s3_user_key_filename }}"
+    vendor_name: "{{ range_name }}"
+    s3_bucket_name: "evals-red-storage"
+    s3_object_prefix: "{{ aws_resources.evals_cycle }}/{{ range_name }}/{{ vendor_item.s3_user_key_filename }}"
+    s3_bucket_url: "{{ vendor_item.s3_bucket_url }}"
+
+- name: Check if key staging directory exists
+  ansible.builtin.stat:
+    path: "{{ key_staging_dir }}"
+  register: key_dir_stat
+
+- name: Remove key staging directory
+  ansible.builtin.file:
+    path: "{{ key_staging_dir }}"
+    state: absent
+    force: true
+  when: key_staging_dir is defined and key_dir_stat.stat.exists

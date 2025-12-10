@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ST8G6EL3M2"></script>
+    <script data-cfasync="false">window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-ST8G6EL3M2');</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-root" content="/ael">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.818693826522">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.11.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Tactical RMM Agent</title>
+    <meta name="title" content="Tactical RMM Agent">
+    <meta name="description" content="RMMAgent is an agent written in golang for use with TacticalRMM.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://attackevals.github.io/ael/enterprise/scattered_spider/resources/rmmagent/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://attackevals.github.io/ael/enterprise/scattered_spider/resources/rmmagent/">
+    <meta property="og:title" content="Tactical RMM Agent">
+    <meta property="og:description" content="RMMAgent is an agent written in golang for use with TacticalRMM.">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://attackevals.github.io/ael/enterprise/scattered_spider/resources/rmmagent/">
+    <meta property="twitter:title" content="Tactical RMM Agent">
+    <meta property="twitter:description" content="RMMAgent is an agent written in golang for use with TacticalRMM.">
+
+    <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
+
+    <link href="../../../../favicon.png" rel="icon">
+    <link href="../../../../resources/css/retype.css?v=3.11.0.818693826522" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.11.0.818693826522" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.11.0.818693826522" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.11.0.818693826522" defer></script>
+</head>
+<body>
+    <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
+        <div class="absolute bottom-0 left-0" style="top: 5rem; right: 50%"></div>
+    
+        <header id="retype-header" class="sticky top-0 z-30 flex w-full h-16 bg-header-bg border-b border-header-border md:h-20">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton retype-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="retype-sidebar-left-toggle-button"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="retype-branding-logo" href="../../../../" class="flex items-center leading-snug text-xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../../../images/attackevals-logo.png">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../../../images/attackevals-logo.png">
+                            </span>
+                            <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">ATTACK Evaluation Library</span>
+                        </a>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav id="retype-header-nav" class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-search-placeholder transition-colors duration-200 ease-in bg-search-bg border border-transparent rounded md:text-sm hover:border-search-border-hover focus:outline-none focus:border-search-border-focus" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="retype-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+    
+        <div id="retype-container" class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-sidebar-left-bg border-sidebar-left-border sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton">
+            
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-filter-bg border border-filter-border rounded shadow-none text-sm focus:outline-none focus:border-filter-border-focus" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                </div>
+            
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-base-border">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-base-border">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 bg-body-bg">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div id="retype-main" class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="retype-markdown" id="retype-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="retype-sidebar-right-toggle"></div>
+                                <nav id="retype-breadcrumb" class="breadcrumb" aria-label="Breadcrumb">
+                                    <ol role="list">
+                                        <li class="pr-4">
+                                            <a href="../../../../" class="pr-4">
+                                                ATT&​CK Evaluations Library
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Enterprise
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/scattered_spider/" class="pr-4">
+                                                Scattered Spider
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/scattered_spider/resources/" class="pr-4">
+                                                Scattered Spider Resources
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/scattered_spider/resources/rmmagent/" class="pr-4">
+                                                Tactical RMM Agent
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                
+                                <!-- Page content  -->
+<doc-anchor-target id="tactical-rmm-agent" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#tactical-rmm-agent">#</doc-anchor-trigger>
+        <span>Tactical RMM Agent</span>
+    </h1>
+</doc-anchor-target>
+<p>RMMAgent is an agent written in golang for use with TacticalRMM.</p>
+<p>Repository adopted at <a href="https://github.com/amidaware/rmmagent/tree/687e890a10d3f034f55497bbc34a626562ab9d2a" class="outbound" target="_blank"><span>commit 687e890a10d3f034f55497bbc34a626562ab9d2a</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>.</p>
+<ul>
+<li><a href="https://github.com/amidaware/rmmagent" class="outbound" target="_blank"><span>Original Repository</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://github.com/amidaware/rmmagent/blob/develop/LICENSE.md" class="outbound" target="_blank"><span>Original License</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+<li><a href="https://github.com/amidaware/rmmagent/blob/develop/README.md" class="outbound" target="_blank"><span>Original README</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></li>
+</ul>
+<doc-anchor-target id="features">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#features">#</doc-anchor-trigger>
+        <span>Features</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Remote Access</li>
+<li>Remote updates</li>
+<li>Remote command execution</li>
+</ul>
+<doc-anchor-target id="usage">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#usage">#</doc-anchor-trigger>
+        <span>Usage</span>
+    </h2>
+</doc-anchor-target>
+<p>Debug the agent by executing the following in an administrator Command Prompt:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-batch"><code v-pre class="language-batch">&quot;C:\Program Files\TacticalAgent\tacticalrmm.exe&quot; -m rpc -log debug -logto stdout</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="build-instructions">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#build-instructions">#</doc-anchor-trigger>
+        <span>Build Instructions</span>
+    </h2>
+</doc-anchor-target>
+<p>Build the agent using the following command:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-batch"><code v-pre class="language-batch">GOOS=windows GOARCH=amd64 go build -ldflags &quot;-s -w&quot;</code></pre>
+</doc-codeblock></div>
+<p>On the host where the agent is being installed create the following folder: <code v-pre>C:\Program Files\TacticalAgent\</code></p>
+<p>Move the agent executable to the newly created directory with the name: <code v-pre>tacticalrmm.exe</code></p>
+<p>Use Command Prompt to install the agent:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-batch"><code v-pre class="language-batch">tacticalrmm.exe -m install --api https://api.kilo.com  --client-id 1 --site-id 1 --agent-type server --auth c433975a448d53abedeffeefc39a233a6aaa71875148c19901249638c03dc9ac --insecure</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="note">
+    <h6>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#note">#</doc-anchor-trigger>
+        <span>Note</span>
+    </h6>
+</doc-anchor-target>
+<ul>
+<li><code v-pre>--clientid</code>: This is the client inside of the tacticalrmm dashboard (organizational)</li>
+<li><code v-pre>--site-id</code>: This would be the physical location of the agent inside the dashboard (per clientid)</li>
+<li><code v-pre>--agent-type</code>: This can be server or workstation and it changes the filter for showing only servers/workstations in the dashboard</li>
+<li><code v-pre>--api</code>: his is the API endpoint the agent uses to interact with the server.</li>
+<li><code v-pre>--auth</code>: This is a token required for the agent to authenticate to the server.</li>
+<li><code v-pre>--insecure</code>: This is required unless the server is installed using a valid signed certificate. (essentially to ignore certificate errors)</li>
+</ul>
+<doc-anchor-target id="troubleshooting">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#troubleshooting">#</doc-anchor-trigger>
+        <span>Troubleshooting</span>
+    </h2>
+</doc-anchor-target>
+<p>Debug the agent by executing the following in an administrator Command Prompt:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">&quot;C:\Program Files\TacticalAgent\tacticalrmm.exe&quot; -m rpc -log debug -logto stdout</code></pre>
+</doc-codeblock></div>
+<p>Standard log output will look similar to the following:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-batch"><code v-pre class="language-batch">time=&quot;2024-10-28T16:24:02Z&quot; level=debug msg=&quot;{Hostname:hotel Arch: AgentID:CMggWmcARIOppYTxJXvfiMpkBoNCpqJvRpoBdAIH BaseURL:https://api.kilo.com ApiURL:api.kilo.com Token:6ca0d65ebd51c1bcbe5d29ea9ef7ac96dd0f7057 AgentPK:3 Cert: ProgramDir:C:\\Program Files\\TacticalAgent EXE:C:\\Program Files\\TacticalAgent\\tacticalrmm.exe SystemDrive:C: WinTmpDir:C:\\ProgramData\\TacticalRMM WinRunAsUserTmpDir:C:\\ProgramData\\TacticalRMM MeshInstaller:meshagent.exe MeshSystemEXE:C:\\Program Files\\Mesh Agent\\MeshAgent.exe MeshSVC:mesh agent PyBin:C:\\Program Files\\TacticalAgent\\python\\py3.11.9_amd64\\python.exe PyVer:3.11.9 PyBaseDir:C:\\Program Files\\TacticalAgent\\python PyDir:py3.11.9_amd64 NuBin:C:\\Program Files\\TacticalAgent\\bin\\nu.exe DenoBin:C:\\Program Files\\TacticalAgent\\bin\\deno.exe AgentHeader:trmm/2.8.0/windows/amd64 Headers:map[Authorization:Token 6ca0d65ebd51c1bcbe5d29ea9ef7ac96dd0f7057 Content-Type:application/json] Logger:0xc0000d4c00 Version:2.8.0 Debug:true rClient:0xc000236000 Proxy: LogTo: LogFile:&lt;nil&gt; Platform:windows GoArch:amd64 ServiceConfig:0xc000242000 NatsServer:wss://api.kilo.com:443 NatsProxyPath:natsws NatsProxyPort:443 NatsPingInterval:42 NatsWSCompression:true Insecure:true}\n&quot;
+time=&quot;2024-10-28T16:24:02Z&quot; level=info msg=&quot;Agent service started&quot;
+time=&quot;2024-10-28T16:24:02Z&quot; level=debug msg=&quot;&amp;{Statistics:{InMsgs:0 OutMsgs:0 InBytes:0 OutBytes:0 Reconnects:0} mu:{w:{state:0 sema:0} writerSem:0 readerSem:0 readerCount:{_:{} v:0} readerWait:{_:{} v:0}} Opts:{Url: InProcessServer:&lt;nil&gt; Servers:[wss://api.kilo.com:443] NoRandomize:false NoEcho:false Name:CMggWmcARIOppYTxJXvfiMpkBoNCpqJvRpoBdAIH Verbose:false Pedantic:false Secure:true TLSConfig:0xc000240180 TLSCertCB:&lt;nil&gt; TLSHandshakeFirst:false RootCAsCB:&lt;nil&gt; AllowReconnect:true MaxReconnect:-1 ReconnectWait:3s CustomReconnectDelayCB:&lt;nil&gt; ReconnectJitter:500ms ReconnectJitterTLS:4s Timeout:2s DrainTimeout:30s FlusherTimeout:1m0s PingInterval:42s MaxPingsOut:2 ClosedCB:&lt;nil&gt; DisconnectedCB:&lt;nil&gt; DisconnectedErrCB:0x9a90a0 ConnectedCB:&lt;nil&gt; ReconnectedCB:0x9a8f40 DiscoveredServersCB:&lt;nil&gt; AsyncErrorCB:0x9a8dc0 ReconnectBufSize:-1 SubChanLen:65536 UserJWT:&lt;nil&gt; Nkey: SignatureCB:&lt;nil&gt; User:CMggWmcARIOppYTxJXvfiMpkBoNCpqJvRpoBdAIH Password:6ca0d65ebd51c1bcbe5d29ea9ef7ac96dd0f7057 Token: TokenHandler:&lt;nil&gt; Dialer:0xc0002321c0 CustomDialer:&lt;nil&gt; UseOldRequestStyle:false NoCallbacksAfterClientClose:false LameDuckModeHandler:&lt;nil&gt; RetryOnFailedConnect:true Compression:true ProxyPath:natsws InboxPrefix: IgnoreAuthErrorAbort:true SkipHostLookup:false} wg:{noCopy:{} state:{_:{} _:{} v:8589934592} sema:0} srvPool:[0xc0002560c0] current:0xc0002560c0 urls:map[api.kilo.com:443:{}] conn:0xc000282000 bw:0xc000256180 br:0xc000256140 fch:0xc000224420 info:{ID:NANJ2TTYWT7TZI3EPH237QHKSHCBUADLCC5UYY7EZEA5SFBDTRKECWXU Name:NANJ2TTYWT7TZI3EPH237QHKSHCBUADLCC5UYY7EZEA5SFBDTRKECWXU Proto:1 Version:2.10.17 Host:127.0.0.1 Port:9235 Headers:true AuthRequired:true TLSRequired:false TLSAvailable:false MaxPayload:67108864 CID:206 ClientIP:127.0.0.1 Nonce: Cluster: ConnectURLs:[] LameDuckMode:false} ssid:0 subsMu:{w:{state:0 sema:0} writerSem:0 readerSem:0 readerCount:{_:{} v:0} readerWait:{_:{} v:0}} subs:map[] ach:0xc000244100 pongs:[] scratch:[72 80 85 66 32 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] status:1 statListeners:map[] initc:false err:&lt;nil&gt; ps:0xc00016b300 ptmr:0xc000238230 pout:0 ar:false rqch:0xc000224480 ws:true respSub: respSubPrefix: respSubLen:0 respMux:&lt;nil&gt; respMap:map[] respRand:&lt;nil&gt; filters:map[]}\n&quot;
+time=&quot;2024-10-28T16:24:02Z&quot; level=debug msg=&quot;{Url: InProcessServer:&lt;nil&gt; Servers:[wss://api.kilo.com:443] NoRandomize:false NoEcho:false Name:CMggWmcARIOppYTxJXvfiMpkBoNCpqJvRpoBdAIH Verbose:false Pedantic:false Secure:true TLSConfig:0xc000240180 TLSCertCB:&lt;nil&gt; TLSHandshakeFirst:false RootCAsCB:&lt;nil&gt; AllowReconnect:true MaxReconnect:-1 ReconnectWait:3s CustomReconnectDelayCB:&lt;nil&gt; ReconnectJitter:500ms ReconnectJitterTLS:4s Timeout:2s DrainTimeout:30s FlusherTimeout:1m0s PingInterval:42s MaxPingsOut:2 ClosedCB:&lt;nil&gt; DisconnectedCB:&lt;nil&gt; DisconnectedErrCB:0x9a90a0 ConnectedCB:&lt;nil&gt; ReconnectedCB:0x9a8f40 DiscoveredServersCB:&lt;nil&gt; AsyncErrorCB:0x9a8dc0 ReconnectBufSize:-1 SubChanLen:65536 UserJWT:&lt;nil&gt; Nkey: SignatureCB:&lt;nil&gt; User:CMggWmcARIOppYTxJXvfiMpkBoNCpqJvRpoBdAIH Password:6ca0d65ebd51c1bcbe5d29ea9ef7ac96dd0f7057 Token: TokenHandler:&lt;nil&gt; Dialer:0xc0002321c0 CustomDialer:&lt;nil&gt; UseOldRequestStyle:false NoCallbacksAfterClientClose:false LameDuckModeHandler:&lt;nil&gt; RetryOnFailedConnect:true Compression:true ProxyPath:natsws InboxPrefix: IgnoreAuthErrorAbort:true SkipHostLookup:false}\n&quot;
+time=&quot;2024-10-28T16:24:02Z&quot; level=debug msg=&quot;CheckRunner() init sleeping for 20 seconds&quot;
+time=&quot;2024-10-28T16:24:02Z&quot; level=debug msg=&quot;AgentSvc() sleeping for 13 seconds&quot;</code></pre>
+</doc-codeblock></div>
+<p>When the agent fails to connect to the server you may receive timeouts similar to the following:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-batch"><code v-pre class="language-batch">time=&quot;2024-11-18T16:13:10Z&quot; level=debug msg=&quot;Get \&quot;https://api.kilo.com/api/v3/MxongqdGarnYKFtIlCzAXaKJSTwogxVynTNzqvvR/checkinterval/\&quot;: context deadline exceeded (Client.Timeout exceeded while awaiting headers)&quot;
+time=&quot;2024-11-18T16:13:10Z&quot; level=debug msg=&quot;Checkrunner sleeping for 120&quot;</code></pre>
+</doc-codeblock></div>
+<p>When the agent cannot resolve the server the error output may look similar to the following:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-batch"><code v-pre class="language-batch">time=&quot;2024-11-18T16:50:10Z&quot; level=debug msg=&quot;Post \&quot;https://asdasfsafdsafsdfasdfapi.kiloasdfasdfasdfasdfsafsadfasdf.com/api/v3/software/\&quot;: dial tcp: lookup asdasfsafdsafsdfasdfapi.kiloasdfasdfasdfasdfsafsadfasdf.com: no such host&quot;
+time=&quot;2024-11-18T16:50:11Z&quot; level=debug msg=&quot;Get \&quot;https://asdasfsafdsafsdfasdfapi.kiloasdfasdfasdfasdfsafsadfasdf.com/api/v3/MxongqdGarnYKFtIlCzAXaKJSTwogxVynTNzqvvR/checkinterval/\&quot;: dial tcp: lookup asdasfsafdsafsdfasdfapi.kiloasdfasdfasdfasdfsafsadfasdf.com: no such host&quot;
+time=&quot;2024-11-18T16:50:11Z&quot; level=debug msg=&quot;Checkrunner sleeping for 120&quot;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="agent-persistence-mechanism">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#agent-persistence-mechanism">#</doc-anchor-trigger>
+        <span>Agent Persistence Mechanism</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>The agent will create several registry keys containing the server and authentication at <code v-pre>HKLM:Software/TacticalRMM</code></li>
+<li>The agent will install MeshAgent alongside the TacticalRMM agent.</li>
+<li>MeshAgent service is created</li>
+<li>TacticalRMM Agent Service is created</li>
+</ul>
+<doc-anchor-target id="cti-reporting">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cti-reporting">#</doc-anchor-trigger>
+        <span>CTI Reporting</span>
+    </h2>
+</doc-anchor-target>
+<p>n/a</p>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer id="retype-content-footer" class="clear-both">
+                            
+                                <nav id="retype-nextprev" class="print:hidden flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../../enterprise/scattered_spider/resources/snaffler/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-base-text-muted">Previous</span>
+                                                <span class="block mt-1">Snaffler</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../../enterprise/scattered_spider/resources/trufflehog/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
+                                                <span class="block mt-1">Truffle​Hog</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div id="retype-page-footer" class="print:border-none border-t border-base-border pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between print:justify-center">
+                                <div id="retype-footer-links" class="print:hidden">
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                        <li>
+                                            <a class="inline-flex items-center mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-footer-link hover:text-footer-link-hover md:mb-0" href="https://github.com/attackevals/ael">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                                    <g fill="currentColor">
+                                                        <path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"/>
+                                                    </g>
+                                                </svg>
+                                                <span>ATTACK Evaluations Library GitHub</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div id="retype-copyright" class="print:justify-center py-2 text-footer-text font-footer-link-weight text-sm leading-relaxed"><p>© Copyright 2025. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-sidebar-right-bg border-sidebar-right-border lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="retype-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Tactical RMM Agent", level: 4, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

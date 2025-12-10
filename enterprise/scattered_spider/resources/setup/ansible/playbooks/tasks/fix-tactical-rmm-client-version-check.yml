@@ -1,0 +1,20 @@
+---
+- name: Fix tacticalrmm client version check
+  hosts: rmm-srv1
+  become: true
+  tasks:
+    - name: edit rmm settings file and change one line in rmm configuration file
+      lineinfile:
+        path: /rmm/api/tacticalrmm/tacticalrmm/settings.py
+        regexp: '^LATEST_AGENT_VER = .*$'
+        line: 'LATEST_AGENT_VER = "2.8.0"'
+        state: present
+      register: settings_update
+
+    - name: restart tactical rmm systemd service when settings file is changed
+      systemd:
+        name: rmm
+        state: restarted
+        daemon_reload: yes
+        enabled: yes
+      when: settings_update.changed

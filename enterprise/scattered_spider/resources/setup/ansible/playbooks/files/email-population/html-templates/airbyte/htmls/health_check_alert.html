@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airbyte Connection Health Alert</title>
+</head>
+
+<body width="100%" bgcolor="#F9F9F9" style="margin: 0; mso-line-height-rule: exactly;">
+      <center style="width: 100%; background: #F9F9F9; text-align: left;">
+          <h1 style="text-align: center; font-family: sans-serif; color: #d9534f"> Connection Health Alert</h1>
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#F9F9F9">
+          <tr>
+            <td>
+          <div style="max-width: 600px; margin: auto;" class="email-container">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+              <tr>
+                <td>
+            <br>
+            <br>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" id="emailBodyContainer" style="border: 1px solid #E5E5E5; border-bottom-color: #CCC; border-top-color: #F0F0F0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); max-width: 600px;">
+              <tr>
+                <td class="module" style="background-color: #FFF; color: #444; font-family: sans-serif; font-size: 14px; line-height: 140%; padding: 25px 35px;">
+                  <p style="margin: 0 0 15px 0; padding: 0 0 0 0;">
+                    <strong>Connection:</strong> Mongo-legacy
+                    <p><strong>Last Successful Sync:</strong> 8 hours ago</p>
+                    <p><strong>Issue:</strong> Failure in source: Checking source connection
+                        failed - please review this connection's configuration to prevent future
+                        syncs from failing. </p>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td class="module module-button" style="background-color: #FFF; color: #d9534f; font-family: sans-serif; font-size: 14px; line-height: 140%; padding: 0px 35px;">
+                  <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="left" style="margin: auto;">
+                    <tr>
+                      <td class="button-td" style="background: #d9534f; border-radius: 3px; text-align: center;">
+                      <a href="{{ health_check_check_link }}" class="button-a" style="background: #2B98D6; border: 15px solid #2B98D6; border-radius: 3px; color: #1166BB; display: block; font-family: sans-serif; font-size: 14px; line-height: 110%; text-align: center; text-decoration: none;">
+                        <span class="button-link" style="color: #FFF;">
+                          &nbsp;&nbsp;View Connection&nbsp;&nbsp;
+                        </span>
+                      </a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+                <tr>
+                <td class="module" style="background-color: #FFF; color: gray; font-family: sans-serif; font-size: 14px; line-height: 140%; padding: 25px 35px; padding-bottom: 0; padding-top: 10px;">
+                  If you need assistance, contact support at <a href="{{ email_link }}">support@airbyte.io</a>
+                </td>
+              </tr>
+              <tr>
+                <td class="module" style="background-color: #FFF; color: #444; font-family: sans-serif; font-size: 14px; line-height: 140%; padding: 25px 35px;">
+              <p style="margin: 0 0 15px 0; padding: 0 0 0 0;">
+    </body>
+</html>

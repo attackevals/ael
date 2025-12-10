@@ -1,0 +1,45 @@
+---
+- name: Alert if send_connector_smtpserver is not set or empty
+  ansible.builtin.debug:
+    msg: >
+      "send_connector_smtpserver is not set or is empty. Please make sure to set it in the role vars."
+  when: send_connector_smtpserver == "" or send_connector_smtpserver is not defined
+
+- name: Get Send Connector information
+  ansible.windows.win_shell: |
+    Add-PSSnapin Microsoft.Exchange.Management.PowerShell.SnapIn
+    Get-SendConnector -Identity "{{ send_connector_name }}" | ConvertTo-Json
+  register: send_connector_info
+  ignore_errors: true  # Continue even if the connector is not found
+
+- name: Check if Send Connector exists
+  set_fact:
+    send_connector_exists: "{{ send_connector_info.stdout | length > 0 }}" # Check if the output is not empty
+  when: send_connector_info.rc == 0 # Check only if the command was successful
+
+- name: Display result
+  debug:
+    msg: "Send Connector {{ send_connector_name }} exists: {{ send_connector_exists }}"
+  when: send_connector_exists is defined # Only display if the send_connector_exists fact is set
+
+- name: Configure Send Connector
+  ansible.windows.win_shell: |
+    Add-PSSnapin Microsoft.Exchange.Management.PowerShell.SnapIn
+    New-SendConnector -Internet -Name "{{ send_connector_name }}" -AddressSpaces ("{{ send_connector_address_spaces | join(',') }}")
+  vars:
+    ansible_become: true
+    ansible_become_method: runas
+    ansible_become_user: "{{ ludus_exchange_domain }}\\{{ ludus_exchange_domain_username }}"
+    ansible_become_pass: "{{ ludus_exchange_domain_password }}"
+  when: send_connector_name is defined and send_connector_exists is not defined  # Only execute if send_connector_name is defined
+
+#- name: Configure Send Connector
+#  ansible.windows.win_shell: |
+#    Add-PSSnapin Microsoft.Exchange.Management.PowerShell.SnapIn
+#    New-SendConnector -Name "{{ send_connector_name }}" -Custom -SmartHosts "{{ send_connector_smtpserver }}" -AddressSpaces ("{{ send_connector_address_spaces | join(',') }}") -SourceTransportServers "{{ send_connector_source_transport_servers }}"
+#  vars:
+#    ansible_become: true
+#    ansible_become_method: runas
+#    ansible_become_user: "{{ ludus_exchange_domain }}\\{{ ludus_exchange_domain_username }}"
+#    ansible_become_pass: "{{ ludus_exchange_domain_password }}"
+#  when: send_connector_name is defined and send_connector_exists is not defined  # Only execute if send_connector_name is defined

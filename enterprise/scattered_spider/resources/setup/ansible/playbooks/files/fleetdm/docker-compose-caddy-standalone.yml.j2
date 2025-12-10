@@ -1,0 +1,64 @@
+---
+services:
+
+  mysql:
+    image: mysql:8.0.24
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+    env_file: mysql/default.env
+    cap_add:
+      - SYS_NICE
+    restart: unless-stopped
+
+  redis:
+    image: redis
+    restart: unless-stopped
+
+  fleet:
+    image: fleetdm/fleet
+    depends_on:
+      - mysql
+      - redis
+    command: sh -c "/usr/bin/fleet prepare db --no-prompt && /usr/bin/fleet serve"
+    env_file: fleet/default.env
+    volumes:
+      - ./fleet:/fleet/
+      - ./fleet/logs:/logs
+      - ./fleet/vulndb:/vulndb
+    networks:
+      - {{ caddy_proxy_network }}
+      - default
+    restart: unless-stopped
+
+  caddy:
+    image: caddy:alpine
+    container_name: caddy
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./caddy:/opt
+    # Caddy config
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
+    # Caddy certificate authority (CA)
+      - ./caddy/certs:/data/caddy/pki/authorities/local
+    environment:
+      - CADDY_INGRESS_NETWORKS={{ caddy_proxy_network }}
+    labels:
+      caddy: fleet.local
+      caddy.reverse_proxy: "{{ '{{' }}upstreams{{ '}}' }}"
+      caddy.tls: "/opt/certs/{{ crt }}  /opt/certs/{{ key }}"
+      caddy.log: "DEBUG"
+    networks:
+      - {{ caddy_proxy_network }}
+      - default
+    ports:
+      - "80:80"
+      - "443:443"
+    restart: unless-stopped
+
+networks:
+  {{ caddy_proxy_network }}:
+    external: true
+  default:
+    driver: bridge

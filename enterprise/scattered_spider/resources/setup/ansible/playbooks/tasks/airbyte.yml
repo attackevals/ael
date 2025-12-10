@@ -1,0 +1,132 @@
+---
+- name: Install Airbyte using abctl on Ubuntu
+  hosts: cloud-airbyte-srv1
+  become: yes
+  vars:
+    abctl_version: "v0.25.0"
+    airbyte_directory: "/opt/airbyte"
+    airbyte_arch: "amd64"
+    airbyte_port: 80
+    airbyte_email: "tlannister@kingslanding.net"
+    airbyte_password: "5325OLZ9vcruy8H55qqhhmxK9xH7ooGb"
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: Update APT cache
+      ansible.builtin.apt:
+        update_cache: yes
+
+    - name: Install dependencies
+      ansible.builtin.apt:
+        name:
+          - curl
+          - jq
+        state: present
+
+    - name: Create Airbyte directory
+      ansible.builtin.file:
+        path: "{{ airbyte_directory }}"
+        state: directory
+        mode: "0755"
+
+    - name: Download abctl
+      ansible.builtin.get_url:
+        url: "https://github.com/airbytehq/abctl/releases/download/{{ abctl_version }}/abctl-{{ abctl_version }}-linux-{{ airbyte_arch}}.tar.gz"
+        dest: "{{ airbyte_directory }}/abctl.tar.gz"
+        mode: "0755"
+
+    - name: Extract abctl
+      ansible.builtin.unarchive:
+        src: "{{ airbyte_directory }}/abctl.tar.gz"
+        dest: "{{ airbyte_directory }}"
+        remote_src: yes
+
+    - name: Copy abctl to right place
+      ansible.builtin.copy:
+        src: "{{ airbyte_directory }}/abctl-{{ abctl_version }}-linux-{{ airbyte_arch }}/abctl"
+        dest: "{{ airbyte_directory }}/abctl"
+        remote_src: yes
+        mode: "0755"
+
+    - name: Add abctl to path
+      ansible.builtin.copy:
+        src: "{{ airbyte_directory }}/abctl"
+        dest: "/usr/local/bin/abctl"
+        remote_src: yes
+        mode: "0755"
+
+    - name: Install Airbyte with abctl
+      ansible.builtin.command:
+        cmd: "{{ airbyte_directory }}/abctl local install --host {{ support_vars.airbyte_fqdn }} --port {{ airbyte_port }} --insecure-cookies"
+        chdir: "{{ airbyte_directory }}"
+        creates: "{{ airbyte_directory }}/.airbyte"  # Check if already installed
+
+    - name: Set Airbyte admin user
+      ansible.builtin.command:
+        cmd: "{{ airbyte_directory }}/abctl local credentials --email={{ airbyte_email }}"
+        chdir: "{{ airbyte_directory }}"
+
+    - name: Set Airbyte admin password
+      ansible.builtin.command:
+        cmd: "{{ airbyte_directory }}/abctl local credentials --password={{ airbyte_password }}"
+        chdir: "{{ airbyte_directory }}"
+
+    - name: Configure Airbyte as a systemd service
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/../files/airbyte/airbyte-systemd.service.j2"
+        dest: /etc/systemd/system/airbyte.service
+        mode: "0644"
+
+    - name: Reload systemd daemon to apply Airbyte service
+      ansible.builtin.systemd:
+        daemon_reload: yes
+
+    - name: Start and enable Airbyte service
+      ansible.builtin.systemd:
+        name: airbyte
+        state: started
+        enabled: yes
+
+## Docker Registry for custom connector
+
+    - name: Create registry directory
+      ansible.builtin.file:
+        path: "/opt/registry/certs"
+        state: directory
+        mode: "0755"
+
+    - name: copy certs
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/../files/certs/kingslanding.net/airbyte/{{ item }}"
+        dest: "/opt/registry/certs/"
+      with_items:
+        - "airbyte.kingslanding.net-key.pem"
+        - "airbyte.kingslanding.net.pem"
+
+    - name: copy root cert
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/../files/certs/ca/COUNCILCA.pem"
+        dest: "/opt/registry/certs/"
+
+    - name: Start registry
+      community.docker.docker_container:
+        name: registry
+        image: registry:latest
+        state: started
+        restart_policy: always
+        volumes:
+          - "/opt/registry/certs:/certs"
+        ports:
+          - "443:443"
+        env:
+          REGISTRY_HTTP_ADDR: "0.0.0.0:443"
+          REGISTRY_HTTP_TLS_CERTIFICATE: "/certs/airbyte.kingslanding.net.pem"
+          REGISTRY_HTTP_TLS_KEY: "/certs/airbyte.kingslanding.net-key.pem"
+
+    - name: Pull gitlab source image
+      community.docker.docker_image:
+        name: airbyte/source-gitlab
+        source: pull
+
+      # Location to update root ca /usr/local/lib/python3.11/site-packages/certifi/cacert.pem

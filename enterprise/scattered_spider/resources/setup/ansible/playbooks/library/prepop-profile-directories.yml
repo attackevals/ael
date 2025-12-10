@@ -1,0 +1,32 @@
+---
+# Required variables:
+# - prepop_domain_users: List of domain users with username field
+# - office_dest_prefix: Destination prefix for office configuration
+# - office_cfg_dest_dir: Destination directory for office configuration
+# - office_cfg_src_file: Source file for office configuration
+# - office_cfg_filename: Filename for office configuration
+
+- name: Create profile directories if they do not exist
+  community.windows.win_user_profile:
+    username: "{{ item.username }}"
+    state: present
+  loop: "{{ prepop_domain_users }}"
+  ignore_errors: yes
+  ignore_unreachable: yes
+
+- name: Create directory for office profile dir
+  ansible.windows.win_file:
+    path: "{{ office_dest_prefix}}\\{{ item.username }}\\{{ office_cfg_dest_dir }}"
+    state: directory
+  loop: "{{ prepop_domain_users }}"
+  ignore_errors: yes
+  ignore_unreachable: yes
+
+- name: Upload office configuration to profile
+  become: true
+  ansible.windows.win_copy:
+    src: "{{ office_cfg_src_file }}"
+    dest: "{{ office_dest_prefix}}\\{{ item.username }}\\{{ office_cfg_dest_dir }}\\{{ office_cfg_filename }}"
+  loop: "{{ prepop_domain_users }}"
+  ignore_errors: yes
+  ignore_unreachable: yes

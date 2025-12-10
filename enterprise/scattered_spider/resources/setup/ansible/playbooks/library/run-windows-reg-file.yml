@@ -1,0 +1,25 @@
+---
+# Required variables:
+# - winrar_dest_dir: Destination directory for registry file
+# - winrar_reg_file: Source registry file path
+# - winrar_dest_file: Destination registry file name
+
+- name: make sure dest dir exists
+  ansible.windows.win_file:
+    path: "{{ winrar_dest_dir }}"
+    state: directory
+
+- name: copy reg file to host
+  ansible.windows.win_copy:
+    src: "{{ winrar_reg_file }}"
+    dest: "{{ winrar_dest_dir }}/{{ winrar_dest_file }}"
+
+- name: run winrar reg file on windows host
+  ansible.windows.win_shell: "reg import {{ item }}"
+  with_items:
+    - "{{ winrar_dest_dir }}/{{ winrar_dest_file }}"
+
+- name: cleanup and remove reg file from host
+  ansible.windows.win_file:
+    path: "{{ winrar_dest_dir }}/{{ winrar_dest_file }}"
+    state: absent

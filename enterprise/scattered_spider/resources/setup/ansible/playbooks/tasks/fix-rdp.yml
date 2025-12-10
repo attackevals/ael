@@ -1,0 +1,16 @@
+---
+- name: "Fix RDP Connections on {{ domain_info.dns_domain_name }}"
+  hosts: windows:&victim
+  become: no
+  gather_facts: no
+  strategy: free
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: "Repairing Domain Trust {{ domain_info.dns_domain_name }}"
+      ansible.builtin.include_tasks: ../library/fix-rdp.yml
+      vars:
+        ad_domain: "{{ domain_info.shortname | upper }}"
+        ad_user: "{{ domain_info.admin_user }}"
+        ad_pass: "{{ domain_info.admin_pass }}"

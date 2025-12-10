@@ -1,0 +1,68 @@
+---
+# Required variables:
+# - scripts_dir: Directory for scripts (e.g., /opt/scripts)
+# - log_dir: Directory for logs (e.g., /var/log/fleet-activities)
+
+- name: Create scripts directory
+  ansible.builtin.file:
+    path: "{{ scripts_dir }}"
+    state: directory
+    mode: '0755'
+
+- name: Create log directory
+  ansible.builtin.file:
+    path: "{{ log_dir }}"
+    state: directory
+    mode: '0755'
+
+- name: Copy Fleet activity exporter script
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/../files/blue/fleet/fleet_activity_exporter.py"
+    dest: "{{ scripts_dir }}/fleet_activity_exporter.py"
+    mode: '0755'
+
+- name: Copy systemd service file
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/../files/blue/fleet/fleet-activity-exporter.service"
+    dest: /etc/systemd/system/fleet-activity-exporter.service
+    mode: '0644'
+
+- name: Copy systemd timer file
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/../files/blue/fleet/fleet-activity-exporter.timer"
+    dest: /etc/systemd/system/fleet-activity-exporter.timer
+    mode: '0644'
+
+- name: Reload systemd daemon
+  ansible.builtin.systemd:
+    daemon_reload: yes
+
+- name: Enable and start Fleet activity exporter timer
+  ansible.builtin.systemd:
+    name: fleet-activity-exporter.timer
+    enabled: yes
+    state: started
+
+- name: Test the exporter (run once manually)
+  ansible.builtin.command: python3 {{ scripts_dir }}/fleet_activity_exporter.py
+  register: test_result
+  ignore_errors: yes
+
+- name: Display test results
+  ansible.builtin.debug:
+    var: test_result
+
+- name: Configure logrotate for Fleet activity logs
+  ansible.builtin.copy:
+    content: |
+      {{ log_dir }}/*.json {
+          daily
+          rotate 7
+          compress
+          delaycompress
+          missingok
+          notifempty
+          create 644 root root
+      }
+    dest: /etc/logrotate.d/fleet-activities
+    mode: '0644'

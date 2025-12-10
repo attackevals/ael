@@ -1,0 +1,152 @@
+---
+- name: Deploy Wekan
+  hosts: cloud-wekan-srv1
+  become: yes
+  vars:
+    wekan_dump_filename: "wekan_latest.tar.gz"
+    wekan_dump_local: "{{ playbook_dir }}/../files/wekan/dumps/{{ wekan_dump_filename }}"
+
+    wekan_directory: "/opt/wekan"
+    wekan_docker_compose_dest: "{{ wekan_directory }}/docker-compose.yml"
+    wekan_docker_compose_template: "{{ playbook_dir }}/../files/wekan/wekan-compose.yml.j2"
+    wekan_dump_src: "{{ wekan_directory }}/{{ wekan_dump_filename }}"
+    wekan_dump_dst: "/{{ wekan_dump_filename }}"
+
+    wekan_backup_user: "airbytebackup"
+    wekan_backup_pass: "Snowfall-Stoplight"
+    wekan_backup_db: "wekan"
+
+    compose_project_name: "wekan"
+    compose_wekandb_service_name: "wekandb"
+    compose_wekan_app_service_name: "wekan"
+
+    mongo_wait_delay: 10
+    mongo_wait_retries: 30
+
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - docker
+    - wekan
+    - scenarioa
+    - ubuntu
+
+  tasks:
+    # file prep
+    - name: Create Wekan directory
+      file:
+        path: "{{ wekan_directory }}"
+        state: directory
+        mode: '0755'
+
+    - name: Check if dump path exists and is directory
+      stat:
+        path: "{{ wekan_dump_src }}"
+      register: dump_stat
+
+    - name: Ensure dump is valid and remove old dump if it exists
+      file:
+        path: "{{ wekan_dump_src }}"
+        state: absent
+      when: dump_stat.stat.exists and dump_stat.stat.isdir
+
+    - name: Create Wekan docker-compose.yml
+      template:
+        src: "{{ playbook_dir }}/../files/wekan/wekan-compose.yml.j2"
+        dest: "{{ wekan_docker_compose_dest }}"
+        mode: '0644'
+
+    - name: Copy MongoDB dump onto host to port into a running MongoDB container
+      copy:
+        src: "{{ wekan_dump_local }}"
+        dest: "{{ wekan_dump_src }}"
+
+    # cleanup old instance
+    - name: cleanup old wekan
+      community.docker.docker_compose_v2:
+        project_src: "{{ wekan_directory }}"
+        state: absent
+
+    # docker volume prune
+    - name: Remove any unused volumes
+      community.docker.docker_prune:
+        volumes: true
+
+    # rebuild and start
+    - name: Start Wekan
+      community.docker.docker_compose_v2:
+        project_src: "{{ wekan_directory }}"
+        state: present
+
+    - block:
+        - name: Wait for MongoDB to be ready
+          ansible.builtin.shell: |
+            docker compose exec -T wekandb mongosh --eval "
+              try {
+                db.adminCommand('ping');
+                db.runCommand({connectionStatus: 1}).ok === 1;
+              } catch(err) {
+                false;
+              }
+            " --quiet
+          register: result
+          until: result.stdout | trim == "true"
+          retries: "{{ mongo_wait_retries | default(30) }}"
+          delay: "{{ mongo_wait_delay | default(10) }}"
+          args:
+            chdir: "{{ wekan_directory }}"
+          environment:
+            COMPOSE_PROJECT_NAME: "{{ compose_project_name | default('wekan') }}"
+      rescue:
+        - name: Print debug information
+          ansible.builtin.debug:
+            msg: "MongoDB health check failed. Exit code: {{ result.rc | default('N/A') }}, Error: {{ result.stderr | default('N/A') }}"
+          when: result is defined
+
+        - name: MongoDB failed to start
+          ansible.builtin.fail:
+            msg: "MongoDB failed to become ready within the timeout period"
+
+    - name: Remove existing dump dir
+      community.docker.docker_compose_v2_exec:
+        service: "{{ compose_wekandb_service_name }}"
+        command: /bin/bash -c "rm -rf /data/dump"
+        project_src: "{{ wekan_directory }}"
+      register: result
+
+    - name: Extract dump inside the MongoDB container
+      community.docker.docker_compose_v2_exec:
+        service: "{{ compose_wekandb_service_name }}"
+        command: /bin/bash -c "tar -zxvf {{ wekan_dump_dst }} -C /data/"
+        project_src: "{{ wekan_directory }}"
+      register: result
+
+    - name: Remove ALL metadata files from dump before restore
+      community.docker.docker_compose_v2_exec:
+        service: "{{ compose_wekandb_service_name }}"
+        command: /bin/bash -c "find /data/dump -name '._*' -type f -delete"
+        project_src: "{{ wekan_directory }}"
+      register: result
+
+    - name: Restore MongoDB database
+      community.docker.docker_compose_v2_exec:
+        service: "{{ compose_wekandb_service_name }}"
+        command: /bin/bash -c "cd /data/ && mongorestore --drop"
+        project_src: "{{ wekan_directory }}"
+      register: result
+
+    - name: Create MongoDB backup user
+      community.docker.docker_container_exec:
+        container: wekan-db
+        command: >-
+          mongosh --eval '
+          db.getSiblingDB("{{ wekan_backup_db}}").createUser({
+            user: "{{ wekan_backup_user }}",
+            pwd: "{{ wekan_backup_pass }}",
+            roles: [{ role: "read", db: "{{ wekan_backup_db }}" }]
+          })'
+        detach: false
+      register: mongo_user_result
+      failed_when:
+        - mongo_user_result.rc != 0
+        - '"already exists" not in mongo_user_result.stderr'

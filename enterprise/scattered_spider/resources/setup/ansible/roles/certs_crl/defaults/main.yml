@@ -1,0 +1,21 @@
+---
+# document list of variables used by role
+cfssl_base_dir: "./"
+certs_folder: ""
+ca_common_name: ""
+ca_country_name: ""
+ca_locality_name: ""
+ca_organization_name: ""
+ca_state_or_province_name: ""
+ca_cert_name: ""
+cert_domains: ""
+
+# CRL configuration
+ca_domain: ""
+ca_crl_url: ""
+crl_enabled: true
+crl_dir: "{{ cfssl_base_dir }}/{{ certs_folder }}/crl"
+crl_filename: "ca.crl"
+crl_days: 15
+crl_nginx_port: 80
+crl_nginx_server_name: "{{ ca_domain }}"

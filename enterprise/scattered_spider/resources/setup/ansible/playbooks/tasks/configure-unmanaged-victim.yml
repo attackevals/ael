@@ -1,0 +1,37 @@
+---
+- name: "Configure unmanaged host"
+  hosts: unmanaged-win11-desk1
+  gather_facts: yes
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - localadmin
+
+  tasks:
+    - name: Ensure devadmin does not expire
+      ansible.windows.win_user:
+        name: "devadmin"
+        password_never_expires: yes
+        state: present
+        account_disabled: no
+        account_locked: no
+        password_expired: no
+
+    - name: Disable edge first run
+      ansible.windows.win_regedit:
+        path: HKLM:\Software\Policies\Microsoft\MicrosoftEdge\Main
+        name: "PreventFirstRunPage"
+        data: 1
+        type: dword
+
+    - name: Install go for totp-cli
+      win_chocolatey:
+        name:
+          - go
+        state: present
+        ignore_checksums: yes
+
+    - name: Install totp-cli
+      ansible.windows.win_powershell:
+        script: |
+          go install github.com/yitsushi/totp-cli@latest

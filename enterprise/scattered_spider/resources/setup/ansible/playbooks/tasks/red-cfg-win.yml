@@ -1,0 +1,149 @@
+---
+- name: configure red systems
+  hosts: red_jumpbox_servers:&windows:&red
+  strategy: free
+  gather_facts: no
+  vars:
+    deploy_dir: "C:/tools"
+    red_deploy_dir: "C:/terraform"
+    ssh_dir: "%userprofile%/.ssh"
+    dest_ssh_key: "%userprofile%/.ssh/id_rsa"
+    services_key_file: "deploy_key"
+    c2_key_file: "deploy_key_c2"
+    noise_key_file: "deploy_key_noise"
+
+    choco_script_local: "../files/choco/chocolateyInstall.ps1"
+    choco_script_dest: "C:/tools/install.ps1"
+    choco_url_path: "content/chocolatey/2.4.3/chocolatey-2.4.3.nupkg"
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: Configure to use Range DNS
+      ansible.windows.win_dns_client:
+        adapter_names: '*'
+        dns_servers:
+          - "{{ support_vars.dns_server_ip }}"
+
+    # check if chocolatey is already installed
+    - name: Get status of Chocolatey installation
+      ansible.windows.win_stat:
+        path: c:\programdata\chocolatey\choco.exe
+      register: choco_file_info
+      changed_when: false
+
+    # if choco not installed, delete directory so installer runs
+    - name: TEMP - delete dir
+      ansible.windows.win_file:
+        path: "C:/ProgramData/chocolatey"
+        state: absent
+      when: choco_file_info.stat.exists == false
+
+    - name: "Create directory for choco installer script: {{ deploy_dir }}"
+      ansible.windows.win_file:
+        path: "{{ deploy_dir }}"
+        state: directory
+      when: choco_file_info.stat.exists == false
+
+    - name: "Copy choco installer script host: {{ choco_script_local }}"
+      ansible.windows.win_copy:
+        src: "{{ choco_script_local }}"
+        dest: "{{ choco_script_dest }}"
+      when: choco_file_info.stat.exists == false
+
+    # if it isn't, install it
+    # Powershell command forces TLS 1.2 as the internal chocolatey server only listens on that
+    #- name: Install Chocolatey
+    #  win_command: |
+    #    powershell.exe -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12; iex ((New-Object System.Net.WebClient).DownloadString('{{ choco_script_dest }}'))"
+    #  when: choco_file_info.stat.exists == false
+
+#    - name: Install chocolatey
+#      chocolatey.chocolatey.win_chocolatey:
+#        name:
+#          - chocolatey
+#        bootstrap_script: "{{ choco_script_dest }}"
+#        state: present
+#        ignore_checksums: yes
+#      environment:
+#        - chocolateyDownloadUrl: "{{ support_vars.choco_mirror_url }}/{{ choco_url_path }}"
+#    # "http://27.21.12.121:8081/nexus/service/local/repositories/chocolatey-proxy/content/chocolatey/2.3.0/chocolatey-2.3.0.nupkg"
+
+    - name: configure choco mirror
+      include_tasks: ../library/configure-choco-mirror.yml
+      when: support_vars.choco_mirror_url is defined
+
+    - name: Create user accounts
+      ansible.windows.win_user:
+        name: "{{ item.username }}"
+        password: "{{ item.password }}"
+        fullname: "{{ item.firstname }}"
+        password_never_expires: yes
+        state: present
+        groups:
+          - Administrators
+      loop: "{{ red_users }}"
+
+    - name: Install Packages
+      chocolatey.chocolatey.win_chocolatey:
+        name:
+          - advancedrun
+          - dotnet-6.0-runtime
+          - dotnet-6.0-aspnetruntime
+          - firefox
+          - git
+          - python310
+          - sysinternals
+          - vscode
+        state: present
+        ignore_checksums: yes
+      tags:
+        - install_packages
+
+    - name: Create directory for deploy files
+      ansible.windows.win_file:
+        path: "{{ red_deploy_dir }}"
+        state: directory
+
+    - name: Disable firewall for Domain, Public and Private profiles
+      ansible.windows.win_firewall:
+        state: disabled
+        profiles:
+          - Domain
+          - Private
+          - Public
+      tags: disable_firewall
+
+    - name: Disable automatic firefox updates
+      ansible.windows.win_regedit:
+        path: HKLM:\SOFTWARE\Policies\Mozilla\Firefox
+        name: "DisableAppUpdate"
+        data: 1
+        type: dword
+
+    - name: Disable firefox default browser check
+      ansible.windows.win_regedit:
+        path: HKLM:\SOFTWARE\Policies\Mozilla\Firefox
+        name: "DontCheckDefaultBrowser"
+        data: 1
+        type: dword
+
+    - name: Disable firefox first run
+      ansible.windows.win_regedit:
+        path: HKLM:\SOFTWARE\Policies\Mozilla\Firefox
+        name: "OverrideFirstRunPage"
+        type: string
+
+    - name: Disable edge first run
+      ansible.windows.win_regedit:
+        path: HKLM:\Software\Policies\Microsoft\MicrosoftEdge\Main
+        name: "PreventFirstRunPage"
+        data: 1
+        type: dword
+
+    - name: Disable edge sync wizard
+      ansible.windows.win_regedit:
+        path: HKLM:\Software\Policies\Microsoft\MicrosoftEdge
+        name: "SyncDisabled"
+        data: 1
+        type: dword

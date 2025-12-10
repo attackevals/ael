@@ -1,0 +1,13 @@
+---
+- name: Run S3 user key management
+  hosts: localhost
+  vars:
+    key_staging_dir: "./keys"
+    b3_prefix: "{{ ('%s-%s' | format(aws_resources.evals_cycle | trim, range_name | trim)) | hash('md5') }}"
+    b3_user_name: "{{ b3_prefix }}-b3-user"
+    vermillion_prefix: "{{ aws_resources.evals_cycle }}-{{range_name}}"
+    vermillion_user_name: "{{ vermillion_prefix }}-vermillion-user"
+  vars_files:
+    - ../vars/vars.yml
+  roles:
+    - s3_user_key_management

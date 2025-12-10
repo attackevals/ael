@@ -1,0 +1,12 @@
+[Unit]
+Description=wstunnel
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/bin
+ExecStart= wstunnel server wss://0.0.0.0:443
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

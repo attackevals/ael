@@ -1,0 +1,117 @@
+{
+    "version": 6,
+    "cmakeMinimumRequired": {
+      "major": 3,
+      "minor": 26,
+      "patch": 0
+    },
+    "configurePresets": [
+      {
+        "name": "default",
+        "binaryDir": "${sourceDir}/build",
+        "installDir": "${sourceDir}/install",
+        "generator": "Ninja Multi-Config",
+        "architecture": {
+          "value": "x64",
+          "strategy": "external"
+        },
+        "cacheVariables": {
+          "FETCHCONTENT_BASE_DIR": "${sourceDir}/external",
+          "CMAKE_MODULE_PATH": "${sourceDir}/cmake",
+          "CMAKE_CXX_STANDARD": "26",
+          "CMAKE_C_STANDARD": "23",
+          "CMAKE_CONFIGURATION_TYPES": "Debug;Release;",
+          "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>",
+          "INSTALL_AL": "OFF",
+          "AL_TESTS": "OFF",
+          "AL_ENTRYPOINT": "entry",
+          "AL_ALIGN_STACK": "OFF"
+        },
+        "condition": {
+          "type": "equals",
+          "lhs": "${hostSystemName}",
+          "rhs": "Windows"
+        }
+      }
+    ],
+    "buildPresets": [
+      {
+        "name": "release",
+        "description": "Build Plug X targets with release configuration",
+        "configurePreset": "default",
+        "inheritConfigureEnvironment": true,
+        "configuration": "Release",
+        "targets": [
+            "libcurl",
+            "shellcode",
+            "rcdll",
+            "test5_installer",
+            "test5shellcode",
+            "plugx-test",
+            "msi_installer"
+        ]
+      },
+      {
+        "name": "debug",
+        "description": "Build Plug X targets with debug configuration",
+        "configurePreset": "default",
+        "inheritConfigureEnvironment": true,
+        "configuration": "Debug",
+        "targets": [
+            "libcurl",
+            "shellcode",
+            "rcdll",
+            "test5_installer",
+            "test5shellcode",
+            "plugx-test",
+            "msi_installer"
+        ]
+      }
+    ],
+    "testPresets": [
+      {
+        "name": "all",
+        "configurePreset": "default",
+        "configuration": "Debug",
+        "inheritConfigureEnvironment": true
+      }
+    ],
+    "workflowPresets": [
+      {
+        "name": "cicd-debug",
+        "description": "Build all Plug X debug targets",
+        "steps": [
+          {
+            "type": "configure",
+            "name": "default"
+          },
+          {
+            "type": "build",
+            "name": "debug"
+          },
+          {
+            "type": "test",
+            "name": "all"
+          }
+        ]
+      },
+      {
+        "name": "cicd-release",
+        "description": "Build all Plug X release targets",
+        "steps": [
+          {
+            "type": "configure",
+            "name": "default"
+          },
+          {
+            "type": "build",
+            "name": "release"
+          },
+          {
+            "type": "test",
+            "name": "all"
+          }
+        ]
+      }
+    ]
+  }

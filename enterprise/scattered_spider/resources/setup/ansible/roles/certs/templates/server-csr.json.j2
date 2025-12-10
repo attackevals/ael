@@ -1,0 +1,9 @@
+{
+  "CN": "{{ server_csr.CN }}",
+  "key": {
+    "algo": "{{ server_csr.key.algo }}",
+    "size": {{ server_csr.key.size }}
+  },
+  "names": {{ server_csr.names | to_json }},
+  "hosts": {{ server_csr.hosts | to_json }}
+}

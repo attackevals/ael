@@ -1,0 +1,166 @@
+---
+- name: Populate Guacamole
+  hosts: localhost
+  gather_facts: false
+  vars:
+    base_url: "https://{{ hostvars['b3-dmz-guacamole-srv1'].ansible_host }}"
+    user_group: "users"
+    guac_admin_user: "gworm"
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: Authenticate to guac
+      ansible.builtin.uri:
+        url: "{{ base_url }}/api/tokens"
+        method: POST
+        body_format: form-urlencoded
+        body:
+          username: guacadmin
+          password: guacadmin
+        validate_certs: false
+      register: login
+
+    - name: create connection remote access
+      ansible.builtin.uri:
+        url: "{{ base_url }}/api/session/data/postgresql/connections?token={{ login.json.authToken }}"
+        method: POST
+        body_format: json
+        headers:
+          Content-Type: application/json
+        body:
+          name: "{{ hostvars['b3-access-srv1'].hostname }}"
+          parentIdentifier: "ROOT"
+          protocol: "rdp"
+          parameters:
+            hostname: "{{ hostvars['b3-access-srv1'].ansible_host }}"
+            ignore-cert: "true"
+          attributes:
+            guacd-hostname: "guacd"
+        validate_certs: no
+        return_content: yes
+      register: connection
+      ignore_errors: true # because this task is not yet idempotent
+
+    - name: create connection desktop
+      ansible.builtin.uri:
+        url: "{{ base_url }}/api/session/data/postgresql/connections?token={{ login.json.authToken }}"
+        method: POST
+        body_format: json
+        headers:
+          Content-Type: application/json
+        body:
+          name: "{{ hostvars['b3-win11-desk1'].hostname }}"
+          parentIdentifier: "ROOT"
+          protocol: "rdp"
+          parameters:
+            hostname: "{{ hostvars['b3-win11-desk1'].ansible_host }}"
+            ignore-cert: "true"
+          attributes:
+            guacd-hostname: "guacd"
+        validate_certs: no
+        return_content: yes
+      register: connection2
+      ignore_errors: true # because this task is not yet idempotent
+
+    - name: create user group
+      ansible.builtin.uri:
+        url: "{{ base_url }}/api/session/data/postgresql/userGroups?token={{ login.json.authToken }}"
+        method: POST
+        body_format: json
+        headers:
+          Content-Type: application/json
+        body:
+          identifier: "{{ user_group }}"
+          attributes:
+            disabled: ""
+        validate_certs: no
+      ignore_errors: true # because this task is not yet idempotent
+
+    - name: add RA connection to user group
+      ansible.builtin.uri:
+        url: "{{ base_url }}/api/session/data/postgresql/userGroups/{{ user_group }}/permissions?token={{ login.json.authToken }}"
+        method: PATCH
+        body_format: json
+        headers:
+          Content-Type: "application/json"
+        body:
+          - op: "add"
+            path: "/connectionPermissions/{{ connection.json.identifier }}"
+            value: "READ"
+        status_code: 204
+        validate_certs: no
+      ignore_errors: true # because this task is not yet idempotent
+
+    - name: add desktop connection to user group
+      ansible.builtin.uri:
+        url: "{{ base_url }}/api/session/data/postgresql/userGroups/{{ user_group }}/permissions?token={{ login.json.authToken }}"
+        method: PATCH
+        body_format: json
+        headers:
+          Content-Type: "application/json"
+        body:
+          - op: "add"
+            path: "/connectionPermissions/{{ connection2.json.identifier }}"
+            value: "READ"
+        status_code: 204
+        validate_certs: no
+      ignore_errors: true # because this task is not yet idempotent
+
+    - name: create users
+      ansible.builtin.uri:
+        url: "{{ base_url }}/api/session/data/postgresql/users?token={{ login.json.authToken }}"
+        method: POST
+        body_format: json
+        headers:
+          Content-Type: application/json
+        body:
+          username: "{{ item.username }}"
+          attributes:
+            disabled: ""
+            guac-full-name: "{{ item.firstname }} {{ item.surname }}"
+        validate_certs: no
+      loop: "{{ domain_users_vale }}"
+      ignore_errors: true # because this task is not yet idempotent
+
+    - name: add users to group
+      ansible.builtin.uri:
+        url: "{{ base_url }}/api/session/data/postgresql/userGroups/{{ user_group }}/memberUsers?token={{ login.json.authToken }}"
+        method: PATCH
+        body_format: json
+        headers:
+          Content-Type: application/json
+        body:
+          - op: "add"
+            path: "/"
+            value: "{{ item.username }}"
+        validate_certs: no
+        status_code:
+          - 204
+          - 200
+      loop: "{{ domain_users_vale }}"
+      ignore_errors: true # because this task is not yet idempotent
+
+    - name: set admin user permissions
+      ansible.builtin.uri:
+        url: "{{ base_url }}/api/session/data/postgresql/users/{{ guac_admin_user }}/permissions?token={{ login.json.authToken }}"
+        method: PATCH
+        body_format: json
+        headers:
+          Content-Type: application/json
+        body:
+          - op: "add"
+            path: "/systemPermissions"
+            value: "{{ item }}"
+        validate_certs: no
+        status_code:
+          - 204
+          - 200
+      with_items:
+        - CREATE_USER
+        - CREATE_USER_GROUP
+        - CREATE_CONNECTION
+        - CREATE_CONNECTION_GROUP
+        - CREATE_SHARING_PROFILE
+        - ADMINISTER
+      ignore_errors: true # because this task is not yet idempotent

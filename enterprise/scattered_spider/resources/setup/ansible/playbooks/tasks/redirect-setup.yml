@@ -1,0 +1,60 @@
+---
+- name: "Configure redirect1"
+  become: yes
+  hosts: redirect-srv1
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - redirect
+
+  tasks:
+    - ansible.builtin.include_tasks: ../library/redirect-setup.yml
+      vars:
+        redirects: "{{ redirect1.redirects }}"
+        nics: "{{ redirect1_nic_cfg.nics }}"
+
+- name: "Configure redirect2"
+  become: yes
+  hosts: redirect-srv2
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - redirect
+
+  tasks:
+    - ansible.builtin.include_tasks: ../library/redirect-setup.yml
+      vars:
+        redirects: "{{ redirect2.redirects }}"
+        nics: "{{ redirect2_nic_cfg.nics }}"
+
+- name: "Configure redirect3"
+  become: yes
+  hosts: redirect-srv3
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - redirect
+
+  tasks:
+    - ansible.builtin.include_tasks: ../library/redirect-setup.yml
+      vars:
+        redirects: "{{ redirect3.redirects }}"
+        nics: "{{ redirect3_nic_cfg.nics }}"
+
+- name: "Configure redirect4"
+  become: yes
+  hosts: redirect-srv4
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - redirect
+
+  tasks:
+    - ansible.builtin.include_tasks: ../library/redirect-setup.yml
+      vars:
+        redirects: "{{ redirect4.redirects }}"
+        nics: "{{ redirect4_nic_cfg.nics }}"

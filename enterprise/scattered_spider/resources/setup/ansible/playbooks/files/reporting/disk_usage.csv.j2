@@ -1,0 +1,18 @@
+hostname,os_type,filesystem,size_gb,used_gb,available_gb,use_percent,mount_point
+{% for host in groups['victim'] %}
+{% if hostvars[host]['win_disk_output'] is defined and hostvars[host]['win_disk_output']['output'][0] is defined %}
+{% set disk_data = hostvars[host]['win_disk_output']['output'][0] | from_json %}
+{% if disk_data is iterable and disk_data is not string %}
+{% for disk in disk_data %}
+{% if disk.DeviceID is defined and disk.Size is defined %}
+{{ hostvars[host]['ansible_hostname'] }},Windows,{{ disk.DeviceID }},{{ (disk.Size/1073741824) | round(2) }},{{ ((disk.Size - disk.FreeSpace)/1073741824) | round(2) }},{{ (disk.FreeSpace/1073741824) | round(2) }},{{ (((disk.Size - disk.FreeSpace)/disk.Size)*100) | round(1) }},{{ disk.DeviceID }}
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endif %}
+{% if hostvars[host]['linux_disk_output'] is defined and hostvars[host]['linux_disk_output']['stdout_lines'] is defined %}
+{% for disk in hostvars[host]['linux_disk_output']['stdout_lines'] %}
+{{ hostvars[host]['ansible_hostname'] }},Linux,{{ disk }}
+{% endfor %}
+{% endif %}
+{% endfor %}

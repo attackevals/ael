@@ -1,0 +1,15 @@
+[Unit]
+Description=Fleet Activity Log Exporter
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+User=root
+WorkingDirectory=/opt/fleetdm
+ExecStart=/usr/bin/python3 /opt/scripts/fleet_activity_exporter.py
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

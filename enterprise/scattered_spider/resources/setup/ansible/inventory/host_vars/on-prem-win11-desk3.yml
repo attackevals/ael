@@ -1,0 +1,5 @@
+---
+mount_drive:
+  - file_server: conclave
+    file_share: projects
+    drive_mount: X

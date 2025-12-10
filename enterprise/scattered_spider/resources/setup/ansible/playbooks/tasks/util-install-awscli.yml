@@ -1,0 +1,20 @@
+---
+- name: Validate host list
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: validate host list
+      fail:
+        msg: "You must run this playbook with --limit <host or hostgroup> to select hosts!"
+      when: (ansible_limit is not defined) or (ansible_limit == "")
+
+- name: Install awscli
+  hosts: "{{ ansible_limit | default(omit) }}"
+  strategy: free
+  gather_facts: yes
+  vars_files:
+    - ../vars/vars.yml
+
+  roles:
+    - awscli

@@ -1,0 +1,304 @@
+---
+- name: Configure Kali box
+  hosts:
+    - linux_kali
+  gather_facts: yes
+  become: yes
+  vars:
+    kali_bundle_name: "{{ red_dev.kali_bundle_name }}"
+    kali_dev_dir: "{{ red_dev.kali_dev_dir }}"
+    scenario_dir1: "{{ red_dev.kali_dev_dir }}/{{ red_dev.kali_scenario1 }}"
+    scenario_dir2: "{{ red_dev.kali_dev_dir }}/{{ red_dev.kali_scenario2 }}"
+    tuned_profile: "{{ red_dev.tuned_profile }}"
+    updated_kali_signing_key: "https://archive.kali.org/archive-keyring.gpg"
+    primary_red_user: "op1"
+    s3fs_umask: "0022"
+    s3fs_user: "{{ primary_red_user }}"
+    s3fs_group: "{{ primary_red_user }}"
+
+    # there may be one build resulting from a dev range
+    # dev_pkg_name: ""
+
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    # fix kali signing key update, upstream signing key was rotated and new key needs to be installed, https://www.kali.org/blog/new-kali-archive-signing-key/
+    - name: Add Kali signing key
+      # note: cannot use ansible apt_key module as gpg binary is not guaranteed installed at this point and required
+      # to use apt_key module
+      ansible.builtin.shell: |
+        wget {{ updated_kali_signing_key}} -O /usr/share/keyrings/kali-archive-keyring.gpg
+      args:
+        executable: /bin/bash
+      tags:
+        - deployment
+        - download
+
+    - name: CSV - Generate output filename
+      set_fact: date="{{lookup('pipe','date +%Y%m%d_%H%M%S')}}"
+      run_once: true
+      tags:
+        - download
+
+    - name: CSV - Generate just ymd for organizing range reports in s3
+      set_fact: date_day="{{lookup('pipe','date +%Y%m%d')}}"
+      run_once: true
+      tags:
+        - download
+
+    - name: fix dns
+      ansible.builtin.lineinfile:
+        backup: yes
+        state: present
+        path: /etc/dhcp/dhclient.conf
+        regexp: '^supersede domain-name'
+        line: 'supersede domain-name-servers {{ support_vars.dns_server_ip }};'
+      tags:
+        - fix
+
+    - name: Create dev directory if it does not exist
+      ansible.builtin.file:
+        path: "{{ kali_dev_dir }}"
+        state: directory
+        mode: '0777'
+      tags:
+        - deployment
+        - download
+
+    - name: Create validation dir if it does not exist
+      ansible.builtin.file:
+        path: "{{ support_vars.preflights_validation_ssh_private_key_path }}"
+        state: directory
+        mode: '0755'
+      tags:
+        - deployment
+        - preflights
+
+    - name: Install Kali Aptitude Packages
+      ansible.builtin.apt:
+        name:
+          - ack
+          - chromium-sandbox
+          - cmake
+          - curl
+          - freerdp3-x11
+          - gnupg
+          - golang
+          - impacket-scripts
+          - kali-desktop-xfce
+          - libnss3-tools
+          - metasploit-framework
+          - mingw-w64
+          - mono-mcs
+          - openssh-sftp-server
+          - python3-impacket
+          - python3-pip
+          - python3-venv
+          - python3.13-venv
+#          - rclone
+          - redis-server
+          - s3fs
+          - smbclient
+          - tuned
+          - uuid-runtime
+          - vim
+          - vsftpd
+          - wget
+          - xclip
+          - xorg
+          - xrdp
+          - xz-utils
+          - zstd
+        update_cache: yes
+      tags:
+        - deployment
+      ignore_errors: yes
+
+    - name: configure x server timeout
+      ansible.builtin.include_tasks:
+        file: "{{ playbook_dir }}/../library/kali-xfce-disable-screenlock.yml"
+        apply:
+          tags:
+            - xfce
+            - qol
+      tags:
+        - qol
+
+    - name: "Create scenario directory if it does not exist | {{ red_dev.kali_scenario1 }}"
+      ansible.builtin.file:
+        path: "{{ scenario_dir1 }}"
+        state: directory
+        mode: '0777'
+      tags:
+        - deployment
+        - download
+
+    - name: "Create scenario directory if it does not exist | {{ red_dev.kali_scenario2 }}"
+      ansible.builtin.file:
+        path: "{{ scenario_dir2 }}"
+        state: directory
+        mode: '0777'
+      tags:
+        - deployment
+        - download
+
+    - name: Deploy Kali RDP fix
+      ansible.builtin.copy:
+        src: ../files/fix-kali-rdp.sh
+        dest: /usr/local/bin
+        owner: root
+        group: root
+        mode: '0755'
+      tags:
+        - deployment
+        - fix
+
+    - name: Allow password authentication to kali
+      ansible.builtin.copy:
+        src: ../files/52-sshd-allow-pass-auth.conf
+        dest: /etc/ssh/sshd_config.d/
+        owner: root
+        group: root
+        mode: '0644'
+      tags:
+        - deployment
+
+    - name: Create users for kali
+      ansible.builtin.user:
+        name: "{{ item.username }}"
+        expires: -1
+        generate_ssh_key: yes
+        password: "{{ item.password | password_hash('sha512')}}"
+        groups: sudo
+        state: present
+        shell: /bin/bash
+        append: yes
+      loop: "{{ red_users }}"
+      tags:
+        - deployment
+
+    - name: Set hostname
+      ansible.builtin.hostname:
+        name: "{{ red_dev.kali_fqdn }}"
+        use: systemd
+      ignore_errors: yes
+      tags:
+        - deployment
+        - fix
+        - hostname
+
+    - name: Set hostname via cli as backup
+      ansible.builtin.shell: "hostnamectl set-hostname {{ red_dev.kali_fqdn }}"
+      ignore_errors: yes
+      become: yes
+      tags:
+        - deployment
+        - fix
+        - hostname
+
+    - name: Set hostname via cli as backup
+      ansible.builtin.shell: "echo {{ red_dev.kali_fqdn }} > /etc/hostname"
+      ignore_errors: yes
+      become: yes
+      tags:
+        - deployment
+        - fix
+        - hostname
+
+    - name: Make executable files
+      ansible.builtin.shell: |
+        find "{{ item }}" -type f \( -name "*.sh" -o -name "controlServer" -o -name "aitm*" \) -exec chmod +x {} \;
+      loop:
+        - "{{ scenario_dir1 }}"
+        - "{{ scenario_dir2 }}"
+      tags:
+        - deployment
+        - permissions
+        - fix
+        - download
+
+    - name: Preserve hostname after reboot
+      lineinfile:
+        backup: yes
+        state: present
+        path: /etc/cloud/cloud.cfg
+        regexp: '^{{ item.search }}'
+        line: '{{ item.replace }}'
+      with_items:
+        - { search: 'preserve_hostname', replace: 'preserve_hostname: true' }
+      tags:
+        - fix
+        - hostname
+
+    - name: Configure XRDP
+      ansible.builtin.template:
+        src: ../files/xrdp.ini.j2
+        dest: /etc/xrdp/xrdp.ini
+        owner: root
+        group: root
+        mode: '0644'
+        backup: yes
+      tags:
+        - configuration
+
+    - name: Add XRDP User to ssl-cert group
+      ansible.builtin.user:
+        name: xrdp
+        groups: ssl-cert
+        append: yes
+      tags:
+        - configuration
+
+    - name: Start xrdp service
+      ansible.builtin.service:
+        name: xrdp
+        enabled: yes
+        state: started
+      tags:
+        - configuration
+
+    - name: Enable and Restart tuned service
+      ansible.builtin.systemd:
+        name: "tuned"
+        daemon_reload: yes
+        state: restarted
+        enabled: yes
+
+    - name: check tuned profile
+      ansible.builtin.shell: tuned-adm active
+      register: tuned_admin
+      changed_when: false
+
+    - name: set tuned profile
+      ansible.builtin.shell: tuned-adm profile {{ tuned_profile }}
+      when: "'Current active profile: virtual-guest' not in tuned_admin.stdout"
+
+    - name: Copy sysctl conf
+      copy:
+        src: "../files/redirectors/98-er6.conf"
+        dest: "/etc/sysctl.d/"
+        mode: '0644'
+        owner: root
+        group: root
+
+    - name: Apply sysctl conf
+      ansible.builtin.shell: |
+        sysctl --system
+      ignore_errors: yes
+
+    # Include FTP setup role
+    - name: Set up FTP server
+      include_role:
+        name: ftp_setup
+      vars:
+        ftp_srv_dir: "{{ red_dev.ftp_srv_dir }}"
+        ftp_user: "{{ red_dev.ftp_user }}"
+        ftp_users: "{{ red_users_ftp }}"
+        ftp_passive_min_port: "{{ red_dev.ftp_pasv_min_port }}"
+        ftp_passive_max_port: "{{ red_dev.ftp_pasv_max_port }}"
+        use_ftp_redirector: yes
+        ftp_redirector_ip: "{{ red_dev.ftp_redirector_ip }}"
+      tags:
+        - ftp
+        - deployment

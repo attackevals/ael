@@ -1,0 +1,10 @@
+hostname,os_family,os_name,os_version,architecture,kernel,domain
+{% for host in groups['victim'] %}
+{% if hostvars[host]['ansible_os_family'] is defined %}
+{% if hostvars[host]['ansible_os_family'] == "Windows" %}
+{{ hostvars[host]['ansible_hostname'] }},Windows,{{ hostvars[host]['win_info_output']['output'][0]['OsName'] | default('') }},{{ hostvars[host]['win_info_output']['output'][0]['OsVersion'] | default('') }},{{ hostvars[host]['ansible_architecture'] | default('') }},{{ hostvars[host]['win_info_output']['output'][0]['OsBuildNumber'] | default('') }},{{ hostvars[host]['win_info_output']['output'][0]['CsDomain'] | default('') }}
+{% else %}
+{{ hostvars[host]['ansible_hostname'] }},{{ hostvars[host]['ansible_os_family'] }},{{ hostvars[host]['ansible_distribution'] }},{{ hostvars[host]['ansible_distribution_version'] }},{{ hostvars[host]['ansible_architecture'] }},{{ hostvars[host]['ansible_kernel'] }},{{ hostvars[host]['ansible_domain'] | default('') }}
+{% endif %}
+{% endif %}
+{% endfor %}

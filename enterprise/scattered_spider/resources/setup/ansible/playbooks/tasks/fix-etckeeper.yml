@@ -1,0 +1,21 @@
+---
+- name: Etckeeper Fix
+  hosts: linux:&victim
+  become: yes
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - etckeeper
+    - fix
+
+  tasks:
+    - name: Purge etckeeper
+      ansible.builtin.command:
+        cmd: dpkg --purge etckeeper
+      ignore_errors: true
+
+    - name: Reinstall etckeeper
+      ansible.builtin.apt:
+        name: etckeeper
+        state: present
+        force: yes

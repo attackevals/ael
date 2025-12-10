@@ -1,0 +1,44 @@
+---
+- name: Populate HTML file for send-emails.py for each vendor
+  hosts: localhost
+  become: yes
+  vars:
+    vendor:
+    health_check_check_link:
+    airbyte_login_link:
+    airbyte_connections_link:
+    email_link:
+
+    date:
+    month:
+    username:
+
+    aws_account_id:
+    aws_login_link:
+    aws_account_billing_link:
+    aws_account_cost_managment_link:
+    aws_support_link:
+
+    templates_path: "{{ playbook_dir }}../files/email-population/{{ vendor }}/html-templates/"
+    file_path: "{{ playbook_dir }}../files/email-population/{{ vendor }}/"
+
+    vendor_list:
+
+  vars_files:
+    - ../vars/vars.yml
+
+  tags:
+    - REPLACE
+
+  tasks:
+    - name: create vendor directory
+      file:
+        path: "{{ file_path }}"
+        state: directory
+        mode: '0755'
+
+    - name: populate html with vendor info
+      template:
+        src: "{{ templates_path }}/{{ item }}"
+        dest: "{{ file_path }}{{ item | basename | regex_replace('.j2$', '') }}-{{ vendor | lower | replace(' ', '_') }}.html"
+      loop: "{{ lookup('fileglob', '{{ templates_path }}*.html.j2') | map('basename') | list }}"

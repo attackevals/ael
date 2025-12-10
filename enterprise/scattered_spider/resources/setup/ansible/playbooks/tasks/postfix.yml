@@ -1,0 +1,114 @@
+---
+- name: Deploy postfix
+  hosts: postfix-srv1
+  become: true
+  gather_facts: true
+  vars_files:
+    - ../vars/vars.yml
+  vars:
+    postfix_myhostname: "mail.hulln.net"
+    postfix_mydomain: "hulln.net"
+    postfix_myorigin: "hulln.net"
+    postfix_smtp_listen_port: "{{ support_vars.postfix_smtp_port }}"
+    postfix_inet_interfaces: "all"
+    postfix_mynetworks: >-
+      {{ ([
+        '127.0.0.0/8',
+        '192.168.0.0/16',
+        '10.0.0.0/8'] + (cidrs_list | map(attribute='prefix') | list)) | join(', ') }}
+
+    postfix_aliases:
+      - name: root
+        destination: test@mail.hulln.net
+    postfix_inet_protocols: all
+    # Set the restrictions for receiving mails.
+    postfix_smtpd_recipient_restrictions:
+      - permit_mynetworks
+      - permit
+    # The default SMTP TLS security level for the Postfix SMTP client
+    # Valid values are: dane, encrypt, fingerprint, may, none, secure, verify
+    postfix_smtp_tls_security_level: none
+  roles:
+    - role: robertdebock.postfix
+
+  tasks:
+    - name: Ensure SMTP firewall port is open
+      community.general.ufw:
+        rule: allow
+        to_port: "{{ support_vars.postfix_smtp_port }}"
+        proto: any
+
+- name: Deploy postfix
+  hosts: postfix-srv2
+  become: true
+  gather_facts: true
+  vars_files:
+    - ../vars/vars.yml
+  vars:
+    postfix_myhostname: "mail.lorath.com"
+    postfix_mydomain: "lorath.com"
+    postfix_myorigin: "lorath.com"
+    postfix_smtp_listen_port: "{{ support_vars.postfix_smtp_port }}"
+    postfix_inet_interfaces: "all"
+    postfix_mynetworks: >-
+      {{ ([
+        '127.0.0.0/8',
+        '192.168.0.0/16',
+        '10.0.0.0/8'] + (cidrs_list | map(attribute='prefix') | list)) | join(', ') }}
+
+    postfix_aliases:
+      - name: root
+        destination: test@mail.lorath.com
+    postfix_inet_protocols: all
+    # Set the restrictions for receiving mails.
+    postfix_smtpd_recipient_restrictions:
+      - permit_mynetworks
+      - permit
+    # The default SMTP TLS security level for the Postfix SMTP client
+    # Valid values are: dane, encrypt, fingerprint, may, none, secure, verify
+    postfix_smtp_tls_security_level: none
+  roles:
+    - role: robertdebock.postfix
+
+  tasks:
+    - name: Ensure SMTP firewall port is open
+      community.general.ufw:
+        rule: allow
+        to_port: "{{ support_vars.postfix_smtp_port }}"
+        proto: any
+
+- name: Deploy postfix server 3
+  hosts: postfix-srv3
+  become: true
+  gather_facts: true
+  vars_files:
+    - ../vars/vars.yml
+  vars:
+    postfix_myhostname: "mail.pentos.com"
+    postfix_mydomain: "pentos.com"
+    postfix_myorigin: "pentos.com"
+    postfix_smtp_listen_port: "{{ support_vars.postfix_smtp_port }}"
+    postfix_inet_interfaces: "all"
+    postfix_mynetworks: >-
+      {{ ([
+        '127.0.0.0/8',
+        '192.168.0.0/16',
+        '10.0.0.0/8'] + (cidrs_list | map(attribute='prefix') | list)) | join(', ') }}
+
+    postfix_aliases:
+      - name: root
+        destination: test@mail.pentos.com
+    postfix_inet_protocols: all
+    postfix_smtpd_recipient_restrictions:
+      - permit_mynetworks
+      - permit
+    postfix_smtp_tls_security_level: none
+  roles:
+    - role: robertdebock.postfix
+
+  tasks:
+    - name: Ensure SMTP firewall port is open
+      community.general.ufw:
+        rule: allow
+        to_port: "{{ support_vars.postfix_smtp_port }}"
+        proto: any

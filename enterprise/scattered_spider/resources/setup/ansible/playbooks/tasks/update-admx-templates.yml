@@ -1,0 +1,66 @@
+---
+- name: Setup Group Policy Central Store, Download, and Update ADMX/ADML Files
+  hosts: windows_domain_controllers
+  gather_facts: no
+  vars:
+    base_central_store_path: "C:/Windows/SYSVOL/sysvol/{{ domain_info.dns_domain_name}}/Policies/PolicyDefinitions"
+    policy_definitions_folder: "../files/gpo/admx/PolicyDefinitions"
+    tmp_dir: "C:/Temp"
+    language_folder: "en-US"
+    extracted_admx_folder: "extracted_admx"
+    admx_dir_name: "admx"
+    adml_dir_name: "adml"
+    # win11 and windows server policy files combined in directories
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: Ensure PolicyDefinitions folder exists
+      ansible.windows.win_file:
+        path: "{{ base_central_store_path }}"
+        state: directory
+
+    - name: Ensure English language folder exists (en-US)
+      ansible.windows.win_file:
+        path: "{{ base_central_store_path }}/{{ language_folder }}"
+        state: directory
+
+    - name: Ensure Temp folder exists
+      ansible.windows.win_file:
+        path: "{{ tmp_dir }}"
+        state: directory
+
+    - name: Ensure extracted_admx folder exists
+      ansible.windows.win_file:
+        path: "{{ tmp_dir }}/{{ extracted_admx_folder }}"
+        state: directory
+
+    - name: "Copy policy definitions folder to DC {{ policy_definitions_folder }}"
+      ansible.windows.win_copy:
+        src: "{{ policy_definitions_folder }}"
+        dest: "{{ tmp_dir }}/{{ extracted_admx_folder }}"
+
+    - name: Copy ADMX files to Central Store
+      ansible.windows.win_powershell:
+        script: |
+          Copy-Item -Path "{{ tmp_dir }}/{{ extracted_admx_folder }}/PolicyDefinitions/*.admx" -Destination "{{ base_central_store_path }}" -Force
+
+    - name: Copy ADML files to Central Store
+      ansible.windows.win_powershell:
+        script: |
+          Copy-Item -Path "{{ tmp_dir }}/{{ extracted_admx_folder }}/PolicyDefinitions/{{ language_folder }}/*.adml" -Destination "{{ base_central_store_path }}/{{ language_folder }}" -Force
+
+#    - name: Clean up temporary MSI files
+#      ansible.windows.win_file:
+#        path: "{{ tmp_dir }}/{{ item | basename }}"
+#        state: absent
+#      loop:
+#        - "{{ win11_admx_msi }}"
+#        - "{{ win_server2022_admx_msi }}"
+#
+#    - name: Clean up temporary download and extraction files
+#      ansible.windows.win_file:
+#        path: "{{ item }}"
+#        state: absent
+#      loop:
+#        - "{{ tmp_dir }}/extracted_admx"

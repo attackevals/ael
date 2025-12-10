@@ -1,0 +1,21 @@
+---
+- name: "Configure Linux Domain for Scenario A {{ domain_info_kingslanding.shortname }}"
+  hosts: onprem:cloud:&victim:&linux # all hosts in the groups onprem or cloud, that are also in the groups victim and linux
+  become: yes
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - joindomain
+    - scenariob
+    - linux
+
+  tasks:
+    - ansible.builtin.include_tasks: "{{ playbook_dir }}/../library/configure-and-join-domain-linux.yml"
+      vars:
+        linux_hostname: "{{ hostvars[inventory_hostname].hostname }}"
+        domain_dns_name: "{{ domain_info_kingslanding.dns_domain_name }}"
+        domain_admin_user: "{{ domain_info_kingslanding.admin_user }}"
+        domain_admin_pass: "{{ domain_info_kingslanding.admin_pass }}"
+        ad_ip_addr: "{{ domain_info_kingslanding.ad_ip_addr }}"
+        tuned_profile: "virtual-guest"

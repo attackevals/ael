@@ -1,0 +1,198 @@
+---
+- name: query authentik authorization flow UUID
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/flows/instances/?slug=default-provider-authorization-implicit-consent"
+    method: GET
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+  register: authorization_flow
+
+- name: set auth flow uuid
+  set_fact:
+    flow_uuid: "{{ authorization_flow.json.results[0].pk }}"
+
+- name: query authentik authentication flow UUID
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/flows/instances/?slug=default-authentication-flow"
+    method: GET
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+  register: authentication_flow
+
+- name: set authentication flow uuid
+  set_fact:
+    authentication_flow_uuid: "{{ authorization_flow.json.results[0].pk }}"
+
+- name: query authentik invalidation flow UUID
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/flows/instances/?slug=default-invalidation-flow"
+    method: GET
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+  register: inval_flow
+
+- name: set invalidation flow uuid
+  set_fact:
+    inval_flow_uuid: "{{ inval_flow.json.results[0].pk }}"
+
+- name: Create OIDC Provider for Guacamole
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/providers/oauth2/"
+    method: POST
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+    body_format: json
+    body:
+      name: "Guacamole OIDC"
+      authorization_flow: "{{ flow_uuid }}"
+      authentication_flow: "{{ authentication_flow.json.results[0].pk }}"
+      invalidation_flow: "{{ inval_flow_uuid }}"
+      client_type: "confidential"
+      client_id: "{{ oidc_client_id }}"
+      redirect_uris: ".*"
+    status_code: 201
+  register: oidc_provider
+  ignore_errors: true
+
+- name: query oidc provider
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/providers/oauth2/?client_id={{ oidc_client_id }}"
+    method: GET
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+  register: guac_provider
+
+- name: query scope mappings
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}/api/v3/propertymappings/provider/scope/?search=openID"
+    method: GET
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+  register: scope_map
+
+- name: query certificates
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/crypto/certificatekeypairs/?name={{ authentik_domain }}"
+    method: GET
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+    validate_certs: no
+  register: cert_response
+
+- name: Update Guacamole Provider in Authentik
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/providers/oauth2/{{ guac_provider.json.results[0].pk }}/"
+    method: PATCH
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+    body_format: json
+    body:
+      property_mappings: "{{ scope_map.json | json_query('results[*].pk') }}"
+      signing_key: "{{ cert_response.json | json_query('results[*].pk') | join('') }}"
+      authorization_flow: "{{ flow_uuid }}"
+      authentication_flow: "{{ authentication_flow.json.results[0].pk }}"
+      invalidation_flow: "{{ inval_flow_uuid }}"
+
+- name: Create Guacamole Application in Authentik
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/core/applications/"
+    method: POST
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+    body_format: json
+    body:
+      name: "Guacamole"
+      slug: "guacamole"
+      protocol_provider: "openid"
+      provider: "{{ guac_provider.json.results[0].pk }}"
+      meta_launch_url: "https://{{ guacamole_domain }}/api/ext/openid/login"
+    status_code: 201
+  register: guac_app
+  ignore_errors: true
+
+- name: set secret
+  set_fact:
+    oidc_secret: "{{ guac_provider.json.results[0].client_secret }}"
+
+- name: Create Guacamole directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+  loop:
+    - /opt/guacamole
+    - /opt/guacamole/data
+    - /opt/guacamole/drive
+    - /opt/guacamole/init
+    - /opt/guacamole/nginx/templates
+
+- name: Create Guacamole docker-compose.yml
+  template:
+    src: "guac-compose.yml.j2"
+    dest: /opt/guacamole/docker-compose.yml
+    mode: '0644'
+
+- name: Upload prepare script
+  ansible.builtin.copy:
+    src: prepare.sh
+    dest: /opt/guacamole/prepare.sh
+    mode: '0755'
+
+- name: Run prepare script
+  ansible.builtin.shell: "/opt/guacamole/prepare.sh"
+  args:
+    chdir: /opt/guacamole/
+    executable: /bin/bash
+
+- name: Create nginx template
+  template:
+    src: "nginx-template.j2"
+    dest: /opt/guacamole/nginx/templates/guacamole.conf.template
+    mode: '0644'
+
+- name: Move guac key
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/../files/certs/{{ domain_name }}/guac/{{ guacamole_domain }}-key.pem"
+    dest: /opt/guacamole/nginx/ssl/self-ssl.key
+    mode: '0644'
+
+- name: Move guac certs
+  copy:
+    src: "{{ playbook_dir }}/../files/certs/{{ domain_name }}/guac/{{ guacamole_domain }}.pem"
+    dest: /opt/guacamole/nginx/ssl/self.cert
+    mode: '0644'
+
+- name: Move root cert
+  copy:
+    src: "{{ playbook_dir }}/../files/certs/ca/{{ ca_cert_name }}.pem"
+    dest: "/opt/guacamole/record/{{ ca_cert_name }}.pem"
+    mode: '0644'
+
+- name: Start Guacamole
+  community.docker.docker_compose_v2:
+    project_src: /opt/guacamole
+    state: present
+
+- name: Add trusted ca cert to guac
+  community.docker.docker_container_exec:
+    container: guacamole_compose
+    user: root
+    command: "keytool -keystore /opt/java/openjdk/lib/security/cacerts -storepass changeit -noprompt -trustcacerts -import -alias my-ca -file /record/{{ ca_cert_name }}.pem"
+  register: result
+  ignore_errors: true

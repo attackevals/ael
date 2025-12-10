@@ -1,0 +1,137 @@
+---
+- name: Create directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+  loop:
+    - /opt/authentik
+    - /opt/authentik/custom-templates
+    - /opt/authentik/certs
+
+- name: Create Authentik docker-compose.yml
+  template:
+    src: "{{ playbook_dir }}/../files/authentik/authentik-compose.yml.j2"
+    dest: /opt/authentik/docker-compose.yml
+    mode: '0644'
+
+- name: Move authentik cert
+  copy:
+    src: "{{ playbook_dir }}/../files/certs/{{ authentik_domain.split('.')[1:] | join('.') }}/{{ site }}/{{ authentik_domain }}.pem"
+    dest: /opt/authentik/certs/
+    mode: '0644'
+  tags: certs
+
+- name: Move authentik key
+  copy:
+    src: "{{ playbook_dir }}/../files/certs/{{ authentik_domain.split('.')[1:] | join('.') }}/{{ site }}/{{ authentik_domain }}-key.pem"
+    dest: /opt/authentik/certs/{{ authentik_domain }}.key
+    mode: '0644'
+  tags: certs
+
+- name: Start Authentik
+  community.docker.docker_compose_v2:
+    project_src: /opt/authentik
+    state: present
+
+- name: Wait for Authentik to be ready
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/core/applications/"
+    method: GET
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+    validate_certs: no
+    status_code: 200
+  register: result
+  until: result.status == 200
+  retries: 15
+  delay: 10
+
+- name: debug
+  debug:
+    var: result
+
+- name: Configure LDAP source
+  ansible.builtin.include_tasks: ldap-source.yml
+  when: ldap_source
+
+- name: query built-in brand
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/core/brands/?domain=authentik-default"
+    method: GET
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+    validate_certs: no
+  register: default_response
+
+- name: change default brand
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/core/brands/{{ default_response.json | json_query('results[*].brand_uuid') | join('') }}/"
+    method: PATCH
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+    body_format: json
+    body:
+      default: false
+  register: results
+  ignore_errors: true
+
+- name: query certificates
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/crypto/certificatekeypairs/?name={{ authentik_domain }}"
+    method: GET
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+    validate_certs: no
+  register: cert_response
+
+- name: create brand
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/core/brands/"
+    method: POST
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+    body_format: json
+    body:
+      domain: "{{ domain_name }}"
+      branding_title: "{{ domain_name }}"
+      web_certificate: "{{ cert_response.json | json_query('results[*].pk') | join('') }}"
+      default: true
+    status_code: 201
+  ignore_errors: true
+
+- name: query brands
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/core/brands/?domain={{ domain_name }}"
+    method: GET
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+    validate_certs: no
+  register: brand_response
+
+- name: update brand to default
+  ansible.builtin.uri:
+    url: "https://{{ authentik_domain }}:{{ authentik_port }}/api/v3/core/brands/{{ brand_response.json | json_query('results[*].brand_uuid') | join('') }}/"
+    method: PATCH
+    validate_certs: no
+    headers:
+      Authorization: "Bearer {{ authentik_admin_token }}"
+      Content-Type: "application/json"
+    body_format: json
+    body:
+      default: true
+      web_certificate: "{{ cert_response.json | json_query('results[*].pk') | join('') }}"
+  register: results
+  ignore_errors: true
+
+- name: Finalize AWS authentication
+  ansible.builtin.include_tasks: aws-postdeploy.yml
+  when: aws_authentication and post_deploy
+
+- name: Configure AWS authentication
+  ansible.builtin.include_tasks: aws-authentication.yml
+  when: aws_authentication

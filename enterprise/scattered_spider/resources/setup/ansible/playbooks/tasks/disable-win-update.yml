@@ -1,0 +1,12 @@
+---
+- name: Disable Windows Update Service
+  hosts: windows
+  become: yes
+  gather_facts: false
+
+  tasks:
+    - name: Disable windows update service
+      win_shell: |
+        gpupdate /force
+        stop-service -DisplayName "Windows Update"
+        get-service -DisplayName "Windows Update" | Set-Service -StartupType "Disabled"

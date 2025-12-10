@@ -1,0 +1,13 @@
+hostname,os_type,service_name,status,startup_type
+{% for host in groups['victim'] %}
+{% if hostvars[host]['win_services_output'] is defined and hostvars[host]['win_services_output']['output'][0] is defined %}
+{% for service in (hostvars[host]['win_services_output']['output'][0] | from_json) %}
+{{ hostvars[host]['ansible_hostname'] }},Windows,{{ service.Name }},{{ service.Status }},{{ service.StartType }}
+{% endfor %}
+{% endif %}
+{% if hostvars[host]['linux_services_output'] is defined and hostvars[host]['linux_services_output']['stdout_lines'] is defined %}
+{% for service in hostvars[host]['linux_services_output']['stdout_lines'] %}
+{{ hostvars[host]['ansible_hostname'] }},Linux,{{ service }}
+{% endfor %}
+{% endif %}
+{% endfor %}

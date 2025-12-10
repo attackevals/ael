@@ -1,0 +1,14 @@
+build/
+install/
+external/
+out/
+CMakeUserPresets.json
+**.xor
+**.exe
+!GUP.exe
+!rc.exe
+**.lib
+**.exp
+**.msi
+.vs/*
+**.html

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35027.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "PlugxMSI", "PlugxMSI.vdproj", "{C585AA05-A186-4799-B35C-2788C4711E2C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C585AA05-A186-4799-B35C-2788C4711E2C}.Debug|Default.ActiveCfg = Debug
+		{C585AA05-A186-4799-B35C-2788C4711E2C}.Debug|Default.Build.0 = Debug
+		{C585AA05-A186-4799-B35C-2788C4711E2C}.Release|Default.ActiveCfg = Release
+		{C585AA05-A186-4799-B35C-2788C4711E2C}.Release|Default.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {17F5CA6A-5870-4C5F-9C28-0E9B28520B54}
+	EndGlobalSection
+EndGlobal

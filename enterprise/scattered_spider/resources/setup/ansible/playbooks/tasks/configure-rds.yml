@@ -1,0 +1,61 @@
+---
+- name: "Install Remote Desktop Services features"
+  hosts: windows_rds_servers:&victim
+  become: yes
+  gather_facts: yes
+  strategy: free
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - rds
+    - windows
+    - configure
+  roles:
+    - windows_remote_desktop_session_host
+
+- name: "Configure Remote Desktop Services license group"
+  hosts: on-prem-addc-srv1
+  become: yes
+  become_method: runas
+  gather_facts: no
+  strategy: free
+  vars_files:
+    - ../vars/vars.yml
+  vars:
+    ansible_become_user: "{{ domain_info_kingslanding.admin_user }}"
+    ansible_become_pass: "{{ domain_info_kingslanding.admin_pass }}"
+    terminal_services_licensing_group: "Terminal Server License Servers"
+  tags:
+    - rds
+    - windows
+    - configure
+
+  tasks:
+    - name: Get group membership information
+      win_shell: |
+        Get-ADGroupMember -Identity "{{ ad_group }}" -Server "{{ domain_info_kingslanding.ad_hostname }}" | Select-Object -ExpandProperty Name
+      vars:
+        ad_group: "{{ terminal_services_licensing_group }}"
+        name: "{{ ad_group }}"
+        domain_server: "{{ domain_info_kingslanding.ad_hostname }}"
+        domain_username: "{{ domain_info_kingslanding.admin_user }}"
+        domain_password: "{{ domain_info_kingslanding.admin_pass }}"
+      register: group_info
+
+    - name: Debug group membership
+      ansible.builtin.debug:
+        var: group_info
+
+# keeping just in case, doesn't seem to be needed
+#    - name: Add server to AD group
+#      microsoft.ad.group:
+#        name: "{{ terminal_services_licensing_group }}"
+#        members:
+#          add:
+#            - "{{ hostvars['on-prem-access-srv1'].hostname }}$"
+#        state: present
+#        domain_server: "{{ domain_info_kingslanding.ad_hostname }}"
+#        domain_username: "{{ domain_info_kingslanding.admin_user }}"
+#        domain_password: "{{ domain_info_kingslanding.admin_pass }}"
+#        scope: "domainlocal"  # Can be 'domainlocal', 'global', or 'universal'
+#

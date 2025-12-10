@@ -1,0 +1,4 @@
+LIBRARY     gflagsui
+EXPORTS
+    ShowGflagsUI
+    DllRegisterServer

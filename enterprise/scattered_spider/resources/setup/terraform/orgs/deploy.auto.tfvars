@@ -1,0 +1,12 @@
+category                    = "er7"
+aws-shared-credentials      = ["~/.aws/credentials"]
+charge-code                 = "GNA063.0002.005.02"
+round-name                  = "ER7"
+name-prefix                 = "er7-enterpriseround7"
+vendor                      = "enterpriseround7"
+provisioner                 = "terraform"
+shutdown_ok                 = "dev-schedule"
+account-cloud-management-id = "" # TODO: aws.cloud
+cloud-identity-store-id     = "" # TODO: aws.cloud
+account-detections-email    = "" # TODO: aws.cloud-detections
+account-protections-email   = "" # TODO: aws.cloud-protections

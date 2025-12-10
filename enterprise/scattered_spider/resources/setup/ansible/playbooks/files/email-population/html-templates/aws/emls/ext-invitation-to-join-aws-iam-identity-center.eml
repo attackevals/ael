@@ -1,0 +1,338 @@
+Received: from MW4PR09MB9568.namprd09.prod.outlook.com (2603:10b6:303:1f8::18)
+ by DS0PR09MB11027.namprd09.prod.outlook.com with HTTPS; Thu, 30 Jan 2025
+ 18:05:42 +0000
+Received: from CY5PR09CA0027.namprd09.prod.outlook.com (2603:10b6:930:1::29)
+ by MW4PR09MB9568.namprd09.prod.outlook.com (2603:10b6:303:1f8::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.21; Thu, 30 Jan
+ 2025 18:05:40 +0000
+Received: from DS1PEPF00017E08.namprd09.prod.outlook.com
+ (2603:10b6:930:1:cafe::34) by CY5PR09CA0027.outlook.office365.com
+ (2603:10b6:930:1::29) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8398.20 via Frontend Transport; Thu,
+ 30 Jan 2025 18:05:40 +0000
+Authentication-Results: spf=fail (sender IP is 15.200.32.128)
+ smtp.mailfrom=amazonses.com; dkim=fail (signature did not verify)
+ header.d=login.awsapps.com;dmarc=none action=none
+ header.from=login.awsapps.com;compauth=none reason=405
+Received-SPF: Fail (protection.outlook.com: domain of amazonses.com does not
+ designate 15.200.32.128 as permitted sender) receiver=protection.outlook.com;
+ client-ip=15.200.32.128; helo=mta-jays8ip.email.us.etp.fireeyegov.com;
+Received: from mta-jays8ip.email.us.etp.fireeyegov.com (15.200.32.128) by
+ DS1PEPF00017E08.mail.protection.outlook.com (10.167.18.165) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.8398.14
+ via Frontend Transport; Thu, 30 Jan 2025 18:05:40 +0000
+Return-Path: 01000194b863c015-4292244f-df6b-4f57-a6ba-77cedc83939a-000000@amazonses.com
+Received: from [127.0.0.1] ([127.0.0.1:54284] helo=smtp-injection-worker)
+	by etp-prd10-06 (envelope-from <01000194b863c015-4292244f-df6b-4f57-a6ba-77cedc83939a-000000@amazonses.com>)
+	(ecelerity 4.7.0.20111 r(msys-ecelerity:tags/4.7.0-ga^0)) with ESMTPS (cipher=ECDHE-RSA-AES128-GCM-SHA256)
+	id 32/7A-12422-37FBB976; Thu, 30 Jan 2025 18:05:39 +0000
+X-FE-ETP-SENDER-IP: 67.231.147.183
+X-FE-ETP-CONNECTING-IP: 67.231.147.183
+Received: from mx0e-00007b01.gpphosted.com (mx0e-00007b01.gpphosted.com [67.231.147.183])
+	by etp-prd10-08 (envelope-from <01000194b863c015-4292244f-df6b-4f57-a6ba-77cedc83939a-000000@amazonses.com>)
+	FireEye ETP with ESMTPS (cipher=ECDHE-RSA-AES256-GCM-SHA384)
+	id 3z2qPb7-21643-10gA7410570217FBB976d59ccb7; batch_id A7/41-05702-17FBB976; Thu, 30 Jan 2025 18:05:37 +0000 (UTC)
+Received: from pps.filterd (m0326551.ppops.net [127.0.0.1])
+	by mx0f-00007b01.gpphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50UE1mUR031803
+	for <tlannister@kingslanding.net>; Thu, 30 Jan 2025 18:05:36 GMT
+Authentication-Results-Original: ppops.net;	spf=pass
+ smtp.mailfrom=01000194b863c015-4292244f-df6b-4f57-a6ba-77cedc83939a-000000@amazonses.com;
+	dkim=pass header.s=aupanecptqhfoopal45y2dyj24f2qg2x
+ header.d=login.awsapps.com;	dkim=pass
+ header.s=ug7nbtf4gccmlpwj322ax3p6ow6yfsug header.d=amazonses.com;	dmarc=pass
+ header.from=login.awsapps.com
+Received: from a9-41.smtp-out.amazonses.com (a9-41.smtp-out.amazonses.com [54.240.9.41])
+	by mx0f-00007b01.gpphosted.com (PPS) with ESMTPS id 44g8cx9hdq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=NOT)
+	for <tlannister@kingslanding.net>; Thu, 30 Jan 2025 18:05:34 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=aupanecptqhfoopal45y2dyj24f2qg2x; d=login.awsapps.com;
+	t=1738260332;
+	h=Date:From:To:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-ID;
+	bh=qYE2Jzx6r+bBMABGz83g/xd5YpOr+hNp+wGtKPVtb8k=;
+	b=eFW5VroLdgzbKW7WVFXIYXns2z6w/Mo0gJHW7L5I0t57+jxQKHoD+AasSmCRdkTf
+	6M+M/GU/254TjHqpsOEk1A6vXilKQQAkAisyouLVbwyMSDZGoZNaV+uBhYqECspcFOu
+	ktFff1NGoVy9HDO4EeUda3J068V/af3i3u6r2SAb9drr9GreHXLk/1EYJwIA9BkcrLG
+	1sg8Ih4nZCYqimWW2mW2Rf7EWxDD3gY20/fH7+7WDTlvSmTqxD5H4GXuh0e+xZCzaxX
+	DIjwSYXmXkEoKzfIZu1f4pAecz3Vem7hA7Vi20NPdFqH+25c+zJHm9sHaC4Ou47v5R9
+	DJQgE/6llg==
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=ug7nbtf4gccmlpwj322ax3p6ow6yfsug; d=amazonses.com; t=1738260332;
+	h=Date:From:To:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-ID:Feedback-ID;
+	bh=qYE2Jzx6r+bBMABGz83g/xd5YpOr+hNp+wGtKPVtb8k=;
+	b=I9fegJW/LE69JAYHbiuzwUEt5JK2kUBUK2LG57o+XD79/b+hozcY2jaJbqFjOt8I
+	QzqjaU9ZwUgYwOje29IWT9wTNx1tqoZRxRGD74GpV48JPLMXMWK/OPORWNpTKQ0cgy8
+	vQpHcAN3INX8q03nnTNksW8dxBoG2SNy4ES8pzzc=
+Date: Thu, 30 Jan 2025 18:05:32 +0000
+From: no-reply@login.awsapps.com
+To: tlannister@kingslanding.net
+Message-ID: <01000194b863c015-4292244f-df6b-4f57-a6ba-77cedc83939a-000000@email.amazonses.com>
+Feedback-ID: ::1.us-east-1.aAF5XovxUdArDbfQeBYGWz8eWYw/9SqtXMwPUHhpLY8=:AmazonSES
+X-SES-Outgoing: 2025.01.30-54.240.9.41
+X-Proofpoint-GUID: whHtje5CB3UtkJQGG8-MOJxDhfK6Bj66
+X-Proofpoint-ORIG-GUID: whHtje5CB3UtkJQGG8-MOJxDhfK6Bj66
+X-CLX-Shades: MLX
+X-CLX-Response: 1TFkXGBkbEQpMehcaEQpZRBdiWXMeGUtDZERiBREKWFgXbBocGmZ6a3tre0g RCnhOF20fT0xOWRpOXnpDEQp5TBdhZllZemAZYEhIXxEKQ0gXBxkbGREKQ1kXBxkcHBEKQ0kXGg QaGhoRCllNF2dmchEKWUkXHhJxGxAadwYbHBlxHhgQGncGGBoGGhEKWV4XbGx5EQpJRhdHQ15YT
+ 3VMT05YS0dadUJFWV5PThEKSUcXeE9NEQpDThddQmJeQE8faWgZf15BYHttbRIHZ2VgUm5CTGEc aEAcHBEKWFwXHwQaBBkSEwUbGgQbGhMEHQQbEBseGh8aEQpeWRdPGn17ZhEKTVwXGBkYEQpMWhd vbU1NaxEKTEYXb2tra2trEQpCTxdgX2dae1BkcmFvUxEKQ1oXHx4EGB4aBBMEHhsRCkJeFxsRCk
+ JcFxsRCkJLF2NmS0JpYGxIemV+EQpCSRdtH09MTlkaTl56QxEKQkUXbBocGmZ6a3tre0gRCkJOF 20fT0xOWRpOXnpDEQpCTBdsGhwaZnpre2t7SBEKQmwXbBocGmZ6a3tre0gRCkJAF2JbQk5YXnBb aGtvEQpCWBdjehhuRkEdfBx6exEKTV4XGxEKWlgXGxEKeUMXYx1lHWxeYH1wTUkRCllLFx8cEhw
+ RCnBoF2NfR0Nka25lcnJoEBkaEQpwaBdrQkITQlB5HF0bbBAeEhEKcGgXb0J8Hm0YWlp8aWIQGR oRCnBoF214WAV7cl5cekJYEBkaEQpwaBduRBN9HxhrfmEaXRAeEhEKcGgXZmZAElt9ZkdcHHwQH hIRCnBoF25gBUtHYENPAX1YEB4SEQpwaBdrel5DbGBeXF5hRRAeEhEKbX4XGxEKWE0XSxEg
+X-Proofpoint-Banner-Trigger: inbound
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: [EXT] Invitation to join AWS IAM Identity Center
+X-kingslanding-External: True
+X-Proofpoint-Virus-Version: vendor=nai engine=6700 definitions=11331 signatures=596817
+X-Proofpoint-Spam-Details: rule=inbound_notspam policy=inbound score=0 priorityscore=0
+ lowpriorityscore=0 adultscore=0 mlxlogscore=999 clxscore=231 spamscore=0
+ malwarescore=0 mlxscore=0 suspectscore=0 impostorscore=0 phishscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2411120000 definitions=main-2501300137 domainage_hfrom=5686
+X-kingslanding-PMX-QID: 44g8cx9hdq-1
+X-kingslanding-SID: 44g8cx9hdq
+X-FE-ETP-METADATA: eyAidGlkIjogIjN6MnFQYjctMjE2NDMtMTBnQTc0MTA1NzAyMTdGQkI5NzZkNTljY2I3IiwgImFj
+ Y2VwdGVkX3RpbWVzdGFtcCI6ICIyMDI1MDEzMDE4MDUzNyIsICJhY2NlcHRlZF90aW1lc3RhbXBf
+ ZXBvY2giOiAiMTczODI2MDMzNyIsICJkb21haW5fbmFtZSI6ICJtaXRyZS5vcmciLCAiYXR0X2Nv
+ dW50IjogLTIsICJzcmNfaXAiOiAiNjcuMjMxLjE0Ny4xODMiIH0=
+X-MS-Exchange-Organization-ExpirationStartTime: 30 Jan 2025 18:05:40.4248
+ (UTC)
+X-MS-Exchange-Organization-ExpirationStartTimeReason: OriginalSubmit
+X-MS-Exchange-Organization-ExpirationInterval: 1:00:00:00.0000000
+X-MS-Exchange-Organization-ExpirationIntervalReason: OriginalSubmit
+X-MS-Exchange-Organization-Network-Message-Id: e95fa5b3-cd48-4173-06a0-08dd4158b4e4
+X-EOPAttributedMessage: 0
+X-EOPTenantAttributedMessage: c620dc48-1d50-4952-8b39-df4d54d74d82:0
+X-MS-Exchange-Organization-MessageDirectionality: Incoming
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS1PEPF00017E08:EE_|MW4PR09MB9568:EE_|DS0PR09MB11027:EE_
+X-MS-Exchange-Organization-AuthSource: DS1PEPF00017E08.namprd09.prod.outlook.com
+X-MS-Exchange-Organization-AuthAs: Anonymous
+X-MS-Office365-Filtering-Correlation-Id: e95fa5b3-cd48-4173-06a0-08dd4158b4e4
+X-MS-Exchange-AtpMessageProperties: SA|SL
+X-MS-Exchange-Organization-SCL: -1
+X-Microsoft-Antispam: BCL:2;ARA:13230040|12012899012|5062899012|69100299015|32142699015|3092899012|2092899012|3072899012|5073199012|8096899003|13003099007|4076899003;
+X-Forefront-Antispam-Report: CIP:15.200.32.128;CTRY:US;LANG:en;SCL:-1;SRV:;IPV:CAL;SFV:SKN;H:mta-jays8ip.email.us.etp.fireeyegov.com;PTR:mta-jays8ip.email.us.etp.fireeyegov.com;CAT:NONE;SFS:(13230040)(12012899012)(5062899012)(69100299015)(32142699015)(3092899012)(2092899012)(3072899012)(5073199012)(8096899003)(13003099007)(4076899003);DIR:INB;
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2025 18:05:40.2685
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e95fa5b3-cd48-4173-06a0-08dd4158b4e4
+X-MS-Exchange-CrossTenant-Id: c620dc48-1d50-4952-8b39-df4d54d74d82
+X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF00017E08.namprd09.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR09MB9568
+X-MS-Exchange-Transport-EndToEndLatency: 00:00:02.1315995
+X-MS-Exchange-Processed-By-BccFoldering: 15.20.8398.018
+X-Microsoft-Antispam-Mailbox-Delivery:
+	ucf:0;jmr:0;auth:0;dest:I;ENG:(910001)(944506478)(944626604)(920097)(930097)(140003);
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?QlJLWlM4SzkvUnplTnBpWFVuN2k3SGlhdVdRSDJ1U0ttaHF6anlvZjFmMlg2?=
+ =?utf-8?B?SXJRTWhMNjNhMldFaDNFWkF6M0kwSEtoelJaTEJtd01HWUhFaE5uU0hSMmlC?=
+ =?utf-8?B?dFVmVFk1dTZJRmdLUDRMTStsL1RNUm5zQXZ5NHQ3aDZFWWUyVG1QNUpEbXBJ?=
+ =?utf-8?B?TXlxSDJFeFUxTC94VDNMRTNmYk9KVm0wdlY0TStlOXlRZjdLdXN2Vy95YTZG?=
+ =?utf-8?B?THBxLzN1NDBQS2RzOXc3QXp2UDdXOHV2eVBrNjZHckd3cHFUajlFYU91bFBW?=
+ =?utf-8?B?THVRaGQvVWRPYnFGVkNoV29zNEk1VldPVXpQa3cwVFphNDhmelJURzNPSEl0?=
+ =?utf-8?B?V3NLRHFsRXhjdFlqV09PZTFybkpMZ2hpUkdSOVFGZktCaUt4NmNNdmt2L0J1?=
+ =?utf-8?B?NCtUUy9nNHhaUnMyTWpvNFRsd1kvakdsUlJ3Tk15NUJVZFBRM0Nhb0JlcERx?=
+ =?utf-8?B?d0RmVTRKdlJ4eEsvOTRMcWEvZEN1cFkwaHRGb1Vid3N1bnZuamJucm8rNm51?=
+ =?utf-8?B?SmRKS0V6Sk5CUGUzZ09NWnltbk9ZcGdBdHJpc3BlNy8xNnVyOHBOYkx0SWhF?=
+ =?utf-8?B?VlVxbVFhTmxRTkh5Wks0YkUyOW11bXhIazc2YjdPYWJ2UnhuQno0VS9TdEtY?=
+ =?utf-8?B?QXNjQTZBT2xGYTRsVmVubDE5aHVGQUQwaklRd0xiRzd6K0J3RTRFZ2dORUpr?=
+ =?utf-8?B?SnVIMVNEN24wbDZKUzB4UGJEbEJKSEdaZld5U2VVOExTVm05WWl2ODhWZFl0?=
+ =?utf-8?B?MGdlcW1rRVBuangxbFYybU9hbFhWTG9vSEIvK3dQaXRHbDg3WEF4S1U1SHNX?=
+ =?utf-8?B?M2lrOWs3VDM2blIwTkdyZHJVYjhhbjdVL1d1RktUaUwvMXhXNkNmb3V5QTBV?=
+ =?utf-8?B?RHQ5c1hVUy9XVDljbjhMNytldnZvSEhYelMxenJGY09WNWV5eEVtUm5nSDdy?=
+ =?utf-8?B?N3BnaTFJQVFQYnNETFczSkpiUWh5cVBaSjlmT05BKyt2bjhkTWhLaENKc1Yz?=
+ =?utf-8?B?MXU0RHcxOWpOUU50OEIySlpKUkY4cUc2OHY2STJkV3hOaEwrL3FnSStZaGg5?=
+ =?utf-8?B?NnJCZm9PUVQ3Q1JxMjRETWpzajMyY3hGeFBzdXNEQWFTUTVMVVdiVTZya3Y3?=
+ =?utf-8?B?eVIzVmpUQ0NxQWxUcjhEUWhHTXM1OUg5d0ZvNmtBd2c2VzZkQ2wxNTZlUVht?=
+ =?utf-8?B?Nis4Q2NzOFg0cnpWTXZLTVYxdE1BU25aVWlYY1ZWYUV6bm1pbWgwUk1xUXBZ?=
+ =?utf-8?B?ZmpuR0VVSVF4S21iSk55RkRLcUVsMmhUUHliK1BMSFZFZDNCUFRuMmhnTWxR?=
+ =?utf-8?B?OU1MMjhVUG1TRmRwTEU0TTVFUHRMQnZIekRnK05iSkNxYU0xblRuakRINk5W?=
+ =?utf-8?B?ODRPVkZPUlVtcGh6a1RyYTYwaW5yWkMzY0Rrc0ZVZEJEWU1JTDh4MDArSGpn?=
+ =?utf-8?B?SGZyNWFVZEo2aklnczBZdTNuUHdnbHNnMWtnNWtSdDV4YXRGKy9lemliVWRp?=
+ =?utf-8?B?a2ozWnBDLzdwRDZBNlQ0RlQ3bUNhSFp0RkNwN2pFeFB3c21kU3VqcUtpOW40?=
+ =?utf-8?B?UjQvTllobnI5QW5yZC9hQzMwaFRKY0htZXQxVWEwVXRXdzNnQWUvOCt1YzBK?=
+ =?utf-8?B?RUU0ZjU5UVJxdnd5M0pBeThpS3krVG5VT2cvTFpwbWdVTzRwWitQL041NGU4?=
+ =?utf-8?B?RGtCaC84VU5yZG55cDQzVm0zdFdKN1pHcUt5WjlIWHgxL2N6MUZodTRpK05U?=
+ =?utf-8?B?bUxRNTJNbGUzNjdoemVFZTR4R0p2S3JkUGRGUkhlKzBidmJIZ2JrcDNKcC9G?=
+ =?utf-8?B?UGkzUGtYYS9DbC9KK3V1N0ROYlpoMlNEWmFydzZpcUQvYndIMEp3bkpUY3M4?=
+ =?utf-8?B?RWZxQ0Z3KytzemlFcXB3NDc4d3UrcHdiTFQ0K2ZXSVIwbkNtSFcxalVUT1F6?=
+ =?utf-8?B?RXFCMllrWmVDOFFVZzAySi9CbTFRdm5na3lmaGI3Q1Z3NVZJSmZIM252VHJz?=
+ =?utf-8?B?dExUbDVLbVFvSk5FcEl6WWdEYkJzdjB6NlB4ODZLTjFXd2ZaN3NvZTlLeHhx?=
+ =?utf-8?B?S2NXVXBqeXZBZ1ViaUt4N3YreWVyT3ZLamtmTEg3RXo4OEZseGV0SDgwWmFI?=
+ =?utf-8?B?ZEx4TjhkN2ZPQ1M0N1hKZUFUQjM4NEgrRTQyekRXR2pqeitPd0VuempQS3Rx?=
+ =?utf-8?B?ZUxEMEFiM0JUb1lKejJMSUErbVhaKy9CUFBBNlI1UHVuZXBpZXc4UFgxWmk3?=
+ =?utf-8?B?am9XSnAvK0dndnBsZGM5enl6UStXRTZJbHh0M2UvWmREem1qNWlnaTFmamlN?=
+ =?utf-8?B?bzdEbnQwV1NlalVSUnpFY0poL0k4dUVITWF4WnRCOXk1bFZYakl3Wm8xVGVO?=
+ =?utf-8?B?UEIxUmQxVyt3MFF3SzhWTWZqMU5XMnNRQ3NiZGswTEJvV01jbS9KcnMxWmdq?=
+ =?utf-8?B?Y3lGN3prWVg3WlorVGdMcktjYmM1L0wvRFdMdkNHQUlMTCs3b3V3ODl5MnBP?=
+ =?utf-8?B?SmdDNGpodjQwemd6VW5ZR1hWRXVrbGc2R1NTdG4yWjR6THhVZHR6Z0JNa3p6?=
+ =?utf-8?B?WVZ2WGxHY21CNlFhZHQrQ1UzRmdYMWJXWURRbm45VHpQNlZ5REx3NXdvSnBO?=
+ =?utf-8?B?ZHdSWDlyYnJreW4yWmc3VHRwbXBCWUdSZGE5ZHFzTFBJWjI0Mk55MGdXd2gx?=
+ =?utf-8?B?c05JcGdIaGRKdHNQZGp1T3lNMVN0TlQ3eWFtY01NUjhMcmxGT2ZVUzFzdWhh?=
+ =?utf-8?B?M2tqNjJMbmgwOGU2YkRSN29sMWFqaGp1WGxXQ256MXJYakpWeHowbFBPcUNN?=
+ =?utf-8?B?S1JxdllEdnEwT3Y4LzhwcjRuUDNhQ2txeWpoYUxDdEFJa2ZYWlk3bnc5V3pv?=
+ =?utf-8?B?RmxPSU9tUC9PL0xtdWxadTNrVVNja0ZNMTJzaUk2K1g1dXlkZnBjU1kyU3Vr?=
+ =?utf-8?B?RWExU016ZGVqSVhOTmxYTHh4L0FJWG9VNDZYRTY0cE9DeEtRMVNia01HcXVU?=
+ =?utf-8?Q?lxw+dow7UOn1YAeuF7tMNowbfKmf2DJQLlK?=
+MIME-Version: 1.0
+
+<!DOCTYPE html><!-- BaNnErBlUrFlE-BoDy-start --><!-- Preheader Text : BEGIN=
+ --><meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+"><div style=3D"display:none !important;display:none;visibility:hidden;mso-=
+hide:all;font-size:1px;color:#ffffff;line-height:1px;height:0px;max-height:=
+0px;opacity:0;overflow:hidden;">
+Invitation to join AWS IAM Identity Center Your invitation to access your a=
+pplications. =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C Hello Tyland Lannister, Your admini=
+strator</div>
+<!-- Preheader Text : END -->
+
+<!-- BaNnErBlUrFlE-BoDy-end -->
+<html lang=3D"en" xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:v=3D"urn:sch=
+emas-microsoft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com:office:office"=
+><head><!-- BaNnErBlUrFlE-HeAdEr-start -->
+<style>
+  #pfptBannerl8mhwr5 { all: revert !important; display: block !important;=20
+    visibility: visible !important; opacity: 1 !important;=20
+    background-color: #D0D8DC !important;=20
+    max-width: none !important; max-height: none !important }
+  .pfptPrimaryButtonl8mhwr5:hover, .pfptPrimaryButtonl8mhwr5:focus {
+    background-color: #b4c1c7 !important; }
+  .pfptPrimaryButtonl8mhwr5:active {
+    background-color: #90a4ae !important; }
+</style>
+
+<!-- BaNnErBlUrFlE-HeAdEr-end -->
+<meta name=3D"viewport" content=3D"width=3Ddevice-width"><meta http-equiv=
+=3D"X-UA-Compatible" content=3D"IE=3Dedge"><meta name=3D"x-apple-disable-me=
+ssage-reformatting"><title>Invitation to join AWS IAM Identity Center</titl=
+e><style>html,body {margin: 0 auto !important;padding: 0 !important;height:=
+ 100% !important;width: 100% !important;}* {-ms-text-size-adjust: 100%;-web=
+kit-text-size-adjust: 100%;}div[style*=3D"margin: 16px 0"] {margin: 0 !impo=
+rtant;}table,td {mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !im=
+portant;}table {border-spacing: 0 !important;border-collapse: collapse !imp=
+ortant;table-layout: fixed !important;margin: 0 auto !important;}table tabl=
+e table {table-layout: auto;}img {-ms-interpolation-mode:bicubic;}*[x-apple=
+-data-detectors],/* iOS */.x-gmail-data-detectors,/* Gmail */.x-gmail-data-=
+detectors *,.aBn {border-bottom: 0 !important;cursor: default !important;co=
+lor: inherit !important;text-decoration: none !important;font-size: inherit=
+ !important;font-family: inherit !important;font-weight: inherit !important=
+;line-height: inherit !important;}.a6S {display: none !important;opacity: 0=
+.01 !important;}img.g-img + div {display: none !important;}.button-link {te=
+xt-decoration: none !important;}/* iPhone 4, 4S, 5, 5S, 5C, and 5SE */@medi=
+a only screen and (min-device-width: 320px) and (max-device-width: 374px) {=
+.email-container {min-width: 320px !important;}}/* iPhone 6, 6S, 7, 8, and =
+X */@media only screen and (min-device-width: 375px) and (max-device-width:=
+ 413px) {.email-container {min-width: 375px !important;}}/* iPhone 6+, 7+, =
+and 8+ */@media only screen and (min-device-width: 414px) {.email-container=
+ {min-width: 414px !important;}}.button-td,.button-a {transition: all 100ms=
+ ease-in;}.button-td:hover,.button-a:hover {background: #187AB1 !important;=
+border-color: #187AB1 !important;}/* Media Queries */@media screen and (max=
+-width: 600px) {#emailBodyContainer {border: 0 !important;border-bottom: 1p=
+x solid #DDD !important;}body,center {background: #FFF !important;}#logoCon=
+tainer td {padding: 20px 0 0 35px !important;}#footer {background: #F9F9F9 =
+!important;}}</style><!--[if gte mso 9]><xml><o:OfficeDocumentSettings><o:A=
+llowPNG/><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></=
+xml><![endif]--></head><body width=3D"100%" bgcolor=3D"#F9F9F9" style=3D"ma=
+rgin: 0; mso-line-height-rule: exactly;"><center style=3D"width: 100%; back=
+ground: #F9F9F9; text-align: left;"><!--[if mso | IE]><table role=3D"presen=
+tation" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" bgc=
+olor=3D"#F9F9F9"><tr><td><![endif]--><div id=3D"preheaderText" style=3D"dis=
+play: none; font-family: sans-serif; font-size: 1px; line-height: 1px; max-=
+height: 0px; max-width: 0px; mso-hide: all; opacity: 0; overflow: hidden;">=
+Your invitation to access your applications.</div><div id=3D"preheaderSpaci=
+ngHack" style=3D"display: none; font-family: sans-serif; font-size: 1px; li=
+ne-height: 1px; max-height: 0px; max-width: 0px; mso-hide: all; opacity: 0;=
+ overflow: hidden;">=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&=
+nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&=
+nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&=
+nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;</div><div=
+ style=3D"max-width: 600px; margin: auto;" class=3D"email-container"><!--[i=
+f mso]><table role=3D"presentation" cellspacing=3D"0" cellpadding=3D"0" bor=
+der=3D"0" width=3D"600" align=3D"center"><tr><td><![endif]--><!-- Email Hea=
+der : BEGIN --><table role=3D"presentation" cellspacing=3D"0" cellpadding=
+=3D"0" border=3D"0" align=3D"center" width=3D"100%" id=3D"logoContainer" st=
+yle=3D"max-width: 600px;"><tr><td style=3D"padding: 20px 0 10px 0; text-ali=
+gn: left;"><img src=3D"https://media.amazonwebservices.com/aws-email-logo.p=
+ng" width=3D"67" height=3D"40" alt=3D"AWS logo" border=3D"0" style=3D"font-=
+family: sans-serif; font-size: 15px; line-height: 140%; color: #555555;"></=
+td></tr></table><!-- Email Header : END --><!-- Email Body : BEGIN --><tabl=
+e role=3D"presentation" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" al=
+ign=3D"center" width=3D"100%" id=3D"emailBodyContainer" style=3D"border: 1p=
+x solid #E5E5E5; border-bottom-color: #CCC; border-top-color: #F0F0F0; box-=
+shadow: 0 2px 5px rgba(0,0,0,0.1); max-width: 600px;"><tr><td class=3D"modu=
+le" style=3D"background-color: #FFF; color: #444; font-family: sans-serif; =
+font-size: 14px; line-height: 140%; padding: 25px 35px;"><p style=3D"margin=
+: 0 0 15px 0; padding: 0 0 0 0;">Hello Tyland Lannister,</p><p style=3D"margin: 0 =
+0 15px 0; padding: 0 0 0 0;">Your administrator for AWS Account #980921758675=
+36 has invited you to AWS IAM Identity Center. Accepting this invitation ac=
+tivates your user account in IAM Identity Center so that you can access ass=
+igned AWS resources. Choose the link below to accept this invitation. </p><=
+/td></tr><tr><td class=3D"module module-button" style=3D"background-color: =
+#FFF; color: #444; font-family: sans-serif; font-size: 14px; line-height: 1=
+40%; padding: 0px 35px;"><table role=3D"presentation" cellspacing=3D"0" cel=
+lpadding=3D"0" border=3D"0" align=3D"left" style=3D"margin: auto;"><tr><td =
+class=3D"button-td" style=3D"background: #2B98D6; border-radius: 3px; text-=
+align: center;"><a href=3D"https://urldefense.us/v2/url?u=3Dhttps-3A__us-2D=
+east-2D1.signin.aws_platform_start_inviteuser_-3FclientId-3D3bec6266d4c8388=
+2-26userId-3Df4982488-2D9081-2D7009-2Df565-2D9e09c8192627-26directoryId-3Dd=
+-2D9067d4be2b-26directoryAlias-3Dd-2D9067d4be2b-26token-3DAgV4VvVlLtGOd5m8C=
+hpihHDfr2slc3uTWt0WUvmd-2DvoKhusAhwACAAZJc3N1ZXIAHkFXU1Bhc3N3b3JkQ29udHJvbF=
+BsYW5lU2VydmljZQAVYXdzLWNyeXB0by1wdWJsaWMta2V5AERBaUdkb3NER1NheHhzTWNMdjBod=
+W4yQmhHTVZ0SzBRcEJTeVdmWkFvVUtVZTFQeUlGeEZMck0wQ3ZteGhTTHFVckE9PQABAAdhd3Mt=
+a21zAEthcm46YXdzOmttczp1cy1lYXN0LTE6Mzk1Nzg5MDIxMzE3OmtleS8zMDhjYjg3ZS1kMzl=
+kLTQ4OTUtODM2NS1jMTg4Y2Y1M2JiZjEAuAECAQB49MtxCaYbw-5FbeA5SN0ZIYiobcezltqf-2=
+D9bkHdfnFgL54Bqm4N2Yp4-5FZuPW6qyUrQVkQAAAH4wfAYJKoZIhvcNAQcGoG8wbQIBADBoBgk=
+qhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDHCimBsTOATLZ-2DBr2AIBEIA7q74pB05SjPj3p7nt=
+T4zP9U6gllKurfprqbf6sE0ZMdgEyRBPLIRu1U0HR9BQABuY8rWMqRYnThcdJbMCAAAQAHn6iBK=
+35tJz2ylNgHysa5QnYV7Z8VNmhC-5FKD4D-2D3as3grlEpuFeWnbwZ6ZzSwu-5Ftv-5F-5F-5F-=
+5F8AAAABAAAAAAAAAAAAAAABAAABDpc5PdZC-5FG7nAp6q1VCT2NpG1ck9dVNwZsWSkPRBOmtuA=
+7UogUOx1ODWaCTfeT46LCuadxHjYDG7mldkUDkabaVRNJbPl4slO5QJRtaa6NcByam199bSOqQR=
+POGjhrXAuYL3-5FdMh3L9uCOWiVZg-2DGBnZPHskyzk8ckrfzyzbh7vRQSTc9I4hs6HeJrRZvng=
+7A1tFzb8yA1HoXjvnmOha6MlEE8KUqtpjKNh93J4N0TQPqkH6Y1oNfcOrJpIwmZaVROd-5FYxgh=
+LnRe38UKgxtkOm94HgOnlPeIpoj-5FVjjp8gEBo9Mnzdk-5Ff3d6g833T0r7IvGsqzhtfkrPFJC=
+HQpNxLtrogHOUgu5fRz-2DMe1bNDI9EGAduWglAVhK10gWVjQwAZzBlAjEAgzwEEzj-5FZYz871=
+s1FrDSQhj4pmt42UP9bNl-5FyNh-5F4zSJ3GPNiHH7eeZ9vbub4HqJAjBILxIZCcdTVPb2BFa5c=
+NEwk3YTH3buKyCxkq7UCiVXRk5KGNUASvVTbRCnqM8BtXY-3D-26redirectUri-3Dhttps-3A_=
+_d-2D9067d4be2b.awsapps.com_start_&amp;d=3DDwMFaQ&amp;c=3DAl8V6E3U0yBSSEuVt=
+dZbGtsvjPA49U3WmtZAsdW0D_Q&amp;r=3DzGXBmVJeuFiwsibtr8FHFQ&amp;m=3DxcD_PSlMH=
+fLp-5PYcGzxjO4u28cDsZhrDEoRIaxTKp8WbiWboKinv2SWxyvzWPJc&amp;s=3DwyMa3otGtlc=
+SdP5xbcNM84wex6BXyABnMdoGJJlAKD4&amp;e=3D" class=3D"button-a" style=3D"back=
+ground: #2B98D6; border: 15px solid #2B98D6; border-radius: 3px; color: #11=
+66BB; display: block; font-family: sans-serif; font-size: 14px; line-height=
+: 110%; text-align: center; text-decoration: none;"><span class=3D"button-l=
+ink" style=3D"color: #FFF;">&nbsp;&nbsp;Accept invitation&nbsp;&nbsp;</span=
+></a></td></tr></table></td></tr><tr><td class=3D"module" style=3D"backgrou=
+nd-color: #FFF; color: gray; font-family: sans-serif; font-size: 14px; line=
+-height: 140%; padding: 25px 35px; padding-bottom: 0; padding-top: 10px;">T=
+his invitation will expire in 7 days.</td></tr><tr><td class=3D"module" sty=
+le=3D"background-color: #FFF; color: #444; font-family: sans-serif; font-si=
+ze: 14px; line-height: 140%; padding: 25px 35px;"><p style=3D"margin: 0 0 1=
+5px 0; padding: 0 0 0 0;"><strong>Accessing the AWS access portal</strong><=
+br>After you've accepted the invitation, you can sign in to the AWS access =
+portal by using the information below.</p><p style=3D"margin: 0 0 15px 0; p=
+adding: 0 0 0 0;"><strong>Your AWS access portal URL:</strong><br><a href=
+=3D"https://urldefense.us/v2/url?u=3Dhttps-3A__d-2D9067d4be2b.awsapps.com_s=
+tart_&amp;d=3DDwMFaQ&amp;c=3DAl8V6E3U0yBSSEuVtdZbGtsvjPA49U3WmtZAsdW0D_Q&am=
+p;r=3DzGXBmVJeuFiwsibtr8FHFQ&amp;m=3DxcD_PSlMHfLp-5PYcGzxjO4u28cDsZhrDEoRIa=
+xTKp8WbiWboKinv2SWxyvzWPJc&amp;s=3Dwf2cHgEAu6lO605XIOZFdvIYnSxDgTYctLfLgk5b=
+Teg&amp;e=3D" style=3D"color: #1166BB; text-decoration: none;">https://d-90=
+67d4be2b.awsapps.com/start/</a></p><p style=3D"margin: 0; padding: 0;"><str=
+ong>Your Username:</strong><br>tlannister</p></td></tr></table><!-- Email Body :=
+ END --><!-- Email Footer : BEGIN --><table role=3D"presentation" cellspaci=
+ng=3D"0" cellpadding=3D"0" border=3D"0" align=3D"center" width=3D"100%" id=
+=3D"footer" style=3D"max-width: 600px;"><tr><td style=3D"color: #777; font-=
+family: sans-serif; font-size: 12px; line-height: 18px; padding: 20px 10px;=
+ text-align: center;">Amazon Web Services, Inc. is a subsidiary of Amazon.c=
+om, Inc. <a href=3D"https://urldefense.us/v2/url?u=3Dhttps-3A__amazon.com_&=
+amp;d=3DDwMFaQ&amp;c=3DAl8V6E3U0yBSSEuVtdZbGtsvjPA49U3WmtZAsdW0D_Q&amp;r=3D=
+zGXBmVJeuFiwsibtr8FHFQ&amp;m=3DxcD_PSlMHfLp-5PYcGzxjO4u28cDsZhrDEoRIaxTKp8W=
+biWboKinv2SWxyvzWPJc&amp;s=3D3i6965VefRAqU88f7sAbTuvaWgaiUVxUOj1-ClTzN70&am=
+p;e=3D" style=3D"color: #777; text-decoration: none;">Amazon.com</a> is a r=
+egistered trademark of Amazon.com, Inc. This message was produced and distr=
+ibuted by Amazon Web Services, Inc., 410 Terry Ave. North, Seattle, WA 9810=
+9-5210.</td></tr></table><!-- Email Footer : END --><!--[if mso]></td></tr>=
+</table><![endif]--></div><!--[if mso | IE]></td></tr></table><![endif]--><=
+/center></body></html>

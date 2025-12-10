@@ -1,0 +1,152 @@
+---
+- name: Install Tactical RMM
+  hosts: rmm-srv1
+  become: yes
+  vars:
+    tactical_rmm_directory: "/opt/tactical_rmm"
+    tactical_rmm_version: "1.1.0"
+    base_domain: "kingslanding-hr.com"
+    api_base_domain: "api.kingslanding-hr.com"
+    mesh_base_domain: "mesh.kingslanding-hr.com"
+    rmm_base_domain: "rmm.kingslanding-hr.com"
+    tactical_user: "lstrong"
+    tactical_passwd: "Structure-Doorway"
+    rmm_email: "lstrong@kingslanding-hr.com"
+    ssl_cert_source_path: "{{ playbook_dir }}/../files/certs/kingslanding-hr.com/api/api.kingslanding-hr.com.pem"
+    ssl_key_source_path: "{{ playbook_dir }}/../files/certs/kingslanding-hr.com/api/api.kingslanding-hr.com-key.pem"
+    ssl_cert_path: "/opt/tactical-rmm.crt"
+    ssl_key_path: "/opt/tactical-rmm.key"
+  vars_files:
+    - ../vars/vars.yml
+  environment:
+    RMMDOMAIN: "{{ api_base_domain }}"
+    FRONTENDDOMAIN: "{{ rmm_base_domain }}"
+    MESHDOMAIN: "{{ mesh_base_domain }}"
+    ROOTDOMAIN: "{{ base_domain }}"
+    LETSEMAIL: "{{ rmm_email }}"
+    FULLCHAIN_PATH: "{{ ssl_cert_path }}"
+    PRIVKEY_PATH: "{{ ssl_key_path }}"
+    DJANGO_USERNAME: "{{ tactical_user }}"
+    DJANGO_PASSWORD: "{{ tactical_passwd }}"
+    DJANGO_EMAIL: "{{ rmm_email }}"
+    DEBIAN_FRONTEND: "noninteractive" # ensure none of the apt runs in rmm setup prompt
+  tasks:
+    - name: Update Apt Packages and Cache
+      become: true
+      ansible.builtin.apt:
+        upgrade: "yes"
+        update_cache: yes
+
+    - name: Install Required Dependencies for Deployment
+      ansible.builtin.apt:
+        update_cache: yes
+        name:
+          - ca-certificates
+          - certbot
+          - curl
+          - dirmngr
+          - etckeeper
+          - g++
+          - gcc
+          - git
+          - gnupg
+          - lsb-release
+          - redis
+          - software-properties-common
+          - wget
+        state: present
+
+#    # Firewall Configurations
+#    - name: Deny all incoming traffic
+#      community.general.ufw:
+#        default: deny
+#        direction: incoming
+#
+#    - name: Allow all outgoing traffic
+#      community.general.ufw:
+#        default: allow
+#        direction: outgoing
+#
+#    - name: Allow https Access Rule
+#      community.general.ufw:
+#        rule: allow
+#        port: "443"
+#        proto: tcp
+#
+#    - name: Allow SSH Access Rule
+#      community.general.ufw:
+#        rule: allow
+#        port: "22"
+#        proto: tcp
+
+    # Install Tactical RMM
+    - name: Create Tactical RMM directory
+      ansible.builtin.file:
+        path: "{{ tactical_rmm_directory }}"
+        state: directory
+        mode: "0755"
+
+    - name: Download Tactical RMM v{{ tactical_rmm_version }}
+      ansible.builtin.get_url:
+        url: "https://github.com/amidaware/tacticalrmm/archive/refs/tags/v{{ tactical_rmm_version }}.tar.gz"
+        dest: "/tmp/tactical-rmm-{{ tactical_rmm_version }}.tar.gz"
+        mode: "0644"
+
+    - name: Extract Tactical RMM
+      ansible.builtin.unarchive:
+        src: "/tmp/tactical-rmm-{{ tactical_rmm_version }}.tar.gz"
+        dest: "{{ tactical_rmm_directory }}"
+        remote_src: yes
+        extra_opts: [--strip-components=1]
+
+    - name: Copy tactical rmm installer and overwrite
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/../files/tactical-rmm/install.sh"
+        dest: "{{ tactical_rmm_directory }}/install.sh"
+        mode: "0755"
+        owner: root
+        group: root
+
+    - name: Copy SSL certificate
+      ansible.builtin.copy:
+        src: "{{ ssl_cert_source_path }}"
+        dest: "{{ ssl_cert_path }}"
+        mode: "0644"
+        owner: root
+        group: root
+
+    - name: Copy SSL private key
+      ansible.builtin.copy:
+        src: "{{ ssl_key_source_path }}"
+        dest: "{{ ssl_key_path }}"
+        mode: "0600"
+        owner: root
+        group: root
+
+    - name: Hold Tactical RMM packages to prevent upgrades
+      ansible.builtin.dpkg_selections:
+        name: "{{ item }}"
+        selection: hold
+      loop:
+        - tactical-rmm
+        - tactical-agent
+      ignore_errors: yes
+
+    - name: reboot the box and continue after reboot
+      ansible.builtin.reboot:
+        reboot_timeout: 90
+
+    - name: Run Tactical RMM installation
+      ansible.builtin.shell: |
+        cd {{ tactical_rmm_directory }}
+        ./install.sh --use-own-cert
+      become: no
+      args:
+        creates: /etc/systemd/system/tactical.service
+
+# fetch the output file that has the 2fa code in it
+    - name: Fetch 2FA code from file
+      ansible.builtin.fetch:
+        src: /tmp/output.log
+        dest: "{{ playbook_dir }}/../files/tactical-rmm/2fa.txt"
+        flat: yes

@@ -1,0 +1,11 @@
+---
+# Default variables for FTP setup
+
+# FTP configuration
+ftp_srv_dir: "/srv/ftp"
+ftp_user: "ftp_user"
+ftp_users: []  # Should be defined in playbook
+ftp_passive_min_port: 50000
+ftp_passive_max_port: 50100
+use_ftp_redirector: no
+ftp_redirector_ip: "127.0.0.1"

@@ -1,0 +1,8 @@
+hostname,os_type,program_name,version,publisher
+{% for host in groups['victim'] %}
+{% if hostvars[host]['win_programs_output'] is defined and hostvars[host]['win_programs_output']['output'][0] is defined %}
+{% for program in (hostvars[host]['win_programs_output']['output'][0] | from_json) %}
+{{ hostvars[host]['ansible_hostname'] }},Windows,{{ program.Name | default('') }},{{ program.Version | default('') }},{{ program.Vendor | default('') }}
+{% endfor %}
+{% endif %}
+{% endfor %}

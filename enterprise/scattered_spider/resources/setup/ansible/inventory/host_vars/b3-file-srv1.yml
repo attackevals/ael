@@ -1,0 +1,24 @@
+---
+drive_configs:
+  - drive_letter: 'E'
+    drive_label: 'CorpCommsShare'
+    share_name: 'corp'
+    disk_number: 1
+    custom_decoy_seed: "Junkyard"
+  - drive_letter: 'F'
+    drive_label: 'MediaShare'
+    share_name: 'media'
+    disk_number: 2
+    custom_decoy_seed: "Rewire"
+  - drive_letter: 'G'
+    drive_label: 'ArchiveShare'
+    share_name: 'archive'
+    disk_number: 3
+    custom_decoy_seed: "Pedicure"
+  - drive_letter: 'H'
+    drive_label: 'MarketingShare'
+    share_name: 'marketing'
+    disk_number: 4
+    custom_decoy_seed: "Ocean"
+local_admin_groups:
+  - "File Server Admins"

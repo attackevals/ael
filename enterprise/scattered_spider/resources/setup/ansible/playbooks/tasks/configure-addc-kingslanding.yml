@@ -1,0 +1,23 @@
+---
+- name: "Configure kingslanding scenario A RANGE Windows Domain Controller"
+  hosts: on-prem-addc-srv1
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - addc
+    - domain
+    - network
+    - share
+    - winrm
+    - groups
+    - server
+    - windows
+  vars:
+    domain_info: "{{ domain_info_kingslanding }}"
+    domain_users: "{{ domain_users_kingslanding + domain_users_common }}"
+    domain_groups: "{{ domain_groups_common }}"
+    range_dns_server_ip: "{{ support_vars.dns_server_ip }}"
+    domain_dns_records: "{{ domain_dns_records_kingslanding }}"
+  roles:
+    - evals_ad_domain

@@ -1,0 +1,82 @@
+---
+- name: Stage S3 directories from source to destination in bulk
+  block:
+    - name: Create unique temporary staging directory
+      tempfile:
+        state: directory
+        prefix: s3_staging_
+      register: temp_dir
+
+    - name: Download directories from source bucket using sync
+      shell: >
+        aws s3 sync "s3://{{ source_bucket }}/{{ source_path_prefix }}/{{ target_account }}/{{ source_path_suffix }}/{{ item.key }}" "{{ temp_dir.path }}/{{ item.key }}/" --include "*"
+      loop: "{{ source_cloud_directories | dict2items }}"
+      loop_control:
+        label: "{{ item.key }}"
+      when: source_cloud_directories is defined
+
+    - name: Assume CrossAccountAccess from cloud_management
+      shell: >
+        aws sts assume-role \
+        --role-arn "{{ CrossAccountAccess_arn }}" \
+        --role-session-name cross-cloud-mgmt \
+        --query 'Credentials' \
+        --output json
+      register: cross_account_creds
+      changed_when: false
+      failed_when: cross_account_creds.rc != 0
+
+    - name: Parse credentials from CrossAccountAccess assume-role
+      set_fact:
+        aws_cross_creds:
+          AWS_ACCESS_KEY_ID: "{{ cross_account_creds.stdout | from_json | json_query('AccessKeyId') }}"
+          AWS_SECRET_ACCESS_KEY: "{{ cross_account_creds.stdout | from_json | json_query('SecretAccessKey') }}"
+          AWS_SESSION_TOKEN: "{{ cross_account_creds.stdout | from_json | json_query('SessionToken') }}"
+
+    - name: Assume target account role using CrossAccountAccess credentials
+      shell: >
+        AWS_ACCESS_KEY_ID={{ aws_cross_creds.AWS_ACCESS_KEY_ID }} \
+        AWS_SECRET_ACCESS_KEY={{ aws_cross_creds.AWS_SECRET_ACCESS_KEY }} \
+        AWS_SESSION_TOKEN={{ aws_cross_creds.AWS_SESSION_TOKEN }} \
+        aws sts assume-role \
+          --role-arn "{{ Cloud_Protections_arn if target_account == 'protections' else cloud_detections_arn }}" \
+          --role-session-name cloud-{{ target_account }} \
+          --query 'Credentials' \
+          --output json
+      register: target_creds
+      changed_when: false
+      failed_when: target_creds.rc != 0
+
+    - name: Parse credentials for target account role
+      set_fact:
+        aws_target_creds:
+          AWS_ACCESS_KEY_ID: "{{ target_creds.stdout | from_json | json_query('AccessKeyId') }}"
+          AWS_SECRET_ACCESS_KEY: "{{ target_creds.stdout | from_json | json_query('SecretAccessKey') }}"
+          AWS_SESSION_TOKEN: "{{ target_creds.stdout | from_json | json_query('SessionToken') }}"
+
+    - name: Use assumed role credentials to get new identity
+      shell: >
+        AWS_ACCESS_KEY_ID={{ aws_target_creds.AWS_ACCESS_KEY_ID }} \
+        AWS_SECRET_ACCESS_KEY={{ aws_target_creds.AWS_SECRET_ACCESS_KEY }} \
+        AWS_SESSION_TOKEN={{ aws_target_creds.AWS_SESSION_TOKEN }} \
+        aws sts get-caller-identity --output json
+      register: validated_identity
+      changed_when: false
+
+    - name: Upload directories to destination bucket using sync
+      shell: >
+        AWS_ACCESS_KEY_ID={{ aws_target_creds.AWS_ACCESS_KEY_ID }} \
+        AWS_SECRET_ACCESS_KEY={{ aws_target_creds.AWS_SECRET_ACCESS_KEY }} \
+        AWS_SESSION_TOKEN={{ aws_target_creds.AWS_SESSION_TOKEN }} \
+        aws s3 sync "{{ temp_dir.path }}/{{ item.key }}/" \
+        "s3://{{ dest_cloud_bucket }}/{{ item.value.dest_key }}" \
+        --metadata "Classification={{ item.value.tag }}"
+      loop: "{{ source_cloud_directories | dict2items }}"
+      loop_control:
+        label: "{{ item.key }}"
+      when: source_cloud_directories is defined
+
+    - name: Clean up staging directory
+      file:
+        path: "{{ temp_dir.path }}"
+        state: absent

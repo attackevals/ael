@@ -1,0 +1,11 @@
+---
+- name: Force group policy update
+  hosts: windows:&victim
+  strategy: free
+  gather_facts: false
+
+  tasks:
+    - name: Force update group policy from member
+      win_shell: |
+        gpupdate /force
+      ignore_errors: yes

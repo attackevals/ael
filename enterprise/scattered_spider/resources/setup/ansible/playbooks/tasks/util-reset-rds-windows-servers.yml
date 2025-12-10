@@ -1,0 +1,33 @@
+---
+- name: Reset 120-day RDS grace period
+  hosts: windows_rds_servers
+  gather_facts: yes
+
+  # based on powershell in this stackoverflow:
+  # https://stackoverflow.com/questions/62358754/how-to-grace-period-reset-with-powershell
+  # note: win_regedit does not work to delete the key
+
+  tasks:
+    - name: Take ownership of GracePeriod key
+      ansible.windows.win_shell: |
+        $key = [Microsoft.Win32.Registry]::LocalMachine.OpenSubKey("SYSTEM\CurrentControlSet\Control\Terminal Server\RCM\GracePeriod",[Microsoft.Win32.RegistryKeyPermissionCheck]::ReadWriteSubTree,[System.Security.AccessControl.RegistryRights]::takeownership)
+
+        # You must get a blank acl for the key b/c you do not currently have access
+        $acl = $key.GetAccessControl([System.Security.AccessControl.AccessControlSections]::None)
+        $me = [System.Security.Principal.NTAccount]"Administrators"
+        $acl.SetOwner($me)
+        $key.SetAccessControl($acl)
+
+        # After you have set owner you need to get the acl with the perms so you can modify it.
+        $acl = $key.GetAccessControl()
+        $rule = New-Object System.Security.AccessControl.RegistryAccessRule ("Administrators","FullControl","Allow")
+        $acl.SetAccessRule($rule)
+        $key.SetAccessControl($acl)
+        $key.Close()
+        $keyPath = "HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\RCM\GracePeriod"
+        Remove-ItemProperty -Path $keyPath -Name *L$RTMTIMEBOMB*
+
+      ignore_errors: yes
+
+    - name: Reboot the server
+      ansible.windows.win_reboot:

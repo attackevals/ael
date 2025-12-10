@@ -1,0 +1,80 @@
+---
+- name: Deploy Group Policy Drive Mapping with WMI Filter
+  hosts: "{{ target_host }}"
+  gather_facts: false
+
+  vars:
+    domain_controller: "{{ domain_controller_fqdn }}"
+    drive_path: "{{ network_drive_path }}"
+    drive_letter: "{{ mapped_drive_letter | default('Z') }}"
+    computer_name: "{{ hostvars[inventory_hostname].hostname | default(inventory_hostname) }}"
+    gpo_name: "NetworkDriveMount_{{ computer_name }}"
+    wmi_filter_name: "WMI_{{ computer_name }}"
+
+  tasks:
+    - name: Create Group Policy Object
+      ansible.windows.win_shell: |
+        try {
+          Get-GPO -Name "{{ gpo_name }}"
+        } catch {
+          New-GPO -Name "{{ gpo_name }}" -Comment "Drive mapping for {{ computer_name }}"
+        }
+      delegate_to: "{{ domain_controller }}"
+      run_once: true
+
+    - name: Create WMI Filter for target computer
+      ansible.windows.win_shell: |
+        $filter = Get-WmiObject -Namespace "root\Policy" -Class "MSFT_SomFilter" | Where-Object {$_.Name -eq "{{ wmi_filter_name }}"}
+        if (-not $filter) {
+          $wmiQuery = "SELECT * FROM Win32_ComputerSystem WHERE Name = '{{ computer_name }}'"
+          $filterGuid = [System.Guid]::NewGuid().ToString()
+          $filter = ([WMIClass]"root\Policy:MSFT_SomFilter").CreateInstance()
+          $filter.Name = "{{ wmi_filter_name }}"
+          $filter.Description = "Filter for {{ computer_name }}"
+          $filter.QueryList = @($wmiQuery)
+          $filter.Put()
+        }
+      delegate_to: "{{ domain_controller }}"
+      run_once: true
+
+    - name: Configure drive mapping using Group Policy Preferences
+      ansible.windows.win_shell: |
+        $gpoGuid = (Get-GPO -Name "{{ gpo_name }}").Id
+        $xml = '<?xml version="1.0" encoding="utf-8"?><Drives clsid="{8FDDCC1A-0C3C-43cd-A6B4-71A6DF20DA8C}"><Drive clsid="{935D1B74-9CB8-4e3c-9914-7DD559B7A417}" name="{{ drive_letter }}:" status="{{ drive_letter }}:" image="2" uid="{' + [System.Guid]::NewGuid() + '}"><Properties action="U" thisDrive="NOCHANGE" allDrives="NOCHANGE" userName="" path="{{ drive_path }}" label="" persistent="1" useLetter="1" letter="{{ drive_letter }}"/></Drive></Drives>'
+        $gpoPath = "\\{{ domain_controller }}\SYSVOL\$((Get-ADDomain).DNSRoot)\Policies\{$gpoGuid}\User\Preferences\Drives"
+        if (-not (Test-Path $gpoPath)) { New-Item -Path $gpoPath -ItemType Directory -Force }
+        $xml | Out-File -FilePath "$gpoPath\Drives.xml" -Encoding UTF8
+      delegate_to: "{{ domain_controller }}"
+      run_once: true
+
+    - name: Apply WMI Filter to GPO
+      ansible.windows.win_shell: |
+        $gpo = Get-GPO -Name "{{ gpo_name }}"
+        $filter = Get-WmiObject -Namespace "root\Policy" -Class "MSFT_SomFilter" | Where-Object {$_.Name -eq "{{ wmi_filter_name }}"}
+        if ($filter) {
+          $gpo.WmiFilter = $filter
+        }
+      delegate_to: "{{ domain_controller }}"
+      run_once: true
+
+    - name: Link GPO to domain
+      ansible.windows.win_shell: |
+        $domainDN = (Get-ADDomain).DistinguishedName
+        $existingLink = Get-GPInheritance -Target $domainDN | Where-Object {$_.GpoLinks.DisplayName -eq "{{ gpo_name }}"}
+        if (-not $existingLink) {
+          New-GPLink -Name "{{ gpo_name }}" -Target $domainDN
+        }
+      delegate_to: "{{ domain_controller }}"
+      run_once: true
+
+    - name: Force group policy update
+      ansible.windows.win_shell: gpupdate /force
+
+    - name: Verify drive mapping
+      ansible.windows.win_shell: "net use {{ drive_letter }}:"
+      register: drive_status
+      failed_when: false
+
+    - name: Display drive status
+      ansible.builtin.debug:
+        msg: "Drive {{ drive_letter }}: {{ drive_status.stdout_lines }}"

@@ -1,0 +1,215 @@
+Received: from DS0PR05MB9400.namprd05.prod.outlook.com (2603:10b6:8:13a::8) by
+ CY5PR05MB10295.namprd05.prod.outlook.com with HTTPS; Mon, 2 Dec 2024 18:11:01
+ +0000
+Received: from CH2PR03CA0019.namprd03.prod.outlook.com (2603:10b6:610:59::29)
+ by DS0PR05MB9400.namprd05.prod.outlook.com (2603:10b6:8:13a::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8207.18; Mon, 2 Dec
+ 2024 18:10:55 +0000
+Received: from CH3PEPF00000016.namprd21.prod.outlook.com
+ (2603:10b6:610:59:cafe::2f) by CH2PR03CA0019.outlook.office365.com
+ (2603:10b6:610:59::29) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8207.17 via Frontend Transport; Mon,
+ 2 Dec 2024 18:10:55 +0000
+Authentication-Results: spf=pass (sender IP is 54.240.13.112)
+ smtp.mailfrom=bounces.amazon.com; dkim=pass (signature was verified)
+ header.d=amazon.com;dkim=pass (signature was verified)
+ header.d=amazonses.com;dmarc=pass action=none
+ header.from=amazon.com;compauth=pass reason=100
+Received-SPF: Pass (protection.outlook.com: domain of bounces.amazon.com
+ designates 54.240.13.112 as permitted sender)
+ receiver=protection.outlook.com; client-ip=54.240.13.112;
+ helo=a13-112.smtp-out.amazonses.com; pr=C
+Received: from mta-c0299e.us.email.fireeyecloud.com (3.93.93.216) by
+ CH3PEPF00000016.mail.protection.outlook.com (10.167.244.121) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.8251.1
+ via Frontend Transport; Mon, 2 Dec 2024 18:10:54 +0000
+Return-Path: 202412021810502098869f7f9f496eb5126551ed70p0na-c260o8kgunnh2e@bounces.amazon.com
+Received: from [127.0.0.1] ([127.0.0.1:38098] helo=smtp-injection-worker)
+	by prd09-use1-10 (envelope-from <202412021810502098869f7f9f496eb5126551ed70p0na-c260o8kgunnh2e@bounces.amazon.com>)
+	(ecelerity 4.7.0.20111 r(msys-ecelerity:tags/4.7.0-ga^0)) with ESMTPS (cipher=ECDHE-RSA-AES128-GCM-SHA256)
+	id 33/D9-11087-E28FD476; Mon, 02 Dec 2024 18:10:54 +0000
+X-FE-ETP-SENDER-IP: 54.240.13.112
+X-FE-ETP-CONNECTING-IP: 54.240.13.112
+Authentication-Results-Original: mta-112633.us.email.fireeyecloud.com;
+	dmarc=pass (p=quarantine; dis=none) header.from=amazon.com
+Received: from a13-112.smtp-out.amazonses.com (a13-112.smtp-out.amazonses.com [54.240.13.112])
+	by prd09-use1-09 (envelope-from <202412021810502098869f7f9f496eb5126551ed70p0na-c260o8kgunnh2e@bounces.amazon.com>)
+	FireEye ETP with ESMTPS (cipher=TLS_AES_128_GCM_SHA256)
+	id 3yWodnc-66874-09b4A8525276A28FD476a88234a; batch_id 4A/85-25276-A28FD476; Mon,  2 Dec 2024 18:10:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=eaxkvsyelrnxjh4cicqyjjmtjpetuwjx; d=amazon.com; t=1733163050;
+	h=Date:From:To:Message-ID:Subject:MIME-Version:Content-Type;
+	bh=RK7hK5x6lASEvvs1YIoWMbg098q0ZaJf3DQR8893Odo=;
+	b=GTq2DLIKakcQeqKrUOySKCcT7zbjfcf+Aqq6A2qf7cuOMdhmBFUcn4SnIlW+JvRa
+	OpHhRT32019OlsgrQZoO/HFOBTNTZx7h/MmM9pBd2G7yadwTKhA6rnXh3ZYHRELZ4RM
+	w+xgTx0fovrJUoQ6CjTfslLBISaCSmmY7Vho1wYc=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=ug7nbtf4gccmlpwj322ax3p6ow6yfsug; d=amazonses.com; t=1733163050;
+	h=Date:From:To:Message-ID:Subject:MIME-Version:Content-Type:Feedback-ID;
+	bh=RK7hK5x6lASEvvs1YIoWMbg098q0ZaJf3DQR8893Odo=;
+	b=qIi2LQp1r/3q5VwPMjJgbuKHXawTAzDNFf7nqh64Fb5mPtVtddx23Q9d+EsZCgWr
+	lVdkGuJaUSqLSRbeuCs522+tny1Jowu1dNfD7CufdzsVw7pIDhBQMMSWoPUHEaF+biY
+	dA5kKjhV8w1zyq9I2I9IurspO0iqOnEfuLvOIHFA=
+Date: Mon, 2 Dec 2024 18:10:50 +0000
+From: Amazon Web Services <no-reply-aws@amazon.com>
+To: infrastructure@kingslanding.net
+Message-ID: <010001938891650c-6b4f9caf-e9fe-4feb-a2f1-67eb606a0aa4-000000@email.amazonses.com>
+Subject: Amazon Web Services Billing Statement Available [Account:
+ 980921758675]
+Content-Type: multipart/alternative;
+	boundary="----=_Part_1932796_226271468.1733163050249"
+X-AMAZON-MAIL-RELAY-TYPE: notification
+Bounces-to: 202412021810502098869f7f9f496eb5126551ed70p0na-C260O8KGUNNH2E@bounces.amazon.com
+X-AMAZON-METADATA: CA=C260O8KGUNNH2E
+X-Original-MessageID: <urn.rtn.msg.202412021810502098869f7f9f496eb5126551ed70p0na@1733163050249.>
+Feedback-ID: 412520350::1.us-east-1.ZHcGJK6s+x+i9lRHKog4RW3tECwWIf1xzTYCZyUaiec=:AmazonSES
+X-SES-Outgoing: 2024.12.02-54.240.13.112
+X-FE-ETP-METADATA: eyAidGlkIjogIjN5V29kbmMtNjY4NzQtMDliNEE4NTI1Mjc2QTI4RkQ0NzZhODgyMzRhIiwgImFj
+ Y2VwdGVkX3RpbWVzdGFtcCI6ICIyMDI0MTIwMjE4MTA1MCIsICJhY2NlcHRlZF90aW1lc3RhbXBf
+ ZXBvY2giOiAiMTczMzE2MzA1MCIsICJkb21haW5fbmFtZSI6ICJtaXRyZS1lbmdlbnVpdHkub3Jn
+ IiwgImF0dF9jb3VudCI6IC0yLCAic3JjX2lwIjogIjU0LjI0MC4xMy4xMTIiIH0=
+X-MS-Exchange-Organization-ExpirationStartTime: 02 Dec 2024 18:10:54.7283
+ (UTC)
+X-MS-Exchange-Organization-ExpirationStartTimeReason: OriginalSubmit
+X-MS-Exchange-Organization-ExpirationInterval: 1:00:00:00.0000000
+X-MS-Exchange-Organization-ExpirationIntervalReason: OriginalSubmit
+X-MS-Exchange-Organization-Network-Message-Id: a5b8bada-3ad1-42b9-ae9d-08dd12fca9db
+X-EOPAttributedMessage: 0
+X-EOPTenantAttributedMessage: 78bf2ef2-f219-468e-956f-46690360df46:0
+X-MS-Exchange-Organization-MessageDirectionality: Incoming
+X-MS-Exchange-SkipListedInternetSender: ip=[54.240.13.112];domain=a13-112.smtp-out.amazonses.com
+X-MS-Exchange-ExternalOriginalInternetSender: ip=[54.240.13.112];domain=a13-112.smtp-out.amazonses.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH3PEPF00000016:EE_|DS0PR05MB9400:EE_|CY5PR05MB10295:EE_
+X-MS-Exchange-Organization-AuthSource: CH3PEPF00000016.namprd21.prod.outlook.com
+X-MS-Exchange-Organization-AuthAs: Anonymous
+X-MS-Office365-Filtering-Correlation-Id: a5b8bada-3ad1-42b9-ae9d-08dd12fca9db
+X-MS-Exchange-AtpMessageProperties: SA|SL
+X-MS-Exchange-Organization-SCL: -1
+X-Microsoft-Antispam: BCL:3;ARA:13230040|69100299015|5073199012|5082899009|6062899009|4092899012|5062899012|2092899012|82310400026|3072899012|3092899012|32142699015|13102899012|12012899012|13012899012|4076899003|8096899003;
+X-Forefront-Antispam-Report: CIP:3.93.93.216;CTRY:US;LANG:en;SCL:-1;SRV:;IPV:NLI;SFV:NSPM;H:a13-112.smtp-out.amazonses.com;PTR:a13-112.smtp-out.amazonses.com;CAT:NONE;SFS:(13230040)(69100299015)(5073199012)(5082899009)(6062899009)(4092899012)(5062899012)(2092899012)(82310400026)(3072899012)(3092899012)(32142699015)(13102899012)(12012899012)(13012899012)(4076899003)(8096899003);DIR:INB;
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2024 18:10:54.3846
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a5b8bada-3ad1-42b9-ae9d-08dd12fca9db
+X-MS-Exchange-CrossTenant-Id: 78bf2ef2-f219-468e-956f-46690360df46
+X-MS-Exchange-CrossTenant-AuthSource: CH3PEPF00000016.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR05MB9400
+X-MS-Exchange-Transport-EndToEndLatency: 00:00:07.4619551
+X-MS-Exchange-Processed-By-BccFoldering: 15.20.8207.017
+X-Microsoft-Antispam-Mailbox-Delivery: ucf:0;jmr:0;auth:0;dest:I;ENG:(910001)(944506478)(944626604)(920097)(930097)(140003)(1420198);
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?AizgpT/WtYH4fSXDKtMxqtEvJAuP3Pd8g0zWB5h+aFhk4373lrfdmHYvsBxC?=
+ =?us-ascii?Q?oi4bz+Vf0o3cGQW4Jgm8o4K4XMk5S7SIj7z8272SI2MtNDvhWvw/WFeN3VVU?=
+ =?us-ascii?Q?DbCFYdWgdjc4HOXcEOxKI7YDjDRrNyBcf81zsZpvntjnFC5jKSoqQ+QLYM9W?=
+ =?us-ascii?Q?rcBmZICk+oS4j7rIcKRtOriKKqaU4AKTDbW0GDZF2ajFwsIM0slYRzYFKSlF?=
+ =?us-ascii?Q?angwY+K6WN6RiQgq8sC70/ngckhfle7IeW1auN86l/v9Bcq2oIRkRrCEYgWF?=
+ =?us-ascii?Q?jE729eHydKvLpZezauYm8NRaR8Rs1vo+5/EamlhdJnoGfxiwGIiTC48X7457?=
+ =?us-ascii?Q?Cw5XVc4B3p9xcrcNWIlRBxc/QA1o+VSHreXRzzqqiYlNNuxLAEYJkYYCHhVe?=
+ =?us-ascii?Q?5g41nBtsNdMwSs7+2tXi8L2P9VUeSF0UHuKE818yJ00kv/lLKDGP8A0c9bxR?=
+ =?us-ascii?Q?PZADUmefe2vnIo8z0rp5NKFxx115/ja+Ps+2eeu4JaWn6RcctDIZg8gRExI6?=
+ =?us-ascii?Q?i5W/pqTBMEIDVScJTYxOM5YpAhHtIGwNYklLXI4Z+3t0QrlqRPSE1RBOXJmd?=
+ =?us-ascii?Q?L7UeG8Xbb2xzivXY6cre4H4ZLU7dPymqdzUZcU/jYEq9vb5dEy9/HVgbEegf?=
+ =?us-ascii?Q?iqwvfZiar1NZhAQJC5XY2D3rg/R2IiEOBcqRwD5tjq89/imjp+8Zvx+ZZ1E8?=
+ =?us-ascii?Q?ToLMctrkQrcFJ9KjvixE3NENW5CSXX7aPCCnNRQlVd8zpvVNVYgSL+UnduFV?=
+ =?us-ascii?Q?jo9syx7tuvD7B1m00rWpCkEJmA+JT0rT+pk6V4yu7ySVkeJ+DDGlYbk396cg?=
+ =?us-ascii?Q?ThDVcnBa93y2lzuCBf77FGPO7O6gZR1ODTv9sYblAP4Bb1FJXFSAsQ7XvJlc?=
+ =?us-ascii?Q?1e7vJkEY5eJr2v3x8i+DefePVOOjcYm/ZCfJMqRtiAbRMYsNYHZkVVFSr91v?=
+ =?us-ascii?Q?W10ILiqz5sI3WslRS4W1ymoRcSbPuEmOebupBcPqEWlKOKKJu92tvmFTGOq4?=
+ =?us-ascii?Q?g7KbmF3vHG8NBnorNqWpM13vysWgKGZDlnoarQBHva7WQmDXzKfY5Wvc0oSU?=
+ =?us-ascii?Q?JW7P3C6+eJEm+PeZRjKxlYw5aeKwYiFhSIDucrNGHQj2wmka1nkEXHE+GU9r?=
+ =?us-ascii?Q?67Qs1Z56ghPuOUmnaRbwuEzPhehoIHoHTTZl/aDwf26ny6SPHAqRjvrS7G74?=
+ =?us-ascii?Q?QjegUq/fqMdpJRj7aa0MNRocVb0/J3LDlEXs9fjme4XuU/bO9tOlui0FwlP/?=
+ =?us-ascii?Q?iQ+Gb+z4yNPWurzF4i+1zRxp1y8H4QL4LwyBYgEYRcLNPbzy2v1L7PrwExrv?=
+ =?us-ascii?Q?A6zKaQgA6ILrOsv1YHTOWIlXRsXFjrj7uTcpt96RKyuv1dwtPZmWTqysfXSB?=
+ =?us-ascii?Q?zS18OfOxMBRvE8M6+c7rMnXCGL3bQUf7wTS9N3Qfr44g3n7E2nfgAp5pQHMq?=
+ =?us-ascii?Q?iwNtNYUh+zGxQZaDiLnXp1TxjpPN2dobgRbBaagA6gRDsipKglr/mfIoMhKV?=
+ =?us-ascii?Q?krEa46Zl8/VNDxkPGAI3CvD3YwhtM/VmBWDI0ydNGs50qEfiwkDc5QR8VCPG?=
+ =?us-ascii?Q?Oz3dgQVD5QwYjUpYeSZ3+PLAsajjVGj5lvB2iDiJc3Kuw9GjpBwgn7y4EQED?=
+ =?us-ascii?Q?pBY8FgApPz4wxaKjzcXG0+ybLzcfOf2vX/6vXW8g+7wccJhz4cESU3WTWswf?=
+ =?us-ascii?Q?GndhNxDBKx0y02QRNonnfW7fv5LFiYvizG1fg7lSj2Y5DxoedxGq8xozKMQT?=
+ =?us-ascii?Q?XrkjyiE07hC+j3A1pJNd8kCprvbDTQysDFZZoupaWndlrLKzXOSI8Tx1NeRQ?=
+ =?us-ascii?Q?EjkYgC7ujK9C4R5k0MgErgUeS+bplwazTEDUWcR40aPn0ComY/dUdMKCQJDB?=
+ =?us-ascii?Q?zq8lYSQLV5jkHAaxYTYs1OknqtBFUMVhqBBn/+s2dL6NdYqyCXMfDwaiUOXS?=
+ =?us-ascii?Q?1mRfO5bpaQjLlxkJlQK0743FIuu2+vMHVYn9sKVVLzPAYdUc0p5IISovTj5s?=
+ =?us-ascii?Q?2/ON7Q6bQ7U0aP4sGNFRimv8sIMYXmK/Vg0Zgnxc0XoRTIdOAGNkUmFZ/Gq+?=
+ =?us-ascii?Q?YUEeDT3LqZZeuQpHmrH4yUTDVgQi/c6Kvb/mSwL/SPFG6i3oeac6aV7S1Kan?=
+ =?us-ascii?Q?E3HW3/8tCBw+AgSZSEEn2ZPT5fpvs/A5iSp0Xvf1Xowa87RZyKz7v0Wx98lu?=
+ =?us-ascii?Q?DSiypGf438iME+fFLADG9olsiY4AnWd7uuTN7hLPdaJzHS+du8ZlPRDTWegs?=
+ =?us-ascii?Q?aEpk3OzVZ3dVsxYn2n8M8CZsUdrvjGcpZO+gpDPJh6GzpaWiEJkRyNkIbfGr?=
+ =?us-ascii?Q?D0FYbcKlIfhdNuHdWSR8gKQ7yt7rgJIzt99F3b+qW4fc39siYF+TG5X3RNfH?=
+ =?us-ascii?Q?Y0Hcfe+ZKZ+EocARknQkellbRZnadTAbWwYMJ7YdbdAeDYT8RqbUe4oliAu6?=
+ =?us-ascii?Q?4amKwS0z/kQ=3D?=
+MIME-Version: 1.0
+
+------=_Part_1932796_226271468.1733163050249
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Greetings from Amazon Web Services,
+
+This e-mail confirms that your latest billing statement, for the account ending in ****0436, is available on the AWS web site. Your account will be charged the following:
+
+Total: $1.10
+
+
+
+
+You can see a complete break down of all charges on the Billing & Cost Management page located here:
+
+https://console.aws.amazon.com/billing/home#/bills?year=2024&month=11
+
+To receive future invoices in the PDF format, sign in to the AWS Management Console and open the AWS Billing console at https://console.aws.amazon.com/billing/ and opt-in to PDF invoices delivered by email under Invoice delivery preferences
+
+To protect your privacy, we can only communicate account information to the e-mail address on file for your account.
+
+Thank you for using Amazon Web Services.
+
+Sincerely,
+
+Amazon Web Services
+
+To learn more about managing your AWS costs with Cost Allocation and Tagging, visit http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html
+
+This message was produced and distributed by Amazon Web Services, Inc. and affiliates, 410 Terry Ave. North, Seattle, WA 98109-5210.
+
+AWS will not be bound by, and specifically objects to, any term, condition or other provision which is different from or in addition to the provisions of the AWS Customer Agreement or AWS Enterprise Agreement between AWS and you (whether or not it would materially alter such AWS Customer Agreement or AWS Enterprise Agreement) and which is submitted in any order, receipt, acceptance, confirmation, correspondence or otherwise, unless AWS specifically agrees to such provision in a written instrument signed by AWS.
+
+The current AWS Customer Agreement is available at https://aws.amazon.com/agreement/. You can see more information about these changes at https://aws.amazon.com/agreement/recent-changes/.
+
+Submit feedback on your Invoice Experience here https://amazonmr.au1.qualtrics.com/jfe/form/SV_1LYl8aAqrflQhXo.
+------=_Part_1932796_226271468.1733163050249
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+<body bgcolor="#ffffff"><img width="1" height="1" src="https://www.amazon.com/gp/r.html?C=2NGMT2S3ZO1W1&amp;M=urn:rtn:msg:202412021810502098869f7f9f496eb5126551ed70p0na&amp;R=3LBQ45R9OM268&amp;T=O&amp;U=https%3A%2F%2Fimages-na.ssl-images-amazon.com%2Fimages%2FG%2F01%2Fnav%2Ftransp.gif&amp;H=1S41LMVMD0HHUFAIUTDR8PWEA4OA&amp;ref_=pe_1679150_412520350_opens">
+    <div style="font-family:Verdana; font-size:14px">
+        <p>Greetings from Amazon Web Services,</p>
+        <p>This e-mail confirms that your latest billing statement, for the account ending in ****0436, is available on the AWS web site. Your account will be charged the following:</a></p>
+        <p>Total: $1.10</p>
+        <p>&nbsp;</p>
+
+
+      <p>You can see a complete break down of all charges on the Billing &amp; Cost Management page located here:</p>
+      <p><a href="https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.amazon.com%2Fgp%2Ff.html%3FC%3D2NGMT2S3ZO1W1%26M%3Durn%3Artn%3Amsg%3A202412021810502098869f7f9f496eb5126551ed70p0na%26R%3D4368EUHTTIYQ%26T%3DC%26U%3Dhttps%253A%252F%252Fconsole.aws.amazon.com%252Fbilling%252Fhome%253Fref_%253Dpe_1679150_412520350%2523%252Fbills%253Fyear%253D2024%2526month%253D11%26H%3DVAMU1QZRNOCP7LRYI4MZFV1MIYEA%26ref_%3Dpe_1679150_412520350&amp;data=05%7C02%7Cinfrastructure%40kingslanding.net%7Ca5b8bada3ad142b9ae9d08dd12fca9db%7C78bf2ef2f219468e956f46690360df46%7C0%7C0%7C638687598620811566%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata=t7CcGgd8G2nlSm13dFW8qdNXgzWHCyt5hywulaHhPtw%3D&amp;reserved=0" originalsrc="https://www.amazon.com/gp/f.html?C=2NGMT2S3ZO1W1&amp;M=urn:rtn:msg:202412021810502098869f7f9f496eb5126551ed70p0na&amp;R=4368EUHTTIYQ&amp;T=C&amp;U=https%3A%2F%2Fconsole.aws.amazon.com%2Fbilling%2Fhome%3Fref_%3Dpe_1679150_412520350%23%2Fbills%3Fyear%3D2024%26month%3D11&amp;H=VAMU1QZRNOCP7LRYI4MZFV1MIYEA&amp;ref_=pe_1679150_412520350" shash="BdxsAPVI8UKkPK9if7H4s1TRH8m4fvgEnN7/Y5YDCqFUabNQOj+djU1QPjjhY7CW2CUsElxpECx6B2tmnGf6shU+hEuikdI5+zPQjDmqt2L0eP/3AgwIS4JeL+TuhkzyyoG8n/0pkM/fbwDhoq5IH4IRlLmROO4O8VNHpqACHIU=">https://console.aws.amazon.com/billing/home#/bills?year=2024&amp;month=11</a></p>
+      <p>To receive future invoices in the PDF format, sign in to the AWS Management Console and open the AWS Billing console at <a href="https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.amazon.com%2Fgp%2Ff.html%3FC%3D2NGMT2S3ZO1W1%26M%3Durn%3Artn%3Amsg%3A202412021810502098869f7f9f496eb5126551ed70p0na%26R%3D3PPTUWC5C70UN%26T%3DC%26U%3Dhttps%253A%252F%252Fconsole.aws.amazon.com%252Fbilling%252F%253Fref_%253Dpe_1679150_412520350%26H%3D5S7RRAKKAM2IL1C5BAAUMZQXHSOA%26ref_%3Dpe_1679150_412520350&amp;data=05%7C02%7Cinfrastructure%40kingslanding.net%7Ca5b8bada3ad142b9ae9d08dd12fca9db%7C78bf2ef2f219468e956f46690360df46%7C0%7C0%7C638687598620849722%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata=rMozrymN4K6IRINP09hLcGQiuurTyjDYdu4lrTNkFCg%3D&amp;reserved=0" originalsrc="https://www.amazon.com/gp/f.html?C=2NGMT2S3ZO1W1&amp;M=urn:rtn:msg:202412021810502098869f7f9f496eb5126551ed70p0na&amp;R=3PPTUWC5C70UN&amp;T=C&amp;U=https%3A%2F%2Fconsole.aws.amazon.com%2Fbilling%2F%3Fref_%3Dpe_1679150_412520350&amp;H=5S7RRAKKAM2IL1C5BAAUMZQXHSOA&amp;ref_=pe_1679150_412520350" shash="V0IeneAuV7nmYpdENyqSWjixzEf/hEHDPlp10rXSNTxWdaynYKfwwYicqr4ymutmmukF6tDR0CjatLCFqUkTfeEM+gOiwHMjtE8rs+ywaELPZkU0ighGVoa3QA+C7byWDd8HIOrJPWpv95WXREXd6vxIXOyxn5Wg1+P5kD/I08Q=">https://console.aws.amazon.com/billing/</a> and opt-in to PDF invoices delivered by email under Invoice delivery preferences.</p>
+      <p>To protect your privacy, we can only communicate account information to the e-mail address on file for your account.</p>
+      <p>Thank you for using Amazon Web Services.</p>
+      <p>Sincerely,</p>
+      <p>Amazon Web Services</p>
+      <p>To learn more about managing your AWS costs with Cost Allocation and Tagging, visit <a href="https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.amazon.com%2Fgp%2Ff.html%3FC%3D2NGMT2S3ZO1W1%26M%3Durn%3Artn%3Amsg%3A202412021810502098869f7f9f496eb5126551ed70p0na%26R%3DROFU9YA1UHTN%26T%3DC%26U%3Dhttp%253A%252F%252Fdocs.aws.amazon.com%252Fawsaccountbilling%252Flatest%252Faboutv2%252Fcost-alloc-tags.html%253Fref_%253Dpe_1679150_412520350%26H%3D5KKM58SQXV2PDOLNW3F9TA3BCEMA%26ref_%3Dpe_1679150_412520350&amp;data=05%7C02%7Cinfrastructure%40kingslanding.net%7Ca5b8bada3ad142b9ae9d08dd12fca9db%7C78bf2ef2f219468e956f46690360df46%7C0%7C0%7C638687598620875589%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata=ux2qvQ1G1GYmRnffHuNbZBg9SKn8P5R0znEimZkN4sk%3D&amp;reserved=0" originalsrc="https://www.amazon.com/gp/f.html?C=2NGMT2S3ZO1W1&amp;M=urn:rtn:msg:202412021810502098869f7f9f496eb5126551ed70p0na&amp;R=ROFU9YA1UHTN&amp;T=C&amp;U=http%3A%2F%2Fdocs.aws.amazon.com%2Fawsaccountbilling%2Flatest%2Faboutv2%2Fcost-alloc-tags.html%3Fref_%3Dpe_1679150_412520350&amp;H=5KKM58SQXV2PDOLNW3F9TA3BCEMA&amp;ref_=pe_1679150_412520350" shash="fq/8wf5SMF1sI8KheKXIytUn+Yup4J+bK0orYTMFr3Bft+H1FVqsX4Z9AQEZcRZj5jp0E+djQSRtdNewJv00lcCWZucSgSGnvvisR0sB9mq2halZTl9qyZ84OIbo9k61OVuLuJHNXYsOf6nq1h0QaLPQOy+vHdwlsshg3YPsPuc=">http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html</a></p>
+
+This message was produced and distributed by Amazon Web Services, Inc. and affiliates, 410 Terry Ave. North, Seattle, WA 98109-5210.
+      <p>AWS will not be bound by, and specifically objects to, any term, condition or other provision which is different from or in addition to the provisions of the AWS Customer Agreement or AWS Enterprise Agreement between AWS and you (whether or not it would materially alter such AWS Customer Agreement or AWS Enterprise Agreement) and which is submitted in any order, receipt, acceptance, confirmation, correspondence or otherwise, unless AWS specifically agrees to such provision in a written instrument signed by AWS.</p>
+      <p>The current AWS Customer Agreement is available at <a href="https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.amazon.com%2Fgp%2Ff.html%3FC%3D2NGMT2S3ZO1W1%26M%3Durn%3Artn%3Amsg%3A202412021810502098869f7f9f496eb5126551ed70p0na%26R%3D39P2DBJUAS107%26T%3DC%26U%3Dhttps%253A%252F%252Faws.amazon.com%252Fagreement%252F%253Fref_%253Dpe_1679150_412520350%26H%3DGKNETSDXDFOAX8RVPTC2P1UGZ88A%26ref_%3Dpe_1679150_412520350&amp;data=05%7C02%7Cinfrastructure%40kingslanding.net%7Ca5b8bada3ad142b9ae9d08dd12fca9db%7C78bf2ef2f219468e956f46690360df46%7C0%7C0%7C638687598620898634%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata=6K4QQo8GuZ4nZ4FT9o5r4MKmtZFVcG31ppY2VmfRiMY%3D&amp;reserved=0" originalsrc="https://www.amazon.com/gp/f.html?C=2NGMT2S3ZO1W1&amp;M=urn:rtn:msg:202412021810502098869f7f9f496eb5126551ed70p0na&amp;R=39P2DBJUAS107&amp;T=C&amp;U=https%3A%2F%2Faws.amazon.com%2Fagreement%2F%3Fref_%3Dpe_1679150_412520350&amp;H=GKNETSDXDFOAX8RVPTC2P1UGZ88A&amp;ref_=pe_1679150_412520350" shash="atc/g7PBAXZ01IdAz09TdxvExeNuuo3IsAEy7rcgKo1bT4ruafPiYXZ8/jj4dUzrcSDQzrFXkMtqCDRZId0ZT42j5+SkICQsjy+VDdVhgAdDLimKKjzOIvZOrAAG8PonWw3rRFJV6IG2gho12EPCyffnLGJGEkNQ0KDUE95Jtuc=">https://aws.amazon.com/agreement/</a>. You can see more information about these changes at <a href="https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.amazon.com%2Fgp%2Ff.html%3FC%3D2NGMT2S3ZO1W1%26M%3Durn%3Artn%3Amsg%3A202412021810502098869f7f9f496eb5126551ed70p0na%26R%3D3VYJOC4GBEHR7%26T%3DC%26U%3Dhttps%253A%252F%252Faws.amazon.com%252Fagreement%252Frecent-changes%252F%253Fref_%253Dpe_1679150_412520350%26H%3DHRZBERYSVUAKB5T3KANY638CVGGA%26ref_%3Dpe_1679150_412520350&amp;data=05%7C02%7Cnfrastructure%40kingslanding.net%7Ca5b8bada3ad142b9ae9d08dd12fca9db%7C78bf2ef2f219468e956f46690360df46%7C0%7C0%7C638687598620916582%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata=m8FLbHRs8pfPteRTVC4TYqV0JhzJbf6NrikY78SFVrc%3D&amp;reserved=0" originalsrc="https://www.amazon.com/gp/f.html?C=2NGMT2S3ZO1W1&amp;M=urn:rtn:msg:202412021810502098869f7f9f496eb5126551ed70p0na&amp;R=3VYJOC4GBEHR7&amp;T=C&amp;U=https%3A%2F%2Faws.amazon.com%2Fagreement%2Frecent-changes%2F%3Fref_%3Dpe_1679150_412520350&amp;H=HRZBERYSVUAKB5T3KANY638CVGGA&amp;ref_=pe_1679150_412520350" shash="ZOm89W1/JZVUj4WCO3UrM47ojRF3yZqkvD6CUAWhrJU5FygQGFtGjfPaYGbYW51IBuF19zCVut5jiaSqRV1LasZbi7RrwLPn5HnuDzmD9z4Dwo/atnP/BV2qI0zJ5PvV/BeQm5dm2NYdglDfvFjog4lqAKQY7sfh33AnT4MdOic=">https://aws.amazon.com/agreement/recent-changes/</a>.</p>
+      <p>Submit feedback on your Invoice Experience <a href="https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.amazon.com%2Fgp%2Ff.html%3FC%3D2NGMT2S3ZO1W1%26M%3Durn%3Artn%3Amsg%3A202412021810502098869f7f9f496eb5126551ed70p0na%26R%3DDIKE7GGRJD8Y%26T%3DC%26U%3Dhttps%253A%252F%252Famazonmr.au1.qualtrics.com%252Fjfe%252Fform%252FSV_1LYl8aAqrflQhXo%26H%3D8TCAAZJJOYT3RJT2FMTQFKMQ0OKA&amp;data=05%7C02%7Cinfrastructure%40kingslanding.net%7Ca5b8bada3ad142b9ae9d08dd12fca9db%7C78bf2ef2f219468e956f46690360df46%7C0%7C0%7C638687598620932541%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata=lLAq7GjuQ38Usnki%2Fi%2BcvOdHChZprfjIY3RZpzVre20%3D&amp;reserved=0" originalsrc="https://www.amazon.com/gp/f.html?C=2NGMT2S3ZO1W1&amp;M=urn:rtn:msg:202412021810502098869f7f9f496eb5126551ed70p0na&amp;R=DIKE7GGRJD8Y&amp;T=C&amp;U=https%3A%2F%2Famazonmr.au1.qualtrics.com%2Fjfe%2Fform%2FSV_1LYl8aAqrflQhXo&amp;H=8TCAAZJJOYT3RJT2FMTQFKMQ0OKA" shash="pOvIma3i6R3y1UUkCSoU8nw0QtGnpYkh3YsboKfXuf5hocnqsDk8I/Vq/lPLrdoCVZvdJ7JwX2XZRMLpvr088tksxS0W3dosNbqWk1OedXnjeiH2nbxeHCsu7/OiBbvp3qHpCCq8skis2K66oxBb46L35T9TQRH2v7i4s3mE4S8=">here</a>.</p>
+      <p>&nbsp;</p>
+    </div>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+  <img width="1" height="1" src="https://www.amazon.com/gp/r.html?C=2NGMT2S3ZO1W1&amp;M=urn:rtn:msg:202412021810502098869f7f9f496eb5126551ed70p0na&amp;R=1QOFBIV860S3A&amp;T=E&amp;U=https%3A%2F%2Fimages-na.ssl-images-amazon.com%2Fimages%2FG%2F01%2Fnav%2Ftransp.gif&amp;H=MTKMXXSXVPFOIHALIN8UQ2VAGCIA&amp;ref_=pe_1679150_412520350_open"></body>
+</html>
+------=_Part_1932796_226271468.1733163050249--

@@ -1,0 +1,25 @@
+---
+# Required variables:
+# - item.username: Username for the user
+# - item.password: Password for the user
+# - red_dev.s3.red_bucket: S3 bucket name
+# - evals_cycle: Evaluation cycle identifier
+
+- name: Populate j2 template csv for s3 (github)
+  set_fact:
+    csv: "{{ lookup('template', github_csv_template) }}"
+  vars:
+    username: "{{ item.username }}"
+    password: "{{ item.password }}"
+    github_csv_template: ../files/totp/er7-vendor-github.csv.j2
+
+- name: Upload csv to s3
+  amazon.aws.aws_s3:
+    bucket: "{{ s3_bucket }}"
+    object: "{{ s3_object }}"
+    content: "{{ csv }}"
+    mode: put
+  vars:
+    s3_bucket: "{{ red_dev.s3.red_bucket }}"
+    s3_object: "{{ evals_cycle | lower }}/{{ item.username.split('-')[-1]}}/{{ github_csv_filename }}"
+    github_csv_filename: "{{ evals_cycle | lower }}-{{ item.username.split('-')[-1] }}-github.csv"

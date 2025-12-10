@@ -1,0 +1,19 @@
+[ req ]
+distinguished_name  = req_distinguished_name
+req_extensions      = req_ext
+
+[ req_distinguished_name ]
+organizationName    = {{ item.0.domain }}
+commonName          = {{ item.1.name }}.{{ item.0.domain }}
+commonName_max      = 64
+
+[ req_ext ]
+subjectAltName = @alt_names
+basicConstraints=CA:FALSE
+keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
+
+[alt_names]
+{% for site in item.1.dns %}
+DNS.{{ loop.index }} = {{ site }}.{{ item.0.domain }}
+{% endfor %}
+IP.1 = {{ item.1.ip }}

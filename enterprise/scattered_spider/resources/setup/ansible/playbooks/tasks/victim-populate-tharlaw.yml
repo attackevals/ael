@@ -1,0 +1,80 @@
+---
+- name: Prepopulate required data based on
+  hosts: b3-win11-desk2
+  gather_facts: no
+  strategy: free
+  vars:
+    prepop_user: "tharlaw"
+    home_dir: "C:/Users"
+    key_type: "ed25519"
+  vars_files:
+    - ../vars/vars.yml
+  tags:
+    - office
+    - libreoffice
+    - profiledir
+    - victim
+
+  tasks:
+    - name: "Ensure profile directory exists for user {{ prepop_user }}"
+      community.windows.win_user_profile:
+        username: "{{ prepop_user }}"
+        state: present
+      ignore_errors: yes
+      ignore_unreachable: yes
+
+    - name: "Create AWS config directory for {{ prepop_user }}"
+      win_file:
+        path: "{{ home_dir }}/{{ prepop_user }}/.aws"
+        state: directory
+      tags:
+        - aws
+        - victim
+
+    - name: "Create AWS config file for {{ prepop_user }}"
+      win_copy:
+        content: |
+          [{{ prepop_user }}]
+          region = us-east-1
+          output = json
+          cli_pager=
+        dest: "{{ home_dir }}/{{ prepop_user }}/.aws/config"
+      tags:
+        - aws
+        - victim
+
+    - name: "Create AWS credentials file for {{ prepop_user }}"
+      win_copy:
+        content: |
+          [profile {{ prepop_user }}]
+          aws_access_key_id = AKIAIOSFODNN7E2NJKLA
+          aws_secret_access_key = wJalx2XUtnFEMI/K7MDENG/bPxRfiCYmI34SMLekye
+        dest: "{{ home_dir }}/{{ prepop_user }}/.aws/credentials"
+      tags:
+        - aws
+        - victim
+
+    - name: "Create SSH directory for {{ prepop_user }}"
+      win_file:
+        path: "{{ home_dir }}/{{ prepop_user }}/.ssh"
+        state: directory
+      tags:
+        - ssh
+        - victim
+
+    - name: "Generate {{ key_type }} SSH keypair for {{ prepop_user }}"
+      ansible.windows.win_powershell:
+        script: |
+          $sshPath = "{{ home_dir }}/{{ prepop_user }}/.ssh"
+          $keyFile = "$sshPath/id_{{ key_type }}"
+
+          # Generate SSH key if it doesn't exist
+          if (-not (Test-Path $keyFile)) {
+            ssh-keygen -t {{ key_type }} -f $keyFile -q -N '""'
+            Write-Output "SSH keypair generated for {{ prepop_user }}"
+          } else {
+            Write-Output "SSH keypair already exists for {{ prepop_user }}"
+          }
+      tags:
+        - ssh
+        - victim

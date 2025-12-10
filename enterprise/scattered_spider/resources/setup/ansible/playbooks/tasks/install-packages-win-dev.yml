@@ -1,0 +1,27 @@
+---
+- name: Common installs and configs across all Windows desktops
+  hosts: windows:&victim
+  strategy: free
+  gather_facts: no
+  vars_files:
+    - ../vars/vars.yml
+
+  tasks:
+    - name: configure choco mirror
+      include_tasks: ../library/configure-choco-mirror.yml
+      when: support_vars.choco_mirror_url is defined
+
+    - name: Install dev packages and tooling via choco
+      win_chocolatey:
+        name:
+          - firefox
+          - git
+          - libreoffice-still
+          - notepadplusplus
+          - openssh
+          - python
+          - sysinternals
+          - vscode
+          - winrar
+        state: present
+        ignore_checksums: yes
