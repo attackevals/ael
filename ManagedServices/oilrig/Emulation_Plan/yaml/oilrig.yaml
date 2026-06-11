@@ -825,6 +825,7 @@
           xdotool key --window "$rdp_window" Return;
           sleep 2;
           xdotool type --window "$rdp_window" 'attrib -h C:\Program Files\Microsoft\Exchange\V15\ClientAccess\exchweb\ews\contact.aspx';
+          xdotool key --window "$rdp_window" Return;
           xdotool type --window "$rdp_window" 'del C:\Windows\System32\mom64.exe C:\Windows\temp\Nt.dat C:\Windows\System32\ps.exe C:\Program Files\Microsoft\Exchange\V15\ClientAccess\exchweb\ews\contact.aspx';
           xdotool key --window "$rdp_window" Return;
           sleep 2;   
